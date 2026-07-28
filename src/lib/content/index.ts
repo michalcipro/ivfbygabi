@@ -17,6 +17,8 @@ import { pack as cardsCycle } from './packs/cards-cycle'
 import { pack as cardsPregnancy } from './packs/cards-pregnancy'
 import { pack as cardsPostpartum } from './packs/cards-postpartum'
 import { pack as cardsNicu } from './packs/cards-nicu'
+import { pack as encouragements } from './packs/encouragements'
+import { pack as meditations } from './packs/meditations'
 
 /**
  * Registr obsahu.
@@ -35,6 +37,8 @@ const PACKS: ContentPack[] = [
   cardsPregnancy,
   cardsPostpartum,
   cardsNicu,
+  encouragements,
+  meditations,
 ]
 
 function dedupe<T extends { id: string }>(items: T[]): T[] {

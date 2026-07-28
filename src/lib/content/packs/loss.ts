@@ -1635,6 +1635,601 @@ Párová terapie po ztrátě není známka rozpadu vztahu. Je to nástroj, kter�
       publishedOn: '2025-10-28',
       boost: 0.7,
     },
+    {
+      id: 'loss-navrat-do-prace',
+      kind: 'article',
+      title: 'Návrat do práce, když se uvnitř nic nezměnilo',
+      excerpt:
+        'Nikdo v kanceláři neví, že jste minulý týden přišla o dítě — a vy máte do dvou hodin odevzdat prezentaci.',
+      body: `## Kdy se vracet
+
+Neexistuje správný počet dní. Existuje jen to, co unesete vy a co je bezpečné z hlediska vašeho zdravotního stavu.
+
+Co stojí za zvážení:
+
+- **Po výkonu v anestezii** potřebuje tělo dny, ne hodiny. Únava po celkové anestezii bývá výrazná ještě týden.
+- **Při silném krvácení** je návrat k fyzicky náročné práci nevhodný. Řekněte to lékaři, on určí režim.
+- **Práce, která vás vystaví dětem nebo těhotným ženám** — učitelka v mateřské škole, porodní asistentka, prodavačka v dětském oddělení — je zvlášť těžká. Není slabost si na ni vzít víc času.
+- **Práce jako útěk** funguje krátkodobě a řadě žen skutečně pomáhá. Jen pozor, aby se nestala jediným způsobem, jak se vyhnout tomu, co se stalo.
+
+**Pracovní neschopnost vypisuje lékař** a je to legitimní. Nemusíte ji obhajovat ani před sebou.
+
+## Co zaměstnavateli sdělovat nemusíte
+
+Prakticky nic. **Doklad o pracovní neschopnosti neobsahuje diagnózu** a nadřízený na ni nemá nárok. Stačí věta o zdravotních důvodech.
+
+Pokud chcete něco říct, vyberte si sama komu a kolik. Užitečná bývá formulace, která nastavuje hranici zároveň s informací:
+
+> „Prošla jsem zdravotní komplikací, jsem v pořádku a nechci o tom mluvit. Kdyby bylo potřeba, ozvu se sama."
+
+## První den
+
+Bude divný. Počítejte s tím.
+
+- **Přijďte o něco později**, ať se vyhnete ranní vlně pozdravů a otázek.
+- **Naplánujte si na první den jednoduchou práci.** Ne jednání, ne prezentaci, ne nic, co vyžaduje výkon.
+- **Domluvte si spojence** — jednoho kolegu, který ví aspoň to, že vám není dobře, a který vás v případě potřeby kryje.
+- **Mějte plán úniku.** Toaleta, schodiště, auto na parkovišti. Pět minut o samotě zvládne víc, než čekáte.
+- **Nemějte ambici odejít až v pět.** Když to nepůjde, odejděte dřív.
+
+## Na co se připravit
+
+**Nesoustředíte se.** Smutek žere pracovní paměť. Budete číst tentýž odstavec potřetí. Není to důkaz, že jste na to krátká — je to normální projev zátěže a odezní.
+
+**Přijde vlna z ničeho nic.** Kolegyně oznámí těhotenství, někdo pošle fotku miminka do firemního chatu, klientka přijde s kočárkem. Mějte připravenou větu k odchodu.
+
+**Někdo se zeptá.** „Kde jsi byla?" Připravte si odpověď dopředu — „byla jsem nemocná, už je to dobré" stačí.
+
+**Budete unavená jinak než dřív.** Osmihodinový den může první týden působit jako dvanáctihodinový. Naplánujte si večery prázdné.
+
+## Úpravy, o které je legitimní si říct
+
+- **Zkrácený úvazek nebo částečný návrat** na první týdny.
+- **Práce z domova**, když je to možné.
+- **Dočasné přesunutí úkolů**, které jsou pro vás zrovna neúnosné.
+- **Volno na kontrolu** u lékaře — na to máte nárok.
+
+Nemusíte při té žádosti odhalovat důvod. Stačí: „Potřebuju na následující tři týdny upravit režim ze zdravotních důvodů."
+
+## Když to nejde
+
+Když po několika týdnech zjistíte, že v práci nefungujete, nespíte kvůli ní, nebo se každé ráno budíte s úzkostí, **není to selhání a je to důvod znovu zajít k lékaři.** Prodloužení neschopnosti nebo doporučení k odborné pomoci je řešení, ne prohra.
+
+## Jedna praktická věc
+
+První den si do kalendáře dejte na konec dne třicetiminutový blok s názvem, kterému rozumíte jen vy. Nikdo se nezeptá, co v něm děláte, a vy budete mít jistotu, že aspoň půl hodiny na sebe budete mít.
+
+> Text má obecně informativní charakter a nenahrazuje lékařskou ani odbornou psychologickou péči. O pracovní neschopnosti rozhoduje váš lékař.`,
+      minutes: 7,
+      phases: ['loss_biochemical', 'loss_ectopic', 'loss_missed', 'loss_miscarriage', 'uterine_revision', 'waiting_next_attempt'],
+      dayRange: [7, 45],
+      topics: ['ztrata', 'psychika', 'sebepece', 'finance'],
+      level: 'essential',
+      hero: 'linen',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – psychologická podpora',
+      publishedOn: '2025-11-08',
+      boost: 0.65,
+    },
+    {
+      id: 'loss-navrat-do-lecby-strach',
+      kind: 'article',
+      title: 'Zpátky do léčby: jak jít do dalšího pokusu se strachem',
+      excerpt:
+        'Poprvé jste šla s nadějí. Teď jdete s vědomím, jak to vypadá, když to nevyjde — a stejně jdete.',
+      body: `## Něco se nevratně změnilo
+
+Před ztrátou byl další pokus dobrodružství s otevřeným koncem. Teď víte, jak vypadá špatná varianta. Víte, jak zní ta věta v ordinaci, víte, jaké je krvácení, víte, co následuje.
+
+**Tuhle nevinnost už zpátky nedostanete.** Není to vaše chyba a není to nic, co byste měla „překonat správným přístupem". Je to zkušenost, kterou od teď nesete s sebou.
+
+Ženy, které jdou do dalšího pokusu po ztrátě, obvykle nepopisují nadšení. Popisují odhodlání smíchané s hrůzou. To je normální výchozí stav, ne varovné znamení.
+
+## Co pomáhá před dalším pokusem
+
+**Vědět, co bude jinak.** Zeptejte se přímo: „Co konkrétně měníme oproti minule a proč?" I malá změna v protokolu nebo v plánu sledování hodně mění vaše prožívání — dává tomu smysl místo opakování.
+
+**Domluvit si plán sledování dopředu.** Kdy odběry, kdy první ultrazvuk, kdo vám bude volat výsledky. Nejistota z toho, kdy se co dozvíte, bývá horší než samotné čekání.
+
+**Říct na klinice, že jste po ztrátě.** Mělo by to být v dokumentaci a mělo by to změnit tón, kterým s vámi mluví. Pokud to tak není, máte právo to říct nahlas.
+
+**Vyřešit peníze a hranice předem**, v klidné hlavě. Kolik pokusů, kolik prostředků, do kdy. Ne proto, abyste se limitovala, ale abyste se v horším dni nerozhodovala z paniky.
+
+**Mít podporu nastavenou, ne jen zamýšlenou.** Ideálně psychologa, se kterým jste už mluvila, ne telefonní číslo v šuplíku pro případ nouze.
+
+## Co dělat se strachem, který nepřejde
+
+Nepřejde. Ale dá se s ním zacházet.
+
+- **Nepokoušejte se ho vypnout.** Věty typu „musíš věřit, že to vyjde" jsou další zátěž navíc. Nemusíte věřit. Stačí, že jdete.
+- **Rozdělte to na kusy.** Ne „chci zdravé dítě za devět měsíců", ale „chci se dostat přes zítřejší odběr". Menší úsek se nese líp.
+- **Určete si, co si dovolíte plánovat.** Některým ženám pomáhá nekupovat nic a neplánovat nic. Jiným naopak pomáhá dovolit si radost. Obojí je legitimní — jen o tom rozhodněte vědomě, ne z pověrčivosti.
+- **Připravte si scénář pro obě varianty.** Zní to drsně, ale ženy, které mají promyšlené „co uděláme, když to nevyjde", popisují menší paniku, ne větší.
+
+## Když přijde další pozitivní test
+
+Počítejte s tím, že radost může být krátká a hned ji vystřídá úzkost. To neznamená, že se netěšíte. Znamená to, že vaše hlava chrání sama sebe.
+
+Prakticky pomáhá:
+
+- **časnější ultrazvuk** domluvený předem,
+- jasně dané, **komu to řeknete a kdy** — a právo neříct to nikomu,
+- dohoda s partnerem o tom, jak spolu budete o těhotenství mluvit,
+- **profesionální podpora souběžně**, ne až kdyby se něco stalo.
+
+Těhotenství po ztrátě je zvláštní kategorie a existují odborníci, kteří se přímo na tohle zaměřují. Zeptejte se na klinice, koho doporučují.
+
+## Kdy je lepší počkat
+
+- Když ještě probíhají vyšetření, jejichž výsledky by změnily postup.
+- Když se cítíte na dně a jdete jen proto, že nesnesete čekání.
+- Když nemáte nikoho, kdo by u toho s vámi byl.
+- Když vám lékař řekl, že tělo ještě potřebuje čas.
+
+**Pauza není promarněný čas.** U řady žen je to právě ona, která umožní další pokus unést.
+
+## A poslední věta
+
+To, že jdete znovu, není důkaz, že jste přes ztrátu přešla. Je to důkaz, že s ní umíte jít dál. To je něco úplně jiného a je to mnohem těžší.
+
+> Text má obecně informativní charakter a nenahrazuje lékařskou péči. O načasování a podobě dalšího pokusu rozhoduje váš ošetřující lékař.`,
+      minutes: 8,
+      phases: ['waiting_next_attempt', 'repeated_failure'],
+      dayRange: [30, 90],
+      topics: ['ztrata', 'psychika', 'cekani', 'klinika'],
+      modifiers: ['after_loss'],
+      level: 'essential',
+      hero: 'dawn',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – psychologická podpora',
+      publishedOn: '2025-12-09',
+      boost: 0.8,
+    },
+    {
+      id: 'loss-kdy-psycholog',
+      kind: 'article',
+      title: 'Kdy vyhledat psychologa a proč to není až pro nejhorší případ',
+      excerpt:
+        'Čekat, až to bude „dost zlé", je nejčastější chyba — a taky nejdražší.',
+      body: `## Nemusíte být na dně
+
+Nejrozšířenější mýtus zní, že odborná pomoc je pro lidi, kteří to nezvládají. Ve skutečnosti je nejúčinnější tam, kde ještě zbývá trochu síly — protože s ní se dá pracovat.
+
+Ztráta těhotenství je uznávaná zátěžová událost. Vyhledat po ní podporu je stejně logické jako jít na rehabilitaci po zlomenině. **Nemusíte mít diagnózu, abyste na to měla nárok.**
+
+## Konkrétní signály, že je čas
+
+Nečekejte, když:
+
+- **po šesti až osmi týdnech se stav nelepší** nebo se zhoršuje,
+- **nespíte** déle než dva týdny, nebo se budíte s bušením srdce,
+- **nefungujete** — nejdete do práce, nejíte, nevstáváte, přestala jste se stýkat s lidmi,
+- máte **záchvaty úzkosti**, bušení srdce, pocity dušení, třes,
+- vracejí se vám **obrazy z nemocnice** nebo se vyhýbáte místům a situacím, které je připomínají,
+- **kontrolujete tělo nutkavě** — krvácení, testy, příznaky — a nedokážete přestat,
+- používáte **alkohol nebo léky**, abyste to unesla,
+- **vztah se rozpadá** nebo spolu nemluvíte,
+- jdete do dalšího pokusu a **panika vás vyřazuje z fungování**.
+
+**Okamžitě vyhledejte pomoc**, pokud máte myšlenky na to, že nechcete žít, nebo na sebepoškození. To je akutní situace — obraťte se na svého lékaře, krizovou linku nebo nejbližší psychiatrickou pohotovost, případně přes záchrannou službu.
+
+## Co která profese dělá
+
+Terminologie mate a bere energii, kterou teď nemáte. Zjednodušeně:
+
+- **Klinický psycholog** — vyšetření, diagnostika, psychoterapie. Část výkonů bývá hrazena ze zdravotního pojištění, obvykle je potřeba doporučení a existují čekací doby.
+- **Psychoterapeut** — vede terapii, nemusí být zdravotnickým zařízením; často se hradí přímo, bez doporučení a s kratším čekáním.
+- **Psychiatr** — lékař, může předepsat léky. Vyhledává se u výraznější úzkosti, deprese nebo poruch spánku. **Užívání léků nevylučuje další pokus o těhotenství — ale o vhodnosti konkrétní léčby při plánování těhotenství rozhoduje lékař.**
+- **Krizová linka** — okamžitá pomoc, anonymně, i v noci. Vhodná ve chvíli, kdy potřebujete mluvit hned.
+
+## Jak vybírat
+
+- Hledejte někoho se **zkušeností s reprodukční ztrátou nebo neplodností**. Rozdíl je obrovský — nebudete muset vysvětlovat, co je transfer.
+- **První sezení je vzájemné ohledání.** Když vám člověk nesedne, je legitimní jít jinam. Není to selhání terapie.
+- **Ptejte se na praktické věci** předem: cena, frekvence, online varianta, jak dlouhá je čekací doba.
+- **Zeptejte se na své klinice.** Řada center spolupracuje s psychologem zaměřeným na tuhle oblast a umí doporučit.
+
+## Když čekací doba je dlouhá
+
+To se bohužel stává. Mezitím:
+
+- **zapište se na víc míst současně**,
+- **využijte krizovou linku** — není jen pro krajní situace,
+- zvažte **podpůrnou skupinu** pro ženy po ztrátě, které vedou neziskové organizace zaměřené na perinatální ztrátu,
+- **řekněte svému gynekologovi nebo praktickému lékaři**, jak na tom jste. Mají možnosti, o kterých nevíte.
+
+## Co terapie neudělá
+
+Nevrátí to. Nevymaže smutek. Nezaručí, že další pokus vyjde.
+
+Co udělat může: **zmenšit to, co vás vyřazuje z života** — nespavost, úzkost, sebeobviňování, ochromující strach z dalšího pokusu. A dát smutku místo, ve kterém se s ním dá žít.
+
+> Text má obecně informativní charakter a nenahrazuje odbornou psychologickou ani lékařskou péči. Při akutních potížích vyhledejte pomoc neprodleně.`,
+      minutes: 7,
+      phases: ['loss_biochemical', 'loss_ectopic', 'loss_missed', 'loss_miscarriage', 'repeated_failure', 'waiting_next_attempt'],
+      dayRange: [14, 90],
+      topics: ['ztrata', 'psychika', 'sebepece'],
+      level: 'essential',
+      hero: 'sky',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – psychologická podpora',
+      publishedOn: '2025-11-18',
+      boost: 0.85,
+    },
+    {
+      id: 'loss-odborna-pomoc-cr',
+      kind: 'article',
+      title: 'Kde v Česku hledat pomoc po ztrátě těhotenství',
+      excerpt:
+        'Přehled toho, jaké druhy podpory u nás existují a jak se k nim reálně dostat.',
+      body: `## Proč tenhle přehled
+
+Protože ve chvíli, kdy pomoc potřebujete, nemáte kapacitu procházet vyhledávač. Tenhle text popisuje **typy podpory, které v České republice existují**, a jak se k nim dostat. Konkrétní kontakty se mění, proto tu žádná čísla nenajdete — najdete tu ale, co přesně hledat a čeho se zeptat.
+
+## 1. Vaše klinika a váš gynekolog
+
+První a nejpodceňovanější zdroj. Zeptejte se přímo:
+
+- **„Spolupracujete s psychologem?"** Řada center asistované reprodukce má psychologa přímo v týmu nebo doporučí konkrétní odborníky.
+- **„Můžete mi napsat doporučení ke klinickému psychologovi?"** Otevírá to cestu k péči hrazené ze zdravotního pojištění.
+- **„Kdo je u vás kontaktní osoba pro případ, že se stav zhorší?"**
+
+Váš praktický lékař má stejné možnosti a bývá dostupnější.
+
+## 2. Klinický psycholog v systému zdravotního pojištění
+
+Část psychologické a psychoterapeutické péče je hrazena ze zdravotního pojištění, pokud jde o zdravotnické zařízení se smlouvou s vaší pojišťovnou. Obvykle je potřeba **doporučení od lékaře** a je potřeba počítat s **čekací dobou**, která bývá delší, než by člověk chtěl.
+
+Praktický postup: seznam smluvních poskytovatelů najdete na webu své zdravotní pojišťovny. **Zapište se na víc míst současně** a řekněte při objednávání, že jde o ztrátu těhotenství — někde mají kratší cestu pro akutnější situace.
+
+## 3. Psychoterapeuti mimo systém pojištění
+
+Hradí se přímo, obvykle **nevyžadují doporučení** a čekací doby bývají kratší. Hledejte v seznamech odborných psychoterapeutických asociací, kde se dá filtrovat podle zaměření a regionu.
+
+Co hledat v profilu: **reprodukční ztráta, perinatální ztráta, neplodnost, krizová intervence.** Rozdíl mezi terapeutem, který tuhle oblast zná, a tím, který ji nezná, je zásadní.
+
+Mnoho terapeutů dnes nabízí **online sezení**, což řeší dojíždění i to, že se z domova mluví snáz.
+
+## 4. Krizové linky
+
+Fungují **nepřetržitě, anonymně a zdarma nebo za cenu běžného hovoru**. Existují celostátní linky psychické pomoci, linky s možností chatu i e-mailového poradenství.
+
+Nejsou jen pro krajní situace. Jsou i pro noc, kdy potřebujete mluvit hned a nemůžete počkat tři týdny na termín. Aktuální seznam najdete na stránkách věnovaných duševnímu zdraví — vyhledávejte podle spojení „linka psychické pomoci".
+
+## 5. Neziskové organizace a podpůrné skupiny
+
+V Česku působí organizace zaměřené přímo na **perinatální ztrátu a podporu truchlících rodičů**. Nabízejí obvykle:
+
+- **podpůrné skupiny** — setkání žen a párů s podobnou zkušeností,
+- **poradenství** po telefonu, e-mailem nebo osobně,
+- **informační materiály** pro rodiče i pro rodinu,
+- pomoc s praktickými otázkami spojenými se ztrátou v pozdějším těhotenství.
+
+Vyhledávejte podle spojení „perinatální ztráta", „podpora po ztrátě dítěte", „podpůrná skupina po potratu".
+
+## 6. Komunity žen po IVF
+
+Sdílená zkušenost dokáže věci, které odbornost nedokáže. Zároveň mají fóra svá rizika: srovnávání, dezinformace, cizí příběhy s horším koncem.
+
+Doporučení, které se osvědčuje: **využívejte komunitu na sdílení, ne na medicínské informace.** Ty berte od lékaře.
+
+## 7. Podpora pro partnera
+
+Na tuhle část se často zapomíná. Partneři mají přístup ke stejným krizovým linkám i terapeutům. **Párová terapie** je legitimní volba a po ztrátě má velký smysl.
+
+## Kdy nečekat
+
+Pokud máte myšlenky na to, že nechcete žít, nebo na sebepoškození, **nevolejte na objednací linku a nečekejte na termín.** Obraťte se na krizovou linku, na psychiatrickou pohotovost nebo na záchrannou službu. Tohle je situace, kde se pomoc řeší hned.
+
+> Text má obecně informativní charakter, popisuje typy dostupné podpory a nenahrazuje odbornou psychologickou ani lékařskou péči.`,
+      minutes: 7,
+      phases: ['loss_biochemical', 'loss_ectopic', 'loss_missed', 'loss_miscarriage', 'uterine_revision', 'repeated_failure', 'waiting_next_attempt'],
+      dayRange: [7, 90],
+      topics: ['ztrata', 'psychika', 'komunita', 'sebepece'],
+      level: 'essential',
+      hero: 'sky',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – psychologická podpora',
+      publishedOn: '2025-12-16',
+      boost: 0.7,
+    },
+    {
+      id: 'loss-pribeh-z-komunity',
+      kind: 'story',
+      title: 'Příběh z komunity: rok, kdy jsem se naučila říkat to nahlas',
+      excerpt:
+        'Anonymní vyprávění ženy z naší komunity o dvou ztrátách, o mlčení a o tom, co jí nakonec pomohlo.',
+      body: `## „Řekli mi to v úterý v půl jedenácté"
+
+*Následující text sdílela s naší komunitou žena, která si přeje zůstat v anonymitě. Publikujeme ho s jejím svolením a v její formulaci.*
+
+Pamatuju si přesný čas, protože jsem se dívala na hodiny nad monitorem. Doktorka mlčela o vteřinu déle, než bylo potřeba, a já jsem v tom tichu pochopila všechno dřív, než to řekla.
+
+Pak jsem odešla, sedla si do auta a zavolala do práce, že přijdu odpoledne. Dodneška nechápu, proč jsem to udělala. Asi proto, že jsem potřebovala něco normálního.
+
+## Co jsem si vyčítala
+
+Skoro rok jsem si přehrávala jeden konkrétní den. Nesla jsem tehdy nákup do třetího patra, protože nejel výtah. Byla jsem přesvědčená, že to bylo tím.
+
+Ptala jsem se na to čtyř různých lékařů. Všichni řekli totéž. Trvalo mi měsíce, než jsem tomu uvěřila, a stejně mě to napadne, když jdu kolem toho domu.
+
+Kdybych měla někomu poradit jednu jedinou věc: **ptejte se, dokud tomu neuvěříte.** Ne proto, že vám dají novou odpověď, ale protože ji potřebujete slyšet víckrát než jednou.
+
+## Druhá ztráta byla jiná
+
+Po první jsem truchlila. Po druhé jsem se hlavně bála. Přestala jsem si dovolit cokoli plánovat, přestala jsem chodit na oslavy, kde mohly být děti, a přestala jsem odpovídat na zprávy od kamarádky, která tehdy čekala druhé.
+
+Nejhorší na tom bylo, jak jsem si připadala. Jako mizerný člověk, který nedokáže nikomu nic přát.
+
+Až mi terapeutka řekla větu, kterou jsem potřebovala: **že závist v tomhle není o tom, že bych druhé nepřála. Že je to smutek, který si zrovna sedl vedle cizí radosti.** Od té doby se mi s tím žilo líp. Kamarádce jsem napsala po půl roce. Rozumnou reakcí bylo, že mi jen odepsala, že čekala.
+
+## Co nefungovalo
+
+- Fungovat jako by nic. Vydrželo mi to devatenáct dní, pak jsem se sesypala v práci.
+- Číst diskuzní fóra po nocích. Nikdy jsem tam nenašla svůj případ, jen deset horších.
+- Věty o tom, že to takhle mělo být. Ty mi vzaly víc, než mi kdo dal.
+- Předstírat před mužem, že jsem v pohodě. On dělal totéž a půl roku jsme bydleli vedle sebe jako dva slušní spolubydlící.
+
+## Co fungovalo
+
+- **Říct to nahlas** třem lidem a nikomu jinému.
+- **Terapeutka, která věděla, co je transfer.** Nemusela jsem nic vysvětlovat a to bylo víc než polovina úlevy.
+- **Nechat si datum.** Mám ho v telefonu, jednou ročně si vezmu volno a nikomu to nevysvětluju.
+- **Přestat plánovat dopředu než na týden.** Rok jsem si neplánovala nic, co bylo dál než sedm dní. Ulevilo se mi.
+- **Konkrétní věty**, které jsem se naučila nazpaměť. „Tohle mi nepomáhá" mě zachránilo asi třicetkrát.
+
+## Kde jsem teď
+
+Nechci tenhle text zakončit tak, jak se to obvykle dělá. Nechci napsat, že se to vyplatilo, protože to zní, jako by ta cesta měla mít cenu.
+
+Napíšu jinou věc. **Přestala jsem čekat, až mi to přestane být líto.** Zjistilo se, že se dá žít s tím, že mi to je líto — a že to není totéž jako být pořád nešťastná.
+
+To je všechno, co vám můžu upřímně nabídnout. A že v tom nejste sama, i když teď máte pocit, že ano.
+
+> Osobní zkušenost jedné ženy nenahrazuje lékařskou ani psychologickou péči a průběh se u každé liší. Pokud se poznáváte v tom, co popisuje, zvažte odbornou podporu.`,
+      minutes: 6,
+      phases: ['loss_biochemical', 'loss_missed', 'loss_miscarriage', 'repeated_failure', 'waiting_next_attempt'],
+      dayRange: [7, 90],
+      topics: ['ztrata', 'psychika', 'komunita', 'vztah'],
+      modifiers: ['after_loss', 'repeated_failure'],
+      level: 'comfort',
+      hero: 'pearl',
+      author: 'Tým IVF by Gabi',
+      publishedOn: '2026-01-13',
+      boost: 0.6,
+    },
+    {
+      id: 'loss-kviz-myty',
+      kind: 'quiz',
+      title: 'Šest vět, které uslyšíte po ztrátě — a co je na nich pravda',
+      excerpt:
+        'Krátký kvíz o mýtech, které vás obírají o klid, i když je vysloví lidé, co to myslí dobře.',
+      body: `## K čemu tenhle kvíz je
+
+Není to test vašich znalostí. Je to způsob, jak si projít věty, které po ztrátě uslyšíte skoro určitě — od rodiny, od kolegů, někdy i od zdravotníka, který spěchá.
+
+Většina z nich zní logicky. Právě proto se drží tak dlouho a právě proto vás dokážou tak zaměstnat ve tři ráno.
+
+**U každé otázky najdete vysvětlení**, které je delší než odpověď. To je záměr — vysvětlení je to podstatné.
+
+## Poznámka na úvod
+
+Nic z toho nenahrazuje rozhovor s vaším lékařem. Když se ve vaší situaci objevuje konkrétní otázka, na kterou tu není odpověď, napište si ji a vezměte na kontrolu.
+
+> Kvíz má obecně informativní charakter a nenahrazuje lékařskou péči.`,
+      minutes: 5,
+      phases: ['loss_biochemical', 'loss_missed', 'loss_miscarriage', 'waiting_next_attempt', 'repeated_failure'],
+      dayRange: [7, 90],
+      topics: ['ztrata', 'psychika', 'genetika'],
+      level: 'deep',
+      hero: 'sand',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2026-01-27',
+      boost: 0.5,
+      quiz: [
+        {
+          q: 'Mohla ztrátu způsobit fyzická námaha — zvedání nákupu, cvičení, stěhování?',
+          options: [
+            'Ano, proto se v těhotenství nemá nic zvedat',
+            'U běžné námahy to není považováno za příčinu ztráty',
+            'Záleží, kolik kilogramů to bylo',
+          ],
+          correct: 1,
+          explain:
+            'Běžná fyzická aktivita se za příčinu časné ztráty nepovažuje. Naprostá většina časných ztrát souvisí s chromozomální odchylkou embrya, která vznikla náhodně při dělení buněk. Pokud máte konkrétní omezení kvůli své diagnóze, sdělí vám ho lékař — ale zpětné hledání jednoho dne a jednoho pohybu je bohužel nejčastější a nejzbytečnější způsob, jak se trápit.',
+        },
+        {
+          q: 'Způsobil ztrátu stres nebo to, že jste si od začátku připouštěla obavy?',
+          options: [
+            'Ano, negativní myšlení se přenáší na těhotenství',
+            'Ne — a představa, že si za to můžete myšlenkami, je jedním z nejškodlivějších mýtů',
+            'Jen když stres trvá déle než měsíc',
+          ],
+          correct: 1,
+          explain:
+            'Běžný životní stres ani obavy nejsou uznávanou příčinou ztráty těhotenství. Tenhle mýtus je zvlášť zákeřný, protože přesouvá vinu na ženu za něco, co je při čekání na dítě naprosto přirozené. Dlouhodobý stres stojí za pozornost kvůli vašemu zdraví a kvalitě života, ne proto, že by byl viníkem.',
+        },
+        {
+          q: 'Znamená biochemické těhotenství, že jste vlastně nebyla těhotná?',
+          options: [
+            'Ano, jde jen o falešně pozitivní test',
+            'Ne — k otěhotnění došlo, jen se těhotenství zastavilo velmi brzy',
+            'Znamená to, že šlo o chybu laboratoře',
+          ],
+          correct: 1,
+          explain:
+            'Biochemické těhotenství znamená, že se embryo zahnízdilo natolik, že začalo tvořit hCG, ale těhotenství se zastavilo dřív, než by bylo cokoli vidět na ultrazvuku. Slovo biochemické popisuje jen to, že jediným důkazem byla laboratorní hodnota. O tom, jak moc jste to těhotenství chtěla a jak skutečná je ztráta, neříká nic.',
+        },
+        {
+          q: 'Je pravda, že po jedné ztrátě je namístě rozsáhlé vyšetření příčin?',
+          options: [
+            'Ano, vždy a okamžitě',
+            'Obvykle se systematicky vyšetřuje až po opakovaných ztrátách nebo když je konkrétní důvod dřív',
+            'Nikdy, vyšetřování nemá smysl',
+          ],
+          correct: 1,
+          explain:
+            'Jedna časná ztráta bývá nejčastěji náhodnou událostí, a proto se po ní obvykle rozsáhle nevyšetřuje — nepřineslo by to užitečnou informaci. Dřív se pátrá, když je pro to konkrétní důvod: vyšší věk, známá diagnóza, ztráta v pozdějším týdnu nebo nález na ultrazvuku. Hranici i rozsah určuje váš lékař a je legitimní se na vyšetření zeptat.',
+        },
+        {
+          q: 'Musíte po ztrátě čekat s dalším pokusem alespoň půl roku?',
+          options: [
+            'Ano, to je pevné pravidlo',
+            'Ne — načasování určuje lékař podle typu ztráty a léčby, obecné lhůty z internetu neplatí',
+            'Ano, jinak hrozí, že to zase nevyjde',
+          ],
+          correct: 1,
+          explain:
+            'Dřívější představa o nutnosti mnohaměsíčního čekání se v odborných doporučeních posunula. Načasování závisí na typu ztráty, způsobu ukončení, hodnotách hCG a na tom, jestli jste dostala metotrexát — tam platí zvláštní odstup, který určuje lékař. Druhá polovina odpovědi je psychická připravenost, a na tu žádná lhůta neexistuje.',
+        },
+        {
+          q: 'Znamená mimoděložní těhotenství, že už nemůžete otěhotnět?',
+          options: [
+            'Ano, po odstranění vejcovodu už to nejde',
+            'Ne — těhotenství je možné i s jedním vejcovodem a u IVF se vejcovody k oplodnění nevyužívají',
+            'Jen pokud byl odstraněn pravý vejcovod',
+          ],
+          correct: 1,
+          explain:
+            'Otěhotnět lze i s jedním vejcovodem a při IVF se vejcovody k oplodnění vůbec nepoužívají — embryo se přenáší přímo do dělohy. Co to znamená konkrétně pro vás, závisí na stavu druhého vejcovodu a na vaší diagnóze; tuhle odpověď vám dá jen váš lékař. Prodělané mimoděložní těhotenství je zároveň informace, kvůli které se příští těhotenství sleduje časnějším ultrazvukem.',
+        },
+      ],
+    },
+    {
+      id: 'loss-otazky-na-kontrolu',
+      kind: 'checklist',
+      title: 'Otázky na kontrolu po ztrátě: ať neodejdete s prázdnou',
+      excerpt:
+        'Deset minut u lékaře uteče dřív, než se vzpamatujete — tohle si vezměte napsané s sebou.',
+      body: `## Proč si otázky psát
+
+Protože ve stresu si z rozhovoru odnesete zhruba třetinu. Protože lékař má na vás omezený čas a bude mluvit rychle. A protože v autě před ordinací si vzpomenete na tři věci, na které jste se chtěla zeptat.
+
+**Vytiskněte si to nebo přepište do telefonu.** Není nic trapného na tom přijít s papírem — většina lékařů to naopak ocení, protože rozhovor pak jde rychleji a k věci.
+
+## Jak to udělat
+
+- **Vyberte si pět otázek**, které jsou pro vás nejdůležitější, a ty položte první. Zbytek, pokud zbyde čas.
+- **Vezměte s sebou partnera nebo blízkou osobu.** Čtyři uši slyší víc a druhý člověk si může psát odpovědi.
+- **Ptejte se, dokud nerozumíte.** „Můžete mi to říct ještě jednou jinak?" je naprosto legitimní věta.
+- **Zapisujte odpovědi.** Nebo se zeptejte, jestli si smíte rozhovor nahrát.
+
+> Seznam nenahrazuje lékařskou péči. Slouží jen k tomu, abyste z konzultace odešla s informacemi, které potřebujete.`,
+      minutes: 4,
+      phases: ['loss_biochemical', 'loss_ectopic', 'loss_missed', 'loss_miscarriage', 'uterine_revision', 'repeated_failure'],
+      dayRange: [10, 45],
+      topics: ['ztrata', 'klinika', 'vysledky'],
+      level: 'essential',
+      hero: 'linen',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      publishedOn: '2025-10-17',
+      boost: 0.7,
+      checklist: [
+        {
+          id: 'loss-chk-kontr-prubeh',
+          text: 'Je z vašeho pohledu všechno zhojené? Je dutina děložní v pořádku?',
+          hint: 'Ptejte se konkrétně na to, jestli nezůstala tkáň a jestli je potřeba další kontrola.',
+          group: 'Tělo',
+        },
+        {
+          id: 'loss-chk-kontr-hcg',
+          text: 'Kdy končí sledování hCG a jaká hodnota znamená, že už chodit nemusím?',
+          hint: 'Mít konkrétní cíl je snesitelnější než chodit donekonečna.',
+          group: 'Tělo',
+        },
+        {
+          id: 'loss-chk-kontr-menstruace',
+          text: 'Kdy mám čekat menstruaci a kdy se mám ozvat, když nepřijde?',
+          hint: 'Zapište si datum, od kterého se počítá.',
+          group: 'Tělo',
+        },
+        {
+          id: 'loss-chk-kontr-rezim',
+          text: 'Kdy můžu zpátky ke sportu, do bazénu a k pohlavnímu styku?',
+          hint: 'Tohle se často zapomíná probrat a ženy pak týdny tápou.',
+          group: 'Tělo',
+        },
+        {
+          id: 'loss-chk-kontr-priciny',
+          text: 'Víme, proč k tomu došlo? Co je nejpravděpodobnější vysvětlení?',
+          hint: 'I odpověď „nevíme a nejspíš se to nedozvíme" je odpověď, kterou potřebujete slyšet nahlas.',
+          group: 'Proč',
+        },
+        {
+          id: 'loss-chk-kontr-genetika',
+          text: 'Šla tkáň na genetické vyšetření? Kdy a od koho se dozvím výsledek?',
+          hint: 'Není indikované vždy. Pokud neproběhlo, zeptejte se, jestli by mělo smysl příště.',
+          group: 'Proč',
+          optional: true,
+        },
+        {
+          id: 'loss-chk-kontr-vysetreni',
+          text: 'Doporučujete v mém případě nějaká vyšetření? Proč zrovna tato?',
+          hint: 'Užitečná doplňující otázka: „Co bychom udělali jinak, kdyby vyšlo pozitivní?"',
+          group: 'Proč',
+        },
+        {
+          id: 'loss-chk-kontr-partner',
+          text: 'Má smysl vyšetřit i partnera?',
+          hint: 'U opakovaných ztrát se to nevynechává. Zeptejte se, i když vám to nikdo nenabídne.',
+          group: 'Proč',
+          optional: true,
+        },
+        {
+          id: 'loss-chk-kontr-kdy-znovu',
+          text: 'Kdy je z lékařského hlediska bezpečné zkoušet znovu?',
+          hint: 'Ptejte se konkrétně, ne obecně. Odpověď se liší podle typu ztráty a léčby.',
+          group: 'Dál',
+        },
+        {
+          id: 'loss-chk-kontr-antikoncepce',
+          text: 'Potřebuju do té doby řešit antikoncepci?',
+          hint: 'Ovulace přichází dřív než první menstruace. Po některých léčbách je odklad nutný.',
+          group: 'Dál',
+        },
+        {
+          id: 'loss-chk-kontr-protokol',
+          text: 'Změnili byste u dalšího pokusu něco v postupu? Co konkrétně?',
+          hint: 'I malá změna hodně mění to, jak dalším pokusem projdete psychicky.',
+          group: 'Dál',
+        },
+        {
+          id: 'loss-chk-kontr-embrya',
+          text: 'Kolik nám zbývá zamrazených embryí a v jakém jsou stadiu?',
+          hint: 'Zapište si to. Za dva měsíce si to nebudete pamatovat přesně.',
+          group: 'Dál',
+          optional: true,
+        },
+        {
+          id: 'loss-chk-kontr-sledovani',
+          text: 'Jak byste sledovali další těhotenství? Bude ultrazvuk dřív?',
+          hint: 'Konkrétní plán sledování je to nejúčinnější proti úzkosti při dalším pokusu.',
+          group: 'Dál',
+        },
+        {
+          id: 'loss-chk-kontr-psycholog',
+          text: 'Spolupracujete s psychologem nebo mi můžete napsat doporučení?',
+          hint: 'Doporučení otevírá cestu k péči hrazené ze zdravotního pojištění.',
+          group: 'Podpora',
+        },
+        {
+          id: 'loss-chk-kontr-neschopenka',
+          text: 'Potřebuju prodloužit neschopnost nebo upravit pracovní režim',
+          hint: 'Řekněte to nahlas. Lékař to sám neodhadne.',
+          group: 'Podpora',
+          optional: true,
+        },
+        {
+          id: 'loss-chk-kontr-kontakt',
+          text: 'Na koho se mám obrátit, když se stav zhorší večer nebo o víkendu?',
+          hint: 'Uložte si to do telefonu ještě v čekárně, než odejdete.',
+          group: 'Podpora',
+        },
+      ],
+    },
     // SENTINEL_ITEMS
   ],
   dailyCards: [

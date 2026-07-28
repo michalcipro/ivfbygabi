@@ -934,6 +934,1225 @@ Než dostanete odbornou edukaci, tyhle zásady neuškodí nikomu:
       publishedOn: '2025-11-20',
       boost: 0.85,
     },
+    {
+      id: 'teh-preeklampsie',
+      kind: 'article',
+      title: 'Preeklampsie: příznaky, které musíte znát nazpaměť',
+      excerpt:
+        'Tohle je jediný článek v celém těhotenství, jehož seznam varovných příznaků si opravdu zapamatujte — rozpoznání včas mění všechno.',
+      body: `## Co to je
+
+Preeklampsie je závažná komplikace těhotenství, při které dochází k **vzestupu krevního tlaku a k postižení dalších orgánů** — nejčastěji ledvin, jater, krevní srážlivosti a v těžkých případech mozku. Souvisí s poruchou vývoje placenty, která začíná už v raném těhotenství, i když se projeví typicky **po 20. gestačním týdnu**.
+
+Postihuje jednotky procent těhotenství. **Není to vaše vina a nezpůsobila jste ji ničím, co jste dělala nebo nedělala.**
+
+## VAROVNÉ PŘÍZNAKY — volejte ihned
+
+Tohle je část, kterou si přečtěte dvakrát:
+
+- **silná bolest hlavy**, která neustupuje po odpočinku ani po paracetamolu,
+- **poruchy vidění** — jiskření, blikání, rozmazané vidění, výpadky zorného pole, dvojité vidění,
+- **bolest v nadbřišku nebo pod pravým žeberním obloukem**, často popisovaná jako pálení žáhy, které nereaguje na nic,
+- **náhlé otoky obličeje, víček a rukou** (na rozdíl od otoků kotníků, které jsou v těhotenství běžné),
+- **rychlý přírůstek hmotnosti** — víc než přibližně 1 kg za týden,
+- **nevolnost a zvracení nově ve druhé polovině těhotenství**,
+- **dušnost, tlak na hrudi**,
+- **výrazně snížené močení**,
+- **výrazné snížení pohybů plodu**.
+
+**Při kterémkoli z těchto příznaků volejte porodnici nebo svého lékaře okamžitě, bez ohledu na denní dobu.** Nečekejte na plánovanou kontrolu. Nepište do diskuzní skupiny. Volejte.
+
+## Proč se tlak měří při každé kontrole
+
+Preeklampsie je zpočátku **němá**. Žena se cítí dobře a jediné, co se změnilo, je číslo na tonometru a bílkovina v moči. Právě proto se při každé návštěvě měří tlak a testuje moč — ne kvůli byrokracii.
+
+Hodnoty, které jsou důvodem ke kontaktu s lékařem:
+
+- **systolický tlak 140 a víc**, nebo **diastolický 90 a víc**, naměřeno opakovaně v klidu,
+- **systolický 160 a víc** nebo **diastolický 110 a víc** je akutní stav — volejte hned.
+
+Pokud si měříte tlak doma, měřte **vsedě, po pěti minutách klidu, s paží podepřenou v úrovni srdce**, a používejte manžetu odpovídající velikosti. Zapisujte hodnoty i čas.
+
+## Kdo je ve zvýšeném riziku
+
+Riziko zvyšují mimo jiné: **první těhotenství, vyšší věk, vícečetné těhotenství, preeklampsie v předchozím těhotenství nebo v rodině, chronická hypertenze, onemocnění ledvin, diabetes, autoimunitní onemocnění, vyšší BMI, těhotenství po darování oocytu.**
+
+U žen ve zvýšeném riziku se dnes běžně podává **nízkodávkovaný aspirin**, zahájený ideálně před 16. týdnem a užívaný obvykle večer. **Indikaci i dávku určuje výhradně lékař** — nikdy si aspirin sama nenasazujte ani nevysazujte.
+
+Doplňkově se sleduje **příjem vápníku** a doporučuje se pravidelná kontrola tlaku. Ani jedno preeklampsii nevyloučí, obojí riziko snižuje.
+
+## Co se děje, když se preeklampsie potvrdí
+
+Postup vždy určuje lékař a závisí na týdnu těhotenství, hodnotách a stavu plodu. Obvykle zahrnuje:
+
+- **hospitalizaci** nebo velmi časté ambulantní kontroly,
+- **léky na snížení krevního tlaku**,
+- **odběry krve** (jaterní testy, krevní destičky, kreatinin, poměr sFlt-1/PlGF),
+- **sledování plodu** — ultrazvuk, doppler, kardiotokografie,
+- **kortikoidy na podporu zralosti plic plodu**, pokud hrozí porod před 34. týdnem,
+- **naplánování porodu** — jediné definitivní řešení preeklampsie je porod, a načasování je vždy kompromis mezi zdravím matky a zralostí dítěte.
+
+## HELLP syndrom
+
+Těžká varianta s postižením jater a krevních destiček. Typicky se projeví **bolestí v pravém podžebří nebo nadbřišku, nevolností, zvracením a celkovým pocitem, že je něco hodně špatně**. Tlak přitom nemusí být dramaticky vysoký. **Je to akutní stav — okamžitě do porodnice.**
+
+## Po porodu
+
+Preeklampsie může vzniknout nebo se zhoršit **až po porodu**, nejčastěji v prvním týdnu šestinedělí. Varovné příznaky platí i tehdy: silná bolest hlavy, poruchy vidění, dušnost, vysoký tlak. **Nepodceňujte je jen proto, že už jste porodila.**
+
+> Tento text nenahrazuje lékařskou péči a neslouží k sebediagnostice. Při podezření na preeklampsii vždy okamžitě kontaktujte porodnici nebo svého lékaře.`,
+      minutes: 9,
+      phases: ['pregnancy', 'high_risk_pregnancy', 'hospitalization'],
+      gestWeeks: [16, 40],
+      topics: ['rizikove', 'tehotenstvi', 'zdravi_ditete'],
+      modifiers: ['preeclampsia', 'high_risk'],
+      level: 'essential',
+      hero: 'dusk',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: [
+        'Česká gynekologická a porodnická společnost ČLS JEP',
+        'ISUOG — doporučené postupy pro ultrazvuk v porodnictví',
+        'Světová zdravotnická organizace — doporučení pro prenatální péči',
+      ],
+      publishedOn: '2025-11-27',
+      boost: 1,
+    },
+    {
+      id: 'teh-zkracujici-se-cipek',
+      kind: 'article',
+      title: 'Zkracující se děložní hrdlo: co to znamená a co se s tím dělá',
+      excerpt:
+        'Věta „máte krátký čípek“ dokáže vzít půdu pod nohama — přitom je to nález, který se dá sledovat a řešit.',
+      body: `## Co se měří
+
+Délka děložního hrdla (cervikometrie) se měří **vaginální ultrazvukovou sondou**. Břišní ultrazvuk je pro tohle měření nepřesný. Vyšetření nebolí a trvá pár minut.
+
+Nejčastěji se měří **kolem 18.–24. týdne**, u žen se zvýšeným rizikem opakovaně a dřív.
+
+Orientačně:
+
+- **délka nad 25 mm** ve druhém trimestru se považuje za normální nález,
+- **25 mm a méně** je nález, který vede k dalšímu sledování a zvážení léčby,
+- **výrazné zkrácení pod 15 mm**, nálevkovité rozšíření vnitřní branky (funneling) nebo dynamické změny při vyšetření znamenají vyšší riziko.
+
+Hranice se liší podle týdne, podle toho, zda čekáte jedno dítě nebo dvojčata, a podle vaší anamnézy. **Číslo samo o sobě není diagnóza.**
+
+## Proč se to děje
+
+Zkracování hrdla může souviset s:
+
+- **předchozím předčasným porodem nebo pozdním potratem**,
+- **vícečetným těhotenstvím** — děloha je víc napjatá,
+- **výkony na děložním hrdle** (konizace, opakované dilatace),
+- **vrozenými odchylkami dělohy**,
+- **zánětem** v pochvě nebo v děložní dutině,
+- **nadměrným množstvím plodové vody**,
+- a často **bez zjistitelné příčiny**.
+
+Není to důsledek toho, že jste nosila tašky nebo chodila do práce.
+
+## Co se s tím dělá
+
+Postupy se kombinují podle situace a vždy je určuje lékař:
+
+**1. Vaginální progesteron.** Nejčastější první krok při krátkém hrdle. Podává se obvykle večer, do doby stanovené lékařem. Má doloženou schopnost snižovat riziko předčasného porodu.
+
+**2. Cerkláž.** Chirurgické stažení hrdla stehem. Indikuje se podle anamnézy, podle nálezu na ultrazvuku, nebo akutně. Podrobněji o ní píšeme v samostatném článku.
+
+**3. Pesar.** Silikonový kroužek nasazený kolem hrdla, který mění úhel a odlehčuje. Nasazuje se ambulantně, bez anestezie. Používá se na některých pracovištích, důkazy o jeho účinnosti jsou smíšené.
+
+**4. Častější kontroly.** Někdy je hlavním opatřením prostě to, že se hrdlo měří každý týden nebo dva.
+
+**5. Kortikoidy** na podporu zralosti plic plodu, pokud hrozí porod před 34. týdnem.
+
+## Klidový režim — co dnes platí
+
+Přísný klid na lůžku se dnes **rutinně nedoporučuje**, protože se neprokázalo, že by předčasnému porodu bránil, a přitom má nezanedbatelné nežádoucí účinky: úbytek svalové hmoty, riziko trombózy, zhoršení nálady, ztráta kondice.
+
+To neznamená, že vám lékař nemůže omezení doporučit — v konkrétní situaci může být namístě. Ptejte se ale konkrétně: **co přesně smím, co nesmím, na jak dlouho a proč.** Obecné „ležte" není pokyn, se kterým se dá žít.
+
+## Co si ohlídat sama
+
+- **Znejte svá čísla.** Zapisujte si naměřenou délku a datum. Trend je důležitější než jedno měření.
+- **Ptejte se na příští kontrolu**, kdy a kde.
+- **Vyřešte zánět.** Pokud máte výtok, svědění nebo pálení, řekněte to — infekce je léčitelný faktor.
+- **Vědět, kam jet.** Zjistěte si, která porodnice ve vašem okolí má **perinatologické centrum** (péči o nejmenší nedonošené děti). Při hrozícím předčasném porodu se převáží těhotná, ne novorozenec.
+- **Mějte sbalenou tašku** dřív, než byste čekala. Od 24. týdne je to rozumné.
+
+## Kdy volat — okamžitě
+
+- **pravidelné stahy** nebo tvrdnutí břicha častěji než 4× za hodinu,
+- **tlak dolů**, pocit, jako by něco tlačilo do konečníku,
+- **odtok plodové vody** nebo náhle zvýšený vodnatý výtok,
+- **krvácení** jakéhokoli rozsahu,
+- **bolest v křížích**, která přichází a odchází v pravidelném rytmu,
+- **horečka nad 38 °C**, zapáchající výtok,
+- **výrazné snížení pohybů plodu**.
+
+> Tento text slouží k porozumění nálezu, ne k jeho hodnocení. O léčbě i o režimových opatřeních rozhoduje výhradně váš lékař.`,
+      minutes: 8,
+      phases: ['pregnancy', 'high_risk_pregnancy', 'hospitalization'],
+      gestWeeks: [15, 34],
+      topics: ['rizikove', 'tehotenstvi', 'nedonosenost'],
+      modifiers: ['cervical_insufficiency', 'high_risk'],
+      level: 'essential',
+      hero: 'taupe',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: [
+        'Česká gynekologická a porodnická společnost ČLS JEP',
+        'ISUOG — doporučené postupy pro ultrazvuk v porodnictví',
+      ],
+      publishedOn: '2025-12-04',
+      boost: 0.9,
+    },
+    {
+      id: 'teh-cerklaz',
+      kind: 'article',
+      title: 'Cerkláž: steh, který drží hrdlo zavřené',
+      excerpt:
+        'Malý zákrok s velkým významem — a spousta otázek, na které se v ambulanci nedostane čas.',
+      body: `## Co to je
+
+Cerkláž je **chirurgické stažení děložního hrdla stehem**, který má zabránit jeho předčasnému otevírání. Provádí se v celkové nebo svodné anestezii, obvykle vaginálním přístupem, a samotný výkon trvá zpravidla kolem 20–30 minut.
+
+## Tři situace, ve kterých se indikuje
+
+**1. Cerkláž z anamnézy (elektivní).** Plánuje se předem, obvykle mezi **12. a 14. týdnem**, u žen s opakovanými pozdními potraty nebo předčasnými porody typickými pro insuficienci hrdla.
+
+**2. Cerkláž podle ultrazvuku.** Nabízí se, když se u ženy s rizikovou anamnézou při sledování **zkrátí hrdlo** pod určitou hranici, typicky do 24. týdne.
+
+**3. Záchranná (akutní) cerkláž.** Provádí se, když je hrdlo už otevřené a případně se v něm vyklenuje plodový vak. Je technicky náročnější a její úspěšnost je nižší, ale v řadě případů získá týdny navíc.
+
+O tom, která varianta je pro vás vhodná — a jestli vůbec — rozhoduje lékař podle vaší konkrétní historie a nálezu.
+
+## Jak to probíhá
+
+1. **Předoperační vyšetření** — odběry, kultivace z pochvy, ultrazvuk plodu.
+2. **Léčba případného zánětu** předem, pokud se najde.
+3. **Anestezie**, nejčastěji svodná (epidurální nebo spinální).
+4. **Naložení stehu** kolem hrdla — nejběžnější technikou je McDonaldova cerkláž, méně často Shirodkarova.
+5. **Kontrola srdeční akce plodu.**
+6. **Sledování** obvykle jeden až několik dní, podle pracoviště.
+
+Po výkonu bývá běžné **mírné špinění, křeče a zvýšený výtok** po dobu několika dní.
+
+## Co potom
+
+- **Tlumení stahů** — někdy se krátkodobě podávají léky tlumící děložní činnost.
+- **Progesteron** může být podáván souběžně, pokud tak lékař rozhodne.
+- **Pohlavní styk** bývá po určitou dobu nebo do konce těhotenství nedoporučen; ptejte se konkrétně.
+- **Kontroly** hrdla a stavu plodu častěji než obvykle.
+- **Vyjmutí stehu** se plánuje typicky **kolem 36.–37. týdne**, ambulantně, obvykle bez anestezie. Bývá to otázka minut.
+
+**Pokud začne porod dřív, steh se odstraňuje akutně** — proto musíte při jakýchkoli známkách porodu jet do nemocnice a hned na příjmu říct, že máte cerkláž. Napište si to i do těhotenské průkazky viditelně na první stranu.
+
+## Rizika, o kterých se mluví méně
+
+Jako každý výkon má cerkláž rizika: **infekce, krvácení, odtok plodové vody, poranění hrdla, vzácně vyvolání kontrakcí**. U některých žen naopak steh riziko nesnižuje a zbytečně přidává komplikace — proto se neprovádí plošně.
+
+To, že vám cerkláž nenabídli, neznamená, že se o vás nikdo nestará. Znamená to, že ve vaší situaci pravděpodobně převažují jiné postupy.
+
+## Otázky, které stojí za to položit
+
+- **Proč právě u mě?** Z anamnézy, podle ultrazvuku, nebo akutně?
+- **Jaká technika a jaký materiál stehu?**
+- **Co budu smět dělat po výkonu?** Konkrétně: práce, chůze, schody, cestování, sex.
+- **Kdy se steh vyjímá a kdo to udělá?**
+- **Kam volám, když začnu mít stahy?**
+- **Mění cerkláž způsob porodu?** (Sama o sobě obvykle ne — přirozený porod po vyjmutí stehu je běžný.)
+
+## Jak to zvládnout psychicky
+
+Cerkláž je obvykle nabídnuta ženám, které už něco ztratily. To znamená, že do zákroku jdete s historií, kterou ostatní pacientky nemají. Je v pořádku říct anesteziologovi i porodní asistentce: **„Prošla jsem si ztrátou, potřebuju vědět, co se děje."** Většina týmů na to reaguje dobře, jen musí vědět.
+
+## Kdy volat lékaře — okamžitě
+
+- **odtok plodové vody** nebo náhlý vodnatý výtok,
+- **krvácení** silnější než lehké špinění,
+- **pravidelné stahy nebo tlak dolů**,
+- **horečka nad 38 °C**, zimnice, zapáchající výtok,
+- **silná bolest** v podbřišku nebo v zádech,
+- **výrazné snížení pohybů plodu**.
+
+> Text popisuje výkon obecně. Indikaci, provedení i následný režim určuje výhradně váš ošetřující lékař; tento článek nenahrazuje jeho pokyny.`,
+      minutes: 8,
+      phases: ['pregnancy', 'high_risk_pregnancy', 'hospitalization'],
+      gestWeeks: [11, 37],
+      topics: ['rizikove', 'tehotenstvi', 'nedonosenost'],
+      modifiers: ['cervical_insufficiency', 'high_risk'],
+      level: 'deep',
+      hero: 'blush',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2025-12-11',
+      boost: 0.65,
+    },
+    {
+      id: 'teh-kontrakce-vs-braxton-hicks',
+      kind: 'article',
+      title: 'Poslíčky, nebo porod? Jak rozeznat Braxton-Hicks od pravých kontrakcí',
+      excerpt:
+        'Břicho ztvrdne a vy nevíte, jestli to je nic, nebo všechno — tady je rozdíl popsaný tak, aby se podle něj dalo rozhodnout ve tři ráno.',
+      body: `## Braxton-Hicksovy stahy
+
+Braxton-Hicksovy kontrakce, lidově poslíčky, jsou **nepravidelné cvičné stahy dělohy**. Objevují se u řady žen už od druhého trimestru a jsou v pozdějším těhotenství naprosto běžné.
+
+Typické znaky:
+
+- **nepravidelné** — nemají rytmus, nedají se odpočítat,
+- **nezesilují** a neprodlužují se,
+- **nebolí**, nebo jen mírně tlačí,
+- **ustoupí při změně činnosti** — po napití, po sprše, po lehnutí nebo naopak po procházce,
+- **soustředí se do přední části břicha**,
+- břicho ztvrdne a zase povolí.
+
+Bývají častější **po fyzické námaze, při plném močovém měchýři, při dehydrataci, po sexu a večer**.
+
+## Pravé kontrakce
+
+Pravé porodní kontrakce mají opačné vlastnosti:
+
+- **pravidelné** a postupně častější,
+- **zesilují** v intenzitě a prodlužují se v trvání,
+- **nepolevují** při změně polohy ani po odpočinku,
+- **bolí**, často **vyzařují do křížů** a šíří se zepředu dozadu nebo naopak,
+- doprovází je **tlak dolů**, někdy odchod hlenové zátky nebo krvavého hlenu.
+
+## Pravidlo, které si zapamatujte
+
+Když si nejste jistá, **měřte**. Zapisujte si:
+
+1. **čas začátku** každého stahu,
+2. **jak dlouho trval**,
+3. **kolik času uplynulo od začátku jednoho ke začátku dalšího**.
+
+Sledujte hodinu. Pokud se stahy **v čase nezkracují ani nesilní**, jde spíš o Braxton-Hicks. Pokud přicházejí pravidelně, jsou stále blíž a bolí víc, jedete do porodnice.
+
+Než začnete měřit, zkuste: **vypít dvě velké sklenice vody, jít na toaletu, lehnout si na levý bok** a dát tomu dvacet minut. Dehydratace a plný měchýř dráždí dělohu víc, než by se čekalo.
+
+## Kdy je to vždycky důvod jet — bez ohledu na počítání
+
+**Před 37. týdnem** platí přísnější pravidla, protože jde o možný předčasný porod:
+
+- **4 a více stahů za hodinu**, i když nebolí,
+- **tlak dolů**, pocit těžkosti v pánvi,
+- **bolest v křížích v rytmu**,
+- **odtok plodové vody nebo zvýšený vodnatý výtok**,
+- **krvácení**,
+- **křeče připomínající menstruační**.
+
+Nejsou to hysterie. Předčasný porod se dá často odložit — ale jen když se dorazí včas.
+
+**Po 37. týdnu** je běžným doporučením jet při **pravidelných kontrakcích po 5 minutách trvajících kolem 60 vteřin po dobu 1 hodiny** (pravidlo 5–1–1). U žen s cerkláží, po císařském řezu, s dvojčaty nebo s rizikovým těhotenstvím ale platí **individuální pokyn, který vám dá lékař** — a ten má přednost.
+
+## Kdy to nejsou kontrakce, ale něco jiného
+
+- **Ostrá bolest po stranách břicha** při pohybu bývá napínání kulatých vazů.
+- **Tvrdý pruh nebo bolest v jednom místě** může být natažené svalstvo.
+- **Pálivá bolest v podbřišku s nucením na močení** ukazuje spíš na infekci močových cest — ta ale sama může dráždit dělohu, proto ji nepodceňujte.
+- **Trvalá, neustupující bolest břicha se ztvrdlou dělohou** je vždy důvod k okamžitému kontaktu s porodnicí.
+
+## Praktická příprava
+
+- **Uložte si číslo na porodnici** do telefonu pod jménem, které v panice najdete.
+- **Mějte v mobilu aplikaci nebo jen poznámkový blok** na zapisování stahů.
+- **Zjistěte si předem, kam se v porodnici jede v noci** a kde se parkuje.
+- **Nebojte se falešného poplachu.** Personál porodnice je zvyklý a je lepší přijet zbytečně než pozdě. Nikdo vás nebude peskovat.
+
+## Kdy volat lékaře
+
+- pravidelné a sílící stahy před 37. týdnem,
+- odtok plodové vody kdykoli,
+- krvácení,
+- trvalá bolest břicha, tvrdá neuvolňující se děloha,
+- horečka nad 38 °C,
+- výrazné snížení pohybů plodu,
+- silná bolest hlavy, poruchy vidění, náhlé otoky obličeje.
+
+> Tento text pomáhá s orientací, nenahrazuje ale posouzení v porodnici. Když váháte, volejte — od toho tam jsou.`,
+      minutes: 8,
+      phases: ['pregnancy', 'high_risk_pregnancy'],
+      gestWeeks: [20, 40],
+      topics: ['tehotenstvi', 'porod', 'rizikove'],
+      level: 'essential',
+      hero: 'sage',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2025-12-18',
+      boost: 0.9,
+    },
+    {
+      id: 'teh-pohyby-plodu',
+      kind: 'article',
+      title: 'Pohyby plodu: jak je sledovat, aniž byste zešílela',
+      excerpt:
+        'Pohyby jsou nejlevnější a nejcitlivější měřítko toho, jak se dítěti daří — a existuje způsob, jak je sledovat bez nepřetržité paniky.',
+      body: `## Kdy je začnete cítit
+
+První pohyby vnímá většina žen mezi **18. a 22. týdnem**, u druhého a dalšího těhotenství často dřív, kolem 16.–18. týdne. Na začátku připomínají bublinky, motýly nebo pohyb střev a je těžké je odlišit od trávení.
+
+**Uložení placenty na přední stěně** dělohy pohyby tlumí — pokud ji tam máte, budete je cítit později a slaběji. Není to známka ničeho špatného.
+
+## Co je normální
+
+Pohyby mají **svůj vlastní rytmus**, který se u každého dítěte liší. Dítě má fáze spánku (obvykle 20–40 minut, výjimečně až 90) a fáze aktivity. Většina žen si kolem **28. týdne** začne všímat opakujícího se denního vzorce — typicky večer a po jídle je pohybů víc.
+
+**Klíčové pravidlo: sledujte SVŮJ vzorec, ne cizí čísla.** Poučka o „deseti kopancích za dvě hodiny" je zjednodušení, které v moderních doporučeních ustupuje sledování změny oproti vlastní normě.
+
+## Co je varovný signál
+
+**Snížení nebo změna pohybů oproti tomu, co je u vás obvyklé.** To je celé. Ne konkrétní počet, ale změna.
+
+Když máte pocit, že se dítě hýbe méně:
+
+1. **Lehněte si na levý bok** do klidné místnosti.
+2. **Napijte se něčeho studeného**, případně něco snězte.
+3. **Soustřeďte se výhradně na pohyby** — ne u televize, ne u telefonu.
+4. **Dejte tomu dvě hodiny.**
+
+Pokud i po tomto postupu cítíte pohybů méně než obvykle, **volejte porodnici a jeďte na kontrolu**.
+
+## Věci, které NEDĚLEJTE
+
+- **Nečekejte do rána.** Nejčastější věta, kterou ženy po nepříznivém průběhu říkají, je „nechtěla jsem obtěžovat v noci". Porodnice jede nonstop a tohle je přesně to, kvůli čemu.
+- **Nekupujte domácí doppler.** Zachycené ozvy vás uklidní, i když může být něco špatně — a to je nebezpečné. Odborné společnosti domácí dopplery pro tento účel nedoporučují.
+- **Nesnažte se dítě probudit ledovou vodou na břicho, bušením ani hlasitou hudbou.** Když se pohyby změnily, patří to na kontrolu, ne na domácí experimenty.
+- **Nespoléhejte na to, že to bylo minule taky tak a nic nebylo.** Každý případ se posuzuje zvlášť.
+
+Ženy, které přijedou opakovaně a nic se nenajde, **jednají správně**. Nikdo vás nebude mít za hysterku. Personál porodnic si přeje, abyste přijela.
+
+## Co se na kontrole děje
+
+Obvykle:
+
+- **kardiotokografie (CTG)** — monitorování srdeční frekvence plodu a děložní činnosti, trvá zhruba 20–40 minut,
+- **ultrazvuk** — pohyby, dýchací pohyby, svalový tonus, množství plodové vody,
+- **dopplerovské měření průtoků**, pokud je indikováno,
+- **měření tlaku a kontrola moči** u vás.
+
+Většinou vás pošlou za hodinu domů uklidněnou. To je dobrý výsledek, ne ztráta času.
+
+## Pohyby v posledních týdnech
+
+Rozšířený mýtus říká, že se dítě před porodem hýbe méně, protože nemá místo. **Charakter pohybů se mění** — místo kopanců cítíte spíš převalování, protahování a tlaky. **Ale celkové množství pohybů by klesat nemělo.** Snížení pohybů ve 38. týdnu je stejný důvod k cestě do porodnice jako ve 30. týdnu.
+
+## U dvojčat
+
+Rozeznat, které dítě se hýbe, je téměř nemožné a je zbytečné se o to snažit. Sledujte **celkovou aktivitu** a její změnu. U vícečetného těhotenství bývají kontroly častější — využijte je a ptejte se.
+
+## Kdy volat lékaře — okamžitě
+
+- **méně pohybů, než je u vás obvyklé**, po dvouhodinovém soustředěném sledování,
+- **žádné pohyby** — volejte hned, nečekejte dvě hodiny,
+- **náhlá prudká série pohybů následovaná tichem**,
+- odtok plodové vody, krvácení, silné kontrakce,
+- horečka nad 38 °C,
+- silná bolest hlavy, poruchy vidění, náhlé otoky.
+
+> Text má informativní charakter. Změna pohybů plodu vždy patří k posouzení v porodnici, ne k domácímu vyhodnocení podle článku.`,
+      minutes: 8,
+      phases: ['pregnancy', 'high_risk_pregnancy', 'hospitalization'],
+      gestWeeks: [18, 40],
+      topics: ['tehotenstvi', 'zdravi_ditete', 'rizikove'],
+      level: 'essential',
+      hero: 'dawn',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: [
+        'Česká gynekologická a porodnická společnost ČLS JEP',
+        'Světová zdravotnická organizace — doporučení pro prenatální péči',
+      ],
+      publishedOn: '2026-01-08',
+      boost: 0.95,
+    },
+    {
+      id: 'teh-dvojcata',
+      kind: 'article',
+      title: 'Dvojčata: co se mění, když jsou tam dvě',
+      excerpt:
+        'Dvojčata po IVF nejsou vzácnost — ale je to jiné těhotenství s jinými pravidly, a je lepší je znát od začátku.',
+      body: `## První otázka: jaký typ dvojčat
+
+Tohle je nejdůležitější informace celého vícečetného těhotenství a **určuje se nejpřesněji v prvním trimestru**, ideálně mezi 11. a 14. týdnem. Později se určuje hůř.
+
+- **Dichoriální (dva choria, dvě placenty)** — každé dítě má vlastní placentu a vlastní vak. Nejnižší riziko.
+- **Monochoriální biamniální** — společná placenta, dva vaky. Vyžaduje častější sledování kvůli riziku nerovnoměrného sdílení oběhu (TTTS).
+- **Monochoriální monoamniální** — společná placenta i vak. Vzácné, nejvyšší riziko, vždy vysoce specializovaná péče.
+
+Po IVF s transferem dvou embryí vznikají obvykle **dichoriální** dvojčata. Monochoriální mohou vzniknout i po transferu jediného embrya, když se rozdělí.
+
+**Zeptejte se přímo: „Jsou moje dvojčata monochoriální, nebo dichoriální?"** Pokud vám na to nikdo neodpověděl, ptejte se znovu.
+
+## Jak vypadá péče
+
+- **Častější kontroly.** U dichoriálních dvojčat obvykle **každé 4 týdny** ultrazvuk, u monochoriálních **každé 2 týdny** už od 16. týdne.
+- **Sledování růstu obou plodů** a rozdílu mezi nimi.
+- **Měření délky děložního hrdla** — riziko předčasného porodu je vyšší.
+- **Častější kontroly tlaku a moči** — riziko preeklampsie je výrazně vyšší.
+- **Dřívější a někdy opakovaný oGTT.**
+- **Kontroly krevního obrazu** — anémie je u dvojčat běžnější, potřeba železa je vyšší.
+- **Péče v pracovišti s odpovídajícím zázemím**, u monochoriálních v perinatologickém centru.
+
+## Co je jinak u vás
+
+- **Nevolnosti bývají silnější** a trvají déle, protože hCG je vyšší.
+- **Únava je jiná kategorie.** Nesrovnávejte se s kamarádkou s jedním dítětem.
+- **Břicho roste dřív** a od druhého trimestru výrazně rychleji.
+- **Dušnost, pálení žáhy, bolesti zad a pánve** přicházejí dřív a jsou intenzivnější.
+- **Potřeba bílkovin, železa, kyseliny listové a celkové energie je vyšší.** Konkrétní doporučení vám dá lékař; obecné rady z běžných těhotenských příruček nemusí stačit.
+- **Otoky a křečové žíly** jsou častější.
+- **Spánek** je od druhé poloviny těhotenství sport. Těhotenský polštář přestává být luxus.
+
+## Předčasný porod
+
+**Většina dvojčat se rodí dřív než v termínu.** Průměrná délka těhotenství u dvojčat je kratší a část dětí se rodí před 37. týdnem. To není selhání a nedá se tomu vůlí zabránit.
+
+Co dává smysl:
+
+- **Mít sbalenou tašku od 26.–28. týdne.**
+- **Znát cestu do porodnice** a vědět, kde je nejbližší perinatologické centrum.
+- **Prostudovat si informace o nedonošenosti a NICU předem**, dřív, než to bude akutní. Není to přivolávání problémů, je to příprava.
+- **Vědět, co jsou kortikoidy na zralost plic** a proč se podávají.
+
+## Porod
+
+Způsob porodu závisí na typu dvojčat, poloze prvního plodu, týdnu a dalších faktorech. **Vaginální porod dvojčat je při vhodných podmínkách možný**, ale rozhodnutí patří porodníkovi a vám společně. Monoamniální dvojčata se rodí císařským řezem.
+
+Ptejte se předem: **Za jakých podmínek je u mě možný vaginální porod? Kdo bude u porodu? Kolik dětských lékařů bude na sále?**
+
+## Psychická stránka
+
+Zpráva o dvojčatech po letech neplodnosti vyvolává směs euforie a hrůzy. **Obojí je legitimní.** Strach z toho, jak to zvládnete, není nevděk vůči dětem, které jste si tak přála.
+
+Praktické: začněte brzy řešit **pomoc na první měsíce**. Ne až v šestinedělí. Konkrétní jména, konkrétní dny, konkrétní úkoly.
+
+## Kdy volat lékaře
+
+- pravidelné stahy nebo tlak dolů před 37. týdnem,
+- odtok plodové vody, krvácení,
+- **náhlý rychlý růst břicha nebo prudké dušení** (může jít o komplikaci monochoriálního těhotenství),
+- silná bolest hlavy, poruchy vidění, náhlé otoky obličeje a rukou,
+- snížení pohybů oproti obvyklému,
+- horečka nad 38 °C.
+
+> Text je obecný. Vedení vícečetného těhotenství je vždy individuální a řídí se pokyny vašeho lékaře a perinatologického centra.`,
+      minutes: 9,
+      phases: ['pregnancy', 'high_risk_pregnancy', 'early_pregnancy'],
+      gestWeeks: [8, 37],
+      topics: ['tehotenstvi', 'rizikove', 'nedonosenost'],
+      modifiers: ['twins'],
+      level: 'deep',
+      hero: 'champagne',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: [
+        'ISUOG — doporučené postupy pro ultrazvuk v porodnictví',
+        'Česká gynekologická a porodnická společnost ČLS JEP',
+      ],
+      publishedOn: '2026-01-15',
+      boost: 0.8,
+    },
+    {
+      id: 'teh-rizikove-tehotenstvi-co-to-znamena',
+      kind: 'article',
+      title: 'Rizikové těhotenství: co to slovo doopravdy znamená',
+      excerpt:
+        'Nálepka „rizikové“ zní jako rozsudek, ale ve skutečnosti je to organizační kategorie — a stojí za to vědět, co konkrétně mění.',
+      body: `## Co znamená ta nálepka
+
+„Rizikové těhotenství" není diagnóza. Je to **kategorie péče**, která říká: u téhle ženy sledujeme něco navíc, častěji nebo pečlivěji. Zahrnuje velmi široké spektrum situací — od ženy, která má korigovanou funkci štítné žlázy, po ženu hospitalizovanou pro preeklampsii.
+
+**Nálepka sama o sobě neříká nic o tom, jak vaše těhotenství dopadne.** Většina rizikových těhotenství končí zdravým dítětem.
+
+## Co bývá důvodem
+
+Nejčastější důvody zařazení:
+
+- **věk** nad určitou hranicí,
+- **způsob početí** — po asistované reprodukci se často automaticky sleduje pečlivěji,
+- **vícečetné těhotenství**,
+- **chronická onemocnění** — hypertenze, diabetes, onemocnění štítné žlázy, autoimunitní choroby, trombofilie, onemocnění ledvin,
+- **anamnéza** — předchozí předčasný porod, preeklampsie, ztráta těhotenství, císařský řez,
+- **nálezy v tomto těhotenství** — krátké hrdlo, porucha růstu plodu, nízko uložená placenta, gestační diabetes, nadměrné či snížené množství plodové vody,
+- **odchylky na ultrazvuku** vyžadující sledování.
+
+## Co se prakticky mění
+
+1. **Častější kontroly.** Místo jednou za 4 týdny třeba každé 2 týdny nebo týdně.
+2. **Víc ultrazvuků** — sledování růstu, dopplerovská měření průtoků.
+3. **CTG** od určitého týdne, někdy opakovaně.
+4. **Specializovaná ambulance** — perinatologické centrum, ambulance pro rizikové těhotenství, případně souběžná péče internisty, diabetologa nebo hematologa.
+5. **Doporučení ohledně místa porodu.** U některých situací je jasně určeno, ve které porodnici se má rodit.
+6. **Někdy medikace** — progesteron, aspirin, nízkomolekulární heparin, léky na tlak. Vše vždy podle rozhodnutí lékaře.
+7. **Někdy pracovní neschopnost** nebo úprava pracovních podmínek.
+
+## Jak s tím žít
+
+**Ptejte se konkrétně.** Slovo „rizikové" je pro vás nepoužitelné, dokud nevíte:
+
+- **Co konkrétně u mě sledujete?**
+- **Jaké číslo nebo nález by znamenal změnu postupu?**
+- **Co smím a co nesmím?** Cvičení, sex, práce, cestování, zvedání dítěte, které už mám.
+- **Kdy a kam volám mimo kontroly?**
+- **Ve které porodnici mám rodit a kdy se mám registrovat?**
+
+Zapisujte si odpovědi. Ideálně do jednoho sešitu nebo poznámky v telefonu, kterou máte vždycky u sebe.
+
+## Co vám k tomu bude říkat okolí
+
+Zaručeně uslyšíte: „moje sestra taky měla rizikové a normálně chodila do práce", „za nás se to neřešilo", „hlavně se neboj, stres je nejhorší". Tyhle věty nemají žádnou informační hodnotu a nemusíte na ně reagovat.
+
+Můžete zkusit: **„Mám svého lékaře a řídím se jím. Pomůže mi, když se místo rad zeptáš, jak mi je."**
+
+## Práce a papíry
+
+- **Těhotenskou průkazku noste vždy u sebe**, i na dovolené a v práci.
+- **Neschopenku vystavuje** gynekolog nebo praktický lékař podle důvodu; při komplikacích v těhotenství typicky gynekolog.
+- **Zaměstnavatel vás nesmí nechat vykonávat práci zakázanou těhotným** (noční směny na vyžádání, práce s určitými látkami, těžká fyzická práce). Máte právo na převedení na jinou práci.
+- **Podrobnosti o dávkách** (vyrovnávací příspěvek v těhotenství a mateřství, peněžitá pomoc v mateřství) řeší správa sociálního zabezpečení. Zjistěte si podmínky včas, ne až v 30. týdnu.
+
+## Psychická stránka
+
+Rizikové těhotenství znamená trvalý pocit, že se koukáte na tenký led. Ženy po IVF ho snášejí hůř, protože už jednou zjistily, že se špatné věci dějí i jim.
+
+Co pomáhá: **plán mezi kontrolami** (co dělám, když se lekne), **jeden důvěrník**, **konkrétní seznam varovných příznaků**, a **odborná psychologická podpora**, pokud vám úzkost bere spánek nebo fungování.
+
+## Kdy volat lékaře
+
+- krvácení, odtok plodové vody,
+- pravidelné stahy před 37. týdnem, tlak dolů,
+- silná bolest hlavy, poruchy vidění, náhlé otoky obličeje a rukou, bolest pod pravým žebrem,
+- snížení pohybů plodu,
+- horečka nad 38 °C,
+- otok, bolest a zarudnutí jedné lýtkové oblasti, náhlá dušnost nebo bolest na hrudi.
+
+> Text popisuje obecnou organizaci péče. Konkrétní obsah pojmu „rizikové těhotenství" ve vašem případě vám sdělí váš lékař.`,
+      minutes: 8,
+      phases: ['high_risk_pregnancy', 'pregnancy'],
+      topics: ['rizikove', 'tehotenstvi', 'psychika'],
+      modifiers: ['high_risk'],
+      level: 'essential',
+      hero: 'taupe',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2026-01-22',
+      boost: 0.9,
+    },
+    {
+      id: 'teh-klidovy-rezim',
+      kind: 'article',
+      title: 'Klidový režim: co dnes opravdu platí',
+      excerpt:
+        'Přísné ležení bylo dlouho standardem a dnes se od něj ustupuje — vyplatí se vědět proč a co si místo toho vyjednat.',
+      body: `## Co se změnilo
+
+Ještě před nedávnem se ženám s hrozícím předčasným porodem nebo krvácením plošně doporučovalo **přísné ležení**. Dnes se od tohoto přístupu odborné společnosti odklánějí, protože se neprokázalo, že by komplikacím bránil — a zároveň se ukázalo, že **není bez rizika**.
+
+Rizika dlouhodobé imobilizace:
+
+- **žilní trombóza** a plicní embolie (těhotenství samo o sobě zvyšuje srážlivost),
+- **úbytek svalové hmoty a kostní denzity**,
+- **zhoršená glukózová tolerance**,
+- **zácpa**,
+- **úzkost, deprese, ztráta soběstačnosti**,
+- **horší kondice pro porod a rekonvalescenci**.
+
+To neznamená, že omezení nemá nikdy smysl. Znamená to, že se **předepisuje cíleně a konkrétně**, ne paušálně.
+
+## Co si vyjednat místo obecného „ležte"
+
+Když vám lékař doporučí klid, ptejte se konkrétně:
+
+1. **Smím chodit po bytě?** Kolikrát denně? Po schodech?
+2. **Smím vařit, sprchovat se, nakoupit?**
+3. **Smím jít ven na procházku? Jak dlouhou?**
+4. **Smím řídit auto?**
+5. **Smím mít pohlavní styk?**
+6. **Můžu zvedat starší dítě?** (Tohle je nejčastější zapomenutá otázka.)
+7. **Na jak dlouho to platí a co ho ukončí?**
+8. **Co konkrétně mám udělat, když ucítím stahy?**
+
+Odpovědi si zapište. Za týden si je nebudete pamatovat a budete se zbytečně bát všeho.
+
+## Když je klid opravdu indikovaný
+
+V některých situacích lékař omezení doporučí a má to svou logiku — například při aktivním krvácení, po akutní cerkláži nebo v konkrétním kritickém období. I tehdy ale platí:
+
+- **Prevence trombózy.** Ptejte se na kompresní punčochy a na to, zda máte mít nízkomolekulární heparin. **O antikoagulaci rozhoduje výhradně lékař.**
+- **Pohyb kotníky a lýtky** i vleže, každou hodinu ve dne. Kroužení, přitahování špiček, střídavé propínání.
+- **Změna polohy** — nezůstávejte hodiny ve stejné pozici.
+- **Hydratace a strava s vlákninou** kvůli zácpě.
+- **Dechová cvičení** — pomáhají oběhu i nervovému systému.
+
+## Jak přežít dny doma
+
+**Struktura je důležitější než zábava.** Dny bez rozvrhu se rozpadnou a čas se táhne.
+
+Co funguje:
+
+- **Pevný rytmus dne.** Vstávání, hygiena, oblečení (ne pyžamo celý den), jídla ve stejný čas.
+- **Rozdělte den na bloky** po 90 minutách a každému dejte obsah — i kdyby to byl podcast nebo pletení.
+- **Jedna produktivní věc denně.** Vyřídit e-mail, zavolat na úřad, něco vybrat. Pocit užitečnosti drží náladu.
+- **Denní světlo.** Sedněte si k oknu, otevřete ho, ať slyšíte ven.
+- **Sociální kontakt každý den.** Video hovor, ne jen psané zprávy.
+- **Omezte scrollování.** Nekonečné čtení o komplikacích je návykové a zhoršuje to.
+- **Fyzioterapie na dálku** — řada fyzioterapeutek dnes umí sestavit bezpečný program vleže. Nechte si ho schválit lékařem.
+
+## Vztah a domácnost
+
+Klidový režim rozhodí domácnost víc než cokoli jiného. Konkrétně:
+
+- **Napište seznam toho, co jste dělala vy**, a rozdělte to. Ne „pomoz mi", ale „ty děláš nákupy a praní".
+- **Přijměte pomoc, i když je nepohodlná.** Když někdo nabídne uvařit, řekněte ano, i kdyby to vařil jinak.
+- **Řekněte partnerovi, co potřebujete slyšet.** Většina partnerů chce pomoct a neví jak.
+- **Placené služby** — donáška jídla, úklid — jsou v téhle fázi investice, ne rozmar.
+
+## Kdy volat lékaře
+
+- **otok, bolest, zarudnutí nebo teplo jedné dolní končetiny** — podezření na trombózu,
+- **náhlá dušnost, bolest na hrudi, kašel s krví** — okamžitě záchranná služba,
+- krvácení, odtok plodové vody,
+- pravidelné stahy, tlak dolů,
+- horečka nad 38 °C,
+- snížení pohybů plodu,
+- silná bolest hlavy, poruchy vidění, náhlé otoky obličeje.
+
+> Text shrnuje obecný současný přístup. Vaše konkrétní režimová opatření určuje výhradně váš lékař a jeho pokyn má vždy přednost.`,
+      minutes: 8,
+      phases: ['high_risk_pregnancy', 'pregnancy', 'hospitalization'],
+      topics: ['rizikove', 'sebepece', 'psychika'],
+      modifiers: ['high_risk', 'cervical_insufficiency'],
+      level: 'deep',
+      hero: 'linen',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: [
+        'Česká gynekologická a porodnická společnost ČLS JEP',
+        'Světová zdravotnická organizace — doporučení pro prenatální péči',
+      ],
+      publishedOn: '2026-01-29',
+      boost: 0.8,
+    },
+    {
+      id: 'teh-taska-do-nemocnice',
+      kind: 'checklist',
+      title: 'Taška do nemocnice na delší pobyt: co si vzít',
+      excerpt:
+        'Není to porodní taška — je to výbava na dny až týdny na oddělení rizikového těhotenství, a chce to jiné věci.',
+      body: `## K čemu tenhle seznam je
+
+Hospitalizace v těhotenství přichází často **bez varování**: přijedete na kontrolu a zůstanete. Tenhle seznam je proto stavěný tak, aby ho mohl **někdo jiný sbalit podle telefonu**, když vy už ležíte na oddělení.
+
+Ideální je mít **malou tašku připravenou předem** (doklady, nabíječka, základní hygiena, dvě trika) a zbytek dobalit později.
+
+## Jak to na oddělení chodí
+
+Oddělení rizikového těhotenství má svůj rytmus: budíček brzy, vizita dopoledne, měření tlaku a CTG podle rozpisu, jídlo v pevných časech. Pokoje bývají dvou- až čtyřlůžkové, koupelna může být společná. **Vlastní věci a vlastní rytmus jsou to jediné, co si ponecháte** — proto na nich záleží víc, než by se zdálo.
+
+Před sbalením zavolejte na oddělení a zeptejte se na: **možnost návštěv, wi-fi, ledničku, rychlovarnou konvici, možnost mít vlastní deku a polštář.** Pravidla se pracoviště od pracoviště liší.
+
+## Praktická poznámka
+
+Vezměte si věci, které **nevadí, když se ztratí nebo zničí**. Cennosti a šperky nechte doma. Peníze mějte v malé částce a v drobných na automat.
+
+> Tento seznam je organizační pomůcka a nenahrazuje pokyny konkrétního pracoviště. Vždy se řiďte tím, co vám řekne oddělení.`,
+      minutes: 6,
+      phases: ['hospitalization', 'high_risk_pregnancy'],
+      topics: ['rizikove', 'sebepece', 'klinika'],
+      modifiers: ['high_risk'],
+      level: 'essential',
+      hero: 'sand',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      publishedOn: '2026-02-05',
+      boost: 0.85,
+      checklist: [
+        {
+          id: 'teh-hosp-doklady',
+          text: 'Občanský průkaz, kartička pojišťovny, těhotenská průkazka',
+          hint: 'Průkazku mějte v tašce vždycky, ne v kabelce, kterou si někdo odveze domů.',
+          group: 'Dokumenty',
+        },
+        {
+          id: 'teh-hosp-zpravy',
+          text: 'Propouštěcí zpráva z reprodukční kliniky a výsledky vyšetření',
+          hint: 'Personál ocení, když ví, jak těhotenství vzniklo a co jste užívala.',
+          group: 'Dokumenty',
+        },
+        {
+          id: 'teh-hosp-leky',
+          text: 'Seznam všech léků, které užíváte, včetně dávek a časů',
+          hint: 'Napište to na papír. Nespoléhejte na to, že si vzpomenete při příjmu.',
+          group: 'Dokumenty',
+        },
+        {
+          id: 'teh-hosp-kontakty',
+          text: 'Papírový seznam telefonních čísel',
+          hint: 'Pro případ, že se telefon vybije nebo rozbije.',
+          group: 'Dokumenty',
+          optional: true,
+        },
+        {
+          id: 'teh-hosp-nabijecka',
+          text: 'Nabíječka s dlouhým kabelem a powerbanka',
+          hint: 'Zásuvka bývá daleko od postele. Kabel aspoň dva metry změní kvalitu vašeho života.',
+          group: 'Technika',
+        },
+        {
+          id: 'teh-hosp-sluchatka',
+          text: 'Sluchátka, ideálně s potlačením hluku',
+          hint: 'Na vícelůžkovém pokoji je to nejcennější věc v tašce.',
+          group: 'Technika',
+        },
+        {
+          id: 'teh-hosp-prodluzovacka',
+          text: 'Malá prodlužovačka nebo rozdvojka',
+          group: 'Technika',
+          optional: true,
+        },
+        {
+          id: 'teh-hosp-pyzamo',
+          text: 'Dvě až tři pohodlná pyžama nebo noční košile, které se rozepínají',
+          hint: 'Rozepínání zepředu usnadní CTG i vyšetření.',
+          group: 'Oblečení',
+        },
+        {
+          id: 'teh-hosp-zupan',
+          text: 'Župan a pevné pantofle s protiskluzovou podrážkou',
+          group: 'Oblečení',
+        },
+        {
+          id: 'teh-hosp-spodni',
+          text: 'Spodní prádlo na týden, bavlněné, o číslo větší',
+          group: 'Oblečení',
+        },
+        {
+          id: 'teh-hosp-podprsenka',
+          text: 'Podprsenka bez kostic',
+          group: 'Oblečení',
+        },
+        {
+          id: 'teh-hosp-punchochy',
+          text: 'Kompresní punčochy, pokud je máte doporučené',
+          hint: 'Při delším ležení jsou důležitá prevence. Zeptejte se na ně, pokud vám je nikdo nenabídl.',
+          group: 'Oblečení',
+        },
+        {
+          id: 'teh-hosp-civilni',
+          text: 'Jedno civilní oblečení na propuštění nebo na procházku po chodbě',
+          group: 'Oblečení',
+          optional: true,
+        },
+        {
+          id: 'teh-hosp-hygiena',
+          text: 'Kompletní hygiena: sprchový gel, šampon, kartáček, pasta, deodorant',
+          group: 'Hygiena',
+        },
+        {
+          id: 'teh-hosp-rucniky',
+          text: 'Dva vlastní ručníky',
+          hint: 'Nemocniční ručníky bývají malé a tvrdé.',
+          group: 'Hygiena',
+        },
+        {
+          id: 'teh-hosp-vlozky',
+          text: 'Vložky, mokré ubrousky, papírové kapesníky',
+          group: 'Hygiena',
+        },
+        {
+          id: 'teh-hosp-krem',
+          text: 'Krém na ruce a balzám na rty',
+          hint: 'Suchý vzduch na oddělení je legendární.',
+          group: 'Hygiena',
+        },
+        {
+          id: 'teh-hosp-hrnek',
+          text: 'Vlastní hrnek, lahev na vodu a lžička',
+          group: 'Jídlo a pití',
+        },
+        {
+          id: 'teh-hosp-svaciny',
+          text: 'Trvanlivé svačiny: oříšky, sušenky, ovocné tyčinky, čaj',
+          hint: 'Nemocniční večeře bývá brzy a do rána je daleko.',
+          group: 'Jídlo a pití',
+        },
+        {
+          id: 'teh-hosp-polstar',
+          text: 'Vlastní malý polštář nebo těhotenský polštářek, pokud to oddělení dovolí',
+          group: 'Pohodlí',
+          optional: true,
+        },
+        {
+          id: 'teh-hosp-deka',
+          text: 'Vlastní tenká deka nebo šátek',
+          group: 'Pohodlí',
+          optional: true,
+        },
+        {
+          id: 'teh-hosp-maska',
+          text: 'Maska na spaní a špunty do uší',
+          hint: 'Světlo na chodbě svítí celou noc.',
+          group: 'Pohodlí',
+        },
+        {
+          id: 'teh-hosp-zabava',
+          text: 'Něco na dlouhé hodiny: kniha, křížovky, ruční práce, stažené filmy',
+          hint: 'Stáhněte si obsah offline. Nemocniční wi-fi je loterie.',
+          group: 'Pohodlí',
+        },
+        {
+          id: 'teh-hosp-zapisnik',
+          text: 'Zápisník a propiska',
+          hint: 'Na otázky pro vizitu a na to, co vám kdo řekl. Vizita trvá dvě minuty a vy si po ní nic nepamatujete.',
+          group: 'Pohodlí',
+        },
+        {
+          id: 'teh-hosp-fotka',
+          text: 'Jedna fotka nebo drobnost z domova',
+          group: 'Pohodlí',
+          optional: true,
+        },
+        {
+          id: 'teh-hosp-drobne',
+          text: 'Drobné mince na automat a malá hotovost',
+          group: 'Pohodlí',
+        },
+      ],
+    },
+    {
+      id: 'teh-jak-prezit-dny-v-nemocnici',
+      kind: 'article',
+      title: 'Jak přežít dny v nemocnici, když nevíte, kdy půjdete domů',
+      excerpt:
+        'Nejtěžší na hospitalizaci není nemoc, ale nekonečný čas bez rozvrhu a bez data konce — a s tím se dá pracovat.',
+      body: `## Co vás nejvíc semele
+
+Ne bolest. Ne vyšetření. **Neurčitost.** Když nevíte, jestli jdete domů zítra nebo za pět týdnů, přestane fungovat plánování a s ním i pocit vlastní kontroly. K tomu se přidá ztráta soukromí, cizí rytmus a to, že jste najednou „pacientka", ne dospělá žena s vlastním životem.
+
+To, co cítíte, není přehnané. Je to reakce na reálnou ztrátu autonomie.
+
+## Struktura je záchranné lano
+
+Nemocniční den má vlastní rytmus, ale v tom rytmu jsou obrovské prázdné plochy. Naplňte je záměrně:
+
+- **Vstávejte a oblékejte se.** I když nikam nejdete. Pyžamo celý den je nejrychlejší cesta k propadu nálady.
+- **Rozdělte si den na bloky.** Ráno – dopoledne po vizitě – po obědě – odpoledne – večer. Každý blok má jednu věc.
+- **Jedna věc denně navíc.** Zavolat na úřad, vybrat kočárek, napsat plán, přečíst kapitolu. Cokoli, co má konec.
+- **Vyjděte z pokoje**, pokud smíte. Chodba se počítá.
+- **Denní světlo a čerstvý vzduch** — okno, ne obrazovka.
+- **Večerní rituál.** Stejný, každý den. Signalizuje tělu konec dne, i když se dny slévají.
+
+## Vizita: dvě minuty, na kterých hodně záleží
+
+Vizita je krátká a vy na ni většinou nejste připravená. Proto:
+
+1. **Pište si otázky do zápisníku průběžně**, jak vás napadají.
+2. **Nejdůležitější otázku položte první.**
+3. **Zeptejte se na dnešní výsledek a na to, co by ho změnilo.**
+4. **Zeptejte se, co se plánuje na zítřek.**
+5. **Nechte si zopakovat, čemu nerozumíte.** Věta „Můžete mi to říct ještě jednou jednodušeji?" je naprosto legitimní.
+6. **Poznamenejte si datum a to, co padlo.** Za týden si dny spletete.
+
+Otázky, které mají největší hodnotu: **Co konkrétně sledujete? Jaký nález by znamenal, že jdu domů? Jaký nález by znamenal, že se bude něco dělat hned? Kdo mi to rozhodne a kdy?**
+
+## Vaše místo
+
+Postel je teď váš byt. Zabydlete se, i kdyby to mělo být na tři dny:
+
+- **Nočník na věci**: nabíječka, voda, balzám na rty, papírové kapesníky, zápisník.
+- **Sluchátka** vždycky po ruce.
+- **Fotka nebo drobnost**, která není nemocniční.
+- **Vlastní deka** nebo šátek, pokud to jde. Vlastní textilie mění pocit z prostoru překvapivě hodně.
+
+## Lidé
+
+- **Spolubydlící.** Někdy dostanete spřízněnou duši, jindy někoho, kdo mluví do telefonu ve dvě ráno. Sluchátka a laskavá přímost („můžeme mít po desáté ticho?") řeší většinu.
+- **Návštěvy.** Domluvte si je na konkrétní dny a hodiny a řekněte lidem, co potřebujete přinést. Deset lidí náhodně vám vezme víc energie, než dá.
+- **Partner.** Dejte mu konkrétní úkoly: co přivézt, co vyřídit, co zjistit. Neurčité „přijeď za mnou" je pro obě strany horší než jasný plán.
+- **Personál.** Sestry vědí o chodu oddělení víc než kdokoli. Slušný a přímý dotaz vám zajistí víc informací než čekání, až si někdo vzpomene.
+
+## Psychika
+
+- **Pojmenujte, co cítíte.** Vztek, nuda, strach, vina vůči staršímu dítěti — všechno je legitimní.
+- **Nesrovnávejte se** se ženou na vedlejší posteli. Nemáte stejnou diagnózu ani stejné dny.
+- **Nečtěte statistiky předčasných porodů ve tři ráno.** Vážně.
+- **Poproste o psychologa.** Řada nemocnic ho má a nabízí ho málokdy sama. Není to slabost, je to služba, na kterou máte nárok.
+- **Počítejte dny nahoru, ne dolů.** „Jsem tu osmý den a jsme ve 29. týdnu" funguje líp než „ještě šest týdnů".
+
+## Tělo
+
+Dlouhé ležení tělu neprospívá. Zeptejte se, co smíte, a pak to dělejte:
+
+- **cvičení kotníků a lýtek** každou hodinu ve dne — prevence trombózy,
+- **jemné protažení ramen a krku** vsedě,
+- **dechová cvičení**,
+- **kompresní punčochy**, pokud je máte doporučené,
+- **hydratace a vláknina** kvůli zácpě.
+
+## Kdy zavolat sestru okamžitě
+
+I v nemocnici platí, že vás nikdo nesleduje nepřetržitě. Volejte hned, když:
+
+- ucítíte **odtok plodové vody** nebo náhlý vodnatý výtok,
+- začnete **krvácet**,
+- máte **pravidelné stahy nebo tlak dolů**,
+- cítíte **méně pohybů**, než je u vás obvyklé,
+- máte **silnou bolest hlavy, poruchy vidění, bolest pod pravým žebrem**,
+- máte **teplotu, zimnici**,
+- máte **bolest, otok nebo zarudnutí lýtka, dušnost, bolest na hrudi**.
+
+> Tento text je praktická podpora, ne lékařská rada. Vždy se řiďte pokyny svého ošetřujícího týmu.`,
+      minutes: 9,
+      phases: ['hospitalization', 'high_risk_pregnancy'],
+      topics: ['rizikove', 'psychika', 'sebepece'],
+      modifiers: ['high_risk'],
+      level: 'comfort',
+      hero: 'dusk',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      publishedOn: '2026-02-12',
+      boost: 0.9,
+    },
+    {
+      id: 'teh-strava-v-tehotenstvi',
+      kind: 'article',
+      title: 'Strava v těhotenství: co skutečně dává smysl',
+      excerpt:
+        'Nejde o dokonalý jídelníček, ale o pár věcí, které mají doložený význam — a o klid od zbytku.',
+      body: `## Zapomeňte na „jíst za dva"
+
+Energetická potřeba v těhotenství roste **méně, než se traduje**. V prvním trimestru prakticky vůbec, ve druhém přibližně o 300 kcal denně a ve třetím zhruba o 450 kcal. To odpovídá jednomu vydatnějšímu jídlu navíc, ne dvojnásobku porcí.
+
+Podstatnější než množství je **kvalita** — v těhotenství roste potřeba některých živin výrazně víc než potřeba energie.
+
+## Co má doložený význam
+
+**Kyselina listová.** Doporučuje se od plánování těhotenství do konce prvního trimestru, u některých žen déle nebo ve vyšší dávce. **Konkrétní dávku určuje lékař** — zvlášť pokud máte v anamnéze vadu neurální trubice, epilepsii nebo užíváte určité léky.
+
+**Jod.** Potřeba roste. Zdrojem je jodizovaná sůl, mořské ryby, mléčné výrobky. Doplňky konzultujte, protože nadbytek jodu je také problém.
+
+**Železo.** Potřeba v těhotenství výrazně stoupá. Nasazení preparátu by mělo vycházet z **krevního obrazu**, ne z pocitu. Vstřebávání zlepšuje vitamin C, zhoršuje káva, čaj a vápník užitý současně.
+
+**Vápník a vitamin D.** V našich zeměpisných šířkách je nedostatek vitaminu D běžný. Dávkování opět podle lékaře.
+
+**Omega-3 (DHA).** Podílí se na vývoji nervové soustavy a zraku. Zdrojem jsou tučné mořské ryby dvakrát týdně nebo doplněk.
+
+**Bílkoviny.** Potřeba roste zhruba o 20–25 g denně ve druhé polovině těhotenství. U dvojčat víc.
+
+**Vláknina a tekutiny.** Zácpa je v těhotenství pravidlem, ne výjimkou. Cílem je zhruba 2–2,5 litru tekutin denně, víc při horku a zvracení.
+
+## Co je moudré vynechat
+
+Podrobný seznam najdete v samostatném checklistu, ale rámcově jde o:
+
+- **syrové a nedostatečně tepelně zpracované maso, ryby a vejce** (toxoplazmóza, salmonela, listerie),
+- **nepasterizované mléko a sýry z něj**, plísňové sýry se zrající kůrkou,
+- **uzeniny a lahůdkářské výrobky** ke konzumaci bez ohřevu,
+- **ryby s vysokým obsahem rtuti** (žralok, mečoun, tuňák velkooký, makrela královská),
+- **alkohol** — bezpečná dávka není známa,
+- **nadměrný kofein** — obvyklé doporučení je do 200 mg denně, tedy zhruba dvě malá espressa; počítejte i čaj, kolu a čokoládu,
+- **bylinné čaje a doplňky bez konzultace** — „přírodní" neznamená bezpečné v těhotenství.
+
+## Praktický rámec dne
+
+Nemusíte počítat gramy. Stačí:
+
+- **na každém talíři bílkovina** (maso, ryba, vejce, luštěniny, mléčné výrobky, tofu),
+- **zelenina nebo ovoce ke každému jídlu**, dobře omytá,
+- **celozrnná příloha**, pokud ji snesete,
+- **kvalitní tuk** — olivový olej, ořechy, avokádo,
+- **tři hlavní jídla a dvě svačiny**, zvlášť pokud máte nevolnosti nebo gestační diabetes.
+
+## Když to nejde
+
+V prvním trimestru někdy zvládnete jen suché pečivo a brambory. **Je to v pořádku.** V tomhle období je hlavním cílem nedehydratovat se a nezhubnout dramaticky, ne mít pestrý jídelníček. Prenatální vitamin pokryje to nejdůležitější. Pestrost doženete ve druhém trimestru.
+
+## Přírůstek hmotnosti
+
+Doporučený přírůstek se odvíjí od **BMI před těhotenstvím** a u dvojčat je vyšší. Rozpětí jsou široká a individuální — **konkrétní cíl by vám měl říct lékař**, ne internet a rozhodně ne komentáře okolí.
+
+Po letech, kdy jste své tělo prožívala jako to, co „nefunguje", může být vážení mimořádně nepříjemné. Máte právo požádat, aby vám váhu neříkali nahlas, nebo se na ni nedívat.
+
+## Doplňky stravy
+
+Prenatální komplex je rozumný základ. Ale platí:
+
+- **Neužívejte několik přípravků současně** bez konzultace — snadno překročíte bezpečné dávky, zejména u vitaminu A.
+- **Vitamin A v retinolové formě** ve vyšších dávkách je v těhotenství rizikový. Pozor i na játra a jaterní paštiky.
+- **Bylinné přípravky** konzultujte vždy.
+
+## Kdy volat lékaře
+
+- neschopnost udržet tekutiny déle než 12 hodin, hubnutí,
+- výrazná bledost, dušnost při běžné námaze, bušení srdce (možná anémie),
+- horečka s průjmem a zvracením po rizikovém jídle,
+- silná bolest břicha,
+- rychlý přírůstek hmotnosti nad přibližně 1 kg za týden spolu s otoky obličeje a rukou.
+
+> Text je obecný a nenahrazuje individuální nutriční ani lékařské doporučení. O doplňcích stravy v těhotenství vždy rozhoduje váš lékař.`,
+      minutes: 9,
+      phases: ['pregnancy', 'early_pregnancy', 'high_risk_pregnancy'],
+      topics: ['strava', 'tehotenstvi', 'sebepece'],
+      level: 'essential',
+      hero: 'sage',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: [
+        'Světová zdravotnická organizace — doporučení pro prenatální péči',
+        'Česká gynekologická a porodnická společnost ČLS JEP',
+        'EFSA — referenční hodnoty příjmu živin',
+      ],
+      publishedOn: '2026-02-19',
+      boost: 0.75,
+    },
+    {
+      id: 'teh-co-nejist-checklist',
+      kind: 'checklist',
+      title: 'Co v těhotenství nejíst: přehledný seznam bez strašení',
+      excerpt:
+        'Konkrétní seznam rizikových potravin s vysvětlením proč — abyste nemusela googlit u každého druhého sousta.',
+      body: `## Proč tenhle seznam existuje
+
+Omezení v těhotenství nejsou libovůle. Většina z nich má jeden ze tří důvodů:
+
+1. **Riziko infekce** — listerióza, toxoplazmóza, salmonelóza. Pro vás jde často o banální onemocnění, pro plod může být závažné.
+2. **Riziko toxických látek** — především rtuť v některých rybách a vitamin A ve vysokých dávkách.
+3. **Riziko poškození vývoje** — alkohol.
+
+Cílem není žít ve strachu z jídla. Cílem je vědět, čemu se vyhnout, a zbytek si užít.
+
+## Když se stane nehoda
+
+Snědla jste kousek nedopečeného masa nebo plísňový sýr? **Nepanikařte.** Riziko z jednorázové expozice je nízké. Sledujte, jestli se nedostaví horečka, chřipkové příznaky nebo průjem, a pokud ano, kontaktujte lékaře a řekněte mu, co jste jedla.
+
+> Seznam je obecný a nenahrazuje doporučení vašeho lékaře. Při podezření na infekci z potravin vždy kontaktujte lékaře.`,
+      minutes: 5,
+      phases: ['pregnancy', 'early_pregnancy', 'high_risk_pregnancy'],
+      topics: ['strava', 'tehotenstvi'],
+      level: 'essential',
+      hero: 'linen',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Světová zdravotnická organizace — doporučení pro prenatální péči'],
+      publishedOn: '2026-02-26',
+      boost: 0.7,
+      checklist: [
+        {
+          id: 'teh-nejist-alkohol',
+          text: 'Žádný alkohol',
+          hint: 'Bezpečná dávka nebyla stanovena. Platí i pro vaření, kde se alkohol nemusí zcela odpařit.',
+          group: 'Nulová tolerance',
+        },
+        {
+          id: 'teh-nejist-syrove-maso',
+          text: 'Syrové a nedovařené maso, tatarák, krvavé steaky',
+          hint: 'Toxoplazmóza. Maso propečte na střed, u mletého to platí dvojnásob.',
+          group: 'Infekce',
+        },
+        {
+          id: 'teh-nejist-uzeniny',
+          text: 'Šunky, salámy a paštiky konzumované za studena',
+          hint: 'Listerie. Tepelně zpracované (v horkém pokrmu) jsou v pořádku.',
+          group: 'Infekce',
+        },
+        {
+          id: 'teh-nejist-syrove-ryby',
+          text: 'Syrové ryby a mořské plody, sushi, uzený losos za studena, marinovaní sledi',
+          hint: 'Listerie a paraziti. Tepelně zpracované ryby jsou naopak žádoucí.',
+          group: 'Infekce',
+        },
+        {
+          id: 'teh-nejist-syrova-vejce',
+          text: 'Syrová a málo tepelně zpracovaná vejce',
+          hint: 'Salmonela. Pozor na domácí majonézu, tiramisu, syrové těsto a míchaná vejce natvrdko nedodělaná.',
+          group: 'Infekce',
+        },
+        {
+          id: 'teh-nejist-neptasterizovane',
+          text: 'Nepasterizované mléko a výrobky z něj',
+          hint: 'Včetně sýrů z farmářských trhů. Ptejte se, nebo nekupujte.',
+          group: 'Infekce',
+        },
+        {
+          id: 'teh-nejist-plisnove',
+          text: 'Měkké zrající sýry s plísní na povrchu a sýry s modrou plísní',
+          hint: 'Hermelín, camembert, niva, gorgonzola. Tvrdé sýry a tavené jsou v pořádku, stejně jako tyto sýry zapečené do horka.',
+          group: 'Infekce',
+        },
+        {
+          id: 'teh-nejist-klicky',
+          text: 'Syrové naklíčené semínko a klíčky',
+          hint: 'Prostředí klíčení je ideální pro bakterie. Tepelně zpracované jsou v pořádku.',
+          group: 'Infekce',
+        },
+        {
+          id: 'teh-nejist-neomyta-zelenina',
+          text: 'Neomytá zelenina, ovoce a bylinky',
+          hint: 'Toxoplazmóza z půdy. Důkladně omyjte, u listové zeleniny propláchněte listy jednotlivě.',
+          group: 'Infekce',
+        },
+        {
+          id: 'teh-nejist-rtut',
+          text: 'Ryby s vysokým obsahem rtuti: žralok, mečoun, marlin, tuňák velkooký, makrela královská',
+          hint: 'Rtuť se hromadí a poškozuje vývoj nervové soustavy.',
+          group: 'Toxické látky',
+        },
+        {
+          id: 'teh-nejist-jatra',
+          text: 'Játra a jaterní výrobky ve velkém množství',
+          hint: 'Velmi vysoký obsah vitaminu A v retinolové formě. Občasná malá porce tepelně zpracovaná není katastrofa, ale pravidelně ne.',
+          group: 'Toxické látky',
+        },
+        {
+          id: 'teh-nejist-vitamin-a',
+          text: 'Doplňky s vysokou dávkou vitaminu A (retinol)',
+          hint: 'Zkontrolujte složení všech doplňků, které berete současně.',
+          group: 'Toxické látky',
+        },
+        {
+          id: 'teh-nejist-kofein',
+          text: 'Kofein nad zhruba 200 mg denně',
+          hint: 'Zhruba dvě malá espressa. Počítejte i čaj, kolu, energetické nápoje a hořkou čokoládu.',
+          group: 'Omezit',
+        },
+        {
+          id: 'teh-nejist-byliny',
+          text: 'Bylinné čaje a přípravky bez konzultace',
+          hint: 'Šalvěj, řebříček, jalovec, kopřiva ve velkém a řada dalších mají v těhotenství svá omezení.',
+          group: 'Omezit',
+        },
+        {
+          id: 'teh-nejist-lekorice',
+          text: 'Velké množství lékořice',
+          hint: 'Může ovlivňovat krevní tlak. Občasný bonbon problém není.',
+          group: 'Omezit',
+          optional: true,
+        },
+        {
+          id: 'teh-nejist-nahradni-sladidla',
+          text: 'Nadměrné množství slazených nápojů, i light variant',
+          group: 'Omezit',
+          optional: true,
+        },
+        {
+          id: 'teh-nejist-koci-trus',
+          text: 'Bonus: úklid kočičího záchodu nechte někomu jinému',
+          hint: 'Toxoplazmóza se přenáší i takto. Pokud musíte, rukavice a důkladné mytí rukou.',
+          group: 'Nejen jídlo',
+        },
+        {
+          id: 'teh-nejist-zahrada',
+          text: 'Bonus: na zahradě pracujte v rukavicích',
+          group: 'Nejen jídlo',
+          optional: true,
+        },
+      ],
+    },
     // ITEMS_MARKER
   ],
   dailyCards: [
