@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import type { CalendarEvent, Medication } from '@/lib/db/repo-health'
-import { EVENT_KINDS } from '@/lib/db/repo-health'
+import type { CalendarEvent, Medication } from '@/lib/shared/records'
+import { EVENT_KINDS } from '@/lib/shared/records'
 import {
   addEventAction,
   addMedicationAction,

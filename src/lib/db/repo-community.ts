@@ -3,6 +3,10 @@ import type { JourneyState } from '../domain/journey'
 import type { Profile } from '../domain/profile'
 import { MODIFIER_LABELS } from '../domain/profile'
 import { PHASES } from '../domain/phases'
+import type { CommunityGroup, CommunityPost, CommunityReply } from '../shared/records'
+
+// Tvary žijí v ../shared/records, aby je mohl importovat i prohlížeč.
+export type { CommunityGroup, CommunityPost, CommunityReply }
 
 /**
  * Komunita, kterou nespojuje náhoda, ale stejný příběh.
@@ -11,40 +15,6 @@ import { PHASES } from '../domain/phases'
  * diagnóza, klinika, věková skupina. Uživatelka nemusí nic hledat — vstoupí
  * a najde ženy, které právě prožívají skoro totéž.
  */
-
-export interface CommunityGroup {
-  id: string
-  slug: string
-  name: string
-  description: string
-  kind: 'phase' | 'clinic' | 'diagnosis' | 'age' | 'due' | 'special'
-  matchKey: string | null
-  members: number
-}
-
-export interface CommunityPost {
-  id: string
-  groupId: string
-  userId: string
-  authorName: string
-  body: string
-  hearts: number
-  phaseId: string | null
-  createdAt: string
-  replies?: CommunityReply[]
-  hearted?: boolean
-}
-
-export interface CommunityReply {
-  id: string
-  postId: string
-  userId: string
-  authorName: string
-  body: string
-  hearts: number
-  createdAt: string
-  hearted?: boolean
-}
 
 function slugify(s: string): string {
   return s

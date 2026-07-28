@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import type { JournalEntry } from '@/lib/db/repo'
+import type { JournalEntry } from '@/lib/shared/records'
 import { saveJournalAction } from '@/app/actions/journal'
 
 const SCALES = [

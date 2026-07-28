@@ -1,19 +1,13 @@
 import { db, uid, nowIso } from './index'
 import type { IsoDate } from '../domain/profile'
+import type { Letter, TimelineEvent } from '../shared/records'
+import { LETTER_TARGETS } from '../shared/records'
+
+// Tvary a popisky žijí v ../shared/records, aby je mohl importovat i prohlížeč.
+export type { Letter, TimelineEvent }
+export { LETTER_TARGETS }
 
 /** Rodinná kronika: časová osa, dopisy miminku, milníky. */
-
-export interface TimelineEvent {
-  id: string
-  onDate: IsoDate
-  title: string
-  body: string | null
-  kind: 'milnik' | 'foto' | 'vysledek' | 'zapis' | 'dopis' | 'prvni'
-  icon: string | null
-  mediaId: string | null
-  auto: boolean
-  pinned: boolean
-}
 
 interface TimelineRow {
   id: string
@@ -92,24 +86,6 @@ export function ensureMilestone(
 }
 
 // ---------------------------------------------------------------- dopisy ---
-
-export interface Letter {
-  id: string
-  toWhom: 'embryo' | 'baby' | 'lost' | 'self' | 'partner'
-  title: string | null
-  body: string
-  onDate: IsoDate
-  sealedUntil: string | null
-  createdAt: string
-}
-
-export const LETTER_TARGETS: Record<Letter['toWhom'], string> = {
-  embryo: 'Mému embryu',
-  baby: 'Mému miminku',
-  lost: 'Tomu, kdo tu nezůstal',
-  self: 'Sobě',
-  partner: 'Partnerovi',
-}
 
 export function listLetters(userId: string): Letter[] {
   const rows = db()

@@ -1296,6 +1296,486 @@ Práce vám během stimulace může být oporou — struktura dne pomáhá. Mů�
       author: 'Gabi',
       publishedOn: '2025-11-13',
     },
+    {
+      id: 'cyk-oplozeni-ivf-icsi-picsi',
+      kind: 'article',
+      title: 'IVF, ICSI, PICSI: jak se vlastně vajíčko oplodní',
+      excerpt:
+        'Tři zkratky, tři různé způsoby, jak spermie potká vajíčko. Tady je, čím se liší a proč vám vybrali zrovna tenhle.',
+      body: `## Co se děje v laboratoři pár hodin po odběru
+
+Odsátá tekutina z folikulů jde rovnou k embryologovi, který v ní pod mikroskopem vyhledá vajíčka. Ta se očistí a **posoudí se jejich zralost** — použít lze pouze zralá vajíčka, která dokončila zrání po triggeru. Nezralých bývá menšina a je to očekávané.
+
+Souběžně se zpracovává vzorek spermií: promyje se, oddělí se pohyblivé spermie od zbytku ejakulátu a připraví se koncentrát pro oplození.
+
+Pak přijde na řadu metoda.
+
+## Klasické IVF
+
+Vajíčko a určité množství připravených spermií se dají dohromady do misky s kultivačním médiem a **spermie si cestu najde sama.** Je to bližší přirozenému procesu — spermie musí projít obalem vajíčka vlastní silou.
+
+Používá se, když je vzorek spermií v dobrých parametrech a není důvod zasahovat.
+
+- **Výhoda:** minimální zásah, přirozená selekce.
+- **Riziko:** pokud spermie z jakéhokoli důvodu nepronikne, vajíčka se neoplodní. Proto se u nejistých vzorků raději volí ICSI.
+
+## ICSI
+
+**Intracytoplazmatická injekce spermie.** Embryolog vybere pod velkým zvětšením jednu spermii, znehybní ji a mikropipetou ji vpraví přímo dovnitř vajíčka.
+
+Kdy se používá:
+
+- **Mužský faktor** — nízký počet, snížená pohyblivost nebo morfologie spermií.
+- **Spermie získané chirurgicky** z varlete či nadvarlete.
+- **Předchozí selhání oplození** klasickým IVF.
+- **Malý počet vajíček**, kde se nechce riskovat.
+- **Před genetickým testováním embryí (PGT)**, aby se vyloučila kontaminace cizí DNA.
+- Někdy při použití **rozmražených vajíček**.
+
+ICSI obchází bariéru obalu vajíčka. **Neřeší kvalitu vajíčka ani genetiku spermie** a nezaručuje oplození — to je věc, kterou stojí za to vědět předem.
+
+## PICSI a další způsoby výběru spermie
+
+Když se dělá ICSI, musí embryolog jednu spermii vybrat. Metody, které mu s výběrem pomáhají:
+
+- **PICSI** — vzorek se položí na plochu s kyselinou hyaluronovou, tedy látkou, která se přirozeně nachází v obalu vajíčka. **Zralé spermie se na ni navážou**, nezralé ne. Embryolog pak vybírá z těch navázaných.
+- **IMSI** — výběr spermie při velmi vysokém zvětšení, které umožní posoudit detaily tvaru hlavičky.
+
+Tyhle metody se používají cíleně, typicky při **opakovaném selhání, vyšší fragmentaci DNA spermií nebo horší morfologii**. Nejsou to univerzální vylepšení pro každého a rozhodnutí patří embryologovi a lékaři.
+
+## Kolik vajíček se oplodní
+
+Ne všechna. Ani při ICSI. Část vajíček se neoplodní, část se oplodní **abnormálně** (například se objeví jiný počet prvojader než dvě) a tahle se dál nekultivují.
+
+**Neptejte se na procenta z internetu.** Míra oplození závisí na kvalitě vajíček i spermií a vaše konkrétní čísla vám řekne embryolog vaší kliniky. Obecné číslo z fóra vám nic neřekne o vašem cyklu.
+
+## Když se neoplodní nic
+
+Vzácná, ale existující situace. Nazývá se **totální selhání oplození**. Není to nic, co byste způsobila. Následuje rozbor: kvalita vajíček, parametry vzorku, použitá metoda. Pro další cyklus se obvykle mění strategie — například se přejde z IVF na ICSI, přidá se jiný způsob výběru spermie nebo se řeší aktivace vajíčka.
+
+Je to jedna z nejtěžších zpráv, jaké se v embryologii sdělují, a je naprosto v pořádku si na ni vyžádat samostatnou konzultaci, ne jen větu do telefonu.
+
+## Otázky, které stojí za to položit embryologovi
+
+1. Jakou metodu oplození u nás plánujete a proč?
+2. Kolik vajíček bylo zralých?
+3. Jak vypadal vzorek v den odběru?
+4. Kolik vajíček se normálně oplodnilo?
+5. Kdy mi budete volat příště a s jakou informací?
+
+> Text popisuje obecné principy laboratorních metod. Volbu metody u vás určuje embryolog a ošetřující lékař podle konkrétních nálezů. Tento obsah nenahrazuje odbornou konzultaci.`,
+      minutes: 8,
+      phases: ['fertilization', 'retrieval'],
+      dayRange: [0, 1],
+      topics: ['embryologie', 'genetika', 'klinika'],
+      modifiers: ['icsi', 'male_factor'],
+      level: 'essential',
+      hero: 'sky',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2025-11-18',
+      boost: 0.95,
+    },
+    {
+      id: 'cyk-macs-a-metody-vyberu',
+      kind: 'article',
+      title: 'MACS, fragmentace DNA a další metody, o kterých se dozvíte na poslední chvíli',
+      excerpt:
+        'Klinika nabídne metodu s třípísmennou zkratkou a příplatkem. Tady je, co znamená a kdy dává smysl.',
+      body: `## Proč se o tomhle vůbec mluví
+
+Kvalita spermií se dlouho hodnotila hlavně podle tří parametrů: počet, pohyblivost, tvar. Postupně se ukázalo, že tenhle popis nestačí — spermie může vypadat i plavat výborně a přitom mít **poškozenou genetickou informaci**. Odtud vzešly metody, které se snaží spermie třídit podle jiných vlastností než podle vzhledu.
+
+Setkáte se s nimi obvykle ve dvou situacích: při opakovaném neúspěchu nebo když vzorek partnera vykazuje odchylky.
+
+## Fragmentace DNA spermií
+
+Vyšetření, které měří **podíl spermií s poškozenými řetězci DNA**. Vysoká fragmentace se dává do souvislosti s horším vývojem embryí a s opakovanými ztrátami, i když vztah není jednoduchý a hodnoty kolísají.
+
+Co fragmentaci zvyšuje:
+
+- **Věk**
+- **Kouření, alkohol, obezita**
+- **Varikokéla** (rozšířené žíly v šourku)
+- **Infekce a záněty**
+- **Horko** — sauna, vyhřívané sedačky, notebook na klíně
+- **Delší abstinence** před odběrem, paradoxně
+
+Část těchto faktorů se dá ovlivnit, a to během zhruba **tří měsíců**, což je doba tvorby spermií. Rozhodnutí, jestli vyšetření vůbec dělat, patří andrologovi nebo reprodukčnímu lékaři.
+
+## MACS
+
+**Magnetická separace.** Vzorek projde přes sloupec s magnetickými kuličkami, které se navážou na spermie vykazující známky programované buněčné smrti. Tyhle spermie zůstanou zachycené a dál se pracuje se zbytkem.
+
+Kdy se zvažuje:
+
+- vysoká fragmentace DNA,
+- opakované selhání implantace,
+- opakované ztráty těhotenství,
+- horší výsledky vývoje embryí v předchozím cyklu.
+
+**Co byste měla vědět:** jde o doplňkovou metodu, jejíž přínos se stále zkoumá a nehodí se plošně pro každého. Pokud vám ji nabídnou, je legitimní se zeptat: „Proč konkrétně u nás? Co od toho čekáte? Co když ji neuděláme?"
+
+## PICSI a IMSI ve zkratce
+
+- **PICSI** vybírá spermie podle schopnosti navázat se na kyselinu hyaluronovou — tedy podle zralosti.
+- **IMSI** vybírá spermie podle detailního tvaru při velmi vysokém zvětšení.
+
+Obojí prodlužuje práci embryologa a obojí má své indikace. Ani jedno není záruka.
+
+## Asistovaný hatching
+
+Metoda, která se týká embrya, ne spermie: v obalu embrya se laserem vytvoří drobný otvor, aby se mu snáz „vylíhlo" před uhnízděním. Zvažuje se například u rozmražených embryí nebo u silnějšího obalu. Opět jde o metodu s konkrétními indikacemi.
+
+## Time-lapse kultivace
+
+Inkubátor s vestavěnou kamerou snímá embrya v pravidelných intervalech, takže embryolog vidí **celý průběh dělení**, aniž by embrya musel vyndávat z prostředí. Přináší víc informací pro výběr embrya a stabilnější podmínky. Není to léčebná metoda, je to způsob pozorování.
+
+## Jak se v nabídce vyznat
+
+Praktický filtr na jakoukoli doplňkovou metodu:
+
+1. **Jaká je konkrétní indikace u nás?** Ne obecně, ale u nás.
+2. **Co konkrétně od toho očekáváte, že se změní?**
+3. **Jaká je alternativa, když to neuděláme?**
+4. **Kolik to stojí a je to hrazené?**
+5. **Máte s tím vlastní zkušenost a jak dlouho to na pracovišti děláte?**
+
+Pokud odpověď zní „děláme to u všech", je to signál, že se má cenu ptát dál. Kvalitní pracoviště dokáže vysvětlit, proč něco doporučuje právě vám.
+
+## Kde je hranice
+
+Tady se dostáváme k něčemu, o čem se mluví nerado: **v době, kdy jste zoufalá, koupíte cokoli.** Řada doplňkových metod má omezená data a rozhodně nejde o zázraky. Není chyba je zvolit. Chyba je zvolit je bez otázek, s pocitem, že když je nezvolíte, budete si vyčítat, že jste neudělala všechno.
+
+Udělala jste dost. Rozhodujte se podle indikace, ne podle viny.
+
+> Text popisuje obecné principy laboratorních metod a nenahrazuje odbornou konzultaci. Vhodnost konkrétní metody posoudí váš embryolog a ošetřující lékař.`,
+      minutes: 7,
+      phases: ['fertilization', 'ivf_prep'],
+      dayRange: [0, 2],
+      topics: ['embryologie', 'genetika', 'klinika', 'partner'],
+      modifiers: ['male_factor', 'repeated_failure', 'icsi'],
+      level: 'deep',
+      hero: 'dusk',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce'],
+      publishedOn: '2025-11-22',
+    },
+    {
+      id: 'cyk-telefonat-z-embryologie',
+      kind: 'article',
+      title: 'Telefonát z embryologie: jak ho přežít a co se zeptat',
+      excerpt:
+        'Trvá dvě minuty, přijde bez varování a vy si z něj pamatujete polovinu. Připravte se na něj předem.',
+      body: `## Co se v tom telefonátu obvykle dozvíte
+
+První telefonát přichází typicky **den po odběru** a nese dvě čísla:
+
+1. **Kolik vajíček bylo zralých.**
+2. **Kolik se jich normálně oplodnilo** — tedy kolik z nich má ráno po oplození dvě prvojádra.
+
+Další telefonáty pak přicházejí podle zvyklostí pracoviště: někde denně, jinde až v den, kdy se rozhoduje o transferu nebo zamrazení. **Zeptejte se předem, jaký je jejich systém**, ať nečekáte na telefon, který ten den nepřijde.
+
+## Proč je to tak těžké
+
+Protože v tom telefonátu se poprvé objeví reálná čísla. Do té chvíle bylo všechno potenciál — folikuly, naděje, plán. Teď se z toho stane počet.
+
+A skoro vždycky je to číslo menší, než jste čekala. To není proto, že by se něco pokazilo. Je to proto, že **na každém stupni se něco ztrácí**: z folikulů vajíčka, z vajíček zralá, ze zralých oplozená, z oplozených ta, která se dělí dál. Když víte, že to tak je, ubere to telefonátu polovinu jeho síly.
+
+## Připravte se předem — konkrétně
+
+- **Mějte po ruce papír a tužku.** Ne telefon, na kterém právě mluvíte.
+- **Napište si tři otázky dopředu.** V šoku si nevzpomenete.
+- **Domluvte si, kdo telefon zvedne.** Pokud víte, že to neunesete, může volat partner. Řekněte to klinice předem.
+- **Nebuďte v tu chvíli na poradě.** Pokud znáte časové okno, kdy volají, vyblokujte si ho.
+- **Zapište si přesně, co řekli**, včetně slov, kterým jste nerozuměla. Doslova. Dohledáte je pak v klidu.
+
+## Otázky, které mají smysl
+
+Tyhle otázky vám dají informaci, se kterou se dá dál pracovat:
+
+1. **Kolik vajíček bylo zralých a kolik se oplodnilo normálně?**
+2. **Jak vypadá vývoj oproti tomu, co byste v tuhle dobu očekávali?**
+3. **Kdy mi budete volat příště a co budu vědět?**
+4. **Plánujete transfer třetí, nebo pátý den, a podle čeho se rozhodnete?**
+5. **Co by nás mohlo přimět plán změnit?**
+
+Otázky, které smysl nemají a jen vás zraní: „Jaká je moje šance v procentech?" v den jedna. Nikdo to v ten moment neví a číslo, které byste dostala, by bylo obecné.
+
+## Když čísla nejsou dobrá
+
+Řekněte to nahlas: „Tohle je pro mě těžké slyšet. Můžeme se domluvit na konzultaci s lékařem?" Embryolog na to je zvyklý a obvykle vám nabídne prostor.
+
+Co si ten den nedělejte:
+
+- **Negooglete si prognózu** podle počtu embryí. Najdete deset protichůdných čísel a žádné o vás.
+- **Nedělejte závěry o dalším cyklu** ten samý den.
+- **Nevolejte to všem.** Vyberte jednoho člověka.
+- **Neomlouvejte se partnerovi**, že jste „nedodala víc vajíček". Tuhle větu si řekne v hlavě skoro každá žena a je to nespravedlivé vůči vám.
+
+## Když čísla jsou dobrá
+
+Pravděpodobně ucítíte úlevu a hned potom strach z ní. Radovat se z dobrého čísla není pokoušení osudu. Dovolte si to na jeden večer.
+
+## Poznámka pro partnera
+
+Pokud tenhle text čte on: nejlepší reakce na oznámení čísla není hodnocení („to je dost / to je málo"), ale otázka („co to pro tebe teď znamená?"). A pak ticho, ve kterém se dá odpovědět.
+
+## Kdy volat vy
+
+Nezávisle na telefonátu z laboratoře volejte kliniku, pokud se u vás objeví silná bolest břicha, rychlé nafouknutí, dušnost, teplota nad 38 °C nebo výrazně méně moči. Vývoj embryí a vaše zdraví jsou dvě různé věci a to druhé má přednost.
+
+> Text nenahrazuje odbornou konzultaci. Informace o vývoji vašich embryí vám může poskytnout pouze embryolog vaší kliniky.`,
+      minutes: 6,
+      phases: ['fertilization', 'embryo_culture'],
+      dayRange: [1, 3],
+      topics: ['embryologie', 'psychika', 'partner', 'klinika'],
+      level: 'essential',
+      hero: 'blush',
+      author: 'Gabi',
+      publishedOn: '2025-11-26',
+      boost: 0.9,
+    },
+    {
+      id: 'cyk-kultivace-den-po-dni',
+      kind: 'article',
+      title: 'Kultivace den po dni: co se s embryi děje v laboratoři',
+      excerpt:
+        'Šest dní, o kterých nic nevíte, a přitom se v nich rozhoduje všechno. Tady je den po dni, co se děje.',
+      body: `## Kde vaše embrya jsou
+
+V inkubátoru, který drží stabilní teplotu kolem tělesné, přesně nastavené složení plynů a vlhkost. Embrya leží v kapkách kultivačního média pod olejovou vrstvou, každá pacientka má vlastní označenou misku a identita se kontroluje při každém kroku, obvykle dvěma lidmi nebo elektronickým systémem.
+
+Laboratoř je tichá, tmavá a extrémně stabilní. To je celé její kouzlo: **nedělat nic zbytečně a nerušit.**
+
+## Den 0 — den odběru
+
+Vajíčka se vyhledají v odsáté tekutině, posoudí se jejich zralost a připraví se ke oplození. Podle metody se buď spojí se spermiemi (IVF), nebo se do nich spermie vpraví (ICSI). Pak se vrátí do inkubátoru.
+
+## Den 1 — kontrola oplození
+
+Zhruba 16 až 18 hodin po oplození embryolog kontroluje, jestli se objevila **dvě prvojádra** — jedno z vajíčka, jedno ze spermie. To je znak normálního oplození.
+
+Co může nastat:
+
+- **Dvě prvojádra** — normální oplození, embryo pokračuje.
+- **Žádné prvojádro** — vajíčko se neoplodnilo.
+- **Jedno nebo tři a víc** — abnormální oplození, tato embrya se dál nepoužívají.
+
+Tohle je to číslo, které se dozvíte v prvním telefonátu.
+
+## Den 2 — první dělení
+
+Embryo by mělo mít zhruba **dvě až čtyři buňky** (blastomery). Hodnotí se počet buněk, jejich stejnoměrnost a podíl fragmentace — drobných úlomků buněčné hmoty, kterých má být co nejméně.
+
+## Den 3 — osm buněk a velký přerod
+
+Embryo má obvykle kolem **šesti až osmi buněk**. V tuhle dobu se odehrává zásadní věc: **embryo přepíná na vlastní genom.** Do té chvíle běželo na zásobách a informacích z vajíčka. Teď musí začít pracovat samo.
+
+Právě tady se řada embryí zastaví. Není to náhoda a není to nic, co byste ovlivnila — je to okamžik, kdy se projeví genetická výbava embrya.
+
+Na některých pracovištích se **transfer dělá třetí den**, zvlášť když je embryí málo a nemá smysl je držet déle v laboratoři.
+
+## Den 4 — morula
+
+Buňky se přestanou počítat, protože se k sobě těsně přimknou a hranice mezi nimi zmizí. Vznikne kompaktní kulička — **morula**. Vypadá to jako krok zpět, ale je to nutná fáze.
+
+Čtvrtý den se obvykle netelefonuje, protože morula se hodnotí obtížně a informace by nic nepřinesla.
+
+## Den 5 — blastocysta
+
+Uvnitř moruly vznikne dutina vyplněná tekutinou a buňky se poprvé rozdělí na dvě různé skupiny:
+
+- **Vnitřní buněčná masa** — z ní vznikne plod.
+- **Trofektoderm** — vnější vrstva, ze které vznikne placenta.
+
+Tomuhle stádiu se říká **blastocysta** a je to nejčastější okamžik pro transfer nebo zamrazení. Pokud se dělá genetické testování, odebírá se v tuhle dobu několik buněk z vnější vrstvy.
+
+## Den 6 (někdy 7) — opozdilci
+
+Část embryí dojde do stádia blastocysty o den nebo dva později. **Pomalejší neznamená nepoužitelné** — z blastocyst šestého dne se rodí děti. Obvykle se zamrazují k pozdějšímu použití.
+
+## Proč jich na konci zbude tak málo
+
+Protože kultivace je **selekce**. Embryo, které se zastaví ve čtvrtý den, by se s velkou pravděpodobností nezahnízdilo ani v děloze. Laboratoř tuhle selekci neprovádí navíc — jen ji zviditelní.
+
+Zní to krutě a zároveň to znamená, že embryo, které dojde do pátého dne, prošlo skutečnou zkouškou.
+
+## Co v týhle době můžete dělat vy
+
+Prakticky nic, co by vývoj ovlivnilo, a to je nejtěžší část. Co pomáhá:
+
+- **Vědět, který den co znamená** (proto tenhle text).
+- **Nepočítat dopředu.** Číslo z dne tři nepředpovídá číslo z dne pět.
+- **Držet svůj vlastní režim** — spánek, jídlo, pohyb, podpora progesteronem podle pokynů.
+- **Nechodit na diskusní fóra ve tři ráno.** Cizí čísla vám nepomůžou.
+
+> Popis je obecný a zjednodušený. Časování i způsob hodnocení se mezi pracovišti liší. Konkrétní informace o vašich embryích vám sdělí pouze embryolog vaší kliniky.`,
+      minutes: 8,
+      phases: ['embryo_culture', 'fertilization'],
+      dayRange: [1, 6],
+      topics: ['embryologie', 'cekani', 'klinika'],
+      level: 'essential',
+      hero: 'pearl',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce'],
+      publishedOn: '2025-12-01',
+      boost: 1,
+    },
+    {
+      id: 'cyk-hodnoceni-embryi-gardner',
+      kind: 'article',
+      title: 'Jak se hodnotí embrya: čísla a písmena, kterým budete rozumět',
+      excerpt:
+        'Zápis typu 4AA vypadá jako známka z chemie. Tady je, co jednotlivé části znamenají a co neznamenají.',
+      body: `## Proč se embrya vůbec známkují
+
+Když je embryí víc, embryolog musí vybrat to, které přenese jako první. Hodnocení je **nástroj pro pořadí**, ne rozsudek nad embryem. Vzniklo z pozorování — z toho, jak vypadala embrya, po kterých následovalo těhotenství.
+
+Platí u něj dvě věci současně: **je to nejlepší, co máme bez zásahu do embrya** a zároveň **je to jen vzhled.** Embryo s krásným hodnocením se nemusí uhnízdit a embryo s horším ano.
+
+## Hodnocení do třetího dne
+
+U embryí ve stádiu dělení se posuzují tři věci:
+
+1. **Počet buněk vzhledem ke dni.** Třetí den se obvykle očekává zhruba šest až osm buněk.
+2. **Stejnoměrnost buněk.** Ideálně podobně velké.
+3. **Fragmentace** — podíl drobných úlomků buněčné hmoty. Čím méně, tím lépe.
+
+Zápis pak vypadá například jako „8 buněk, stejnoměrné, fragmentace pod 10 %".
+
+## Hodnocení blastocysty — princip Gardnerovy škály
+
+U blastocysty se používá kombinace **čísla a dvou písmen**, například 4AA nebo 3BC. Nejrozšířenější systém popsal Gardner a jeho obměny používá většina laboratoří.
+
+**Číslo (obvykle 1–6) popisuje stupeň expanze**, tedy jak je blastocysta rozvinutá:
+
+- nižší čísla — dutina se teprve tvoří,
+- střední čísla — blastocysta je plně rozvinutá,
+- vyšší čísla — blastocysta se začíná „líhnout" ze svého obalu.
+
+**První písmeno hodnotí vnitřní buněčnou masu** — skupinu buněk, ze které vznikne plod. A je nejlepší, C nejslabší.
+
+**Druhé písmeno hodnotí trofektoderm** — vnější vrstvu, ze které vznikne placenta. Opět A až C.
+
+Takže 4AA znamená plně rozvinutou blastocystu s dobře vypadající vnitřní masou i vnější vrstvou. **Neznamená to zaručené těhotenství.**
+
+## Čemu hodnocení nerozumí
+
+Tohle je nejdůležitější odstavec celého textu.
+
+- **Hodnocení nevidí genetiku.** Embryo s hodnocením AA může mít chybný počet chromozomů a embryo s hodnocením BC nemusí.
+- **Hodnocení je subjektivní.** Dva embryologové se v písmenech mohou lišit. Proto se pracoviště mezi sebou nedají srovnávat.
+- **Hodnocení je okamžik.** Je to fotka, ne film. Embryo se mění během hodin.
+- **Rychlost není kvalita.** Blastocysta šestého dne může být zdravější než ta z pátého.
+
+## Co s tím prakticky
+
+Když vám embryolog řekne písmena, zeptejte se na jedinou opravdu užitečnou věc: **„Které embryo přenášíte jako první a proč zrovna tohle?"** Odpověď vám poví víc než celá abeceda.
+
+A pak si tu známku odložte. Známe spoustu žen, které si písmena opakovaly dva týdny jako mantru — v jednu chvíli jako důvod k naději, ve druhé jako důvod k zoufalství. Ta samá dvě písmena.
+
+## Co když jsou všechna embrya „horší"
+
+Za prvé, horší hodnocení není synonymum pro nepoužitelné. Za druhé, když jsou hodnocení nižší napříč celou skupinou, je to informace pro lékaře do dalšího cyklu — může se měnit protokol, metoda oplození, laboratorní postup.
+
+Za třetí a hlavně: **hodnocení není hodnocení vás.** Není to známka za to, jak dobře jste to zvládla. Není nic, co byste udělala jinak.
+
+## Otázky na konzultaci
+
+1. Jaký systém hodnocení používáte a co u vás znamená?
+2. Kolik embryí došlo do stádia blastocysty?
+3. Zmrazujete i embrya s nižším hodnocením? Podle čeho?
+4. Doporučujete v mém případě transfer čerstvý, nebo mražený?
+5. Co byste u nás příště udělali jinak?
+
+> Popis hodnotících systémů je obecný a zjednodušený. Interpretace hodnocení vašich embryí patří výhradně embryologovi a lékaři vaší kliniky.`,
+      minutes: 7,
+      phases: ['embryo_culture'],
+      dayRange: [3, 6],
+      topics: ['embryologie', 'vysledky', 'genetika'],
+      level: 'deep',
+      hero: 'sage',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — konsenzuální doporučení k hodnocení embryí', 'ESHRE — doporučené postupy pro laboratoře asistované reprodukce'],
+      publishedOn: '2025-12-05',
+      boost: 0.85,
+    },
+    {
+      id: 'cyk-blastocysta-co-to-je',
+      kind: 'article',
+      title: 'Blastocysta: proč je pátý den takový milník',
+      excerpt:
+        'Sto buněk, dutina a první rozdělení na to, z čeho bude dítě, a to, z čeho bude placenta.',
+      body: `## Co blastocysta je
+
+Stádium vývoje embrya, kterého se dosahuje obvykle **pátý den po oplození**. Z kompaktní kuličky vzniká struktura s dutinou naplněnou tekutinou a poprvé se buňky rozdělí do dvou různých osudů:
+
+- **Vnitřní buněčná masa** — malá skupina buněk na jednom pólu. Vznikne z ní plod.
+- **Trofektoderm** — vnější vrstva obalující dutinu. Vznikne z něj placenta a plodové obaly.
+
+Do téhle chvíle byly všechny buňky rovnocenné. Tohle je první specializace v celém životě organismu.
+
+## Proč to pracoviště chtějí
+
+Kultivace do pátého dne má dva praktické důvody:
+
+1. **Selekce.** Embrya, která se zastaví mezi třetím a pátým dnem, by se s velkou pravděpodobností nezahnízdila. Když je embryí víc, kultivace ukáže, které z nich mají skutečný potenciál — místo aby se to zjišťovalo v děloze.
+2. **Synchronizace.** V přirozeném cyklu embryo do dělohy sestoupí právě ve stádiu blastocysty, zhruba pátý den. Transfer blastocysty tedy lépe odpovídá tomu, na co je děložní sliznice připravená.
+
+## Proč to někdy nechtějí
+
+Prodloužená kultivace nese riziko, že **v laboratoři se zastaví embryo, které by se v děloze vyvíjelo dál.** Děloha je pro embryo lepší prostředí než jakýkoli inkubátor.
+
+Proto se u malého počtu embryí často volí **transfer třetí den** — nemá smysl provádět selekci mezi dvěma embryi, když se stejně přenese to lepší z nich.
+
+Rozhodnutí, jestli kultivovat do pátého dne, patří embryologovi a lékaři a řídí se počtem a kvalitou embryí. **Není to volba mezi lepším a horším postupem, je to volba podle situace.**
+
+## Co se v blastocystě děje dál
+
+Blastocysta roste, dutina se zvětšuje a tlačí na obal (zona pellucida). Nakonec se embryo z obalu **vylíhne** — tomu se říká hatching — a teprve pak se může přichytit k děložní sliznici.
+
+Celý tenhle proces v přirozeném cyklu probíhá v děloze zhruba mezi pátým a sedmým dnem po oplození.
+
+## Šestý den není horší den
+
+Část blastocyst dosáhne stádia až šestý, výjimečně sedmý den. Bývá to důvod k obavám a nemělo by být. **Z blastocyst šestého dne se rodí děti.** Obvykle se zamrazí a použijí v následujícím cyklu, kdy se sliznice připraví přesně na jejich tempo.
+
+Rychlost vývoje je z části dána genetikou embrya a z části podmínkami. Pomalejší start nepředpovídá pomalejší dítě.
+
+## Nejtěžší věta v celé kultivaci
+
+„Do blastocysty nedošlo žádné embryo."
+
+Když ji uslyšíte, znamená to, že se cyklus uzavřel bez transferu. Nezpůsobila jste to tím, že jste zvedla nákup, měla stres v práci nebo se den po odběru rozbrečela. Nedošlá blastocysta je téměř vždy věcí vývojového potenciálu embrya, který byl daný dávno předtím, než začal váš cyklus.
+
+Co následuje: **konzultace s lékařem**, rozbor cyklu a rozhodnutí o změně strategie. Vyžádejte si ji, i když vám ji nenabídnou hned. Máte na ni právo a je to jediná věc, která z téhle zprávy udělá informaci místo tečky.
+
+## Otázky na konzultaci po kultivaci
+
+1. Kolik embryí se zastavilo a v který den?
+2. Vidíte v tom nějaký vzorec, který by ukazoval na příčinu?
+3. Co byste v dalším cyklu změnili — protokol, metodu oplození, laboratorní postup?
+4. Má smysl doplnit nějaké vyšetření u mě nebo u partnera?
+5. Jak dlouho doporučujete počkat?
+
+> Text popisuje obecné principy embryonálního vývoje. Konkrétní situaci vašich embryí posuzuje pouze embryolog a lékař vaší kliniky. Obsah nenahrazuje lékařskou péči.`,
+      minutes: 7,
+      phases: ['embryo_culture'],
+      dayRange: [4, 6],
+      topics: ['embryologie', 'cekani', 'vysledky'],
+      level: 'essential',
+      hero: 'champagne',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce'],
+      publishedOn: '2025-12-10',
+      boost: 0.9,
+    },
     // @@ITEMS@@
   ],
   dailyCards: [

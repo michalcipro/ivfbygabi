@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import type { Letter } from '@/lib/db/repo-story'
-import { LETTER_TARGETS } from '@/lib/db/repo-story'
+import type { Letter } from '@/lib/shared/records'
+import { LETTER_TARGETS } from '@/lib/shared/records'
 import { addLetterAction, addMilestoneAction, deleteLetterAction } from '@/app/actions/journal'
 import { formatCzechDate } from '@/lib/domain/dates'
 

@@ -1179,6 +1179,565 @@ Volejte vy. Není to obtěžování. Systémy selhávají, sestry mají plné ru
       publishedOn: '2025-12-15',
       boost: 0.6,
     },
+    {
+      id: 'tww-nizka-beta',
+      kind: 'article',
+      title: 'Když je hodnota nízká: co to znamená a co ne',
+      excerpt:
+        'Nízká beta není rozsudek ani slib — je to důvod k druhému odběru a k tomu, abyste na to nebyla sama.',
+      body: `## Nejdřív to nejdůležitější
+
+**Z jedné nízké hodnoty se nedá určit, jak to dopadne.** Ne proto, že by vám to lékař nechtěl říct, ale proto, že to v tu chvíli skutečně nikdo neví. Rozhodující je, jak se hodnota chová v čase.
+
+Tenhle článek vám nemá dát naději ani ji vzít. Má vám dát orientaci v tom, co se teď bude dít.
+
+## Proč může být hodnota nízká
+
+Vysvětlení je několik a mají velmi různé důsledky:
+
+- **Pozdější zahnízdění.** Implantace neproběhla „podle kalendáře" a křivka je jen posunutá. Další hodnota může být překvapivě dobrá.
+- **Odběr o den dřív, než by ideálně měl být.** Rozdíl jednoho dne je u exponenciálního růstu velký.
+- **Biochemické těhotenství** — velmi časná ztráta, kdy se zárodek zahnízdil, ale dál se nerozvíjí.
+- **Mimoděložní těhotenství**, kde hCG typicky stoupá pomaleji. Proto se nízké hodnoty vždy sledují pečlivě.
+- **Rozdíly mezi laboratořemi** a metodami stanovení.
+
+## Co bude následovat
+
+Obvyklý postup vypadá takhle — ale **konkrétní plán vám určí lékař**:
+
+1. **Kontrolní odběr za dva až tři dny.** Sleduje se dynamika, ne absolutní číslo.
+2. **Pokračování v podpoře luteální fáze**, dokud lékař nerozhodne jinak. **Nevysazujte nic sama.**
+3. Podle vývoje případně **další odběr** nebo **ultrazvuk** v čase, kdy už může něco ukázat.
+
+## Nejtěžší část: čekání ve dvou režimech
+
+Období mezi dvěma odběry bývá popisováno jako horší než celé předchozí dva týdny. Jste zároveň těhotná i netěhotná, zároveň doufáte i truchlíte.
+
+Tomuhle stavu se říká **nejistá naděje** a je vyčerpávající, protože vás nutí držet dvě protichůdné verze budoucnosti najednou.
+
+Co pomáhá:
+
+- **Nedělejte si domácí testy.** Nic vám neřeknou a rozkolísají vás.
+- **Nepočítejte zdvojení v kalkulačkách.** Vzorec neplatí univerzálně a interpretace patří lékaři.
+- **Nehledejte cizí příběhy s podobnými čísly.** Najdete obě verze a obě vás rozhodí.
+- **Řekněte jednomu člověku, v jaké jste situaci.** Aby vám nikdo negratuloval a nikdo vás nelitoval.
+- **Naplánujte si následující dva dny konkrétně.** Prázdno je nepřítel.
+
+## Když druhá hodnota nestoupá
+
+Pokud se ukáže, že těhotenství nepokračuje, lékař s vámi probere, co dál — a je v pořádku se ptát na cokoli, i na to, jestli jde o mimoděložní těhotenství a jak se to bude sledovat.
+
+Tahle ztráta je skutečná ztráta, i když trvala týden a nikdo o ní nevěděl. **Nemusíte ji zlehčovat větou „vždyť to ještě nebylo dítě".** Bylo to vaše těhotenství a vaše naděje.
+
+## Otázky, které si na klinice položte
+
+1. Co konkrétně budeme sledovat a v jakých intervalech?
+2. Pokračuji ve všech lécích beze změny?
+3. Jaké příznaky mě mají poslat k vám nebo na pohotovost?
+4. Kdy má smysl dělat ultrazvuk?
+5. Kdo mi bude volat a kdy?
+
+## Kdy volat lékaře neodkladně
+
+Při nízké nebo pomalu stoupající betě je zvýšená pozornost na místě:
+
+- **prudká, zejména jednostranná bolest v podbřišku**,
+- **bolest v rameni nebo mezi lopatkami**,
+- **mdloba, závrať, bušení srdce, studený pot, výrazná slabost**,
+- **silné krvácení** nebo krvácení se sraženinami,
+- horečka nad 38 °C.
+
+Kombinace bolesti, závrati a bolesti v rameni je urgentní situace — volejte 155 nebo jeďte na nejbližší gynekologickou pohotovost a řekněte, že jste po embryotransferu s pozitivní betou.
+
+> Tento text nestanovuje diagnózu ani neuvádí konkrétní hraniční hodnoty. Vyhodnocení vašich výsledků a rozhodnutí o dalším postupu patří výhradně vašemu ošetřujícímu lékaři.`,
+      minutes: 7,
+      phases: ['two_week_wait', 'beta_positive'],
+      dayRange: [13, 14],
+      topics: ['vysledky', 'psychika', 'ztrata'],
+      level: 'deep',
+      hero: 'taupe',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2025-12-22',
+    },
+    {
+      id: 'tww-vysoka-beta-dvojcata',
+      kind: 'article',
+      title: 'Vysoká beta a otázka dvojčat',
+      excerpt:
+        'Vyšší hodnota není potvrzením dvojčat ani zárukou čehokoli — spolehlivou odpověď dá až ultrazvuk.',
+      body: `## Co vysoká hodnota znamená
+
+Nejčastěji jen to, že **zahnízdění proběhlo dřív** nebo že se odběr trefil do pozdější fáze růstu. Rozpětí hodnot je i u jednočetného těhotenství velmi široké a jednotlivé případy se překrývají.
+
+Vyšší hodnota **může** provázet vícečetné těhotenství. **Nepotvrzuje ho.** Jediná spolehlivá odpověď je ultrazvuk v době, kdy je nález hodnotitelný — termín určí lékař.
+
+## Proč se lidé tak upínají k číslu
+
+Protože je to jediné číslo, které máte. Chápu to. Ale interpretace jednotlivé hodnoty bez kontextu vede k tomu, že si dva týdny představujete dvě postýlky a pak vám ultrazvuk ukáže jednu.
+
+Věcný přístup: **hodnota je vstup pro lékaře, ne odpověď pro vás.**
+
+## Kdy se dvojčata vůbec zvažují
+
+- Pokud vám byla přenesena **dvě embrya**, existuje možnost, že se uchytila obě.
+- I při přenosu **jednoho embrya** může vzniknout jednovaječné dvojče rozdělením — je to méně časté, ale možné.
+- V takovém případě ultrazvuk ukáže **dva plodové váčky**, případně jeden váček se dvěma zárodky. Rozlišení má význam pro sledování těhotenství.
+
+## Co dvojčata reálně znamenají
+
+Zaslouží si to poctivou větu: **dvojčetné těhotenství je z lékařského hlediska rizikovější než jednočetné.** To není strašení, to je důvod, proč se u nás postupně prosadil přenos jednoho embrya.
+
+Prakticky to znamená:
+
+- **častější kontroly** a pečlivější sledování,
+- vyšší pravděpodobnost **předčasného porodu** a s ním souvisejících komplikací,
+- vyšší riziko **těhotenské cukrovky, vysokého tlaku a preeklampsie**,
+- větší zátěž pro vaše tělo — únava, dušnost, bolesti zad, otoky,
+- vyšší pravděpodobnost **císařského řezu**, i když ne automaticky.
+
+Zároveň: většina dvojčetných těhotenství vedených ve specializované péči dopadne dobře. **Klíčové slovo je „vedených" — proto se u dvojčat tolik dbá na docházení na kontroly.**
+
+## Co se v hlavě děje, když zazní „jsou dvě"
+
+Radost, panika a vina za tu paniku. Skoro každá žena popisuje stejný sled. Ženy po letech léčby často cítí, že „si nesmí stěžovat, když tolik chtěly dítě". Smíte. Dvě děti najednou jsou jiná životní situace než jedno a je normální ji nejdřív unést a teprve pak oslavit.
+
+## Praktické kroky, když se dvojčata potvrdí
+
+1. **Zeptejte se, jaký typ dvojčat to je** — počet plodových váčků a placent ovlivňuje způsob sledování.
+2. **Zjistěte, kde budete vedená** a jak často budete docházet.
+3. **Nekupujte nic hned.** Máte čas a první týdny nejsou na nákupy.
+4. **Řešte praktické věci brzy** — auto, bydlení, pomoc rodiny. U dvojčat je plánování dopředu skutečně užitečné.
+5. **Najděte si komunitu rodičů dvojčat.** Praktické rady od nich jsou k nezaplacení.
+
+## A co když je hodnota vysoká a dvojčata nejsou
+
+Naprosto běžná varianta. Vysoká beta u jednočetného těhotenství neznamená nic zvláštního — jen jiný start téže křivky.
+
+## Kdy volat lékaře
+
+- silné krvácení nebo krvácení se sraženinami,
+- prudká bolest v podbřišku,
+- **rychle rostoucí obvod břicha, dušnost, snížené močení, prudký nárůst hmotnosti** — u vícečetného těhotenství po stimulaci je riziko OHSS vyšší,
+- opakované zvracení a neschopnost udržet tekutiny,
+- horečka nad 38 °C,
+- bolest v rameni, mdloba nebo závrať.
+
+> Tento text nestanovuje diagnózu a neuvádí konkrétní hodnoty. O tom, co vaše čísla znamenají a jak bude vaše těhotenství vedeno, rozhoduje váš lékař.`,
+      minutes: 7,
+      phases: ['beta_positive'],
+      dayRange: [0, 14],
+      topics: ['vysledky', 'tehotenstvi', 'rizikove'],
+      modifiers: ['twins'],
+      level: 'deep',
+      hero: 'dawn',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP', 'ESHRE — doporučené postupy'],
+      publishedOn: '2026-01-05',
+    },
+    {
+      id: 'tww-ohss-po-transferu',
+      kind: 'article',
+      title: 'OHSS po čerstvém transferu: příznaky, které nesmíte přehlédnout',
+      excerpt:
+        'Hyperstimulační syndrom se může objevit nebo zhoršit až po transferu — a tohle jsou signály, při kterých se volá hned.',
+      body: `## Co je OHSS
+
+**Ovariální hyperstimulační syndrom** je komplikace hormonální stimulace. Vaječníky jsou zvětšené, cévy propouštějí tekutinu do dutiny břišní a organismus na to reaguje.
+
+Většina případů je mírná a odezní sama. **Menšina je závažná a vyžaduje lékařskou péči, někdy hospitalizaci.** Rozdíl mezi „nafouklé břicho po stimulaci" a „OHSS, který se zhoršuje", poznáte podle konkrétních příznaků — a právě proto je tenhle článek napsaný.
+
+## Proč se to týká i období po transferu
+
+Existují dvě formy:
+
+- **časná** — nastupuje krátce po punkci a souvisí se spouštěcí injekcí,
+- **pozdní** — nastupuje zhruba týden a více po punkci a **souvisí s hCG, který začne produkovat zahnízděné embryo**.
+
+To znamená paradox, který vás nikdo nepřipraví: **pozdní OHSS se objevuje právě tehdy, když transfer vyšel.** A bývá obvykle protrahovanější než forma časná.
+
+Po **kryoembryotransferu (KET)** riziko OHSS prakticky nehrozí — vaječníky nejsou stimulované. Tenhle článek se tedy týká hlavně žen po čerstvém transferu.
+
+## Varovné příznaky — naučte se je
+
+**Volejte kliniku nebo pohotovost, pokud:**
+
+- **rychle roste obvod břicha** — kalhoty, které ráno šly zapnout, večer nejdou,
+- **přibýváte na váze rychle** — nárůst o víc než přibližně kilogram za den je varovný signál,
+- **hůř se vám dýchá**, hlavně vleže,
+- **močíte výrazně méně** než obvykle nebo je moč velmi tmavá,
+- **opakovaně zvracíte** nebo neudržíte tekutiny,
+- máte **silnou bolest břicha**,
+- máte **otoky nohou nebo zevního genitálu**,
+- máte **bolest, otok nebo zarudnutí lýtka**, bolest na hrudi — podezření na trombózu,
+- cítíte **prudkou jednostrannou bolest** — může jít o torzi vaječníku.
+
+Tenhle seznam si prosím uložte. Není to strašení; je to jediná část celého balíku, kterou byste měla znát nazpaměť.
+
+## Co dělat doma při mírných obtížích
+
+Pokud vám lékař potvrdil, že jde o mírnou formu, obvykle doporučí:
+
+- **pravidelně se vážit**, ideálně ráno po probuzení, a zapisovat,
+- **sledovat, kolik močíte**,
+- **pít dostatečně** — konkrétní množství a typ tekutin vám doporučí lékař,
+- **nesportovat**, vyhnout se prudkým pohybům a otřesům kvůli riziku torze vaječníku,
+- **nezůstávat celý den nehybně ležet** — riziko trombózy; lehká chůze bývá vhodnější,
+- **léky proti bolesti užívat jen po konzultaci** — některé běžné volně prodejné přípravky nejsou v tomto období vhodné.
+
+**Nic z toho si prosím nestanovujte sama.** Konkrétní režim vám určí lékař, protože závisí na tíži nálezu.
+
+## Jak dlouho to trvá
+
+Mírné obtíže obvykle ustupují během dnů. Pozdní forma, spojená s nastupujícím těhotenstvím, může trvat déle a vyžaduje sledování. **Vaše klinika vám řekne, jak často kontrolovat a kdy přijít.**
+
+## Co OHSS neznamená
+
+Neznamená, že jste udělala něco špatně. Neznamená ani automaticky, že těhotenství je ohrožené. Znamená, že vaše tělo silně zareagovalo na stimulaci a potřebuje sledování.
+
+## Kdy volat lékaře
+
+Volejte kliniku při: rychlém růstu břicha, prudkém přírůstku hmotnosti, sníženém močení, dušnosti, opakovaném zvracení, silné bolesti břicha, otocích.
+
+Volejte **155 nebo jeďte na pohotovost** při: dušnosti v klidu, bolesti na hrudi, mdlobě, prudké jednostranné bolesti břicha, bolesti a otoku lýtka.
+
+> Tento text má informativní charakter a nenahrazuje vyšetření lékařem. Při podezření na OHSS vždy kontaktujte svou kliniku — raději jednou navíc.`,
+      minutes: 7,
+      phases: ['transfer', 'two_week_wait', 'beta_positive'],
+      dayRange: [0, 14],
+      topics: ['zdravi_ditete', 'hormony', 'cekani', 'klinika'],
+      excludeModifiers: ['frozen_transfer'],
+      level: 'essential',
+      hero: 'sky',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2026-01-12',
+      boost: 0.85,
+    },
+    {
+      id: 'tww-ket-specifika',
+      kind: 'article',
+      title: 'Kryoembryotransfer: v čem je čekání jiné',
+      excerpt:
+        'Po KET se čeká stejně dlouho, ale tělo je v jiném stavu a některé obavy z čerstvého cyklu tady vůbec neplatí.',
+      body: `## Co je jinak hned na začátku
+
+Při kryoembryotransferu (KET) se přenáší embryo, které bylo zamrazené — obvykle metodou vitrifikace. To má několik důsledků, které mění celý průběh čekání:
+
+- **Neproběhla punkce** a vaječníky nejsou zvětšené stimulací.
+- **Riziko OHSS je minimální.** To je asi největší úleva oproti čerstvému cyklu.
+- **Sliznice se připravuje jinak** — buď v přirozeném cyklu podle vaší ovulace, nebo hormonálně.
+- **Podpora luteální fáze bývá delší a přísnější**, zvlášť v cyklu s hormonální přípravou.
+
+## Proč je u KET progesteron ještě důležitější
+
+V cyklu s hormonální přípravou **neproběhne ovulace**, takže **nevznikne žluté tělísko** — jediný zdroj progesteronu je ten, který si podáváte.
+
+Z toho plyne nejdůležitější věta tohohle článku: **vynechaná dávka má u KET větší váhu než u čerstvého cyklu.** Nastavte si připomínky, mějte zásobu na celé období a při jakémkoli vynechání volejte kliniku.
+
+A samozřejmě: **nikdy nevysazujte sama**, ani při krvácení, ani po negativním domácím testu.
+
+## Přežití embrya po rozmrazení
+
+Většina kvalitně vitrifikovaných blastocyst rozmrazení přežije. Embryolog vám před transferem řekne, jak vaše embryo vypadá — často se používají pojmy jako **rehydratace** a **reexpanze**, tedy že se blastocysta po rozmrazení znovu nafoukla.
+
+Je legitimní se zeptat:
+
+1. Jak embryo rozmrazení sneslo?
+2. Nafouklo se před přenosem?
+3. Kolik embryí nám zůstalo v kryobance?
+
+## Co u KET neplatí ze všech těch rad
+
+- **Strach z OHSS** — bez stimulace prakticky odpadá.
+- **Zákaz pohybu kvůli zvětšeným vaječníkům** — nemáte je zvětšené, takže běžný pohyb je bez problému.
+- **Nafouklé břicho z folikulů** — to, co cítíte, jde spíš na vrub progesteronu.
+
+## Co naopak platí stejně
+
+- **Příznaky nic neříkají** — a u KET s hormonální přípravou možná ještě míň, protože hormonů máte v těle víc.
+- **Brzké domácí testy klamou** — zde s jednou výhodou: **pokud jste nedostala spouštěcí injekci s hCG, nehrozí u vás falešná pozitivita z léku.** Ostatní důvody proč netestovat brzy ale zůstávají.
+- **Termín odběru beta hCG platí přesně tak, jak vám ho dala klinika.**
+
+## Časování transferu a proč se počítá jinak
+
+U KET se den transferu odvíjí od toho, kolik dní progesteronu jste dostala, aby sliznice byla v takzvaném **implantačním okně**. Proto vám klinika tak úzkostlivě hlídá časy podávání — a proto je posunutí dávky o několik hodin něco, co je potřeba nahlásit.
+
+## Psychicky: druhé kolo je jiné kolo
+
+Řada žen jde do KET po neúspěšném čerstvém cyklu. To s sebou nese specifickou tíhu — už víte, jak vypadá špatná zpráva.
+
+Co pomáhá:
+
+- **Nepočítejte tenhle cyklus jako „poslední šanci"**, pokud vám to lékař neřekl. Ta věta v hlavě neúměrně zvedá tlak.
+- **Dovolte si menší nadšení.** Opatrnost není nedostatek víry, je to obrana.
+- **Zeptejte se dopředu, kolik embryí vám zůstává.** Jistota v tomhle bodě mění hodně.
+
+## Kdy volat lékaře
+
+- silné krvácení nebo krvácení se sraženinami,
+- prudká bolest v podbřišku,
+- horečka nad 38 °C nebo páchnoucí výtok,
+- opakovaně vynechaná dávka progesteronu,
+- bolest, otok nebo zarudnutí lýtka.
+
+> Tento text popisuje obecné principy KET a nenahrazuje pokyny vaší kliniky. Konkrétní schéma přípravy i podpory luteální fáze určuje váš ošetřující lékař.`,
+      minutes: 7,
+      phases: ['transfer', 'two_week_wait'],
+      dayRange: [0, 14],
+      topics: ['transfer', 'embryologie', 'leky', 'cekani'],
+      modifiers: ['frozen_transfer'],
+      level: 'deep',
+      hero: 'pearl',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy'],
+      publishedOn: '2026-01-19',
+      boost: 0.5,
+    },
+    {
+      id: 'tww-strava-pohyb-po-transferu',
+      kind: 'article',
+      title: 'Jídlo a pohyb v období čekání: co má smysl a co je pověra',
+      excerpt:
+        'Ananasové jádřince ani teplé ponožky implantaci neovlivní — pár věcí ale skutečně stojí za to hlídat.',
+      body: `## Začneme tím, co nefunguje
+
+Kolem stravy po transferu vzniklo neuvěřitelné množství rituálů. Prochází se jimi skoro každá žena, protože dávají pocit, že něco děláte. **Žádný z nich nemá doloženou souvislost s úspěchem transferu:**
+
+- **ananas s jádřincem** — bromelain je v ovoci v množstvích, která nemají systémový efekt; navíc se z čerstvého ovoce v žaludku degraduje,
+- **granátové jablko a šťáva z něj**,
+- **brazilské ořechy v přesném počtu**,
+- **teplé ponožky a zákaz studených nápojů** — teplota nápoje neovlivní teplotu dělohy,
+- **zákaz zvedání rukou nad hlavu**,
+- **speciální „implantační" čaje a bylinné směsi** — tady navíc pozor, řada bylin není v tomhle období vhodná a interaguje s léky.
+
+Pokud vám některý z těch rituálů dělá dobře a je neškodný, nemusíte ho rušit. Jen ať vám neslouží jako důkaz vaší viny, kdyby to nevyšlo.
+
+## Co má smysl
+
+### Pravidelné jídlo
+
+Progesteron zpomaluje trávení, po stimulaci může být břicho nafouklé a stres tomu nepomáhá. **Menší porce častěji** fungují lépe než tři velká jídla.
+
+### Bílkoviny
+
+Během čerstvého cyklu a po něm se často doporučuje dbát na dostatek bílkovin. Konkrétní doporučení k vaší situaci vám dá lékař — zvlášť pokud řešíte projevy OHSS, kde se režim řídí individuálně.
+
+### Pitný režim
+
+Dostatečný příjem tekutin je jedna z mála věcí, které skutečně hlídejte. Po čerstvém cyklu je to součást prevence komplikací.
+
+### Vláknina a zácpa
+
+Zácpa z progesteronu je nepříjemná a navíc svádí k domněnce, že máte křeče „z něčeho jiného". Zeleninu, ovoce, celozrnné pečivo a dostatek vody přidávejte postupně. **Projímadla ani nic volně prodejného bez konzultace.**
+
+### Čeho se vyvarovat
+
+- **alkohol** — v tomhle období ne,
+- **potraviny s rizikem infekce** — nepasterizované mléčné výrobky, syrové maso a ryby, syrová vejce, neomyté klíčky, delikatesy z lahůdkářského pultu; je rozumné začít s tím už teď,
+- **doplňky stravy a bylinky bez konzultace** — včetně těch „přírodních",
+- **nadměrný kofein** — omezit, ne nutně vysadit; konkrétní míru proberte s lékařem.
+
+## Pohyb: co ano a co ne
+
+**Ano:**
+- chůze, klidně každý den, dvacet až čtyřicet minut,
+- lehké protažení, jemná jóga bez inverzí a bez zádrže dechu,
+- běžné domácí činnosti.
+
+**Ne:**
+- těžké silové tréninky a zvedání maximálních břemen,
+- skoky, HIIT, běh v tempu,
+- **jakýkoli sport s otřesy, pokud jste po stimulaci** — riziko torze zvětšeného vaječníku,
+- sauna, vířivka, horká koupel,
+- plavání v bazénu, dokud vám to lékař neschválí — pravidla se liší, zeptejte se.
+
+## Proč chůze není jen „aby se něco dělo"
+
+Po hormonální stimulaci je zvýšené riziko žilní trombózy. **Nehybné ležení tomu nepomáhá.** Chůze je zároveň nejlepší dostupný nástroj na progesteronovou zácpu, na nespavost i na hlavu, která se točí dokola.
+
+## Váha a otoky
+
+Během čekání se váha běžně mění — voda, zácpa, hormony. **Denní vážení má smysl jen tehdy, když vám ho doporučil lékař** kvůli sledování OHSS. Jinak vám přidá jen další číslo, kterým se budete trápit.
+
+## Kdy volat lékaře
+
+- rychlý přírůstek hmotnosti, rychle rostoucí břicho, dušnost, výrazně snížené močení,
+- opakované zvracení nebo neschopnost udržet tekutiny,
+- prudká bolest v podbřišku, hlavně jednostranná,
+- silné krvácení,
+- horečka nad 38 °C, průjem a zvracení po rizikovém jídle,
+- bolest, otok nebo zarudnutí lýtka.
+
+> Tento text nenahrazuje individuální doporučení lékaře ani nutriční poradenství. Pokud máte jakoukoli diagnózu ovlivňující stravu, řiďte se pokyny svého lékaře.`,
+      minutes: 7,
+      phases: ['transfer', 'two_week_wait'],
+      dayRange: [0, 14],
+      topics: ['strava', 'pohyb', 'cekani', 'sebepece'],
+      level: 'deep',
+      hero: 'sage',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2026-01-26',
+    },
+    {
+      id: 'tww-prace-a-neschopenka',
+      kind: 'article',
+      title: 'Práce během čekání: zůstat doma, nebo jít mezi lidi?',
+      excerpt:
+        'Neexistuje jedna správná odpověď, ale existují otázky, které vám tu vaši pomůžou najít během deseti minut.',
+      body: `## Dvě špatné krajnosti
+
+**Krajnost první: zůstat doma sama bez programu.** Bez struktury se den natáhne, hlava se rozjede a vy strávíte čtrnáct dní ve vlastní hlavě. Ženy, které to zkusily, to obvykle podruhé neopakují.
+
+**Krajnost druhá: pokračovat, jako by se nic nedělo.** Dvanáctihodinové směny, náročná fyzická práce, cestování, prezentace před vedením. To není statečnost, to je zbytečná zátěž.
+
+Mezi tím je široký prostor a v něm je vaše odpověď.
+
+## Otázky, které rozhodnou za vás
+
+1. **Je moje práce fyzicky náročná?** Zvedání, dlouhé stání, práce v horku, noční směny — tady má odpočinek nebo úprava režimu smysl. Poraďte se s lékařem.
+2. **Odvádí mi práce myšlenky, nebo mi je zaplavuje?** Účetní uzávěrka odvádí. Práce s dětmi na porodním sále nebo v neonatologii spíš zaplavuje.
+3. **Kolik lidí se mě bude ptát?** Pokud jste v týmu, který o vaší léčbě ví, počítejte s tím.
+4. **Mám možnost home office nebo zkráceného úvazku?** Často je to nejlepší kompromis.
+5. **Co mi udělá horší den — ten v práci, nebo ten doma?**
+
+## Pracovní neschopnost
+
+O pracovní neschopnosti rozhoduje lékař na základě vašeho zdravotního stavu — nikoli vaše přání ani rada z internetu. **Zeptejte se přímo na klinice nebo u svého gynekologa**, jaký je v tomto ohledu jejich postup a co je ve vaší situaci vhodné.
+
+Praktické věci, které je dobré vědět předem:
+
+- Zjistěte, **kdo vám neschopenku vystaví** — klinika, nebo registrující gynekolog. Postupy se liší.
+- Vězte, **jaká pravidla platí pro vycházky**, pokud v pracovní neschopnosti budete.
+- Mějte jasno v tom, **co komu v práci sdělujete** — diagnózu sdělovat nemusíte.
+
+## Co říct v práci
+
+Nemusíte říkat nic o léčbě. Věty, které fungují:
+
+- *„Mám teď zdravotní záležitost, řeším to s lékařem, dám vědět."*
+- *„Příští dva týdny potřebuju kvůli léčbě omezit cestování."*
+- *„Nemůžu teď zvedat těžké věci, domluvíme to jinak?"*
+
+Pokud jste v týmu, kde se to už ví: můžete rovnou říct, jak s vámi chcete zacházet. *„Prosím, neptejte se mě, jak to jde. Až budu vědět, řeknu to sama."* Většina lidí to ocení — nevědí, jestli se ptát, nebo mlčet, a vy jim tím ulevíte.
+
+## Když se stane, že se rozbrečíte na poradě
+
+Stává se to a nemusí to být katastrofa. Předem promyšlená únikovka pomáhá: připravená věta *„promiňte, musím si odskočit"*, místo, kam odejdete, a jeden kolega, který ví, že je vám ta věta v pořádku.
+
+## Pár praktických opatření na dva týdny
+
+- **Nepřijímejte nové velké závazky** na tohle období.
+- **Nedělejte si termín na den odběru bety.** Ani na následující den.
+- **Mějte plán, jak se dostanete domů**, kdyby vám bylo zle.
+- **Nastavte si připomínky na léky tak, aby se daly splnit i v práci** — a mějte medikaci s sebou, ne doma na poličce.
+
+## Kdy volat lékaře
+
+- silné krvácení nebo prudká bolest během pracovního dne,
+- horečka nad 38 °C,
+- dušnost, rychle rostoucí břicho, výrazně snížené močení,
+- pokud práci nezvládáte psychicky natolik, že nefungujete — i to je legitimní důvod se ozvat.
+
+> Tento text neposkytuje právní ani lékařské poradenství. O pracovní neschopnosti a vhodné zátěži rozhoduje váš ošetřující lékař.`,
+      minutes: 6,
+      phases: ['two_week_wait', 'transfer'],
+      dayRange: [1, 14],
+      topics: ['cekani', 'psychika', 'finance'],
+      level: 'deep',
+      hero: 'linen',
+      author: 'Gabi',
+      publishedOn: '2026-02-02',
+    },
+    {
+      id: 'tww-partner-v-cekani',
+      kind: 'article',
+      title: 'Partner během čekání: jak nebýt na dvou různých planetách',
+      excerpt:
+        'On mlčí, vy si to překládáte jako lhostejnost — a přitom jde nejčastěji o dva různé způsoby zvládání téhož strachu.',
+      body: `## Proč to skřípe zrovna teď
+
+Do transferu měl partner co dělat: vozit vás, píchat injekce, chodit s vámi na odběry. Po transferu nemá roli. **A muži, kteří ztratí roli, obvykle ztichnou.**
+
+Vy si to přeložíte jako „jemu je to jedno". Jemu to ale jedno není — jen nemá jazyk, kterým by to řekl, a bojí se, že když to řekne špatně, ublíží vám.
+
+## Tři nejčastější nedorozumění
+
+**„Neptá se, jak mi je."**
+Často se bojí, že vám otázkou připomene, na co se snažíte nemyslet. Řekněte mu, jestli chcete, aby se ptal, nebo ne. Muži tuhle informaci potřebují explicitně.
+
+**„Je moc optimistický."**
+Optimismus bývá u partnerů obranná strategie. Když řeknete *„potřebuju, abys se mnou počítal i s tou druhou možností"*, obvykle to funguje líp než hádka o tom, jestli to vyjde.
+
+**„Chce řešit další kroky a já ještě nejsem tam."**
+Plánování je pro mnoho mužů způsob, jak zvládat bezmoc. Není to necitlivost, je to jejich verze zvládání.
+
+## Co konkrétně mu říct
+
+Fungují krátké, přímé věty. Ne narážky.
+
+- *„Nechci radu. Chci, abys mě jenom objal."*
+- *„Dnes o tom nechci mluvit. Neznamená to, že se zlobím."*
+- *„Potřebuju, abys mi ráno připomněl léky. To je tvoje věc, ne moje."*
+- *„Až přijde výsledek, chci ho slyšet sama a pak ti hned zavolám."*
+
+## Dejte mu úkol
+
+Tohle je nejúčinnější věc v celém článku. Muži v tomhle období fungují mnohem lépe, když mají konkrétní odpovědnost:
+
+- hlídá zásobu léků a doobjednává je,
+- vaří nebo zařizuje jídlo na celé dva týdny,
+- odpovídá rodině, aby to nemusela dělat vy,
+- jede s vámi na odběr a řídí zpátky,
+- naplánuje jednu věc, na kterou se budete těšit, bez ohledu na výsledek.
+
+## Na čem se domluvte předem
+
+1. **Kdo komu volá po výsledku** — a kdo to řekne rodičům.
+2. **Jestli chcete být v den výsledku spolu**, nebo každý sám.
+3. **Co uděláte, když to nevyjde** — první večer, druhý den.
+4. **Jestli si dáte pauzu od tématu.** Třeba jeden večer v týdnu, kdy se o léčbě nemluví vůbec.
+
+## Pro partnera: pár vět, které fungují
+
+Pokud tenhle text čte on, tady jsou věty, kterými se nedá nic pokazit:
+
+- *„Jsem tady."*
+- *„Nevím, co říct, ale myslím na to celý den."*
+- *„Chceš, abych mlčel, nebo abych mluvil?"*
+- *„Ať to dopadne jakkoli, zvládneme to spolu."*
+
+A tři věty, které nepomáhají nikdy: *„Neboj, určitě to vyjde."* — *„Nesmíš se stresovat."* — *„Aspoň víme, že to jde."*
+
+## Když je partnerů víc typů — a když partner není
+
+U žen, které jdou do léčby samy, přebírá roli podpory obvykle sestra, kamarádka nebo matka. Platí totéž: **dejte tomu člověku konkrétní úkol a konkrétní instrukci**, jak s vámi mluvit. Lidé, kteří vás mají rádi, chtějí pomoct — jen většinou nevědí jak.
+
+## Kdy hledat pomoc mimo vztah
+
+- když se z tématu dítěte stane jediný obsah vašeho soužití,
+- když se objevují výčitky typu „kvůli tobě",
+- když jeden z vás přestane mluvit úplně.
+
+Pár sezení u párového terapeuta v tomhle období není známka rozpadu. Je to zkratka.
+
+> Tento text nenahrazuje odbornou psychologickou pomoc. Pokud se cítíte v krizi, obraťte se na odborníka nebo na Linku první psychické pomoci 116 123.`,
+      minutes: 7,
+      phases: ['two_week_wait', 'transfer'],
+      dayRange: [1, 14],
+      topics: ['partner', 'vztah', 'psychika', 'cekani'],
+      level: 'comfort',
+      hero: 'blush',
+      author: 'Gabi',
+      publishedOn: '2026-02-09',
+      boost: 0.5,
+    },
     // MARKER_ITEMS
   ],
   // MARKER_TAIL

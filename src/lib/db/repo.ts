@@ -2,6 +2,10 @@ import { db, uid, nowIso, parseJson } from './index'
 import type { IsoDate, ModifierId, Profile, TopicId } from '../domain/profile'
 import { emptyProfile } from '../domain/profile'
 import type { Affinity } from '../content/recommend'
+import type { JournalEntry } from '../shared/records'
+
+// Tvar žije v ../shared/records, aby ho mohl importovat i prohlížeč.
+export type { JournalEntry }
 
 /** Datová vrstva. Jedno místo, kde se sahá do SQL. */
 
@@ -271,24 +275,6 @@ export function savedIds(userId: string): string[] {
 }
 
 // ----------------------------------------------------------------- deník ---
-
-export interface JournalEntry {
-  id: string
-  onDate: IsoDate
-  mood: number | null
-  anxiety: number | null
-  hope: number | null
-  energy: number | null
-  pain: number | null
-  sleepHours: number | null
-  waterMl: number | null
-  weightKg: number | null
-  symptoms: string[]
-  note: string | null
-  gratitude: string | null
-  phaseId: string | null
-  dayInPhase: number | null
-}
 
 interface JournalRow {
   id: string

@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useTransition } from 'react'
-import type { CommunityPost } from '@/lib/db/repo-community'
+import type { CommunityPost } from '@/lib/shared/records'
 import {
   addPostAction,
   addReplyAction,

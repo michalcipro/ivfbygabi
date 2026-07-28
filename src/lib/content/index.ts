@@ -12,14 +12,6 @@ import { pack as planning } from './packs/planning'
 import { pack as diagnostics } from './packs/diagnostics'
 import { pack as ivfCycle } from './packs/ivf-cycle'
 import { pack as transferWait } from './packs/transfer-wait'
-import { pack as loss } from './packs/loss'
-import { pack as pregnancy } from './packs/pregnancy'
-import { pack as birth } from './packs/birth'
-import { pack as pretermNicu } from './packs/preterm-nicu'
-import { pack as postpartum } from './packs/postpartum'
-import { pack as feeding } from './packs/feeding'
-import { pack as babyYear } from './packs/baby-year'
-import { pack as mindBody } from './packs/mind-body'
 import { pack as marketplace } from './packs/marketplace'
 
 /**
@@ -34,14 +26,6 @@ const PACKS: ContentPack[] = [
   diagnostics,
   ivfCycle,
   transferWait,
-  loss,
-  pregnancy,
-  birth,
-  pretermNicu,
-  postpartum,
-  feeding,
-  babyYear,
-  mindBody,
   marketplace,
 ]
 
