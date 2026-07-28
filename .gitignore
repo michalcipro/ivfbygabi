@@ -22,5 +22,5 @@ npm-debug.log*
 .vercel
 coverage/
 
-# vygenerovaný náhled aplikace
-preview/
+# vygenerovaná prohlížečová verze aplikace
+/app/

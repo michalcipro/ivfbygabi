@@ -1,0 +1,292 @@
+import type { ContentItem, HeroToken } from '../lib/content/types'
+import { KIND_ICONS, KIND_LABELS } from '../lib/content/types'
+
+/** Stavební prvky. Všechny obrazovky se skládají z těchhle kousků. */
+
+export const HERO: Record<HeroToken, string> = {
+  champagne: 'linear-gradient(135deg, #f2e3cd 0%, #e2cbaa 55%, #cdb08c 100%)',
+  taupe: 'linear-gradient(135deg, #cbbdae 0%, #a3907c 60%, #7b6a59 100%)',
+  blush: 'linear-gradient(135deg, #f3e2dd 0%, #e3cec7 55%, #c9a89f 100%)',
+  sage: 'linear-gradient(135deg, #e2e8dd 0%, #bfcabb 60%, #93a28c 100%)',
+  sky: 'linear-gradient(135deg, #dfe6ec 0%, #c3cdd6 60%, #94a4b0 100%)',
+  linen: 'linear-gradient(135deg, #faf5ee 0%, #efe5d6 60%, #ded0bb 100%)',
+  sand: 'linear-gradient(135deg, #ece0d1 0%, #ddcdb8 60%, #c2ac92 100%)',
+  dusk: 'linear-gradient(145deg, #b8a698 0%, #8d7a6c 45%, #5d4f45 100%)',
+  dawn: 'linear-gradient(135deg, #fdf1e5 0%, #f0d9c6 45%, #dcb9a0 100%)',
+  pearl: 'linear-gradient(135deg, #ffffff 0%, #f3efe8 55%, #e3dcd0 100%)',
+}
+
+export const heroStyle = (token: HeroToken | string): string =>
+  `background:${HERO[token as HeroToken] ?? HERO.linen}`
+
+const ENTITIES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+}
+
+export function esc(s: unknown): string {
+  return String(s ?? '').replace(/[&<>"']/g, (c) => ENTITIES[c])
+}
+
+/** Tučně a kurzívou — stejná podmnožina jako v aplikaci. */
+function inline(s: string): string {
+  return esc(s)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/_([^_]+)_/g, '<em>$1</em>')
+}
+
+/**
+ * Velmi lehký markdown: ## ### - 1. > ** _ a tabulky.
+ * Renderer je záměrně stejný jako `Markdown` v components/ui.tsx — obsah
+ * píšeme my, takže si vystačíme s podmnožinou a nic cizího nesanitizujeme.
+ */
+export function md(text: string): string {
+  const lines = String(text ?? '')
+    .replace(/\r/g, '')
+    .split('\n')
+  const out: string[] = []
+  let para: string[] = []
+  let list: { type: 'ul' | 'ol'; items: string[] } | null = null
+  let table: { head: string[]; rows: string[][] } | null = null
+
+  const flushPara = () => {
+    if (para.length) {
+      out.push(`<p>${inline(para.join(' '))}</p>`)
+      para = []
+    }
+  }
+  const flushList = () => {
+    if (!list) return
+    out.push(
+      `<${list.type}>${list.items.map((i) => `<li>${inline(i)}</li>`).join('')}</${list.type}>`,
+    )
+    list = null
+  }
+  const flushTable = () => {
+    if (!table) return
+    const head = `<tr>${table.head.map((c) => `<th>${inline(c)}</th>`).join('')}</tr>`
+    const rows = table.rows
+      .map((r) => `<tr>${r.map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`)
+      .join('')
+    out.push(`<div class="tablewrap"><table><thead>${head}</thead><tbody>${rows}</tbody></table></div>`)
+    table = null
+  }
+  const cells = (line: string) =>
+    line
+      .replace(/^\||\|$/g, '')
+      .split('|')
+      .map((c) => c.trim())
+
+  for (const raw of lines) {
+    const line = raw.trimEnd()
+    if (!line.trim()) {
+      flushPara()
+      flushList()
+      flushTable()
+      continue
+    }
+
+    if (/^\|.*\|$/.test(line)) {
+      flushPara()
+      flushList()
+      if (/^\|[\s:|-]+\|$/.test(line)) continue
+      if (!table) table = { head: cells(line), rows: [] }
+      else table.rows.push(cells(line))
+      continue
+    }
+    flushTable()
+
+    let m: RegExpMatchArray | null
+    if ((m = line.match(/^###\s+(.*)$/))) {
+      flushPara()
+      flushList()
+      out.push(`<h3>${inline(m[1])}</h3>`)
+      continue
+    }
+    if ((m = line.match(/^##\s+(.*)$/))) {
+      flushPara()
+      flushList()
+      out.push(`<h2>${inline(m[1])}</h2>`)
+      continue
+    }
+    if ((m = line.match(/^>\s?(.*)$/))) {
+      flushPara()
+      flushList()
+      out.push(`<blockquote>${inline(m[1])}</blockquote>`)
+      continue
+    }
+    if ((m = line.match(/^[-*]\s+(.*)$/))) {
+      flushPara()
+      if (!list || list.type !== 'ul') {
+        flushList()
+        list = { type: 'ul', items: [] }
+      }
+      list.items.push(m[1])
+      continue
+    }
+    if ((m = line.match(/^\d+[.)]\s+(.*)$/))) {
+      flushPara()
+      if (!list || list.type !== 'ol') {
+        flushList()
+        list = { type: 'ol', items: [] }
+      }
+      list.items.push(m[1])
+      continue
+    }
+    flushList()
+    para.push(line.trim())
+  }
+
+  flushPara()
+  flushList()
+  flushTable()
+  return out.join('')
+}
+
+// ------------------------------------------------------------- komponenty ---
+
+/** České množné číslo: 1 zápis, 2–4 zápisy, 5+ zápisů. */
+export function plural(n: number, one: string, few: string, many: string): string {
+  return `${n} ${n === 1 ? one : n >= 2 && n <= 4 ? few : many}`
+}
+
+export function head(eyebrow: string, title: string, lede?: string): string {
+  return `<header class="head rise">
+    <p class="eyebrow">${esc(eyebrow)}</p>
+    <h1 class="display">${esc(title)}</h1>
+    ${lede ? `<p class="lede">${esc(lede)}</p>` : ''}
+  </header>`
+}
+
+export function sectionTitle(title: string, sub?: string, action = ''): string {
+  return `<div class="section-title">
+    <div><h2 class="display">${esc(title)}</h2>${sub ? `<p>${esc(sub)}</p>` : ''}</div>
+    ${action}
+  </div>`
+}
+
+/**
+ * Karta obsahu. `why` je důvod, proč se právě teď ukazuje — bez něj se
+ * karta nikdy nezobrazuje v doporučení, protože uživatelka musí vědět,
+ * proč na to má kliknout.
+ */
+export function contentCard(item: ContentItem | undefined, why?: string): string {
+  if (!item) return ''
+  return `<button class="ccard" data-go="cist/${esc(item.id)}">
+    <div class="hero grain" style="${heroStyle(item.hero)}">
+      <div class="meta">
+        <span class="pill-kind">${esc(KIND_ICONS[item.kind])} ${esc(KIND_LABELS[item.kind])}</span>
+        <span class="pill-min num">${item.minutes} min</span>
+      </div>
+    </div>
+    <div class="body">
+      <h3 class="display">${esc(item.title)}</h3>
+      <p class="ex">${esc(item.excerpt)}</p>
+      ${why ? `<p class="why">${esc(why)}</p>` : ''}
+    </div>
+  </button>`
+}
+
+export function ring(value: number | null, size = 62): string {
+  if (value === null) return ''
+  const r = size / 2 - 4
+  const c = 2 * Math.PI * r
+  const clamped = Math.max(0, Math.min(1, value))
+  return `<div style="position:relative;flex:none;width:${size}px;height:${size}px">
+    <svg class="ring" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-hidden="true">
+      <circle cx="${size / 2}" cy="${size / 2}" r="${r}" stroke="var(--line)"></circle>
+      <circle cx="${size / 2}" cy="${size / 2}" r="${r}" stroke="var(--taupe)" stroke-linecap="round"
+        stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${(c * (1 - clamped)).toFixed(1)}"></circle>
+    </svg>
+    <span class="num" style="position:absolute;inset:0;display:grid;place-items:center;font-size:.75rem;color:var(--fg-soft)">${Math.round(clamped * 100)} %</span>
+  </div>`
+}
+
+export function empty(title: string, body: string, action = '', mark = '❧'): string {
+  return `<div class="empty">
+    <p class="mark">${mark}</p>
+    <h3 class="display">${esc(title)}</h3>
+    <p>${esc(body)}</p>
+    ${action ? `<div style="margin-top:1.5rem">${action}</div>` : ''}
+  </div>`
+}
+
+export function note(text: string): string {
+  return `<p class="note">${md(text).replace(/^<p>|<\/p>$/g, '')}</p>`
+}
+
+export function tile(
+  route: string,
+  icon: string,
+  title: string,
+  body: string,
+): string {
+  return `<button class="tile" data-go="${esc(route)}">
+    <i>${icon}</i>
+    <span style="min-width:0"><h4 class="display">${esc(title)}</h4><p>${esc(body)}</p></span>
+    <span class="go">›</span>
+  </button>`
+}
+
+export function checkRow(key: string, text: string, done: boolean, hint?: string): string {
+  return `<button class="check" data-check="${esc(key)}" aria-pressed="${done}" style="margin-top:.75rem">
+    <span class="box">✓</span>
+    <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(text)}${
+      hint ? `<br><span class="faint" style="font-size:.8125rem">${esc(hint)}</span>` : ''
+    }</span>
+  </button>`
+}
+
+/** Jednoduchý čárový graf. Bez knihovny — potřebujeme dva tvary a klid. */
+export function lineChart(
+  series: { key: string; color: string; values: number[]; dashed?: boolean }[],
+  opts: { min: number; max: number; fill?: string; label: string },
+): string {
+  const w = 720
+  const h = 220
+  const pad = 28
+  const n = Math.max(...series.map((s) => s.values.length))
+  if (n === 0) return ''
+  const x = (i: number) => (n === 1 ? w / 2 : pad + (i * (w - pad * 2)) / (n - 1))
+  const span = opts.max - opts.min || 1
+  const y = (v: number) => h - pad - ((v - opts.min) / span) * (h - pad * 2)
+  const path = (vals: number[]) =>
+    vals.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')
+
+  const first = series[0]
+  const area =
+    opts.fill && first
+      ? `<path d="M${x(0).toFixed(1)} ${h - pad} ${first.values
+          .map((v, i) => `L${x(i).toFixed(1)} ${y(v).toFixed(1)}`)
+          .join(' ')} L${x(first.values.length - 1).toFixed(1)} ${h - pad} Z" fill="${opts.fill}" opacity=".35"/>`
+      : ''
+
+  const grid = [0, 0.25, 0.5, 0.75, 1]
+    .map((f) => {
+      const yy = (h - pad - f * (h - pad * 2)).toFixed(1)
+      return `<line x1="${pad}" y1="${yy}" x2="${w - pad}" y2="${yy}" stroke="var(--line)" stroke-width="1"/>`
+    })
+    .join('')
+
+  return `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(opts.label)}">
+    ${grid}${area}
+    ${series
+      .map(
+        (s) =>
+          `<path d="${path(s.values)}" fill="none" stroke="${s.color}" stroke-width="${
+            s.dashed ? 1.75 : 2.5
+          }" ${s.dashed ? 'stroke-dasharray="4 4"' : ''} stroke-linecap="round" stroke-linejoin="round"/>`,
+      )
+      .join('')}
+    ${
+      first
+        ? `<circle cx="${x(first.values.length - 1).toFixed(1)}" cy="${y(
+            first.values[first.values.length - 1],
+          ).toFixed(1)}" r="4.5" fill="${first.color}"/>`
+        : ''
+    }
+  </svg>`
+}

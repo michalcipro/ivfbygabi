@@ -34,22 +34,32 @@ export ANTHROPIC_API_KEY=sk-ant-...
 npm run typecheck   # tsc --noEmit
 npm test            # 79 testů: doménové jádro, doporučování, pokrytí obsahu
 npm run build       # produkční build
-npm run preview     # statický náhled do preview/ivf-by-gabi.html
+npm run app         # prohlížečová verze do app/ivf-by-gabi.html
 ```
 
-### Náhled bez serveru
+### Prohlížečová verze — jeden soubor, žádný server
 
-`npm run preview` vygeneruje **jednu HTML stránku, která se otevře i bez Node.js
-a bez databáze**. Není to maketa — skript spustí skutečný doménový engine,
-skutečný doporučovací systém a celou knihovnu obsahu, spočítá stav pro šest
-profilů a šest po sobě jdoucích dní a výsledek zapeče do stránky.
+`npm run app` sbalí aplikaci do **jedné HTML stránky, která funguje bez Node.js
+a bez databáze**. Není to maketa ani export dat: do stránky se zabalí skutečné
+doménové jádro, skutečný doporučovací systém a celá knihovna obsahu, a v
+prohlížeči se pak počítá živě — ze skutečného dnešního data a z profilu, který
+si uživatelka vyplní v onboardingu.
 
-V náhledu se dá přepínat profil, posouvat den (a vidět, jak se domovská stránka
-přepočítá), číst články, odškrtávat checklisty, vyplňovat kvízy a projít deník,
-komunitu, kroniku i partner mode. AI Gabi běží v offline režimu — přesně tak,
-jak se aplikace chová bez API klíče.
+Chová se jako aplikace, ne jako ukázka:
 
-Použití: prezentace, testování na cizím zařízení, revize obsahu.
+- **Onboarding** ve čtyřech krocích vytvoří profil (kde jste, odkdy, co se vás týká).
+- **Dnes** se počítá z dnešního data. Zítra je jiná karta dne i jiné pořadí obsahu.
+- **Doporučování se učí** — co si otevřete, změní váhy témat a tím i řady.
+  V *Proč vidím právě tohle* je celý vstup vidět a dá se smazat.
+- Deník, hodnoty, dokumenty, dopisy a příspěvky se ukládají do `localStorage`.
+  **Nic se nikam neodesílá** — v téhle verzi ani není kam.
+- AI Gabi běží v offline režimu (`lib/ai/offline.ts`) — přesně tak, jak se
+  aplikace chová bez API klíče.
+
+Zdroj je v `src/client/`, sestavení dělá esbuild ve `scripts/build-app.ts`.
+Otevřená z disku (`file://`) si stránka data pamatuje v rámci jedné záložky;
+prohlížeče totiž souborovým adresám nedávají sdílené úložiště. Na doméně
+(nebo přes `npx serve app`) se profil chová normálně.
 
 ---
 
@@ -171,6 +181,7 @@ src/
     actions/                server actions (validace přes zod)
     onboarding/  predplatne/  cenik/
   components/               design systém, karty, grafy (SVG bez knihoven)
+  client/                   prohlížečová verze aplikace (jeden soubor, bez serveru)
   lib/
     domain/   content/   health/   ai/   db/
 tests/                      testy doménového jádra
@@ -189,6 +200,12 @@ identity, který by viděl, kdo je v léčbě neplodnosti.
 
 **Grafy v ručně psaném SVG.** Žádná knihovna. Potřebujeme dva tvary a plnou kontrolu
 nad barvami — data o vlastním těle nemají křičet.
+
+**Sdílené jádro místo dvou implementací.** Prohlížečová verze nesmí být kopie.
+Pravidla, která by se jinak rozešla — párování komunity (`domain/community-match`),
+automatické události (`domain/auto-events`), offline Gabi (`ai/offline`), převod
+chování na zájmy (`content/affinity`) — žijí v čistých modulech bez databáze a
+bez SDK. Server i prohlížeč z nich čtou totéž.
 
 **Vlastní markdown renderer.** Obsah píšeme my, takže si vystačíme s podmnožinou
 (`##`, `###`, seznamy, citace, tabulky, **tučně**) a nemusíme řešit sanitizaci

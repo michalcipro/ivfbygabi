@@ -8,7 +8,8 @@ import {
   listMedications,
   medicationLogsFor,
 } from '@/lib/db/repo-health'
-import { estimatedDueDate, resolveJourney } from '@/lib/domain/journey'
+import { resolveJourney } from '@/lib/domain/journey'
+import { autoEventsFor } from '@/lib/domain/auto-events'
 import { addDays, czDays, formatCzechDate, today as todayIso } from '@/lib/domain/dates'
 import { Badge, Card, EmptyState, Eyebrow, SectionTitle } from '@/components/ui'
 import { AddEventForm, AddMedicationForm, EventRow, MedicationRow } from './forms'
@@ -130,82 +131,13 @@ export default async function CalendarPage() {
   )
 }
 
-/**
- * Automatické události. Vždycky jen to, co bezpečně plyne z dat profilu —
- * nic, co by uživatelku mohlo zmást falešným termínem.
- */
 function generateAutoEvents(
   userId: string,
   profile: ReturnType<typeof getProfile>,
   state: ReturnType<typeof resolveJourney>,
 ) {
-  if (profile.transferOn) {
-    ensureAutoEvent(userId, {
-      title: 'Embryotransfer',
-      kind: 'transfer',
-      onDate: profile.transferOn,
-      atTime: null,
-      location: profile.clinicName,
-      note: null,
-    })
-    // Odběr beta HCG se běžně dělá zhruba 10.–12. den po transferu blastocysty.
-    const embryoDay = profile.embryoDayAtTransfer ?? 5
-    ensureAutoEvent(userId, {
-      title: 'Odběr beta HCG (orientačně)',
-      kind: 'hcg',
-      onDate: addDays(profile.transferOn, embryoDay === 3 ? 12 : 10),
-      atTime: null,
-      location: profile.clinicName,
-      note: 'Přesný termín vám určí klinika — tohle je jen orientační odhad.',
-    })
-  }
-
-  if (profile.retrievalOn) {
-    ensureAutoEvent(userId, {
-      title: 'Odběr vajíček',
-      kind: 'odber',
-      onDate: profile.retrievalOn,
-      atTime: null,
-      location: profile.clinicName,
-      note: null,
-    })
-  }
-
-  const due = estimatedDueDate(profile)
-  if (due && !profile.birthOn) {
-    ensureAutoEvent(userId, {
-      title: 'Termín porodu',
-      kind: 'porod',
-      onDate: due,
-      atTime: null,
-      location: null,
-      note: null,
-    })
-  }
-
-  // Kontrola po šestinedělí.
-  if (profile.birthOn) {
-    ensureAutoEvent(userId, {
-      title: 'Kontrola po šestinedělí',
-      kind: 'kontrola',
-      onDate: addDays(profile.birthOn, 42),
-      atTime: null,
-      location: null,
-      note: 'Přesný termín domluvte se svým gynekologem.',
-    })
-  }
-
-  // Připomínka přípravy otázek před nejbližší kontrolou.
-  if (state.nextMilestone && state.nextMilestone.inDays > 2) {
-    ensureAutoEvent(userId, {
-      title: `Připravit otázky: ${state.nextMilestone.label.toLowerCase()}`,
-      kind: 'vlastni',
-      onDate: addDays(state.nextMilestone.date, -1),
-      atTime: null,
-      location: null,
-      note: null,
-    })
-  }
+  // Pravidla žijí v domain/auto-events, aby platila i v prohlížečové verzi.
+  for (const ev of autoEventsFor(profile, state)) ensureAutoEvent(userId, ev)
 }
 
 const MONTHS = [

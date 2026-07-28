@@ -2,6 +2,9 @@ import { db, uid, nowIso, parseJson } from './index'
 import type { IsoDate, ModifierId, Profile, TopicId } from '../domain/profile'
 import { emptyProfile } from '../domain/profile'
 import type { Affinity } from '../content/recommend'
+
+// Čistý převod chování na zájmy žije v content/affinity — používá ho i prohlížeč.
+export { applyTopicAffinity } from '../content/affinity'
 import type { JournalEntry } from '../shared/records'
 
 // Tvar žije v ../shared/records, aby ho mohl importovat i prohlížeč.
@@ -198,37 +201,6 @@ export function getAffinity(userId: string): Affinity {
     saved: new Set(saved.map((s) => s.content_id)),
     _weights: weights,
   } as Affinity & { _weights: Map<string, number> }
-}
-
-/** Dopočítá témata z vah, jakmile známe katalog. */
-export function applyTopicAffinity(
-  affinity: Affinity,
-  catalog: readonly { id: string; topics: TopicId[] }[],
-): Affinity {
-  const weights = (affinity as Affinity & { _weights?: Map<string, number> })._weights
-  if (!weights || weights.size === 0) return affinity
-
-  const byId = new Map(catalog.map((c) => [c.id, c.topics]))
-  const raw: Partial<Record<TopicId, number>> = {}
-  let max = 0
-
-  for (const [contentId, weight] of weights) {
-    const topics = byId.get(contentId)
-    if (!topics) continue
-    for (const t of topics) {
-      raw[t] = (raw[t] ?? 0) + weight
-      if (raw[t]! > max) max = raw[t]!
-    }
-  }
-
-  if (max > 0) {
-    for (const key of Object.keys(raw) as TopicId[]) {
-      raw[key] = (raw[key] ?? 0) / max
-    }
-  }
-
-  affinity.topics = raw
-  return affinity
 }
 
 export function recordContentEvent(

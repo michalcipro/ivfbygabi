@@ -10,8 +10,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "seed": "tsx scripts/seed.ts",
-    "preview": "GABI_DATA_DIR=$(mktemp -d) tsx scripts/preview.ts",
-    "test": "tsx --test tests/*.test.ts"
+    "test": "tsx --test tests/*.test.ts",
+    "app": "tsx scripts/build-app.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",
