@@ -1,0 +1,613 @@
+/**
+ * Životní cesta uživatelky.
+ *
+ * Platforma nesleduje jeden IVF cyklus — sleduje celý život rodiny od prvního
+ * rozhodnutí mít dítě až po první rok dítěte (a dál). Fáze je uzel v této cestě.
+ * Modifikátory (dvojčata, nedonošenost, císař, dárcovství…) fázi nemění, ale
+ * mění obsah, který se v ní zobrazuje.
+ */
+
+export const PHASE_IDS = [
+  // Plánování rodičovství
+  'thinking',
+  'preparing_body',
+  'trying_naturally',
+  // Diagnostika a méně invazivní léčba
+  'diagnostics',
+  'iui',
+  // IVF cyklus
+  'ivf_prep',
+  'stimulation',
+  'retrieval',
+  'fertilization',
+  'embryo_culture',
+  'transfer',
+  'two_week_wait',
+  'beta_positive',
+  // Mezidobí a ztráty
+  'waiting_next_attempt',
+  'repeated_failure',
+  'loss_biochemical',
+  'loss_ectopic',
+  'loss_missed',
+  'loss_miscarriage',
+  'uterine_revision',
+  'genetic_testing',
+  // Těhotenství
+  'early_pregnancy',
+  'pregnancy',
+  'high_risk_pregnancy',
+  'hospitalization',
+  // Porod
+  'birth_prep',
+  'birth',
+  'preterm_birth',
+  'nicu',
+  'coming_home',
+  // Po porodu
+  'postpartum',
+  'baby_first_year',
+  'toddler',
+] as const
+
+export type PhaseId = (typeof PHASE_IDS)[number]
+
+/** Skupiny fází — používají se pro navigaci v průvodci a pro barvu prostředí. */
+export const PHASE_GROUPS = [
+  'planning',
+  'diagnosis',
+  'treatment',
+  'waiting',
+  'loss',
+  'pregnancy',
+  'birth',
+  'baby',
+] as const
+
+export type PhaseGroup = (typeof PHASE_GROUPS)[number]
+
+export interface PhaseDefinition {
+  id: PhaseId
+  group: PhaseGroup
+  /** Krátký název pro navigaci. */
+  name: string
+  /** Delší, laskavý popis pro průvodce. */
+  title: string
+  description: string
+  /**
+   * Jak se počítá den ve fázi. `anchor` říká, ze kterého data profilu
+   * se odvozuje „Dnes jste X. den…“.
+   */
+  anchor: AnchorKey | null
+  /** Předpona pro popisek dne, např. „Dnes jste 5. den po transferu.“ */
+  dayLabel?: (day: number) => string
+  /** Typická délka fáze ve dnech — jen pro odhad postupu, ne pro lékařská tvrzení. */
+  typicalDays: number | null
+  /** Fáze, do kterých se běžně přechází. Slouží k nabídce „co dál“. */
+  next: PhaseId[]
+  /** Emoční tón — ovlivňuje výběr povzbuzení a meditací. */
+  tone: 'hopeful' | 'intense' | 'tender' | 'grieving' | 'practical' | 'joyful'
+  /** Zobrazit v onboardingu jako volitelný vstupní bod? */
+  selectableAtOnboarding: boolean
+}
+
+export type AnchorKey =
+  | 'tryingSince'
+  | 'diagnosticsStartedOn'
+  | 'iuiOn'
+  | 'stimulationStartOn'
+  | 'retrievalOn'
+  | 'transferOn'
+  | 'betaTestOn'
+  | 'lossOn'
+  | 'lastPeriodOn'
+  | 'dueDate'
+  | 'birthOn'
+  | 'nicuAdmissionOn'
+  | 'cameHomeOn'
+
+const G = (n: number) => n
+
+export const PHASES: Record<PhaseId, PhaseDefinition> = {
+  thinking: {
+    id: 'thinking',
+    group: 'planning',
+    name: 'Přemýšlíme o dítěti',
+    title: 'Přemýšlíme o dítěti',
+    description:
+      'Období, kdy se rozhodnutí teprve rodí. Není co dohánět — je čas se ptát, zjišťovat a připravovat se v klidu.',
+    anchor: null,
+    typicalDays: null,
+    next: ['preparing_body', 'trying_naturally'],
+    tone: 'hopeful',
+    selectableAtOnboarding: true,
+  },
+  preparing_body: {
+    id: 'preparing_body',
+    group: 'planning',
+    name: 'Příprava těla',
+    title: 'Příprava těla a mysli',
+    description:
+      'Tři měsíce před početím se tvoří vajíčko, které možná bude to vaše. Co děláte teď, má smysl.',
+    anchor: null,
+    dayLabel: (d) => `${d}. den vaší přípravy`,
+    typicalDays: G(90),
+    next: ['trying_naturally', 'diagnostics'],
+    tone: 'practical',
+    selectableAtOnboarding: true,
+  },
+  trying_naturally: {
+    id: 'trying_naturally',
+    group: 'planning',
+    name: 'Snažíme se přirozeně',
+    title: 'Snažíme se přirozeně',
+    description:
+      'Sledování cyklu, plodné dny, naděje každý měsíc. Provedeme vás tím, aby ze snažení nebyla dřina.',
+    anchor: 'tryingSince',
+    dayLabel: (d) => `${Math.floor(d / 30) + 1}. měsíc snažení`,
+    typicalDays: null,
+    next: ['diagnostics', 'early_pregnancy'],
+    tone: 'hopeful',
+    selectableAtOnboarding: true,
+  },
+  diagnostics: {
+    id: 'diagnostics',
+    group: 'diagnosis',
+    name: 'Diagnostika',
+    title: 'Diagnostika neplodnosti',
+    description:
+      'Vyšetření, zkratky, čekání na výsledky. Vysvětlíme každé z nich lidsky — abyste věděla, co se děje a proč.',
+    anchor: 'diagnosticsStartedOn',
+    dayLabel: (d) => `${d}. den od zahájení vyšetření`,
+    typicalDays: G(90),
+    next: ['iui', 'ivf_prep', 'trying_naturally'],
+    tone: 'practical',
+    selectableAtOnboarding: true,
+  },
+  iui: {
+    id: 'iui',
+    group: 'treatment',
+    name: 'IUI',
+    title: 'Intrauterinní inseminace',
+    description: 'Šetrnější krok před IVF. Co obnáší, jak se připravit a co čekat.',
+    anchor: 'iuiOn',
+    dayLabel: (d) => (d >= 0 ? `${d}. den po inseminaci` : `${-d} dní do inseminace`),
+    typicalDays: G(16),
+    next: ['two_week_wait', 'ivf_prep'],
+    tone: 'hopeful',
+    selectableAtOnboarding: true,
+  },
+  ivf_prep: {
+    id: 'ivf_prep',
+    group: 'treatment',
+    name: 'Příprava na IVF',
+    title: 'Příprava na IVF',
+    description:
+      'Než začne stimulace. Papíry, vyšetření, léky, otázky na kliniku a hlavně — nastavení očekávání.',
+    anchor: null,
+    typicalDays: G(30),
+    next: ['stimulation'],
+    tone: 'practical',
+    selectableAtOnboarding: true,
+  },
+  stimulation: {
+    id: 'stimulation',
+    group: 'treatment',
+    name: 'Stimulace',
+    title: 'Stimulace vaječníků',
+    description:
+      'Injekce, ultrazvuky, folikuly, hormony. Nejintenzivnější týden a půl celého cyklu — den po dni s vámi.',
+    anchor: 'stimulationStartOn',
+    dayLabel: (d) => `${d + 1}. den stimulace`,
+    typicalDays: G(11),
+    next: ['retrieval'],
+    tone: 'intense',
+    selectableAtOnboarding: true,
+  },
+  retrieval: {
+    id: 'retrieval',
+    group: 'treatment',
+    name: 'Odběr vajíček',
+    title: 'Odběr vajíček (punkce)',
+    description: 'Den odběru a dny těsně po něm. Co dělat, co je normální a kdy volat.',
+    anchor: 'retrievalOn',
+    dayLabel: (d) => (d === 0 ? 'Den odběru' : `${d}. den po odběru`),
+    typicalDays: G(3),
+    next: ['fertilization'],
+    tone: 'intense',
+    selectableAtOnboarding: true,
+  },
+  fertilization: {
+    id: 'fertilization',
+    group: 'treatment',
+    name: 'Oplození',
+    title: 'Oplození',
+    description:
+      'Vaše vajíčka se právě setkala se spermiemi. Zítra přijde první telefonát z embryologie.',
+    anchor: 'retrievalOn',
+    dayLabel: (d) => `${d}. den po odběru`,
+    typicalDays: G(1),
+    next: ['embryo_culture'],
+    tone: 'intense',
+    selectableAtOnboarding: false,
+  },
+  embryo_culture: {
+    id: 'embryo_culture',
+    group: 'treatment',
+    name: 'Embrya',
+    title: 'Kultivace embryí',
+    description:
+      'Nejtišší a nejtěžší dny cyklu. Vysvětlíme, co znamenají čísla a písmena ve zprávě z laboratoře.',
+    anchor: 'retrievalOn',
+    dayLabel: (d) => `${d}. den kultivace`,
+    typicalDays: G(5),
+    next: ['transfer', 'waiting_next_attempt'],
+    tone: 'intense',
+    selectableAtOnboarding: true,
+  },
+  transfer: {
+    id: 'transfer',
+    group: 'treatment',
+    name: 'Transfer',
+    title: 'Embryotransfer',
+    description: 'Den, na který jste čekala. Krátký zákrok s obrovskou váhou.',
+    anchor: 'transferOn',
+    dayLabel: (d) => (d === 0 ? 'Den transferu' : `${d}. den po transferu`),
+    typicalDays: G(1),
+    next: ['two_week_wait'],
+    tone: 'tender',
+    selectableAtOnboarding: true,
+  },
+  two_week_wait: {
+    id: 'two_week_wait',
+    group: 'waiting',
+    name: 'Čekání na HCG',
+    title: 'Čekání na beta HCG',
+    description:
+      'Nejdelších deset dní vašeho života. Každý den vám řekneme, co se právě děje a co je normální cítit.',
+    anchor: 'transferOn',
+    dayLabel: (d) => `${d}. den po transferu`,
+    typicalDays: G(11),
+    next: ['beta_positive', 'loss_biochemical', 'waiting_next_attempt'],
+    tone: 'tender',
+    selectableAtOnboarding: true,
+  },
+  beta_positive: {
+    id: 'beta_positive',
+    group: 'waiting',
+    name: 'Pozitivní HCG',
+    title: 'Pozitivní beta HCG',
+    description:
+      'Dvě čárky nebo číslo, na které jste čekala. A hned s ním nová vlna otázek a opatrné radosti.',
+    anchor: 'betaTestOn',
+    dayLabel: (d) => `${d}. den od pozitivního testu`,
+    typicalDays: G(21),
+    next: ['early_pregnancy'],
+    tone: 'joyful',
+    selectableAtOnboarding: true,
+  },
+  waiting_next_attempt: {
+    id: 'waiting_next_attempt',
+    group: 'waiting',
+    name: 'Čekání na další pokus',
+    title: 'Mezi pokusy',
+    description:
+      'Pauza, kterou jste si nevybrala. Je to čas na regeneraci, otázky pro lékaře a na sebe.',
+    anchor: null,
+    typicalDays: null,
+    next: ['ivf_prep', 'stimulation', 'transfer', 'genetic_testing'],
+    tone: 'tender',
+    selectableAtOnboarding: true,
+  },
+  repeated_failure: {
+    id: 'repeated_failure',
+    group: 'loss',
+    name: 'Opakované neúspěchy',
+    title: 'Opakované neúspěchy',
+    description:
+      'Když se to nedaří opakovaně. Jaká vyšetření mají smysl, co se dá změnit a jak to psychicky ustát.',
+    anchor: null,
+    typicalDays: null,
+    next: ['genetic_testing', 'ivf_prep', 'waiting_next_attempt'],
+    tone: 'grieving',
+    selectableAtOnboarding: true,
+  },
+  loss_biochemical: {
+    id: 'loss_biochemical',
+    group: 'loss',
+    name: 'Biochemické těhotenství',
+    title: 'Biochemické těhotenství',
+    description:
+      'Těhotenství, které skončilo dřív, než ho někdo stihl vidět. Byla jste těhotná. Ta ztráta je skutečná.',
+    anchor: 'lossOn',
+    dayLabel: (d) => `${d}. den`,
+    typicalDays: G(21),
+    next: ['waiting_next_attempt', 'genetic_testing'],
+    tone: 'grieving',
+    selectableAtOnboarding: true,
+  },
+  loss_ectopic: {
+    id: 'loss_ectopic',
+    group: 'loss',
+    name: 'Mimoděložní těhotenství',
+    title: 'Mimoděložní těhotenství',
+    description: 'Zdravotně náročná a emočně krutá situace. Provedeme vás léčbou i zotavením.',
+    anchor: 'lossOn',
+    dayLabel: (d) => `${d}. den`,
+    typicalDays: G(60),
+    next: ['waiting_next_attempt'],
+    tone: 'grieving',
+    selectableAtOnboarding: true,
+  },
+  loss_missed: {
+    id: 'loss_missed',
+    group: 'loss',
+    name: 'Zamlklé těhotenství',
+    title: 'Zamlklé těhotenství',
+    description:
+      'Ticho na ultrazvuku, které se nedá popsat. Co následuje zdravotně a co pomáhá psychicky.',
+    anchor: 'lossOn',
+    dayLabel: (d) => `${d}. den`,
+    typicalDays: G(60),
+    next: ['uterine_revision', 'waiting_next_attempt'],
+    tone: 'grieving',
+    selectableAtOnboarding: true,
+  },
+  loss_miscarriage: {
+    id: 'loss_miscarriage',
+    group: 'loss',
+    name: 'Samovolný potrat',
+    title: 'Samovolný potrat',
+    description: 'Co se děje s tělem, co s duší a jak dlouho trvá, než se dá pokračovat.',
+    anchor: 'lossOn',
+    dayLabel: (d) => `${d}. den`,
+    typicalDays: G(60),
+    next: ['uterine_revision', 'waiting_next_attempt'],
+    tone: 'grieving',
+    selectableAtOnboarding: true,
+  },
+  uterine_revision: {
+    id: 'uterine_revision',
+    group: 'loss',
+    name: 'Revize dělohy',
+    title: 'Revize dělohy',
+    description: 'Zákrok, příprava, rekonvalescence a kdy se smí zkoušet znovu.',
+    anchor: null,
+    typicalDays: G(30),
+    next: ['waiting_next_attempt', 'genetic_testing'],
+    tone: 'practical',
+    selectableAtOnboarding: false,
+  },
+  genetic_testing: {
+    id: 'genetic_testing',
+    group: 'diagnosis',
+    name: 'Genetická vyšetření',
+    title: 'Genetická a imunologická vyšetření',
+    description: 'Karyotyp, trombofilie, PGT, imunologie. Co se testuje a co z toho plyne.',
+    anchor: null,
+    typicalDays: G(45),
+    next: ['ivf_prep', 'waiting_next_attempt'],
+    tone: 'practical',
+    selectableAtOnboarding: true,
+  },
+  early_pregnancy: {
+    id: 'early_pregnancy',
+    group: 'pregnancy',
+    name: 'Rané těhotenství',
+    title: 'Rané těhotenství',
+    description:
+      'Od pozitivního testu po první ultrazvuk a první srdíčko. Období opatrné naděje.',
+    anchor: 'lastPeriodOn',
+    dayLabel: (d) => `${Math.floor(d / 7)}. týden těhotenství`,
+    typicalDays: G(56),
+    next: ['pregnancy', 'loss_missed', 'loss_ectopic'],
+    tone: 'tender',
+    selectableAtOnboarding: true,
+  },
+  pregnancy: {
+    id: 'pregnancy',
+    group: 'pregnancy',
+    name: 'Těhotenství',
+    title: 'Těhotenství týden po týdnu',
+    description:
+      'Co se děje s miminkem, co s vámi, jaká vyšetření vás čekají a jak se na ně připravit.',
+    anchor: 'lastPeriodOn',
+    dayLabel: (d) => `${Math.floor(d / 7)}. týden, ${d % 7}. den`,
+    typicalDays: G(280),
+    next: ['high_risk_pregnancy', 'birth_prep', 'preterm_birth'],
+    tone: 'joyful',
+    selectableAtOnboarding: true,
+  },
+  high_risk_pregnancy: {
+    id: 'high_risk_pregnancy',
+    group: 'pregnancy',
+    name: 'Rizikové těhotenství',
+    title: 'Rizikové těhotenství',
+    description:
+      'Hypertenze, preeklampsie, gestační diabetes, zkracující se čípek, klidový režim. Bez strašení, s fakty.',
+    anchor: 'lastPeriodOn',
+    dayLabel: (d) => `${Math.floor(d / 7)}. týden těhotenství`,
+    typicalDays: null,
+    next: ['hospitalization', 'birth_prep', 'preterm_birth'],
+    tone: 'practical',
+    selectableAtOnboarding: true,
+  },
+  hospitalization: {
+    id: 'hospitalization',
+    group: 'pregnancy',
+    name: 'Hospitalizace',
+    title: 'Hospitalizace v těhotenství',
+    description: 'Život na oddělení rizikového těhotenství. Co si vzít, jak si udržet mysl.',
+    anchor: null,
+    typicalDays: null,
+    next: ['birth', 'preterm_birth', 'pregnancy'],
+    tone: 'intense',
+    selectableAtOnboarding: true,
+  },
+  birth_prep: {
+    id: 'birth_prep',
+    group: 'birth',
+    name: 'Příprava na porod',
+    title: 'Příprava na porod',
+    description: 'Porodní plán, taška do porodnice, předzvěsti, kdy vyrazit.',
+    anchor: 'dueDate',
+    dayLabel: (d) => (d <= 0 ? `${-d} dní do termínu` : `${d}. den po termínu`),
+    typicalDays: G(42),
+    next: ['birth'],
+    tone: 'practical',
+    selectableAtOnboarding: true,
+  },
+  birth: {
+    id: 'birth',
+    group: 'birth',
+    name: 'Porod',
+    title: 'Porod',
+    description: 'Přirozený porod, vyvolávaný porod, císařský řez — a první hodiny po něm.',
+    anchor: 'birthOn',
+    dayLabel: (d) => (d === 0 ? 'Den porodu' : `${d}. den po porodu`),
+    typicalDays: G(3),
+    next: ['postpartum', 'nicu'],
+    tone: 'joyful',
+    selectableAtOnboarding: true,
+  },
+  preterm_birth: {
+    id: 'preterm_birth',
+    group: 'birth',
+    name: 'Předčasný porod',
+    title: 'Předčasný porod',
+    description:
+      'Porod, na který se nedá připravit. Co se děje, co znamenají čísla a kde brát sílu.',
+    anchor: 'birthOn',
+    dayLabel: (d) => (d === 0 ? 'Den porodu' : `${d}. den po porodu`),
+    typicalDays: G(3),
+    next: ['nicu'],
+    tone: 'intense',
+    selectableAtOnboarding: true,
+  },
+  nicu: {
+    id: 'nicu',
+    group: 'birth',
+    name: 'NICU',
+    title: 'Novorozenecká intenzivní péče',
+    description:
+      'Monitory, sondička, CPAP, klokánkování, první krmení, první koupání. Den po dni až domů.',
+    anchor: 'nicuAdmissionOn',
+    dayLabel: (d) => `${d + 1}. den na oddělení`,
+    typicalDays: null,
+    next: ['coming_home'],
+    tone: 'intense',
+    selectableAtOnboarding: true,
+  },
+  coming_home: {
+    id: 'coming_home',
+    group: 'baby',
+    name: 'Návrat domů',
+    title: 'Návrat domů',
+    description: 'První dny doma bez monitorů. Úleva i panika v jednom.',
+    anchor: 'cameHomeOn',
+    dayLabel: (d) => `${d + 1}. den doma`,
+    typicalDays: G(21),
+    next: ['postpartum', 'baby_first_year'],
+    tone: 'tender',
+    selectableAtOnboarding: true,
+  },
+  postpartum: {
+    id: 'postpartum',
+    group: 'baby',
+    name: 'Šestinedělí',
+    title: 'Šestinedělí',
+    description:
+      'Šest týdnů, o kterých se málo mluví. Hojení, hormony, psychika, spánek, pánevní dno, jizva.',
+    anchor: 'birthOn',
+    dayLabel: (d) => `${d + 1}. den šestinedělí`,
+    typicalDays: G(42),
+    next: ['baby_first_year'],
+    tone: 'tender',
+    selectableAtOnboarding: true,
+  },
+  baby_first_year: {
+    id: 'baby_first_year',
+    group: 'baby',
+    name: 'První rok',
+    title: 'První rok dítěte',
+    description:
+      'Vývoj, spánek, krmení, zoubky, nemoci, příkrmy, milníky. U nedonošených podle korigovaného věku.',
+    anchor: 'birthOn',
+    dayLabel: (d) => `${Math.floor(d / 7)}. týden života`,
+    typicalDays: G(365),
+    next: ['toddler'],
+    tone: 'joyful',
+    selectableAtOnboarding: true,
+  },
+  toddler: {
+    id: 'toddler',
+    group: 'baby',
+    name: 'Batole',
+    title: 'Batolecí období',
+    description: 'Po prvních narozeninách cesta nekončí. Vývoj, jídlo, spánek, hranice, školka.',
+    anchor: 'birthOn',
+    dayLabel: (d) => `${Math.floor(d / 30.4)}. měsíc`,
+    typicalDays: null,
+    next: ['thinking', 'trying_naturally'],
+    tone: 'joyful',
+    selectableAtOnboarding: true,
+  },
+}
+
+export const PHASE_GROUP_META: Record<
+  PhaseGroup,
+  { name: string; blurb: string; accent: string }
+> = {
+  planning: {
+    name: 'Plánování',
+    blurb: 'Než začne cesta',
+    accent: 'var(--color-sage)',
+  },
+  diagnosis: {
+    name: 'Diagnostika',
+    blurb: 'Hledáme odpovědi',
+    accent: 'var(--color-sky)',
+  },
+  treatment: {
+    name: 'Léčba',
+    blurb: 'IUI, IVF a vše kolem',
+    accent: 'var(--color-champagne)',
+  },
+  waiting: {
+    name: 'Čekání',
+    blurb: 'Nejtěžší dny',
+    accent: 'var(--color-sand)',
+  },
+  loss: {
+    name: 'Ztráty',
+    blurb: 'Když to bolí',
+    accent: 'var(--color-blush)',
+  },
+  pregnancy: {
+    name: 'Těhotenství',
+    blurb: 'Týden po týdnu',
+    accent: 'var(--color-blush)',
+  },
+  birth: {
+    name: 'Porod',
+    blurb: 'Přirozený, císař, předčasný, NICU',
+    accent: 'var(--color-champagne)',
+  },
+  baby: {
+    name: 'Miminko',
+    blurb: 'Šestinedělí a první rok',
+    accent: 'var(--color-sage)',
+  },
+}
+
+export function phaseGroupOrder(group: PhaseGroup): number {
+  return PHASE_GROUPS.indexOf(group)
+}
+
+export function phasesInGroup(group: PhaseGroup): PhaseDefinition[] {
+  return PHASE_IDS.map((id) => PHASES[id]).filter((p) => p.group === group)
+}
+
+export function isPhaseId(value: unknown): value is PhaseId {
+  return typeof value === 'string' && (PHASE_IDS as readonly string[]).includes(value)
+}

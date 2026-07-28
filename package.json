@@ -1,0 +1,34 @@
+{
+  "name": "ivf-by-gabi",
+  "version": "0.1.0",
+  "private": true,
+  "description": "IVF by Gabi — prémiová česká platforma pro ženy na cestě za dítětem",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx scripts/seed.ts",
+    "test": "tsx --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.115.0",
+    "better-sqlite3": "^13.0.1",
+    "next": "^16.2.12",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.15.3",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
