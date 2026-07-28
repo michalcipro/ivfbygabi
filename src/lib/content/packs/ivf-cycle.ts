@@ -1776,9 +1776,1529 @@ Co následuje: **konzultace s lékařem**, rozbor cyklu a rozhodnutí o změně 
       publishedOn: '2025-12-10',
       boost: 0.9,
     },
+    {
+      id: 'cyk-zamrazovani-vitrifikace',
+      kind: 'article',
+      title: 'Zamrazení embryí: jak vitrifikace funguje a co to znamená pro vás',
+      excerpt:
+        'Embryo v tekutém dusíku není konzerva ani druhá liga. Tady je, co se při zamrazení děje a co z toho plyne.',
+      body: `## Proč se embrya mrazí
+
+Ze tří důvodů, které spolu nesouvisejí:
+
+1. **Zbylá embrya po transferu.** Když je embryí víc, přenese se obvykle jedno a zbytek se uchová pro další pokusy — bez nutnosti opakovat celou stimulaci.
+2. **Odložení transferu z medicínských důvodů.** Například při riziku OHSS, při předčasném vzestupu progesteronu nebo když je potřeba připravit dělohu.
+3. **Genetické testování.** Výsledky PGT nejsou hned, takže embrya mezitím čekají zamrazená.
+
+## Co je vitrifikace
+
+Moderní metoda **ultrarychlého zmrazení**. Embryo se nejdřív prosytí ochrannými látkami, které nahradí část vody v buňkách, a pak se během zlomku vteřiny ochladí na teplotu tekutého dusíku, tedy zhruba minus 196 °C.
+
+Podstata je v rychlosti: **při pomalém mrazení vznikají ledové krystaly, které buňku poškodí.** Při vitrifikaci se voda nestihne uspořádat do krystalů a ztuhne do sklovité podoby. Odtud i název — vitrum je latinsky sklo.
+
+Při této teplotě se zastaví veškeré biologické děje. Embryo se nestárne, nedělí, nemění.
+
+## Jak dlouho embryo vydrží
+
+Prakticky velmi dlouho — čas při teplotě tekutého dusíku pro embryo neběží. **Omezení je právní a organizační, ne biologické.** V Česku se uchovávání řídí zákonem a smlouvou s klinikou, která má stanovenou dobu, poplatky a postup pro prodloužení.
+
+**Tohle si pohlídejte.** Klinika vám bude posílat výzvy k prodloužení a k úhradě skladovacího poplatku. Změna adresy, e-mailu nebo příjmení je věc, kterou musíte nahlásit vy.
+
+## Rozmrazování
+
+Probíhá opačným postupem, také velmi rychle, s postupným odstraňováním ochranných látek. Přežití embrya po rozmrazení je u dnešních postupů vysoké, ale **není stoprocentní** — část embryí rozmražení nepřežije nebo se poškodí. Konkrétní čísla svého pracoviště si vyžádejte na klinice.
+
+Po rozmražení se embryo obvykle nechá krátce v inkubátoru a sleduje se, jestli se dutina blastocysty znovu rozepne. To je znak, že embryo je vitální.
+
+## Mražený transfer není horší varianta
+
+Dřív se čerstvý transfer považoval za standard a mražený za náhradní řešení. Dnes se u části žen mražený transfer volí záměrně, protože:
+
+- **děložní sliznice není zatížená vysokými hladinami hormonů** ze stimulace,
+- **dá se lépe načasovat** na optimální okamžik,
+- **snižuje riziko OHSS** v cyklu s vysokou odpovědí.
+
+Které řešení je lepší u vás, závisí na vaší situaci a rozhoduje lékař.
+
+## Právní stránka, kterou nikdo nečte a měl by
+
+Při podpisu souhlasů se rozhoduje o věcech, které se špatně řeší zpětně:
+
+- **Kdo s embryi může nakládat** a co se stane při rozchodu nebo úmrtí jednoho z partnerů.
+- **Co se stane s embryi, která už nechcete použít** — zákon a smlouva definují možnosti.
+- **Doba uchování** a jak se prodlužuje.
+- **Poplatky za skladování** a co se stane, když se neuhradí.
+
+Přečtěte si to spolu s partnerem, ne cestou z ordinace. A ptejte se, když něčemu nerozumíte — je to normální, texty jsou psané právníky.
+
+## Emoční stránka, o které se mluví ještě míň
+
+Mít zamrazená embrya je zvláštní pocit. Je to úleva („máme rezervu") i tíha („co s nimi, až rodinu uzavřeme"). Spousta žen popisuje, že o nich přemýšlí i po letech, když už mají děti.
+
+Není potřeba to hned vyřešit. Jen vězte, že ten pocit je běžný a že o něm můžete mluvit — s partnerem, s psychologem se zkušeností s reprodukční medicínou, nebo s ženami, které to mají stejně.
+
+## Otázky, které se vyplatí položit
+
+1. Kolik embryí zamrazujete a v jakém stádiu?
+2. Zamrazujete i embrya s nižším hodnocením? Podle čeho se rozhodujete?
+3. Jaká je u vás úspěšnost přežití po rozmražení?
+4. Jak dlouhá je doba uchování podle naší smlouvy a kolik stojí prodloužení?
+5. Jak nás budete kontaktovat a co se stane, když se nedovoláte?
+
+> Text popisuje obecné principy. Právní podmínky uchovávání embryí se řídí platnou legislativou a smlouvou s vaší klinikou. Obsah nenahrazuje lékařskou ani právní konzultaci.`,
+      minutes: 7,
+      phases: ['embryo_culture', 'fertilization'],
+      dayRange: [4, 7],
+      topics: ['embryologie', 'klinika', 'finance'],
+      modifiers: ['frozen_transfer'],
+      level: 'deep',
+      hero: 'sky',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce', 'Zákon o specifických zdravotních službách — obecná úprava asistované reprodukce v ČR'],
+      publishedOn: '2025-12-15',
+      boost: 0.7,
+    },
+    {
+      id: 'cyk-pgt-a-testovani-embryi',
+      kind: 'article',
+      title: 'PGT-A: genetické testování embryí bez marketingu',
+      excerpt:
+        'Zní to jako záruka. Není to záruka. Tady je, co test skutečně zjišťuje a komu dává smysl.',
+      body: `## Co PGT-A je
+
+**Preimplantační genetické testování na aneuploidie.** Zjišťuje, jestli má embryo správný počet chromozomů. Odchylka v počtu — aneuploidie — je nejčastější příčinou toho, že se embryo neuhnízdí nebo že těhotenství skončí ztrátou.
+
+Provádí se tak, že se z **blastocysty odebere několik buněk z vnější vrstvy** (z trofektodermu, tedy z budoucí placenty, ne z budoucího plodu). Embryo se pak zamrazí a čeká na výsledek, který obvykle trvá několik týdnů.
+
+## Co PGT-A nezjišťuje
+
+Tohle je část, kterou v propagačních materiálech nenajdete:
+
+- **Nezjišťuje všechny genetické nemoci.** Na konkrétní dědičné onemocnění slouží jiné testy (PGT-M, PGT-SR).
+- **Nezaručuje těhotenství.** Embryo se správným počtem chromozomů se také nemusí uhnízdit.
+- **Nezaručuje zdravé dítě.** Zůstává standardní prenatální péče a screening v těhotenství.
+- **Nezvyšuje počet vašich dobrých embryí.** Jen pomáhá seřadit ta, která máte.
+
+## Mozaicismus — komplikace, o které se mluví málo
+
+Výsledek nemusí být jen „normální / abnormální". Část embryí vykazuje **mozaiku** — směs buněk s normálním a abnormálním počtem chromozomů. Vzniká to proto, že se testuje jen vzorek buněk vnější vrstvy a ten nemusí odpovídat zbytku embrya.
+
+Praktický důsledek: **mozaikové embryo není automaticky nepoužitelné.** Rozhodnutí o jeho použití je individuální, vyžaduje genetickou konzultaci a je to jedno z nejtěžších rozhodnutí, jaká v celém procesu padají.
+
+## Komu se testování obvykle zvažuje
+
+Podle indikace, kterou určuje lékař a genetik. Nejčastěji se diskutuje u:
+
+- **vyššího věku ženy**,
+- **opakovaného selhání implantace**,
+- **opakovaných ztrát těhotenství**,
+- **známé chromozomální přestavby** u jednoho z partnerů,
+- **předchozího těhotenství s chromozomální odchylkou**.
+
+Naopak u mladších žen s malým počtem embryí může testování přinést víc rizika než užitku — biopsie je zásah a při malém počtu embryí se snadno stane, že po testu nezbyde nic k přenosu.
+
+## Co byste měla vážit
+
+Reálné otázky, které stojí za rozhovor s lékařem i s partnerem:
+
+1. **Kolik embryí očekáváme?** U jednoho nebo dvou blastocyst se testování zvažuje jinak než u osmi.
+2. **Co uděláme s mozaikovým výsledkem?** Rozhodněte se ideálně předem, ne pod tlakem.
+3. **Kolik to stojí a co je v ceně?** Cena bývá za cyklus i za embryo.
+4. **O kolik se prodlouží cesta?** Testování obvykle znamená zamrazení a transfer v dalším cyklu.
+5. **Co když vyjde, že žádné embryo není vhodné k transferu?** Tohle je scénář, na který se má cenu připravit dopředu.
+
+## Etická a osobní stránka
+
+PGT-A staví před rozhodnutí, která nejsou technická. Kdo rozhoduje o tom, které embryo se přenese? Co s embryi, která se nepoužijí? Jak se v tom cítíte vy a jak partner?
+
+Nemusíte mít na tyhle otázky odpověď hned a nemusí se vaše odpovědi shodovat. Ale mluvit o nich předem je vždycky lepší než mlčet a řešit to v den, kdy přijde výsledek.
+
+## Konzultace, kterou si vyžádejte
+
+Před rozhodnutím o PGT máte nárok na **genetickou konzultaci**. Nespokojte se s letákem a s větou „většina pacientů si to bere". Vyžádejte si rozhovor, ve kterém zazní vaše konkrétní situace.
+
+## Kdy to nedělat
+
+Když jediný důvod je pocit, že „musíte udělat všechno". To není indikace, to je vyčerpání. A vyčerpání je špatný poradce při rozhodování, které stojí desítky tisíc a mění průběh cyklu.
+
+> Text je obecný a nenahrazuje genetickou konzultaci. O vhodnosti genetického testování ve vaší situaci rozhoduje váš ošetřující lékař ve spolupráci s klinickým genetikem.`,
+      minutes: 8,
+      phases: ['embryo_culture', 'ivf_prep', 'fertilization'],
+      dayRange: [3, 7],
+      topics: ['genetika', 'embryologie', 'vysledky', 'finance'],
+      modifiers: ['pgt', 'repeated_failure', 'after_loss'],
+      level: 'deep',
+      hero: 'dusk',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy k preimplantačnímu genetickému testování', 'Společnost lékařské genetiky a genomiky ČLS JEP'],
+      publishedOn: '2025-12-20',
+      boost: 0.8,
+    },
+    {
+      id: 'cyk-kdyz-embrya-nedozraji',
+      kind: 'article',
+      title: 'Když embrya nedojdou dál: co to znamená a co teď',
+      excerpt:
+        'Zpráva, na kterou vás nikdo nepřipraví. Tady je, co se stalo, co jste nezpůsobila a co má smysl udělat dál.',
+      body: `## Nejdřív to podstatné
+
+**Nezpůsobila jste to.** Ne nedostatkem odpočinku, ne stresem v práci, ne tím, že jste den po odběru brečela nebo vypila kávu. Zastavení vývoje embrya je téměř vždy dané jeho vlastní genetickou výbavou — informací, která do něj vstoupila v okamžiku oplození.
+
+Tuhle větu si přečtěte ještě jednou. Za pár dní se vám vrátí otázka „co jsem měla udělat jinak" a je dobré mít po ruce odpověď.
+
+## Co se vlastně stalo
+
+Existuje několik různých scénářů, které se v běžné řeči slévají do jednoho:
+
+- **Nezískala se žádná vajíčka** (prázdný odběr) — vzácné, ale existující.
+- **Vajíčka byla nezralá.**
+- **Vajíčka se neoplodnila** — totální selhání oplození.
+- **Embrya se zastavila v prvních dnech.**
+- **Do blastocysty nedošlo žádné embryo.**
+
+Každý z těchhle scénářů má jinou příčinu a jiné řešení. Proto je zásadní vědět, který nastal u vás — a proto si vyžádejte konzultaci, ne jen telefonát.
+
+## Co má smysl zjistit
+
+Otázky, které při konzultaci položte. Klidně z papíru:
+
+1. **Ve které fázi se to zastavilo a u kolika embryí?**
+2. **Kolik vajíček bylo zralých a jak vypadala?**
+3. **Jak vypadal vzorek spermií v den odběru?**
+4. **Vidíte v tom vzorec, který ukazuje spíš na vajíčka, spíš na spermie, nebo na obojí?**
+5. **Co konkrétně změníte v dalším cyklu?** Protokol, dávky, typ triggeru, metodu oplození, laboratorní postup.
+6. **Má smysl doplnit vyšetření?** Genetika, fragmentace DNA spermií, hormonální doladění, štítná žláza.
+7. **Jak dlouho doporučujete počkat?**
+
+Pokud odpověď zní jen „máte smůlu, zkusíme to znovu stejně", máte právo na druhý názor. Ne proto, že by váš lékař byl špatný, ale proto, že po neúspěšném cyklu má rozbor obrovskou cenu.
+
+## Co se v dalším cyklu běžně mění
+
+Podle toho, kde se vývoj zastavil, přicházejí v úvahu různé úpravy — vždy je navrhuje lékař:
+
+- **jiný protokol** nebo jiné dávkování,
+- **jiný typ triggeru** nebo jeho načasování,
+- **přechod na ICSI**, pokud se použilo klasické IVF,
+- **jiný způsob výběru spermie**,
+- **změna laboratorního postupu nebo média**,
+- **doplňující vyšetření** u vás nebo u partnera,
+- **úvaha o dárcovských gametách**, pokud se scénář opakuje.
+
+## Co s tím, co cítíte
+
+Tenhle typ konce je specifický: **není tu ztráta těhotenství a přitom je tu ztráta.** Ztratila jste cyklus, měsíce příprav, peníze, plán, představu. A okolí často nechápe, proč truchlíte, když „přece nebylo žádné těhotenství".
+
+Vaše smutek je legitimní. Nemusíte ho nikomu obhajovat.
+
+Co bývá užitečné:
+
+- **Dát tomu jméno.** Řekněte nahlas: tenhle cyklus skončil a je mi z toho zle.
+- **Neplánovat další cyklus tenhle týden.** Rozhodnutí učiněná v prvních dnech jsou obvykle rozhodnutí ze zoufalství.
+- **Domluvit si pauzu, která má konec.** „Do konce února nic neřešíme, prvního března jdeme na konzultaci." Konečné datum brání tomu, aby se pauza změnila v bezčasí.
+- **Řešit peníze střízlivě.** Kolik cyklů unesete finančně, je legitimní součást rozhodování a nedělá vás to horší matkou.
+- **Zvážit odbornou pomoc.** Psycholog se zkušeností s reprodukční medicínou není luxus.
+
+## Partnerovi
+
+Muži po téhle zprávě často přepínají do režimu „řešíme dál" — hledají další kliniku, další metodu, další termín. Je to jejich způsob, jak se vyrovnat s bezmocí. Není lepší ani horší než pláč. Problém nastává, když se ty dva režimy potkají ve stejné místnosti.
+
+Řekněte si nahlas, co teď potřebujete. Doslova: „Potřebuju, abys mě teď neřešil, jen se mnou seděl." Nebo naopak: „Potřebuju plán, jinak se zblázním."
+
+## Kdy volat lékaře
+
+I když cyklus skončil, vaše tělo je stále po stimulaci. Volejte při silné bolesti břicha, rychlém nafouknutí, dušnosti, teplotě nad 38 °C, silném krvácení nebo výrazně menším množství moči.
+
+> Text nenahrazuje lékařskou péči ani odbornou konzultaci. Rozbor vašeho cyklu a plán dalšího postupu patří výhradně vašemu ošetřujícímu lékaři.`,
+      minutes: 8,
+      phases: ['embryo_culture', 'fertilization'],
+      dayRange: [2, 7],
+      topics: ['embryologie', 'psychika', 'ztrata', 'partner'],
+      level: 'comfort',
+      hero: 'taupe',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      publishedOn: '2026-01-05',
+      boost: 0.85,
+    },
+    {
+      id: 'cyk-dny-ticha',
+      kind: 'article',
+      title: 'Jak přežít dny ticha, kdy nevoláte a nikdo nevolá vám',
+      excerpt:
+        'Mezi telefonáty z laboratoře je propast, do které se vejde celý internet. Tady je, jak ji přejít.',
+      body: `## Proč jsou tyhle dny tak zvláštní
+
+Deset dní jste měla úkol. Píchat, měřit, jezdit, vážit se, zapisovat. Teď je vaše práce hotová a **výsledek vzniká bez vás**, v inkubátoru, který nikdy neuvidíte, v budově, kam nemáte přístup.
+
+Lidský mozek nesnáší kombinaci vysoké důležitosti a nulové kontroly. Proto se pouští do jediné činnosti, která mu zbývá: **do počítání a předpovídání.** Odtud noční googlení, přepočítávání čísel a hledání příběhů, které se podobají tomu vašemu.
+
+## Co s googlením
+
+Zákaz nefunguje. Co funguje:
+
+- **Vyhraďte mu čas.** Dvacet minut denně, ideálně ne večer. Zbytek dne odkládáte s tím, že se k tomu vrátíte ve vyhrazenou hodinu. Většinou už se vám do toho pak nechce.
+- **Ptejte se konkrétně**, ne obecně. „Co znamená morula" má odpověď. „Jaká je moje šance" ne.
+- **Vyhýbejte se diskusním vláknům s výsledky.** Nejsou to data, je to sbírka náhod, a čtete je v nejhorším možném stavu.
+- **Pište si otázky pro embryologa** místo hledání odpovědí. Papír vedle postele.
+
+## Rozvrh, který drží den pohromadě
+
+Bez struktury se dny slijí v jednu dlouhou úzkost. Nemusí to být nic velkého:
+
+1. **Ráno pevný bod** — snídaně u okna, deset minut ven, vždy stejně.
+2. **Dopoledne jedna konkrétní věc**, kterou dokončíte. Ne úklid celého bytu; jedna zásuvka.
+3. **Poledne pohyb** — pomalá procházka. Ne sport, vaječníky jsou pořád zvětšené.
+4. **Odpoledne kontakt s člověkem.** Jedním. Klidně na patnáct minut.
+5. **Večer něco, co drží pozornost** — seriál, který znáte, rukodělná práce, vaření podle receptu.
+
+Zní to banálně. Právě proto to funguje: banální věci nevyžadují rozhodování.
+
+## Co si nepřipouštět
+
+Během těchhle dnů se objeví myšlenka, že když se budete „chovat dobře", zlepší to výsledek. Ležení, dieta, zákaz smíchu. **Vývoj embryí v laboratoři neovlivníte tím, co doma děláte.** Tahle věta má vypadat krutě a ve skutečnosti je osvobozující: nemůžete to pokazit.
+
+Co ovlivnit můžete, je vaše tělo po stimulaci: tekutiny, bílkoviny, klidný pohyb, podpora podle pokynů lékaře. To dělejte.
+
+## Co říkat lidem
+
+Připravte si dvě věty dopředu:
+
+- **Pro ty, komu to říct chcete:** „Jsme uprostřed cyklu, výsledek budeme vědět příští týden. Až budu chtít mluvit, ozvu se."
+- **Pro ty, komu ne:** „Teď to neřešíme, děkuju za zeptání."
+
+Nemusíte být milá. Nemusíte vysvětlovat. A hlavně: **nemusíte nikoho informovat průběžně.** Průběžné hlášení je závazek, který v tomhle týdnu neunesete.
+
+## Když se v noci probudíte
+
+Nejčastější scénář: tři hodiny ráno, hlava jede naplno. Co se osvědčuje:
+
+- **Nezůstávat v posteli déle než dvacet minut.** Vstát, přejít do jiné místnosti, tlumené světlo.
+- **Napsat to.** Doslova vypsat, co se v hlavě honí, rukou na papír. Vypsaná úzkost je menší než ta v hlavě.
+- **Nesahat po telefonu.** Kombinace modrého světla a diskusního fóra ve tři ráno je nejhorší možná.
+- **Dýchat s prodlouženým výdechem.** Nádech na čtyři, výdech na šest, deset kol.
+
+## Co si připravit na den D
+
+Až přijde telefonát nebo den transferu, budete chtít mít věci hotové. Připravte si předem:
+
+- otázky pro embryologa napsané na papíře,
+- domluvený doprovod, pokud ho chcete,
+- volný večer bez povinností,
+- jednoho člověka, kterému zavoláte první.
+
+## A poslední věc
+
+Tohle období nezvládáte špatně. Nikdo ho nezvládá dobře. Není to zkouška z vyrovnanosti a nikdo vám za ni nedá body. Cíl je dojít do konce týdne, ne dojít do konce týdne elegantně.
+
+> Text je podpůrný a nenahrazuje odbornou psychologickou ani lékařskou péči. Pokud vás úzkost dlouhodobě vyčerpává nebo se objeví myšlenky na sebepoškození, vyhledejte pomoc neprodleně.`,
+      minutes: 6,
+      phases: ['embryo_culture', 'fertilization', 'retrieval'],
+      dayRange: [1, 6],
+      topics: ['psychika', 'cekani', 'sebepece', 'komunita'],
+      level: 'comfort',
+      hero: 'dawn',
+      author: 'Gabi',
+      publishedOn: '2026-01-12',
+      boost: 0.8,
+    },
+    {
+      id: 'cyk-kviz-rozumite-svemu-cyklu',
+      kind: 'quiz',
+      title: 'Kvíz: rozumíte svému cyklu?',
+      excerpt:
+        'Osm otázek, po kterých budete na konzultaci vědět, na co se ptát — a co si nemusíte brát osobně.',
+      body: `## K čemu tenhle kvíz je
+
+Není to zkouška. Je to způsob, jak si projít pojmy, které kolem vás během cyklu budou lítat, a zjistit, kde máte díru. Díra v porozumění není ostuda — je to jen seznam otázek na příští konzultaci.
+
+Každá odpověď má vysvětlení. Přečtěte si ho i tehdy, když jste odpověděla správně: často je v něm ta část, kterou nikdo neříká nahlas.
+
+## Jak s výsledkem naložit
+
+Otázky, ve kterých jste tápala, si napište. Vezměte si papír na konzultaci a projděte je s lékařem nebo embryologem. Nejlepší pacientka není ta, která ví všechno. Je to ta, která umí položit konkrétní otázku.
+
+> Kvíz slouží k orientaci v pojmech a nenahrazuje lékařskou péči ani konzultaci.`,
+      minutes: 5,
+      phases: ['ivf_prep', 'stimulation', 'retrieval', 'fertilization', 'embryo_culture'],
+      topics: ['stimulace', 'embryologie', 'hormony', 'klinika'],
+      level: 'deep',
+      hero: 'sand',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      publishedOn: '2026-01-18',
+      quiz: [
+        {
+          q: 'Co je folikul?',
+          options: [
+            'Jiné slovo pro vajíčko',
+            'Tekutinou vyplněný váček ve vaječníku, ve kterém vajíčko dozrává',
+            'Část děložní sliznice',
+            'Embryo ve druhém dni vývoje',
+          ],
+          correct: 1,
+          explain:
+            'Ultrazvuk vidí folikul, ne vajíčko samotné. Proto se počet odebraných vajíček skoro nikdy nerovná počtu folikulů — některé mohou být prázdné nebo obsahovat nezralé vajíčko.',
+        },
+        {
+          q: 'Proč se u triggeru tak přísně hlídá hodina aplikace?',
+          options: [
+            'Kvůli organizaci provozu kliniky',
+            'Protože zrání vajíček po triggeru trvá určitou dobu a odběr se plánuje těsně před tím, než by folikuly praskly samy',
+            'Protože lék je účinný jen ve večerních hodinách',
+            'Kvůli tomu, aby se nesešlo víc pacientek najednou',
+          ],
+          correct: 1,
+          explain:
+            'Odběr příliš brzy znamená nezralá vajíčka, příliš pozdě znamená prázdný odběr. Pokud se s časem spletete, volejte kliniku okamžitě — existují postupy, jak to řešit.',
+        },
+        {
+          q: 'Který z těchto příznaků po odběru vyžaduje okamžitý telefonát na kliniku?',
+          options: [
+            'Mírné nadmutí a pocit tlaku v podbřišku',
+            'Slabé špinění první den',
+            'Přírůstek hmotnosti o víc než kilogram za den spolu s dušností',
+            'Únava a potřeba spát',
+          ],
+          correct: 2,
+          explain:
+            'Rychlý nárůst hmotnosti, rostoucí obvod břicha a dušnost patří mezi varovné příznaky OHSS. Nečekejte do rána, volejte kliniku nebo pohotovost.',
+        },
+        {
+          q: 'Jaký je rozdíl mezi klasickým IVF a ICSI?',
+          options: [
+            'ICSI se dělá až po zamrazení',
+            'U klasického IVF si spermie najde cestu do vajíčka sama, u ICSI ji embryolog vpraví dovnitř mikropipetou',
+            'ICSI znamená přenos dvou embryí',
+            'Klasické IVF se používá jen u dárcovských vajíček',
+          ],
+          correct: 1,
+          explain:
+            'ICSI se volí například u mužského faktoru, po předchozím selhání oplození nebo před genetickým testováním. Obchází bariéru obalu vajíčka, ale nezaručuje oplození ani neřeší kvalitu gamet.',
+        },
+        {
+          q: 'Co se hodnotí první den po oplození?',
+          options: [
+            'Počet buněk embrya',
+            'Přítomnost dvou prvojader jako znak normálního oplození',
+            'Stupeň expanze blastocysty',
+            'Tloušťka děložní sliznice',
+          ],
+          correct: 1,
+          explain:
+            'Dvě prvojádra znamenají, že se spojila genetická informace z vajíčka a ze spermie. Embrya s jiným počtem prvojader se dál nekultivují.',
+        },
+        {
+          q: 'Co znamená, když blastocysta dozraje až šestý den místo pátého?',
+          options: [
+            'Embryo je vadné a nepoužije se',
+            'Je to běžná varianta; z blastocyst šestého dne se rodí děti a obvykle se zamrazují',
+            'Znamená to jistotu dvojčat',
+            'Musí se opakovat celá stimulace',
+          ],
+          correct: 1,
+          explain:
+            'Rychlost vývoje je dána z části genetikou embrya a z části podmínkami. Pomalejší start nepředpovídá horší dítě.',
+        },
+        {
+          q: 'Co hodnocení embrya typu 4AA neříká?',
+          options: [
+            'Jak je blastocysta rozvinutá',
+            'Jak vypadá vnitřní buněčná masa',
+            'Jestli má embryo správný počet chromozomů',
+            'Jak vypadá vnější vrstva budoucí placenty',
+          ],
+          correct: 2,
+          explain:
+            'Hodnocení popisuje vzhled, ne genetiku. Embryo s výborným hodnocením může mít chromozomální odchylku a naopak. Proto se hodnocení používá k seřazení, ne jako předpověď.',
+        },
+        {
+          q: 'Kdy může klinika doporučit zamrazit všechna embrya místo čerstvého transferu?',
+          options: [
+            'Když je riziko OHSS nebo když se předčasně zvýšil progesteron',
+            'Vždy, když je embryí víc než tři',
+            'Jen na přání pacientky',
+            'Pouze u žen nad 40 let',
+          ],
+          correct: 0,
+          explain:
+            'Odložení transferu chrání vaše zdraví i vaši šanci. Není to komplikace ani horší varianta — u části žen je mražený transfer volbou první volby.',
+        },
+      ],
+      boost: 0.6,
+    },
+    {
+      id: 'cyk-checklist-pred-startem',
+      kind: 'checklist',
+      title: 'Než začne cyklus: co si zařídit, dokud máte klidnou hlavu',
+      excerpt:
+        'Papíry, peníze, kalendář a jeden rozhovor s partnerem. Po startu stimulace už na to nebude prostor.',
+      body: `## Proč to řešit teď
+
+Ve chvíli, kdy začnete píchat, se váš svět zúží na kontroly, čísla a čekání. Všechno, co jde vyřídit předem, vyřiďte předem — ne proto, že by to jinak nešlo, ale proto, že vaše kapacita na administrativu bude v příštích třech týdnech minimální.
+
+## Čtyři oblasti
+
+**Papíry.** Souhlasy, smlouvy, výsledky vyšetření, platnost povinných testů. Zeptejte se kliniky, co má expiraci a kdy.
+
+**Peníze.** Vědět dopředu, co je hrazené z pojištění, co si platíte a kdy se platí, ušetří vám nepříjemné překvapení uprostřed cyklu.
+
+**Kalendář.** Ranní kontroly, den odběru, pravděpodobný den transferu. I když termíny nejsou přesné, hrubý odhad se dá udělat.
+
+**Vy dva.** Jeden konkrétní rozhovor předem — o tom, kdo volá klinice, komu to řeknete, co uděláte, když to nevyjde. Není to černá magie, je to plán.
+
+> Seznam je obecný. Konkrétní požadavky na vyšetření, souhlasy a platby vám sdělí vaše klinika.`,
+      minutes: 4,
+      phases: ['ivf_prep'],
+      dayRange: [0, 21],
+      topics: ['klinika', 'finance', 'vztah', 'partner'],
+      level: 'essential',
+      hero: 'sand',
+      author: 'Tým IVF by Gabi',
+      publishedOn: '2026-01-24',
+      boost: 0.85,
+      checklist: [
+        { id: 'cyk-pre-souhlasy', text: 'Přečtené a podepsané informované souhlasy', hint: 'Včetně části o nakládání s embryi. Čtěte to spolu, ne cestou z ordinace.', group: 'Papíry' },
+        { id: 'cyk-pre-vysetreni', text: 'Zkontrolovaná platnost povinných vyšetření obou partnerů', group: 'Papíry' },
+        { id: 'cyk-pre-recept', text: 'Vyzvednuté recepty a ověřená dostupnost léků v lékárně', hint: 'Některé přípravky se objednávají a nejsou skladem hned.', group: 'Papíry' },
+        { id: 'cyk-pre-zprava', text: 'Uložený plán léčby a rozpis od lékaře v telefonu i vytištěný', group: 'Papíry' },
+        { id: 'cyk-pre-cena', text: 'Vím, co je hrazené z pojištění a co si doplácíme', group: 'Peníze' },
+        { id: 'cyk-pre-doplatky', text: 'Vím, kolik stojí případné doplňkové metody a kdy se rozhoduje', group: 'Peníze' },
+        { id: 'cyk-pre-skladovani', text: 'Vím, kolik stojí skladování embryí a jak dlouho je smlouva platná', optional: true, group: 'Peníze' },
+        { id: 'cyk-pre-kalendar', text: 'Zablokované dopoledne na kontroly v příštích třech týdnech', group: 'Kalendář' },
+        { id: 'cyk-pre-odber', text: 'Držené dva volné dny kolem předpokládaného odběru', group: 'Kalendář' },
+        { id: 'cyk-pre-zastup', text: 'Domluvený zástup v práci na den odběru', optional: true, group: 'Kalendář' },
+        { id: 'cyk-pre-doprovod', text: 'Domluvený doprovod na den odběru', group: 'Kalendář' },
+        { id: 'cyk-pre-rozhovor', text: 'Proběhl rozhovor s partnerem o tom, kdo volá klinice a komu to řekneme', group: 'Vy dva' },
+        { id: 'cyk-pre-scenar', text: 'Řekli jsme si nahlas, co uděláme, když to nevyjde', hint: 'Ne proto, abyste to přivolávali. Proto, abyste nebyli zaskočení.', group: 'Vy dva' },
+        { id: 'cyk-pre-podpora', text: 'Vybraný jeden člověk mimo vztah, kterému se dá zavolat', group: 'Vy dva' },
+        { id: 'cyk-pre-psycholog', text: 'Zjištěný kontakt na psychologa se zkušeností s reprodukční medicínou', optional: true, group: 'Vy dva' },
+      ],
+    },
+    {
+      id: 'cyk-partner-behem-cyklu',
+      kind: 'article',
+      title: 'Partner v cyklu: co dělat, když se cítí zbytečný',
+      excerpt:
+        'On odevzdá vzorek za pět minut, vy píchate deset dní. Tady je, jak z toho neudělat trhlinu.',
+      body: `## Nerovnováha, kterou nikdo nepřizná
+
+Fyzicky nese cyklus žena. Injekce, kontroly, anestezie, hormony, nadmuté břicho, čekání s vlastním tělem uprostřed. Muž mezitím **odevzdá vzorek** a jinak stojí vedle.
+
+Z toho vznikají dvě různé bolesti, které se často srazí:
+
+- **Její:** „Nesu to celé sama a on to nechápe."
+- **Jeho:** „Nemůžu udělat vůbec nic a přitom je to i moje dítě."
+
+Obojí je pravda. Problém není v tom, kdo trpí víc. Problém je v tom, že si o tom nemluví.
+
+## Konkrétní věci, které partner může převzít
+
+Neurčité „řekni si, co potřebuješ" nefunguje, protože v tom stavu nevíte, co potřebujete. Fungují konkrétní role:
+
+1. **Správce léků.** Kontrola zásob tři dny dopředu, vyzvedávání v lékárně, hlídání expirací, sledování rozpisu.
+2. **Řidič a doprovod.** Ranní kontroly, den odběru, cesta domů.
+3. **Zapisovatel.** Chodí s vámi na konzultace a píše, co lékař řekl. Vy si to nezapamatujete, on ano.
+4. **Ten, kdo volá klinice.** Když se něco změní nebo když si nejste jistá, on zvedne telefon.
+5. **Píchač.** Spousta párů to tak dělá a spoustě mužů to konečně dá pocit, že něco dělají.
+6. **Ochranná zeď.** Odpovídá rodině a přátelům, odklání otázky, kryje vás.
+
+Vyberte si spolu **tři a napište je na papír.** Ne všechny — tři.
+
+## Co partnerovi řekněte přímo
+
+Řada mužů má výborný úmysl a katastrofální provedení, protože neví, co se od nich čeká. Zkuste tyhle věty:
+
+- „Nechci teď řešení. Chci, abys mě chvíli držel."
+- „Když se rozbrečím, není to tvoje chyba a nemusíš to spravit."
+- „Nechci slyšet, že to bude dobré. Nevíš to a mě to štve."
+- „Potřebuju, abys tuhle věc vyřídil ty. Nechci na ni myslet."
+
+A naopak, co říct jemu: **„Není to jen moje léčba. Je to naše."** Řada mužů tuhle větu nikdy neuslyší a přitom na ni čeká.
+
+## Den odevzdání vzorku
+
+Neřešená věc, o které se ve dvojici mluví minimálně. Realita: **odevzdat vzorek na povel, v cizí místnosti, v den, kdy vy ležíte na sále, je stresující.** Selhání erekce nebo obtížný odběr v téhle situaci nejsou vzácnost a nemají nic společného s tím, jak moc chce dítě.
+
+Co pomáhá:
+
+- Vědět dopředu, že **existuje záložní plán** — zamražený vzorek předem, případně jiné řešení, které klinika nabídne.
+- **Nedělat z toho vtip** ani ten den, ani potom.
+- Domluvit se předem, jestli chce být doprovázený, nebo raději sám.
+
+Pokud je ve hře **mužský faktor**, přidává se navíc pocit viny. Připomeňte mu, že spermiogram není hodnocení jeho hodnoty a že diagnóza je vaše společná, ne jeho osobní.
+
+## Když se hádáte
+
+Během stimulace se hádáte víc. Hormony, nevyspání, peníze, strach. Doporučení, které funguje: **zaveďte pravidlo, že o zásadních věcech se nerozhoduje po deváté večer a v den kontroly.** Odložit hádku na sobotu dopoledne vypadá směšně a funguje.
+
+## Když on nechce mluvit vůbec
+
+Část mužů zvládá zátěž mlčením a činností. Není to lhostejnost, i když to tak vypadá. Zkuste místo „musíme si promluvit" nabídnout **činnost, u které se mluví snáz** — procházka, cesta autem, mytí nádobí vedle sebe.
+
+Pokud ale mlčení trvá týdny a vy se cítíte sama, řekněte to nahlas a zvažte pár sezení u odborníka. Léčba neplodnosti je jedna z nejtěžších zkoušek, jaké může vztah potkat, a hledat pomoc není známka slabosti vztahu.
+
+## Jedna věta na závěr pro něj
+
+Nemusíte to spravit. Máte u toho být. To je celý úkol a je těžší, než vypadá.
+
+> Text je podpůrný a nenahrazuje párovou terapii ani lékařskou péči.`,
+      minutes: 7,
+      phases: ['stimulation', 'retrieval', 'ivf_prep', 'fertilization'],
+      dayRange: [0, 12],
+      topics: ['partner', 'vztah', 'psychika'],
+      excludeModifiers: ['single_mother'],
+      level: 'deep',
+      hero: 'blush',
+      author: 'Gabi',
+      publishedOn: '2026-02-02',
+      boost: 0.7,
+    },
+    {
+      id: 'cyk-strava-a-pohyb-ve-stimulaci',
+      kind: 'article',
+      title: 'Jídlo a pohyb během stimulace: co má smysl a co je jen další tlak',
+      excerpt:
+        'Ne, ananas to nespraví. Tady je, co během stimulace skutečně pomáhá vašemu tělu.',
+      body: `## Nejdřív rovnou
+
+Neexistuje jídlo, které by zvýšilo počet vajíček nebo zlepšilo kvalitu embryí během probíhajícího cyklu. **Kvalita vajíček se utváří měsíce dopředu**, ne během deseti dnů stimulace. Cokoli, co vám slibuje opak, po vás většinou chce peníze.
+
+Co strava a pohyb během stimulace ovlivnit můžou: **jak se cítíte, jak snášíte nadmutí, jak vám funguje trávení a jak jste zavodněná.** To není málo.
+
+## Co má oporu a smysl
+
+**Bílkoviny.** Zvýšený příjem bílkovin se běžně doporučuje během stimulace a po odběru, protože bílkoviny v krvi pomáhají udržet tekutinu tam, kde má být. Prakticky: v každém jídle nějaký zdroj — vejce, ryba, maso, luštěniny, tvaroh, jogurt.
+
+**Tekutiny.** Pravidelně, průběžně, ne najednou. Kombinujte vodu s minerální vodou nebo vývarem. Sledujte, kolik močíte — je to nejjednodušší kontrola.
+
+**Vláknina.** Progesteron a nehybnost zpomalují střeva spolehlivě. Ovesné vločky, zelenina, švestky, lněné semínko namočené ve vodě.
+
+**Pravidelnost jídla.** Vynechané jídlo plus hormonální výkyv je recept na odpolední kolaps. Jezte spíš častěji a menší porce — nadmuté břicho velké porce nesnese.
+
+**Kyselina listová a doporučené doplňky.** Užívejte to, co vám předepsal lékař. Nic nepřidávejte na vlastní pěst — některé doplňky mohou interagovat s léčbou.
+
+## Co omezit
+
+- **Alkohol** — během cyklu vynechte.
+- **Kouření** — pokud kouříte, tohle je nejsilnější věc, kterou můžete pro léčbu udělat, i když je pozdě na zázraky.
+- **Nadměrná kofein.** Umírněné množství se obvykle nezakazuje; zeptejte se na klinice, jaké množství považují za přijatelné.
+- **Extrémní diety, hladovky a detoxy.** Během stimulace je to poslední, co vaše tělo potřebuje.
+
+## Pohyb: pravidla se během stimulace mění
+
+Tohle je důležitější, než většina žen tuší. **Vaječníky během stimulace výrazně zvětšují objem** — z několika centimetrů mohou narůst násobně. Zvětšený vaječník se může zkroutit kolem své osy (torze), což je akutní stav vyžadující okamžitou pomoc.
+
+Proto od zhruba poloviny stimulace až do doby, kterou určí klinika:
+
+- **Vhodné:** chůze, pomalé protažení, klidná jóga bez inverzí a bez prudkých rotací, dechová cvičení.
+- **Nevhodné:** běh, skákání, HIIT, jízda na kole po nerovném terénu, kontaktní sporty, jízda na koni, zvedání těžkého, prudké změny polohy.
+- **Po odběru** platí omezení dál, dokud vám lékař neřekne jinak.
+
+Pokud jste zvyklá cvičit denně, je to nepříjemná změna. Berte to jako dočasné opatření s konkrétním důvodem, ne jako trest.
+
+## Kdy volat lékaře
+
+Volejte okamžitě při **náhlé prudké jednostranné bolesti břicha**, zvlášť když je doprovázená zvracením nebo mdlobou — může jít o torzi vaječníku. Dále při rychlém nafouknutí, dušnosti, teplotě nad 38 °C nebo výrazném snížení množství moči.
+
+## O čem se nemluví: tlak na dokonalost
+
+Během léčby se na ženy valí lavina rad. Ananas, granátové jablko, teplé nohy, žádný cukr, akupunktura, tři druhy doplňků. Většina z toho vychází z dobrého úmyslu a všechny dohromady vytvářejí něco velmi škodlivého: **pocit, že když to nevyjde, byla to vaše chyba.**
+
+Nebyla. Nebude. Jezte rozumně, pijte, hýbejte se opatrně, berte to, co vám předepsal lékař, a zbytek energie si nechte na věci, které vám dělají dobře.
+
+> Text obsahuje obecná doporučení a nenahrazuje individuální výživovou ani lékařskou konzultaci. Jakékoli doplňky stravy konzultujte se svým lékařem.`,
+      minutes: 6,
+      phases: ['stimulation', 'ivf_prep', 'retrieval'],
+      dayRange: [0, 12],
+      topics: ['strava', 'pohyb', 'sebepece'],
+      level: 'deep',
+      hero: 'sage',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2026-02-10',
+      boost: 0.6,
+    },
+    {
+      id: 'cyk-hormonalni-houpacka',
+      kind: 'article',
+      title: 'Hormonální houpačka: proč brečíte u reklamy a není to vaše selhání',
+      excerpt:
+        'Během deseti dnů vám hladina estradiolu vyroste na násobky běžného cyklu. Vaše hlava to pozná.',
+      body: `## Co se s vámi děje
+
+Během stimulace roste hladina estradiolu úměrně počtu a velikosti folikulů. Za deset dnů se dostane výrazně výš, než kam se kdy dostane v přirozeném cyklu. **Estradiol ovlivňuje nervový systém** — spánek, chuť k jídlu, emoční reaktivitu, schopnost soustředit se.
+
+K tomu přidejte:
+
+- **nevyspání** z brzkých kontrol,
+- **strach z výsledku**, který nemůžete ovlivnit,
+- **fyzickou nepohodu** z nafouknutého břicha,
+- **peníze**, které v tom jsou,
+- a případně **osobní historii** — předchozí neúspěchy, ztráty, roky snažení.
+
+Není divu, že se rozbrečíte u reklamy na pojištění. Divné by bylo, kdyby ne.
+
+## Co je typické a přejde
+
+- **Prudké výkyvy nálady** během jednoho dne.
+- **Podrážděnost**, hlavně vůči nejbližším.
+- **Plačtivost** bez zjevného spouštěče.
+- **Zhoršená koncentrace a zapomínání.** Napište si všechno.
+- **Přecitlivělost na těhotná břicha a kojenecké fotky.** Odhlaste se ze sociálních sítí, klidně na tři týdny.
+- **Přerušovaný spánek** a probouzení nad ránem.
+- **Pocit odcizení od vlastního těla.**
+
+Tohle typicky ustupuje během několika dnů až dvou týdnů po skončení stimulace.
+
+## Co pomáhá prakticky
+
+**Zjednodušte rozhodování.** Připravené oblečení, jednoduchá jídla, žádné velké nákupy a životní rozhodnutí. Rozhodovací kapacita je teď omezená surovina.
+
+**Nechte si věci, které fungují bez přemýšlení.** Seriál, který znáte nazpaměť. Procházka po stejné trase. Hudba, kterou máte v uchu roky.
+
+**Pojmenujte to nahlas.** „Jsem teď hrozně citlivá a je to z léků." Rodina vám odpustí dvakrát tolik, když ví proč.
+
+**Omezte vstupy.** Diskusní fóra, zpravodajství, telefonáty s lidmi, kteří vás vyčerpávají. Není to malichernost, je to hygiena.
+
+**Dech s prodlouženým výdechem.** Nádech na čtyři, výdech na šest, deset kol. Jediná věc, kterou vědomě ovlivníte nervový systém během třiceti vteřin.
+
+**Pohyb v mírné formě.** Chůze venku, ideálně ráno. Nic prudkého — vaječníky jsou zvětšené.
+
+## Co si nedělejte
+
+- **Nesrovnávejte se** s ženami, které „to zvládaly v pohodě". Buď to nebyla pravda, nebo měly jiné dávky, jinou anamnézu a jiný život.
+- **Nevyčítejte si emoce.** Stres neničí embrya. Kdyby ano, polovina světové populace by se nenarodila.
+- **Neslibujte, že budete pozitivní.** Nemusíte být. Musíte jen dojít do konce cyklu.
+
+## Kdy to už není hormonální houpačka
+
+Ozvěte se lékaři nebo vyhledejte psychologickou pomoc, pokud:
+
+- **nespíte** několik nocí po sobě,
+- **nejste schopná fungovat** v běžném dni,
+- **nejíte** nebo naopak nezvládáte jídlo udržet,
+- **cítíte beznaděj**, která nepolevuje ani na chvíli,
+- máte **myšlenky na sebepoškození nebo na to, že by bylo lepší nebýt** — v tomhle případě vyhledejte pomoc neprodleně, například u své kliniky, praktického lékaře nebo na krizové lince.
+
+Máte-li v anamnéze depresi nebo úzkostnou poruchu, řekněte to svému reprodukčnímu týmu předem. Není to informace navíc, je to důležitá součást vaší péče.
+
+## Poslední věc
+
+Nikdo vám za tenhle cyklus nedá známku z vyrovnanosti. Cílem není projít to elegantně. Cílem je projít to.
+
+> Text je podpůrný a nenahrazuje odbornou psychologickou ani psychiatrickou péči.`,
+      minutes: 6,
+      phases: ['stimulation', 'retrieval', 'fertilization'],
+      dayRange: [3, 12],
+      topics: ['psychika', 'hormony', 'sebepece'],
+      level: 'comfort',
+      hero: 'dawn',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      publishedOn: '2026-02-18',
+      boost: 0.75,
+    },
+    {
+      id: 'cyk-podcast-embryolog',
+      kind: 'podcast',
+      title: 'Podcast: co se opravdu děje za dveřmi laboratoře',
+      excerpt:
+        'Rozhovor o tom, jak vypadá běžný den embryologa a proč vám nikdy neřekne procenta v den jedna.',
+      body: `## O čem je tahle epizoda
+
+Většina žen si laboratoř představuje jako bílou místnost s obřími mikroskopy a týmem, který se dívá na jejich embrya nepřetržitě. Skutečnost je jiná a je uklidňující: laboratoř je **tmavá, tichá a její hlavní pravidlo zní nerušit**.
+
+V epizodě mluvíme o tom, jak vypadá běžný den v embryologické laboratoři — od chvíle, kdy okénkem přijdou první zkumavky z odběrového sálu, po večerní kontrolu inkubátorů.
+
+**Část první: ráno.** Vyhledávání vajíček v odsáté tekutině, posouzení zralosti, příprava vzorku spermií. Proč se identita pacientky kontroluje při každém jednotlivém kroku a proč je to vždy dvakrát.
+
+**Část druhá: proč se embrya nesledují pořád.** Vysvětlení, proč každé vyndání misky z inkubátoru znamená změnu teploty a složení plynů, a proč se tedy hodnocení dělá v přesně daných časech, ne kdykoli.
+
+**Část třetí: telefonáty.** Jak se sdělují čísla. Proč embryolog neříká procenta úspěšnosti v den po odběru — ne proto, že by je tajil, ale proto, že v ten okamžik neexistují. Co naopak říct umí a na co se ho ptát.
+
+**Část čtvrtá: co embryologa v téhle práci nejvíc drží.** A co ho nejvíc bolí — nejčastěji věta „takže jsem to zkazila", kterou od pacientek slyší pravidelně a která nikdy nebyla pravda.
+
+## Věta, která z epizody nejvíc zůstane
+
+„Když se embryo zastaví, není to proto, že by u něj někdo stál špatně. Je to proto, že si tu informaci přineslo s sebou. My tomu jen přihlížíme a snažíme se mu k tomu vytvořit nejlepší možné podmínky."
+
+## Pro koho to je
+
+Pro každou, kdo je teď mezi odběrem a transferem a nedokáže si představit, kde její embrya vlastně jsou. Pomůže to i partnerům — je to jediná část procesu, která je technická a dá se pochopit bez emocí.
+
+> Obsah je informativní a obecný. Konkrétní informace o vašich embryích vám může poskytnout pouze embryolog vaší kliniky.`,
+      minutes: 28,
+      phases: ['fertilization', 'embryo_culture', 'retrieval'],
+      dayRange: [0, 6],
+      topics: ['embryologie', 'klinika', 'cekani'],
+      level: 'deep',
+      hero: 'pearl',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      publishedOn: '2026-03-02',
+      mediaNote:
+        'Osmadvacetiminutový rozhovor v klidném tempu, bez hudebních předělů. Slyšíte otázky laika a odpovědi embryologa, včetně popisu zvuků laboratoře a vysvětlení, proč se inkubátory otevírají co nejméně.',
+      boost: 0.55,
+    },
+    {
+      id: 'cyk-pribeh-druha-stimulace',
+      kind: 'story',
+      title: 'Příběh: podruhé jsem věděla, na co se ptát',
+      excerpt:
+        'Kateřina prošla dvěma stimulacemi. Ten rozdíl nebyl v číslech, ale v tom, co si o nich dovolila myslet.',
+      body: `## První cyklus jsem prožila v tabulce
+
+Měla jsem excel se sedmi sloupci. Den, folikuly vpravo, folikuly vlevo, největší, endometrium, estradiol, poznámka. Vyplňovala jsem ho po každé kontrole a večer jsem se do něj dívala jako do horoskopu.
+
+Osmý den mi napsali, že mám čtrnáct folikulů. Byla jsem šťastná asi dvě hodiny. Pak jsem si našla článek, ve kterém stálo, že z folikulů se získá průměrně méně vajíček, a začala jsem počítat. Čtrnáct minus. Zralých asi. Oplodní se možná. Do blastocysty možná.
+
+Odběr byl v pátek. Vzali jedenáct vajíček, devět bylo zralých, šest se oplodnilo. Pátý den zbyly dvě blastocysty.
+
+Brala jsem to jako propadák. Ze čtrnácti na dvě.
+
+## Co mi řekla embryoložka
+
+Zavolala jsem na kliniku v úterý, prý jestli je normální takový propad. Embryoložka se mě zeptala, jestli mám chvilku, a pak mi to vysvětlila přesně tak, jak jsem to nikde nečetla.
+
+Řekla, že jsem si to spočítala odzadu. Že se nedívám na dvě blastocysty jako na výsledek, ale jako na zbytek. A že to je rozdíl, který si žádná pacientka neuvědomuje, dokud jí to někdo neřekne.
+
+„Vy jste ze čtrnácti folikulů nedostala dvě embrya," řekla. „Vy jste dostala dvě embrya, která prošla vším, co jsme na ně mohli poslat. To není zbytek. To jsou ta, která jsou."
+
+Nevěřila jsem jí. Ale zapamatovala jsem si to.
+
+## Ten cyklus nevyšel
+
+Transfer, dva týdny, negativní test. Druhé embryo zmražené, čekalo.
+
+Trvalo mi čtyři měsíce, než jsem byla schopná řešit další krok. Nešlo o peníze ani o čas. Šlo o to, že jsem si pořád přehrávala, co jsem mohla udělat líp. Jestli jsem měla míň pracovat. Jestli ta káva desátý den. Jestli jsem se měla víc uvolnit, jak mi radila kolegyně.
+
+Na kontrolní konzultaci jsem se poprvé zeptala normálně: **co byste u mě příště udělali jinak?** Doktor mi vysvětlil, co se změní v protokolu a proč. Ne obecně — u mě. Ten rozhovor trval dvacet minut a udělal se mnou víc než čtyři měsíce googlení.
+
+## Druhá stimulace
+
+Vypadala jinak. Ne v číslech — folikulů bylo dokonce míň, jedenáct. Jiná byla já.
+
+Excel jsem si nechala, protože mi dával pocit řádu. Ale přestala jsem do něj psát predikce. Nechala jsem tam jen fakta.
+
+Přestala jsem si číst příběhy jiných žen během dnů ticha. Ne proto, že by byly špatné. Ale protože jsem si z nich vždycky vybrala ten nejhorší a udělala z něj svoji budoucnost.
+
+A hlavně: napsala jsem si na papír pět otázek pro embryologa **před** telefonátem. Když volali, četla jsem je z papíru jako novinářka. Poprvé jsem z toho telefonátu vyšla s informací, ne jen s číslem a bušícím srdcem.
+
+## Jak to dopadlo
+
+Nebudu tady psát konec, protože ten můj konec není váš konec a nechci, abyste si z něj cokoli odvozovala. Řeknu jinou věc.
+
+Rozdíl mezi mým prvním a druhým cyklem nebyl v tom, že bych se druhý raz míň bála. Bála jsem se stejně. Rozdíl byl v tom, že jsem přestala tou léčbou procházet jako obžalovaná, která má dokázat, že se dost snažila.
+
+Nikdo mě nesoudil. To jsem si dělala sama.
+
+## Co bych řekla sama sobě před prvním cyklem
+
+- **Neodvozuj konec z prostředka.** Číslo z osmého dne nic neříká o pátém dni po odběru.
+- **Napiš si otázky předem.** V telefonu se ptát neumíš, to je normální.
+- **Vyžádej si rozbor po cyklu**, i když nevyšel. Je to nejcennější hodina celé léčby.
+- **Nedávej si zásluhu ani vinu** za věci, které se dějí v inkubátoru.
+- **Najdi si jednoho člověka.** Ne skupinu, ne fórum. Jednoho.
+
+> Osobní příběh sdílený se svolením. Průběh a výsledky léčby jsou u každé ženy jiné a tento text nenahrazuje lékařskou konzultaci.`,
+      minutes: 7,
+      phases: ['stimulation', 'embryo_culture', 'fertilization', 'ivf_prep'],
+      dayRange: [0, 12],
+      topics: ['psychika', 'komunita', 'embryologie', 'stimulace'],
+      level: 'comfort',
+      hero: 'linen',
+      author: 'Tým IVF by Gabi',
+      publishedOn: '2026-03-14',
+      boost: 0.65,
+    },
     // @@ITEMS@@
   ],
   dailyCards: [
-    // @@CARDS@@
+    {
+      id: 'cyk-dc-prep-papiry',
+      phases: ['ivf_prep'],
+      dayRange: [0, 7],
+      headline: 'Papíry vyřídit teď, dokud máte klidnou hlavu',
+      body: 'Souhlasy, platnost vyšetření, recepty a dostupnost léků v lékárně — všechno tohle se vyřizuje mnohem hůř ve chvíli, kdy už píchate a jezdíte na kontroly. Vyhraďte si na to jednu hodinu a mějte to za sebou. Informovaný souhlas si přečtěte celý, včetně části o nakládání s embryi.',
+      whatsHappening: [
+        'Některá vyšetření mají omezenou platnost a před startem se musí obnovit',
+        'Část léků se v lékárně objednává a nejsou skladem hned',
+        'V souhlasech se rozhoduje o věcech, které se špatně mění zpětně',
+      ],
+      task: 'Zavolejte do lékárny a ověřte, že mají všechny vaše léky skladem nebo je stihnou objednat.',
+      reflection: 'Je něco v podepsaných dokumentech, čemu jsem nerozuměla a přešla to?',
+      tip: 'Uložte si telefon na kliniku i pro mimopracovní dobu — do mobilu i na papír k lednici.',
+    },
+    {
+      id: 'cyk-dc-prep-rozhovor',
+      phases: ['ivf_prep'],
+      dayRange: [2, 12],
+      headline: 'Jeden rozhovor, který se vyplatí mít předem',
+      body: 'Než začne stimulace, domluvte se s partnerem na konkrétních rolích: kdo volá klinice, kdo hlídá zásobu léků, kdo vás veze na odběr, komu to řeknete. Neurčité „řekni si, co potřebuješ" v půlce cyklu nefunguje, protože v tu chvíli sama nevíte. Konkrétní úkoly ano.',
+      whatsHappening: [
+        'Nerovnováha zátěže je v IVF cyklu daná a mluví se o ní málo',
+        'Muži často popisují bezmoc z toho, že nemají co dělat',
+        'Rozdělené role snižují počet hádek víc než jakékoli předsevzetí',
+      ],
+      task: 'Vyberte spolu tři konkrétní věci, které přebírá partner, a napište je na papír na lednici.',
+      reflection: 'Co bych potřebovala slyšet ve chvíli, kdy mi to nevyjde?',
+      tip: 'Domluvte si pravidlo, že o zásadních věcech nerozhodujete po deváté večer.',
+    },
+    {
+      id: 'cyk-dc-prep-kalendar',
+      phases: ['ivf_prep'],
+      dayRange: [5, 20],
+      headline: 'Kalendář na tři týdny dopředu',
+      body: 'Kontroly bývají brzy ráno a den odběru dopředu neznáte. Zablokujte si dopoledne v příštích třech týdnech a držte si dva volné dny kolem předpokládaného odběru. Přesunout schůzku je vždycky snazší než vytvořit volno na poslední chvíli.',
+      whatsHappening: [
+        'Během stimulace vás čekají obvykle tři až pět kontrol',
+        'Termín odběru se upřesní až podle růstu folikulů',
+        'Po odběru se nesmí řídit auto, doprovod musí být domluvený dopředu',
+      ],
+      task: 'Otevřete kalendář a přesuňte první ranní schůzku, kterou byste kvůli kontrole musela rušit.',
+      reflection: 'Co ze svého kalendáře můžu v příštích třech týdnech úplně škrtnout?',
+      tip: 'Zaměstnavateli nemusíte sdělovat diagnózu. Stačí, že jde o lékařskou léčbu s ranními kontrolami.',
+    },
+    {
+      id: 'cyk-dc-prep-vybava',
+      phases: ['ivf_prep'],
+      dayRange: [10, 30],
+      headline: 'Postavte si domácí základnu',
+      body: 'Jedna krabice, jedno místo: jehly, dezinfekce, nádoba na ostrý odpad, papírový rozpis. Léky do střední police lednice, nikdy do dvířek a nikdy k zadní stěně, kde by mohly zmrznout. Až přijde první ráno, chcete jen natáhnout ruku.',
+      whatsHappening: [
+        'Zmrzlý lék se nesmí použít, ani když po rozmrazení vypadá v pořádku',
+        'Nádobu na ostrý odpad dostanete v lékárně a plnou ji tam vrátíte',
+        'Dvě jehly navíc jsou nejlevnější pojistka celého cyklu',
+      ],
+      task: 'Vyskládejte všechny pomůcky do jedné krabice a postavte ji na místo, kam nikdo jiný nesahá.',
+      reflection: 'Co mi ještě chybí, abych se ráno nemusela nic rozhodovat?',
+      tip: 'Vytiskněte si rozpis dávek na papír a pověste ho na lednici. Papír nevybije baterii.',
+    },
+    {
+      id: 'cyk-dc-stim-d0',
+      phases: ['stimulation'],
+      day: 0,
+      headline: 'První injekce. Nejhorší je čekání na ni',
+      body: 'Dneska poprvé otevřete krabičku a uděláte to, co jste si sto let představovala. Jehla je velmi tenká a krátká, bolí to méně než odběr krve — problém není bolest, ale to, že si to musíte udělat sama. Udělejte to podle pevného postupu, ne podle nálady.',
+      whatsHappening: [
+        'Ve vaječnících je probuzená skupina folikulů, které stimulace udrží ve hře',
+        'Dnes ještě nic nepocítíte — účinek se projeví za několik dnů',
+        'Vaše tělo si zvyká na hormon, který normálně tvoří samo, jen v menším množství',
+      ],
+      task: 'Připravte si všechno na stůl už teď, hodinu před aplikací. Vybalte, přečtěte, položte.',
+      reflection: 'Čeho se na tom nejvíc bojím — bolesti, nebo toho, co ta injekce znamená?',
+      tip: 'Nechte lék pár minut mimo lednici. Studený roztok pálí víc a dělá víc modřin.',
+      callDoctorIf: [
+        'Objeví se vyrážka po těle, otok rtů či obličeje nebo dušnost',
+        'Máte horečku nad 38 °C bez jiného vysvětlení',
+        'Nejste si jistá, jestli jste aplikovala celou dávku',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d1',
+      phases: ['stimulation'],
+      day: 1,
+      headline: 'Druhý den. Rutina začíná dnes',
+      body: 'První injekce byla událost, ta druhá je začátek rutiny — a rutina je přesně to, co vás příštích deset dní udrží. Zapište si čas aplikace a místo vpichu, i když si myslíte, že si to zapamatujete. Za čtyři dny už to vědět nebudete.',
+      whatsHappening: [
+        'Folikuly začínají reagovat, ale zatím nic nevidíte ani necítíte',
+        'Případná modřina po prvním vpichu je běžná a účinek léku nesnižuje',
+        'Tělo si zvyká; první dny bývají fyzicky nejlehčí z celé stimulace',
+      ],
+      task: 'Nakreslete si na papír čtyři kvadranty břicha a zaznamenejte, kde jste dnes píchla.',
+      reflection: 'Co mi včera pomohlo to zvládnout a co si můžu zopakovat?',
+      tip: 'Do stejného bodu se nevracejte dřív než za týden. Střídejte kvadranty dokola.',
+      callDoctorIf: [
+        'Místo vpichu je horké, tvrdé a zarudnutí se během dne zvětšuje',
+        'Objeví se kopřivka, otok obličeje nebo dušnost',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d2',
+      phases: ['stimulation'],
+      day: 2,
+      headline: 'Zatím se nic neděje. To je v pořádku',
+      body: 'Třetí den bývá zklamáním pro každou, kdo čekala, že něco pozná. Folikuly rostou pomalu, zhruba o milimetr až dva denně, a v téhle fázi mají jen několik milimetrů. Nic necítit není špatné znamení, je to normální průběh.',
+      whatsHappening: [
+        'Skupina folikulů roste zatím rovnoměrně a nenápadně',
+        'Estradiol začíná stoupat, ale ještě pod hranicí, kdy byste to poznala',
+        'První kontrola bývá po čtyřech až pěti dnech stimulace',
+      ],
+      task: 'Připravte si tabulku na zápis kontrol: datum, folikuly vpravo a vlevo, největší, endometrium, estradiol.',
+      reflection: 'Jaké očekávání jsem si na tenhle týden sama vytvořila?',
+      tip: 'Nepočítejte dopředu. Číslo z první kontroly nepředpovídá číslo z poslední.',
+    },
+    {
+      id: 'cyk-dc-stim-d3',
+      phases: ['stimulation'],
+      day: 3,
+      headline: 'Modřiny přicházejí. Netřete je',
+      body: 'Kolem třetího a čtvrtého dne se objevují první barevné skvrny na břiše. Vznikají tím, že jehla cestou minula tuk a trefila drobnou cévku — nemá to vliv na účinek léku. Nejčastější příčinou není samotný vpich, ale tření místa po vytažení jehly.',
+      whatsHappening: [
+        'Prvních 24 hodin po vpichu pomáhá chlad, potom naopak vlažné teplo',
+        'Modřiny obvykle mizí do dvou až tří týdnů po poslední injekci',
+        'Pálení při aplikaci nejčastěji způsobí studený roztok nebo neoschlá dezinfekce',
+      ],
+      task: 'Po dnešním vpichu přitiskněte suchý čtvereček na deset vteřin a nesahejte na místo.',
+      reflection: 'Vadí mi, jak moje břicho vypadá — a komu to vlastně vysvětluju?',
+      tip: 'Zeptejte se v lékárně na mast na modřiny, kterou můžete použít mimo čerstvé místo vpichu.',
+      callDoctorIf: [
+        'V místě vpichu vznikne bolestivý horký bulek, který se zvětšuje',
+        'Objeví se rozsáhlá modřina bez souvislosti s vpichem',
+        'Máte horečku nad 38 °C',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d4',
+      phases: ['stimulation'],
+      day: 4,
+      headline: 'První kontrola je za dveřmi',
+      body: 'Kolem čtvrtého až pátého dne přichází první folikulometrie a s ní první čísla. Vyšetření trvá pár minut, dělá se vaginální sondou a bez plného měchýře. Připravte si dvě otázky, ať z ordinace neodejdete jen s pocitem, že to asi bylo v pořádku.',
+      whatsHappening: [
+        'Folikuly by v tuhle dobu měly být zhruba v polovině cesty k cílové velikosti',
+        'Souběžně se obvykle nabírá krev na estradiol',
+        'Podle výsledku se může změnit dávka — je to běžná úprava, ne komplikace',
+      ],
+      task: 'Napište si na papír dvě otázky pro lékaře: kolik folikulů a jak velkých dnes vidíte.',
+      reflection: 'Co udělám, pokud dnešní číslo bude nižší, než jsem doufala?',
+      tip: 'Zapište si čísla hned v čekárně. Do večera si je zapamatujete špatně.',
+    },
+    {
+      id: 'cyk-dc-stim-d5',
+      phases: ['stimulation'],
+      day: 5,
+      headline: 'Možná přibude druhá injekce',
+      body: 'V antagonistickém protokolu se zhruba v téhle době přidává druhý lék, který zabrání předčasné ovulaci. Znamená to dvě injekce denně a je to plánovaná součást protokolu, ne znamení, že se něco nedaří. Zkontrolujte si rozpis, ať víte, co se aplikuje kdy.',
+      whatsHappening: [
+        'Antagonista blokuje signál, který by jinak spustil ovulaci dřív, než je čas',
+        'Břicho může začít být citlivé, vaječníky se zvětšují',
+        'Estradiol roste rychleji než v prvních dnech',
+      ],
+      task: 'Přepište si rozpis dávek podle posledního pokynu z kliniky a starý papír zahoďte.',
+      reflection: 'Kolik energie mi dnes zbylo na věci, které nesouvisejí s léčbou?',
+      tip: 'Pro ranní a večerní dávku používejte různé strany břicha.',
+      callDoctorIf: [
+        'Nejste si jistá, kterou injekci a v jakém pořadí máte dnes aplikovat',
+        'Objeví se prudká bolest břicha nebo mdloba',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d6',
+      phases: ['stimulation'],
+      day: 6,
+      headline: 'Břicho začíná dávat vědět',
+      body: 'Zhruba od poloviny stimulace cítí většina žen tlak v podbřišku, nadmutí a těžkost. Vaječníky, které normálně měří pár centimetrů, jsou teď výrazně větší a plné rostoucích folikulů. Od téhle chvíle platí: žádný běh, skákání ani zvedání těžkého.',
+      whatsHappening: [
+        'Zvětšený vaječník se může zkroutit kolem své osy — proto omezení pohybu',
+        'Nadmutí a plynatost jsou očekávané, ne varovné',
+        'Kalhoty s gumou v pase přestávají být dobrý nápad',
+      ],
+      task: 'Vyndejte ze skříně nejvolnější kalhoty nebo šaty a připravte si je na příští dny.',
+      reflection: 'Dovolím si teď zpomalit, nebo se pořád snažím stíhat všechno jako předtím?',
+      tip: 'Pijte průběžně a přidejte v každém jídle zdroj bílkovin.',
+      callDoctorIf: [
+        'Náhlá prudká jednostranná bolest břicha, zvlášť se zvracením nebo mdlobou',
+        'Rychlé nafouknutí břicha spolu s dušností',
+        'Teplota nad 38 °C',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d7',
+      phases: ['stimulation'],
+      day: 7,
+      headline: 'Hlava jede naplno a soustředit se nejde',
+      body: 'Estradiol je teď výrazně výš než kdykoli v přirozeném cyklu a váš nervový systém to pozná. Zhoršená koncentrace, plačtivost a podrážděnost vůči nejbližším jsou v téhle fázi typické. Není to slabost a není to vaše selhání — je to léčba.',
+      whatsHappening: [
+        'Folikuly rostou a s nimi i hladina estradiolu',
+        'Přerušovaný spánek a probouzení nad ránem jsou běžné',
+        'Přecitlivělost na těhotná břicha a fotky dětí se v téhle fázi zesiluje',
+      ],
+      task: 'Odhlaste se na tři týdny ze sociální sítě, která vás nejvíc bere. Stačí smazat aplikaci z plochy.',
+      reflection: 'Komu jsem dnes odsekla a bylo to opravdu o něm?',
+      tip: 'Nádech na čtyři, výdech na šest, deset kol. Prodloužený výdech je jediná zkratka k nervovému systému, kterou máte pořád u sebe.',
+      callDoctorIf: [
+        'Několik nocí po sobě téměř nespíte a nejste schopná fungovat',
+        'Cítíte beznaděj, která nepolevuje, nebo myšlenky, že by bylo lepší nebýt — vyhledejte pomoc neprodleně',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d8',
+      phases: ['stimulation'],
+      day: 8,
+      headline: 'Čísla dnes možná dávají smysl poprvé',
+      body: 'Kolem osmého dne bývá kontrola, na které už je vidět tvar celé skupiny — kolik folikulů roste pohromadě a jestli se některý nevytrhl dopředu. Lékař se nedívá jen na dnešní číslo, ale hlavně na rozdíl proti minulé kontrole. Rovnoměrný růst je lepší zpráva než jedno velké číslo.',
+      whatsHappening: [
+        'Folikuly rostou zhruba o jeden až dva milimetry denně',
+        'Pásmo kolem 16 až 22 mm je to, ve kterém se nejčastěji nacházejí zralá vajíčka',
+        'Podle počtu folikulů v tomhle pásmu se plánuje trigger',
+      ],
+      task: 'Zeptejte se dnes na jednu konkrétní věc: kolik folikulů je nad 14 mm.',
+      reflection: 'Počítám folikuly jako budoucí děti? A co by se změnilo, kdybych přestala?',
+      tip: 'Nesrovnávejte svá čísla s nikým. Vaše čísla platí jen pro vás a jen v kontextu vašeho cyklu.',
+      callDoctorIf: [
+        'Prudká bolest břicha, zvracení nebo mdloba',
+        'Rychlý přírůstek hmotnosti, napjaté břicho a dušnost',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d9',
+      phases: ['stimulation'],
+      day: 9,
+      headline: 'Konec je blízko a to je zvláštní pocit',
+      body: 'V téhle fázi bývají kontroly častější, někdy denně, a termín odběru se začíná rýsovat. Zároveň jste fyzicky nejnaložnější — břicho těžké, únava velká, hlava plná. Zjednodušte si dny na minimum a odsuňte všechno, co nemusí být.',
+      whatsHappening: [
+        'Vaječníky jsou nyní výrazně zvětšené a citlivé na pohyb',
+        'Termín odběru se upřesňuje podle velikosti největších folikulů',
+        'Klinika může měnit dávku i ze dne na den',
+      ],
+      task: 'Domluvte s doprovodem konkrétní čas a místo pro den odběru. Ne „ozvu se", ale konkrétně.',
+      reflection: 'Co si dnes můžu odpustit, aniž by se cokoli zhroutilo?',
+      tip: 'Sbalte si tašku na odběr už teď. Ráno v den D nebudete schopná rozhodnout ani o ponožkách.',
+      callDoctorIf: [
+        'Nárůst hmotnosti o víc než přibližně kilogram za den',
+        'Rychle rostoucí obvod břicha, dušnost nebo potíže s dýcháním vleže',
+        'Výrazně menší množství moči nebo opakované zvracení',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d10',
+      phases: ['stimulation'],
+      day: 10,
+      headline: 'Trigger: jediná injekce, u které se počítají minuty',
+      body: 'Dokončovací injekce dokončí zrání vajíček a uvolní je ze stěny folikulu. Odběr se plánuje zhruba 34 až 38 hodin po ní, těsně před tím, než by folikuly praskly samy — proto se čas říká na minuty a proto se nesmí posunout. Pokud vám ho ještě neřekli, dozvíte se ho v následujících dnech.',
+      whatsHappening: [
+        'Čas triggeru je zpětně odpočítaný od hodiny, na kterou máte přijít na sál',
+        'Po triggeru se obvykle už nepíchá stimulace, pokud lékař neřekne jinak',
+        'Od půlnoci před odběrem platí lačnění podle pokynů kliniky',
+      ],
+      task: 'Nastavte si dva budíky: jeden 30 minut před časem triggeru a jeden na přesný čas.',
+      reflection: 'Kdo kromě mě zná přesný čas té injekce?',
+      tip: 'Zapište si přesnou minutu, kdy jste píchla. Ráno se na to ptají.',
+      callDoctorIf: [
+        'Trigger jste aplikovala jindy, než bylo určeno, nebo si nejste jistá, jestli vůbec — volejte okamžitě, i v noci',
+        'Prudká jednostranná bolest břicha se zvracením',
+        'Dušnost nebo rychlé nafouknutí břicha',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d11',
+      phases: ['stimulation'],
+      day: 11,
+      headline: 'Den, kdy nemůžete udělat vůbec nic',
+      body: 'Mezi triggerem a odběrem je zhruba 36 hodin, ve kterých vajíčka dozrávají bez vašeho přičinění. Je to nejpodivnější den celého cyklu: deset dní jste měla úkol a dnes žádný nemáte. Nikam nechoďte, nic neplánujte, dodržte lačnění podle pokynů.',
+      whatsHappening: [
+        'Vajíčka dokončují poslední fázi zrání a uvolňují se ze stěny folikulu',
+        'Tlak a plnost v podbřišku jsou teď nejsilnější za celý cyklus',
+        'Pohlavní styk, sport a zvedání těžkého jsou dnes vyloučené',
+      ],
+      task: 'Připravte si k posteli oblečení na ráno a tašku ke dveřím. Pak už nic.',
+      reflection: 'Umím dneska nic nedělat, nebo si musím pořád něco vymýšlet?',
+      tip: 'Vyhraďte googlení dvacet minut a ne večer. Ve tři ráno si nepřečtete nic, co vám pomůže.',
+      callDoctorIf: [
+        'Náhlá prudká bolest břicha, mdloba nebo opakované zvracení',
+        'Teplota nad 38 °C',
+        'Dušnost nebo výrazné zhoršení nafouknutí',
+      ],
+    },
+    {
+      id: 'cyk-dc-stim-d12',
+      phases: ['stimulation'],
+      day: 12,
+      headline: 'Ráno odjezdu. Zbývá jen dojet',
+      body: 'Bez líčení, bez laku na nehty, bez šperků a bez čoček — barva na nehtech brání měření okysličení krve a šperky se na sál nesmí. Lačnění je bezpečnostní podmínka anestezie, ne formalita. Doprovod už má být domluvený, protože po anestezii nesmíte řídit.',
+      whatsHappening: [
+        'Na klinice vás čeká administrativa, převlečení a čekání podle pořadí sálů',
+        'Zavedení kanyly je jediný vpich, který ucítíte při vědomí',
+        'Samotný odběr trvá obvykle 10 až 20 minut, bez řezu a bez stehů',
+      ],
+      task: 'Zkontrolujte tašku: doklady, čas triggeru na papíře, teplé ponožky, vložky, volné oblečení.',
+      reflection: 'Co bych dnes potřebovala slyšet od člověka, který jede se mnou?',
+      tip: 'Vezměte si vlastní ponožky. Na sále bývá chladno a po anestezii přichází zimnice.',
+      callDoctorIf: [
+        'Ráno máte horečku, silnou bolest břicha nebo krvácení — zavolejte na kliniku ještě před odjezdem',
+        'Porušila jste lačnění — nutně to ohlaste, výkon se může odložit',
+      ],
+    },
+    {
+      id: 'cyk-dc-retrieval-d0',
+      phases: ['retrieval'],
+      day: 0,
+      headline: 'Máte to za sebou. Dnešek už jen přežijte',
+      body: 'Probuzení po krátké anestezii přináší zimnici, křeče jako při silnější menstruaci a často i pláč, který nemá jasný důvod — anestezie a hormony dělají svoje. Číslo odebraných vajíček uslyšíte dnes nebo zítra a bude jiné, než jste čekala. Skoro vždycky je.',
+      whatsHappening: [
+        'Slabé krvácení nebo špinění je po odběru běžné',
+        'Nadmutí, tlak a zácpa se v příštích dnech ještě zvýrazní',
+        'Řídit auto ani rozhodovat o důležitých věcech dnes nemůžete',
+      ],
+      task: 'Vypijte průběžně větší množství tekutin a přidejte něco s bílkovinou. Pak lehněte.',
+      reflection: 'Co potřebuju od dnešního večera — ticho, nebo někoho vedle sebe?',
+      tip: 'Neužívejte léky proti bolesti podle vlastního uvážení. Zeptejte se, co si smíte vzít, a zapište si to.',
+      callDoctorIf: [
+        'Silná bolest břicha, kterou neztlumí doporučené analgetikum',
+        'Krvácení silnější než běžná menstruace nebo se sraženinami',
+        'Teplota nad 38 °C',
+        'Závrať, mdloba, bušení srdce nebo bolest v rameni',
+      ],
+    },
+    {
+      id: 'cyk-dc-retrieval-d1',
+      phases: ['retrieval'],
+      day: 1,
+      headline: 'Dnes se cítíte hůř než včera. Je to normální',
+      body: 'Den po odběru bývá fyzicky nejtěžší: břicho nafouklé, střeva zastavená kombinací anestezie a progesteronu, nálada dole. Zároveň dnes obvykle přichází první telefonát z embryologie. Mějte u sebe papír a tři napsané otázky — v šoku si nevzpomenete na žádnou.',
+      whatsHappening: [
+        'Sledujte se: vážení ráno, obvod břicha, kolikrát močíte',
+        'Pomalá chůze po bytě je lepší než celodenní ležení',
+        'Náhlý propad nálady druhý den je fyziologický, ne předzvěst výsledku',
+      ],
+      task: 'Napište si na papír tři otázky pro embryologa a nechte ho u telefonu.',
+      reflection: 'Jaké číslo jsem si v hlavě určila jako „dost" — a odkud se vzalo?',
+      tip: 'Zvyšte příjem bílkovin a pijte i nápoje s minerály, nejen čistou vodu.',
+      callDoctorIf: [
+        'Přírůstek hmotnosti přes kilogram za den nebo rychle rostoucí obvod břicha',
+        'Dušnost, potíže s dýcháním vleže',
+        'Výrazně menší množství moči nebo močení méně než jednou za šest až osm hodin',
+        'Opakované zvracení, silná bolest břicha, teplota nad 38 °C',
+      ],
+    },
+    {
+      id: 'cyk-dc-retrieval-d2',
+      phases: ['retrieval'],
+      day: 2,
+      headline: 'Tělo se pomalu vrací, hlava zatím ne',
+      body: 'Druhý den po odběru už bývá tlak v podbřišku snesitelnější, ale nadmutí a zácpa přetrvávají. Pozor: riziko OHSS trvá dál a časná forma se objevuje typicky tři až sedm dní po odběru. Denní vážení a měření obvodu břicha nejsou přehnaná opatrnost, ale nejlepší domácí kontrola, kterou máte.',
+      whatsHappening: [
+        'Vaječníky jsou pořád zvětšené — bez sportu, bez zvedání těžkého, bez pohlavního styku',
+        'Zácpa se řeší vlákninou, tekutinami a pohybem, ne tlačením',
+        'Podpora progesteronem podle pokynů kliniky pokračuje',
+      ],
+      task: 'Zvažte se, změřte obvod břicha a zapište si to. Zabere to dvě minuty a lékaři to řekne hodně.',
+      reflection: 'Dovoluju si být teď nemocná, nebo se nutím fungovat, jako by se nic nestalo?',
+      tip: 'Používejte vložky, ne tampony, dokud vám klinika neřekne jinak.',
+      callDoctorIf: [
+        'Rychlý nárůst hmotnosti nebo obvodu břicha',
+        'Dušnost, bolest na hrudi',
+        'Bolest, otok nebo zarudnutí lýtka',
+        'Teplota nad 38 °C, silná bolest břicha nebo výrazně méně moči',
+      ],
+    },
+    {
+      id: 'cyk-dc-fert-d0',
+      phases: ['fertilization'],
+      day: 0,
+      headline: 'Dnes se vaše vajíčka potkávají se spermiemi',
+      body: 'Embryolog vyhledal vajíčka v odsáté tekutině, posoudil jejich zralost a podle zvolené metody je buď spojil se spermiemi, nebo do nich spermii vpravil mikropipetou. Použít lze pouze zralá vajíčka — nezralá se počítají dopředu a nejsou chyba. Zbytek dneška je čekání a to je vaše jediná role.',
+      whatsHappening: [
+        'Klasické IVF nechá spermii najít cestu samu, ICSI ji vpraví dovnitř',
+        'ICSI se volí například u mužského faktoru nebo před genetickým testováním',
+        'Výsledek oplození se hodnotí až zítra ráno',
+      ],
+      task: 'Zapište si otázku, kterou chcete zítra položit: kolik vajíček bylo zralých a kolik se oplodnilo.',
+      reflection: 'Jak se mám k tomu postavit, když číslo bude nižší, než jsem si představovala?',
+      tip: 'Zeptejte se kliniky, v jakém čase obvykle volají. Nebudete pak celý den viset na telefonu.',
+      callDoctorIf: [
+        'Silná bolest břicha, krvácení silnější než menstruace nebo teplota nad 38 °C',
+        'Rychlé nafouknutí břicha, dušnost nebo výrazně menší množství moči',
+      ],
+    },
+    {
+      id: 'cyk-dc-fert-d1',
+      phases: ['fertilization'],
+      day: 1,
+      headline: 'Dvě prvojádra: první skutečné číslo',
+      body: 'Zhruba 16 až 18 hodin po oplození embryolog kontroluje, jestli se ve vajíčku objevila dvě prvojádra — jedno z vajíčka, jedno ze spermie. To je znak normálního oplození. Embrya s jiným počtem prvojader se dál nekultivují a je to očekávaná součást procesu, ne selhání.',
+      whatsHappening: [
+        'Neoplodní se všechna vajíčka, ani při ICSI',
+        'Číslo z dnešního dne nepředpovídá číslo pátého dne',
+        'Zapisujte si přesně, co vám řekli, včetně slov, kterým jste nerozuměla',
+      ],
+      task: 'Po telefonátu si zapište doslova, co zaznělo. Interpretaci si nechte na později.',
+      reflection: 'Komu chci to číslo říct — a komu ne?',
+      tip: 'Nekomentujte to hned. Dejte si hodinu, než na to zareagujete i sama před sebou.',
+      callDoctorIf: [
+        'Prudká bolest břicha, mdloba nebo opakované zvracení',
+        'Nárůst hmotnosti přes kilogram za den, dušnost nebo výrazně méně moči',
+      ],
+    },
+    {
+      id: 'cyk-dc-kult-d1',
+      phases: ['embryo_culture'],
+      day: 1,
+      headline: 'Den 1: spojení dvou informací',
+      body: 'Ve vašich vajíčkách se dnes ráno hodnotila přítomnost dvou prvojader — okamžik, kdy se genetická informace z vajíčka a ze spermie poprvé setkala. Embrya, která tuhle kontrolu prošla, jdou zpátky do inkubátoru a dalších pár dní se o nich rozhoduje bez vás. Vaše tělo mezitím doznívá po odběru a to je jediná věc, kterou dnes můžete ovlivnit.',
+      whatsHappening: [
+        'Embrya leží v kapkách média v inkubátoru se stabilní teplotou a složením plynů',
+        'Identita vzorku se kontroluje při každém kroku, obvykle dvěma lidmi nebo elektronicky',
+        'Laboratoř otevírá inkubátor co nejméně — každé otevření mění podmínky',
+      ],
+      task: 'Zapište si do kalendáře, kdy klinika plánuje další telefonát a co v něm uslyšíte.',
+      reflection: 'Co mi dnes pomůže víc — vědět víc, nebo vědět míň?',
+      tip: 'Vyhraďte si na hledání informací dvacet minut denně a ne večer. Zbytek dne to odkládáte.',
+      callDoctorIf: [
+        'Silná bolest břicha, teplota nad 38 °C nebo krvácení silnější než menstruace',
+        'Rychlý nárůst hmotnosti, napjaté břicho, dušnost nebo výrazně méně moči',
+      ],
+    },
+    {
+      id: 'cyk-dc-kult-d2',
+      phases: ['embryo_culture'],
+      day: 2,
+      headline: 'Den 2: první dělení',
+      body: 'Embrya, která se normálně oplodnila, by dnes měla mít zhruba dvě až čtyři buňky. Embryolog sleduje jejich počet, stejnoměrnost a podíl fragmentace — drobných úlomků buněčné hmoty, kterých má být co nejméně. Většina pracovišť dnes nevolá, protože informace z druhého dne by nezměnila plán.',
+      whatsHappening: [
+        'Embryo zatím běží na zásobách a informacích z vajíčka',
+        'Rozdíly mezi embryi v rychlosti dělení jsou v této fázi běžné',
+        'Vaše nadmutí a zácpa dnes typicky vrcholí nebo pomalu ustupují',
+      ],
+      task: 'Naplánujte si na dnešek jednu konkrétní dokončitelnou věc. Ne úklid bytu — jednu zásuvku.',
+      reflection: 'Kterou myšlenku si dnes přehrávám nejčastěji a je vůbec moje?',
+      tip: 'Chůze po bytě několikrát denně pomáhá střevům i snižuje riziko trombózy.',
+      callDoctorIf: [
+        'Dušnost, bolest na hrudi nebo bolest a otok lýtka',
+        'Silná bolest břicha, opakované zvracení nebo teplota nad 38 °C',
+      ],
+    },
+    {
+      id: 'cyk-dc-kult-d3',
+      phases: ['embryo_culture'],
+      day: 3,
+      headline: 'Den 3: embryo přepíná na vlastní genom',
+      body: 'Dnes má embryo obvykle kolem šesti až osmi buněk a odehrává se v něm zásadní věc — přestává běžet na zásobách z vajíčka a začíná pracovat podle vlastní genetické informace. Právě tady se část embryí zastaví. Není to nic, co byste ovlivnila, a není to nic, co byste udělala špatně.',
+      whatsHappening: [
+        'Na některých pracovištích se právě třetí den provádí transfer, hlavně když je embryí málo',
+        'U malého počtu embryí nemá selekce v laboratoři smysl — děloha je lepší prostředí než inkubátor',
+        'Dnes často přichází telefonát s informací o dalším plánu',
+      ],
+      task: 'Zeptejte se dnes přímo: plánujete transfer třetí, nebo pátý den, a podle čeho se rozhodnete?',
+      reflection: 'Odvozuju z dnešního počtu embryí, jak to celé dopadne? A co když to nejde?',
+      tip: 'Číslo z dnešního dne není předpověď. Mezi dnem tři a dnem pět se toho děje víc než mezi dnem nula a třemi.',
+      callDoctorIf: [
+        'Rychle rostoucí obvod břicha nebo přírůstek hmotnosti přes kilogram za den',
+        'Dušnost, výrazně menší množství moči, opakované zvracení',
+      ],
+    },
+    {
+      id: 'cyk-dc-kult-d4',
+      phases: ['embryo_culture'],
+      day: 4,
+      headline: 'Den 4: morula, den bez zpráv',
+      body: 'Buňky se dnes přestanou počítat, protože se k sobě těsně přimknou a hranice mezi nimi zmizí — vznikne kompaktní kulička zvaná morula. Vypadá to jako krok zpět a je to nutná fáze před vznikem blastocysty. Čtvrtý den se obvykle netelefonuje, takže ticho dnes nic neznamená.',
+      whatsHappening: [
+        'Morula se hodnotí obtížně, proto z ní většina laboratoří nedělá závěry',
+        'Zítřek je den, kdy se ukáže, kolik embryí došlo do stádia blastocysty',
+        'Vaše fyzická nepohoda by už měla pomalu ustupovat',
+      ],
+      task: 'Dnešek naplánujte tak, aby v něm nebyl prostor na čekání u telefonu. Ven, mezi lidi, nebo do práce.',
+      reflection: 'Co bych si dnes řekla, kdyby tohle prožívala moje nejlepší kamarádka?',
+      tip: 'Ticho z laboratoře není špatná zpráva. Je to jen den, ze kterého se nic nehlásí.',
+      callDoctorIf: [
+        'Teplota nad 38 °C, silná bolest břicha nebo krvácení se sraženinami',
+        'Dušnost, rychlé nafouknutí břicha nebo výrazně méně moči',
+      ],
+    },
+    {
+      id: 'cyk-dc-kult-d5',
+      phases: ['embryo_culture'],
+      day: 5,
+      headline: 'Den 5: blastocysta a první rozdělení osudů',
+      body: 'Uvnitř moruly vznikla dutina a buňky se poprvé rozdělily do dvou skupin: z vnitřní buněčné masy vznikne plod, z vnější vrstvy placenta. Tomuhle stádiu se říká blastocysta a je to nejčastější okamžik pro transfer nebo zamrazení. Dnes obvykle uslyšíte, kolik embryí došlo až sem.',
+      whatsHappening: [
+        'Hodnocení typu 4AA popisuje vzhled, ne genetiku — je to nástroj pro pořadí, ne předpověď',
+        'Pokud se dělá genetické testování, odebírá se právě teď několik buněk z vnější vrstvy',
+        'Část embryí dojde do blastocysty až šestý den a to není horší varianta',
+      ],
+      task: 'Zeptejte se: které embryo přenášíte jako první a proč zrovna tohle? Odpověď vám poví víc než písmena.',
+      reflection: 'Co pro mě dnešní číslo znamená a co jsem si k němu přidala sama?',
+      tip: 'Písmena hodnocení si nezapisujte jako mantru. Ta samá dvě písmena vám během dvou týdnů poslouží jako důvod k naději i k zoufalství.',
+      callDoctorIf: [
+        'Silná bolest břicha, dušnost nebo rychlý nárůst hmotnosti',
+        'Teplota nad 38 °C nebo výrazně menší množství moči',
+      ],
+    },
+    {
+      id: 'cyk-dc-kult-d6',
+      phases: ['embryo_culture'],
+      day: 6,
+      headline: 'Den 6: opozdilci nejsou horší',
+      body: 'Část blastocyst dosáhne svého stádia až dnes, výjimečně sedmý den, a obvykle se zamrazí k pozdějšímu použití. Z blastocyst šestého dne se rodí děti — pomalejší start nepředpovídá pomalejší dítě. Dnes se také uzavírá bilance celého cyklu a s ní přichází buď úleva, nebo velmi těžká zpráva.',
+      whatsHappening: [
+        'Zamrazení probíhá vitrifikací, tedy ultrarychlým zmrazením bez tvorby ledových krystalů',
+        'Při teplotě tekutého dusíku se veškeré děje v embryu zastaví',
+        'Pokud do blastocysty nedošlo nic, máte právo na samostatnou konzultaci, ne jen na větu do telefonu',
+      ],
+      task: 'Napište si pět otázek na kontrolní konzultaci — hlavně tu klíčovou: co byste u nás příště udělali jinak?',
+      reflection: 'Co si o dnešním výsledku říkám a co z toho je opravdu o mně?',
+      tip: 'Nerozhodujte o dalším cyklu tenhle týden. Rozhodnutí z prvních dnů jsou rozhodnutí ze zoufalství.',
+      callDoctorIf: [
+        'Silná bolest břicha, teplota nad 38 °C, dušnost',
+        'Rychlý nárůst hmotnosti nebo obvodu břicha, výrazně méně moči',
+        'Bolest, otok nebo zarudnutí lýtka',
+      ],
+    },
+  ],
+  encouragements: [
+    {
+      id: 'cyk-enc-rutina',
+      text: 'Nemusíte to zvládat elegantně. Stačí, když dnes večer píchnete tu injekci.',
+      author: 'Gabi',
+      tone: 'practical',
+    },
+    {
+      id: 'cyk-enc-cisla',
+      text: 'Vaše čísla nejsou vaše známka. Jsou to údaje o tom, jak vaše tělo reaguje na dávku — nic víc.',
+      author: 'Gabi',
+      tone: 'practical',
+    },
+    {
+      id: 'cyk-enc-modriny',
+      text: 'To břicho, na které se teď nerada díváte, odvádí zrovna největší práci ve vašem životě.',
+      tone: 'tender',
+    },
+    {
+      id: 'cyk-enc-nekontrolovatelne',
+      text: 'Vaše práce skončila triggerem. To, co se děje teď, není vaše zodpovědnost — a to je zároveň to nejtěžší.',
+      author: 'Gabi',
+      tone: 'intense',
+    },
+    {
+      id: 'cyk-enc-stres',
+      text: 'Stres neničí embrya. Kdyby ano, většina lidí na světě by se nenarodila.',
+      tone: 'practical',
+    },
+    {
+      id: 'cyk-enc-plac',
+      text: 'Pláč druhý den po odběru není špatné znamení. Je to hormony, anestezie a únava, které konečně dostaly slovo.',
+      tone: 'tender',
+    },
+    {
+      id: 'cyk-enc-ticho',
+      text: 'Dny ticha nezvládá nikdo dobře. Cílem není projít je krásně, cílem je projít je.',
+      author: 'Gabi',
+      tone: 'hopeful',
+    },
+    {
+      id: 'cyk-enc-vina',
+      text: 'Embryo se nezastavilo proto, že jste zvedla nákup, pila kávu nebo se rozbrečela. Přineslo si tu informaci s sebou.',
+      tone: 'grieving',
+    },
+    {
+      id: 'cyk-enc-jedno',
+      text: 'Jedno embryo není zbytek. Je to to, které prošlo vším, co na něj bylo posláno.',
+      tone: 'hopeful',
+    },
+    {
+      id: 'cyk-enc-otazky',
+      text: 'Nejlepší pacientka není ta, která ví všechno. Je to ta, která si napíše otázku na papír a položí ji nahlas.',
+      author: 'Gabi',
+      tone: 'practical',
+    },
+    {
+      id: 'cyk-enc-pauza',
+      text: 'Pauza s konkrétním datem konce není vzdání se. Je to plán.',
+      tone: 'practical',
+    },
+    {
+      id: 'cyk-enc-telefon',
+      text: 'Když váháte, jestli je to ještě normální, je to samo o sobě důvod zavolat. Nikdo vás nebude považovat za hysterickou.',
+      author: 'Gabi',
+      tone: 'practical',
+    },
+  ],
+  glossary: [
+    {
+      term: 'Folikul',
+      aliases: ['folikuly', 'folikulometrie'],
+      short: 'Tekutinou vyplněný váček ve vaječníku, ve kterém dozrává vajíčko.',
+      long: 'Ultrazvuk vidí folikul, ne vajíčko uvnitř. Proto je velikost folikulu jen nepřímým ukazatelem zralosti vajíčka a počet folikulů se nikdy nerovná počtu získaných vajíček. Během stimulace folikuly rostou zhruba o jeden až dva milimetry denně a jejich sledování se nazývá folikulometrie.',
+      topics: ['stimulace', 'vysledky'],
+    },
+    {
+      term: 'Trigger',
+      aliases: ['dokončovací injekce', 'spouštěcí injekce'],
+      short: 'Injekce, která dokončí zrání vajíček a uvolní je ze stěny folikulu.',
+      long: 'Aplikuje se v přesně určenou hodinu, protože odběr se plánuje zhruba 34 až 38 hodin po ní — těsně před tím, než by folikuly praskly samy. Existuje několik typů; agonistický trigger výrazně snižuje riziko těžkého OHSS a lze ho použít pouze v antagonistickém protokolu. Pokud si nejste jistá časem aplikace, volejte kliniku okamžitě.',
+      topics: ['stimulace', 'leky', 'hormony'],
+    },
+    {
+      term: 'OHSS',
+      aliases: ['ovariální hyperstimulační syndrom', 'hyperstimulace'],
+      short: 'Komplikace stimulace, při které vaječníky přehnaně reagují a tekutina uniká z cév do dutiny břišní.',
+      long: 'Většina případů je mírná a odezní sama. Varovné příznaky, u kterých je nutné okamžitě volat kliniku nebo pohotovost, jsou rychlý nárůst hmotnosti (přes zhruba kilogram za den), rychle rostoucí obvod břicha, dušnost, výrazně menší množství moči, opakované zvracení, závrať nebo bolest a otok lýtka. Riziko je vyšší u PCOS, vysokého AMH a velkého počtu folikulů.',
+      topics: ['stimulace', 'hormony', 'klinika'],
+    },
+    {
+      term: 'ICSI',
+      aliases: ['intracytoplazmatická injekce spermie'],
+      short: 'Metoda oplození, při které embryolog vpraví jednu vybranou spermii přímo do vajíčka.',
+      long: 'Používá se například u mužského faktoru, po předchozím selhání oplození klasickým IVF, u chirurgicky získaných spermií nebo před genetickým testováním embryí. Obchází bariéru obalu vajíčka, ale neřeší kvalitu vajíčka ani genetiku spermie a oplození nezaručuje.',
+      topics: ['embryologie', 'partner'],
+    },
+    {
+      term: 'PICSI',
+      short: 'Způsob výběru spermie podle schopnosti navázat se na kyselinu hyaluronovou.',
+      long: 'Kyselina hyaluronová se přirozeně nachází v obalu vajíčka a zralé spermie se na ni váží. Embryolog pak vybírá pro ICSI z těch navázaných. Zvažuje se cíleně, například při vyšší fragmentaci DNA spermií nebo po opakovaném neúspěchu.',
+      topics: ['embryologie', 'partner'],
+    },
+    {
+      term: 'Blastocysta',
+      short: 'Stádium embrya obvykle pátý den po oplození, s dutinou a prvním rozdělením buněk.',
+      long: 'Vnitřní buněčná masa dá vzniknout plodu, vnější vrstva (trofektoderm) placentě a plodovým obalům. Blastocysta je nejčastější okamžik pro transfer, zamrazení nebo odběr buněk k genetickému testování. Blastocysty šestého dne nejsou horší — jen pomalejší.',
+      topics: ['embryologie', 'transfer'],
+    },
+    {
+      term: 'Morula',
+      short: 'Kompaktní kulička buněk, obvykle čtvrtý den po oplození.',
+      long: 'Buňky se k sobě těsně přimknou a jejich hranice zmizí, takže se přestanou počítat. Vypadá to jako krok zpět, ale je to nutná fáze před vznikem blastocysty. Čtvrtý den se proto obvykle nehlásí žádná čísla.',
+      topics: ['embryologie'],
+    },
+    {
+      term: 'Gardnerova klasifikace',
+      aliases: ['hodnocení embryí', '4AA'],
+      short: 'Nejrozšířenější způsob hodnocení blastocyst pomocí čísla a dvou písmen.',
+      long: 'Číslo popisuje stupeň rozvinutí blastocysty, první písmeno vnitřní buněčnou masu a druhé vnější vrstvu. Hodnocení popisuje vzhled, nikoli genetiku, je částečně subjektivní a slouží k seřazení embryí, ne jako předpověď výsledku.',
+      topics: ['embryologie', 'vysledky'],
+    },
+    {
+      term: 'Vitrifikace',
+      aliases: ['zamrazení embryí'],
+      short: 'Ultrarychlé zmrazení embryí či vajíček na teplotu tekutého dusíku.',
+      long: 'Embryo se prosytí ochrannými látkami a během zlomku vteřiny ochladí zhruba na minus 196 °C, takže se voda nestihne uspořádat do poškozujících ledových krystalů. Při této teplotě se veškeré biologické děje zastaví. Doba uchování je omezená právně a smluvně, ne biologicky.',
+      topics: ['embryologie', 'klinika'],
+    },
+    {
+      term: 'PGT-A',
+      aliases: ['preimplantační genetické testování', 'genetické testování embryí'],
+      short: 'Vyšetření počtu chromozomů embrya z několika buněk odebraných z blastocysty.',
+      long: 'Nezjišťuje všechny genetické nemoci, nezaručuje těhotenství ani zdravé dítě a nezvyšuje počet vašich dobrých embryí — pomáhá je seřadit. Výsledek může být i mozaikový, což vyžaduje genetickou konzultaci. O vhodnosti testování rozhoduje lékař společně s klinickým genetikem.',
+      topics: ['genetika', 'embryologie'],
+    },
+    {
+      term: 'Antagonistický protokol',
+      short: 'Nejčastější stimulační protokol, kde se předčasné ovulaci brání antagonistou.',
+      long: 'Stimulace začíná na začátku cyklu a po několika dnech se přidá druhá injekce blokující signál k ovulaci. Bývá kratší a šetrnější a umožňuje agonistický trigger, který snižuje riziko těžkého OHSS. Volbu protokolu určuje lékař podle vašich vyšetření.',
+      topics: ['stimulace', 'leky'],
+    },
+    {
+      term: 'Estradiol',
+      aliases: ['E2'],
+      short: 'Hlavní hormon produkovaný rostoucími folikuly, sledovaný z krve během stimulace.',
+      long: 'Jeho hladina stoupá úměrně počtu a velikosti folikulů. Hodnotí se vždy v kontextu ultrazvukového nálezu a předchozího odběru, nikdy jako izolované číslo. Velmi rychlý vzestup je jedním z varovných signálů rizika OHSS.',
+      topics: ['hormony', 'vysledky'],
+    },
+    {
+      term: 'Torze vaječníku',
+      short: 'Zkroucení zvětšeného vaječníku kolem vlastní osy — akutní stav.',
+      long: 'Riziko je vyšší během stimulace a krátce po odběru, kdy jsou vaječníky výrazně zvětšené. Proto se v tomto období nedoporučuje běh, skákání, zvedání těžkého ani prudké změny polohy. Náhlá prudká jednostranná bolest břicha, zvlášť se zvracením nebo mdlobou, vyžaduje okamžité vyhledání lékařské pomoci.',
+      topics: ['stimulace', 'pohyb'],
+    },
+    {
+      term: 'Fragmentace DNA spermií',
+      short: 'Vyšetření podílu spermií s poškozenou genetickou informací.',
+      long: 'Spermie může vypadat i plavat výborně a přitom mít poškozené řetězce DNA. Hodnoty ovlivňuje věk, kouření, obezita, varikokéla, infekce, horko i délka abstinence před odběrem. Vyšetření se indikuje cíleně, obvykle při opakovaném neúspěchu, a jeho výsledek interpretuje androlog nebo reprodukční lékař.',
+      topics: ['partner', 'embryologie', 'genetika'],
+    },
   ],
 }
