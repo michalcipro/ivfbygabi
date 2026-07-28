@@ -2010,7 +2010,13 @@ Není to test vašich znalostí. Je to způsob, jak si projít věty, které po 
 
 Většina z nich zní logicky. Právě proto se drží tak dlouho a právě proto vás dokážou tak zaměstnat ve tři ráno.
 
-**U každé otázky najdete vysvětlení**, které je delší než odpověď. To je záměr — vysvětlení je to podstatné.
+**U každé otázky najdete vysvětlení**, které je delší než odpověď. To je záměr — vysvětlení je to podstatné. Odpověď samotná vám nepomůže ve tři ráno, ale věta, kterou si zapamatujete, možná ano.
+
+## Proč zrovna tyhle věty
+
+Mýty kolem ztráty těhotenství mají jednu společnou vlastnost: **skoro všechny přesouvají odpovědnost na ženu.** Za to, co zvedla, co snědla, co si myslela, jak dlouho čekala. Právě proto se drží tak houževnatě a právě proto stojí za to je jednou pořádně projít.
+
+Až uslyšíte některou z nich příště, nebudete se muset zastavit a přemýšlet, jestli na tom náhodou něco není. Budete to vědět.
 
 ## Poznámka na úvod
 
@@ -2230,7 +2236,6 @@ Protože ve stresu si z rozhovoru odnesete zhruba třetinu. Protože lékař má
         },
       ],
     },
-    // SENTINEL_ITEMS
   ],
   dailyCards: [
     {
@@ -2610,12 +2615,135 @@ Protože ve stresu si z rozhovoru odnesete zhruba třetinu. Protože lékař má
       task: 'Napište si na papír dvě čísla: kolik pokusů a kolik prostředků. Hranice se dá kdykoli posunout — mít ji je něco jiného než plout donekonečna.',
       reflection: 'Kdy jsem naposledy udělala něco, co vůbec nesouviselo s léčbou?',
     },
-    // SENTINEL_CARDS
   ],
   encouragements: [
-    // SENTINEL_ENC
+    {
+      id: 'loss-enc-mereni',
+      text: 'Ztráta se neměří počtem týdnů ani milimetry na ultrazvuku. Měří se tím, co jste si už dovolila představit.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-nemuselo-byt-nejlepsi',
+      text: 'Nemuselo to tak být nejlepší. Nemusíte v tom hledat smysl. Někdy je jediná pravdivá věta ta, že je to hrozně nespravedlivé.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-vina',
+      text: 'Nebyl to nákup do třetího patra, ani ta káva, ani to, že jste se v jednu chvíli bála. Hlava bude vinu hledat dál. Nemusíte jí věřit.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-vlny',
+      text: 'Dobrý den není důkaz, že jste přes to. Špatný den o měsíc později není důkaz, že jdete zpátky. Smutek chodí ve vlnách, ne v etapách.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-telo-neselhalo',
+      text: 'Vaše tělo neselhalo. Prošlo těhotenstvím, jeho koncem a hormonální bouří — a teď se dává dohromady. Že je pomalé, je práce, ne slabost.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-necitit-nic',
+      text: 'Když necítíte skoro nic, neznamená to, že jste to dítě chtěla míň. Někdy si tělo dá odklad, dokud nemá kapacitu.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-nemusite-vdecna',
+      text: 'Nemusíte být vděčná dřív, než budete. Ani za informaci, ani za to, že jste v pořádku, ani za nic jiného, co vám kdo nabídne místo soucitu.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-lhuta',
+      text: 'Neexistuje lhůta, po které by ztráta přestala platit. Nikomu nedlužíte vysvětlení, jak dlouho a jak silně truchlíte.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-partner',
+      text: 'To, že nepláče, není měřítko toho, jak moc to dítě chtěl. Truchlení má víc podob než jednu a žádná z nich není ta správná.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-zavist',
+      text: 'Když vás cizí radost bolí, není to závist ani špatnost. Je to smutek, který si zrovna sedl vedle cizího štěstí.',
+      author: 'Tým IVF by Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-misto',
+      text: 'Cíl není přestat být smutná. Cíl je, aby smutek přestal být jediné, co je v místnosti. To se opravdu stane — jen si to zatím neumíte představit.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
+    {
+      id: 'loss-enc-jdete-dal',
+      text: 'To, že jdete dál, není důkaz, že jste přes ztrátu přešla. Je to důkaz, že s ní umíte jít. To je něco úplně jiného a mnohem těžšího.',
+      author: 'Gabi',
+      tone: 'grieving',
+    },
   ],
   glossary: [
-    // SENTINEL_GLOS
+    {
+      term: 'Biochemické těhotenství',
+      aliases: ['biochemická gravidita', 'časná ztráta'],
+      short: 'Velmi časná ztráta těhotenství, které bylo prokázané jen laboratorně, ne na ultrazvuku.',
+      long: 'Embryo se zahnízdilo natolik, že začalo tvořit hCG, ale těhotenství se zastavilo dřív, než by bylo možné cokoli zobrazit na ultrazvuku. Slovo biochemické popisuje jen způsob průkazu — jedinou stopou byla laboratorní hodnota. O tom, jak skutečná je ztráta, neříká nic. Obvykle následují kontrolní odběry hCG, dokud hodnota neklesne pod měřitelnou mez, mimo jiné kvůli vyloučení mimoděložního uložení.',
+      topics: ['ztrata', 'vysledky', 'hormony'],
+    },
+    {
+      term: 'Zamlklé těhotenství',
+      aliases: ['missed abortion', 'zamlklý potrat'],
+      short: 'Vývoj těhotenství se zastavil, ale tělo to zatím nerozpoznalo a nepřišlo krvácení.',
+      long: 'Zjišťuje se obvykle při ultrazvukovém vyšetření — nejčastěji jako plodové vejce bez embrya, embryo bez srdeční akce nebo výrazně zaostávající velikost. Příznaky těhotenství mohou pokračovat, což bývá velmi kruté. Diagnóza má přesná kritéria a téměř vždy se ověřuje kontrolním vyšetřením s odstupem. Dál se rozhoduje mezi vyčkáváním na spontánní odchod, medikamentózním postupem a instrumentální revizí; o tom, co je ve vašem případě bezpečné, rozhoduje lékař.',
+      topics: ['ztrata', 'klinika'],
+    },
+    {
+      term: 'Mimoděložní těhotenství',
+      aliases: ['ektopická gravidita', 'ektopické těhotenství', 'GEU'],
+      short: 'Těhotenství uhnízděné mimo dutinu děložní, nejčastěji ve vejcovodu. Nemůže pokračovat a vyžaduje léčbu.',
+      long: 'Bez léčby může vést k prasknutí vejcovodu a život ohrožujícímu vnitřnímu krvácení. Diagnostika stojí na opakovaných odběrech hCG, vaginálním ultrazvuku a klinickém obrazu. Léčba je buď konzervativní podáním metotrexátu, nebo operační, obvykle laparoskopicky; volbu určuje lékař podle akutnosti stavu, hodnot a nálezu. Okamžitou pomoc vyhledejte při prudké bolesti břicha, bolesti v rameni nebo mezi lopatkami, závrati, mdlobě, bledosti nebo studeném potu.',
+      topics: ['ztrata', 'klinika', 'leky'],
+    },
+    {
+      term: 'Revize dutiny děložní',
+      aliases: ['kyretáž', 'instrumentální revize', 'vakuová aspirace'],
+      short: 'Krátký výkon na sále, při kterém se odstraní obsah dutiny děložní, obvykle v celkové anestezii.',
+      long: 'Dnes se nejčastěji provádí odsátím, často pod ultrazvukovou nebo hysteroskopickou kontrolou, což pomáhá odstranit tkáň úplně a šetrně. Výkon obvykle trvá kolem deseti až dvaceti minut a vyžaduje lačnění a doprovod domů. Krvácení po výkonu bývá slabší, než ženy čekají, a postupně přechází do špinění. Ozvěte se lékaři při horečce nad 38 °C, zapáchajícím výtoku, silném nebo znovu sílícím krvácení a při narůstající bolesti.',
+      topics: ['ztrata', 'klinika'],
+    },
+    {
+      term: 'Metotrexát',
+      short: 'Lék používaný ke konzervativní léčbě mimoděložního těhotenství, podávaný injekčně.',
+      long: 'Zastavuje dělení rychle se množících buněk, tedy i buněk trofoblastu, a umožňuje léčbu bez operace. Zvažuje se u stabilního stavu, obvykle při nižších hodnotách hCG a bez známek krvácení do dutiny břišní; podmínky i dávkování určuje výhradně lékař. Po podání následují opakované odběry hCG po několik týdnů — hodnota může nejdřív ještě stoupnout. Součástí léčby jsou omezení, která je nutné dodržet, a odklad dalšího těhotenství, jehož délku určuje lékař.',
+      topics: ['ztrata', 'leky'],
+    },
+    {
+      term: 'Opakované ztráty těhotenství',
+      aliases: ['habituální potrácení', 'opakovaný potrat'],
+      short: 'Situace, kdy po sobě následuje více ztrát a je namístě systematické hledání příčiny.',
+      long: 'Po jedné časné ztrátě se obvykle rozsáhle nevyšetřuje, protože nejčastější příčinou bývá náhodná chromozomální odchylka embrya. Systematické vyšetření se zvažuje po opakovaných ztrátách nebo dřív, když je pro to konkrétní důvod. Do diskuse patří genetika obou partnerů a tkáně, zobrazení dutiny děložní, antifosfolipidové protilátky, funkce štítné žlázy a vyšetření partnera. U části párů zůstane příčina i po kompletním vyšetření nevysvětlená. Rozsah vyšetření určuje ošetřující lékař.',
+      topics: ['ztrata', 'genetika', 'vysledky'],
+    },
+    {
+      term: 'Perinatální ztráta',
+      short: 'Zastřešující pojem pro ztrátu dítěte v těhotenství, při porodu nebo krátce po něm.',
+      long: 'Používá se především v psychologické a podpůrné praxi. Je užitečné ho znát, protože podle něj se v Česku hledá cílená pomoc — podpůrné skupiny, poradenství neziskových organizací i terapeuti se zaměřením na tuhle oblast. Rozdíl mezi odborníkem, který tuhle problematiku zná, a tím, který ji nezná, bývá pro ženy po ztrátě zásadní.',
+      topics: ['ztrata', 'psychika', 'komunita'],
+    },
+    {
+      term: 'Srůsty v dutině děložní',
+      aliases: ['nitroděložní srůsty', 'Ashermanův syndrom'],
+      short: 'Vazivové spojky uvnitř dutiny děložní, které mohou vzniknout po zákroku a ovlivnit menstruaci i zahnízdění.',
+      long: 'Patří mezi možné pozdní komplikace po revizi dutiny děložní, mimo jiné proto se dnes výkony provádějí co nejšetrněji a často pod kontrolou zobrazení. Podezření vzniká typicky tehdy, když je menstruace po zákroku výrazně slabší nebo zcela chybí ve dvou a více cyklech, případně při opakovaně neúspěšném zahnízdění. Diagnostika a případné řešení patří do rukou lékaře — nejde o stav, který byste měla hodnotit sama.',
+      topics: ['ztrata', 'klinika'],
+    },
   ],
 }

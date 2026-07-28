@@ -19,6 +19,7 @@ import { pack as cardsCycle } from './packs/cards-cycle'
 import { pack as cardsPregnancy } from './packs/cards-pregnancy'
 import { pack as cardsPostpartum } from './packs/cards-postpartum'
 import { pack as cardsNicu } from './packs/cards-nicu'
+import { pack as cardsGaps } from './packs/cards-gaps'
 import { pack as encouragements } from './packs/encouragements'
 import { pack as meditations } from './packs/meditations'
 
@@ -41,6 +42,7 @@ const PACKS: ContentPack[] = [
   cardsPregnancy,
   cardsPostpartum,
   cardsNicu,
+  cardsGaps,
   encouragements,
   meditations,
 ]

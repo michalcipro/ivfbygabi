@@ -125,6 +125,19 @@ test('nedonošené dítě na oddělení i po návratu domů má kartu', () => {
   }
 })
 
+test('každá fáze cesty má aspoň jednu denní kartu', () => {
+  const byPhase = new Map<string, number>()
+  for (const card of DAILY_CARDS) {
+    for (const phase of card.phases) byPhase.set(phase, (byPhase.get(phase) ?? 0) + 1)
+  }
+  const empty = PHASE_IDS.filter((p) => (byPhase.get(p) ?? 0) === 0)
+  assert.deepEqual(
+    empty,
+    [],
+    `fáze bez denní karty spadnou na obecný popis: ${empty.join(', ')}`,
+  )
+})
+
 // ------------------------------------------------------- integrita katalogu ---
 
 test('všechna id obsahu jsou unikátní', () => {

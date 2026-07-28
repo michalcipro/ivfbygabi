@@ -2153,6 +2153,820 @@ Snědla jste kousek nedopečeného masa nebo plísňový sýr? **Nepanikařte.**
         },
       ],
     },
+    {
+      id: 'teh-cestovani-v-tehotenstvi',
+      kind: 'article',
+      title: 'Cestování v těhotenství: kdy, kam a s čím počítat',
+      excerpt:
+        'Létat se smí déle, než si většina lidí myslí — ale je pár věcí, které je lepší vyřešit před rezervací než po ní.',
+      body: `## Kdy je nejlepší čas
+
+Pokud těhotenství probíhá bez komplikací, bývá nejpříjemnějším obdobím pro cestování **druhý trimestr**, přibližně mezi 14. a 27. týdnem. Nevolnosti obvykle ustoupily, břicho ještě neomezuje a únava je snesitelnější.
+
+**Vždy to ale konzultujte s lékařem předem** — u rizikového těhotenství, po cerkláži, při krátkém hrdle, u dvojčat nebo po předchozím předčasném porodu může být doporučení jiné.
+
+## Létání
+
+Pravidla aerolinek se liší, ale obecně platí:
+
+- **do 28. týdne** obvykle bez omezení,
+- **28.–36. týden** často **potvrzení od lékaře** ne starší než několik dní, v angličtině,
+- **od 36. týdne** (u dvojčat obvykle od 32. týdne) většina dopravců **nepřepravuje**.
+
+**Ověřte si podmínky konkrétní aerolinky písemně** a vytiskněte si je. Personál u přepážky rozhoduje podle svých pravidel, ne podle vašich očekávání.
+
+Za letu:
+
+- **choďte** aspoň každou hodinu, protahujte kotníky,
+- **kompresní punčochy** — v těhotenství je riziko trombózy zvýšené a let ho dále zvyšuje,
+- **pijte hodně vody**, letadlo vysušuje,
+- **pás si zapínejte pod bříškem**, přes pánev,
+- **sedadlo u uličky**, ať nemusíte nikoho budit.
+
+Skenery na letišti ani samotný let plodu neškodí.
+
+## Autem
+
+- **Přestávka každé dvě hodiny**, projít se aspoň pět minut.
+- **Pás vždy** — spodní část pod břichem přes pánevní kosti, horní mezi prsy a stranou od břicha. **Nikdy pás přes břicho.**
+- **Airbag nechte zapnutý**, sedadlo posuňte co nejdál od volantu.
+- **Po jakékoli dopravní nehodě, i drobné**, se nechte vyšetřit v porodnici. I náraz, který vypadá neškodně, může způsobit odloučení placenty.
+
+## Kam raději ne
+
+- **Oblasti s nutností antimalarické profylaxe** nebo s výskytem virů přenášených komary, které mohou ovlivnit vývoj plodu.
+- **Destinace vyžadující živé vakcíny.** Většina živých vakcín je v těhotenství kontraindikovaná.
+- **Vysoké nadmořské výšky** nad zhruba 2500 metrů bez aklimatizace.
+- **Místa s nedostupnou zdravotní péčí** nebo daleko od nemocnice.
+- **Potápění s přístrojem** je v těhotenství nedoporučené.
+
+## Co si zařídit před cestou
+
+1. **Cestovní pojištění, které výslovně kryje těhotenství** a komplikace. Standardní pojištění je často vylučuje nebo omezuje týdnem těhotenství — čtěte podmínky.
+2. **Evropský průkaz zdravotního pojištění** při cestě po EU.
+3. **Těhotenskou průkazku a kopii nálezů**, ideálně i stručné shrnutí v angličtině.
+4. **Kontakt na nejnemocnici v cíli cesty.** Zjistěte si to předem, ne až v panice.
+5. **Léky, které užíváte**, v originálním balení a v dostatečném množství.
+6. **Konzultaci s lékařem** — a nechte si písemně potvrdit, že proti cestě nemá námitky.
+
+## Praktické drobnosti
+
+- **Pitný režim a svačiny** vždy s sebou, zpoždění se nedá naplánovat.
+- **Jídlo z rizikových zdrojů** je v cizině větší téma než doma — pozor na nepasterizované mléčné výrobky, syrové ryby a neomyté ovoce.
+- **Voda z kohoutku** jen tam, kde je bezpečná; jinak balená, i na čištění zubů.
+- **Slunce** — v těhotenství se snadněji tvoří pigmentové skvrny, používejte vysoký faktor.
+- **Vedro** zhoršuje otoky a únavu. Plánujte program na ráno a večer.
+
+## Když jedete po Česku
+
+Většina výše uvedeného odpadá, ale i tak: **vezměte si těhotenskou průkazku**, zjistěte si nejbližší porodnici a při rizikovém těhotenství se zeptejte, jak daleko od domova můžete být.
+
+## Kdy volat lékaře nebo jet do nemocnice
+
+- krvácení, odtok plodové vody,
+- pravidelné stahy nebo tlak dolů,
+- po jakékoli dopravní nehodě nebo pádu na břicho,
+- **otok, bolest a zarudnutí jednoho lýtka** po dlouhé cestě, náhlá dušnost či bolest na hrudi,
+- horečka nad 38 °C, průjem se zvracením a známkami dehydratace,
+- snížení pohybů plodu.
+
+> Text je obecný přehled. Vhodnost cesty ve vaší konkrétní situaci posoudí výhradně váš lékař.`,
+      minutes: 8,
+      phases: ['pregnancy', 'early_pregnancy'],
+      gestWeeks: [8, 34],
+      topics: ['tehotenstvi', 'sebepece'],
+      excludeModifiers: ['cervical_insufficiency'],
+      level: 'deep',
+      hero: 'sky',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Světová zdravotnická organizace — doporučení pro prenatální péči'],
+      publishedOn: '2026-03-05',
+      boost: 0.5,
+    },
+    {
+      id: 'teh-pohyb-a-cviceni',
+      kind: 'article',
+      title: 'Pohyb v těhotenství: co je bezpečné a co opravdu pomáhá',
+      excerpt:
+        'Po letech, kdy vám všichni říkali, ať se šetříte, přijde těžká otázka — kolik pohybu je vlastně v pořádku.',
+      body: `## Proč se vůbec hýbat
+
+Pravidelný přiměřený pohyb v těhotenství má doložené přínosy: **snižuje riziko gestačního diabetu a preeklampsie, zmírňuje bolesti zad a pánve, zlepšuje spánek a náladu, usnadňuje porod i rekonvalescenci.**
+
+Obvyklé doporučení pro těhotenství bez komplikací zní **přibližně 150 minut středně intenzivní aktivity týdně**, rozložených do několika dnů. Středně intenzivní znamená: **zadýcháte se, ale dokážete mluvit ve větách.**
+
+**Pokud máte rizikové těhotenství, krátké hrdlo, cerkláž, krvácení nebo jinou komplikaci, tento článek pro vás neplatí a řídíte se výhradně pokynem lékaře.**
+
+## Co je vhodné
+
+- **Chůze.** Nejdostupnější a nejlépe snášená aktivita celého těhotenství.
+- **Plavání a aquaaerobik.** Voda nadnáší, ulevuje zádům a otokům.
+- **Těhotenská jóga.** Vyhýbá se rizikovým pozicím a učí dech, který se hodí u porodu.
+- **Stacionární kolo.** Bezpečnější než silniční kvůli riziku pádu.
+- **Posilování s vlastní vahou nebo lehkými činkami**, s důrazem na techniku a dýchání.
+- **Pilates upravený pro těhotenství.**
+- **Cvičení pánevního dna.** Tohle je jediná aktivita, kterou by měla dělat prakticky každá těhotná žena — má význam pro porod i pro poporodní období.
+
+## Čemu se vyhnout
+
+- **Kontaktní sporty** a všechno s rizikem nárazu do břicha.
+- **Sporty s vysokým rizikem pádu** — lyžování, jízda na koni, horská kola, in-line brusle.
+- **Potápění s přístrojem.**
+- **Horká jóga, sauna, horké lázně** — přehřátí je zvlášť v prvním trimestru rizikové.
+- **Cvičení vleže na zádech po zhruba 16.–20. týdnu** v delších sériích — děloha může utlačovat dolní dutou žílu. Krátce a s pocitem pohody je to obvykle v pořádku; když se točí hlava, přetočte se na levý bok.
+- **Silové cvičení se zadržením dechu** (Valsalvův manévr).
+- **Cvičení ve vedru a bez dostatečného pití.**
+- **Aktivity ve vysokých nadmořských výškách** bez aklimatizace.
+
+## Jak upravit intenzitu
+
+- **Mluvicí test** je lepší než tepová frekvence, protože ta se v těhotenství mění.
+- **Nezačínejte v těhotenství s novým náročným sportem.** Pokud jste dosud necvičila, začněte chůzí a jednoduchými cviky.
+- **Pokud jste sportovala intenzivně**, můžete obvykle pokračovat na nižší intenzitě — ale konzultujte to.
+- **Rovnováha se mění.** Těžiště se posouvá, klouby jsou volnější vlivem relaxinu. Volte stabilní pozice.
+- **Poslouchejte tělo.** Bolest, závrať nebo tvrdnutí břicha znamenají stop.
+
+## Bolesti zad a pánve
+
+Velmi časté téma druhé poloviny těhotenství. Co pomáhá:
+
+- **cviky na hluboký stabilizační systém** — ideálně pod vedením fyzioterapeutky,
+- **poloha na čtyřech** při bolestech v kříži,
+- **těhotenský pás** na podporu pánve, pokud vám ho fyzioterapeut doporučí,
+- **teplo** na kříž (ne na břicho),
+- **vyhýbání se dlouhému stání na jednom místě** a nošení na jednom boku.
+
+Pokud vás pánev bolí tak, že kulháte nebo se v noci nepřetočíte, **není to něco, co se musí vydržet** — je to indikace k fyzioterapii.
+
+## Po IVF: zvláštní kapitola
+
+Roky vám možná někdo říkal, ať se šetříte. Po transferu jste ležela, protože jste se bála. Teď se máte hýbat a je to psychicky těžké.
+
+Pomáhá vědět, že **pohyb běžné intenzity v nekomplikovaném těhotenství nezpůsobí potrat ani předčasný porod.** Začněte chůzí, kterou dokážete přijmout, a přidávejte pomalu. A pokud vám lékař řekl konkrétní omezení, drží se ho — ale nechte si vysvětlit, proč, a na jak dlouho.
+
+## Kdy okamžitě přestat a volat lékaře
+
+- **krvácení nebo odtok plodové vody**,
+- **pravidelné bolestivé stahy**,
+- **bolest na hrudi, dušnost před cvičením nebo neúměrná zátěži**,
+- **závrať, mdloba, silná bolest hlavy**,
+- **bolest nebo otok jednoho lýtka**,
+- **náhlá silná bolest břicha**,
+- **snížení pohybů plodu po cvičení**.
+
+> Text platí pro nekomplikované těhotenství a nenahrazuje individuální doporučení. Před zahájením či změnou pohybového režimu se poraďte se svým lékařem.`,
+      minutes: 8,
+      phases: ['pregnancy', 'early_pregnancy'],
+      topics: ['pohyb', 'tehotenstvi', 'sebepece'],
+      excludeModifiers: ['cervical_insufficiency'],
+      level: 'essential',
+      hero: 'sage',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: [
+        'Světová zdravotnická organizace — doporučení pro prenatální péči',
+        'Česká gynekologická a porodnická společnost ČLS JEP',
+      ],
+      publishedOn: '2026-03-12',
+      boost: 0.65,
+    },
+    {
+      id: 'teh-spanek-a-poloha-na-boku',
+      kind: 'article',
+      title: 'Spánek v těhotenství a proč se má spát na boku',
+      excerpt:
+        'Doporučení spát na boku má konkrétní důvod — a zároveň neznamená, že se máte v noci budit hrůzou, že jste se přetočila.',
+      body: `## Proč na boku
+
+Od druhé poloviny těhotenství, přibližně **od 28. týdne**, se doporučuje usínat **na boku**, nikoli na zádech. Důvod je mechanický: v poloze na zádech může zvětšená děloha utlačovat **dolní dutou žílu**, což snižuje návrat krve k srdci, a tím i průtok placentou.
+
+Doporučení se opírá o pozorování, že usínání na zádech ve třetím trimestru je spojeno s vyšším rizikem nepříznivého konce těhotenství. Absolutní riziko je nízké, ale opatření je jednoduché a neškodné — proto se doporučuje.
+
+## Co to prakticky znamená
+
+**Usínejte na boku.** To je celé doporučení a je klíčové slovo „usínejte".
+
+**Když se v noci probudíte na zádech, nic hrozného se nestalo.** Otočte se na bok a spěte dál. Tělo se v noci přetáčí a nedá se to uhlídat — a nikdo po vás nechce, abyste to hlídala. Ženy, které si nastavují budíky, aby zkontrolovaly polohu, si ničí spánek bez užitku.
+
+**Levý nebo pravý bok?** Levý se tradičně doporučuje, protože dolní dutá žíla je vpravo. Rozdíl mezi levým a pravým bokem je ale malý; **hlavní je nespat na zádech.** Střídejte podle pohodlí.
+
+## Jak si to zařídit
+
+- **Polštář mezi kolena** vyrovná pánev a uleví kříži.
+- **Polštář pod břicho** podepře váhu dělohy.
+- **Polštář za zády** zabrání přetočení na záda.
+- **Těhotenský polštář ve tvaru C nebo U** dělá všechno tohle najednou. Je velký, zabírá půl postele a stojí za to.
+- **Zvýšená horní polovina těla** pomáhá při pálení žáhy a dušnosti — podložte matraci nebo použijte klín.
+- Pokud musíte ležet napůl na zádech (například kvůli bolesti kyčle), **podložte si pravý bok klínem**, aby byla děloha vychýlená doleva.
+
+## Ostatní zloději spánku
+
+**Časté močení.** Pijte hlavně přes den, večer omezte, ale nikdy nepijte málo celkově. Při vstávání v noci nerozsvěcujte hlavní světlo.
+
+**Pálení žáhy.** Poslední jídlo dvě až tři hodiny před spaním, zvýšená poloha hlavy, menší večeře.
+
+**Křeče v lýtkách.** Protahování před spaním, dostatek tekutin. Při opakovaných křečích se zeptejte na hořčík a na krevní obraz.
+
+**Syndrom neklidných nohou.** V těhotenství častý, souvisí i s nedostatkem železa. **Řekněte o tom lékaři** — je to řešitelné.
+
+**Ucpaný nos.** Otok nosní sliznice je v těhotenství běžný. Zvlhčovač a mořská voda pomáhají; **odbobřující kapky užívejte jen po konzultaci.**
+
+**Úzkostné myšlenky.** Nejhorší v noci a nejtěžší kategorie. Pomáhá pevný večerní rituál, vypnuté obrazovky hodinu před spaním, a vypsání starostí na papír před spaním, aby je nemusela držet hlava.
+
+## Chrápání a spánková apnoe
+
+V těhotenství se objevuje častěji a **není to jen úsměvná drobnost**. Pokud chrápete hlasitě, budíte se s pocitem nedostatku vzduchu, přes den usínáte vsedě nebo máte ranní bolesti hlavy, **řekněte to lékaři** — spánková apnoe v těhotenství souvisí s vyšším tlakem a je léčitelná.
+
+## Když nespíte vůbec
+
+Nespavost v těhotenství je běžná a v posledních týdnech téměř pravidlem. Co pomáhá:
+
+- **Pravidelný čas vstávání** je důležitější než čas usínání.
+- **Krátký odpolední odpočinek** ano, dlouhý spánek odpoledne ne.
+- **Nezůstávejte v posteli a nezírejte do stropu.** Po dvaceti minutách vstaňte, jděte do jiné místnosti, čtěte při tlumeném světle.
+- **Žádné léky na spaní bez konzultace**, ani volně prodejné, ani bylinné.
+
+## Kdy volat lékaře
+
+- **náhlá dušnost, bolest na hrudi**, dušnost v klidu nebo vleže,
+- **bolest, otok a zarudnutí jednoho lýtka**,
+- **silná bolest hlavy, poruchy vidění, náhlé otoky obličeje** — možné příznaky preeklampsie,
+- **snížení pohybů plodu** ráno po probuzení,
+- **nespavost spojená s trvale skleslou náladou**, ztrátou zájmu a beznadějí trvající déle než dva týdny.
+
+> Text je obecná informace. Jakékoli potíže se spánkem, které vás vyčerpávají, patří k projednání s vaším lékařem.`,
+      minutes: 7,
+      phases: ['pregnancy', 'high_risk_pregnancy'],
+      gestWeeks: [18, 40],
+      topics: ['spanek', 'tehotenstvi', 'sebepece'],
+      level: 'essential',
+      hero: 'dusk',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2026-03-19',
+      boost: 0.7,
+    },
+    {
+      id: 'teh-prace-a-neschopenka',
+      kind: 'article',
+      title: 'Práce, neschopenka a peníze: co potřebujete vědět včas',
+      excerpt:
+        'Papírování v těhotenství se dá vyřídit za jedno odpoledne, když víte co a kdy — a ušetří vám to hodně nervů v posledních týdnech.',
+      body: `## Kdy to řešit
+
+Ideálně **kolem 20.–24. týdne**, kdy máte energii a čas. V 32. týdnu, kdy jste vyčerpaná a možná ležíte, se úřady vyřizují mnohem hůř.
+
+## Kdy zaměstnavateli oznámit těhotenství
+
+Zákonná lhůta neexistuje, ale **ochrana, kterou vám zákoník práce dává, začíná fungovat až ve chvíli, kdy zaměstnavatel o těhotenství ví.** Oznámení proto dává praktický smysl dřív, než by vám bylo příjemné.
+
+Po oznámení máte mimo jiné nárok:
+
+- **nebýt vysílána na pracovní cesty** mimo obvod obce pracoviště bez svého souhlasu,
+- **nepracovat přesčas**,
+- **nevykonávat práce zakázané těhotným ženám** — zaměstnavatel vás musí převést na jinou práci,
+- **požádat o kratší pracovní dobu nebo jinou úpravu**, a zaměstnavatel má povinnost vyhovět, nebrání-li tomu vážné provozní důvody,
+- **ochranu před výpovědí** ze strany zaměstnavatele.
+
+## Převedení na jinou práci a vyrovnávací příspěvek
+
+Pokud vaši práci nesmíte v těhotenství vykonávat a zaměstnavatel vás převede na jinou, při které klesne váš výdělek, můžete mít nárok na **vyrovnávací příspěvek v těhotenství a mateřství** z nemocenského pojištění. Podklad vystavuje lékař a zaměstnavatel.
+
+Tohle je dávka, o které řada žen neví a která je pro ně výhodnější než neschopenka. **Zeptejte se na ni**, zejména pracujete-li ve směnném provozu, ve zdravotnictví, ve školství s malými dětmi nebo s chemikáliemi.
+
+## Neschopenka
+
+Pracovní neschopnost v těhotenství vystavuje lékař **na základě zdravotního důvodu**, ne automaticky proto, že jste těhotná. Důvodem bývá hrozící potrat, krvácení, krátké hrdlo, hypertenze, těžké nevolnosti, komplikace u dvojčat a podobně.
+
+Vystavuje ji **gynekolog** (u těhotenských komplikací) nebo **praktický lékař** (u nesouvisejících onemocnění). Je elektronická, papír pro vás už nosit nemusíte, ale kontrolní lístky si hlídejte.
+
+Během neschopnosti platí **vycházky** povolené lékařem. Nejde o domácí vězení, ale ani o volný režim — ptejte se, jaké vycházky máte a v jakém rozsahu.
+
+## Peněžitá pomoc v mateřství
+
+- **Nástup** si volíte v rozmezí **od začátku 8. do začátku 6. týdne před očekávaným dnem porodu**, tedy nejčastěji v 30.–32. týdnu.
+- **Podpůrčí doba** je 28 týdnů (37 týdnů u vícerčat).
+- **Žádost** vystavuje gynekolog na tiskopisu, vy ji předáte zaměstnavateli, který ji posílá dál.
+- **Nárok** vzniká při splnění podmínek účasti na nemocenském pojištění — u zaměstnankyň i u OSVČ, ale podmínky se liší. **Ověřte si je u své okresní správy sociálního zabezpečení včas**, ideálně už ve druhém trimestru.
+
+Pokud nárok na peněžitou pomoc v mateřství nemáte, přichází v úvahu **rodičovský příspěvek** od narození dítěte. Konkrétní částky a podmínky se v čase mění — ověřte si aktuální stav na oficiálních zdrojích, ne v diskuzích.
+
+## Praktický seznam, co vyřídit
+
+1. **Oznámit zaměstnavateli** a domluvit případnou úpravu práce.
+2. **Zjistit, zda mám nárok na vyrovnávací příspěvek.**
+3. **Ověřit podmínky peněžité pomoci v mateřství** u správy sociálního zabezpečení.
+4. **Vybrat porodnici a zaregistrovat se** — v některých městech se registruje brzy.
+5. **Zjistit, kdy podat žádost o mateřskou** a s kým to jde.
+6. **Vyřešit, kdo bude zastupovat** vaši práci a co je potřeba předat.
+7. **Zkontrolovat pojištění**, případně životní pojistku a její podmínky.
+8. **Založit si jednu složku** na všechny papíry, fyzickou i digitální.
+
+## Co říct v práci a co ne
+
+Nemusíte nikomu vysvětlovat, jak jste otěhotněla. **Informace o IVF je vaše soukromí** a nepatří do kolektivu, pokud sama nechcete. Zároveň má smysl říct nadřízenému, pokud vás čekají časté kontroly — potřebujete uvolnění a je jednodušší to mít domluvené.
+
+Věta, která funguje: **„Budu mít častější kontroly než obvykle. Termíny vám dám dopředu, ať se to dá naplánovat."**
+
+## Vina, která k tomu patří
+
+Mnoho žen se ostýchá jít na neschopenku, i když jim ji lékař nabídne. Cítí se jako podvodnice, protože „nejsou nemocné". **Těhotenská neschopnost není podvod.** Je to nástroj, který existuje přesně pro tuhle situaci, a lékař ji nevystavuje z laskavosti, ale z medicínského důvodu.
+
+## Kdy volat lékaře
+
+- jakékoli krvácení, odtok plodové vody, pravidelné stahy — bez ohledu na to, že jste v práci,
+- silná bolest hlavy, poruchy vidění, náhlé otoky obličeje a rukou,
+- snížení pohybů plodu,
+- pokud vám zaměstnavatel nařizuje práci, o které jste se dozvěděla, že je pro těhotné zakázaná.
+
+> Informace o dávkách a pracovněprávních nárocích se mohou měnit. Aktuální stav si vždy ověřte u své okresní správy sociálního zabezpečení a u svého lékaře.`,
+      minutes: 9,
+      phases: ['pregnancy', 'high_risk_pregnancy', 'early_pregnancy'],
+      gestWeeks: [8, 34],
+      topics: ['finance', 'tehotenstvi', 'rizikove'],
+      level: 'essential',
+      hero: 'pearl',
+      author: 'Tým IVF by Gabi',
+      publishedOn: '2026-03-26',
+      boost: 0.7,
+    },
+    {
+      id: 'teh-plan-tehotenskych-kontrol',
+      kind: 'checklist',
+      title: 'Plán těhotenských kontrol: co kdy čeká',
+      excerpt:
+        'Přehled vyšetření od zápisu do poradny po termín, abyste věděla, co se blíží a nic vám neuteklo.',
+      body: `## Jak s tímhle plánem pracovat
+
+Tenhle seznam je **orientační časová osa** běžné prenatální péče v Česku. U rizikového těhotenství, u dvojčat a při komplikacích bude vašich kontrol víc a některé přibudou — **vždy platí plán, který vám dá váš lékař.**
+
+Odškrtávejte si, co máte za sebou. Před každou kontrolou si připravte otázky do poznámek — v ordinaci na ně nevzpomenete.
+
+## Co s sebou pokaždé
+
+Těhotenskou průkazku, kartičku pojišťovny, vzorek ranní moči (pokud to vaše ordinace vyžaduje) a **seznam otázek**.
+
+## Na co se ptát skoro pokaždé
+
+- Jaký je tlak a co ukázala moč?
+- Roste miminko podle očekávání?
+- Kdy je další kontrola a co se na ní bude dělat?
+- Na co si mám dát pozor do příště?
+
+> Časování je orientační a liší se podle pracoviště a vaší situace. Tento seznam nenahrazuje plán péče stanovený vaším lékařem.`,
+      minutes: 5,
+      phases: ['pregnancy', 'early_pregnancy'],
+      topics: ['tehotenstvi', 'klinika'],
+      level: 'essential',
+      hero: 'champagne',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2026-04-02',
+      boost: 0.6,
+      checklist: [
+        {
+          id: 'teh-plan-propusteni',
+          text: 'Propuštění z reprodukční kliniky (8.–10. týden)',
+          hint: 'Odneste si propouštěcí zprávu a plán vysazování medikace.',
+          group: 'První trimestr',
+        },
+        {
+          id: 'teh-plan-zapis',
+          text: 'Zápis do těhotenské poradny (do 12. týdne)',
+          hint: 'Založení průkazky, odběry krve, krevní skupina a Rh, infekční sérologie, štítná žláza.',
+          group: 'První trimestr',
+        },
+        {
+          id: 'teh-plan-screening1',
+          text: 'Screening prvního trimestru (11.–14. týden)',
+          hint: 'Kombinace ultrazvuku a krevních markerů. U dvojčat se určuje typ placentace — ptejte se na to.',
+          group: 'První trimestr',
+        },
+        {
+          id: 'teh-plan-nipt',
+          text: 'NIPT, pokud jste se pro něj rozhodla (od 10. týdne)',
+          group: 'První trimestr',
+          optional: true,
+        },
+        {
+          id: 'teh-plan-zubar',
+          text: 'Preventivní prohlídka u zubaře',
+          hint: 'Zánět dásní v těhotenství není kosmetická věc. Objednejte se v prvním nebo druhém trimestru.',
+          group: 'První trimestr',
+        },
+        {
+          id: 'teh-plan-morfologie',
+          text: 'Morfologický ultrazvuk (18.–22. týden)',
+          hint: 'Nejdůkladnější vyšetření anatomie. Vezměte partnera, trvá i 45 minut.',
+          group: 'Druhý trimestr',
+        },
+        {
+          id: 'teh-plan-cervikometrie',
+          text: 'Měření délky děložního hrdla',
+          hint: 'Obvykle v rámci morfologického ultrazvuku, u rizika opakovaně.',
+          group: 'Druhý trimestr',
+        },
+        {
+          id: 'teh-plan-ogtt',
+          text: 'oGTT — test na těhotenskou cukrovku (24.–28. týden)',
+          hint: 'Nalačno, počítejte se třemi hodinami v čekárně. Vezměte si svačinu na potom.',
+          group: 'Druhý trimestr',
+        },
+        {
+          id: 'teh-plan-krevni-obraz',
+          text: 'Kontrolní krevní obraz a protilátky (kolem 24.–28. týdne)',
+          hint: 'Anémie je v těhotenství častá a řešitelná.',
+          group: 'Druhý trimestr',
+        },
+        {
+          id: 'teh-plan-antid',
+          text: 'Anti-D profylaxe u Rh negativních žen (kolem 28. týdne)',
+          hint: 'Pokud máte Rh negativní krevní skupinu, připomeňte to.',
+          group: 'Druhý trimestr',
+          optional: true,
+        },
+        {
+          id: 'teh-plan-registrace-porodnice',
+          text: 'Registrace v porodnici',
+          hint: 'V některých městech se registruje už kolem 20. týdne. Zjistěte si podmínky.',
+          group: 'Druhý trimestr',
+        },
+        {
+          id: 'teh-plan-kurz',
+          text: 'Přihlášení do předporodního kurzu',
+          group: 'Druhý trimestr',
+          optional: true,
+        },
+        {
+          id: 'teh-plan-ultrazvuk3',
+          text: 'Ultrazvuk třetího trimestru (30.–34. týden)',
+          hint: 'Růst plodu, poloha, plodová voda, uložení placenty.',
+          group: 'Třetí trimestr',
+        },
+        {
+          id: 'teh-plan-gbs',
+          text: 'Výtěr na streptokoky skupiny B (35.–37. týden)',
+          hint: 'Pozitivní nález znamená antibiotika během porodu, nic víc.',
+          group: 'Třetí trimestr',
+        },
+        {
+          id: 'teh-plan-ctg',
+          text: 'Pravidelné CTG od 36.–38. týdne',
+          group: 'Třetí trimestr',
+        },
+        {
+          id: 'teh-plan-tydenni-kontroly',
+          text: 'Týdenní kontroly od 36. týdne',
+          group: 'Třetí trimestr',
+        },
+        {
+          id: 'teh-plan-pppm',
+          text: 'Žádost o peněžitou pomoc v mateřství (kolem 30.–32. týdne)',
+          hint: 'Tiskopis vystaví gynekolog, vy ho předáte zaměstnavateli.',
+          group: 'Papírování',
+        },
+        {
+          id: 'teh-plan-taska',
+          text: 'Sbalená taška do porodnice (od 34.–36. týdne, u dvojčat dřív)',
+          group: 'Papírování',
+        },
+        {
+          id: 'teh-plan-porodni-plan',
+          text: 'Sepsané porodní přání, pokud ho chcete',
+          group: 'Papírování',
+          optional: true,
+        },
+        {
+          id: 'teh-plan-pediatr',
+          text: 'Domluvený dětský lékař',
+          hint: 'V mnoha regionech se shánějí těžko. Řešte to už ve druhém trimestru.',
+          group: 'Papírování',
+        },
+      ],
+    },
+    {
+      id: 'teh-kviz-varovne-priznaky',
+      kind: 'quiz',
+      title: 'Kvíz: poznáte varovné příznaky v těhotenství?',
+      excerpt:
+        'Sedm otázek, které vás naučí rozeznat, kdy se dá počkat do rána a kdy se volá okamžitě.',
+      body: `## K čemu tenhle kvíz je
+
+Většina úzkosti v těhotenství pramení z toho, že nevíte, co je vážné. Když máte v hlavě jasný seznam situací, kdy se volá, můžete se **přestat bát zbytku**.
+
+Projděte si sedm otázek. U každé je vysvětlení, proč je odpověď taková, jaká je. Nejde o zkoušku — jde o to, aby vám tyhle věci zůstaly v hlavě na chvíli, kdy je budete potřebovat.
+
+## Zlaté pravidlo
+
+Když váháte, jestli volat, **volejte**. Porodnice funguje nepřetržitě a personál raději vyšetří deset žen zbytečně než jednu pozdě. Nikdo vás nebude peskovat a nikdo si o vás nic nepomyslí.
+
+> Kvíz slouží k orientaci a nenahrazuje lékařskou péči ani individuální pokyny vašeho lékaře. Pokyn vašeho ošetřujícího lékaře má vždy přednost.`,
+      minutes: 6,
+      phases: ['pregnancy', 'high_risk_pregnancy', 'early_pregnancy'],
+      topics: ['tehotenstvi', 'rizikove', 'zdravi_ditete'],
+      level: 'essential',
+      hero: 'blush',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP'],
+      publishedOn: '2026-04-09',
+      boost: 0.8,
+      quiz: [
+        {
+          q: 'Je 33. týden, tři hodiny ráno. Cítíte, že se miminko celý večer hýbe méně než obvykle. Co uděláte?',
+          options: [
+            'Počkám do rána a zavolám gynekoložce, až otevře ordinace',
+            'Lehnu si na levý bok, napiju se studeného, dvě hodiny se soustředím na pohyby — a pokud jich je pořád méně, volám porodnici okamžitě',
+            'Zkusím miminko probudit ledovou vodou na břicho a hlasitou hudbou',
+            'Poslechnu si ozvy domácím dopplerem a když je slyším, jdu spát',
+          ],
+          correct: 1,
+          explain:
+            'Snížení pohybů oproti tomu, co je u vás obvyklé, je vždy důvod ke kontrole — a nečeká se na ráno. Porodnice funguje nonstop právě kvůli tomuhle. Domácí doppler je zrádný: zachycené ozvy vás uklidní, i když může být něco špatně, a proto se pro tento účel nedoporučuje.',
+        },
+        {
+          q: 'Ve 30. týdnu vás od rána bolí hlava, odpoledne se přidá blikání před očima a máte nateklé prsty i víčka. Co to může být?',
+          options: [
+            'Běžná těhotenská migréna, stačí odpočinek',
+            'Nedostatek tekutin, stačí se napít',
+            'Možné příznaky preeklampsie — okamžitě volat porodnici nebo lékaře',
+            'Únava z horka, pomůže studená sprcha',
+          ],
+          correct: 2,
+          explain:
+            'Kombinace silné bolesti hlavy, poruch vidění a náhlých otoků obličeje a rukou patří mezi klíčové varovné příznaky preeklampsie. Tohle je situace, kdy se volá okamžitě, bez ohledu na denní dobu. Nečekejte na plánovanou kontrolu.',
+        },
+        {
+          q: 'Ve 25. týdnu vám břicho asi šestkrát za hodinu ztvrdne a zase povolí. Nebolí to, ale cítíte tlak dolů. Co je správný postup?',
+          options: [
+            'Nic, poslíčky jsou normální v každém týdnu',
+            'Napít se, jít na toaletu, lehnout si — a pokud stahy neustanou nebo jich je 4 a víc za hodinu, volat porodnici',
+            'Vzít si lék proti bolesti a jít spát',
+            'Počkat, jestli to bude i zítra',
+          ],
+          correct: 1,
+          explain:
+            'Před 37. týdnem platí přísnější pravidla, protože jde o možný předčasný porod. Čtyři a více stahů za hodinu, i nebolestivých, plus tlak dolů, je důvod ke kontaktu s porodnicí. Dehydratace a plný močový měchýř dělohu dráždí, proto se nejdřív zkusí napít a vymočit — ale když to nepomůže, volá se.',
+        },
+        {
+          q: 'Ve 22. týdnu vám z pochvy odteklo malé množství čiré tekutiny. Nebolí nic, nekrvácíte. Co uděláte?',
+          options: [
+            'Nic, ve druhé polovině těhotenství je zvýšený výtok normální',
+            'Použiji vložku a počkám, jestli to bude pokračovat, případně to řeknu na příští kontrole',
+            'Volám porodnici a jedu na vyšetření — může jít o odtok plodové vody',
+            'Vykoupu se, aby se to nezanítilo',
+          ],
+          correct: 2,
+          explain:
+            'Odtok plodové vody se nemusí projevit jako velké množství tekutiny naráz — někdy jde o opakované malé porce. Ověřit se to musí vyšetřením, doma to nepoznáte. Předčasný odtok plodové vody vyžaduje rychlé posouzení kvůli riziku infekce a předčasného porodu. Koupel je v takové situaci nevhodná.',
+        },
+        {
+          q: 'V 8. týdnu jste si všimla, že vás přestala bolet prsa a polevila nevolnost. Nekrvácíte, nic vás nebolí. Co to znamená?',
+          options: [
+            'Určitě se něco stalo, těhotenství se nevyvíjí',
+            'Nic to samo o sobě neznamená — intenzita příznaků kolísá; pokud vás to trápí, domluvte si kontrolu, ale není to nouzová situace',
+            'Musím okamžitě na pohotovost',
+            'Musím si zvýšit dávku progesteronu',
+          ],
+          correct: 1,
+          explain:
+            'Kolísání intenzity těhotenských příznaků je běžné a samo o sobě není varovným znamením. Zároveň nemá cenu se tím trápit týdny — telefonát a domluvená kontrola stojí míň než tři týdny strachu. Dávkování jakýchkoli léků, včetně progesteronu, si nikdy neupravujte sama.',
+        },
+        {
+          q: 'Po dlouhé cestě autem vás ve 29. týdnu bolí jedno lýtko, je oteklé, teplé a začervenalé. Co uděláte?',
+          options: [
+            'Namažu ho chladivým gelem a dám nohy nahoru',
+            'Půjdu na procházku, aby se to rozproudilo',
+            'Volám lékaře nebo jedu na pohotovost — může jít o žilní trombózu',
+            'Počkám do zítřka, jestli to nepřejde',
+          ],
+          correct: 2,
+          explain:
+            'Těhotenství samo zvyšuje srážlivost krve a dlouhé cestování riziko dále zvyšuje. Jednostranný otok, bolest, zarudnutí a teplo lýtka jsou typické příznaky hluboké žilní trombózy a patří k okamžitému posouzení. Pokud se přidá dušnost nebo bolest na hrudi, volejte záchrannou službu.',
+        },
+        {
+          q: 'Ve 12. týdnu máte teplotu 38,5 °C a bolest v zádech vpravo pod žebry, štípe vás při močení. Co uděláte?',
+          options: [
+            'Vezmu si paracetamol a počkám, až to přejde',
+            'Piju brusinkový džus a vydržím do pondělí',
+            'Kontaktuji lékaře ještě dnes — může jít o zánět ledvin, který v těhotenství vyžaduje léčbu',
+            'Nechám si od kamarádky antibiotika, která jí zbyla',
+          ],
+          correct: 2,
+          explain:
+            'Horečka s bolestí v zádech a potížemi při močení může znamenat zánět ledvinné pánvičky. V těhotenství je to stav, který je spojený s rizikem předčasného porodu a vyžaduje rychlou léčbu, často antibiotiky, které předepíše lékař. Užívání cizích léků je v těhotenství nebezpečné vždy.',
+        },
+      ],
+    },
+    {
+      id: 'teh-video-co-vidite-na-ultrazvuku',
+      kind: 'video',
+      title: 'Video: co vlastně vidíte na ultrazvukovém snímku',
+      excerpt:
+        'Devět minut, po kterých přestanete na snímku hledat obličej a začnete rozumět tomu, co lékař měří.',
+      body: `## O čem video je
+
+Většina žen odchází z ultrazvuku s obrázkem, kterému nerozumí. Tohle video vás krok za krokem provede tím, co na snímku je — od prvního gestačního váčku po měření ve třetím trimestru.
+
+**Část 1 — jak ultrazvuk funguje (1 minuta).** Proč jsou tekutiny černé a kosti bílé, proč se v raném těhotenství používá vaginální sonda a proč je obraz zrnitý.
+
+**Část 2 — rané těhotenství (2 minuty).** Ukazujeme gestační váček jako tmavý kruh ve sliznici, žloutkový váček jako světlý prstýnek uvnitř a embryonální pól jako drobné zesílení na jeho okraji. Vysvětlujeme, proč se v šestém týdnu skutečně nedá poznat nic „lidského" a proč to nevadí.
+
+**Část 3 — jak číst popis nálezu (2 minuty).** Nejčastější zkratky, se kterými se setkáte: **CRL** (temenokostrční délka), **GS** (gestační váček), **YS** (žloutkový váček), **FHR** nebo **AS** (srdeční akce), **NT** (šíjové projasnění), **BPD** (biparietální průměr), **HC** (obvod hlavy), **AC** (obvod břicha), **FL** (délka stehenní kosti), **EFW** (odhad hmotnosti), **AFI** nebo **VP** (množství plodové vody).
+
+**Část 4 — biometrie a odhad hmotnosti (2 minuty).** Vysvětlujeme, proč je odhad hmotnosti opravdu jen odhad s poměrně širokou tolerancí, a proč jedno měření neříká skoro nic, zatímco tři měření v čase říkají hodně. Ukazujeme, jak vypadá růstová křivka a co znamená percentil.
+
+**Část 5 — dopplerovské průtoky (1 minuta).** Barevné mapování a křivky průtoku v pupečníkové tepně, děložních tepnách a střední mozkové tepně. Co se z nich hodnotí a proč to má smysl jen v kontextu.
+
+**Část 6 — co ultrazvuk neumí (1 minuta).** Nevyloučí všechny vady, závisí na poloze plodu a na podmínkách zobrazení. Nedokáže z něj nikdo číst budoucnost.
+
+## Proč to stojí za devět minut
+
+Protože potom se přestanete děsit slov jako „percentil", „doppler" nebo „AFI" a budete se umět zeptat na to, co vás skutečně zajímá. Nejde o to, abyste si nález četla sama — jde o to, abyste rozuměla tomu, co vám lékař říká.
+
+> Video slouží ke vzdělávacím účelům. Hodnocení ultrazvukového nálezu patří výhradně lékaři; nikdy si nález nevykládejte sama a nesrovnávejte svá čísla s cizími.`,
+      minutes: 9,
+      phases: ['early_pregnancy', 'pregnancy', 'high_risk_pregnancy'],
+      topics: ['tehotenstvi', 'vysledky'],
+      level: 'deep',
+      hero: 'sky',
+      author: 'Tým IVF by Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      sources: ['ISUOG — doporučené postupy pro ultrazvuk v porodnictví'],
+      publishedOn: '2026-04-16',
+      boost: 0.6,
+      mediaNote:
+        'Uvidíte klidně komentované ultrazvukové sekvence s popisky přímo v obraze — struktury se postupně zvýrazňují barevně, takže je poznáte i bez zkušenosti. Mluvené slovo je pomalé, bez hudby, s pauzami na zastavení. Video má české titulky a slovníček zkratek na konci ke stažení.',
+    },
+    {
+      id: 'teh-audio-deset-minut-klidu',
+      kind: 'audio',
+      title: 'Deset minut klidu: uzemnění pro dny, kdy je toho moc',
+      excerpt:
+        'Nahrávka pro chvíle mezi kontrolami, ve tři ráno nebo na nemocniční posteli — bez mantry, bez pozitivního myšlení.',
+      body: `## Pro koho to je
+
+Pro chvíle, kdy vám hlava jede v kruzích a vy potřebujete nějak vydržet nejbližší hodinu. Není to relaxace, která vás má přesvědčit, že je všechno v pořádku. Je to nástroj, jak dostat nervový systém z pohotovostního režimu na snesitelnou úroveň.
+
+## Co nahrávka obsahuje
+
+**0:00–1:30 — Usazení.** Najdete polohu, ve které jste v pohodě. Vsedě, vleže na boku, klidně v nemocniční posteli s hlavou zvednutou. Nic se nemusí, jen si najdete místo, kde vydržíte deset minut.
+
+**1:30–3:30 — Dech, který zpomaluje.** Prodloužený výdech je nejrychlejší dostupný způsob, jak snížit aktivaci sympatiku. Vedeme vás nádechem na čtyři doby a výdechem na šest až osm. Bez zadržování dechu. Když vám ten poměr nesedí, upravíte si ho.
+
+**3:30–6:00 — Ukotvení v přítomnosti.** Projdeme pět smyslů: co teď slyšíte, co cítíte pod dlaněmi, co vidíte, když otevřete oči, jakou máte v ústech chuť, co cítíte za vůni. Cílem není příjemný zážitek, ale to, že vaše pozornost je na chvíli tady, ne v příštím týdnu.
+
+**6:00–8:00 — Skenování těla bez hodnocení.** Projdeme tělo shora dolů. Břicho zmiňujeme neutrálně — nevedeme vás k tomu, abyste hledala pohyby ani abyste se s někým „spojovala". Když je to pro vás teď obtížné, pozornost přesuneme jinam.
+
+**8:00–10:00 — Návrat.** Postupné rozšíření pozornosti do místnosti a jedna věta, kterou si odnesete: **dnešek jste zvládla, a to je celá práce, kterou dnes máte.**
+
+## Co v nahrávce neuslyšíte
+
+Žádné „představte si své zdravé miminko". Žádné vizualizace, které dopadnou špatně, když se něco stane. Žádné „uvolněte se, ať to půjde". Tyhle věty ublížily dost ženám a v našich nahrávkách nejsou.
+
+## Kdy ji pustit
+
+- ve tři ráno, když nemůžete spát,
+- v čekárně před vyšetřením,
+- po telefonátu, který vás rozhodil,
+- v nemocnici, když je na pokoji hluk,
+- v den, kdy nechcete mluvit s nikým.
+
+Můžete ji pustit i dvakrát za sebou. Nic tím nezkazíte.
+
+> Nahrávka je nástroj pro zvládání napětí, ne léčba. Pokud vás úzkost dlouhodobě omezuje ve fungování, mluvte o tom se svým lékařem nebo psychologem.`,
+      minutes: 10,
+      phases: ['early_pregnancy', 'pregnancy', 'high_risk_pregnancy', 'hospitalization'],
+      topics: ['psychika', 'sebepece', 'spanek'],
+      level: 'comfort',
+      hero: 'dawn',
+      author: 'Gabi',
+      publishedOn: '2026-04-23',
+      boost: 0.7,
+      mediaNote:
+        'Uslyšíte klidný ženský hlas bez hudby na pozadí, jen s tichem mezi větami. Tempo je pomalé, pauzy dlouhé. Nahrávka je nastavená tak, aby fungovala i ve sluchátkách na vícelůžkovém pokoji — žádné náhlé změny hlasitosti, žádné zvonky na konci.',
+    },
+    {
+      id: 'teh-pribeh-prvni-trimestr-po-ivf',
+      kind: 'story',
+      title: 'Příběh: první trimestr, ve kterém jsem se bála dýchat',
+      excerpt:
+        'Vyprávění ženy, která po čtyřech letech a třech transferech otěhotněla — a zjistila, že radost přichází mnohem později než pozitivní test.',
+      body: `## Beta
+
+Když mi zavolali s výsledkem, řekla jsem děkuji a zavěsila. Pak jsem seděla v autě na parkovišti u práce a čekala, kdy přijde ta euforie, o které všichni mluví. Nepřišla. Přišlo něco jako **strnulost**. Jako když stojíte v půlce zamrzlého rybníka a bojíte se pohnout.
+
+Byl to čtvrtý rok. Třetí transfer. Před rokem jsem prošla ztrátou v osmém týdnu a od té doby jsem věděla něco, co ženy s prvním pozitivním testem nevědí: **že pozitivní test není konec ničeho.**
+
+## Deset dní do ultrazvuku
+
+Deset dní. Počítala jsem je po hodinách. Chodila jsem na záchod kontrolovat prádlo tak často, že mi kolegyně řekla, jestli nemám infekci. Řekla jsem, že mám. Nechtěla jsem, aby to někdo věděl.
+
+Naučila jsem se v tomhle období jednu věc, která mi pak vydržela: **přestala jsem si číst příběhy s dobrým koncem.** Nepomáhaly. Jen mě přesvědčovaly, že mě čeká to samé, a když jsem si vzpomněla, že mě už jednou nečekalo, bylo to horší.
+
+## První ultrazvuk
+
+Lékařka mlčela asi dvacet vteřin. Za tu dobu jsem stihla pochovat celé těhotenství, rozhodnout se, že další cyklus už nedám, a rozmyslet si, komu to řeknu první.
+
+Pak řekla: „Váček je v děloze, je tam žloutkový váček, embryo zatím neměřím, jste na den šestý týden. Přijďte za osm dní."
+
+Odjela jsem domů a brečela jsem od parkoviště až k Rudné. Ne úlevou. Vztekem, že **jsem musela čekat dalších osm dní.**
+
+## Srdíčko
+
+Za osm dní tam bylo. Malé blikání. Lékařka otočila monitor a řekla: „Tady." Manžel mi mačkal ruku tak, že jsem měla druhý den modřinu.
+
+A víte co? **Bála jsem se dál.** Jen jinak. Předtím jsem se bála, že tam nic není. Teď jsem se bála, že to zmizí.
+
+Tehdy mi jedna sestra na klinice řekla větu, kterou používám dodnes: „Vy nečekáte na to, až budete v bezpečí. Vy čekáte na to, až tomu uvěříte. A to je jiný časový plán."
+
+## Devátý až dvanáctý týden
+
+Nejhorší období celého těhotenství. Klinika mě propustila a já jsem se cítila jako vyhozená z letadla. Objednací lhůta u gynekologa byla tři týdny. Tři týdny, kdy mě nikdo nekontroloval a já nevěděla, jestli je uvnitř všechno v pořádku.
+
+Co mi pomohlo, a myslím to úplně vážně:
+
+- **Napsala jsem si seznam varovných příznaků** a pověsila ho na ledničku. Když se nic z toho nedělo, měla jsem důkaz, že se nic neděje.
+- **Přestala jsem číst diskuze.** Úplně. Zablokovala jsem si dvě skupiny.
+- **Řekla jsem to třem lidem.** Ne rodině, ne v práci. Třem lidem, kteří mě neutěšovali frázemi.
+- **Chodila jsem každý den na hodinu ven.** Nepomohlo to hlavě. Pomohlo to tělu a ono to nakonec dojede k hlavě taky.
+- **Objednala jsem se k psycholožce.** Měla jsem pocit, že jsem směšná, protože jsem konečně dostala, co jsem chtěla. Nebyla jsem směšná. Byla jsem vyčerpaná.
+
+## Kdy to zlomilo
+
+Ne u prvního srdíčka. Ne po dvanáctém týdnu. Ne po morfologii.
+
+Zlomilo to **někdy kolem dvacátého třetího týdne**, v úplně obyčejné středu, když jsem seděla v tramvaji a poprvé ucítila pořádný kopanec zevnitř. Ne bublinku. Kopanec. Něco, co udělal někdo jiný než já.
+
+Rozbrečela jsem se v tramvaji, což mi bylo trapné, a paní naproti mi dala kapesník a neptala se. Byl to první moment, kdy jsem si dovolila myslet slovo **dítě** místo slova **těhotenství**.
+
+## Co bych řekla ženě, která je teď v šestém týdnu
+
+Že nemusí být šťastná. Že to není nevděk. Že strach, který má, není znamení, že se něco stane, ale znamení toho, co už se stalo.
+
+A že to, kdy začne věřit, si neurčí rozhodnutím. Přijde to samo, později, než by chtěla, a pravděpodobně v nějaké úplně obyčejné chvíli, na kterou se nedá připravit.
+
+> Tento příběh je osobní zkušenost, ne lékařské doporučení. Průběh každého těhotenství je jiný a jakékoli obavy o zdraví vždy patří k vašemu lékaři.`,
+      minutes: 8,
+      phases: ['early_pregnancy', 'pregnancy'],
+      gestWeeks: [5, 24],
+      topics: ['psychika', 'komunita', 'tehotenstvi'],
+      modifiers: ['after_loss', 'repeated_failure'],
+      level: 'comfort',
+      hero: 'blush',
+      author: 'Tým IVF by Gabi',
+      publishedOn: '2026-05-07',
+      boost: 0.75,
+    },
+    {
+      id: 'teh-podcast-rizikove-tehotenstvi',
+      kind: 'podcast',
+      title: 'Podcast: rizikové těhotenství bez strašení',
+      excerpt:
+        'Rozhovor o tom, co znamená být „riziková“, jak si vyjednat srozumitelné odpovědi a jak se nezbláznit mezi kontrolami.',
+      body: `## O čem díl je
+
+Slovo „rizikové" je jedno z nejhůř vysvětlovaných slov v celém těhotenství. Tenhle díl se ho snaží rozebrat na součástky — co znamená organizačně, co medicínsky a co pro vás prakticky každý den.
+
+## Struktura dílu
+
+**Kapitola 1 (0:00–6:00) — Co ta nálepka je a co není.** Že jde o kategorii péče, ne o prognózu. Že do ní spadá žena s korigovanou štítnou žlázou i žena s preeklampsií a že mezi nimi je propast. Proč se po IVF sleduje pečlivěji a proč to samo o sobě není špatná zpráva.
+
+**Kapitola 2 (6:00–14:00) — Jak se ptát, aby vám lékař odpověděl.** Konkrétní formulace, které fungují v ordinaci, kde máte deset minut. Rozdíl mezi otázkou „je to špatné?" a otázkou „jaký nález by změnil váš postup?". Proč si psát otázky předem a proč si zapisovat odpovědi.
+
+**Kapitola 3 (14:00–22:00) — Život mezi kontrolami.** Nejtěžší část rizikového těhotenství není vyšetření, ale těch čtrnáct dní mezi nimi. Mluvíme o informační hygieně, o tom, jak si nastavit vlastní pravidla pro internet, a o tom, proč je seznam varovných příznaků na ledničce nejlepší lék na úzkost, jaký existuje.
+
+**Kapitola 4 (22:00–30:00) — Klidový režim a co se změnilo.** Proč se od plošného ležení ustupuje, jaká má rizika a jak si místo obecného „ležte" vyjednat konkrétní pokyny.
+
+**Kapitola 5 (30:00–38:00) — Hospitalizace.** Co si vzít, jak si zorganizovat den, jak mluvit s personálem a jak počítat dny nahoru místo dolů.
+
+**Kapitola 6 (38:00–45:00) — Vztah, práce a okolí.** Jak rozdělit domácnost, když nemůžete fungovat jako dřív. Jak odpovídat na rady, o které jste nežádala. Co říct v práci a co si nechat pro sebe.
+
+## Jedna věta, která z dílu zůstane
+
+Být riziková neznamená, že se něco stane. Znamená, že vás někdo sleduje pozorněji — a **pozornost je to nejlepší, co v téhle situaci můžete mít.**
+
+## Varovné příznaky, které v dílu zazní
+
+V závěru procházíme seznam situací, kdy se volá okamžitě: krvácení, odtok plodové vody, pravidelné stahy před 37. týdnem, tlak dolů, snížení pohybů plodu, silná bolest hlavy s poruchami vidění a otoky obličeje, bolest pod pravým žebrem, horečka nad 38 °C, bolest a otok jednoho lýtka, náhlá dušnost.
+
+> Podcast slouží ke vzdělávání a podpoře. Nenahrazuje lékařskou péči a nemůže zohlednit vaši konkrétní situaci — tu zná pouze váš ošetřující lékař.`,
+      minutes: 45,
+      phases: ['high_risk_pregnancy', 'pregnancy', 'hospitalization'],
+      topics: ['rizikove', 'psychika', 'tehotenstvi'],
+      modifiers: ['high_risk'],
+      level: 'deep',
+      hero: 'taupe',
+      author: 'Gabi',
+      reviewedBy: 'Odborně garantováno – reprodukční medicína',
+      publishedOn: '2026-05-21',
+      boost: 0.6,
+      mediaNote:
+        'Uslyšíte klidný rozhovor dvou hlasů bez znělek uprostřed, s kapitolami, mezi kterými se dá přeskakovat. K dispozici je plný přepis a stažitelný jednostránkový seznam varovných příznaků, který se vejde na ledničku.',
+    },
     // ITEMS_MARKER
   ],
   dailyCards: [
