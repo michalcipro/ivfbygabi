@@ -76,6 +76,13 @@ export interface JourneyState {
   journeyDays: number | null
 }
 
+/**
+ * Nejdelší doba, po kterou ještě považujeme dítě bez zadaného návratu domů
+ * za hospitalizované. Delší pobyty existují, ale po půl roce je pravděpodobnější,
+ * že uživatelka jen nevyplnila datum propuštění.
+ */
+const MAX_PLAUSIBLE_NICU_DAYS = 180
+
 /** Datum kotvy pro danou fázi. */
 function anchorValue(profile: Profile, phase: PhaseDefinition): IsoDate | null {
   if (!phase.anchor) return null
@@ -105,7 +112,10 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
           if (sinceHome <= 21) return 'coming_home'
           return age <= 42 ? 'postpartum' : age <= 365 ? 'baby_first_year' : 'toddler'
         }
-        return 'nicu'
+        // Bez data návratu domů předpokládáme pobyt na oddělení — ale jen po dobu,
+        // kdy to dává smysl. Půlroční dítě nesmí zůstat viset na NICU jen proto,
+        // že si uživatelka zapomněla zapsat datum propuštění.
+        if (age <= MAX_PLAUSIBLE_NICU_DAYS) return 'nicu'
       }
       if (age <= 42) return 'postpartum'
       if (age <= 365) return 'baby_first_year'

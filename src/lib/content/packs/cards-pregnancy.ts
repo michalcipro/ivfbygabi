@@ -1,0 +1,632 @@
+import type { ContentPack, DailyCard } from '../types'
+
+/**
+ * Týdenní karty těhotenství.
+ *
+ * Vybírají se podle gestačního stáří, ne podle dne ve fázi — proto `gestWeeks`.
+ * Přirovnání velikosti jsou orientační: plody se liší a čísla se mezi zdroji
+ * rozcházejí. Nikde z nich nevyvozujeme, jestli je vývoj v pořádku.
+ */
+
+interface WeekSpec {
+  week: number
+  size: string
+  headline: string
+  baby: string
+  mother: string
+  bullets: [string, string, string]
+  task: string
+  reflection: string
+  tip?: string
+  callDoctorIf?: string[]
+}
+
+const WEEKS: WeekSpec[] = [
+  {
+    week: 5,
+    size: 'sezamové semínko',
+    headline: 'Pátý týden. Zatím to ví jen vaše tělo.',
+    baby: 'Zakládá se nervová trubice, ze které vznikne mozek a mícha. Srdce je zatím jen trubička, která se za pár dní začne stahovat.',
+    mother:
+      'Nejspíš máte za sebou pozitivní test. Únava a napětí v prsou můžou být první příznaky — nebo taky ne.',
+    bullets: [
+      'Embryo měří kolem dvou milimetrů.',
+      'Ultrazvuk zatím ukáže nanejvýš gestační váček.',
+      'HCG rychle stoupá.',
+    ],
+    task: 'Zjistěte si, kdy vás objedná gynekolog na první ultrazvuk.',
+    reflection: 'Dovolila jste si tomu už uvěřit?',
+    callDoctorIf: [
+      'Krvácíte jasně červeně.',
+      'Máte prudkou jednostrannou bolest břicha.',
+      'Máte bolest v rameni nebo omdléváte.',
+    ],
+  },
+  {
+    week: 6,
+    size: 'čočka',
+    headline: 'Šestý týden. Možná uvidíte první srdíčko.',
+    baby: 'Srdce začíná bít — na ultrazvuku bývá vidět jako drobné blikání. Zakládají se základy rukou a nohou.',
+    mother:
+      'U mnoha žen právě teď začínají nevolnosti. Bývají nejhorší mezi šestým a dvanáctým týdnem.',
+    bullets: [
+      'Embryo měří kolem pěti milimetrů.',
+      'Srdeční akce bývá poprvé viditelná.',
+      'Nevolnost nemusí být jen ráno.',
+    ],
+    task: 'Dejte si k posteli suchý sušenkový nebo slaný snack na ráno.',
+    reflection: 'Co vás na tomhle týdnu překvapilo?',
+    tip: 'Jíst po malých porcích a často pomáhá víc než tři velká jídla.',
+  },
+  {
+    week: 7,
+    size: 'borůvka',
+    headline: 'Sedmý týden. Mozek roste nejrychleji ze všeho.',
+    baby: 'Mozek se dělí na části, tvoří se obličej a základy vnitřních orgánů. Ručičky a nožičky vypadají jako pahýlky s ploutvičkami.',
+    mother: 'Únava může být zdrcující. Není to lenost — vaše tělo staví placentu.',
+    bullets: [
+      'Plod měří kolem centimetru.',
+      'Časté močení bývá jedním z prvních příznaků.',
+      'Chuťové preference se můžou úplně obrátit.',
+    ],
+    task: 'Jděte dnes spát o třicet minut dřív. Bez výmluv.',
+    reflection: 'Co jste dnes musela odložit — a bylo to opravdu nutné?',
+  },
+  {
+    week: 8,
+    size: 'malina',
+    headline: 'Osmý týden. Z embrya se stává plod.',
+    baby: 'Prsty se oddělují, oční víčka se tvoří, začínají se hýbat končetiny — vy to zatím necítíte.',
+    mother:
+      'Prsa můžou být výrazně citlivější a větší. Nevolnosti bývají v tomhle období na vrcholu.',
+    bullets: [
+      'Plod měří kolem 1,5 centimetru.',
+      'Placenta postupně přebírá tvorbu hormonů.',
+      'Pohyby zatím nejsou cítit.',
+    ],
+    task: 'Kupte si podprsenku o číslo větší. Vážně to pomůže.',
+    reflection: 'Komu jste to zatím řekla a proč zrovna jemu?',
+  },
+  {
+    week: 9,
+    size: 'hrozno',
+    headline: 'Devátý týden. Základy jsou hotové.',
+    baby: 'Všechny hlavní orgány jsou založené a teď hlavně rostou a dozrávají. Tvoří se první kosti.',
+    mother: 'Můžete se cítit nafouklá dřív, než je bříško vidět. Za to může progesteron.',
+    bullets: [
+      'Plod měří kolem dvou centimetrů.',
+      'Nálady můžou být hodně proměnlivé.',
+      'Zácpa a nadýmání jsou běžné.',
+    ],
+    task: 'Přidejte si dnes do jídla něco s vlákninou.',
+    reflection: 'Jak se vám daří mluvit o tom, jak vám je?',
+  },
+  {
+    week: 10,
+    size: 'jahoda',
+    headline: 'Desátý týden. Nejrizikovější období se blíží ke konci.',
+    baby: 'Plod má vyvinuté všechny základní struktury. Od teď jde hlavně o růst.',
+    mother: 'Děloha má velikost grapefruitu, ale ještě se neprosadí nad stydkou kost.',
+    bullets: [
+      'Plod měří kolem tří centimetrů.',
+      'Riziko ztráty od tohoto týdne výrazně klesá.',
+      'Únava může začít polevovat.',
+    ],
+    task: 'Zapište si do deníku, jak se cítíte. Za pár měsíců si to nevybavíte.',
+    reflection: 'Změnil se váš strach za poslední měsíc?',
+  },
+  {
+    week: 11,
+    size: 'fík',
+    headline: 'Jedenáctý týden. Blíží se první screening.',
+    baby: 'Plod se aktivně hýbe, otevírá a zavírá pěsti, začíná polykat plodovou vodu.',
+    mother: 'Mezi 11. a 14. týdnem se dělá prvotrimestrální screening.',
+    bullets: [
+      'Plod měří kolem čtyř centimetrů.',
+      'Měří se šíjové projasnění a odebírá krev.',
+      'Screening odhaduje pravděpodobnost, nestanovuje diagnózu.',
+    ],
+    task: 'Napište si otázky ke screeningu dřív, než tam přijdete.',
+    reflection: 'Co budete potřebovat vědět, ať výsledek dopadne jakkoliv?',
+    tip: 'Screening říká pravděpodobnost, ne jistotu. Než z výsledku uděláte závěr, proberte ho s lékařem.',
+  },
+  {
+    week: 12,
+    size: 'limetka',
+    headline: 'Dvanáctý týden. Konec prvního trimestru.',
+    baby: 'Jsou vidět nehty, plod má reflexy a mimiku. Ledviny začínají tvořit moč.',
+    mother: 'Nevolnosti u mnoha žen právě teď začínají ustupovat. U některých bohužel ne.',
+    bullets: [
+      'Plod měří kolem šesti centimetrů.',
+      'Placenta je funkční.',
+      'Mnoho žen právě teď oznamuje těhotenství.',
+    ],
+    task: 'Rozhodněte se, komu a kdy to řeknete. Není žádné správné načasování.',
+    reflection: 'Čeho se na oznámení bojíte?',
+  },
+  {
+    week: 13,
+    size: 'citron',
+    headline: 'Třináctý týden. Druhý trimestr začíná.',
+    baby: 'Tvoří se hlasivky, plod má otisky prstů. Kosti tvrdnou.',
+    mother:
+      'Druhý trimestr bývá nejpříjemnější částí těhotenství — energie se vrací a bříško ještě nepřekáží.',
+    bullets: [
+      'Plod měří kolem sedmi centimetrů.',
+      'Chuť k jídlu se často vrací.',
+      'Bříško může začít být vidět.',
+    ],
+    task: 'Vyfoťte si bříško. Začněte sérii, kterou budete mít až do porodu.',
+    reflection: 'Co byste chtěla, aby si vaše dítě jednou o tomhle období přečetlo?',
+  },
+  {
+    week: 14,
+    size: 'broskev',
+    headline: 'Čtrnáctý týden. Energie se vrací.',
+    baby: 'Plod dělá grimasy, saje palec a reaguje na dotyk přes břišní stěnu.',
+    mother: 'Kůže může být citlivější na slunce. Mohou se objevit pigmentové skvrny.',
+    bullets: [
+      'Plod měří kolem devíti centimetrů.',
+      'Vlasy a nehty rostou rychleji.',
+      'Dásně můžou být citlivější.',
+    ],
+    task: 'Objednejte se k zubaři, pokud jste letos nebyla.',
+    reflection: 'Za co jste dnes vděčná?',
+  },
+  {
+    week: 15,
+    size: 'jablko',
+    headline: 'Patnáctý týden. Plod vás začíná slyšet.',
+    baby: 'Tvoří se sluchové kůstky, plod vnímá zvuky zvenčí — hlavně váš hlas a tep.',
+    mother: 'Můžete cítit tahavé bolesti po stranách břicha — to jsou vazy, které se natahují.',
+    bullets: [
+      'Plod měří kolem deseti centimetrů.',
+      'Bolest kulatých vazů je běžná a neškodná.',
+      'Krevní objem se výrazně zvyšuje.',
+    ],
+    task: 'Řekněte dnes nahlas něco svému miminku. I když si přitom připadáte divně.',
+    reflection: 'Jaký vztah k němu zatím máte?',
+  },
+  {
+    week: 16,
+    size: 'avokádo',
+    headline: 'Šestnáctý týden. První pohyby na dosah.',
+    baby: 'Plod se hýbe hodně, ale většina prvorodiček ho ucítí až mezi 18. a 22. týdnem.',
+    mother: 'Bříško bývá jasně viditelné. Rovnováha se pomalu mění.',
+    bullets: [
+      'Plod měří kolem dvanácti centimetrů.',
+      'První pohyby připomínají bublinky nebo motýly.',
+      'Můžete začít potřebovat těhotenské oblečení.',
+    ],
+    task: 'Zkuste dnes večer deset minut v klidu ležet a jen vnímat, co se v břiše děje.',
+    reflection: 'Na co se v tomhle těhotenství nejvíc těšíte?',
+  },
+  {
+    week: 17,
+    size: 'granátové jablko',
+    headline: 'Sedmnáctý týden. Ukládá se první tuk.',
+    baby: 'Pod kůží se ukládá tuk, který bude po porodu držet tělesnou teplotu. Kostra tvrdne.',
+    mother: 'Můžete se víc potit a mít teplo — metabolismus jede naplno.',
+    bullets: [
+      'Plod měří kolem třinácti centimetrů.',
+      'Zvyšuje se riziko pálení žáhy.',
+      'Spánek na zádech začíná být nepohodlný.',
+    ],
+    task: 'Zkuste dnes spát na levém boku s polštářem mezi koleny.',
+    reflection: 'Co potřebujete, abyste se cítila líp?',
+  },
+  {
+    week: 18,
+    size: 'paprika',
+    headline: 'Osmnáctý týden. Blíží se velký ultrazvuk.',
+    baby: 'Vyvíjí se sluch a plod slyší tlukot vašeho srdce. Mohou být vidět pohlavní orgány.',
+    mother: 'Mezi 18. a 22. týdnem se dělá morfologický ultrazvuk — nejpodrobnější z celého těhotenství.',
+    bullets: [
+      'Plod měří kolem čtrnácti centimetrů.',
+      'Kontroluje se stavba orgánů, srdce a mozku.',
+      'Můžete se dozvědět pohlaví, pokud chcete.',
+    ],
+    task: 'Rozhodněte se předem, jestli chcete znát pohlaví. Řekněte to lékaři hned na začátku.',
+    reflection: 'Jak se cítíte před podrobným vyšetřením?',
+  },
+  {
+    week: 19,
+    size: 'mango',
+    headline: 'Devatenáctý týden. Kůži chrání mázek.',
+    baby: 'Tělo pokrývá bílý mázek, který chrání kůži před plodovou vodou. Rostou první vlásky.',
+    mother: 'Kulaté vazy můžou pobolívat při rychlém vstávání.',
+    bullets: [
+      'Plod měří kolem patnácti centimetrů.',
+      'Pohyby bývají čím dál zřetelnější.',
+      'Můžou se objevit křeče v lýtkách.',
+    ],
+    task: 'Protáhněte si dnes večer lýtka. Předejdete nočním křečím.',
+    reflection: 'Co se od začátku těhotenství změnilo nejvíc?',
+  },
+  {
+    week: 20,
+    size: 'banán',
+    headline: 'Dvacátý týden. Polovina je za vámi.',
+    baby: 'Plod polyká plodovou vodu, trénuje trávení a má pravidelné cykly spánku a bdění.',
+    mother: 'Děloha dosahuje zhruba k pupku. Bříško je nepřehlédnutelné.',
+    bullets: [
+      'Plod měří kolem šestnácti centimetrů od hlavy k zadečku.',
+      'Pohyby jsou u většiny žen zřetelné.',
+      'Můžete zvládat i cvičení pro těhotné.',
+    ],
+    task: 'Zapište si do kroniky, kdy jste poprvé ucítila pohyb.',
+    reflection: 'Jaká je vaše nejsilnější vzpomínka na první polovinu?',
+  },
+  {
+    week: 21,
+    size: 'mrkev',
+    headline: 'Dvacátý první týden. Chuť se formuje.',
+    baby: 'Plod vnímá chutě plodové vody — a ty se mění podle toho, co jíte.',
+    mother: 'Chuť k jídlu bývá výrazná. Přírůstek váhy je teď rychlejší.',
+    bullets: [
+      'Plod měří kolem 26 centimetrů od hlavy k patě.',
+      'Objevují se první kopance zvenčí hmatatelné.',
+      'Otoky nohou večer nejsou vzácné.',
+    ],
+    task: 'Nechte partnera položit ruku na břicho a počkat na kopanec.',
+    reflection: 'Kdy jste se naposledy zasmála?',
+  },
+  {
+    week: 22,
+    size: 'cuketa',
+    headline: 'Dvacátý druhý týden. Vypadá jako miniaturní novorozenec.',
+    baby: 'Rysy obličeje jsou vyvinuté, oči se formují, i když duhovka ještě nemá barvu.',
+    mother: 'Mohou se objevit strie a svědění kůže na břiše.',
+    bullets: [
+      'Plod váží kolem půl kilogramu.',
+      'Kůže je zatím vrásčitá a průsvitná.',
+      'Bolesti zad bývají častější.',
+    ],
+    task: 'Promažte si dnes břicho. Nezabrání to striím, ale uleví od napínání.',
+    reflection: 'Jak vnímáte své tělo teď?',
+  },
+  {
+    week: 23,
+    size: 'grep',
+    headline: 'Dvacátý třetí týden. Plíce se učí dýchat.',
+    baby: 'V plicích se tvoří struktury pro výměnu plynů. Plod dělá dechové pohyby, i když dýchá plodovou vodu.',
+    mother: 'Braxton-Hicksovy kontrakce se můžou objevit — bříško krátce ztvrdne a povolí.',
+    bullets: [
+      'Plod váží kolem 500 gramů.',
+      'Cvičné kontrakce jsou nepravidelné a nebolestivé.',
+      'Otoky rukou a nohou se můžou zhoršit.',
+    ],
+    task: 'Naučte se rozeznat cvičnou kontrakci: nepravidelná, nebolestivá, ustoupí při změně polohy.',
+    reflection: 'Co vám dnes udělalo radost?',
+    callDoctorIf: [
+      'Kontrakce jsou pravidelné a bolestivé.',
+      'Odchází vám tekutina.',
+      'Krvácíte nebo výrazně ubyly pohyby.',
+    ],
+  },
+  {
+    week: 24,
+    size: 'kukuřičný klas',
+    headline: 'Dvacátý čtvrtý týden. Hranice životaschopnosti.',
+    baby: 'Od tohoto týdne má plod při předčasném porodu reálnou šanci na přežití s intenzivní péčí.',
+    mother: 'Mezi 24. a 28. týdnem se dělá oGTT — test na těhotenskou cukrovku.',
+    bullets: [
+      'Plod váží kolem 600 gramů.',
+      'Test na gestační diabetes se dělá plošně.',
+      'Gestační diabetes obvykle nebolí a nijak se neprojeví.',
+    ],
+    task: 'Zjistěte si, kdy máte objednaný oGTT a co před ním nesmíte jíst.',
+    reflection: 'Co vám pomáhá zvládat nejistotu?',
+  },
+  {
+    week: 25,
+    size: 'květák',
+    headline: 'Dvacátý pátý týden. Reaguje na zvuk.',
+    baby: 'Plod leká na hlasité zvuky a zklidňuje se známým hlasem.',
+    mother: 'Pálení žáhy bývá výraznější — děloha tlačí na žaludek.',
+    bullets: [
+      'Plod váží kolem 700 gramů.',
+      'Objevují se pravidelné cykly aktivity.',
+      'Časté močení se vrací.',
+    ],
+    task: 'Poslední jídlo dejte alespoň dvě hodiny před spaním.',
+    reflection: 'Co byste chtěla stihnout, než se miminko narodí?',
+  },
+  {
+    week: 26,
+    size: 'salátová hlávka',
+    headline: 'Dvacátý šestý týden. Otevírá oči.',
+    baby: 'Oční víčka se otevírají, plod reaguje na světlo procházející břišní stěnou.',
+    mother: 'Můžou se zhoršit bolesti zad a pánve.',
+    bullets: [
+      'Plod váží kolem 900 gramů.',
+      'Pohyby jsou silné a viditelné zvenčí.',
+      'Spánek bývá přerušovaný.',
+    ],
+    task: 'Zjistěte si termíny předporodních kurzů. Bývají brzy plné.',
+    reflection: 'Kdo bude u porodu a je to domluvené?',
+  },
+  {
+    week: 27,
+    size: 'zelí',
+    headline: 'Dvacátý sedmý týden. Konec druhého trimestru.',
+    baby: 'Mozek prudce roste, plod má vyvinutý cyklus spánku a snů.',
+    mother: 'Poslední trimestr začíná. Únava se často vrací.',
+    bullets: [
+      'Plod váží kolem kilogramu.',
+      'Kontroly u gynekologa budou častější.',
+      'Můžou se objevit křečové žíly.',
+    ],
+    task: 'Začněte si dělat seznam do porodnice. Nemusíte hned balit.',
+    reflection: 'Jak si představujete první hodinu po porodu?',
+  },
+  {
+    week: 28,
+    size: 'lilek',
+    headline: 'Dvacátý osmý týden. Třetí trimestr.',
+    baby: 'Plíce dozrávají, plod přibírá tuk. Reaguje na hlas a hudbu.',
+    mother: 'Od tohoto týdne se obvykle doporučuje sledovat pohyby každý den.',
+    bullets: [
+      'Plod váží kolem 1,1 kilogramu.',
+      'Pohyby by měly být pravidelné.',
+      'Dušnost při chůzi do schodů je běžná.',
+    ],
+    task: 'Naučte se svůj vlastní vzorec pohybů — kdy je miminko nejaktivnější.',
+    reflection: 'Čeho se na porodu bojíte nejvíc?',
+    callDoctorIf: [
+      'Pohyby jsou výrazně slabší nebo řidší než obvykle.',
+      'Bříško tvrdne pravidelně a bolestivě.',
+      'Máte silné bolesti hlavy s poruchou vidění nebo náhlé otoky obličeje.',
+    ],
+  },
+  {
+    week: 29,
+    size: 'dýně hokkaido',
+    headline: 'Dvacátý devátý týden. Kosti tvrdnou.',
+    baby: 'Kostra se mineralizuje, plod potřebuje hodně vápníku. Svaly a plíce dozrávají.',
+    mother: 'Můžou se objevit hemoroidy a zácpa.',
+    bullets: [
+      'Plod váží kolem 1,3 kilogramu.',
+      'Kopance jsou často nepříjemné pod žebry.',
+      'Nespavost bývá častá.',
+    ],
+    task: 'Přidejte dnes do jídelníčku něco s vápníkem.',
+    reflection: 'Co potřebujete od svého okolí a neřekla jste si o to?',
+  },
+  {
+    week: 30,
+    size: 'zelná hlávka',
+    headline: 'Třicátý týden. Deset týdnů do termínu.',
+    baby: 'Plod otevírá a zavírá oči, rozeznává světlo a tmu. Přibírá zhruba 200 gramů týdně.',
+    mother: 'Nemocenská bývá od 34. týdne, mateřská obvykle 6–8 týdnů před termínem.',
+    bullets: [
+      'Plod váží kolem 1,5 kilogramu.',
+      'Pálení žáhy a dušnost se můžou zhoršit.',
+      'Bývá čas řešit papíry a předání práce.',
+    ],
+    task: 'Zjistěte si, odkdy chcete nastoupit na mateřskou, a řekněte to v práci.',
+    reflection: 'Jak se cítíte při pomyšlení, že odejdete z práce?',
+  },
+  {
+    week: 31,
+    size: 'kokos',
+    headline: 'Třicátý první týden. Místo ubývá.',
+    baby: 'Plod se hůř otáčí, pohyby jsou spíš protahování a šťouchání než kopance.',
+    mother: 'Můžete mít potíže najít pohodlnou polohu na spaní.',
+    bullets: [
+      'Plod váží kolem 1,7 kilogramu.',
+      'Z prsou může začít vytékat mlezivo.',
+      'Braxton-Hicksovy kontrakce jsou častější.',
+    ],
+    task: 'Pořiďte si těhotenský polštář, pokud ho ještě nemáte.',
+    reflection: 'Co vám pomáhá usnout?',
+  },
+  {
+    week: 32,
+    size: 'ananas',
+    headline: 'Třicátý druhý týden. Většina se už otočila hlavičkou dolů.',
+    baby: 'Většina plodů zaujímá polohu hlavičkou dolů. Nehty dorůstají ke konečkům prstů.',
+    mother: 'Kontroly bývají po dvou týdnech. Dech se hůř nabírá.',
+    bullets: [
+      'Plod váží kolem 1,9 kilogramu.',
+      'Poloha se ještě může změnit.',
+      'Otoky nohou večer jsou běžné.',
+    ],
+    task: 'Kupte autosedačku a nechte si ukázat, jak se upevňuje.',
+    reflection: 'Co je z přípravy hotové a co ještě zbývá?',
+  },
+  {
+    week: 33,
+    size: 'meloun cantaloupe',
+    headline: 'Třicátý třetí týden. Imunita se přenáší.',
+    baby: 'Přes placentu přechází vaše protilátky, které budou miminko chránit i po porodu.',
+    mother: 'Můžete mít pocit, že už se nikam nevejdete. Zbývá zhruba měsíc a půl.',
+    bullets: [
+      'Plod váží kolem 2 kilogramů.',
+      'Bolesti pánve a spony jsou časté.',
+      'Spánek bývá přerušovaný.',
+    ],
+    task: 'Zapište si, co chcete mít v porodním plánu. Stačí odrážky.',
+    reflection: 'Co pro vás u porodu bude nejdůležitější?',
+  },
+  {
+    week: 34,
+    size: 'meloun',
+    headline: 'Třicátý čtvrtý týden. Plíce téměř hotové.',
+    baby: 'Plíce jsou skoro zralé. Při porodu v tomto týdnu bývá potřeba už jen krátká podpora.',
+    mother: 'Od tohoto týdne bývá nárok na nemocenskou před porodem.',
+    bullets: [
+      'Plod váží kolem 2,2 kilogramu.',
+      'Kontroly jsou častější.',
+      'Můžou se objevit předzvěsti porodu.',
+    ],
+    task: 'Sbalte tašku do porodnice. Ať je hotová a u dveří.',
+    reflection: 'Co si chcete vzít s sebou, aby vám tam bylo líp?',
+  },
+  {
+    week: 35,
+    size: 'medový meloun',
+    headline: 'Třicátý pátý týden. Blíží se cíl.',
+    baby: 'Ledviny jsou plně vyvinuté, játra zpracovávají odpadní látky. Plod už jen přibírá.',
+    mother: 'Můžete cítit tlak v pánvi, jak miminko sestupuje níž.',
+    bullets: [
+      'Plod váží kolem 2,4 kilogramu.',
+      'Bříško se může viditelně snížit.',
+      'Dýchá se pak lépe, ale tlačí to na měchýř.',
+    ],
+    task: 'Naplánujte trasu do porodnice a zjistěte, kde se parkuje.',
+    reflection: 'Co je poslední věc, kterou chcete stihnout?',
+  },
+  {
+    week: 36,
+    size: 'římský salát',
+    headline: 'Třicátý šestý týden. Od příštího týdne je donošené.',
+    baby: 'Mázek se ztrácí, plod přibírá zhruba 200 gramů týdně a trénuje sání.',
+    mother: 'Kontroly bývají každý týden. Ověřuje se poloha a stav děložního hrdla.',
+    bullets: [
+      'Plod váží kolem 2,6 kilogramu.',
+      'Předzvěsti porodu můžou začít kdykoliv.',
+      'Bolest pánve bývá výraznější.',
+    ],
+    task: 'Domluvte se, kdo vás poveze do porodnice — a kdo jako záloha.',
+    reflection: 'Jste připravená? A co by vám k tomu ještě chybělo?',
+    callDoctorIf: [
+      'Odchází vám plodová voda.',
+      'Kontrakce jsou pravidelné a sílí.',
+      'Krvácíte nebo výrazně ubyly pohyby.',
+    ],
+  },
+  {
+    week: 37,
+    size: 'mangold',
+    headline: 'Třicátý sedmý týden. Donošené.',
+    baby: 'Od tohoto týdne se těhotenství považuje za donošené. Miminko je připravené na svět.',
+    mother: 'Porod může začít kdykoliv. Většina žen ale rodí až kolem 40. týdne.',
+    bullets: [
+      'Miminko váží kolem 2,9 kilogramu.',
+      'Zátka hlenu může odejít i týdny před porodem.',
+      'Nervozita a nespavost jsou běžné.',
+    ],
+    task: 'Zkontrolujte tašku a doklady. Pak už na to nemyslete.',
+    reflection: 'Co si o sobě řeknete, až to bude za vámi?',
+  },
+  {
+    week: 38,
+    size: 'pórek',
+    headline: 'Třicátý osmý týden. Čekání s otevřeným koncem.',
+    baby: 'Miminko dozrálo, jen přibírá. Mozek roste dál až dlouho po porodu.',
+    mother: 'Únava z čekání bývá velká. Každý den se vás někdo ptá, jestli už.',
+    bullets: [
+      'Miminko váží kolem 3 kilogramů.',
+      'Předzvěsti se můžou opakovat několik dní.',
+      'Spánek je krátký a přerušovaný.',
+    ],
+    task: 'Naučte se jednu odpověď na otázku „tak co, ještě nic?“ a používejte ji.',
+    reflection: 'Co vám v tomhle čekání pomáhá?',
+  },
+  {
+    week: 39,
+    size: 'dýně',
+    headline: 'Třicátý devátý týden. Každý den se počítá.',
+    baby: 'Poslední týdny přidávají tuk a zralost plic. Nic není zbytečné.',
+    mother: 'Můžete mít nutkání uklízet a chystat — takzvané hnízdění.',
+    bullets: [
+      'Miminko váží kolem 3,3 kilogramu.',
+      'Děložní hrdlo se může začít zkracovat.',
+      'Kontrakce můžou přijít a zase odejít.',
+    ],
+    task: 'Odpočívejte. Až to začne, budete potřebovat sílu.',
+    reflection: 'Co chcete miminku říct jako první?',
+  },
+  {
+    week: 40,
+    size: 'malý dýňový meloun',
+    headline: 'Čtyřicátý týden. Termín je jen odhad.',
+    baby: 'Miminko je plně připravené. Čeká na signál, který nikdo přesně nezná.',
+    mother:
+      'Jen malá část dětí se narodí přesně v termín. Většina přijde v okně dvou týdnů kolem něj.',
+    bullets: [
+      'Miminko váží kolem 3,5 kilogramu.',
+      'Po termínu se kontroly zhušťují.',
+      'Vyvolání porodu se zvažuje individuálně.',
+    ],
+    task: 'Zeptejte se, jak vaše porodnice postupuje po termínu.',
+    reflection: 'Co jste za těch devět měsíců zvládla?',
+    callDoctorIf: [
+      'Pohyby jsou slabší nebo řidší než obvykle.',
+      'Odchází vám plodová voda, obzvlášť zbarvená.',
+      'Máte silné bolesti hlavy, rozmazané vidění nebo náhlé otoky.',
+    ],
+  },
+]
+
+const weekly: DailyCard[] = WEEKS.map((w) => ({
+  id: `cp-w${w.week}`,
+  phases: w.week >= 37 ? ['pregnancy', 'birth_prep', 'high_risk_pregnancy'] : ['pregnancy', 'early_pregnancy', 'high_risk_pregnancy'],
+  gestWeeks: [w.week, w.week],
+  headline: w.headline,
+  body: `Vaše miminko je velké zhruba jako ${w.size}. ${w.baby} ${w.mother}`,
+  whatsHappening: w.bullets,
+  task: w.task,
+  reflection: w.reflection,
+  tip: w.tip,
+  callDoctorIf: w.callDoctorIf,
+}))
+
+// ------------------------------------------- rizikové těhotenství a hospitalizace ---
+
+const highRisk: DailyCard[] = [
+  {
+    id: 'cp-risk-1',
+    phases: ['high_risk_pregnancy'],
+    dayRange: [0, 400],
+    modifiers: ['high_risk'],
+    headline: 'Rizikové neznamená ztracené.',
+    body: 'Označení „rizikové těhotenství“ znamená, že vás sledují pozorněji — ne že se něco nutně stane. Většina rizikových těhotenství skončí zdravým miminkem.',
+    whatsHappening: [
+      'Kontroly jsou častější než u běžného těhotenství.',
+      'Doporučení se můžou v čase měnit podle nálezů.',
+      'Úzkost v tomhle režimu je normální reakce, ne slabost.',
+    ],
+    task: 'Napište si tři otázky na příští kontrolu. Nechte si na ně odpovědět, i když spěcháte.',
+    reflection: 'Co byste potřebovala slyšet, abyste se cítila jistěji?',
+    callDoctorIf: [
+      'Máte silné bolesti hlavy s poruchou vidění.',
+      'Objeví se náhlé otoky obličeje a rukou.',
+      'Krvácíte, odchází plodová voda nebo výrazně ubyly pohyby.',
+    ],
+  },
+  {
+    id: 'cp-hosp-1',
+    phases: ['hospitalization'],
+    dayRange: [0, 3],
+    headline: 'První dny na oddělení.',
+    body: 'Hospitalizace bývá zahlcující — cizí prostředí, cizí rytmus a najednou spousta času na přemýšlení. Zorientovat se pomáhá víc než snažit se to nevnímat.',
+    whatsHappening: [
+      'Monitorování bývá pravidelné, i v noci.',
+      'Režim dne určuje oddělení, ne vy. To je vyčerpávající.',
+      'Většina žen popisuje první dva dny jako nejhorší.',
+    ],
+    task: 'Zeptejte se, jaký je plán a co se sleduje. Vědět proč tu jste pomáhá.',
+    reflection: 'Co vám z domova nejvíc chybí?',
+    tip: 'Poproste, ať vám donesou vlastní polštář a nabíječku s dlouhým kabelem. Zní to malicherně, ale změní to den.',
+  },
+  {
+    id: 'cp-hosp-2',
+    phases: ['hospitalization'],
+    dayRange: [4, 200],
+    headline: 'Dny na oddělení se slévají.',
+    body: 'Delší hospitalizace je maraton. Pomáhá udělat si vlastní rytmus dne — něco, co je vaše, a ne nemocniční.',
+    whatsHappening: [
+      'Ztráta kontroly nad vlastním časem je hlavní zátěž.',
+      'Odloučení od rodiny doléhá postupně.',
+      'Pohyb v rámci povoleného režimu pomáhá i psychice.',
+    ],
+    task: 'Vymyslete si jednu věc, kterou budete dělat každý den ve stejný čas. Cokoliv.',
+    reflection: 'Co dnes bylo lepší než včera?',
+  },
+]
+
+export const pack: ContentPack = {
+  dailyCards: [...weekly, ...highRisk],
+}

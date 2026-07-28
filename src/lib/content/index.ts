@@ -14,6 +14,9 @@ import { pack as ivfCycle } from './packs/ivf-cycle'
 import { pack as transferWait } from './packs/transfer-wait'
 import { pack as marketplace } from './packs/marketplace'
 import { pack as cardsCycle } from './packs/cards-cycle'
+import { pack as cardsPregnancy } from './packs/cards-pregnancy'
+import { pack as cardsPostpartum } from './packs/cards-postpartum'
+import { pack as cardsNicu } from './packs/cards-nicu'
 
 /**
  * Registr obsahu.
@@ -29,6 +32,9 @@ const PACKS: ContentPack[] = [
   transferWait,
   marketplace,
   cardsCycle,
+  cardsPregnancy,
+  cardsPostpartum,
+  cardsNicu,
 ]
 
 function dedupe<T extends { id: string }>(items: T[]): T[] {
