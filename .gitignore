@@ -21,3 +21,6 @@ data/uploads/
 npm-debug.log*
 .vercel
 coverage/
+
+# vygenerovaný náhled aplikace
+preview/

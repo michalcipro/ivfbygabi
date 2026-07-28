@@ -1,0 +1,1280 @@
+<title>IVF by Gabi — náhled aplikace</title>
+
+<style>
+/*__FONTS__*/
+
+/* ==========================================================================
+   Náhled aplikace IVF by Gabi.
+   Design tokeny jsou 1:1 převzaté ze src/app/globals.css — náhled musí
+   vypadat jako aplikace, ne jako prezentace o aplikaci.
+   ========================================================================== */
+
+:root {
+  --porcelain: #ffffff;
+  --cream: #fbf8f4;
+  --linen: #f5efe6;
+  --champagne: #ecdcc4;
+  --sand: #ddcdb8;
+  --taupe: #a3907c;
+  --taupe-deep: #7b6a59;
+  --blush: #e3cec7;
+  --blush-deep: #b98f83;
+  --sage: #bfcabb;
+  --sage-deep: #7d8c78;
+  --sky: #c3cdd6;
+  --gold: #c8a878;
+
+  --page: var(--cream);
+  --card: var(--porcelain);
+  --card-muted: var(--linen);
+  --line: #e8e0d5;
+  --fg: #2b2521;
+  --fg-soft: #6c6058;
+  --fg-faint: #9a8f86;
+
+  --display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  --r-xs: 0.5rem;
+  --r-sm: 0.75rem;
+  --r-md: 1.125rem;
+  --r-lg: 1.5rem;
+  --r-xl: 2rem;
+  --r-2xl: 2.75rem;
+
+  --veil: 0 1px 2px rgb(43 37 33 / 0.03), 0 8px 24px -12px rgb(43 37 33 / 0.1);
+  --lift: 0 2px 4px rgb(43 37 33 / 0.04), 0 18px 44px -20px rgb(43 37 33 / 0.18);
+  --float: 0 4px 8px rgb(43 37 33 / 0.05), 0 32px 72px -28px rgb(43 37 33 / 0.26);
+  --calm: cubic-bezier(0.22, 0.61, 0.36, 1);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #17140f;
+    --card: #201c17;
+    --card-muted: #262119;
+    --line: #352f27;
+    --fg: #f2ece3;
+    --fg-soft: #b6aa9d;
+    --fg-faint: #857a70;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --page: #17140f;
+  --card: #201c17;
+  --card-muted: #262119;
+  --line: #352f27;
+  --fg: #f2ece3;
+  --fg-soft: #b6aa9d;
+  --fg-faint: #857a70;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --page: var(--cream);
+  --card: var(--porcelain);
+  --card-muted: var(--linen);
+  --line: #e8e0d5;
+  --fg: #2b2521;
+  --fg-soft: #6c6058;
+  --fg-faint: #9a8f86;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+ul, ol { margin: 0; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--taupe); outline-offset: 3px; border-radius: 4px; }
+
+::selection { background: var(--champagne); color: #2b2521; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: color-mix(in oklab, var(--taupe) 30%, transparent); border-radius: 99px; border: 3px solid transparent; background-clip: content-box; }
+
+/* --- opakující se prvky -------------------------------------------------- */
+
+.display { font-family: var(--display); font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; }
+.eyebrow { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-faint); }
+.soft { color: var(--fg-soft); }
+.faint { color: var(--fg-faint); }
+.num { font-variant-numeric: tabular-nums; }
+
+.surface { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); }
+.surface-muted { background: var(--card-muted); border: 1px solid transparent; border-radius: var(--r-lg); }
+
+.stack { display: flex; flex-direction: column; }
+.row { display: flex; align-items: center; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  border-radius: 99px; font-size: 0.875rem; font-weight: 500;
+  padding: 0.6rem 1.15rem; border: 1px solid var(--line); background: var(--card);
+  cursor: pointer; transition: all 0.35s var(--calm); white-space: nowrap;
+}
+.btn:hover { background: var(--card-muted); border-color: var(--sand); }
+.btn-primary { background: var(--fg); color: var(--page); border-color: transparent; }
+.btn-primary:hover { background: var(--taupe-deep); color: #fff; }
+.btn-ghost { background: transparent; border-color: transparent; color: var(--fg-soft); }
+.btn-ghost:hover { background: var(--card-muted); color: var(--fg); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  border-radius: 99px; padding: 0.25rem 0.7rem;
+  font-size: 0.75rem; background: var(--card-muted); color: var(--fg-soft);
+  border: 1px solid transparent;
+}
+.badge-soft { background: color-mix(in oklab, var(--champagne) 55%, transparent); color: var(--taupe-deep); }
+
+/* --- kostra ------------------------------------------------------------- */
+
+.topbar {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem clamp(1rem, 3vw, 2rem);
+  background: color-mix(in oklab, var(--page) 88%, transparent);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.topbar-brand { display: none; }
+@media (min-width: 1024px) { .topbar-brand { display: block; width: 15.5rem; flex: none; } }
+
+.personas { display: flex; gap: 0.4rem; overflow-x: auto; scrollbar-width: none; flex: 1 1 auto; min-width: 0; padding: 2px; }
+.personas::-webkit-scrollbar { display: none; }
+.persona-chip {
+  display: flex; align-items: center; gap: 0.5rem; flex: 0 0 auto;
+  border: 1px solid var(--line); background: var(--card); color: var(--fg-soft);
+  border-radius: 99px; padding: 0.3rem 0.85rem 0.3rem 0.3rem; cursor: pointer;
+  transition: all 0.3s var(--calm); font-size: 0.8125rem;
+}
+.persona-chip:hover { border-color: var(--sand); }
+.persona-chip[aria-pressed='true'] { background: var(--fg); color: var(--page); border-color: transparent; }
+.persona-chip .avatar { width: 1.6rem; height: 1.6rem; border-radius: 99px; display: grid; place-items: center; font-family: var(--display); font-size: 0.9rem; color: #2b2521; }
+.persona-chip .who { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+.persona-chip .who b { font-weight: 600; font-size: 0.8125rem; }
+.persona-chip .who span { font-size: 0.625rem; opacity: 0.7; }
+
+.daynav { display: flex; align-items: center; gap: 0.35rem; flex: 0 0 auto; }
+.daynav .date { font-size: 0.75rem; min-width: 8.5rem; text-align: center; color: var(--fg-soft); }
+.iconbtn {
+  width: 2.1rem; height: 2.1rem; border-radius: 99px; border: 1px solid var(--line);
+  background: var(--card); cursor: pointer; display: grid; place-items: center;
+  transition: all 0.3s var(--calm);
+}
+.iconbtn:hover { background: var(--card-muted); border-color: var(--sand); }
+
+.shell { display: flex; align-items: flex-start; }
+
+.sidebar {
+  display: none; position: sticky; top: 3.6rem; height: calc(100vh - 3.6rem);
+  width: 15.5rem; flex: none; flex-direction: column;
+  border-right: 1px solid var(--line); background: var(--card);
+  padding: 1.35rem 1rem; overflow-y: auto;
+}
+@media (min-width: 1024px) { .sidebar { display: flex; } }
+.navlink {
+  display: flex; align-items: center; gap: 0.75rem; width: 100%;
+  border: 0; background: transparent; text-align: left;
+  border-radius: var(--r-sm); padding: 0.6rem 0.75rem;
+  font-size: 0.9375rem; color: var(--fg-soft); cursor: pointer;
+  transition: all 0.3s var(--calm);
+}
+.navlink:hover { background: var(--card-muted); color: var(--fg); }
+.navlink[aria-current='page'] { background: var(--card-muted); color: var(--fg); font-weight: 500; }
+.navlink i { font-style: normal; width: 1rem; text-align: center; color: var(--fg-faint); }
+.navlink[aria-current='page'] i { color: var(--taupe); }
+
+.main { flex: 1 1 auto; min-width: 0; padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1rem, 3vw, 2.5rem) 6rem; }
+.page { max-width: 68rem; margin: 0 auto; display: flex; flex-direction: column; gap: 2.75rem; }
+
+.tabbar {
+  position: fixed; inset: auto 0 0 0; z-index: 50; display: flex;
+  background: color-mix(in oklab, var(--card) 95%, transparent);
+  backdrop-filter: blur(18px); border-top: 1px solid var(--line);
+}
+@media (min-width: 1024px) { .tabbar { display: none; } }
+.tabbar button { flex: 1; border: 0; background: none; padding: 0.55rem 0 0.7rem; display: flex; flex-direction: column; align-items: center; gap: 0.2rem; cursor: pointer; color: var(--fg-faint); }
+.tabbar button[aria-current='page'] { color: var(--fg); }
+.tabbar button i { font-style: normal; font-size: 1rem; }
+.tabbar button span { font-size: 0.625rem; }
+
+/* --- sdílené bloky ------------------------------------------------------ */
+
+.section-title { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.section-title h2 { font-size: 1.5rem; }
+.section-title p { font-size: 0.8125rem; color: var(--fg-faint); margin-top: 0.25rem; }
+
+.grain { position: relative; overflow: hidden; }
+.grain::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.35; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+.rail { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; padding: 2px 2px 0.75rem; }
+.rail::-webkit-scrollbar { display: none; }
+.rail > * { scroll-snap-align: start; flex: 0 0 auto; }
+
+.ccard {
+  width: 17.5rem; border: 1px solid var(--line); background: var(--card);
+  border-radius: var(--r-lg); overflow: hidden; cursor: pointer; text-align: left;
+  padding: 0; transition: transform 0.5s var(--calm), box-shadow 0.5s var(--calm);
+}
+.ccard:hover { transform: translateY(-4px); box-shadow: var(--lift); }
+.ccard .hero { height: 9.5rem; display: flex; align-items: flex-end; padding: 0.9rem; }
+.ccard .hero .meta { position: relative; z-index: 1; display: flex; width: 100%; justify-content: space-between; align-items: center; }
+.ccard .body { padding: 1rem; }
+.ccard h3 { font-size: 1.0625rem; line-height: 1.3; }
+.ccard p { margin-top: 0.4rem; font-size: 0.8125rem; line-height: 1.5; color: var(--fg-soft); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+.pill-kind { border-radius: 99px; background: rgb(255 255 255 / 0.78); color: #2b2521; padding: 0.22rem 0.6rem; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; backdrop-filter: blur(4px); }
+.pill-min { border-radius: 99px; background: rgb(0 0 0 / 0.12); color: rgb(43 37 33 / 0.85); padding: 0.22rem 0.5rem; font-size: 0.625rem; font-weight: 500; backdrop-filter: blur(4px); }
+
+.grid-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); }
+.grid-cards .ccard { width: 100%; }
+
+/* --- Dnes --------------------------------------------------------------- */
+
+.daycard { border-radius: var(--r-2xl); padding: 4px; }
+.daycard .inner { border-radius: calc(var(--r-2xl) - 4px); background: color-mix(in oklab, var(--card) 92%, transparent); backdrop-filter: blur(6px); padding: clamp(1.5rem, 3vw, 2.5rem); position: relative; z-index: 1; }
+.daycard h2 { font-size: clamp(1.6rem, 3.4vw, 2.25rem); line-height: 1.15; margin-top: 0.65rem; }
+.daycard .lede { margin-top: 1.15rem; max-width: 42rem; font-size: 1.0625rem; line-height: 1.65; color: var(--fg-soft); }
+
+.bullets { display: grid; gap: 0.6rem; margin-top: 0.75rem; padding: 0; list-style: none; }
+@media (min-width: 640px) { .bullets { grid-template-columns: 1fr 1fr; } }
+.bullets li { display: flex; gap: 0.6rem; font-size: 0.9375rem; line-height: 1.55; color: var(--fg-soft); }
+.bullets li::before { content: ''; margin-top: 0.62em; width: 5px; height: 5px; border-radius: 99px; background: var(--sand); flex: none; }
+
+.tipbox { margin-top: 1.6rem; border-radius: var(--r-md); background: var(--card-muted); padding: 1rem 1.25rem; font-size: 0.9375rem; line-height: 1.6; }
+.doctorbox { margin-top: 1.1rem; border-radius: var(--r-md); border: 1px solid var(--blush); background: color-mix(in oklab, var(--blush) 22%, transparent); padding: 1rem 1.25rem; }
+.doctorbox ul { margin-top: 0.5rem; padding: 0; list-style: none; display: grid; gap: 0.4rem; }
+.doctorbox li { display: flex; gap: 0.6rem; font-size: 0.875rem; line-height: 1.5; color: var(--fg-soft); }
+.doctorbox li::before { content: ''; margin-top: 0.6em; width: 5px; height: 5px; border-radius: 99px; background: var(--blush-deep); flex: none; }
+
+.two { display: grid; gap: 1rem; }
+@media (min-width: 768px) { .two { grid-template-columns: 1fr 1fr; } }
+
+.mood { display: flex; gap: 0.5rem; margin-top: 0.9rem; }
+.mood button { flex: 1; aspect-ratio: 1; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--card); cursor: pointer; font-size: 1.25rem; transition: all 0.3s var(--calm); }
+.mood button:hover { border-color: var(--sand); transform: translateY(-2px); }
+.mood button[aria-pressed='true'] { background: var(--champagne); border-color: transparent; }
+
+.check { display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; text-align: left; background: none; border: 0; padding: 0; width: 100%; }
+.check .box { width: 1.35rem; height: 1.35rem; flex: none; border-radius: 99px; border: 1px solid var(--line); display: grid; place-items: center; font-size: 0.7rem; color: transparent; transition: all 0.3s var(--calm); margin-top: 0.1rem; }
+.check[aria-pressed='true'] .box { background: var(--sage); border-color: var(--sage-deep); color: #fff; }
+.check[aria-pressed='true'] .txt { color: var(--fg-faint); text-decoration: line-through; }
+
+.quote { border-radius: var(--r-xl); padding: clamp(2rem, 5vw, 3.5rem) 1.5rem; text-align: center; }
+.quote p { position: relative; z-index: 1; font-family: var(--display); font-size: clamp(1.3rem, 2.6vw, 1.65rem); line-height: 1.5; max-width: 34rem; margin: 0 auto; color: #2b2521; }
+.quote .by { margin-top: 1.2rem; font-family: var(--sans); font-size: 0.8125rem; color: rgb(43 37 33 / 0.55); }
+
+.featurecard { display: grid; overflow: hidden; border-radius: var(--r-xl); border: 1px solid var(--line); background: var(--card); cursor: pointer; text-align: left; padding: 0; transition: box-shadow 0.5s var(--calm); }
+.featurecard:hover { box-shadow: var(--float); }
+@media (min-width: 768px) { .featurecard { grid-template-columns: 1.1fr 1fr; } }
+.featurecard .hero { min-height: 13rem; display: flex; align-items: flex-end; padding: 1.5rem; }
+.featurecard .txt { padding: clamp(1.5rem, 3vw, 2.25rem); display: flex; flex-direction: column; justify-content: center; }
+.featurecard h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); margin-top: 0.7rem; }
+
+.ring { transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 4; }
+
+.linelist { list-style: none; padding: 0; display: grid; gap: 0.75rem; margin-top: 1rem; }
+.linelist li { display: flex; align-items: baseline; gap: 0.85rem; font-size: 0.9375rem; }
+.linelist .when { width: 5.5rem; flex: none; font-size: 0.75rem; color: var(--fg-faint); }
+
+/* --- čtečka ------------------------------------------------------------- */
+
+.sheet-bg { position: fixed; inset: 0; z-index: 60; background: rgb(20 16 12 / 0.35); backdrop-filter: blur(3px); animation: fade 0.3s var(--calm); }
+.sheet {
+  position: fixed; z-index: 61; inset: 0 0 0 auto; width: min(46rem, 100%);
+  background: var(--page); overflow-y: auto; box-shadow: var(--float);
+  animation: slide 0.45s var(--calm);
+}
+.sheet-head { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.85rem 1.25rem; background: color-mix(in oklab, var(--page) 92%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.sheet-body { padding: 0 clamp(1.25rem, 4vw, 3rem) 5rem; }
+.sheet-hero { height: 12rem; margin: 0 0 1.75rem; display: flex; align-items: flex-end; padding: 1.25rem; }
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes rise { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+.rise { animation: rise 0.55s var(--calm) both; }
+
+.prose { color: var(--fg-soft); font-size: 1.0625rem; line-height: 1.75; }
+.prose > * + * { margin-top: 1.15em; }
+.prose h2 { font-family: var(--display); font-size: 1.75rem; color: var(--fg); margin-top: 2em; line-height: 1.25; }
+.prose h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--fg); margin-top: 1.8em; }
+.prose strong { color: var(--fg); font-weight: 600; }
+.prose ul, .prose ol { padding-left: 1.15rem; }
+.prose li + li { margin-top: 0.5em; }
+.prose ul > li { list-style: none; position: relative; }
+.prose ul > li::before { content: ''; position: absolute; left: -1rem; top: 0.72em; width: 5px; height: 5px; border-radius: 99px; background: var(--sand); }
+.prose blockquote { border-left: 2px solid var(--champagne); padding-left: 1.25rem; margin-left: 0; font-family: var(--display); font-size: 1.35rem; line-height: 1.5; color: var(--fg); }
+.prose .tablewrap { overflow-x: auto; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; }
+.prose th, .prose td { text-align: left; padding: 0.55rem 0.85rem; border-bottom: 1px solid var(--line); }
+.prose th { font-family: var(--sans); font-weight: 600; color: var(--fg); font-size: 0.8125rem; letter-spacing: 0.02em; }
+
+/* --- deník, zdraví ------------------------------------------------------ */
+
+.slider { width: 100%; accent-color: var(--taupe); }
+.chart { width: 100%; height: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 0.85rem; font-size: 0.75rem; color: var(--fg-soft); }
+.legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.swatch { width: 0.7rem; height: 0.7rem; border-radius: 99px; }
+
+/* --- Gabi --------------------------------------------------------------- */
+
+.chat { display: flex; flex-direction: column; gap: 1rem; }
+.bubble { max-width: min(44rem, 100%); border-radius: var(--r-lg); padding: 1rem 1.25rem; font-size: 0.9375rem; line-height: 1.65; }
+.bubble-user { align-self: flex-end; max-width: min(32rem, 100%); background: var(--fg); color: var(--page); border-bottom-right-radius: var(--r-xs); }
+.bubble-gabi { align-self: flex-start; background: var(--card); border: 1px solid var(--line); border-bottom-left-radius: var(--r-xs); }
+.bubble-gabi .prose { font-size: 0.9375rem; }
+/* Řada karet uvnitř bubliny nesmí bublinu roztáhnout přes šířku obrazovky. */
+.bubble-gabi .rail { max-width: 100%; }
+.bubble-gabi .rail .ccard { width: 15rem; }
+.ask { display: flex; gap: 0.6rem; margin-top: 1.25rem; }
+.ask input { flex: 1; border-radius: 99px; border: 1px solid var(--line); background: var(--card); padding: 0.75rem 1.15rem; font-size: 0.9375rem; color: var(--fg); }
+.ask input:focus { outline: none; border-color: var(--taupe); box-shadow: 0 0 0 4px color-mix(in oklab, var(--champagne) 45%, transparent); }
+
+.note {
+  border-radius: var(--r-md); border: 1px dashed var(--sand);
+  background: color-mix(in oklab, var(--champagne) 18%, transparent);
+  padding: 0.85rem 1.1rem; font-size: 0.8125rem; line-height: 1.55; color: var(--fg-soft);
+}
+
+/* --- ostatní ------------------------------------------------------------ */
+
+.tiles { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
+.tile { border: 1px solid var(--line); background: var(--card); border-radius: var(--r-md); padding: 1rem 1.15rem; text-align: left; cursor: pointer; transition: all 0.35s var(--calm); }
+.tile:hover { border-color: var(--sand); transform: translateY(-2px); box-shadow: var(--veil); }
+.tile h4 { font-size: 1.0625rem; }
+.tile p { margin-top: 0.3rem; font-size: 0.8125rem; color: var(--fg-soft); line-height: 1.5; }
+
+.filters { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.filters button { border-radius: 99px; border: 1px solid var(--line); background: var(--card); padding: 0.35rem 0.85rem; font-size: 0.8125rem; color: var(--fg-soft); cursor: pointer; transition: all 0.3s var(--calm); }
+.filters button[aria-pressed='true'] { background: var(--fg); color: var(--page); border-color: transparent; }
+
+.searchbar { width: 100%; border-radius: 99px; border: 1px solid var(--line); background: var(--card); padding: 0.8rem 1.25rem; font-size: 0.9375rem; color: var(--fg); }
+.searchbar:focus { outline: none; border-color: var(--taupe); box-shadow: 0 0 0 4px color-mix(in oklab, var(--champagne) 45%, transparent); }
+
+.timeline { list-style: none; padding: 0; display: grid; gap: 0; }
+.timeline li { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; padding-bottom: 1.5rem; position: relative; }
+.timeline li::before { content: ''; position: absolute; left: 1.2rem; top: 2.4rem; bottom: 0; width: 1px; background: var(--line); }
+.timeline li:last-child::before { display: none; }
+.timeline .dot { width: 2.4rem; height: 2.4rem; border-radius: 99px; background: var(--card-muted); display: grid; place-items: center; color: var(--taupe); }
+
+.post { border: 1px solid var(--line); background: var(--card); border-radius: var(--r-lg); padding: 1.25rem 1.4rem; }
+.reply { border-left: 2px solid var(--line); padding-left: 1rem; margin-top: 0.9rem; }
+
+.prodcard { border: 1px solid var(--line); background: var(--card); border-radius: var(--r-lg); overflow: hidden; display: flex; flex-direction: column; }
+.prodcard .hero { height: 6.5rem; }
+.prodcard .body { padding: 1rem 1.15rem 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+.why { border-radius: var(--r-sm); background: var(--card-muted); padding: 0.65rem 0.85rem; font-size: 0.8125rem; line-height: 1.5; color: var(--fg-soft); }
+
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1rem; font-size: 0.875rem; }
+.kv dt { color: var(--fg-faint); }
+.kv dd { margin: 0; }
+
+.banner {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--card-muted); padding: 0.7rem 1rem; font-size: 0.8125rem; color: var(--fg-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+
+<div id="app"></div>
+
+<script>
+const DATA = /*__DATA__*/;
+
+/* ------------------------------------------------------------------ stav -- */
+
+const HERO = {
+  champagne: 'linear-gradient(135deg, #f2e3cd 0%, #e2cbaa 55%, #cdb08c 100%)',
+  taupe: 'linear-gradient(135deg, #cbbdae 0%, #a3907c 60%, #7b6a59 100%)',
+  blush: 'linear-gradient(135deg, #f3e2dd 0%, #e3cec7 55%, #c9a89f 100%)',
+  sage: 'linear-gradient(135deg, #e2e8dd 0%, #bfcabb 60%, #93a28c 100%)',
+  sky: 'linear-gradient(135deg, #dfe6ec 0%, #c3cdd6 60%, #94a4b0 100%)',
+  linen: 'linear-gradient(135deg, #faf5ee 0%, #efe5d6 60%, #ded0bb 100%)',
+  sand: 'linear-gradient(135deg, #ece0d1 0%, #ddcdb8 60%, #c2ac92 100%)',
+  dusk: 'linear-gradient(145deg, #b8a698 0%, #8d7a6c 45%, #5d4f45 100%)',
+  dawn: 'linear-gradient(135deg, #fdf1e5 0%, #f0d9c6 45%, #dcb9a0 100%)',
+  pearl: 'linear-gradient(135deg, #ffffff 0%, #f3efe8 55%, #e3dcd0 100%)',
+};
+
+const NAV_PRIMARY = [
+  { id: 'dnes', label: 'Dnes', icon: '☀' },
+  { id: 'objevit', label: 'Objevit', icon: '❋' },
+  { id: 'gabi', label: 'Gabi', icon: '✦' },
+  { id: 'denik', label: 'Deník', icon: '✎' },
+  { id: 'komunita', label: 'Komunita', icon: '◍' },
+];
+const NAV_SECONDARY = [
+  { id: 'pruvodce', label: 'Průvodce', icon: '❖' },
+  { id: 'knihovna', label: 'Knihovna', icon: '❧' },
+  { id: 'kalendar', label: 'Kalendář', icon: '◈' },
+  { id: 'zdravi', label: 'Zdraví', icon: '◉' },
+  { id: 'pribeh', label: 'Můj příběh', icon: '❦' },
+  { id: 'obchod', label: 'Doporučené', icon: '◇' },
+  { id: 'partner', label: 'Partner', icon: '♡' },
+];
+
+const BY_ID = new Map(DATA.catalog.map((c) => [c.id, c]));
+
+const S = {
+  persona: 0,
+  day: DATA.personas[0].days.findIndex((d) => d.offset === 0),
+  screen: 'dnes',
+  open: null,
+  query: '',
+  kind: 'vse',
+  phase: null,
+  chat: [],
+  mood: null,
+  done: {},
+  checked: {},
+  quiz: {},
+};
+
+const persona = () => DATA.personas[S.persona];
+const day = () => persona().days[S.day];
+
+/* -------------------------------------------------------------- pomocníci -- */
+
+const esc = (s) =>
+  String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+const inline = (s) =>
+  esc(s)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+/** Stejná podmnožina markdownu jako v aplikaci: ## ### - 1. > a tabulky. */
+function md(text) {
+  const lines = String(text || '').replace(/\r/g, '').split('\n');
+  const out = [];
+  let para = [];
+  let list = null;
+  let table = null;
+
+  const flushPara = () => { if (para.length) { out.push('<p>' + inline(para.join(' ')) + '</p>'); para = []; } };
+  const flushList = () => {
+    if (!list) return;
+    out.push('<' + list.type + '>' + list.items.map((i) => '<li>' + inline(i) + '</li>').join('') + '</' + list.type + '>');
+    list = null;
+  };
+  const flushTable = () => {
+    if (!table) return;
+    const head = '<tr>' + table.head.map((c) => '<th>' + inline(c) + '</th>').join('') + '</tr>';
+    const rows = table.rows.map((r) => '<tr>' + r.map((c) => '<td>' + inline(c) + '</td>').join('') + '</tr>').join('');
+    out.push('<div class="tablewrap"><table><thead>' + head + '</thead><tbody>' + rows + '</tbody></table></div>');
+    table = null;
+  };
+  const cells = (line) => line.replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
+
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (!line.trim()) { flushPara(); flushList(); flushTable(); continue; }
+
+    if (/^\|.*\|$/.test(line)) {
+      flushPara(); flushList();
+      if (/^\|[\s:|-]+\|$/.test(line)) continue;
+      if (!table) table = { head: cells(line), rows: [] };
+      else table.rows.push(cells(line));
+      continue;
+    }
+    flushTable();
+
+    let m;
+    if ((m = line.match(/^###\s+(.*)$/))) { flushPara(); flushList(); out.push('<h3>' + inline(m[1]) + '</h3>'); continue; }
+    if ((m = line.match(/^##\s+(.*)$/))) { flushPara(); flushList(); out.push('<h2>' + inline(m[1]) + '</h2>'); continue; }
+    if ((m = line.match(/^>\s+(.*)$/))) { flushPara(); flushList(); out.push('<blockquote>' + inline(m[1]) + '</blockquote>'); continue; }
+    if ((m = line.match(/^[-*]\s+(.*)$/))) {
+      flushPara();
+      if (!list || list.type !== 'ul') { flushList(); list = { type: 'ul', items: [] }; }
+      list.items.push(m[1]); continue;
+    }
+    if ((m = line.match(/^\d+\.\s+(.*)$/))) {
+      flushPara();
+      if (!list || list.type !== 'ol') { flushList(); list = { type: 'ol', items: [] }; }
+      list.items.push(m[1]); continue;
+    }
+    flushList();
+    para.push(line.trim());
+  }
+  flushPara(); flushList(); flushTable();
+  return out.join('');
+}
+
+const heroStyle = (token) => 'background:' + (HERO[token] || HERO.linen);
+
+function contentCard(item, reason) {
+  if (!item) return '';
+  return (
+    '<button class="ccard" data-open="' + esc(item.id) + '">' +
+      '<div class="hero grain" style="' + heroStyle(item.hero) + '">' +
+        '<div class="meta">' +
+          '<span class="pill-kind">' + esc(DATA.kindIcons[item.kind]) + ' ' + esc(DATA.kindLabels[item.kind]) + '</span>' +
+          '<span class="pill-min num">' + item.minutes + ' min</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="body">' +
+        (reason ? '<p class="eyebrow" style="margin-bottom:.5rem">' + esc(reason) + '</p>' : '') +
+        '<h3 class="display">' + esc(item.title) + '</h3>' +
+        '<p>' + esc(item.excerpt) + '</p>' +
+      '</div>' +
+    '</button>'
+  );
+}
+
+function railBlock(rail) {
+  const items = rail.items.map((id) => BY_ID.get(id)).filter(Boolean);
+  if (!items.length) return '';
+  return (
+    '<section class="rise">' +
+      '<div class="section-title"><div><h2 class="display">' + esc(rail.title) + '</h2>' +
+      '<p>' + esc(rail.reason) + '</p></div></div>' +
+      '<div class="rail">' + items.map((i) => contentCard(i)).join('') + '</div>' +
+    '</section>'
+  );
+}
+
+function ring(value) {
+  if (value == null) return '';
+  const r = 27;
+  const c = 2 * Math.PI * r;
+  return (
+    '<div style="position:relative;flex:none;width:62px;height:62px">' +
+      '<svg class="ring" width="62" height="62" viewBox="0 0 62 62" aria-hidden="true">' +
+        '<circle cx="31" cy="31" r="' + r + '" stroke="var(--line)"></circle>' +
+        '<circle cx="31" cy="31" r="' + r + '" stroke="var(--taupe)" stroke-linecap="round" ' +
+        'stroke-dasharray="' + c.toFixed(1) + '" stroke-dashoffset="' + (c * (1 - value)).toFixed(1) + '"></circle>' +
+      '</svg>' +
+      '<span class="num" style="position:absolute;inset:0;display:grid;place-items:center;font-size:.75rem;color:var(--fg-soft)">' +
+      Math.round(value * 100) + ' %</span>' +
+    '</div>'
+  );
+}
+
+/* ---------------------------------------------------------------- obrazovky -- */
+
+function screenDnes() {
+  const d = day();
+  const p = persona();
+  const card = d.card;
+  const feature = d.featureId ? BY_ID.get(d.featureId) : null;
+
+  const head =
+    '<header class="rise">' +
+      '<div class="row" style="gap:.6rem;flex-wrap:wrap"><p class="eyebrow">' + esc(d.dateLabel) + '</p>' +
+      (d.offset === 0 ? '<span class="badge badge-soft">dnes</span>' : '<span class="badge">' + (d.offset < 0 ? 'včera' : 'za ' + d.offset + ' dní') + '</span>') +
+      '</div>' +
+      '<h1 class="display" style="font-size:clamp(2rem,4.5vw,3rem);margin-top:.75rem">Dobrý den, ' + esc(p.name) + '.</h1>' +
+      '<p class="soft" style="margin-top:.6rem;font-size:1.0625rem">' + esc(d.dayLabel) + '</p>' +
+      (d.gestationLabel ? '<p class="faint" style="margin-top:.25rem;font-size:.875rem">Gestační stáří ' + esc(d.gestationLabel) + '</p>' : '') +
+      (d.babyAgeLabel ? '<p class="faint" style="margin-top:.25rem;font-size:.875rem">' + esc(d.babyAgeLabel) + (d.usesCorrectedAge ? ' · počítáno korigovaně' : '') + '</p>' : '') +
+    '</header>';
+
+  const cardBlock = card
+    ? '<section class="rise"><div class="daycard grain" style="' + heroStyle('linen') + '">' +
+        '<div class="inner">' +
+          '<div class="row" style="justify-content:space-between;align-items:flex-start;gap:1.5rem">' +
+            '<div style="min-width:0"><p class="eyebrow">Dnešní téma</p>' +
+            '<h2 class="display">' + esc(card.headline) + '</h2></div>' +
+            ring(d.progress) +
+          '</div>' +
+          '<p class="lede">' + esc(card.body) + '</p>' +
+          (card.whatsHappening && card.whatsHappening.length
+            ? '<div style="margin-top:1.9rem"><p class="eyebrow">Co se dnes může dít</p><ul class="bullets">' +
+              card.whatsHappening.map((w) => '<li>' + esc(w) + '</li>').join('') + '</ul></div>'
+            : '') +
+          (card.tip ? '<p class="tipbox"><strong>Tip: </strong>' + esc(card.tip) + '</p>' : '') +
+          (card.callDoctorIf && card.callDoctorIf.length
+            ? '<div class="doctorbox"><p style="font-size:.8125rem;font-weight:600">Ozvěte se lékaři, pokud:</p><ul>' +
+              card.callDoctorIf.map((c) => '<li>' + esc(c) + '</li>').join('') + '</ul></div>'
+            : '') +
+        '</div>' +
+      '</div></section>'
+    : '<section class="surface" style="padding:2rem"><h2 class="display" style="font-size:1.5rem">' + esc(d.phaseTitle) + '</h2><p class="soft" style="margin-top:.75rem">' + esc(d.phaseDescription) + '</p></section>';
+
+  const task = card && card.task
+    ? '<div class="surface" style="padding:1.5rem"><p class="eyebrow">Dnešní úkol</p>' +
+      '<button class="check" data-task="1" aria-pressed="' + (S.done[d.date] ? 'true' : 'false') + '" style="margin-top:.9rem">' +
+      '<span class="box">✓</span><span class="txt" style="font-size:.9375rem;line-height:1.6">' + esc(card.task) + '</span></button></div>'
+    : '';
+
+  const mood =
+    '<div class="surface" style="padding:1.5rem"><p class="eyebrow">Jak vám dnes je?</p>' +
+      '<div class="mood">' +
+        [1, 2, 3, 4, 5].map((v) => '<button data-mood="' + v + '" aria-pressed="' + (S.mood === v ? 'true' : 'false') + '" aria-label="Nálada ' + v + ' z 5">' + ['😞', '😔', '😐', '🙂', '😊'][v - 1] + '</button>').join('') +
+      '</div>' +
+      (S.mood ? '<p class="faint" style="margin-top:.8rem;font-size:.8125rem">Zapsáno. V deníku uvidíte, jak se to vyvíjí.</p>' : '') +
+    '</div>';
+
+  const memories = d.memories.length
+    ? '<section class="rise"><div class="section-title"><div><h2 class="display">Na dnešek si vzpomínáme</h2><p>Z vaší kroniky</p></div></div>' +
+      d.memories.map((m) =>
+        '<div class="surface-muted" style="padding:1.25rem;display:flex;gap:1rem;margin-bottom:.75rem">' +
+        '<span style="color:var(--taupe);font-size:1.15rem">' + esc(m.icon || '❦') + '</span><div>' +
+        '<p style="font-weight:500;font-size:.9375rem">' + esc(m.label) + '</p>' +
+        (m.body ? '<p class="soft" style="margin-top:.35rem;font-size:.875rem;line-height:1.6">' + esc(m.body) + '</p>' : '') +
+        '</div></div>').join('') +
+      '</section>'
+    : '';
+
+  const featureBlock = feature
+    ? '<section class="rise"><div class="section-title"><h2 class="display">Dnešní doporučení</h2></div>' +
+      '<button class="featurecard" data-open="' + esc(feature.id) + '">' +
+        '<div class="hero grain" style="' + heroStyle(feature.hero) + '">' +
+          '<span class="pill-kind">' + esc(DATA.kindIcons[feature.kind]) + ' ' + esc(DATA.kindLabels[feature.kind]) + ' · ' + feature.minutes + ' min</span>' +
+        '</div>' +
+        '<div class="txt"><p class="eyebrow">' + esc(d.featureReason) + '</p>' +
+        '<h3 class="display">' + esc(feature.title) + '</h3>' +
+        '<p class="soft" style="margin-top:.75rem;font-size:.9375rem;line-height:1.6">' + esc(feature.excerpt) + '</p>' +
+        '<span style="margin-top:1.5rem;font-size:.875rem;font-weight:500;color:var(--taupe-deep)">Otevřít →</span></div>' +
+      '</button></section>'
+    : '';
+
+  const meds = p.meds.length
+    ? '<div class="surface" style="padding:1.5rem"><h3 class="display" style="font-size:1.25rem">Dnešní léky</h3><ul class="linelist">' +
+      p.meds.map((m) => '<li><span class="box" style="width:1.1rem;height:1.1rem;border-radius:99px;border:1px solid var(--line);flex:none"></span>' +
+      '<span>' + esc(m.name) + (m.dose ? ' <span class="faint">· ' + esc(m.dose) + '</span>' : '') + '</span>' +
+      (m.timeOfDay ? '<span class="faint num" style="margin-left:auto;font-size:.75rem">' + esc(m.timeOfDay) + '</span>' : '') + '</li>').join('') +
+      '</ul></div>'
+    : '';
+
+  const upcoming = d.upcoming.length
+    ? '<div class="surface" style="padding:1.5rem"><h3 class="display" style="font-size:1.25rem">Co vás čeká</h3><ul class="linelist">' +
+      d.upcoming.map((e) => '<li><span class="when">' + (e.inDays === 0 ? 'dnes' : e.inDays === 1 ? 'zítra' : 'za ' + e.inDays + ' dní') + '</span>' +
+      '<span>' + esc(e.title) + '</span></li>').join('') + '</ul></div>'
+    : '';
+
+  const enc = d.encouragement
+    ? '<section class="rise"><div class="quote grain" style="' + heroStyle('dawn') + '">' +
+      '<p>' + esc(d.encouragement.text) + '</p>' +
+      (d.encouragement.author ? '<p class="by">' + esc(d.encouragement.author) + '</p>' : '') +
+      '</div></section>'
+    : '';
+
+  const reflection = card && card.reflection
+    ? '<section class="surface" style="padding:1.75rem"><p class="eyebrow">Večerní reflexe</p>' +
+      '<p class="display" style="font-size:1.35rem;margin-top:.75rem;line-height:1.4">' + esc(card.reflection) + '</p>' +
+      '<textarea class="searchbar" rows="3" placeholder="Můžete psát cokoliv. Nikdo jiný to neuvidí." style="margin-top:1rem;border-radius:var(--r-md);resize:vertical"></textarea></section>'
+    : '';
+
+  const next = d.nextMilestone
+    ? '<div class="banner"><span style="color:var(--taupe)">◈</span><span>Nejbližší milník: <strong>' + esc(d.nextMilestone.label) + '</strong> za ' + esc(d.nextMilestone.human) + '</span></div>'
+    : '';
+
+  const intro =
+    '<div class="banner"><span style="color:var(--taupe)">✦</span>' +
+    '<span><strong>Náhled aplikace.</strong> Nahoře přepnete mezi ' + DATA.personas.length + ' profily, šipkami ‹ › posunete den — ' +
+    'domovská stránka se přepočítá stejně jako v aplikaci. Obsah, doporučení i denní karty jsou skutečné: ' +
+    DATA.stats.items + ' materiálů, ' + DATA.stats.dailyCards + ' denních karet, ' + DATA.stats.phases + ' fází cesty.</span></div>';
+
+  return (
+    intro + head + cardBlock +
+    (task || mood ? '<section class="two">' + task + mood + '</section>' : '') +
+    next + memories + featureBlock +
+    (meds || upcoming ? '<section class="two">' + meds + upcoming + '</section>' : '') +
+    d.rails.slice(0, 3).map(railBlock).join('') +
+    enc + reflection +
+    '<section style="border-top:1px solid var(--line);padding-top:2rem;text-align:center">' +
+      '<p class="soft" style="font-size:.9375rem">Zítra tu na vás bude čekat něco nového.</p>' +
+      '<button class="btn btn-ghost" data-day="1" style="margin-top:.75rem">Posunout na zítřek →</button>' +
+    '</section>'
+  );
+}
+
+function screenObjevit() {
+  const d = day();
+  return (
+    '<header class="rise"><p class="eyebrow">IVF Netflix</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Objevit</h1>' +
+    '<p class="soft" style="margin-top:.6rem">Řady se skládají podle toho, kolikátý je den vaší cesty. Zítra budou jiné.</p></header>' +
+    d.rails.map(railBlock).join('')
+  );
+}
+
+function screenPruvodce() {
+  if (S.phase) {
+    const ph = DATA.phases.find((p) => p.id === S.phase);
+    const items = ph.items.map((id) => BY_ID.get(id)).filter(Boolean);
+    return (
+      '<button class="btn btn-ghost" data-phase="" style="align-self:flex-start">← Všechny fáze</button>' +
+      '<header class="rise"><p class="eyebrow">' + esc(DATA.phaseGroups.find((g) => g.id === ph.group).name) + '</p>' +
+      '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">' + esc(ph.title) + '</h1>' +
+      '<p class="soft" style="margin-top:.75rem;font-size:1.0625rem;max-width:40rem;line-height:1.65">' + esc(ph.description) + '</p></header>' +
+      '<div class="surface" style="padding:1.5rem"><dl class="kv">' +
+        (ph.dayExample ? '<dt>Popisek dne</dt><dd>' + esc(ph.dayExample) + '</dd>' : '') +
+        (ph.typicalDays ? '<dt>Typická délka</dt><dd class="num">' + ph.typicalDays + ' dní</dd>' : '<dt>Typická délka</dt><dd>bez pevné délky</dd>') +
+        '<dt>Denních karet</dt><dd class="num">' + ph.cards + '</dd>' +
+        '<dt>Odsud vede</dt><dd>' + ph.next.map((n) => esc(DATA.phases.find((x) => x.id === n).name)).join(' · ') + '</dd>' +
+      '</dl></div>' +
+      (items.length ? '<section><div class="section-title"><h2 class="display">Obsah pro tuhle fázi</h2></div><div class="grid-cards">' + items.map((i) => contentCard(i)).join('') + '</div></section>' : '')
+    );
+  }
+
+  return (
+    '<header class="rise"><p class="eyebrow">Celá cesta, ne jeden cyklus</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Průvodce</h1>' +
+    '<p class="soft" style="margin-top:.6rem">' + DATA.phases.length + ' fází od prvního rozhodnutí po batolecí období. Vaše aktuální fáze je zvýrazněná.</p></header>' +
+    DATA.phaseGroups.map((g) => {
+      const phases = DATA.phases.filter((p) => p.group === g.id);
+      return (
+        '<section><div class="section-title"><div><h2 class="display">' + esc(g.name) + '</h2><p>' + esc(g.blurb) + '</p></div></div>' +
+        '<div class="tiles">' +
+        phases.map((p) => {
+          const here = p.id === day().phaseId;
+          return '<button class="tile" data-phase="' + esc(p.id) + '"' + (here ? ' style="border-color:var(--taupe);box-shadow:var(--veil)"' : '') + '>' +
+            (here ? '<p class="eyebrow" style="color:var(--taupe-deep)">Jste tady</p>' : '') +
+            '<h4 class="display">' + esc(p.name) + '</h4><p>' + esc(p.description) + '</p></button>';
+        }).join('') +
+        '</div></section>'
+      );
+    }).join('')
+  );
+}
+
+function screenKnihovna() {
+  const q = S.query.trim().toLowerCase();
+  const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const nq = norm(q);
+  let items = DATA.catalog;
+  if (S.kind !== 'vse') items = items.filter((i) => i.kind === S.kind);
+  if (nq.length > 1) items = items.filter((i) => norm(i.title + ' ' + i.excerpt + ' ' + i.body).includes(nq));
+
+  const kinds = ['vse'].concat([...new Set(DATA.catalog.map((i) => i.kind))]);
+
+  return (
+    '<header class="rise"><p class="eyebrow">' + DATA.catalog.length + ' materiálů · ' + DATA.glossary.length + ' pojmů</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Knihovna</h1></header>' +
+    '<div class="stack" style="gap:1rem">' +
+      '<input class="searchbar" id="q" placeholder="Hledejte: beta hcg, blastocysta, císař, kojení…" value="' + esc(S.query) + '">' +
+      '<div class="filters">' + kinds.map((k) =>
+        '<button data-kind="' + esc(k) + '" aria-pressed="' + (S.kind === k ? 'true' : 'false') + '">' +
+        (k === 'vse' ? 'Vše' : esc(DATA.kindLabels[k])) + '</button>').join('') + '</div>' +
+    '</div>' +
+    (items.length
+      ? '<div class="grid-cards">' + items.slice(0, 60).map((i) => contentCard(i)).join('') + '</div>' +
+        (items.length > 60 ? '<p class="faint" style="text-align:center;font-size:.8125rem">Zobrazeno 60 z ' + items.length + ' výsledků.</p>' : '')
+      : '<p class="soft">Nic se nenašlo. Zkuste kratší slovo.</p>')
+  );
+}
+
+function screenDenik() {
+  const p = persona();
+  const entries = p.journal;
+  const w = 720, h = 220, pad = 28;
+  const x = (i) => pad + (i * (w - pad * 2)) / (entries.length - 1);
+  const y = (v) => h - pad - ((v - 1) / 4) * (h - pad * 2);
+  const path = (key) => entries.map((e, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(e[key]).toFixed(1)).join(' ');
+  const area = 'M' + x(0).toFixed(1) + ' ' + (h - pad) + ' ' + entries.map((e, i) => 'L' + x(i).toFixed(1) + ' ' + y(e.mood).toFixed(1)).join(' ') + ' L' + x(entries.length - 1).toFixed(1) + ' ' + (h - pad) + ' Z';
+
+  const notes = entries.filter((e) => e.note).slice(-6).reverse();
+
+  return (
+    '<header class="rise"><p class="eyebrow">Soukromé · nikdo jiný to nevidí</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Deník</h1>' +
+    '<p class="soft" style="margin-top:.6rem">Nálada, úzkost, naděje a energie za posledních 21 dní.</p></header>' +
+
+    '<section class="surface" style="padding:1.5rem">' +
+      '<svg class="chart" viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Vývoj nálady za 21 dní">' +
+        [1, 2, 3, 4, 5].map((v) => '<line x1="' + pad + '" y1="' + y(v).toFixed(1) + '" x2="' + (w - pad) + '" y2="' + y(v).toFixed(1) + '" stroke="var(--line)" stroke-width="1"/>').join('') +
+        '<path d="' + area + '" fill="var(--champagne)" opacity=".35"/>' +
+        '<path d="' + path('mood') + '" fill="none" stroke="var(--taupe-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<path d="' + path('anxiety') + '" fill="none" stroke="var(--blush-deep)" stroke-width="1.75" stroke-dasharray="4 4" stroke-linecap="round"/>' +
+        '<path d="' + path('hope') + '" fill="none" stroke="var(--sage-deep)" stroke-width="1.75" stroke-linecap="round"/>' +
+        '<circle cx="' + x(entries.length - 1).toFixed(1) + '" cy="' + y(entries[entries.length - 1].mood).toFixed(1) + '" r="4.5" fill="var(--taupe-deep)"/>' +
+      '</svg>' +
+      '<div class="legend">' +
+        '<span><i class="swatch" style="background:var(--taupe-deep)"></i>Nálada</span>' +
+        '<span><i class="swatch" style="background:var(--blush-deep)"></i>Úzkost</span>' +
+        '<span><i class="swatch" style="background:var(--sage-deep)"></i>Naděje</span>' +
+      '</div>' +
+    '</section>' +
+
+    '<section class="surface" style="padding:1.75rem">' +
+      '<p class="eyebrow">Dnešní zápis</p>' +
+      ['Nálada', 'Úzkost', 'Naděje', 'Energie'].map((label, i) =>
+        '<div style="margin-top:1.1rem"><label class="row" style="justify-content:space-between;font-size:.875rem"><span>' + label + '</span>' +
+        '<span class="faint num" id="v' + i + '">3</span></label>' +
+        '<input class="slider" type="range" min="1" max="5" value="3" data-slider="' + i + '"></div>').join('') +
+      '<textarea class="searchbar" rows="3" placeholder="Co bylo dnes těžké? Co pomohlo?" style="margin-top:1.25rem;border-radius:var(--r-md);resize:vertical"></textarea>' +
+      '<p class="note" style="margin-top:1rem">Deník je soukromý. Partner v Partner mode vidí jen agregovanou náladu, nikdy text zápisu.</p>' +
+    '</section>' +
+
+    (notes.length ? '<section><div class="section-title"><h2 class="display">Poslední zápisy</h2></div>' +
+      notes.map((n) => '<div class="surface-muted" style="padding:1.25rem;margin-bottom:.75rem">' +
+        '<p class="faint" style="font-size:.75rem">' + esc(n.date) + '</p>' +
+        '<p style="margin-top:.4rem;font-size:.9375rem;line-height:1.6">' + esc(n.note) + '</p></div>').join('') +
+      '</section>' : '')
+  );
+}
+
+function screenGabi() {
+  const p = persona();
+  const msgs = S.chat.length ? S.chat : [];
+  return (
+    '<header class="rise"><p class="eyebrow">AI průvodkyně</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Gabi</h1>' +
+    '<p class="soft" style="margin-top:.6rem;max-width:38rem;line-height:1.65">Gabi zná vaši fázi, poslední zápisy v deníku i zadané hodnoty. Nikdy nestanovuje diagnózu ani nedoporučuje dávkování.</p></header>' +
+
+    '<p class="note">V náhledu běží Gabi v <strong>offline režimu</strong> — přesně tak, jak se chová aplikace bez klíče k API: odpovídá deterministicky z knihovny obsahu. S klíčem odpovídá v plném kontextu celé cesty.</p>' +
+
+    '<section class="chat">' +
+      msgs.map((m) => m.role === 'user'
+        ? '<div class="bubble bubble-user">' + esc(m.text) + '</div>'
+        : '<div class="bubble bubble-gabi"><div class="prose">' + md(m.text) + '</div>' +
+          (m.refs && m.refs.length ? '<div class="rail" style="margin-top:1rem">' + m.refs.map((id) => contentCard(BY_ID.get(id))).join('') + '</div>' : '') +
+          '</div>').join('') +
+    '</section>' +
+
+    '<div class="ask"><input id="ask" placeholder="Zeptejte se na cokoliv…" value=""><button class="btn btn-primary" data-ask="1">Odeslat</button></div>' +
+
+    '<section><p class="eyebrow" style="margin-bottom:.75rem">Otázky, které se ptají ženy ve vaší fázi</p>' +
+    '<div class="filters">' + p.gabi.prompts.map((q, i) => '<button data-prompt="' + i + '">' + esc(q) + '</button>').join('') + '</div></section>'
+  );
+}
+
+function screenKalendar() {
+  const p = persona();
+  return (
+    '<header class="rise"><p class="eyebrow">Události a léky</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Kalendář</h1></header>' +
+    '<section><div class="section-title"><div><h2 class="display">Nejbližší události</h2><p>Část se doplňuje automaticky z vaší fáze</p></div></div>' +
+      p.events.map((e) =>
+        '<div class="surface" style="padding:1.25rem 1.4rem;margin-bottom:.75rem;display:flex;gap:1rem;align-items:flex-start">' +
+        '<span style="color:var(--taupe);font-size:1.15rem">' + esc(e.icon) + '</span><div style="flex:1">' +
+        '<p style="font-weight:500">' + esc(e.title) + '</p>' +
+        '<p class="faint" style="margin-top:.25rem;font-size:.8125rem">' + esc(e.dateLabel) + (e.atTime ? ' · ' + esc(e.atTime) : '') + (e.location ? ' · ' + esc(e.location) : '') + '</p>' +
+        (e.note ? '<p class="soft" style="margin-top:.5rem;font-size:.875rem">' + esc(e.note) + '</p>' : '') +
+        '</div><span class="badge">' + esc(e.kindLabel) + '</span></div>').join('') +
+    '</section>' +
+    '<section><div class="section-title"><h2 class="display">Léky</h2></div>' +
+      '<div class="surface" style="padding:1.5rem"><ul class="linelist">' +
+      p.meds.map((m) => '<li><span>' + esc(m.name) + (m.dose ? ' <span class="faint">· ' + esc(m.dose) + '</span>' : '') + '</span>' +
+      (m.timeOfDay ? '<span class="faint num" style="margin-left:auto;font-size:.75rem">' + esc(m.timeOfDay) + '</span>' : '') + '</li>').join('') +
+      '</ul></div></section>'
+  );
+}
+
+function screenKomunita() {
+  const p = persona();
+  return (
+    '<header class="rise"><p class="eyebrow">Vystupujete jako ' + esc(p.anonymousName) + '</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Komunita</h1>' +
+    '<p class="soft" style="margin-top:.6rem">Skupiny se párují podle vašeho příběhu — fáze, měsíc transferu, diagnóza, klinika, věk. Ne podle náhody.</p></header>' +
+
+    '<section><div class="section-title"><h2 class="display">Vaše skupiny</h2></div><div class="tiles">' +
+      p.groups.map((g) => '<div class="tile"><h4 class="display">' + esc(g.name) + '</h4><p>' + esc(g.description) + '</p>' +
+      '<p class="faint num" style="margin-top:.6rem;font-size:.75rem">' + g.members + ' členek</p></div>').join('') +
+    '</div></section>' +
+
+    '<section><div class="section-title"><div><h2 class="display">Večerní kruh</h2><p>Bez rad, jen podpora</p></div></div>' +
+      p.posts.map((post) =>
+        '<div class="post" style="margin-bottom:1rem">' +
+          '<div class="row" style="gap:.6rem"><span class="badge">' + esc(post.author) + '</span><span class="faint" style="font-size:.75rem">dnes</span></div>' +
+          '<p style="margin-top:.85rem;font-size:1rem;line-height:1.65">' + esc(post.body) + '</p>' +
+          '<p class="faint num" style="margin-top:.75rem;font-size:.8125rem">♡ ' + post.hearts + '</p>' +
+          post.replies.map((r) => '<div class="reply"><p class="faint" style="font-size:.75rem">' + esc(r.author) + '</p>' +
+          '<p class="soft" style="margin-top:.3rem;font-size:.9375rem;line-height:1.6">' + esc(r.body) + '</p></div>').join('') +
+        '</div>').join('') +
+    '</section>' +
+    '<p class="note">Profil může být zcela anonymní. Komunita nikdy nevidí skutečné jméno ani zdravotní údaje.</p>'
+  );
+}
+
+function screenZdravi() {
+  const p = persona();
+  if (!p.labs.length) return '<p class="soft">Zatím žádné hodnoty.</p>';
+
+  const chart = (series) => {
+    const w = 680, h = 190, pad = 34;
+    const vals = series.points.map((pt) => pt.value);
+    const min = Math.min(...vals), max = Math.max(...vals);
+    const span = max - min || 1;
+    const x = (i) => series.points.length === 1 ? w / 2 : pad + (i * (w - pad * 2)) / (series.points.length - 1);
+    const y = (v) => h - pad - ((v - min) / span) * (h - pad * 2);
+    const line = series.points.map((pt, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(pt.value).toFixed(1)).join(' ');
+    return (
+      '<svg class="chart" viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Vývoj ' + esc(series.name) + '">' +
+        '<path d="' + line + '" fill="none" stroke="var(--taupe-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+        series.points.map((pt, i) => '<circle cx="' + x(i).toFixed(1) + '" cy="' + y(pt.value).toFixed(1) + '" r="' + (i === series.points.length - 1 ? 5 : 3.5) + '" fill="var(--taupe-deep)"/>').join('') +
+        series.points.map((pt, i) => '<text x="' + x(i).toFixed(1) + '" y="' + (y(pt.value) - 12).toFixed(1) + '" text-anchor="middle" font-size="11" fill="var(--fg-faint)">' + pt.value + '</text>').join('') +
+      '</svg>'
+    );
+  };
+
+  return (
+    '<header class="rise"><p class="eyebrow">Vaše čísla</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Zdraví</h1></header>' +
+    p.labs.map((s) =>
+      '<section class="surface" style="padding:1.5rem">' +
+        '<div class="row" style="justify-content:space-between;gap:1rem;flex-wrap:wrap">' +
+        '<h3 class="display" style="font-size:1.25rem">' + esc(s.name) + '</h3>' +
+        '<span class="badge">' + esc(s.unit) + '</span></div>' +
+        (s.explain ? '<p class="soft" style="margin-top:.5rem;font-size:.875rem;line-height:1.6">' + esc(s.explain) + '</p>' : '') +
+        chart(s) +
+        (s.reference && s.reference.note ? '<p class="faint" style="font-size:.8125rem">Orientačně: ' + esc(s.reference.note) + '</p>' : '') +
+      '</section>').join('') +
+    '<p class="note">Grafy ukazují vývoj, ne diagnózu. Interpretace hodnot patří vašemu lékaři — kontext, který k nim potřebuje, aplikace nemá.</p>'
+  );
+}
+
+function screenPribeh() {
+  const p = persona();
+  return (
+    '<header class="rise"><p class="eyebrow">Rodinná kronika</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Můj příběh</h1>' +
+    '<p class="soft" style="margin-top:.6rem">Časová osa vaší cesty a dopisy. Na konci se z toho dá vytisknout kniha.</p></header>' +
+
+    '<section><ul class="timeline">' +
+      p.timeline.map((t) => '<li><span class="dot">' + esc(t.icon) + '</span><div>' +
+      '<p class="faint" style="font-size:.75rem">' + esc(t.dateLabel) + '</p>' +
+      '<p class="display" style="font-size:1.25rem;margin-top:.2rem">' + esc(t.title) + '</p>' +
+      (t.body ? '<p class="soft" style="margin-top:.4rem;font-size:.9375rem;line-height:1.65">' + esc(t.body) + '</p>' : '') +
+      '</div></li>').join('') +
+    '</ul></section>' +
+
+    (p.letters.length
+      ? '<section><div class="section-title"><div><h2 class="display">Dopisy</h2><p>Soukromé. Vždycky.</p></div></div>' +
+        p.letters.map((l) => '<div class="surface grain" style="padding:clamp(1.5rem,4vw,2.5rem);' + heroStyle('pearl') + '">' +
+          '<p class="eyebrow" style="color:rgb(43 37 33 / .5)">' + esc(l.dateLabel) + '</p>' +
+          '<h3 class="display" style="font-size:1.75rem;margin-top:.5rem;color:#2b2521">' + esc(l.title) + '</h3>' +
+          '<div class="prose" style="color:rgb(43 37 33 / .78);margin-top:1rem;position:relative;z-index:1">' + md(l.body) + '</div>' +
+        '</div>').join('') + '</section>'
+      : '')
+  );
+}
+
+function screenObchod() {
+  const phase = day().phaseId;
+  const items = DATA.products.slice().sort((a, b) => (b.phases.includes(phase) ? 1 : 0) - (a.phases.includes(phase) ? 1 : 0));
+  return (
+    '<header class="rise"><p class="eyebrow">Bez placených pozic</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Doporučené</h1>' +
+    '<p class="soft" style="margin-top:.6rem">Řazeno podle toho, kde jste na cestě. U každé položky je vysvětlení, proč se hodí právě teď.</p></header>' +
+    '<div class="grid-cards">' +
+      items.slice(0, 24).map((pr) =>
+        '<div class="prodcard">' +
+          '<div class="hero grain" style="' + heroStyle(pr.hero) + '"></div>' +
+          '<div class="body">' +
+            '<div class="row" style="justify-content:space-between;gap:.5rem">' +
+              '<span class="badge">' + esc(pr.kind === 'service' ? 'Služba' : 'Produkt') + '</span>' +
+              '<span class="faint num" style="font-size:.75rem">★ ' + pr.rating.toFixed(1) + ' · ' + pr.reviews + '</span>' +
+            '</div>' +
+            '<h4 class="display" style="font-size:1.125rem">' + esc(pr.name) + '</h4>' +
+            '<p class="why">' + esc(pr.whyNow) + '</p>' +
+            '<p class="faint num" style="margin-top:auto;font-size:.8125rem">' + (pr.priceFrom ? 'od ' + pr.priceFrom + ' Kč' : 'individuálně') + ' · ' + esc(pr.vendor) + '</p>' +
+          '</div>' +
+        '</div>').join('') +
+    '</div>'
+  );
+}
+
+function screenPartner() {
+  const p = persona();
+  const a = p.partner.advice;
+  const items = p.partner.contentIds.map((id) => BY_ID.get(id)).filter(Boolean);
+  return (
+    '<header class="rise"><p class="eyebrow">Pro toho, kdo je vedle</p>' +
+    '<h1 class="display" style="font-size:clamp(2rem,4.5vw,2.75rem);margin-top:.7rem">Partner mode</h1></header>' +
+
+    '<section class="surface" style="padding:1.75rem">' +
+      '<p class="eyebrow">Co právě prožívá</p>' +
+      '<p style="margin-top:.75rem;font-size:1.0625rem;line-height:1.7" class="soft">' + esc(a.whatsHappening) + '</p>' +
+      '<div class="row" style="gap:1rem;margin-top:1.25rem;flex-wrap:wrap">' +
+        '<span class="badge">' + esc(day().phaseTitle) + '</span>' +
+        '<span class="badge">Průměrná nálada za týden: <b class="num" style="margin-left:.25rem">' + p.partner.avgMood + '/5</b></span>' +
+      '</div>' +
+    '</section>' +
+
+    '<section class="two">' +
+      '<div class="surface" style="padding:1.5rem"><h3 class="display" style="font-size:1.25rem">Co pomáhá</h3><ul class="bullets" style="grid-template-columns:1fr">' +
+        a.do.map((x) => '<li>' + esc(x) + '</li>').join('') + '</ul></div>' +
+      '<div class="surface" style="padding:1.5rem;border-color:var(--blush)"><h3 class="display" style="font-size:1.25rem">Čemu se vyhnout</h3><ul class="bullets" style="grid-template-columns:1fr">' +
+        a.dont.map((x) => '<li>' + esc(x) + '</li>').join('') + '</ul></div>' +
+    '</section>' +
+
+    '<p class="note">Partner vidí fázi, agregovanou náladu a konkrétní rady. <strong>Nevidí deník, dopisy ani zdravotní hodnoty.</strong></p>' +
+
+    (items.length ? '<section><div class="section-title"><h2 class="display">Pro partnera</h2></div><div class="rail">' + items.map((i) => contentCard(i)).join('') + '</div></section>' : '')
+  );
+}
+
+const SCREENS = {
+  dnes: screenDnes, objevit: screenObjevit, pruvodce: screenPruvodce, knihovna: screenKnihovna,
+  denik: screenDenik, gabi: screenGabi, kalendar: screenKalendar, komunita: screenKomunita,
+  zdravi: screenZdravi, pribeh: screenPribeh, obchod: screenObchod, partner: screenPartner,
+};
+
+/* ------------------------------------------------------------------ čtečka -- */
+
+function reader() {
+  if (!S.open) return '';
+  const item = BY_ID.get(S.open);
+  if (!item) return '';
+
+  const checklist = item.checklist
+    ? (() => {
+        const groups = [];
+        for (const e of item.checklist) {
+          const g = e.group || 'Položky';
+          let bucket = groups.find((x) => x.name === g);
+          if (!bucket) groups.push((bucket = { name: g, entries: [] }));
+          bucket.entries.push(e);
+        }
+        const doneCount = item.checklist.filter((e) => S.checked[item.id + ':' + e.id]).length;
+        return (
+          '<div class="surface" style="padding:1.5rem;margin-top:2rem">' +
+            '<div class="row" style="justify-content:space-between"><p class="eyebrow">Checklist</p>' +
+            '<span class="faint num" style="font-size:.8125rem">' + doneCount + ' / ' + item.checklist.length + '</span></div>' +
+            groups.map((g) =>
+              '<div style="margin-top:1.25rem"><p class="eyebrow">' + esc(g.name) + '</p>' +
+              g.entries.map((e) =>
+                '<button class="check" data-check="' + esc(e.id) + '" aria-pressed="' + (S.checked[item.id + ':' + e.id] ? 'true' : 'false') + '" style="margin-top:.75rem">' +
+                '<span class="box">✓</span><span class="txt" style="font-size:.9375rem;line-height:1.5">' + esc(e.text) +
+                (e.hint ? '<br><span class="faint" style="font-size:.8125rem">' + esc(e.hint) + '</span>' : '') +
+                (e.optional ? ' <span class="badge" style="font-size:.625rem">nepovinné</span>' : '') +
+                '</span></button>').join('') +
+              '</div>').join('') +
+          '</div>'
+        );
+      })()
+    : '';
+
+  const quiz = item.quiz
+    ? '<div class="surface" style="padding:1.5rem;margin-top:2rem"><p class="eyebrow">Kvíz</p>' +
+      item.quiz.map((q, qi) => {
+        const picked = S.quiz[item.id + ':' + qi];
+        return '<div style="margin-top:1.5rem"><p style="font-weight:500;font-size:.9375rem">' + esc(q.q) + '</p>' +
+          '<div class="filters" style="margin-top:.75rem">' + q.options.map((o, oi) =>
+            '<button data-quiz="' + qi + ':' + oi + '" aria-pressed="' + (picked === oi ? 'true' : 'false') + '"' +
+            (picked != null && oi === q.correct ? ' style="border-color:var(--sage-deep)"' : '') + '>' + esc(o) + '</button>').join('') + '</div>' +
+          (picked != null ? '<p class="soft" style="margin-top:.75rem;font-size:.875rem;line-height:1.6">' +
+            (picked === q.correct ? '<strong>Správně. </strong>' : '<strong>Není to tak. </strong>') + esc(q.explain) + '</p>' : '') +
+          '</div>';
+      }).join('') + '</div>'
+    : '';
+
+  return (
+    '<div class="sheet-bg" data-close="1"></div>' +
+    '<article class="sheet">' +
+      '<div class="sheet-head">' +
+        '<span class="badge">' + esc(DATA.kindIcons[item.kind]) + ' ' + esc(DATA.kindLabels[item.kind]) + ' · ' + item.minutes + ' min</span>' +
+        '<button class="iconbtn" data-close="1" aria-label="Zavřít">✕</button>' +
+      '</div>' +
+      '<div class="sheet-hero grain" style="' + heroStyle(item.hero) + '"></div>' +
+      '<div class="sheet-body">' +
+        '<h1 class="display" style="font-size:clamp(1.75rem,4vw,2.5rem)">' + esc(item.title) + '</h1>' +
+        '<p class="soft" style="margin-top:.85rem;font-size:1.0625rem;line-height:1.65">' + esc(item.excerpt) + '</p>' +
+        '<div class="row" style="gap:.5rem;margin-top:1.25rem;flex-wrap:wrap">' +
+          item.topics.map((t) => '<span class="badge">' + esc(DATA.topicLabels[t]) + '</span>').join('') +
+        '</div>' +
+        (item.mediaNote ? '<p class="note" style="margin-top:1.5rem">' + esc(item.mediaNote) + '</p>' : '') +
+        '<div class="prose" style="margin-top:2rem">' + md(item.body) + '</div>' +
+        checklist + quiz +
+        '<div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--line)">' +
+          (item.reviewedBy ? '<p class="faint" style="font-size:.8125rem">' + esc(item.reviewedBy) + '</p>' : '') +
+          (item.sources ? '<p class="faint" style="font-size:.8125rem;margin-top:.35rem">Zdroje: ' + item.sources.map(esc).join(' · ') + '</p>' : '') +
+          '<p class="faint" style="font-size:.8125rem;margin-top:.35rem">Publikováno ' + esc(item.publishedOn) + '</p>' +
+        '</div>' +
+      '</div>' +
+    '</article>'
+  );
+}
+
+/* -------------------------------------------------------------- vykreslení -- */
+
+function render() {
+  const p = persona();
+  const d = day();
+  const app = document.getElementById('app');
+
+  app.innerHTML =
+    '<div class="topbar">' +
+      '<div class="topbar-brand"><span class="display" style="font-size:1.35rem">IVF by Gabi</span>' +
+      '<span class="eyebrow" style="display:block;margin-top:.15rem">Náhled</span></div>' +
+      '<div class="personas">' +
+        DATA.personas.map((x, i) =>
+          '<button class="persona-chip" data-persona="' + i + '" aria-pressed="' + (i === S.persona ? 'true' : 'false') + '">' +
+            '<span class="avatar" style="' + heroStyle(['champagne', 'sage', 'blush', 'sky', 'sand', 'dawn'][i % 6]) + '">' + esc(x.name[0]) + '</span>' +
+            '<span class="who"><b>' + esc(x.name) + '</b><span>' + esc(x.tagline) + '</span></span>' +
+          '</button>').join('') +
+      '</div>' +
+      '<div class="daynav">' +
+        '<button class="iconbtn" data-day="-1" aria-label="Předchozí den"' + (S.day === 0 ? ' disabled' : '') + '>‹</button>' +
+        '<span class="date num">' + esc(d.dateLabel) + '</span>' +
+        '<button class="iconbtn" data-day="1" aria-label="Další den"' + (S.day === p.days.length - 1 ? ' disabled' : '') + '>›</button>' +
+        '<button class="iconbtn" data-theme="1" aria-label="Přepnout motiv">◐</button>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="shell">' +
+      '<aside class="sidebar">' +
+        '<nav class="stack" style="gap:.15rem">' +
+          NAV_PRIMARY.map((n) => navLink(n)).join('') +
+          '<p class="eyebrow" style="margin:1.35rem 0 .4rem;padding:0 .75rem">Vaše cesta</p>' +
+          NAV_SECONDARY.map((n) => navLink(n)).join('') +
+        '</nav>' +
+        '<div class="surface-muted" style="margin-top:auto;padding:.85rem 1rem">' +
+          '<p style="font-size:.8125rem;font-weight:500">' + esc(p.name) + '</p>' +
+          '<p class="faint" style="font-size:.75rem;margin-top:.15rem">' + esc(d.phaseTitle) + '</p>' +
+        '</div>' +
+      '</aside>' +
+
+      '<main class="main"><div class="page">' + SCREENS[S.screen]() + '</div></main>' +
+    '</div>' +
+
+    '<nav class="tabbar">' +
+      NAV_PRIMARY.map((n) =>
+        '<button data-screen="' + n.id + '"' + (S.screen === n.id ? ' aria-current="page"' : '') + '>' +
+        '<i>' + n.icon + '</i><span>' + n.label + '</span></button>').join('') +
+      '<button data-screen="pruvodce"' + (S.screen === 'pruvodce' ? ' aria-current="page"' : '') + '><i>❖</i><span>Průvodce</span></button>' +
+    '</nav>' +
+
+    reader();
+
+  document.querySelector('.main').scrollTop = 0;
+}
+
+function navLink(n) {
+  return '<button class="navlink" data-screen="' + n.id + '"' + (S.screen === n.id ? ' aria-current="page"' : '') + '>' +
+    '<i>' + n.icon + '</i>' + n.label + '</button>';
+}
+
+/* ------------------------------------------------------------------ akce --- */
+
+document.addEventListener('click', (ev) => {
+  const t = ev.target.closest('[data-persona],[data-day],[data-screen],[data-open],[data-close],[data-kind],[data-phase],[data-prompt],[data-ask],[data-mood],[data-task],[data-check],[data-quiz],[data-theme]');
+  if (!t) return;
+
+  if (t.dataset.persona !== undefined) {
+    S.persona = Number(t.dataset.persona);
+    S.day = persona().days.findIndex((d) => d.offset === 0);
+    S.chat = []; S.mood = null; S.phase = null; S.open = null;
+    return render();
+  }
+  if (t.dataset.day !== undefined) {
+    const next = S.day + Number(t.dataset.day);
+    if (next < 0 || next >= persona().days.length) return;
+    S.day = next;
+    return render();
+  }
+  if (t.dataset.screen) { S.screen = t.dataset.screen; S.phase = null; S.open = null; return render(); }
+  if (t.dataset.open) { S.open = t.dataset.open; return render(); }
+  if (t.dataset.close) { S.open = null; return render(); }
+  if (t.dataset.kind) { S.kind = t.dataset.kind; return render(); }
+  if (t.dataset.phase !== undefined) { S.phase = t.dataset.phase || null; return render(); }
+  if (t.dataset.mood) { S.mood = Number(t.dataset.mood); return render(); }
+  if (t.dataset.task) { S.done[day().date] = !S.done[day().date]; return render(); }
+  if (t.dataset.theme) {
+    const root = document.documentElement;
+    const dark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    return;
+  }
+  if (t.dataset.check) {
+    const key = S.open + ':' + t.dataset.check;
+    S.checked[key] = !S.checked[key];
+    return render();
+  }
+  if (t.dataset.quiz) {
+    const [qi, oi] = t.dataset.quiz.split(':').map(Number);
+    S.quiz[S.open + ':' + qi] = oi;
+    return render();
+  }
+  if (t.dataset.prompt !== undefined) {
+    const a = persona().gabi.answers[Number(t.dataset.prompt)];
+    S.chat.push({ role: 'user', text: a.q });
+    S.chat.push({ role: 'gabi', text: a.text, refs: a.refs });
+    return render();
+  }
+  if (t.dataset.ask) return ask();
+});
+
+document.addEventListener('keydown', (ev) => {
+  if (ev.key === 'Escape' && S.open) { S.open = null; render(); }
+  if (ev.target.id === 'ask' && ev.key === 'Enter') ask();
+  if (ev.target.id === 'q' && ev.key === 'Enter') { S.query = ev.target.value; render(); }
+});
+
+document.addEventListener('input', (ev) => {
+  if (ev.target.id === 'q') {
+    S.query = ev.target.value;
+    const pos = ev.target.selectionStart;
+    render();
+    const box = document.getElementById('q');
+    if (box) { box.focus(); box.setSelectionRange(pos, pos); }
+  }
+  if (ev.target.dataset.slider !== undefined) {
+    const out = document.getElementById('v' + ev.target.dataset.slider);
+    if (out) out.textContent = ev.target.value;
+  }
+});
+
+/**
+ * Volná otázka. Náhled běží bez API, takže odpovídá stejnou cestou jako
+ * aplikace v offline režimu: vyhledá v knihovně a nabídne, co je relevantní.
+ */
+function ask() {
+  const box = document.getElementById('ask');
+  if (!box) return;
+  const q = box.value.trim();
+  if (q.length < 3) return;
+
+  const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const words = norm(q).split(/\s+/).filter((w) => w.length > 3);
+  const phase = day().phaseId;
+  const hits = DATA.catalog
+    .map((item) => {
+      const hay = norm(item.title + ' ' + item.excerpt + ' ' + item.body.slice(0, 1200));
+      let score = 0;
+      for (const w of words) {
+        if (hay.includes(w)) score += 1;
+        if (norm(item.title).includes(w)) score += 2;
+      }
+      if (item.phases.includes(phase)) score += 1.5;
+      return { item, score };
+    })
+    .filter((x) => x.score > 1)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4);
+
+  const text = hits.length
+    ? 'Tohle z knihovny odpovídá na to, na co se ptáte — jste **' + day().dayLabel.replace(/^Dnes (je|jste) /, '').toLowerCase() + '**, takže jsem vybírala hlavně obsah pro tuhle fázi.\n\n' +
+      hits.map((h) => '- **' + h.item.title + '** — ' + h.item.excerpt).join('\n') +
+      '\n\n> Tohle není lékařská rada. Když jde o vaše konkrétní hodnoty, léky nebo příznaky, patří ta otázka vašemu lékaři.'
+    : 'K tomuhle zatím v knihovně nic přesného nemám. Zkuste to říct jinými slovy — nebo se zeptejte na konkrétní pojem, třeba „beta hCG“, „blastocysta“ nebo „očistky“.\n\n> Pokud jde o akutní potíže — silné krvácení, prudkou bolest, horečku — nečekejte na odpověď aplikace a volejte svoje pracoviště.';
+
+  S.chat.push({ role: 'user', text: q });
+  S.chat.push({ role: 'gabi', text, refs: hits.map((h) => h.item.id) });
+  render();
+}
+
+render();
+</script>

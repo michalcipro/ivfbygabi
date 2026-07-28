@@ -34,7 +34,22 @@ export ANTHROPIC_API_KEY=sk-ant-...
 npm run typecheck   # tsc --noEmit
 npm test            # 79 testů: doménové jádro, doporučování, pokrytí obsahu
 npm run build       # produkční build
+npm run preview     # statický náhled do preview/ivf-by-gabi.html
 ```
+
+### Náhled bez serveru
+
+`npm run preview` vygeneruje **jednu HTML stránku, která se otevře i bez Node.js
+a bez databáze**. Není to maketa — skript spustí skutečný doménový engine,
+skutečný doporučovací systém a celou knihovnu obsahu, spočítá stav pro šest
+profilů a šest po sobě jdoucích dní a výsledek zapeče do stránky.
+
+V náhledu se dá přepínat profil, posouvat den (a vidět, jak se domovská stránka
+přepočítá), číst články, odškrtávat checklisty, vyplňovat kvízy a projít deník,
+komunitu, kroniku i partner mode. AI Gabi běží v offline režimu — přesně tak,
+jak se aplikace chová bez API klíče.
+
+Použití: prezentace, testování na cizím zařízení, revize obsahu.
 
 ---
 
@@ -91,6 +106,10 @@ ID se při načtení odfiltrují, takže se dva balíky nikdy neperou.
 > **Nový balík je potřeba přidat do `index.ts`.** Test to hlídá — soubor, který
 > ve složce leží, ale v registru chybí, shodí `npm test`. Bez toho by se jeho
 > obsah tiše nikde nezobrazil.
+
+Rozdělení podle etapy: `planning`, `diagnostics`, `ivf-cycle`, `transfer-wait`,
+`loss`, `pregnancy`, `birth`, `baby` — plus `meditations`, `encouragements`
+a `marketplace`.
 
 Dva druhy obsahu:
 
@@ -172,7 +191,8 @@ identity, který by viděl, kdo je v léčbě neplodnosti.
 nad barvami — data o vlastním těle nemají křičet.
 
 **Vlastní markdown renderer.** Obsah píšeme my, takže si vystačíme s podmnožinou
-a nemusíme řešit sanitizaci cizího HTML.
+(`##`, `###`, seznamy, citace, tabulky, **tučně**) a nemusíme řešit sanitizaci
+cizího HTML.
 
 **Marketplace bez placených pozic.** Řadí se podle relevance k fázi a každá položka
 má pole `whyNow` — vysvětlení, proč se hodí právě teď. Bez toho by to byl jen katalog.

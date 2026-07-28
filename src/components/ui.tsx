@@ -234,6 +234,29 @@ export function Markdown({ text, className = '' }: { text: string; className?: s
                 ))}
               </ol>
             )
+          case 'table':
+            return (
+              <div key={i} className="overflow-x-auto">
+                <table>
+                  <thead>
+                    <tr>
+                      {block.head.map((c, j) => (
+                        <th key={j}>{inline(c)}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {block.rows.map((row, j) => (
+                      <tr key={j}>
+                        {row.map((c, k) => (
+                          <td key={k}>{inline(c)}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )
           default:
             return <p key={i}>{inline(block.text)}</p>
         }
@@ -245,12 +268,14 @@ export function Markdown({ text, className = '' }: { text: string; className?: s
 type Block =
   | { type: 'p' | 'h2' | 'h3' | 'quote'; text: string }
   | { type: 'ul' | 'ol'; items: string[] }
+  | { type: 'table'; head: string[]; rows: string[][] }
 
 function parseMarkdown(text: string): Block[] {
   const lines = text.replace(/\r/g, '').split('\n')
   const blocks: Block[] = []
   let paragraph: string[] = []
   let list: { type: 'ul' | 'ol'; items: string[] } | null = null
+  let table: { type: 'table'; head: string[]; rows: string[][] } | null = null
 
   const flushParagraph = () => {
     if (paragraph.length) {
@@ -264,6 +289,17 @@ function parseMarkdown(text: string): Block[] {
       list = null
     }
   }
+  const flushTable = () => {
+    if (table) {
+      blocks.push(table)
+      table = null
+    }
+  }
+  const cells = (line: string) =>
+    line
+      .replace(/^\||\|$/g, '')
+      .split('|')
+      .map((c) => c.trim())
 
   for (const raw of lines) {
     const line = raw.trimEnd()
@@ -271,8 +307,20 @@ function parseMarkdown(text: string): Block[] {
     if (!line.trim()) {
       flushParagraph()
       flushList()
+      flushTable()
       continue
     }
+
+    // Tabulka: | sloupec | sloupec |, oddělovací řádek se přeskakuje.
+    if (/^\|.*\|$/.test(line)) {
+      flushParagraph()
+      flushList()
+      if (/^\|[\s:|-]+\|$/.test(line)) continue
+      if (!table) table = { type: 'table', head: cells(line), rows: [] }
+      else table.rows.push(cells(line))
+      continue
+    }
+    flushTable()
 
     const h3 = line.match(/^###\s+(.*)$/)
     if (h3) {
@@ -326,6 +374,7 @@ function parseMarkdown(text: string): Block[] {
 
   flushParagraph()
   flushList()
+  flushTable()
   return blocks
 }
 

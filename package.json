@@ -10,6 +10,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "seed": "tsx scripts/seed.ts",
+    "preview": "GABI_DATA_DIR=$(mktemp -d) tsx scripts/preview.ts",
     "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {

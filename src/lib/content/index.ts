@@ -12,6 +12,8 @@ import { pack as planning } from './packs/planning'
 import { pack as diagnostics } from './packs/diagnostics'
 import { pack as loss } from './packs/loss'
 import { pack as pregnancy } from './packs/pregnancy'
+import { pack as birth } from './packs/birth'
+import { pack as baby } from './packs/baby'
 import { pack as ivfCycle } from './packs/ivf-cycle'
 import { pack as transferWait } from './packs/transfer-wait'
 import { pack as marketplace } from './packs/marketplace'
@@ -35,6 +37,8 @@ const PACKS: ContentPack[] = [
   diagnostics,
   loss,
   pregnancy,
+  birth,
+  baby,
   ivfCycle,
   transferWait,
   marketplace,
