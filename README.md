@@ -32,7 +32,7 @@ export ANTHROPIC_API_KEY=sk-ant-...
 
 ```bash
 npm run typecheck   # tsc --noEmit
-npm test            # testy doménového jádra (57 testů)
+npm test            # 79 testů: doménové jádro, doporučování, pokrytí obsahu
 npm run build       # produkční build
 ```
 
@@ -83,6 +83,14 @@ a hlídá, aby se stejná položka neobjevila ve dvou řadách.
 
 Balíky podle etapy cesty, každý typovaný proti `ContentPack`. Registr v `index.ts`
 je slepí, odfiltruje duplicitní ID a vystaví vyhledávání.
+
+Balíky `cards-*.ts` obsahují **denní karty**, ostatní **materiály do knihovny**.
+Rozdělení je záměrné: karty se dají doplňovat nezávisle na článcích a duplicitní
+ID se při načtení odfiltrují, takže se dva balíky nikdy neperou.
+
+> **Nový balík je potřeba přidat do `index.ts`.** Test to hlídá — soubor, který
+> ve složce leží, ale v registru chybí, shodí `npm test`. Bez toho by se jeho
+> obsah tiše nikde nezobrazil.
 
 Dva druhy obsahu:
 
