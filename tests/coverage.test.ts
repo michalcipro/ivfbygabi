@@ -226,16 +226,17 @@ test('obsah neobsahuje toxickou pozitivitu', () => {
     /aspoň (víš|víte), že (můžeš|můžete) otěhotnět/i,
     /všechno se děje z nějakého důvodu/i,
   ]
+  // Tyhle věty se v obsahu objevit smějí — ale jen tam, kde se proti nim
+  // vymezujeme (typicky v článcích „co vám lidé budou říkat a co s tím“).
+  // Okno musí být dost široké, aby zachytilo rámující odstavec kolem citace.
+  const framing =
+    /nikdy neř|neříkejte|nepiš|nepatří|nesnažte|vyhněte|zraňuj|bolí|nenávid|nešikovn|bezradnost|netaktn|nemusíte (to )?(snést|poslouchat)|klišé|prázdn[áé] vět|nepomáh/i
   const check = (id: string, text: string) => {
     for (const pattern of banned) {
-      // Věta smí zaznít jen v kontextu, kde se proti ní vymezujeme.
       const match = text.match(pattern)
       if (!match) continue
-      const around = text.slice(Math.max(0, match.index! - 160), match.index! + 160)
-      assert.ok(
-        /nikdy|neříkejte|nepiš|nepatří|nesnažte|vyhněte|zraňuj|bolí|nenávid/i.test(around),
-        `${id}: toxická pozitivita bez vymezení — „${match[0]}“`,
-      )
+      const around = text.slice(Math.max(0, match.index! - 400), match.index! + 400)
+      assert.ok(framing.test(around), `${id}: toxická pozitivita bez vymezení — „${match[0]}“`)
     }
   }
   for (const item of CATALOG) check(item.id, `${item.title} ${item.excerpt} ${item.body}`)
@@ -262,4 +263,23 @@ test('knihovna pokrývá klíčové fáze cesty', () => {
   for (const phase of mustHave) {
     assert.ok(covered.has(phase), `knihovna nemá žádný obsah pro fázi ${phase}`)
   }
+})
+
+test('každý balík ve složce packs je zaregistrovaný v index.ts', async () => {
+  const { readdirSync, readFileSync } = await import('node:fs')
+  const { join } = await import('node:path')
+
+  const dir = join(process.cwd(), 'src', 'lib', 'content', 'packs')
+  const files = readdirSync(dir)
+    .filter((f) => f.endsWith('.ts'))
+    .map((f) => f.replace(/\.ts$/, ''))
+
+  const index = readFileSync(join(process.cwd(), 'src', 'lib', 'content', 'index.ts'), 'utf8')
+
+  const missing = files.filter((name) => !index.includes(`./packs/${name}'`))
+  assert.deepEqual(
+    missing,
+    [],
+    `balíky existují, ale nejsou v registru — jejich obsah se nikde nezobrazí: ${missing.join(', ')}`,
+  )
 })

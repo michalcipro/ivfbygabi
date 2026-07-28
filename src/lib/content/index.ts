@@ -10,6 +10,8 @@ import type {
 
 import { pack as planning } from './packs/planning'
 import { pack as diagnostics } from './packs/diagnostics'
+import { pack as loss } from './packs/loss'
+import { pack as pregnancy } from './packs/pregnancy'
 import { pack as ivfCycle } from './packs/ivf-cycle'
 import { pack as transferWait } from './packs/transfer-wait'
 import { pack as marketplace } from './packs/marketplace'
@@ -30,6 +32,8 @@ import { pack as meditations } from './packs/meditations'
 const PACKS: ContentPack[] = [
   planning,
   diagnostics,
+  loss,
+  pregnancy,
   ivfCycle,
   transferWait,
   marketplace,
