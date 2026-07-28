@@ -34,7 +34,7 @@ export ANTHROPIC_API_KEY=sk-ant-...
 npm run typecheck   # tsc --noEmit
 npm test            # 79 testů: doménové jádro, doporučování, pokrytí obsahu
 npm run build       # produkční build
-npm run app         # prohlížečová verze do app/ivf-by-gabi.html
+npm run app         # prohlížečová verze do app/index.html
 ```
 
 ### Prohlížečová verze — jeden soubor, žádný server
@@ -153,6 +153,18 @@ záložní model místo chybové hlášky.
 - **`parse-report.ts`** — deterministický parser textu lékařské zprávy. Najde dvojice
   „parametr → hodnota“, rozpozná datum v českých i ISO formátech a odhadne kategorii.
   **Nikdy nehodnotí, jestli je výsledek dobrý nebo špatný** — jen zpřehledňuje.
+
+### Nasazení
+
+Repozitář je připravený na **statické nasazení prohlížečové verze** (`vercel.json`):
+Vercel spustí `npm run app` a naservíruje `app/index.html`. Žádná databáze,
+žádné proměnné prostředí, žádný běžící server.
+
+> **Serverovou verzi na Vercel nasadit nelze tak, jak je.** `better-sqlite3`
+> zapisuje databázi na disk, ale serverless funkce mají souborový systém jen
+> pro čtení a mezi requesty se zahazuje — registrace by zdánlivě prošla a data
+> by se ztratila. Pro plný provoz je potřeba buď hostovaná databáze
+> (Postgres/Turso místo `src/lib/db/*`), nebo běžný server s trvalým diskem.
 
 ---
 

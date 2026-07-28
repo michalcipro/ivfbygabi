@@ -1,7 +1,7 @@
 /**
  * Sestavení prohlížečové verze aplikace.
  *
- *   npm run app            → app/ivf-by-gabi.html
+ *   npm run app            → app/index.html
  *
  * Není to maketa ani export dat. Do stránky se sbalí skutečné doménové jádro,
  * skutečný doporučovací systém a celá knihovna obsahu — a v prohlížeči se pak
@@ -28,7 +28,8 @@ const safeForScript = (js: string) => js.replace(/<\/script/gi, '<\\/script')
 const safeForStyle = (css: string) => css.replace(/<\/style/gi, '<\\/style')
 
 async function main() {
-  const outPath = process.argv[2] ?? join(ROOT, 'app', 'ivf-by-gabi.html')
+  // index.html, aby se dala složka `app/` rovnou hostovat jako statický web.
+  const outPath = process.argv[2] ?? join(ROOT, 'app', 'index.html')
 
   const bundle = await build({
     entryPoints: [join(ROOT, 'src', 'client', 'main.ts')],
