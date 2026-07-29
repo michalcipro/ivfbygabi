@@ -24,7 +24,15 @@ import {
   isOnboarded,
 } from './store'
 import { draft, profileFromDraft, renderOnboarding, stepHasDate } from './onboarding'
-import { screenCesta, screenDnes, screenFaze, screenObjevit, screenProc } from './screens-home'
+import { screenCesta, screenDnes, screenObjevit, screenProc } from './screens-home'
+import {
+  screenDiagnoza,
+  screenDiagnozy,
+  screenFaze,
+  screenPojem,
+  SECTIONS,
+  type SectionId,
+} from './screens-phase'
 import { screenChecklisty, screenCist, screenDenik, screenGabi, screenKnihovna } from './screens-tools'
 import {
   screenClenstvi,
@@ -51,15 +59,17 @@ import {
 
 const TABS = [
   { id: 'dnes', label: 'Dnes', icon: '☀' },
-  { id: 'objevit', label: 'Objevit', icon: '❋' },
-  { id: 'gabi', label: 'Gabi', icon: '✦' },
+  { id: 'faze', label: 'Moje fáze', icon: '❖' },
   { id: 'denik', label: 'Deník', icon: '✎' },
+  { id: 'gabi', label: 'Gabi', icon: '✦' },
   { id: 'vice', label: 'Více', icon: '⋯' },
 ]
 
 const SECONDARY = [
-  { id: 'cesta', label: 'Vaše cesta', icon: '❖' },
+  { id: 'cesta', label: 'Celá cesta', icon: '✧' },
+  { id: 'objevit', label: 'Objevit', icon: '❋' },
   { id: 'knihovna', label: 'Knihovna', icon: '❧' },
+  { id: 'diagnozy', label: 'Diagnózy', icon: '◈' },
   { id: 'checklisty', label: 'Checklisty', icon: '✓' },
   { id: 'kalendar', label: 'Kalendář', icon: '◈' },
   { id: 'zdravi', label: 'Zdraví', icon: '◉' },
@@ -83,8 +93,11 @@ const TITLES: Record<string, string> = {
   gabi: 'Gabi',
   denik: 'Deník',
   vice: 'Více',
-  cesta: 'Vaše cesta',
-  faze: 'Fáze',
+  cesta: 'Celá cesta',
+  faze: 'Moje fáze',
+  pojem: 'Pojem',
+  diagnoza: 'Diagnóza',
+  diagnozy: 'Diagnózy',
   knihovna: 'Knihovna',
   cist: 'Čtení',
   checklisty: 'Checklisty',
@@ -103,8 +116,9 @@ const TITLES: Record<string, string> = {
 
 /** Tvar do věty „Zpět na …“. Uvedené jsou jen ty, kde se název skloňuje. */
 const BACK_TITLES: Record<string, string> = {
-  cesta: 'Vaši cestu',
-  faze: 'fázi',
+  cesta: 'celou cestu',
+  faze: 'vaši fázi',
+  diagnozy: 'Diagnózy',
   knihovna: 'Knihovnu',
   komunita: 'Komunitu',
   skupina: 'Skupinu',
@@ -113,7 +127,10 @@ const BACK_TITLES: Record<string, string> = {
 /** Kam vede „zpět“, když uživatelka přišla přímo z odkazu. */
 const PARENT: Record<string, string> = {
   cesta: 'vice',
-  faze: 'cesta',
+  objevit: 'vice',
+  pojem: 'faze',
+  diagnoza: 'faze',
+  diagnozy: 'vice',
   knihovna: 'vice',
   cist: 'objevit',
   checklisty: 'vice',
@@ -180,8 +197,19 @@ function screenFor(route: string): string {
       return screenVice()
     case 'cesta':
       return screenCesta()
-    case 'faze':
-      return screenFaze(a)
+    case 'faze': {
+      const parts = a.split('/').filter(Boolean)
+      const phaseId = (isPhaseId(parts[0]) ? parts[0] : journey().phase.id)
+      const wanted = parts[1] ?? parts[0]
+      const section = (SECTIONS.some((x) => x.id === wanted) ? wanted : 'prehled') as SectionId
+      return screenFaze(phaseId, section)
+    }
+    case 'pojem':
+      return screenPojem(a)
+    case 'diagnoza':
+      return screenDiagnoza(a)
+    case 'diagnozy':
+      return screenDiagnozy()
     case 'knihovna':
       return screenKnihovna(view.query, view.kind)
     case 'cist':
@@ -223,8 +251,16 @@ function navButton(n: { id: string; label: string; icon: string }, current: stri
 
 function backbar(route: string): string {
   const b = base(route)
-  if (TABS.some((t) => t.id === b)) return ''
-  const previous = base(stack.length > 1 ? stack[stack.length - 2] : (PARENT[b] ?? 'dnes'))
+  // Cizí fáze se otevírá z Celé cesty — tam se uživatelka musí umět vrátit,
+  // i když je „faze“ jinak záložka.
+  const foreignPhase =
+    b === 'faze' &&
+    (() => {
+      const first = arg(route).split('/')[0]
+      return isPhaseId(first) && first !== journey().phase.id
+    })()
+  if (TABS.some((t) => t.id === b) && !foreignPhase) return ''
+  const previous = base(stack.length > 1 ? stack[stack.length - 2] : (foreignPhase ? 'cesta' : (PARENT[b] ?? 'dnes')))
   const label = BACK_TITLES[previous] ?? TITLES[previous] ?? 'Dnes'
   return `<div class="backbar no-print">
     <button data-act="back">‹ Zpět na ${esc(label)}</button>
@@ -245,7 +281,7 @@ function render(): void {
   const route = currentRoute()
   const state = journey()
   const p = profile()
-  const narrow = ['cist', 'proc', 'clenstvi'].includes(base(route))
+  const narrow = ['cist', 'proc', 'clenstvi', 'pojem', 'diagnoza'].includes(base(route))
 
   app.innerHTML = `<div class="shell">
     <aside class="sidebar no-print">

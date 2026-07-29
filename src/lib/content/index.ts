@@ -16,6 +16,8 @@ import { pack as birth } from './packs/birth'
 import { pack as baby } from './packs/baby'
 import { pack as ivfCycle } from './packs/ivf-cycle'
 import { pack as transferWait } from './packs/transfer-wait'
+import { pack as iui } from './packs/iui'
+import { pack as glossaryJourney } from './packs/glossary-journey'
 import { pack as marketplace } from './packs/marketplace'
 import { pack as cardsCycle } from './packs/cards-cycle'
 import { pack as cardsPregnancy } from './packs/cards-pregnancy'
@@ -41,6 +43,8 @@ const PACKS: ContentPack[] = [
   baby,
   ivfCycle,
   transferWait,
+  iui,
+  glossaryJourney,
   marketplace,
   cardsCycle,
   cardsPregnancy,

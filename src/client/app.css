@@ -404,6 +404,17 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .searchbar:focus { outline: none; border-color: var(--taupe); box-shadow: 0 0 0 4px color-mix(in oklab, var(--champagne) 45%, transparent); }
 
 .chips { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+
+/* Podnavigace uvnitř fáze — jeden oddíl na obrazovku, ne nekonečná stránka. */
+.subnav {
+  position: sticky; top: 0; z-index: 20;
+  flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+  padding: 0.7rem 0; margin-bottom: -1rem;
+  background: color-mix(in oklab, var(--page) 92%, transparent);
+  backdrop-filter: blur(14px);
+}
+.subnav::-webkit-scrollbar { display: none; }
+.subnav button { flex: 0 0 auto; }
 .chips button {
   border-radius: 99px; border: 1px solid var(--line); background: var(--card);
   padding: 0.4rem 0.9rem; font-size: 0.8125rem; color: var(--fg-soft);

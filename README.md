@@ -104,7 +104,30 @@ Dvě vlastnosti, na kterých stojí celý zážitek:
 `buildRails()` skládá řady s vlastním důvodem („Protože jste 8 dní po transferu“)
 a hlídá, aby se stejná položka neobjevila ve dvou řadách.
 
-### 3. Obsah — `src/lib/content/packs/`
+### 3. Průvodce fázemi — `src/lib/domain/guides/`
+
+Páteř aplikace. Každá fáze má **stejných devět oddílů**, takže po přechodu do
+další fáze uživatelka nemusí hledat nic nového:
+
+```
+co mě čeká · na co se připravit · hlava · tělo a pohyb · doplňky ·
+partner · co sledovat · otázky pro lékaře · slovníček fáze
+```
+
+Články, videa, příběhy a checklisty se k tomu dotahují z knihovny podle fáze —
+v průvodci je to, co se z knihovny vyčíst nedá.
+
+Pravidla, která u obsahu průvodců platí bez výjimky:
+
+- **U doplňků nikde není dávkování.** Místo toho je u každého uvedeno, jak silný
+  důvod za ním stojí: `standard`, `diskutovaný`, nebo `podle hodnot`.
+- Žádná prognóza pro konkrétní ženu a žádná procenta úspěšnosti.
+- Kde hrozí vážná komplikace, je napsané, kdy nečekat a volat.
+
+Diagnózy a situace mají vlastní vysvětlení v `domain/diagnoses.ts` — v aplikaci
+se nesmí objevit nálepka, kterou si uživatelka nemůže rozkliknout.
+
+### 4. Obsah — `src/lib/content/packs/`
 
 Balíky podle etapy cesty, každý typovaný proti `ContentPack`. Registr v `index.ts`
 je slepí, odfiltruje duplicitní ID a vystaví vyhledávání.
@@ -127,7 +150,7 @@ Dva druhy obsahu:
 - **`DailyCard`** — karta dne. Přesná shoda na den (`day: 6`) vyhrává nad rozsahem,
   cílená na modifikátor vyhrává nad obecnou. Tohle je motor „aplikace žije se mnou“.
 
-### 4. AI Gabi — `src/lib/ai/gabi.ts`
+### 5. AI Gabi — `src/lib/ai/gabi.ts`
 
 Není to obecný chatbot. Do systémového promptu jde celý stav cesty, poslední zápisy
 z deníku a zadané laboratorní hodnoty; do kontextu se přidá relevantní obsah z knihovny.
@@ -146,7 +169,7 @@ Model: `claude-opus-5` s adaptivním myšlením a serverovým fallbackem
 (`fallbacks: 'default'`) — když bezpečnostní klasifikátor dotaz odmítne, odpoví
 záložní model místo chybové hlášky.
 
-### 5. Zdravotní data — `src/lib/health/`
+### 6. Zdravotní data — `src/lib/health/`
 
 - **`lab-params.ts`** — katalog parametrů (AMH, FSH, beta HCG, spermiogram…)
   s lidským vysvětlením a orientačním rozmezím.

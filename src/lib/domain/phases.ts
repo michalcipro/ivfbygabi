@@ -167,7 +167,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
   iui: {
     id: 'iui',
     group: 'treatment',
-    name: 'IUI',
+    name: 'Inseminace (IUI)',
     title: 'Intrauterinní inseminace',
     description: 'Šetrnější krok před IVF. Co obnáší, jak se připravit a co čekat.',
     anchor: 'iuiOn',

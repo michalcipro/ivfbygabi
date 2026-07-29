@@ -1,6 +1,7 @@
 import type { PhaseId } from '../lib/domain/phases'
 import { MODIFIER_LABELS, type ModifierId, type Profile } from '../lib/domain/profile'
 import { addDays, formatCzechDate, today as realToday } from '../lib/domain/dates'
+import { guideFor } from './../lib/domain/guides'
 import { esc, heroStyle } from './ui'
 import { patch, S, newProfile, type Draft } from './store'
 
@@ -314,12 +315,25 @@ function stepWhere(): string {
     )
     .join('')
 
+  const picked = routeById(dr.route)
+  const guide = picked ? guideFor(picked.phase) : null
+  const preview = guide
+    ? `<div class="surface pad rise" style="margin-top:1.75rem">
+        <p class="eyebrow">Co pro vás v téhle fázi máme</p>
+        <p class="soft" style="margin-top:.6rem;line-height:1.65">${esc(guide.summary)}</p>
+        <p class="eyebrow" style="margin-top:1.25rem">Co vás čeká</p>
+        <ul class="bullets">${guide.whatAwaits.slice(0, 3).map((w) => `<li>${esc(w)}</li>`).join('')}</ul>
+        <p class="faint" style="margin-top:1rem;font-size:.8125rem;line-height:1.55">A dál: články a videa, práce s hlavou, pohyb, doplňky, rady pro partnera, otázky pro lékaře a slovníček pojmů téhle fáze.</p>
+      </div>`
+    : ''
+
   return `${progress(1)}
   <div class="ob-body">
     <p class="eyebrow">Krok 1 ze 4</p>
     <h1 class="display" style="margin-top:.7rem">Kde právě jste?</h1>
     <p class="lede">Podle toho poskládáme obsah. Až se posunete, změníte to jedním klikem.</p>
     ${groups}
+    ${preview}
   </div>
   ${foot(
     `<button class="btn btn-primary" data-act="ob-next" ${dr.route ? '' : 'disabled'}>Pokračovat</button>`,

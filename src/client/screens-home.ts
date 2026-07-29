@@ -2,6 +2,7 @@ import { PHASES, PHASE_GROUPS, PHASE_GROUP_META, PHASE_IDS, type PhaseId } from 
 import { MODIFIER_LABELS, TOPIC_LABELS, type TopicId } from '../lib/domain/profile'
 import { addDays, czDays, formatCzechDate, seedFrom } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
+import { guideFor } from '../lib/domain/guides'
 import { CATALOG, CONTENT_STATS, DAILY_CARDS, ENCOURAGEMENTS, contentById } from '../lib/content'
 import { buildRails, pickDailyCard, recommend } from '../lib/content/recommend'
 import { affinity, journey, journalFor, moodConcern, profile, S, viewDate } from './store'
@@ -42,7 +43,7 @@ function journeyStrip(phaseId: PhaseId): string {
   const step = (when: string, what: string, now = false) =>
     `<span class="step ${now ? 'now' : ''}"><span class="when">${esc(when)}</span><span class="what">${esc(what)}</span></span>`
 
-  return `<button class="journey" data-go="cesta" aria-label="Otevřít průvodce vaší cestou">
+  return `<button class="journey" data-go="faze" aria-label="Otevřít průvodce vaší fází">
     ${prev ? step('bylo', prev.name) : ''}
     ${step('jste tady', phase.name, true)}
     ${next ? step('bude', next.name) : ''}
@@ -94,13 +95,43 @@ function firstSteps(): string {
     <div class="stack" style="gap:.9rem;margin-top:1rem">
       ${[
         ['dnes', '☀', 'Tahle stránka', 'Zítra tu bude jiná karta dne, jiné povzbuzení a jinak seřazený obsah.'],
-        ['objevit', '❋', 'Objevit', 'Řady obsahu jako na Netflixu. U každé je napsáno, proč ji vidíte.'],
+        ['faze', '❖', 'Moje fáze', 'Všechno k vaší fázi na jednom místě: co vás čeká, hlava, tělo, doplňky, partner i slovníček.'],
         ['gabi', '✦', 'Gabi', 'Zeptejte se vlastními slovy. Zná vaši fázi.'],
       ]
         .map(
           ([route, icon, t, b]) =>
             `<button class="tile" data-go="${route}" style="padding:.85rem 1rem"><i>${icon}</i><span style="min-width:0"><h4 class="display" style="font-size:.9375rem;font-family:var(--sans);font-weight:500">${t}</h4><p style="margin-top:.15rem">${b}</p></span><span class="go">›</span></button>`,
         )
+        .join('')}
+    </div>
+  </section>`
+}
+
+/** Vstup do průvodce fází — na domovské stránce musí být vidět, že existuje. */
+function phaseCta(): string {
+  const state = journey()
+  const guide = guideFor(state.phase.id)
+  if (!guide) return ''
+  return `<section class="surface pad rise">
+    <div class="row wrap" style="justify-content:space-between;gap:1rem">
+      <div style="min-width:0">
+        <p class="eyebrow">Průvodce vaší fází</p>
+        <h2 class="display" style="font-size:1.4rem;margin-top:.4rem">${esc(state.phase.name)}</h2>
+        <p class="soft" style="margin-top:.5rem;line-height:1.6;font-size:.9375rem">${esc(guide.summary)}</p>
+      </div>
+    </div>
+    <div class="chips" style="margin-top:1.1rem">
+      ${[
+        ['prehled', 'Co mě čeká'],
+        ['obsah', 'Články a videa'],
+        ['hlava', 'Hlava'],
+        ['telo', 'Tělo a pohyb'],
+        ['doplnky', 'Doplňky'],
+        ['partner', 'Partner'],
+        ['lekar', 'Otázky pro lékaře'],
+        ['slovnicek', 'Slovníček'],
+      ]
+        .map(([id, label]) => `<button data-go="faze/${esc(state.phase.id)}/${id}">${esc(label)}</button>`)
         .join('')}
     </div>
   </section>`
@@ -296,6 +327,7 @@ export function screenDnes(): string {
     ['treatment', 'waiting'].includes(state.group) ? cycleStrip() : '',
     dayCard,
     task || mood ? `<section class="two">${task}${mood}</section>` : '',
+    phaseCta(),
     firstSteps(),
     concern,
     next,
@@ -390,61 +422,6 @@ export function screenCesta(): string {
       </div>
     </div>`,
     groups,
-  ].join('')
-}
-
-export function screenFaze(phaseId: string): string {
-  const phase = PHASES[phaseId as PhaseId]
-  if (!phase) return head('Fáze', 'Fáze nenalezena', 'Zkuste se vrátit do průvodce.')
-
-  const state = journey()
-  const here = phase.id === state.phase.id
-  const items = CATALOG.filter((c) => c.phases.includes(phase.id)).slice(0, 12)
-  const cards = DAILY_CARDS.filter((c) => c.phases.includes(phase.id)).length
-  const meta = PHASE_GROUP_META[phase.group]
-
-  return [
-    `<header class="head rise">
-      <p class="eyebrow">${esc(meta.name)}</p>
-      <h1 class="display">${esc(phase.title)}</h1>
-      <p class="lede">${esc(phase.description)}</p>
-      ${here ? `<p class="badge badge-soft" style="margin-top:1rem">Tady jste právě teď · ${esc(state.dayLabel.replace(/^Dnes (je|jste) /, ''))}</p>` : ''}
-    </header>`,
-
-    `<div class="surface pad">
-      <dl class="kv">
-        ${phase.dayLabel ? `<dt>Popisek dne</dt><dd>${esc(`Dnes je ${phase.dayLabel(3)}`)}</dd>` : ''}
-        <dt>Typická délka</dt><dd>${phase.typicalDays ? `<span class="num">${phase.typicalDays}</span> dní` : 'bez pevné délky'}</dd>
-        <dt>Denních karet</dt><dd class="num">${cards}</dd>
-        <dt>Materiálů</dt><dd class="num">${CATALOG.filter((c) => c.phases.includes(phase.id)).length}</dd>
-      </dl>
-    </div>`,
-
-    !here
-      ? `<div class="banner"><span style="color:var(--taupe)">◈</span><span>Jste v jiné fázi. Pokud jste se posunula sem, přepněte to v nastavení — obsah se přepočítá.</span>
-         <button class="btn btn-sm" data-go="nastaveni" style="margin-left:auto">Nastavení</button></div>`
-      : '',
-
-    phase.next.length
-      ? `<section>
-          ${sectionTitle('Co přijde potom', 'Běžné pokračování — ne předpověď')}
-          <div class="tiles">
-            ${phase.next
-              .map((n) => {
-                const np = PHASES[n]
-                return `<button class="tile" data-go="faze/${esc(np.id)}"><i>→</i><span style="min-width:0"><h4 class="display">${esc(np.name)}</h4><p>${esc(np.description)}</p></span><span class="go">›</span></button>`
-              })
-              .join('')}
-          </div>
-        </section>`
-      : '',
-
-    items.length
-      ? `<section>
-          ${sectionTitle('Obsah pro tuhle fázi', `${plural(items.length, 'materiál', 'materiály', 'materiálů')} z knihovny`)}
-          <div class="grid-cards">${items.map((i) => contentCard(i)).join('')}</div>
-        </section>`
-      : '',
   ].join('')
 }
 
