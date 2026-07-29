@@ -160,6 +160,10 @@ Repozitář je připravený na **statické nasazení prohlížečové verze** (`
 Vercel spustí `npm run app` a naservíruje `app/index.html`. Žádná databáze,
 žádné proměnné prostředí, žádný běžící server.
 
+Instalace běží s `--ignore-scripts`, protože statický build nepotřebuje
+nativní `better-sqlite3` — jeho kompilace by build jen zdržovala a mohla ho
+shodit. Ověřeno v čisté kopii: instalace 20 s, výstup identický.
+
 > **Serverovou verzi na Vercel nasadit nelze tak, jak je.** `better-sqlite3`
 > zapisuje databázi na disk, ale serverless funkce mají souborový systém jen
 > pro čtení a mezi requesty se zahazuje — registrace by zdánlivě prošla a data
