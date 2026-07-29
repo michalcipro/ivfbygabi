@@ -45,6 +45,9 @@
   --r-xl: 2rem;
   --r-2xl: 2.75rem;
 
+  --halo: rgb(172 125 28 / 0.16);
+  --sheen: rgb(255 255 255 / 0.6);
+
   --veil: 0 1px 2px rgb(43 37 33 / 0.03), 0 8px 24px -12px rgb(43 37 33 / 0.1);
   --lift: 0 2px 4px rgb(43 37 33 / 0.04), 0 18px 44px -20px rgb(43 37 33 / 0.18);
   --float: 0 4px 8px rgb(43 37 33 / 0.05), 0 32px 72px -28px rgb(43 37 33 / 0.26);
@@ -54,13 +57,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --page: #17140f;
-    --card: #201c17;
-    --card-muted: #262119;
-    --line: #352f27;
-    --fg: #f2ece3;
-    --fg-soft: #b6aa9d;
-    --fg-faint: #857a70;
+    --page: #0c0a0b;
+    --card: #151113;
+    --card-muted: #1d1719;
+    --line: rgb(255 255 255 / 0.07);
+    --fg: #f6efeb;
+    --fg-soft: #b8a8a4;
+    --fg-faint: #877873;
+    --halo: rgb(184 135 34 / 0.20);
+    --sheen: rgb(255 255 255 / 0.045);
     --s1: #b88722;
     --s2: #3391b8;
     --s3: #d06a4a;
@@ -70,13 +75,15 @@
 }
 
 :root[data-theme='dark'] {
-  --page: #17140f;
-  --card: #201c17;
-  --card-muted: #262119;
-  --line: #352f27;
-  --fg: #f2ece3;
-  --fg-soft: #b6aa9d;
-  --fg-faint: #857a70;
+  --page: #0c0a0b;
+  --card: #151113;
+  --card-muted: #1d1719;
+  --line: rgb(255 255 255 / 0.07);
+  --fg: #f6efeb;
+  --fg-soft: #b8a8a4;
+  --fg-faint: #877873;
+  --halo: rgb(184 135 34 / 0.20);
+  --sheen: rgb(255 255 255 / 0.045);
   --s1: #b88722;
   --s2: #3391b8;
   --s3: #d06a4a;
@@ -92,6 +99,8 @@
   --fg: #2b2521;
   --fg-soft: #6c6058;
   --fg-faint: #9a8f86;
+  --halo: rgb(172 125 28 / 0.16);
+  --sheen: rgb(255 255 255 / 0.6);
   --s1: #ac7d1c;
   --s2: #3391b8;
   --s3: #d06a4a;
@@ -715,9 +724,9 @@ textarea.field { resize: vertical; line-height: 1.6; }
 
 /* --- grafy -------------------------------------------------------------- */
 .chartbox { position: relative; margin-top: .7rem; }
-.chartbox svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chartbox svg { display: block; max-width: 100%; overflow: visible; }
 .gridline { stroke: var(--line); stroke-width: 1; }
-.axislabel { fill: var(--fg-faint); font-size: 8px; font-variant-numeric: tabular-nums; }
+.axislabel { fill: var(--fg-faint); font-size: 10px; font-variant-numeric: tabular-nums; }
 .charttip {
   position: absolute; top: -4px; pointer-events: none; z-index: 3;
   background: var(--card); border: 1px solid var(--line); border-radius: 10px;
@@ -735,7 +744,11 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .statv { font-family: var(--display); font-size: 1.9rem; line-height: 1; margin: .25rem 0 0; }
 
 /* --- rychlé zadání ------------------------------------------------------ */
-.quickrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; margin-top: .7rem; }
+.quickrow {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; margin-top: .7rem;
+  /* Na desktopu by se z terčů staly bannery. Jsou to tlačítka pod palec. */
+  max-width: 30rem;
+}
 .quickrow button {
   background: var(--card); border: 1px solid var(--line); border-radius: 16px;
   padding: .85rem .4rem; font-family: inherit; color: var(--fg); cursor: pointer;
@@ -773,3 +786,143 @@ textarea.field { resize: vertical; line-height: 1.6; }
   box-shadow: var(--float); animation: rise .3s var(--calm) both;
 }
 @media (min-width: 1024px) { .toast { bottom: 2rem; } }
+
+/* ==========================================================================
+   Elitní vrstva.
+   Rozdíl mezi „hezkou aplikací" a přístrojem je v tom, že přístroj nekreslí
+   rámečky — odděluje světlem. Plochy se liší hodnotou a nahoře mají tenký
+   přesvit, jako by na ně shora dopadalo světlo. Čáry zůstávají jen jako
+   vlásečnice tam, kde by jinak dvě plochy splynuly.
+   ========================================================================== */
+
+/* --- plochy ------------------------------------------------------------- */
+.surface {
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--sheen) 0%, transparent 42%), var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--veil);
+}
+.surface-muted { border-radius: 22px; }
+
+/* Dlaždice, karty obsahu a tlačítka sdílí stejný rejstřík poloměrů. */
+.tile, .ccard, .stattile, .quickrow button, .reading, .chartbox { border-radius: 20px; }
+.stattile, .quickrow button {
+  background: linear-gradient(180deg, var(--sheen) 0%, transparent 55%), var(--card);
+}
+
+/* --- hlavička obrazovky -------------------------------------------------- */
+.head { margin-bottom: 1.75rem; }
+.head h1 { font-size: clamp(2rem, 5vw, 2.9rem); letter-spacing: -0.028em; }
+.eyebrow { letter-spacing: 0.18em; font-size: 0.625rem; }
+
+/* --- prstenec jako hlavní objekt ---------------------------------------- */
+.ringwrap { position: relative; padding: 1.25rem 0 .25rem; }
+/* Světlo za prstencem. Bez něj je to jen kolečko. */
+.ringwrap::before {
+  /* Střed záře sedí na středu prstence, ne nad ním — jinak vyteče nad kartu. */
+  content: ''; position: absolute; left: 50%; top: 9rem;
+  width: 17rem; height: 17rem; transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--halo) 0%, transparent 68%);
+  pointer-events: none; z-index: 0;
+}
+.bigring { width: 244px; height: 244px; position: relative; z-index: 1; }
+.bignum {
+  font-size: 5.2rem; letter-spacing: -0.04em;
+  text-shadow: 0 2px 30px var(--halo);
+}
+.bignum small { font-size: 1rem; opacity: .75; }
+
+/* Oblouk se nasype, ne naskočí. */
+.arc {
+  transition: stroke-dasharray 1.1s cubic-bezier(.16, 1, .3, 1) .12s;
+  filter: drop-shadow(0 0 7px var(--halo));
+}
+.arc-in {
+  transition-delay: .28s;
+  filter: drop-shadow(0 0 7px color-mix(in oklab, var(--s2) 30%, transparent));
+}
+@media (prefers-reduced-motion: reduce) { .arc { transition: none; } }
+
+.statepill {
+  background: linear-gradient(180deg, var(--sheen) 0%, transparent 60%), var(--card-muted);
+  border-color: transparent; font-weight: 600; letter-spacing: 0.12em;
+}
+.statepill.alert {
+  border-color: color-mix(in oklab, var(--s1) 45%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--s1) 8%, transparent);
+}
+.serieskey span { font-weight: 500; }
+.serieskey b { color: var(--fg); margin-left: .1rem; }
+
+/* --- číselníky ---------------------------------------------------------- */
+.dial button {
+  border-radius: 17px; font-weight: 500;
+  background: linear-gradient(180deg, var(--sheen) 0%, transparent 60%), var(--card);
+}
+.dial button[aria-checked='true'] {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -10px currentColor;
+}
+.dial.cool button[aria-checked='true'] { box-shadow: 0 10px 24px -10px var(--s2); }
+.dial.warm button[aria-checked='true'] { box-shadow: 0 10px 24px -10px var(--s3); }
+.dial.plum button[aria-checked='true'] { box-shadow: 0 10px 24px -10px var(--s4); }
+.dial.gold button[aria-checked='true'] { box-shadow: 0 10px 24px -10px var(--s1); }
+.dialends { letter-spacing: 0.06em; text-transform: lowercase; }
+
+/* --- dlaždice se statistikou -------------------------------------------- */
+.statv { font-size: 2.2rem; letter-spacing: -0.03em; }
+.stats { gap: .7rem; }
+
+/* --- graf --------------------------------------------------------------- */
+.gridline { stroke: var(--line); }
+.axislabel { font-size: 10px; letter-spacing: .04em; opacity: .9; }
+.charttip {
+  background: linear-gradient(180deg, var(--sheen) 0%, transparent 70%), var(--card-muted);
+  border-radius: 12px; box-shadow: 0 12px 30px -12px rgb(0 0 0 / .55);
+}
+
+/* --- spodní lišta ------------------------------------------------------- */
+.tabbar {
+  background: color-mix(in oklab, var(--page) 82%, transparent);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-top: 1px solid var(--line);
+}
+.tabbar button { position: relative; padding: 0.7rem 0 0.7rem; transition: color .3s var(--calm); }
+.tabbar button i { transition: transform .35s var(--calm); }
+.tabbar button[aria-current='page'] i { transform: translateY(-2px) scale(1.12); }
+/* Světelná stopa nad aktivní záložkou místo podtržítka. */
+.tabbar button[aria-current='page']::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 2.2rem; height: 2px; border-radius: 0 0 3px 3px;
+  background: var(--s1); box-shadow: 0 0 12px var(--s1);
+}
+.tabbar button span { letter-spacing: .06em; }
+
+/* --- postranní panel ---------------------------------------------------- */
+.sidebar { background: linear-gradient(180deg, var(--sheen) 0%, transparent 18%), var(--page); }
+
+/* --- nástup obrazovky --------------------------------------------------- */
+/* Sekce se skládají po sobě, ne najednou. Šest kroků stačí — dál už to
+   jenom zdržuje. */
+.rise { animation: rise 0.62s cubic-bezier(.16, 1, .3, 1) both; }
+.page > .rise:nth-of-type(1) { animation-delay: 0ms; }
+.page > .rise:nth-of-type(2) { animation-delay: 45ms; }
+.page > .rise:nth-of-type(3) { animation-delay: 90ms; }
+.page > .rise:nth-of-type(4) { animation-delay: 135ms; }
+.page > .rise:nth-of-type(5) { animation-delay: 180ms; }
+.page > .rise:nth-of-type(n + 6) { animation-delay: 215ms; }
+@keyframes rise { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .page > .rise { animation: none !important; }
+}
+
+/* Světlý odznak měl napevno tmavě hnědý text — na tmavé ploše z toho byla
+   bledá pilulka s nečitelným písmem. Tint se odvozuje od datové zlaté
+   a text nosí barvu popředí, takže funguje v obou motivech. */
+.badge-soft {
+  background: color-mix(in oklab, var(--s1) 18%, transparent);
+  color: var(--fg);
+  border: 1px solid color-mix(in oklab, var(--s1) 26%, transparent);
+}

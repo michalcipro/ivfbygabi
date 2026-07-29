@@ -161,6 +161,7 @@ export interface Save {
    */
   eventState: Record<string, { done: boolean; note: string }>
   posts: PostRow[]
+  /** Výchozí je tmavý — prstenec a grafy na něm svítí. Přepínatelné v nastavení. */
   theme: 'auto' | 'light' | 'dark'
   /** 0 = dnešek. Nenulové jen když si uživatelka vědomě přepne na jiný den. */
   dayOffset: number
@@ -190,7 +191,7 @@ function blank(): Save {
     exercises: [],
     eventState: {},
     posts: [],
-    theme: 'auto',
+    theme: 'dark',
     dayOffset: 0,
     seenTour: false,
   }
