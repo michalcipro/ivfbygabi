@@ -150,7 +150,27 @@ Dva druhy obsahu:
 - **`DailyCard`** — karta dne. Přesná shoda na den (`day: 6`) vyhrává nad rozsahem,
   cílená na modifikátor vyhrává nad obecnou. Tohle je motor „aplikace žije se mnou“.
 
-### 5. AI Gabi — `src/lib/ai/gabi.ts`
+### 5. Gabi — vyhledávání v aplikaci
+
+`src/lib/search/app-search.ts` staví jeden index nad **vším**, co v aplikaci je:
+články, videa, příběhy, checklisty, pojmy ze slovníku, rady a tipy z průvodců
+fázemi, doplňky, otázky pro lékaře a vysvětlení diagnóz.
+
+Gabi v prohlížečové verzi **nehledá na internetu a nic negeneruje** — ukazuje
+jen to, co je v aplikaci. Když se nic nenajde, řekne to; vymyšlená odpověď by
+byla horší než žádná.
+
+Dvě věci, na kterých stojí použitelnost v češtině:
+
+- **Hrubé kmeny slov** — „cvičení“ a „cvičit“ se jinak nepotkají.
+- **Musí sedět všechna slova dotazu** (u delších dotazů s jednou tolerancí).
+  Bez toho vracel nesmyslný dotaz desítky článků, protože jedno slovo někde
+  náhodou padlo.
+
+Skupiny výsledků se řadí podle nejlepšího skóre, ne napevno — když hledáte
+pojem, je slovník nahoře.
+
+### 6. AI Gabi na serveru — `src/lib/ai/gabi.ts`
 
 Není to obecný chatbot. Do systémového promptu jde celý stav cesty, poslední zápisy
 z deníku a zadané laboratorní hodnoty; do kontextu se přidá relevantní obsah z knihovny.
@@ -169,7 +189,7 @@ Model: `claude-opus-5` s adaptivním myšlením a serverovým fallbackem
 (`fallbacks: 'default'`) — když bezpečnostní klasifikátor dotaz odmítne, odpoví
 záložní model místo chybové hlášky.
 
-### 6. Zdravotní data — `src/lib/health/`
+### 7. Zdravotní data — `src/lib/health/`
 
 - **`lab-params.ts`** — katalog parametrů (AMH, FSH, beta HCG, spermiogram…)
   s lidským vysvětlením a orientačním rozmezím.

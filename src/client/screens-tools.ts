@@ -3,7 +3,14 @@ import { KIND_ICONS, KIND_LABELS, type ContentKind } from '../lib/content/types'
 import { recommend } from '../lib/content/recommend'
 import { TOPIC_LABELS } from '../lib/domain/profile'
 import { formatCzechDate } from '../lib/domain/dates'
-import { suggestedPrompts } from '../lib/ai/offline'
+import { RED_FLAGS } from '../lib/ai/offline'
+import {
+  groupHits,
+  HIT_GROUP_TITLES,
+  searchApp,
+  searchSuggestions,
+  type SearchHit,
+} from '../lib/search/app-search'
 import { affinity, journalFor, journalList, journey, S, viewDate } from './store'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, ring, sectionTitle } from './ui'
 
@@ -303,20 +310,70 @@ export function screenDenik(): string {
 
 // ------------------------------------------------------------------- Gabi ---
 
+/**
+ * Gabi — vyhledávání v aplikaci.
+ *
+ * Není to chatbot a nic si nevymýšlí. Napíšete klíčové slovo nebo otázku
+ * a ona projde všechno, co v aplikaci je: články, videa, příběhy, pojmy,
+ * rady z průvodců fázemi, doplňky, tipy i vysvětlení diagnóz.
+ */
 export function screenGabi(): string {
   const state = journey()
-  const prompts = suggestedPrompts(state)
   const msgs = S.d.chat
+  const suggestions = searchSuggestions(state.phase.id)
+
+  const hitRow = (h: SearchHit) => `<button class="tile" data-go="${esc(h.route)}" style="align-items:flex-start">
+    <i>${h.kind === 'pojem' ? '§' : h.kind === 'doplnek' ? '◍' : h.kind === 'otazka' ? '?' : h.kind === 'diagnoza' ? '◈' : h.kind === 'tip' ? '✦' : '❧'}</i>
+    <span style="min-width:0">
+      <span class="eyebrow" style="display:block">${esc(h.kindLabel)} · ${esc(h.from)}</span>
+      <h4 class="display" style="margin-top:.2rem">${esc(h.title)}</h4>
+      <p>${esc(h.snippet)}</p>
+    </span>
+    <span class="go">›</span>
+  </button>`
+
+  const answer = (m: (typeof msgs)[number]) => {
+    const hits = searchApp(m.text, { phase: state.phase.id })
+    const flag = RED_FLAGS.find((f) => f.pattern.test(m.text))
+    const warning = flag
+      ? `<div class="doctorbox" style="margin-bottom:1rem"><p style="font-size:.9375rem;line-height:1.65">${esc(flag.message)}</p></div>`
+      : ''
+    if (hits.length === 0) {
+      return `<div class="bubble bubble-gabi">
+        ${warning}
+        <p style="line-height:1.7">K tomuhle v aplikaci zatím nic nemám. Zkuste to napsat jinak, kratším slovem, nebo se podívejte do knihovny.</p>
+        <div class="row wrap" style="gap:.5rem;margin-top:1rem">
+          <button class="btn btn-sm" data-go="knihovna">Otevřít knihovnu</button>
+          <button class="btn btn-sm" data-go="faze">Průvodce mojí fází</button>
+        </div>
+      </div>`
+    }
+    const groups = groupHits(hits)
+    return `<div class="bubble bubble-gabi">
+      ${warning}
+      <p style="line-height:1.7">Našla jsem k tomu v aplikaci ${esc(plural(hits.length, 'výsledek', 'výsledky', 'výsledků'))}${
+        groups[0]?.items.some((i) => i.phase === state.phase.id) ? ' — nahoře je to, co patří k vaší fázi' : ''
+      }:</p>
+      ${groups
+        .map(
+          (g) => `<div style="margin-top:1.15rem">
+            <p class="eyebrow">${esc(HIT_GROUP_TITLES[g.kind])}</p>
+            <div class="stack" style="gap:.5rem;margin-top:.5rem">${g.items.map(hitRow).join('')}</div>
+          </div>`,
+        )
+        .join('')}
+    </div>`
+  }
 
   return [
     head(
-      'AI průvodkyně',
+      'Vyhledávání v aplikaci',
       'Gabi',
-      'Zná vaši fázi, den i to, co jste si zapsala. Vysvětlí pojmy, pomůže formulovat otázky pro lékaře a řekne, kdy nečekat a volat.',
+      'Napište klíčové slovo nebo otázku. Gabi projde všechno, co v aplikaci je — články, videa, pojmy, rady, doplňky i vysvětlení diagnóz.',
     ),
 
     note(
-      '**Gabi nikdy nenahrazuje lékaře.** Nestanovuje diagnózu ani nedoporučuje dávkování. V téhle verzi běží v offline režimu — odpovídá z knihovny obsahu, stejně jako se aplikace chová bez klíče k API.',
+      'Gabi **nehledá na internetu a nic si nevymýšlí.** Ukazuje jen to, co je v aplikaci. Když se něco nenajde, znamená to, že to tu zatím není — a to je poctivější než vymyšlená odpověď. **Nenahrazuje lékaře.**',
     ),
 
     msgs.length
@@ -325,31 +382,27 @@ export function screenGabi(): string {
             .map((m) =>
               m.role === 'user'
                 ? `<div class="bubble bubble-user">${esc(m.text)}</div>`
-                : `<div class="bubble bubble-gabi"><div class="prose">${md(m.text)}</div>${
-                    m.refs.length
-                      ? `<div class="rail" style="margin-top:1rem">${m.refs.map((id) => contentCard(contentById(id))).join('')}</div>`
-                      : ''
-                  }</div>`,
+                : answer(m),
             )
             .join('')}
         </section>`
       : `<div class="empty">
           <p class="mark">✦</p>
-          <h3 class="display">Zeptejte se vlastními slovy</h3>
-          <p>Nebo si vyberte z otázek, které se ptají ženy ve stejné fázi jako vy.</p>
+          <h3 class="display">Co hledáte?</h3>
+          <p>Stačí jedno slovo — „OHSS“, „progesteron“, „cvičení“ — nebo celá otázka.</p>
         </div>`,
 
     `<div class="ask">
-      <input id="ask" placeholder="Zeptejte se na cokoliv…" autocomplete="off">
-      <button class="btn btn-primary" data-act="ask">Odeslat</button>
+      <input id="ask" placeholder="Napište slovo nebo otázku…" autocomplete="off">
+      <button class="btn btn-primary" data-act="ask">Hledat</button>
     </div>`,
 
     `<section>
-      <p class="eyebrow" style="margin-bottom:.75rem">Otázky ve vaší fázi</p>
+      <p class="eyebrow" style="margin-bottom:.75rem">Zkuste</p>
       <div class="chips">
-        ${prompts.map((q) => `<button data-act="prompt" data-arg="${esc(q)}">${esc(q)}</button>`).join('')}
+        ${suggestions.map((q) => `<button data-act="prompt" data-arg="${esc(q)}">${esc(q)}</button>`).join('')}
       </div>
-      ${msgs.length ? '<button class="btn btn-ghost btn-sm" data-act="chat-clear" style="margin-top:1.25rem">Smazat konverzaci</button>' : ''}
+      ${msgs.length ? '<button class="btn btn-ghost btn-sm" data-act="chat-clear" style="margin-top:1.25rem">Vymazat historii hledání</button>' : ''}
     </section>`,
   ].join('')
 }

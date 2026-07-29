@@ -1,8 +1,7 @@
 import { PHASES, isPhaseId } from '../lib/domain/phases'
 import { isModifierId, type ModifierId } from '../lib/domain/profile'
 import { today as realToday } from '../lib/domain/dates'
-import { CATALOG, contentById } from '../lib/content'
-import { offlineAnswer, retrieve } from '../lib/ai/offline'
+import { contentById } from '../lib/content'
 import { parseReport, type ParsedReport } from '../lib/health/parse-report'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import type { Letter } from '../lib/shared/records'
@@ -332,15 +331,15 @@ const val = (id: string): string => {
   return el ? el.value.trim() : ''
 }
 
-function askGabiOffline(question: string): void {
-  const state = journey()
-  const relevant = retrieve(question, CATALOG, state, 4)
-  const answer = offlineAnswer(question, relevant, state)
+/**
+ * Hledání v aplikaci. Uloží se jen dotaz — výsledky se počítají při
+ * vykreslení, takže po doplnění obsahu ukáže starý dotaz nové nálezy.
+ */
+function askGabiSearch(question: string): void {
   patch((d) => {
     d.chat.push({ role: 'user', text: question, refs: [] })
-    d.chat.push({ role: 'gabi', text: answer.text, refs: answer.refs })
+    d.chat.push({ role: 'gabi', text: question, refs: [] })
   })
-  for (const id of answer.refs.slice(0, 2)) learn(id, 0.2)
 }
 
 function onboardingAction(act: string, argValue: string): boolean {
@@ -482,11 +481,11 @@ function action(act: string, argValue: string): void {
     case 'ask': {
       const q = val('ask')
       if (q.length < 3) return
-      askGabiOffline(q)
+      askGabiSearch(q)
       break
     }
     case 'prompt':
-      askGabiOffline(argValue)
+      askGabiSearch(argValue)
       break
     case 'chat-clear':
       patch((d) => {
