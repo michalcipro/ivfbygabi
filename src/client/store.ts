@@ -22,6 +22,20 @@ export interface JournalRow {
   hope: number
   energy: number
   note: string
+  /** Odpověď na otázku dne. */
+  promptId: string
+  promptAnswer: string
+  /** Co se dnes povedlo — záměrně oddělené od poznámky. */
+  win: string
+}
+
+/** Vyplněné cvičení. Ukládá se, aby se k němu dalo vrátit. */
+export interface ExerciseEntry {
+  id: string
+  exercise: string
+  date: IsoDate
+  /** Odpovědi na jednotlivé kroky, nebo u volných cvičení jeden text. */
+  fields: string[]
 }
 
 export interface EventRow {
@@ -121,6 +135,7 @@ export interface Save {
   docs: DocRow[]
   letters: LetterRow[]
   story: StoryRow[]
+  exercises: ExerciseEntry[]
   posts: PostRow[]
   theme: 'auto' | 'light' | 'dark'
   /** 0 = dnešek. Nenulové jen když si uživatelka vědomě přepne na jiný den. */
@@ -147,6 +162,7 @@ function blank(): Save {
     docs: [],
     letters: [],
     story: [],
+    exercises: [],
     posts: [],
     theme: 'auto',
     dayOffset: 0,
@@ -277,6 +293,28 @@ export function journalFor(date: IsoDate): JournalRow | null {
 export function saveJournal(row: JournalRow): void {
   patch((d) => {
     d.journal[row.date] = row
+  })
+}
+
+/** Kolik dní po sobě je zapsáno, počítáno zpětně od zadaného dne. */
+export function journalStreak(from: IsoDate): number {
+  let n = 0
+  let day = from
+  while (data.journal[day]) {
+    n++
+    day = addDays(day, -1)
+  }
+  return n
+}
+
+/** Vyplněná cvičení od nejnovějšího. */
+export function exerciseLog(): ExerciseEntry[] {
+  return [...data.exercises].sort((a, b) => b.date.localeCompare(a.date))
+}
+
+export function saveExercise(exercise: string, fields: string[]): void {
+  patch((d) => {
+    d.exercises.unshift({ id: uid('ex'), exercise, date: viewDate(), fields })
   })
 }
 

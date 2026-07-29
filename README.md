@@ -189,7 +189,27 @@ Model: `claude-opus-5` s adaptivním myšlením a serverovým fallbackem
 (`fallbacks: 'default'`) — když bezpečnostní klasifikátor dotaz odmítne, odpoví
 záložní model místo chybové hlášky.
 
-### 7. Zdravotní data — `src/lib/health/`
+### 7. Deník — `src/client/screens-denik.ts`
+
+Deník není políčko na náladu. Má čtyři oddíly a všechno je zasazené do dne
+a fáze, ve které uživatelka je:
+
+- **Dnešek** — kontext (kolikátý je den, co je kolem, co bylo včera), nálada
+  a úzkost, **otázka na dnešek**, co se povedlo, volný zápis. Otázka se vybírá
+  podle fáze a dne (`domain/journal-prompts.ts`) a je pro daný den stabilní —
+  zítra je jiná.
+- **Cvičení** — šest technik, které se odklikají, ne přečtou
+  (`domain/exercises.ts`): dýchání 4–6 s animovaným kruhem, uzemnění 5–4–3–2–1,
+  přerámování myšlenky, kolo kontroly, tři dobré věci, dopis sobě. Podle
+  dnešní nálady a úzkosti se jedna nabídne sama.
+- **Vývoj** — graf, průměry, srovnání s minulým týdnem a zjištění **z jejích
+  vlastních dat** („nejtěžší den byl…“), ne obecné poučky.
+- **Ohlédnutí** — co má za sebou, milníky, týdenní review o třech otázkách.
+
+Techniky vycházejí z postupů běžných v KBT a všímavosti. V aplikaci je u nich
+vždycky napsané, že **nejsou léčba a nenahrazují odbornou pomoc**.
+
+### 8. Zdravotní data — `src/lib/health/`
 
 - **`lab-params.ts`** — katalog parametrů (AMH, FSH, beta HCG, spermiogram…)
   s lidským vysvětlením a orientačním rozmezím.

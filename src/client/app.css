@@ -415,6 +415,25 @@ textarea.field { resize: vertical; line-height: 1.6; }
 }
 .subnav::-webkit-scrollbar { display: none; }
 .subnav button { flex: 0 0 auto; }
+
+/* Dýchání 4–6. Kruh se nadechuje a vydechuje spolu s uživatelkou. */
+.breath { display: grid; place-items: center; height: 15rem; position: relative; }
+.breath-circle {
+  width: 6rem; height: 6rem; border-radius: 99px;
+  background: radial-gradient(circle at 35% 30%, var(--champagne), var(--sand));
+  box-shadow: var(--veil);
+  transition: transform 4s cubic-bezier(0.4, 0, 0.4, 1), opacity 4s ease;
+  opacity: 0.75;
+}
+.breath[data-phase='in'] .breath-circle { transform: scale(1.9); opacity: 1; }
+.breath[data-phase='out'] .breath-circle { transform: scale(1); opacity: 0.6; transition-duration: 6s; }
+.breath-label {
+  position: absolute; bottom: 0; font-family: var(--display);
+  font-size: 1.25rem; color: var(--fg-soft);
+}
+@media (prefers-reduced-motion: reduce) {
+  .breath-circle { transition: none; }
+}
 .chips button {
   border-radius: 99px; border: 1px solid var(--line); background: var(--card);
   padding: 0.4rem 0.9rem; font-size: 0.8125rem; color: var(--fg-soft);

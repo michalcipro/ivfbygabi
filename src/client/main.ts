@@ -16,6 +16,7 @@ import {
   profile,
   reset,
   S,
+  saveExercise,
   saveJournal,
   toggleSaved,
   uid,
@@ -32,7 +33,8 @@ import {
   SECTIONS,
   type SectionId,
 } from './screens-phase'
-import { screenChecklisty, screenCist, screenDenik, screenGabi, screenKnihovna } from './screens-tools'
+import { screenChecklisty, screenCist, screenGabi, screenKnihovna } from './screens-tools'
+import { DENIK_SECTIONS, screenCviceni, screenDenik, type DenikSection } from './screens-denik'
 import {
   screenClenstvi,
   screenDokumenty,
@@ -95,6 +97,7 @@ const TITLES: Record<string, string> = {
   cesta: 'Celá cesta',
   faze: 'Moje fáze',
   pojem: 'Pojem',
+  cviceni: 'Cvičení',
   diagnoza: 'Diagnóza',
   diagnozy: 'Diagnózy',
   knihovna: 'Knihovna',
@@ -128,6 +131,7 @@ const PARENT: Record<string, string> = {
   cesta: 'vice',
   objevit: 'vice',
   pojem: 'faze',
+  cviceni: 'denik',
   diagnoza: 'faze',
   diagnozy: 'vice',
   knihovna: 'vice',
@@ -190,8 +194,13 @@ function screenFor(route: string): string {
       return screenObjevit()
     case 'gabi':
       return screenGabi()
-    case 'denik':
-      return screenDenik()
+    case 'denik': {
+      const wanted = a.split('/')[0]
+      const section = (DENIK_SECTIONS.some((x) => x.id === wanted) ? wanted : 'dnes') as DenikSection
+      return screenDenik(section)
+    }
+    case 'cviceni':
+      return screenCviceni(a)
     case 'vice':
       return screenVice()
     case 'cesta':
@@ -332,6 +341,50 @@ const val = (id: string): string => {
 }
 
 /**
+ * Dýchání 4–6. Běží mimo překreslování — kdyby se stránka mezitím
+ * překreslila, časovač se zastaví, aby po sobě nezůstal viset.
+ */
+let breathTimer: number | null = null
+
+function stopBreathing(): void {
+  if (breathTimer !== null) {
+    clearTimeout(breathTimer)
+    breathTimer = null
+  }
+  const box = document.getElementById('breath')
+  const label = document.getElementById('breath-label')
+  if (box) box.dataset.phase = 'idle'
+  if (label) label.textContent = 'Připravená?'
+}
+
+function startBreathing(): void {
+  stopBreathing()
+  const box = document.getElementById('breath')
+  const label = document.getElementById('breath-label')
+  if (!box || !label) return
+
+  let cycles = 0
+  const step = (phase: 'in' | 'out') => {
+    if (!document.getElementById('breath')) {
+      stopBreathing()
+      return
+    }
+    box.dataset.phase = phase
+    label.textContent = phase === 'in' ? 'Nádech…' : 'Výdech…'
+    if (phase === 'out') cycles++
+    // Pět minut je zhruba třicet cyklů po deseti vteřinách.
+    if (cycles >= 30) {
+      label.textContent = 'Hotovo. Pět minut máte za sebou.'
+      box.dataset.phase = 'idle'
+      breathTimer = null
+      return
+    }
+    breathTimer = window.setTimeout(() => step(phase === 'in' ? 'out' : 'in'), phase === 'in' ? 4000 : 6000)
+  }
+  step('in')
+}
+
+/**
  * Hledání v aplikaci. Uloží se jen dotaz — výsledky se počítají při
  * vykreslení, takže po doplnění obsahu ukáže starý dotaz nové nálezy.
  */
@@ -452,6 +505,9 @@ function action(act: string, argValue: string): void {
         hope: existing?.hope ?? 3,
         energy: existing?.energy ?? 3,
         note: existing?.note ?? '',
+        promptId: existing?.promptId ?? '',
+        promptAnswer: existing?.promptAnswer ?? '',
+        win: existing?.win ?? '',
       })
       break
     }
@@ -495,17 +551,65 @@ function action(act: string, argValue: string): void {
 
     // --- deník ------------------------------------------------------------
     case 'journal-save': {
-      const num = (id: string) => Number((document.getElementById(id) as HTMLInputElement | null)?.value ?? 3)
+      const date = viewDate()
+      const existing = journalFor(date)
+      const num = (id: string, fallback: number) => {
+        const el = document.getElementById(id) as HTMLInputElement | null
+        return el ? Number(el.value) : fallback
+      }
       saveJournal({
-        date: viewDate(),
-        mood: num('j-mood'),
-        anxiety: num('j-anxiety'),
-        hope: num('j-hope'),
-        energy: num('j-energy'),
+        date,
+        mood: existing?.mood ?? 3,
+        anxiety: num('j-anxiety', existing?.anxiety ?? 3),
+        hope: num('j-hope', existing?.hope ?? 3),
+        energy: num('j-energy', existing?.energy ?? 3),
         note: val('j-note'),
+        promptId: val('j-prompt-id') || (existing?.promptId ?? ''),
+        promptAnswer: val('j-prompt'),
+        win: val('j-win'),
       })
       break
     }
+    case 'review-save': {
+      const parts = [
+        ['Nejtěžší bylo', val('rev-w1')],
+        ['Pomohlo mi', val('rev-w2')],
+        ['Příště jinak', val('rev-w3')],
+      ].filter(([, v]) => v)
+      if (parts.length === 0) return
+      const date = viewDate()
+      const existing = journalFor(date)
+      const text = parts.map(([k, v]) => `${k}: ${v}`).join('\n')
+      saveJournal({
+        date,
+        mood: existing?.mood ?? 3,
+        anxiety: existing?.anxiety ?? 3,
+        hope: existing?.hope ?? 3,
+        energy: existing?.energy ?? 3,
+        note: existing?.note ? `${existing.note}\n\n${text}` : text,
+        promptId: existing?.promptId ?? 'tydenni-ohlednuti',
+        promptAnswer: existing?.promptAnswer ?? '',
+        win: existing?.win ?? '',
+      })
+      break
+    }
+    case 'exercise-save': {
+      const fields: string[] = []
+      for (let i = 0; i < 6; i++) {
+        const el = document.getElementById(`ex-${i}`)
+        if (!el) break
+        fields.push((el as HTMLTextAreaElement).value.trim())
+      }
+      if (fields.every((f) => !f)) return
+      saveExercise(argValue, fields)
+      break
+    }
+    case 'breath-start':
+      startBreathing()
+      return
+    case 'breath-stop':
+      stopBreathing()
+      return
 
     // --- kalendář ---------------------------------------------------------
     case 'event-add': {
@@ -840,6 +944,7 @@ document.addEventListener('keydown', (ev) => {
 })
 
 window.addEventListener('hashchange', () => {
+  stopBreathing()
   const route = currentRoute()
   if (stack.length > 1 && stack[stack.length - 2] === route) stack.pop()
   else stack.push(route)
