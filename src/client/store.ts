@@ -1,6 +1,8 @@
 import { emptyProfile, type IsoDate, type ModifierId, type Profile } from '../lib/domain/profile'
 import { resolveJourney, type JourneyState } from '../lib/domain/journey'
-import { addDays, today as realToday } from '../lib/domain/dates'
+import { addDays, daysBetween, today as realToday } from '../lib/domain/dates'
+import { autoEventsFor } from '../lib/domain/auto-events'
+import { findPattern, readDay, type DayLog, type DayReading, type Pattern } from '../lib/domain/strain'
 import { CATALOG } from '../lib/content'
 import { emptyAffinity, type Affinity } from '../lib/content/recommend'
 import { applyTopicAffinity, type WeightedAffinity } from '../lib/content/affinity'
@@ -27,6 +29,22 @@ export interface JournalRow {
   promptAnswer: string
   /** Co se dnes povedlo — záměrně oddělené od poznámky. */
   win: string
+  /** Jak se ozývalo tělo. Vstupuje do rezervy i do přehledu v čase. */
+  symptoms: string[]
+}
+
+/**
+ * Zapsaný vpich.
+ *
+ * Deset dní do stejného místa bolí a dělá boule. Aplikace si pamatuje, kam
+ * se píchalo, a umí navrhnout, kam jít dnes.
+ */
+export interface ShotRow {
+  id: string
+  date: IsoDate
+  /** Klíč zóny na břiše — viz SHOT_ZONES v ui.ts. */
+  zone: string
+  med: string
 }
 
 /** Vyplněné cvičení. Ukládá se, aby se k němu dalo vrátit. */
@@ -132,6 +150,7 @@ export interface Save {
   events: EventRow[]
   meds: MedRow[]
   labs: LabRow[]
+  shots: ShotRow[]
   docs: DocRow[]
   letters: LetterRow[]
   story: StoryRow[]
@@ -164,6 +183,7 @@ function blank(): Save {
     events: [],
     meds: [],
     labs: [],
+    shots: [],
     docs: [],
     letters: [],
     story: [],
@@ -359,4 +379,108 @@ export function moodConcern(): boolean {
   const rows = journalList().slice(-7)
   if (rows.length < 5) return false
   return rows.reduce((a, r) => a + r.mood, 0) / rows.length < 2.2
+}
+
+// -------------------------------------------------------------- kalendář ---
+
+export interface CalItem {
+  id: string
+  title: string
+  kind: string
+  onDate: IsoDate
+  note: string | null
+  auto: boolean
+}
+
+/**
+ * Všechny události — vlastní i odvozené z profilu — v jednom seznamu.
+ *
+ * Bydlí ve store, protože z nich čte i motor nůžek. Kdyby to zůstalo
+ * v obrazovce kalendáře, vznikl by kruh v importech.
+ */
+export function allEvents(): CalItem[] {
+  const auto = autoEventsFor(profile(), journey()).map((e) => ({
+    id: `auto:${e.onDate}:${e.title}`,
+    title: e.title,
+    kind: e.kind,
+    onDate: e.onDate,
+    note: e.note,
+    auto: true,
+  }))
+  const mine = data.events.map((e) => ({
+    id: e.id,
+    title: e.title,
+    kind: e.kind,
+    onDate: e.onDate,
+    note: e.note,
+    auto: false,
+  }))
+  return [...mine, ...auto].sort((a, b) => a.onDate.localeCompare(b.onDate))
+}
+
+/**
+ * Co vyžaduje pozornost: dnešek, zítřek a všechno, co mělo proběhnout
+ * a není odškrtnuté.
+ */
+export function reminders(today: IsoDate): CalItem[] {
+  return allEvents().filter((e) => !eventState(e.id).done && e.onDate <= addDays(today, 1))
+}
+
+// ---------------------------------------------------------------- vpichy ---
+
+export function shotsOn(date: IsoDate): ShotRow[] {
+  return data.shots.filter((s) => s.date === date)
+}
+
+export function addShot(zone: string, med: string): void {
+  patch((d) => {
+    d.shots.unshift({ id: uid('shot'), date: viewDate(), zone, med })
+  })
+}
+
+/** Před kolika dny se do zóny píchalo naposled. `null` = nikdy nebo dávno. */
+export function zoneLastUsed(zone: string, date: IsoDate): number | null {
+  const hits = data.shots
+    .filter((s) => s.zone === zone && s.date <= date)
+    .map((s) => daysBetween(s.date, date))
+    .filter((d) => d >= 0 && d <= 9)
+  return hits.length ? Math.min(...hits) : null
+}
+
+// ----------------------------------------------------------------- nůžky ---
+
+function logFor(date: IsoDate): DayLog | null {
+  const r = data.journal[date]
+  if (!r) return null
+  return { mood: r.mood, anxiety: r.anxiety, hope: r.hope, energy: r.energy, symptoms: r.symptoms ?? [] }
+}
+
+/** Čtení dne — co dnešek žádá proti tomu, co na to má. */
+export function dayReading(date: IsoDate = viewDate()): DayReading {
+  return readDay({
+    state: resolveJourney(profile(), date),
+    date,
+    events: allEvents().map((e) => ({ onDate: e.onDate, kind: e.kind })),
+    medCount: data.meds.length,
+    log: logFor(date),
+  })
+}
+
+/** Řada čtení pro graf — od nejstaršího po zadaný den. */
+export function readingSeries(days: number, to: IsoDate = viewDate()) {
+  const out: { date: IsoDate; demand: number; reserve: number | null; gap: number | null }[] = []
+  for (let i = days - 1; i >= 0; i--) {
+    const date = addDays(to, -i)
+    const r = dayReading(date)
+    out.push({ date, demand: r.demand, reserve: r.reserve, gap: r.gap })
+  }
+  return out
+}
+
+/** Vzorec, kterého si aplikace u uživatelky všimla. */
+export function pattern(): Pattern | null {
+  return findPattern(
+    readingSeries(28).map((r) => ({ date: r.date, gap: r.gap })),
+    allEvents().map((e) => ({ onDate: e.onDate, kind: e.kind })),
+  )
 }

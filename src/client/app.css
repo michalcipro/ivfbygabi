@@ -27,6 +27,14 @@
   --fg-soft: #6c6058;
   --fg-faint: #9a8f86;
 
+  /* Datová paleta — z akvarelové duhy na obálce diáře, prohloubená tak, aby
+     unesla data. Prošla všemi šesti kontrolami validátoru včetně barvosleposti.
+     s1 = co dnešek žádá, s2 = co na to máte, s3 = úzkost, s4 = naděje. */
+  --s1: #ac7d1c;
+  --s2: #3391b8;
+  --s3: #d06a4a;
+  --s4: #9769b8;
+
   --display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
   --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
 
@@ -53,6 +61,10 @@
     --fg: #f2ece3;
     --fg-soft: #b6aa9d;
     --fg-faint: #857a70;
+    --s1: #b88722;
+    --s2: #3391b8;
+    --s3: #d06a4a;
+    --s4: #9769b8;
     color-scheme: dark;
   }
 }
@@ -65,6 +77,10 @@
   --fg: #f2ece3;
   --fg-soft: #b6aa9d;
   --fg-faint: #857a70;
+  --s1: #b88722;
+  --s2: #3391b8;
+  --s3: #d06a4a;
+  --s4: #9769b8;
   color-scheme: dark;
 }
 
@@ -76,6 +92,10 @@
   --fg: #2b2521;
   --fg-soft: #6c6058;
   --fg-faint: #9a8f86;
+  --s1: #ac7d1c;
+  --s2: #3391b8;
+  --s3: #d06a4a;
+  --s4: #9769b8;
   color-scheme: light;
 }
 
@@ -617,3 +637,139 @@ textarea.field { resize: vertical; line-height: 1.6; }
   .sidebar, .tabbar, .backbar, .no-print { display: none !important; }
   .main { padding: 0; }
 }
+
+/* ==========================================================================
+   Nůžky dne — datové prvky.
+   Prstenec, číselníky, mapa vpichů a grafy. Čísla nosí tabulkové číslice,
+   aby se ve sloupcích nekývala.
+   ========================================================================== */
+
+.num, .statv, .bignum { font-variant-numeric: tabular-nums; }
+
+/* --- prstenec ----------------------------------------------------------- */
+.ringwrap { display: flex; flex-direction: column; align-items: center; }
+.bigring { position: relative; width: 218px; height: 218px; max-width: 100%; }
+.bigring svg { display: block; width: 100%; height: auto; transform: rotate(-90deg); }
+.bigring-mid {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+}
+.bignum {
+  font-family: var(--display); font-size: 4.4rem; line-height: .85; color: var(--fg); margin: 0;
+}
+/* „/10" v Cormorantu vypadá jako „IO" — jednička má patkový tvar blízký I. */
+.bignum small {
+  font-family: var(--sans); font-size: .9375rem; color: var(--fg-faint);
+  letter-spacing: .02em; margin-left: .12rem;
+}
+.arc { transition: stroke-dasharray .9s var(--calm); }
+
+.serieskey { display: flex; gap: 1.1rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+.serieskey.left { justify-content: flex-start; margin-top: .6rem; }
+.serieskey span { display: flex; align-items: center; gap: .4rem; font-size: .75rem; color: var(--fg-soft); }
+.serieskey i { width: 9px; height: 9px; border-radius: 50%; display: block; flex: none; }
+
+.statepill {
+  margin-top: 1.05rem; padding: .5rem .95rem; border-radius: 999px;
+  border: 1px solid var(--line); font-size: .6875rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--fg-soft);
+}
+.statepill.alert { border-color: var(--s1); color: var(--fg); }
+
+.parts { list-style: none; margin: .5rem 0 0; padding: 0; }
+.parts li {
+  display: flex; justify-content: space-between; gap: .75rem; align-items: baseline;
+  padding: .45rem 0; border-bottom: 1px solid var(--line);
+  font-size: .8125rem; color: var(--fg-soft);
+}
+.parts li:last-child { border-bottom: 0; }
+
+/* --- číselník ----------------------------------------------------------- */
+.dialwrap { margin-top: .5rem; }
+/* Na širokém displeji by se terče roztáhly do obřích obdélníků — číselník
+   je ovládací prvek pod palec, ne banner. */
+.dial { display: flex; gap: .4rem; max-width: 24rem; }
+.dial button {
+  flex: 1; aspect-ratio: 1; max-height: 62px; border-radius: 14px;
+  border: 1px solid var(--line); background: var(--card); color: var(--fg-faint);
+  font-family: inherit; font-size: 1rem; cursor: pointer;
+  font-variant-numeric: tabular-nums; transition: all .25s var(--calm);
+}
+.dial button:hover { border-color: var(--sand); }
+.dial button[aria-checked='true'] { color: #fff; border-color: transparent; }
+.dial.cool button[aria-checked='true'] { background: var(--s2); }
+.dial.warm button[aria-checked='true'] { background: var(--s3); }
+.dial.plum button[aria-checked='true'] { background: var(--s4); }
+.dial.gold button[aria-checked='true'] { background: var(--s1); }
+.dialends {
+  display: flex; justify-content: space-between; margin-top: .35rem;
+  font-size: .6875rem; color: var(--fg-faint);
+}
+
+/* --- mapa vpichů -------------------------------------------------------- */
+.belly { display: flex; justify-content: center; margin-top: .7rem; }
+.zone { cursor: pointer; }
+.zone:hover circle { stroke: var(--s1); }
+.zone:focus-visible { outline: none; }
+.zone:focus-visible circle { stroke: var(--s1); stroke-width: 2.5; }
+
+/* --- grafy -------------------------------------------------------------- */
+.chartbox { position: relative; margin-top: .7rem; }
+.chartbox svg { display: block; width: 100%; height: auto; overflow: visible; }
+.gridline { stroke: var(--line); stroke-width: 1; }
+.axislabel { fill: var(--fg-faint); font-size: 8px; font-variant-numeric: tabular-nums; }
+.charttip {
+  position: absolute; top: -4px; pointer-events: none; z-index: 3;
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  padding: .45rem .6rem; font-size: .6875rem; color: var(--fg);
+  opacity: 0; transition: opacity .2s; box-shadow: var(--lift); white-space: nowrap;
+}
+.charttip.on { opacity: 1; }
+.charttip b { font-variant-numeric: tabular-nums; }
+.tiprow { display: flex; align-items: center; gap: .35rem; margin-top: .15rem; }
+.tiprow i { width: 7px; height: 7px; border-radius: 50%; display: block; flex: none; }
+
+/* --- dlaždice se statistikou -------------------------------------------- */
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: .7rem; }
+.stattile { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: .85rem .95rem; }
+.statv { font-family: var(--display); font-size: 1.9rem; line-height: 1; margin: .25rem 0 0; }
+
+/* --- rychlé zadání ------------------------------------------------------ */
+.quickrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; margin-top: .7rem; }
+.quickrow button {
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  padding: .85rem .4rem; font-family: inherit; color: var(--fg); cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: .35rem;
+  font-size: .6875rem; transition: all .25s var(--calm);
+}
+.quickrow button:hover { border-color: var(--s1); transform: translateY(-1px); }
+.quickrow button i { font-style: normal; font-size: 1.2rem; }
+
+/* --- štítky na tělo ----------------------------------------------------- */
+.symptoms { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .55rem; }
+.symptoms button {
+  border: 1px solid var(--line); background: var(--card); color: var(--fg-soft);
+  border-radius: 999px; padding: .35rem .75rem; font-size: .8125rem;
+  font-family: inherit; cursor: pointer; transition: all .25s var(--calm);
+}
+.symptoms button[aria-pressed='true'] { background: var(--s3); border-color: var(--s3); color: #fff; }
+
+/* --- čtení dne ---------------------------------------------------------- */
+.reading {
+  margin-top: .8rem; border-radius: 18px; padding: 1.05rem 1.2rem;
+  background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--s1);
+}
+.reading.cool { border-left-color: var(--s2); }
+.reading.plum { border-left-color: var(--s4); }
+
+/* Krátká hláška dole. Nad spodní lištou, aby ji nepřekryla. */
+.toast {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+  z-index: 60; max-width: min(30rem, calc(100vw - 2rem));
+  background: var(--fg); color: var(--page);
+  padding: .7rem 1.15rem; border-radius: 999px;
+  font-size: .875rem; line-height: 1.4; text-align: center;
+  box-shadow: var(--float); animation: rise .3s var(--calm) both;
+}
+@media (min-width: 1024px) { .toast { bottom: 2rem; } }

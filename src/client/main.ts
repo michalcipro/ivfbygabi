@@ -24,9 +24,16 @@ import {
   uid,
   viewDate,
   isOnboarded,
+  addShot,
+  type JournalRow,
 } from './store'
 import { draft, profileFromDraft, renderOnboarding, stepHasDate } from './onboarding'
-import { screenCesta, screenDnes, screenObjevit, screenProc } from './screens-home'
+import { screenCesta, screenObjevit, screenProc } from './screens-home'
+import { screenDnes, screenNuzky } from './screens-dnes'
+import { screenZapis } from './screens-zapis'
+import { screenVyvoj } from './screens-vyvoj'
+import { screenTyden, weekShareText } from './screens-tyden'
+import { hydrateCharts } from './viz'
 import {
   screenDiagnoza,
   screenDiagnozy,
@@ -61,15 +68,23 @@ import {
  *  - adresa v prohlížeči odpovídá obrazovce, takže funguje i tlačítko zpět.
  */
 
+/**
+ * Spodní lišta. Záznam je jádro aplikace, proto jsou první tři záložky
+ * o něm — Dnes ukazuje, Zápis zaznamenává, Vývoj vrací zpátky. Informace
+ * jsou až čtvrté, protože se k nim člověk dostane hlavně přes dnešek.
+ */
 const TABS = [
-  { id: 'dnes', label: 'Dnes', icon: '☀' },
-  { id: 'faze', label: 'Moje fáze', icon: '❖' },
-  { id: 'denik', label: 'Deník', icon: '✎' },
-  { id: 'gabi', label: 'Gabi', icon: '✦' },
-  { id: 'vice', label: 'Více', icon: '⋯' },
+  { id: 'dnes', label: 'Dnes', icon: '◉' },
+  { id: 'zapis', label: 'Zápis', icon: '✎' },
+  { id: 'vyvoj', label: 'Vývoj', icon: '◫' },
+  { id: 'tyden', label: 'Týden', icon: '❋' },
+  { id: 'vice', label: 'Průvodce', icon: '❖' },
 ]
 
 const SECONDARY = [
+  { id: 'faze', label: 'Moje fáze', icon: '❖' },
+  { id: 'gabi', label: 'Hledat v aplikaci', icon: '✦' },
+  { id: 'denik', label: 'Deník a cvičení', icon: '✎' },
   { id: 'cesta', label: 'Celá cesta', icon: '✧' },
   { id: 'objevit', label: 'Objevit', icon: '❋' },
   { id: 'knihovna', label: 'Knihovna', icon: '❧' },
@@ -93,6 +108,10 @@ const TERTIARY = [
 
 const TITLES: Record<string, string> = {
   dnes: 'Dnes',
+  zapis: 'Zápis',
+  vyvoj: 'Vývoj',
+  tyden: 'Týden',
+  nuzky: 'Nůžky dne',
   objevit: 'Objevit',
   gabi: 'Gabi',
   denik: 'Deník',
@@ -153,10 +172,21 @@ const PARENT: Record<string, string> = {
   nastaveni: 'vice',
   clenstvi: 'vice',
   proc: 'dnes',
+  zapis: 'dnes',
+  vyvoj: 'dnes',
+  tyden: 'dnes',
+  nuzky: 'dnes',
+  faze: 'vice',
+  denik: 'vice',
+  gabi: 'vice',
 }
 
 /** Obrazovky, kde by souhrn rušil — čtení a soustředěná práce. */
-const SUMMARY_HIDDEN = ['cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi']
+const SUMMARY_HIDDEN = [
+  'cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi',
+  // Na těchhle obrazovkách je prstenec nebo graf sám o sobě souhrnem.
+  'dnes', 'zapis', 'vyvoj', 'tyden', 'nuzky',
+]
 
 /** Stav, který nemá cenu ukládat — přežívá jen do zavření záložky. */
 const view = {
@@ -200,6 +230,14 @@ function screenFor(route: string): string {
   switch (b) {
     case 'dnes':
       return screenDnes()
+    case 'zapis':
+      return screenZapis()
+    case 'vyvoj':
+      return screenVyvoj()
+    case 'tyden':
+      return screenTyden()
+    case 'nuzky':
+      return screenNuzky()
     case 'objevit':
       return screenObjevit()
     case 'gabi':
@@ -336,6 +374,8 @@ function render(): void {
     ).join('')}
   </nav>`
 
+  // Grafy se staví až tady — hover se nedá pověsit na řetězec.
+  hydrateCharts(app)
   window.scrollTo(0, scrollMemory.get(route) ?? 0)
 }
 
@@ -350,6 +390,42 @@ function applyTheme(): void {
 const val = (id: string): string => {
   const el = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null
   return el ? el.value.trim() : ''
+}
+
+/**
+ * Zápis jedné nebo víc os dnešního dne.
+ *
+ * Číselníky se ukládají hned po klepnutí — kdyby to čekalo na tlačítko,
+ * půlka zápisů by se nikdy neuložila. Chybějící pole se doplní z toho,
+ * co už je uložené, nebo prostředkem.
+ */
+function writeJournal(partial: Partial<JournalRow>): void {
+  const date = viewDate()
+  const e = journalFor(date)
+  saveJournal({
+    date,
+    mood: e?.mood ?? 3,
+    anxiety: e?.anxiety ?? 3,
+    hope: e?.hope ?? 3,
+    energy: e?.energy ?? 3,
+    note: e?.note ?? '',
+    promptId: e?.promptId ?? '',
+    promptAnswer: e?.promptAnswer ?? '',
+    win: e?.win ?? '',
+    symptoms: e?.symptoms ?? [],
+    ...partial,
+  })
+}
+
+/** Krátká hláška dole. Nepřekresluje stránku, jen se sama uklidí. */
+function toast(text: string): void {
+  document.querySelector('.toast')?.remove()
+  const el = document.createElement('div')
+  el.className = 'toast'
+  el.setAttribute('role', 'status')
+  el.textContent = text
+  document.body.appendChild(el)
+  window.setTimeout(() => el.remove(), 3200)
 }
 
 /**
@@ -508,20 +584,54 @@ function action(act: string, argValue: string): void {
       break
     }
     case 'mood': {
-      const date = viewDate()
-      const existing = journalFor(date)
-      saveJournal({
-        date,
-        mood: Number(argValue),
-        anxiety: existing?.anxiety ?? 3,
-        hope: existing?.hope ?? 3,
-        energy: existing?.energy ?? 3,
-        note: existing?.note ?? '',
-        promptId: existing?.promptId ?? '',
-        promptAnswer: existing?.promptAnswer ?? '',
-        win: existing?.win ?? '',
+      writeJournal({ mood: Number(argValue) })
+      break
+    }
+
+    // --- zápis dne --------------------------------------------------------
+    case 'dial': {
+      // arg je „mood:4“ — jedno klepnutí zapíše jednu osu a hned se to
+      // propíše do prstence.
+      const [field, raw] = argValue.split(':')
+      const n = Number(raw)
+      if (!['mood', 'anxiety', 'hope', 'energy'].includes(field) || !(n >= 1 && n <= 5)) return
+      writeJournal({ [field]: n } as Partial<JournalRow>)
+      break
+    }
+    case 'symptom': {
+      const cur = journalFor(viewDate())?.symptoms ?? []
+      const next = cur.includes(argValue) ? cur.filter((x) => x !== argValue) : [...cur, argValue]
+      writeJournal({ symptoms: next })
+      break
+    }
+    case 'shot': {
+      // Píchá se to, co má uživatelka v lécích. Když nemá nic, aspoň se
+      // zapíše místo — o tom to celé je.
+      addShot(argValue, S.d.meds[0]?.name ?? 'Injekce')
+      break
+    }
+    case 'shot-del': {
+      patch((d) => {
+        d.shots = d.shots.filter((x) => x.id !== argValue)
       })
       break
+    }
+    case 'zapis-save': {
+      writeJournal({
+        promptAnswer: val('z-prompt'),
+        win: val('z-win'),
+        note: val('z-note'),
+      })
+      go('dnes')
+      return
+    }
+    case 'week-share': {
+      const text = weekShareText()
+      navigator.clipboard?.writeText(text).then(
+        () => toast('Přehled zkopírován. Nikam se nic neodeslalo.'),
+        () => toast('Kopírování se nepovedlo — text najdete v Týdnu.'),
+      )
+      return
     }
 
     // --- obsah ------------------------------------------------------------
@@ -582,6 +692,7 @@ function action(act: string, argValue: string): void {
         promptId: val('j-prompt-id') || (existing?.promptId ?? ''),
         promptAnswer: val('j-prompt'),
         win: val('j-win'),
+        symptoms: existing?.symptoms ?? [],
       })
       break
     }
@@ -605,6 +716,7 @@ function action(act: string, argValue: string): void {
         promptId: existing?.promptId ?? 'tydenni-ohlednuti',
         promptAnswer: existing?.promptAnswer ?? '',
         win: existing?.win ?? '',
+        symptoms: existing?.symptoms ?? [],
       })
       break
     }
