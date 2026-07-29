@@ -38,6 +38,7 @@ import {
 import { screenChecklisty, screenCist, screenGabi, screenKnihovna } from './screens-tools'
 import { DENIK_SECTIONS, screenCviceni, screenDenik, type DenikSection } from './screens-denik'
 import { screenHodnota, screenZdravi } from './screens-zdravi'
+import { renderSummary, type SummaryId } from './summary'
 import {
   screenClenstvi,
   screenDokumenty,
@@ -154,10 +155,15 @@ const PARENT: Record<string, string> = {
   proc: 'dnes',
 }
 
+/** Obrazovky, kde by souhrn rušil — čtení a soustředěná práce. */
+const SUMMARY_HIDDEN = ['cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi']
+
 /** Stav, který nemá cenu ukládat — přežívá jen do zavření záložky. */
 const view = {
   query: '',
   kind: 'vse',
+  /** Která dlaždice souhrnu je rozbalená. */
+  summary: null as SummaryId | null,
   parsed: null as ParsedReport | null,
   docText: '',
 }
@@ -319,7 +325,7 @@ function render(): void {
 
     <main class="main">
       ${backbar(route)}
-      <div class="page ${narrow ? 'page-narrow' : ''}">${screenFor(route)}</div>
+      <div class="page ${narrow ? 'page-narrow' : ''}">${SUMMARY_HIDDEN.includes(base(route)) ? '' : renderSummary(view.summary)}${screenFor(route)}</div>
     </main>
   </div>
 
@@ -537,6 +543,9 @@ function action(act: string, argValue: string): void {
       break
     case 'kind':
       view.kind = argValue
+      break
+    case 'summary':
+      view.summary = view.summary === argValue ? null : (argValue as SummaryId)
       break
 
     // --- Gabi -------------------------------------------------------------

@@ -416,6 +416,40 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .subnav::-webkit-scrollbar { display: none; }
 .subnav button { flex: 0 0 auto; }
 
+/* Souhrn nahoře — vidět na první pohled, rozklikávací do podrobností. */
+.summary {
+  border: 1px solid var(--line); background: var(--card);
+  border-radius: var(--r-lg); padding: 1rem 1.15rem;
+}
+.summary-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.summary-tiles {
+  display: flex; gap: 0.5rem; margin-top: 0.9rem;
+  overflow-x: auto; scrollbar-width: none;
+}
+.summary-tiles::-webkit-scrollbar { display: none; }
+.sumtile {
+  flex: 1 0 8.5rem; min-width: 8.5rem; text-align: left; cursor: pointer;
+  border: 1px solid var(--line); background: var(--card-muted);
+  border-radius: var(--r-md); padding: 0.6rem 0.75rem;
+  transition: all 0.3s var(--calm);
+}
+.sumtile:hover { border-color: var(--sand); transform: translateY(-1px); }
+.sumtile[aria-pressed='true'] { border-color: var(--taupe); background: var(--card); box-shadow: var(--veil); }
+.sumtile.alert { border-color: var(--blush); }
+.sumtile .lbl {
+  display: block; font-size: 0.625rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-faint);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.sumtile .val {
+  display: block; margin-top: 0.25rem; font-size: 0.9375rem; font-weight: 500;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.summary-panel {
+  margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line);
+  animation: rise 0.35s var(--calm) both;
+}
+
 /* Dýchání 4–6. Kruh se nadechuje a vydechuje spolu s uživatelkou. */
 .breath { display: grid; place-items: center; height: 15rem; position: relative; }
 .breath-circle {
