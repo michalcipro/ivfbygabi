@@ -45,8 +45,9 @@
   --r-xl: 2rem;
   --r-2xl: 2.75rem;
 
-  --halo: rgb(172 125 28 / 0.16);
+  --halo: rgb(172 125 28 / 0.045);
   --sheen: rgb(255 255 255 / 0.6);
+  --track: #eae1d6;
 
   --veil: 0 1px 2px rgb(43 37 33 / 0.03), 0 8px 24px -12px rgb(43 37 33 / 0.1);
   --lift: 0 2px 4px rgb(43 37 33 / 0.04), 0 18px 44px -20px rgb(43 37 33 / 0.18);
@@ -64,8 +65,9 @@
     --fg: #f6efeb;
     --fg-soft: #b8a8a4;
     --fg-faint: #877873;
-    --halo: rgb(184 135 34 / 0.20);
+    --halo: rgb(184 135 34 / 0.13);
     --sheen: rgb(255 255 255 / 0.045);
+    --track: rgb(255 255 255 / 0.085);
     --s1: #b88722;
     --s2: #3391b8;
     --s3: #d06a4a;
@@ -82,8 +84,9 @@
   --fg: #f6efeb;
   --fg-soft: #b8a8a4;
   --fg-faint: #877873;
-  --halo: rgb(184 135 34 / 0.20);
+  --halo: rgb(184 135 34 / 0.13);
   --sheen: rgb(255 255 255 / 0.045);
+  --track: rgb(255 255 255 / 0.085);
   --s1: #b88722;
   --s2: #3391b8;
   --s3: #d06a4a;
@@ -99,8 +102,9 @@
   --fg: #2b2521;
   --fg-soft: #6c6058;
   --fg-faint: #9a8f86;
-  --halo: rgb(172 125 28 / 0.16);
+  --halo: rgb(172 125 28 / 0.045);
   --sheen: rgb(255 255 255 / 0.6);
+  --track: #eae1d6;
   --s1: #ac7d1c;
   --s2: #3391b8;
   --s3: #d06a4a;
@@ -816,18 +820,27 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .eyebrow { letter-spacing: 0.18em; font-size: 0.625rem; }
 
 /* --- prstenec jako hlavní objekt ---------------------------------------- */
-.ringwrap { position: relative; padding: 1.25rem 0 .25rem; }
+.ringwrap {
+  position: relative; padding: 1.25rem 0 .25rem;
+  /* Prstenec i jeho záře vychází z jedné míry. Na úzkém displeji se zmenší
+     obojí, takže záře nikdy nevyteče z karty a pás zůstane na obloucích. */
+  --ring: min(244px, 76%);
+}
 /* Světlo za prstencem. Bez něj je to jen kolečko. */
 .ringwrap::before {
-  /* Střed záře sedí na středu prstence, ne nad ním — jinak vyteče nad kartu. */
-  content: ''; position: absolute; left: 50%; top: 9rem;
-  width: 17rem; height: 17rem; transform: translate(-50%, -50%);
-  background: radial-gradient(circle, var(--halo) 0%, transparent 68%);
+  /* Světlo musí ležet POD oblouky, ne ve prázdném středu. Původní kruh byl
+     menší než prstenec, takže svítil do dírky a působil jako flek.
+     Proto pás: uvnitř průhledno, maximum na dráze oblouků, pak dohasnutí. */
+  content: ''; position: absolute; left: 50%;
+  top: calc(1.25rem + var(--ring) / 2);
+  width: calc(var(--ring) * 1.32); aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, transparent 50%, var(--halo) 63%, transparent 82%);
   pointer-events: none; z-index: 0;
 }
-.bigring { width: 244px; height: 244px; position: relative; z-index: 1; }
+.bigring { width: var(--ring); aspect-ratio: 1; position: relative; z-index: 1; }
 .bignum {
-  font-size: 5.2rem; letter-spacing: -0.04em;
+  font-size: clamp(3.7rem, 20vw, 5.2rem); letter-spacing: -0.04em;
   text-shadow: 0 2px 30px var(--halo);
 }
 .bignum small { font-size: 1rem; opacity: .75; }
@@ -835,11 +848,11 @@ textarea.field { resize: vertical; line-height: 1.6; }
 /* Oblouk se nasype, ne naskočí. */
 .arc {
   transition: stroke-dasharray 1.1s cubic-bezier(.16, 1, .3, 1) .12s;
-  filter: drop-shadow(0 0 7px var(--halo));
+  filter: drop-shadow(0 0 9px color-mix(in oklab, var(--s1) 42%, transparent));
 }
 .arc-in {
   transition-delay: .28s;
-  filter: drop-shadow(0 0 7px color-mix(in oklab, var(--s2) 30%, transparent));
+  filter: drop-shadow(0 0 9px color-mix(in oklab, var(--s2) 42%, transparent));
 }
 @media (prefers-reduced-motion: reduce) { .arc { transition: none; } }
 
@@ -926,3 +939,28 @@ textarea.field { resize: vertical; line-height: 1.6; }
   color: var(--fg);
   border: 1px solid color-mix(in oklab, var(--s1) 26%, transparent);
 }
+
+/* --- prstenec: střed patří číslici ---------------------------------------
+   Jmenovatel „/10" je mimo tok, takže na optickém středu prstence stojí
+   velká číslice. Dokud byl v toku, vystředila se skupina „3/10" a číslice
+   sedávala o 13 px vlevo. */
+.bignum { position: relative; display: inline-block; }
+.bignum .d { display: block; text-align: center; }
+.bignum small {
+  position: absolute; left: 100%; bottom: 1.05rem; margin-left: .12rem;
+  font-family: var(--sans); font-size: 1rem; font-weight: 400;
+  color: var(--fg-faint); letter-spacing: .02em; opacity: .75;
+}
+
+/* Popisek musí projít mezi vnitřním prstencem. Ve staré velikosti mu
+   zbývalo dohromady 10 px a opticky se dotýkal tahu. */
+/* Popisek se zmenšuje spolu s prstencem — jinak by se na malém telefonu
+   dotýkal vnitřní dráhy. Šířka je svázaná s mírou prstence. */
+.ringlabel {
+  margin: .35rem 0 0; font-size: clamp(.42rem, 2vw, .5rem); font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--fg-faint);
+  max-width: calc(var(--ring) * 0.56); text-align: center; line-height: 1.3;
+}
+
+/* Záře se nesmí protáhnout přes kartu na úzkém displeji. */
+

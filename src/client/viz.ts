@@ -45,8 +45,10 @@ export function scissorRing(r: DayReading): string {
             <stop offset="100%" stop-color="var(--s2)"/>
           </linearGradient>
         </defs>
-        <circle cx="109" cy="109" r="92" fill="none" stroke="var(--line)" stroke-width="13"/>
-        <circle cx="109" cy="109" r="72" fill="none" stroke="var(--line)" stroke-width="13"/>
+        <!-- Dráhy mají vlastní token. Na --line byly ve světlém motivu tak
+             bledé, že obě splývaly v jeden mlhavý kruh. -->
+        <circle cx="109" cy="109" r="92" fill="none" stroke="var(--track)" stroke-width="13"/>
+        <circle cx="109" cy="109" r="72" fill="none" stroke="var(--track)" stroke-width="13" opacity=".62"/>
         <circle class="arc" cx="109" cy="109" r="92" fill="none" stroke="url(#ar1)" stroke-width="13"
                 stroke-linecap="round" pathLength="100" stroke-dasharray="${outer} 100"/>
         ${
@@ -57,8 +59,10 @@ export function scissorRing(r: DayReading): string {
         }
       </svg>
       <div class="bigring-mid">
-        <p class="bignum">${r.demand}<small>/10</small></p>
-        <p class="eyebrow" style="margin-top:.3rem">Co dnešek žádá</p>
+        <!-- Jmenovatel visí mimo tok, aby na středu prstence stála velká
+             číslice, ne skupina „číslice + /10“. -->
+        <p class="bignum"><span class="d">${r.demand}</span><small>/10</small></p>
+        <p class="ringlabel">Co dnešek žádá</p>
       </div>
     </div>
 
@@ -283,8 +287,11 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
       lab.textContent = fmt(v)
       svg.appendChild(lab)
     }
+    // Krajní popisky se zarovnávají k okrajům plochy, ne na střed bodu —
+    // vystředěné by přesahovaly graf a lezly na okraj karty.
     for (const i of n > 2 ? [0, Math.floor((n - 1) / 2), n - 1] : [0, n - 1]) {
-      const lab = mk('text', { x: x(i), y: B + 14, 'text-anchor': 'middle', class: 'axislabel' })
+      const anchor = i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle'
+      const lab = mk('text', { x: x(i), y: B + 14, 'text-anchor': anchor, class: 'axislabel' })
       lab.textContent = spec.labels[i]
       svg.appendChild(lab)
     }
@@ -311,8 +318,10 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
     }
 
     const cross = svg.appendChild(mk('line', { y1: T, y2: B, stroke: 'var(--fg-faint)', 'stroke-width': 1, opacity: 0 }))
+    // Body se rodí na počátku plochy, ne na souřadnici 0 — jinak vyčnívají
+    // z grafu, i když jsou průhledné.
     const dots = spec.series.map((s) =>
-      svg.appendChild(mk('circle', { r: 4, fill: s.color, stroke: 'var(--page)', 'stroke-width': 2, opacity: 0 })),
+      svg.appendChild(mk('circle', { cx: L, cy: B, r: 4, fill: s.color, stroke: 'var(--page)', 'stroke-width': 2, opacity: 0 })),
     )
     const hit = svg.appendChild(mk('rect', { x: L, y: T, width: R - L, height: B - T, fill: 'transparent' }))
 
