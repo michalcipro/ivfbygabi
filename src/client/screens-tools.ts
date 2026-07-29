@@ -241,7 +241,7 @@ export function screenGabi(): string {
   const suggestions = searchSuggestions(state.phase.id)
 
   const hitRow = (h: SearchHit) => `<button class="tile" data-go="${esc(h.route)}" style="align-items:flex-start">
-    <i>${h.kind === 'pojem' ? '§' : h.kind === 'doplnek' ? '◍' : h.kind === 'otazka' ? '?' : h.kind === 'diagnoza' ? '◈' : h.kind === 'tip' ? '✦' : '❧'}</i>
+    <i>${h.kind === 'pojem' ? '§' : h.kind === 'doplnek' ? '◍' : h.kind === 'otazka' ? '?' : h.kind === 'diagnoza' ? '◈' : h.kind === 'tip' ? '✦' : h.kind === 'hodnota' ? '◉' : '❧'}</i>
     <span style="min-width:0">
       <span class="eyebrow" style="display:block">${esc(h.kindLabel)} · ${esc(h.from)}</span>
       <h4 class="display" style="margin-top:.2rem">${esc(h.title)}</h4>

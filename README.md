@@ -211,11 +211,30 @@ vždycky napsané, že **nejsou léčba a nenahrazují odbornou pomoc**.
 
 ### 8. Zdravotní data — `src/lib/health/`
 
-- **`lab-params.ts`** — katalog parametrů (AMH, FSH, beta HCG, spermiogram…)
+- **`lab-params.ts`** — katalog 20 parametrů (AMH, FSH, beta hCG, spermiogram…)
   s lidským vysvětlením a orientačním rozmezím.
+- **`lab-guidance.ts`** — ke každému parametru: co dělá v těle, kdy má měření
+  smysl, co s hodnotou hýbe, co se s tím dá dělat (strava, doplňky, pohyb,
+  spánek) a jaké kontroly navazují. U každého doporučení je uvedeno, jak silný
+  důvod za ním stojí — `standard`, `diskutovaný`, `podle hodnot`.
+- **`interpret.ts`** — čtení řady hodnot v čase: směr, změna v procentech,
+  poloha vůči orientačnímu rozmezí a zdvojovací čas tam, kde dává smysl (hCG).
+  **Nikde neříká, jestli je hodnota dobrá nebo špatná** — to závisí na dni cyklu,
+  věku, diagnóze a laboratoři, tedy na kontextu, který aplikace nemá.
 - **`parse-report.ts`** — deterministický parser textu lékařské zprávy. Najde dvojice
   „parametr → hodnota“, rozpozná datum v českých i ISO formátech a odhadne kategorii.
-  **Nikdy nehodnotí, jestli je výsledek dobrý nebo špatný** — jen zpřehledňuje.
+
+Hodnoty se propisují do celé aplikace: graf s referenčním pásmem, karta s trendem
+v přehledu, rozpoznané hodnoty z Dokumentů vedou rovnou na detail parametru
+a celá znalostní vrstva je prohledatelná přes Gabi.
+
+### 9. Kalendář a připomínky
+
+Události vznikají dvěma cestami: uživatelka si je přidá, nebo je odvodí
+`domain/auto-events` z jejího profilu. Obojí se dá **odškrtnout a připsat
+poznámku** — u automatických taky, protože jejich id je odvozené z data a názvu
+(`eventState` ve store). Co je dnes, zítra nebo zůstalo neodškrtnuté, se ukazuje
+jako **Připomínky přímo na domovské stránce** a jde odškrtnout rovnou odtud.
 
 ### Nasazení
 

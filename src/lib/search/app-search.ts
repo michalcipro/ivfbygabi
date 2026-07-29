@@ -4,6 +4,8 @@ import { MODIFIER_LABELS, type ModifierId } from '../domain/profile'
 import { ALL_GUIDES } from '../domain/guides'
 import { DIAGNOSIS_INFO } from '../domain/diagnoses'
 import { CATALOG, GLOSSARY, DAILY_CARDS } from '../content'
+import { LAB_PARAMS } from '../health/lab-params'
+import { LAB_GUIDANCE } from '../health/lab-guidance'
 import { KIND_LABELS } from '../content/types'
 
 /**
@@ -16,7 +18,7 @@ import { KIND_LABELS } from '../content/types'
  * je poctivější odpověď než vymyšlená věta.
  */
 
-export type HitKind = 'clanek' | 'pojem' | 'rada' | 'tip' | 'doplnek' | 'otazka' | 'diagnoza'
+export type HitKind = 'clanek' | 'pojem' | 'rada' | 'tip' | 'doplnek' | 'otazka' | 'diagnoza' | 'hodnota'
 
 export interface SearchHit {
   kind: HitKind
@@ -40,6 +42,7 @@ export const HIT_GROUP_TITLES: Record<HitKind, string> = {
   doplnek: 'Doplňky',
   otazka: 'Otázky pro lékaře',
   diagnoza: 'Diagnózy a situace',
+  hodnota: 'Laboratorní hodnoty',
 }
 
 interface IndexEntry extends Omit<SearchHit, 'score'> {
@@ -171,6 +174,27 @@ function buildIndex(): IndexEntry[] {
       from: phase ? PHASES[phase].name : 'Denní karta',
       phase,
       searchText: card.body,
+    })
+  }
+
+  // --- laboratorní hodnoty -------------------------------------------------
+  for (const param of LAB_PARAMS) {
+    const g = LAB_GUIDANCE[param.key]
+    add({
+      kind: 'hodnota',
+      kindLabel: 'Hodnota',
+      title: param.name,
+      snippet: param.explain,
+      route: `hodnota/${param.key}`,
+      from: `Zdraví · ${param.unit}`,
+      phase: null,
+      searchText: [
+        param.patterns.join(' '),
+        g?.inBody ?? '',
+        g?.whatMoves.join(' ') ?? '',
+        g?.lifestyle.map((l) => `${l.area} ${l.text}`).join(' ') ?? '',
+        g?.checkups.join(' ') ?? '',
+      ].join(' '),
     })
   }
 

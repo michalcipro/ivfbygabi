@@ -240,6 +240,57 @@ export function checkRow(key: string, text: string, done: boolean, hint?: string
   </button>`
 }
 
+/**
+ * Graf jedné laboratorní hodnoty v čase.
+ *
+ * Kreslí i orientační rozmezí jako pruh na pozadí — ale záměrně bez barvy,
+ * která by naznačovala „dobře/špatně“. Je to kontext, ne hodnocení.
+ */
+export function labChart(
+  points: { value: number; onDate: string }[],
+  opts: { low?: number; high?: number; unit: string; label: string; dateLabel: (d: string) => string },
+): string {
+  if (points.length === 0) return ''
+  const w = 720
+  const h = 240
+  const padX = 44
+  const padY = 34
+
+  const values = points.map((p) => p.value)
+  const candidates = [...values, ...(opts.low !== undefined ? [opts.low] : []), ...(opts.high !== undefined ? [opts.high] : [])]
+  let min = Math.min(...candidates)
+  let max = Math.max(...candidates)
+  const pad = (max - min) * 0.15 || Math.max(1, max * 0.15)
+  min = Math.max(0, min - pad)
+  max = max + pad
+  const span = max - min || 1
+
+  const x = (i: number) => (points.length === 1 ? w / 2 : padX + (i * (w - padX * 2)) / (points.length - 1))
+  const y = (v: number) => h - padY - ((v - min) / span) * (h - padY * 2)
+
+  const band =
+    opts.low !== undefined && opts.high !== undefined
+      ? `<rect x="${padX}" y="${y(opts.high).toFixed(1)}" width="${w - padX * 2}" height="${Math.max(1, y(opts.low) - y(opts.high)).toFixed(1)}"
+           fill="var(--card-muted)" opacity="0.9"/>
+         <text x="${w - padX}" y="${(y(opts.high) - 6).toFixed(1)}" text-anchor="end" font-size="10" fill="var(--fg-faint)">orientační rozmezí</text>`
+      : ''
+
+  const line = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(p.value).toFixed(1)}`).join(' ')
+
+  return `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(opts.label)}">
+    ${band}
+    <line x1="${padX}" y1="${h - padY}" x2="${w - padX}" y2="${h - padY}" stroke="var(--line)"/>
+    ${points.length > 1 ? `<path d="${line}" fill="none" stroke="var(--taupe-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>` : ''}
+    ${points
+      .map(
+        (p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p.value).toFixed(1)}" r="${i === points.length - 1 ? 5.5 : 4}" fill="var(--taupe-deep)"/>
+        <text x="${x(i).toFixed(1)}" y="${(y(p.value) - 13).toFixed(1)}" text-anchor="middle" font-size="11" fill="var(--fg)">${p.value}</text>
+        <text x="${x(i).toFixed(1)}" y="${h - padY + 16}" text-anchor="middle" font-size="10" fill="var(--fg-faint)">${esc(opts.dateLabel(p.onDate))}</text>`,
+      )
+      .join('')}
+  </svg>`
+}
+
 /** Jednoduchý čárový graf. Bez knihovny — potřebujeme dva tvary a klid. */
 export function lineChart(
   series: { key: string; color: string; values: number[]; dashed?: boolean }[],

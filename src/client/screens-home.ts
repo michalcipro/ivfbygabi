@@ -2,10 +2,11 @@ import { PHASES, PHASE_GROUPS, PHASE_GROUP_META, PHASE_IDS, type PhaseId } from 
 import { MODIFIER_LABELS, TOPIC_LABELS, type TopicId } from '../lib/domain/profile'
 import { addDays, czDays, formatCzechDate, seedFrom } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
+import { allEvents, reminders } from './screens-more'
 import { guideFor } from '../lib/domain/guides'
 import { CATALOG, CONTENT_STATS, DAILY_CARDS, ENCOURAGEMENTS, contentById } from '../lib/content'
 import { buildRails, pickDailyCard, recommend } from '../lib/content/recommend'
-import { affinity, journey, journalFor, moodConcern, profile, S, viewDate } from './store'
+import { affinity, eventState, journey, journalFor, moodConcern, profile, S, viewDate } from './store'
 import { contentCard, esc, head, heroStyle, note, plural, ring, sectionTitle } from './ui'
 
 /** Domovská stránka, Objevit a průvodce cestou. */
@@ -104,6 +105,36 @@ function firstSteps(): string {
         )
         .join('')}
     </div>
+  </section>`
+}
+
+/** Co dnes vyžaduje pozornost. Odškrtnout jde rovnou odsud. */
+function remindersBlock(): string {
+  const date = viewDate()
+  const items = reminders(date)
+  if (items.length === 0) return ''
+
+  return `<section class="surface pad rise" style="border-color:var(--taupe)">
+    <div class="row wrap" style="justify-content:space-between;gap:.75rem">
+      <p class="eyebrow" style="color:var(--taupe-deep)">Připomínky</p>
+      <button class="btn btn-ghost btn-sm" data-go="kalendar">Celý kalendář</button>
+    </div>
+    <div class="stack" style="gap:.5rem;margin-top:.9rem">
+      ${items
+        .slice(0, 4)
+        .map((e) => {
+          const inDays = Math.round((Date.parse(e.onDate) - Date.parse(date)) / 86_400_000)
+          const when = inDays === 0 ? 'dnes' : inDays === 1 ? 'zítra' : `před ${czDays(-inDays)}`
+          return `<button class="check" data-act="event-done" data-arg="${esc(e.id)}">
+            <span class="box">✓</span>
+            <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(e.title)}
+              <br><span class="faint" style="font-size:.8125rem">${esc(when)}${inDays < 0 ? ' · neodškrtnuté' : ''}</span>
+            </span>
+          </button>`
+        })
+        .join('')}
+    </div>
+    ${items.length > 4 ? `<p class="faint" style="margin-top:.8rem;font-size:.8125rem">A další ${esc(plural(items.length - 4, 'věc', 'věci', 'věcí'))} v kalendáři.</p>` : ''}
   </section>`
 }
 
@@ -323,6 +354,7 @@ export function screenDnes(): string {
   return [
     offsetBanner,
     header,
+    remindersBlock(),
     journeyStrip(state.phase.id),
     ['treatment', 'waiting'].includes(state.group) ? cycleStrip() : '',
     dayCard,
@@ -344,11 +376,8 @@ export function screenDnes(): string {
 
 /** Události od dneška dál — vlastní i automaticky doplněné. */
 export function upcomingEvents(from: string, limit: number) {
-  const state = journey()
-  const auto = autoEventsFor(profile(), state).map((e) => ({ ...e, auto: true, done: false, id: `auto:${e.title}:${e.onDate}` }))
-  const mine = S.d.events.map((e) => ({ ...e, auto: false, location: null }))
-  return [...mine, ...auto]
-    .filter((e) => !e.done && e.onDate >= from)
+  return allEvents()
+    .filter((e) => !eventState(e.id).done && e.onDate >= from)
     .sort((a, b) => a.onDate.localeCompare(b.onDate))
     .slice(0, limit)
     .map((e) => ({

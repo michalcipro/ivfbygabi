@@ -18,6 +18,8 @@ import {
   S,
   saveExercise,
   saveJournal,
+  setEventNote,
+  toggleEventDone,
   toggleSaved,
   uid,
   viewDate,
@@ -35,6 +37,7 @@ import {
 } from './screens-phase'
 import { screenChecklisty, screenCist, screenGabi, screenKnihovna } from './screens-tools'
 import { DENIK_SECTIONS, screenCviceni, screenDenik, type DenikSection } from './screens-denik'
+import { screenHodnota, screenZdravi } from './screens-zdravi'
 import {
   screenClenstvi,
   screenDokumenty,
@@ -46,7 +49,6 @@ import {
   screenPribeh,
   screenSkupina,
   screenVice,
-  screenZdravi,
 } from './screens-more'
 
 /**
@@ -98,6 +100,7 @@ const TITLES: Record<string, string> = {
   faze: 'Moje fáze',
   pojem: 'Pojem',
   cviceni: 'Cvičení',
+  hodnota: 'Hodnota',
   diagnoza: 'Diagnóza',
   diagnozy: 'Diagnózy',
   knihovna: 'Knihovna',
@@ -132,6 +135,7 @@ const PARENT: Record<string, string> = {
   objevit: 'vice',
   pojem: 'faze',
   cviceni: 'denik',
+  hodnota: 'zdravi',
   diagnoza: 'faze',
   diagnozy: 'vice',
   knihovna: 'vice',
@@ -228,6 +232,8 @@ function screenFor(route: string): string {
       return screenKalendar()
     case 'zdravi':
       return screenZdravi()
+    case 'hodnota':
+      return screenHodnota(a)
     case 'dokumenty':
       return screenDokumenty(view.parsed)
     case 'komunita':
@@ -617,9 +623,24 @@ function action(act: string, argValue: string): void {
       if (!title) return
       const onDate = val('ev-date') || viewDate()
       const kind = val('ev-kind') || 'vlastni'
+      const evNote = val('ev-note')
       patch((d) => {
-        d.events.push({ id: uid('ev'), title, kind, onDate, atTime: null, note: null, done: false })
+        d.events.push({ id: uid('ev'), title, kind, onDate, atTime: null, note: evNote || null, done: false })
       })
+      break
+    }
+    case 'event-done':
+      toggleEventDone(argValue)
+      break
+    case 'event-note-open': {
+      const box = document.getElementById(`note-${argValue}`)
+      if (box) box.hidden = !box.hidden
+      return
+    }
+    case 'event-note-save': {
+      const el = document.getElementById(`noteinput-${argValue}`) as HTMLTextAreaElement | null
+      if (!el) return
+      setEventNote(argValue, el.value.trim())
       break
     }
     case 'event-del':

@@ -1,14 +1,15 @@
 import { MODIFIER_LABELS, MODIFIER_IDS, type ModifierId } from '../lib/domain/profile'
 import { PHASES, PHASE_IDS, PHASE_GROUP_META } from '../lib/domain/phases'
-import { formatCzechDate, czDays } from '../lib/domain/dates'
+import { addDays, formatCzechDate, czDays } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { groupSpecsFor, communityName } from '../lib/domain/community-match'
 import { adviceFor } from '../lib/domain/partner'
-import { LAB_PARAMS, LAB_BY_KEY } from '../lib/health/lab-params'
+import { LAB_BY_KEY } from '../lib/health/lab-params'
+import { guidanceFor } from '../lib/health/lab-guidance'
 import { EVENT_KINDS, LETTER_TARGETS } from '../lib/shared/records'
 import { CATALOG, CONTENT_STATS, PRODUCTS } from '../lib/content'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
-import { journey, moodAverage, profile, S, viewDate } from './store'
+import { eventState, journey, moodAverage, profile, S, viewDate } from './store'
 import { SEED_POSTS } from './seed'
 import { ROUTES } from './onboarding'
 
@@ -66,48 +67,132 @@ export function screenVice(): string {
 
 // -------------------------------------------------------------- kalendář ---
 
-export function screenKalendar(): string {
+export interface CalItem {
+  id: string
+  title: string
+  kind: string
+  onDate: string
+  note: string | null
+  auto: boolean
+}
+
+/** Všechny události — vlastní i odvozené z profilu — v jednom seznamu. */
+export function allEvents(): CalItem[] {
   const state = journey()
-  const today = viewDate()
   const auto = autoEventsFor(profile(), state).map((e) => ({
     id: `auto:${e.onDate}:${e.title}`,
     title: e.title,
     kind: e.kind,
     onDate: e.onDate,
-    atTime: e.atTime,
     note: e.note,
-    done: false,
     auto: true,
   }))
-  const all = [...S.d.events.map((e) => ({ ...e, auto: false })), ...auto]
-    .sort((a, b) => a.onDate.localeCompare(b.onDate))
+  const mine = S.d.events.map((e) => ({
+    id: e.id,
+    title: e.title,
+    kind: e.kind,
+    onDate: e.onDate,
+    note: e.note,
+    auto: false,
+  }))
+  return [...mine, ...auto].sort((a, b) => a.onDate.localeCompare(b.onDate))
+}
 
-  const future = all.filter((e) => e.onDate >= today)
-  const past = all.filter((e) => e.onDate < today).slice(-5).reverse()
+/**
+ * Co vyžaduje pozornost: dnešek, zítřek a všechno, co mělo proběhnout
+ * a není odškrtnuté. Tohle se ukazuje i na domovské stránce.
+ */
+export function reminders(today: string): CalItem[] {
+  return allEvents().filter((e) => {
+    const st = eventState(e.id)
+    if (st.done) return false
+    return e.onDate <= addDays(today, 1)
+  })
+}
 
-  const eventRow = (e: (typeof all)[number]) => {
-    const meta = EVENT_KINDS[e.kind] ?? EVENT_KINDS.vlastni
-    const inDays = Math.round((Date.parse(e.onDate) - Date.parse(today)) / 86_400_000)
-    return `<div class="surface" style="padding:1.15rem 1.3rem;display:flex;gap:1rem;align-items:flex-start">
-      <span style="color:var(--taupe);font-size:1.15rem">${esc(meta.icon)}</span>
+function eventRow(e: CalItem, today: string): string {
+  const meta = EVENT_KINDS[e.kind] ?? EVENT_KINDS.vlastni
+  const st = eventState(e.id)
+  const inDays = Math.round((Date.parse(e.onDate) - Date.parse(today)) / 86_400_000)
+  const when =
+    inDays === 0 ? 'dnes' : inDays === 1 ? 'zítra' : inDays > 0 ? `za ${czDays(inDays)}` : `před ${czDays(-inDays)}`
+  const overdue = inDays < 0 && !st.done
+
+  return `<div class="surface" style="padding:1.1rem 1.25rem${overdue ? ';border-color:var(--blush)' : ''}">
+    <div style="display:flex;gap:.9rem;align-items:flex-start">
+      <button class="check" data-act="event-done" data-arg="${esc(e.id)}" aria-pressed="${st.done}" style="width:auto;flex:none;margin-top:.1rem">
+        <span class="box">✓</span>
+      </button>
       <div style="flex:1;min-width:0">
-        <p style="font-weight:500">${esc(e.title)}</p>
-        <p class="faint" style="margin-top:.25rem;font-size:.8125rem">${esc(formatCzechDate(e.onDate, { weekday: true }))}${e.atTime ? ` · ${esc(e.atTime)}` : ''} · ${inDays === 0 ? 'dnes' : inDays > 0 ? `za ${esc(czDays(inDays))}` : `před ${esc(czDays(-inDays))}`}</p>
-        ${e.note ? `<p class="soft" style="margin-top:.5rem;font-size:.875rem;line-height:1.55">${esc(e.note)}</p>` : ''}
+        <p style="font-weight:500${st.done ? ';color:var(--fg-faint);text-decoration:line-through' : ''}">${esc(e.title)}</p>
+        <p class="faint" style="margin-top:.25rem;font-size:.8125rem">
+          ${esc(formatCzechDate(e.onDate, { weekday: true }))} · ${esc(when)}${overdue ? ' · neodškrtnuté' : ''}
+        </p>
+        ${e.note ? `<p class="soft" style="margin-top:.45rem;font-size:.875rem;line-height:1.55">${esc(e.note)}</p>` : ''}
+        ${
+          st.note
+            ? `<p class="whybox" style="margin-top:.6rem"><strong>Vaše poznámka:</strong> ${esc(st.note)}</p>`
+            : ''
+        }
+        <div class="row wrap" style="gap:.4rem;margin-top:.7rem">
+          <button class="btn btn-ghost btn-sm" data-act="event-note-open" data-arg="${esc(e.id)}">${st.note ? 'Upravit poznámku' : 'Přidat poznámku'}</button>
+          ${e.auto ? '<span class="faint" style="font-size:.6875rem;align-self:center">doplněno automaticky</span>' : `<button class="btn btn-ghost btn-sm" data-act="event-del" data-arg="${esc(e.id)}">Smazat</button>`}
+        </div>
+        <div id="note-${esc(e.id)}" class="notebox" hidden>
+          <textarea class="field" id="noteinput-${esc(e.id)}" rows="2" placeholder="Co na termínu zaznělo? Co si příště připravit?" style="margin-top:.6rem">${esc(st.note)}</textarea>
+          <button class="btn btn-sm" data-act="event-note-save" data-arg="${esc(e.id)}" style="margin-top:.5rem">Uložit poznámku</button>
+        </div>
       </div>
-      <div class="stack" style="gap:.4rem;align-items:flex-end">
-        <span class="badge">${esc(meta.label)}</span>
-        ${e.auto ? '<span class="faint" style="font-size:.6875rem">doplněno automaticky</span>' : `<button class="btn btn-ghost btn-sm" data-act="event-del" data-arg="${esc(e.id)}">Smazat</button>`}
-      </div>
-    </div>`
-  }
+      <span class="badge">${esc(meta.icon)} ${esc(meta.label)}</span>
+    </div>
+  </div>`
+}
+
+export function screenKalendar(): string {
+  const today = viewDate()
+  const all = allEvents()
+  const need = reminders(today)
+
+  const groups: { title: string; hint: string; items: CalItem[] }[] = [
+    {
+      title: 'Vyžaduje pozornost',
+      hint: 'Dnes, zítra a co zůstalo neodškrtnuté',
+      items: need,
+    },
+    {
+      title: 'Tento týden',
+      hint: 'Do sedmi dní',
+      items: all.filter((e) => e.onDate > addDays(today, 1) && e.onDate <= addDays(today, 7) && !eventState(e.id).done),
+    },
+    {
+      title: 'Později',
+      hint: 'Za víc než týden',
+      items: all.filter((e) => e.onDate > addDays(today, 7) && !eventState(e.id).done),
+    },
+    {
+      title: 'Hotové',
+      hint: 'Co už proběhlo',
+      items: all.filter((e) => eventState(e.id).done).slice(-8).reverse(),
+    },
+  ]
 
   return [
-    head('Termíny a léky', 'Kalendář', 'Co plyne z vašich dat, doplníme sami. Zbytek si přidáte.'),
+    head(
+      'Termíny a léky',
+      'Kalendář',
+      'Co plyne z vašich dat, doplníme sami. Každou událost si můžete odškrtnout a připsat k ní, co na ní zaznělo.',
+    ),
+
+    need.length
+      ? `<div class="banner" style="border-color:var(--taupe)">
+          <span style="color:var(--taupe)">◈</span>
+          <span><strong>${esc(plural(need.length, 'věc vyžaduje', 'věci vyžadují', 'věcí vyžaduje'))} pozornost.</strong> Odškrtněte, co už proběhlo.</span>
+        </div>`
+      : '',
 
     `<section class="surface pad">
       <p class="eyebrow">Přidat událost</p>
-      <div class="formrow"><label class="label" for="ev-title">Co to je</label>
+      <div class="formrow" style="margin-top:.9rem"><label class="label" for="ev-title">Co to je</label>
         <input class="field" id="ev-title" placeholder="Například kontrola u lékařky" autocomplete="off"></div>
       <div class="two" style="margin-top:1.1rem">
         <div><label class="label" for="ev-date">Kdy</label><input class="field" type="date" id="ev-date" value="${esc(today)}"></div>
@@ -115,15 +200,21 @@ export function screenKalendar(): string {
           <select class="field" id="ev-kind">${Object.entries(EVENT_KINDS).map(([k, v]) => `<option value="${esc(k)}">${esc(v.label)}</option>`).join('')}</select>
         </div>
       </div>
+      <div class="formrow"><label class="label" for="ev-note">Poznámka</label>
+        <input class="field" id="ev-note" placeholder="Nepovinné — třeba čas nebo co si vzít" autocomplete="off"></div>
       <button class="btn btn-primary" data-act="event-add" style="margin-top:1.25rem">Přidat do kalendáře</button>
     </section>`,
 
-    future.length
-      ? `<section>${sectionTitle('Co vás čeká', plural(future.length, 'událost', 'události', 'událostí'))}<div class="stack" style="gap:.75rem">${future.map(eventRow).join('')}</div></section>`
-      : empty('Zatím nic před vámi', 'Přidejte si termín, nebo doplňte data v nastavení — část událostí pak vznikne sama.'),
+    ...groups.map((g) =>
+      g.items.length
+        ? `<section>${sectionTitle(g.title, `${g.hint} · ${plural(g.items.length, 'událost', 'události', 'událostí')}`)}
+            <div class="stack" style="gap:.75rem">${g.items.map((e) => eventRow(e, today)).join('')}</div>
+          </section>`
+        : '',
+    ),
 
-    past.length
-      ? `<section>${sectionTitle('Za vámi', 'Posledních pět')}<div class="stack" style="gap:.75rem">${past.map(eventRow).join('')}</div></section>`
+    all.length === 0
+      ? empty('Zatím nic v kalendáři', 'Přidejte si termín, nebo doplňte data v nastavení — část událostí pak vznikne sama.')
       : '',
 
     `<section class="surface pad">
@@ -147,108 +238,57 @@ export function screenKalendar(): string {
   ].join('')
 }
 
-// ----------------------------------------------------------------- zdraví ---
-
-export function screenZdravi(): string {
-  const byKey = new Map<string, typeof S.d.labs>()
-  for (const l of S.d.labs) byKey.set(l.paramKey, [...(byKey.get(l.paramKey) ?? []), l])
-
-  const series = [...byKey.entries()].map(([key, points]) => {
-    const param = LAB_BY_KEY[key]
-    const sorted = points.slice().sort((a, b) => a.onDate.localeCompare(b.onDate))
-    return { key, param, points: sorted }
-  })
-
-  return [
-    head('Vaše čísla', 'Zdraví', 'Graf ukazuje vývoj v čase. Co znamená, patří vašemu lékaři.'),
-
-    `<section class="surface pad">
-      <p class="eyebrow">Přidat hodnotu</p>
-      <div class="formrow"><label class="label" for="lab-key">Parametr</label>
-        <select class="field" id="lab-key">${LAB_PARAMS.map((p) => `<option value="${esc(p.key)}">${esc(p.name)} (${esc(p.unit)})</option>`).join('')}</select>
-      </div>
-      <div class="two" style="margin-top:1.1rem">
-        <div><label class="label" for="lab-value">Hodnota</label><input class="field" id="lab-value" inputmode="decimal" placeholder="např. 1,2" autocomplete="off"></div>
-        <div><label class="label" for="lab-date">Datum odběru</label><input class="field" type="date" id="lab-date" value="${esc(viewDate())}"></div>
-      </div>
-      <button class="btn btn-primary" data-act="lab-add" style="margin-top:1.25rem">Uložit hodnotu</button>
-    </section>`,
-
-    series.length
-      ? series
-          .map(
-            (s) => `<section class="surface pad">
-              <div class="row wrap" style="justify-content:space-between;gap:1rem">
-                <h3 class="display" style="font-size:1.25rem">${esc(s.param?.name ?? s.key)}</h3>
-                <span class="badge">${esc(s.param?.unit ?? '')}</span>
-              </div>
-              ${s.param?.explain ? `<p class="soft" style="margin-top:.6rem;font-size:.875rem;line-height:1.6">${esc(s.param.explain)}</p>` : ''}
-              ${
-                s.points.length > 1
-                  ? lineChart(
-                      [{ key: s.key, color: 'var(--taupe-deep)', values: s.points.map((p) => p.value) }],
-                      {
-                        min: Math.min(...s.points.map((p) => p.value)),
-                        max: Math.max(...s.points.map((p) => p.value)),
-                        label: `Vývoj ${s.param?.name ?? s.key}`,
-                      },
-                    )
-                  : ''
-              }
-              <ul class="linelist">
-                ${s.points
-                  .slice()
-                  .reverse()
-                  .map(
-                    (p) =>
-                      `<li><span class="when">${esc(formatCzechDate(p.onDate))}</span><span class="num" style="font-weight:500">${p.value} ${esc(p.unit)}</span><button class="btn btn-ghost btn-sm" data-act="lab-del" data-arg="${esc(p.id)}" style="margin-left:auto">×</button></li>`,
-                  )
-                  .join('')}
-              </ul>
-              ${s.param?.reference?.note ? `<p class="faint" style="margin-top:.85rem;font-size:.8125rem;line-height:1.55">Orientačně: ${esc(s.param.reference.note)}</p>` : ''}
-            </section>`,
-          )
-          .join('')
-      : empty('Zatím žádné hodnoty', 'Přidejte první hodnotu výše — nebo vložte text lékařské zprávy v Dokumentech a vytáhneme je z něj.', '<button class="btn" data-go="dokumenty">Otevřít dokumenty</button>', '◉'),
-
-    note(
-      'Grafy ukazují vývoj, ne diagnózu. **Interpretace hodnot patří vašemu lékaři** — kontext, který k tomu potřebuje, aplikace nemá.',
-    ),
-  ].join('')
-}
-
 // -------------------------------------------------------------- dokumenty ---
 
-export function screenDokumenty(parsed: { values: { paramKey: string; paramName: string; value: number; unit: string }[]; detectedDate: string | null } | null): string {
+export function screenDokumenty(
+  parsed: { values: { paramKey: string; paramName: string; value: number; unit: string }[]; detectedDate: string | null } | null,
+): string {
   return [
-    head('Zprávy a nálezy', 'Dokumenty', 'Vložte text lékařské zprávy. Vytáhneme z něj hodnoty a vysvětlíme pojmy — nikdy nehodnotíme, jestli je výsledek dobrý.'),
+    head(
+      'Zprávy a nálezy',
+      'Dokumenty',
+      'Vložte text lékařské zprávy. Vytáhneme z něj hodnoty, vysvětlíme pojmy a ukážeme, co s tím dál — nikdy ale nehodnotíme, jestli je výsledek dobrý.',
+    ),
 
     `<section class="surface pad">
       <label class="label" for="doc-text">Text zprávy</label>
       <textarea class="field" id="doc-text" rows="7" placeholder="Zkopírujte sem text ze zprávy, například:&#10;AMH 1,2 ng/ml&#10;FSH 7,4 IU/l&#10;TSH 2,1 mIU/l"></textarea>
       <button class="btn btn-primary" data-act="doc-parse" style="margin-top:1.1rem">Rozpoznat hodnoty</button>
+      <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">Rozpoznávání je deterministické — hledá dvojice parametr a číslo. Nic se nikam neodesílá.</p>
     </section>`,
 
     parsed
       ? parsed.values.length
         ? `<section>
-            ${sectionTitle(`Našli jsme ${plural(parsed.values.length, 'hodnotu', 'hodnoty', 'hodnot')}`, parsed.detectedDate ? `Datum ve zprávě: ${formatCzechDate(parsed.detectedDate)}` : 'Datum se ve zprávě nepodařilo najít')}
+            ${sectionTitle(
+              `Našli jsme ${plural(parsed.values.length, 'hodnotu', 'hodnoty', 'hodnot')}`,
+              parsed.detectedDate ? `Datum ve zprávě: ${formatCzechDate(parsed.detectedDate)}` : 'Datum se ve zprávě nepodařilo najít',
+            )}
             <div class="stack" style="gap:.75rem">
               ${parsed.values
-                .map(
-                  (v) => `<div class="surface" style="padding:1.15rem 1.3rem">
+                .map((v) => {
+                  const param = LAB_BY_KEY[v.paramKey]
+                  const g = guidanceFor(v.paramKey)
+                  return `<div class="surface" style="padding:1.15rem 1.3rem">
                     <div class="row wrap" style="justify-content:space-between;gap:.5rem">
                       <p style="font-weight:500">${esc(v.paramName)}</p>
                       <p class="num" style="font-weight:600">${v.value} ${esc(v.unit)}</p>
                     </div>
-                    ${LAB_BY_KEY[v.paramKey]?.explain ? `<p class="soft" style="margin-top:.5rem;font-size:.875rem;line-height:1.6">${esc(LAB_BY_KEY[v.paramKey].explain)}</p>` : ''}
-                  </div>`,
-                )
+                    ${param?.explain ? `<p class="soft" style="margin-top:.5rem;font-size:.875rem;line-height:1.6">${esc(param.explain)}</p>` : ''}
+                    ${g ? `<p class="whybox" style="margin-top:.6rem">${esc(g.inBody)}</p>` : ''}
+                    <button class="btn btn-ghost btn-sm" data-go="hodnota/${esc(v.paramKey)}" style="margin-top:.6rem">Co to znamená a co s tím →</button>
+                  </div>`
+                })
                 .join('')}
             </div>
             <button class="btn btn-primary" data-act="doc-save" style="margin-top:1.25rem">Uložit do Zdraví</button>
+            <p class="faint" style="margin-top:.75rem;font-size:.8125rem">Po uložení uvidíte hodnoty v grafu spolu s dřívějšími.</p>
           </section>`
-        : empty('Žádné hodnoty jsme nenašli', 'Parser hledá dvojice „parametr → hodnota“. Zkuste vložit i řádky s jednotkami, nebo hodnoty zadejte ručně ve Zdraví.', '<button class="btn" data-go="zdravi">Zadat ručně</button>')
+        : empty(
+            'Žádné hodnoty jsme nenašli',
+            'Parser hledá dvojice „parametr → hodnota“. Zkuste vložit i řádky s jednotkami, nebo hodnoty zadejte ručně ve Zdraví.',
+            '<button class="btn" data-go="zdravi">Zadat ručně</button>',
+          )
       : '',
 
     S.d.docs.length
@@ -257,7 +297,18 @@ export function screenDokumenty(parsed: { values: { paramKey: string; paramName:
             ${S.d.docs
               .map(
                 (d) =>
-                  `<div class="surface" style="padding:1rem 1.2rem"><p style="font-weight:500">${esc(d.title)}</p><p class="faint" style="font-size:.8125rem;margin-top:.2rem">${esc(formatCzechDate(d.addedOn))} · ${d.found.length} hodnot</p></div>`,
+                  `<div class="surface" style="padding:1rem 1.2rem">
+                    <p style="font-weight:500">${esc(d.title)}</p>
+                    <p class="faint" style="font-size:.8125rem;margin-top:.2rem">${esc(formatCzechDate(d.addedOn))} · ${esc(plural(d.found.length, 'hodnota', 'hodnoty', 'hodnot'))}</p>
+                    <div class="chips" style="margin-top:.6rem">
+                      ${d.found
+                        .map(
+                          (f) =>
+                            `<button data-go="hodnota/${esc(f.paramKey)}">${esc(LAB_BY_KEY[f.paramKey]?.name ?? f.paramKey)}: ${f.value} ${esc(f.unit)}</button>`,
+                        )
+                        .join('')}
+                    </div>
+                  </div>`,
               )
               .join('')}
           </div>
@@ -265,7 +316,7 @@ export function screenDokumenty(parsed: { values: { paramKey: string; paramName:
       : '',
 
     note(
-      'Rozpoznání je deterministické — hledá dvojice parametr a číslo. **Nikdy neříká, jestli je výsledek dobrý nebo špatný.** Sdílení s lékařem by v ostré verzi proběhlo jen s vaším souhlasem; tady dokumenty nikam neodcházejí.',
+      'Rozpoznání **nikdy neříká, jestli je výsledek dobrý nebo špatný.** Sdílení dokumentů s lékařem by v ostré verzi proběhlo jen s vaším souhlasem; tady dokumenty nikam neodcházejí.',
     ),
   ].join('')
 }

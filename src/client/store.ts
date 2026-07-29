@@ -136,6 +136,11 @@ export interface Save {
   letters: LetterRow[]
   story: StoryRow[]
   exercises: ExerciseEntry[]
+  /**
+   * Stav událostí podle jejich id. Platí i pro automaticky odvozené události,
+   * které se nikde neukládají — jejich id je odvozené z data a názvu.
+   */
+  eventState: Record<string, { done: boolean; note: string }>
   posts: PostRow[]
   theme: 'auto' | 'light' | 'dark'
   /** 0 = dnešek. Nenulové jen když si uživatelka vědomě přepne na jiný den. */
@@ -163,6 +168,7 @@ function blank(): Save {
     letters: [],
     story: [],
     exercises: [],
+    eventState: {},
     posts: [],
     theme: 'auto',
     dayOffset: 0,
@@ -293,6 +299,26 @@ export function journalFor(date: IsoDate): JournalRow | null {
 export function saveJournal(row: JournalRow): void {
   patch((d) => {
     d.journal[row.date] = row
+  })
+}
+
+// ------------------------------------------------------------- kalendář ---
+
+export function eventState(id: string): { done: boolean; note: string } {
+  return data.eventState[id] ?? { done: false, note: '' }
+}
+
+export function toggleEventDone(id: string): void {
+  patch((d) => {
+    const cur = d.eventState[id] ?? { done: false, note: '' }
+    d.eventState[id] = { ...cur, done: !cur.done }
+  })
+}
+
+export function setEventNote(id: string, note: string): void {
+  patch((d) => {
+    const cur = d.eventState[id] ?? { done: false, note: '' }
+    d.eventState[id] = { ...cur, note }
   })
 }
 
