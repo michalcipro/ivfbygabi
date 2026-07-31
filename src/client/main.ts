@@ -422,7 +422,7 @@ function render(): void {
         ${TERTIARY.map((t) => navButton(t, route)).join('')}
       </nav>
       <div class="sidefoot">
-        <span class="avatar" style="background:linear-gradient(135deg,#f2e3cd,#cdb08c)">${esc((p.displayName || 'V').slice(0, 1).toUpperCase())}</span>
+        <span class="avatar" style="background:linear-gradient(135deg,#e6c4d1,#b9748a)">${esc((p.displayName || 'V').slice(0, 1).toUpperCase())}</span>
         <span style="min-width:0;flex:1">
           <span style="display:block;font-size:.8125rem;font-weight:500;overflow:hidden;text-overflow:ellipsis">${esc(p.displayName || 'Vaše cesta')}</span>
           <span class="faint" style="display:block;font-size:.6875rem">${esc(state.dayLabel.replace(/^Dnes (je|jste) /, ''))}</span>

@@ -25,51 +25,53 @@ import { esc } from './ui'
  * Obojí 0–10, kreslí se přes `pathLength`, takže rovnou v procentech.
  */
 export function scissorRing(r: DayReading): string {
-  const outer = r.demand * 10
-  const inner = r.reserve === null ? 0 : r.reserve * 10
+  // Dva věnce plátků. Vnější je to, co dnešek žádá, vnitřní to, co na to máte
+  // — obojí se dá spočítat na plátky, takže rozdíl (nůžky) je vidět jako
+  // rozdíl v šířce věnce, ne jako číslo, které si musíte odečíst.
+  //
+  // Číslo stojí pod květem, ne v něm: prostřední disk dost velký na číslici
+  // i popisek by ukousl polovinu plátků.
+  const demand = Math.max(0, Math.min(10, Math.round(r.demand)))
+  const reserve = r.reserve === null ? null : Math.max(0, Math.min(10, Math.round(r.reserve)))
+
+  const wreath = (
+    count: number,
+    tone: string,
+    geo: { cy: number; rx: number; ry: number },
+    opacity: number,
+  ): string =>
+    Array.from({ length: 10 }, (_, i) => {
+      const on = i < count
+      const fill = on ? tone : 'var(--track)'
+      return `<ellipse cx="109" cy="${geo.cy}" rx="${geo.rx}" ry="${geo.ry}"
+        fill="${fill}" fill-opacity="${on ? opacity : 0.5}"
+        stroke="${fill}" stroke-opacity="${on ? 0.3 : 0.22}" stroke-width="1"
+        transform="rotate(${i * 36} 109 109)"/>`
+    }).join('')
+
+  const label =
+    reserve === null
+      ? `Co dnešek žádá ${demand} z 10, rezerva zatím nezapsaná`
+      : `Co dnešek žádá ${demand} z 10, co na to máte ${reserve} z 10`
 
   return `<div class="ringwrap">
     <div class="bigring">
-      <svg viewBox="0 0 218 218" role="img" aria-label="Co dnešek žádá ${r.demand} z 10${
-        r.reserve === null ? ', rezerva zatím nezapsaná' : `, co na to máte ${r.reserve} z 10`
-      }">
-        <defs>
-          <!-- Přechod uvnitř tahu. Plochá barva vypadá na velkém oblouku
-               jako výplň, přechod z něj udělá světlo. -->
-          <linearGradient id="ar1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="var(--s1)" stop-opacity=".55"/>
-            <stop offset="100%" stop-color="var(--s1)"/>
-          </linearGradient>
-          <linearGradient id="ar2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="var(--s2)" stop-opacity=".55"/>
-            <stop offset="100%" stop-color="var(--s2)"/>
-          </linearGradient>
-        </defs>
-        <!-- Dráhy mají vlastní token. Na --line byly ve světlém motivu tak
-             bledé, že obě splývaly v jeden mlhavý kruh. -->
-        <circle cx="109" cy="109" r="92" fill="none" stroke="var(--track)" stroke-width="13"/>
-        <circle cx="109" cy="109" r="72" fill="none" stroke="var(--track)" stroke-width="13" opacity=".62"/>
-        <circle class="arc" cx="109" cy="109" r="92" fill="none" stroke="url(#ar1)" stroke-width="13"
-                stroke-linecap="round" pathLength="100" stroke-dasharray="${outer} 100"/>
-        ${
-          r.reserve === null
-            ? ''
-            : `<circle class="arc arc-in" cx="109" cy="109" r="72" fill="none" stroke="url(#ar2)" stroke-width="13"
-                 stroke-linecap="round" pathLength="100" stroke-dasharray="${inner} 100"/>`
-        }
+      <svg viewBox="0 0 218 218" role="img" aria-label="${esc(label)}">
+        <g class="bloom">
+          ${wreath(demand, 'var(--s1)', { cy: 29, rx: 15, ry: 24 }, 0.52)}
+          ${wreath(reserve ?? 0, 'var(--s2)', { cy: 80, rx: 11, ry: 21 }, 0.5)}
+        </g>
+        <circle cx="109" cy="109" r="7" fill="var(--card)" opacity=".9"/>
       </svg>
-      <div class="bigring-mid">
-        <!-- Jmenovatel visí mimo tok, aby na středu prstence stála velká
-             číslice, ne skupina „číslice + /10“. -->
-        <p class="bignum"><span class="d">${r.demand}</span><small>/10</small></p>
-        <p class="ringlabel">Co dnešek žádá</p>
-      </div>
     </div>
 
+    <p class="bignum"><span class="d">${demand}</span><small>/10</small></p>
+    <p class="ringlabel">Co dnešek žádá</p>
+
     <div class="serieskey">
-      <span><i style="background:var(--s1)"></i> Žádá dnešek <b class="num">${r.demand}</b></span>
+      <span><i style="background:var(--s1)"></i> Žádá dnešek <b class="num">${demand}</b></span>
       <span><i style="background:var(--s2)"></i> Máte na to <b class="num">${
-        r.reserve === null ? '—' : r.reserve
+        reserve === null ? '—' : reserve
       }</b></span>
     </div>
 

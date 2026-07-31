@@ -6,20 +6,21 @@ import { KIND_ICONS, KIND_LABELS } from '../lib/content/types'
 /**
  * Obrazy ke článkům.
  *
- * Bloomia je botanická noc — listí, mech, ranní mlha a v tom teplé květy.
- * Gradienty jsou proto laděné do zeleně a meruňky, ne do béžové.
+ * Bloomia je lis — usušené květiny na chladně šeříkovém papíře. Gradienty
+ * proto vycházejí z okvětních plátků: růže, levandule, sláma a list, vždy
+ * od nejsvětlejšího místa plátku k jeho okraji.
  */
 export const HERO: Record<HeroToken, string> = {
-  champagne: 'linear-gradient(135deg, #e6f2ea 0%, #c8e0d2 55%, #a4c6b3 100%)',
-  taupe: 'linear-gradient(135deg, #b3ccc2 0%, #6f9187 60%, #3d6157 100%)',
-  blush: 'linear-gradient(135deg, #fbe6da 0%, #f2d3c4 55%, #dda882 100%)',
-  sage: 'linear-gradient(135deg, #dfeee4 0%, #bcd8c8 60%, #8ab39a 100%)',
-  sky: 'linear-gradient(135deg, #dceaee 0%, #b9d1d8 60%, #8aabb4 100%)',
-  linen: 'linear-gradient(135deg, #f4faf6 0%, #e3efe8 60%, #c9ded3 100%)',
-  sand: 'linear-gradient(135deg, #dceee3 0%, #b6d2c5 60%, #8fb5a3 100%)',
-  dusk: 'linear-gradient(145deg, #5e8b80 0%, #33564d 45%, #16302b 100%)',
-  dawn: 'linear-gradient(135deg, #fdeee0 0%, #f6d6bd 45%, #e2a97d 100%)',
-  pearl: 'linear-gradient(135deg, #ffffff 0%, #eef6f1 55%, #d7e8de 100%)',
+  champagne: 'linear-gradient(135deg, #f4eef2 0%, #e3d3dd 55%, #c9adbe 100%)',
+  taupe: 'linear-gradient(135deg, #cdc9e6 0%, #8c86c4 60%, #635b9e 100%)',
+  blush: 'linear-gradient(135deg, #f8e9ee 0%, #e6c4d1 55%, #b9748a 100%)',
+  sage: 'linear-gradient(135deg, #e6ece3 0%, #c5d3c0 60%, #7e9478 100%)',
+  sky: 'linear-gradient(135deg, #e5e3f0 0%, #c4c0de 60%, #928cc0 100%)',
+  linen: 'linear-gradient(135deg, #fbfafc 0%, #eeebf1 60%, #ded9e6 100%)',
+  sand: 'linear-gradient(135deg, #f3ead9 0%, #e0cca2 60%, #c9a961 100%)',
+  dusk: 'linear-gradient(145deg, #6a5f86 0%, #3c3350 45%, #1e1926 100%)',
+  dawn: 'linear-gradient(135deg, #fbeee6 0%, #f0d8c6 45%, #d8a98d 100%)',
+  pearl: 'linear-gradient(135deg, #ffffff 0%, #f4f1f7 55%, #e2dce9 100%)',
 }
 
 export const heroStyle = (token: HeroToken | string): string =>

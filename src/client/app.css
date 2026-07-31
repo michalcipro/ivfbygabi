@@ -5,113 +5,186 @@
    ========================================================================== */
 
 :root {
-  /* Bloomia — botanická noc.
-     Hluboká borovicová zeleň jako listí po setmění a v ní teplé květy.
-     Meruňková je hlavní akcent: květ proti listu. */
-  --porcelain: #ffffff;
-  --cream: #f5faf7;
-  --linen: #e9f2ed;
-  --champagne: #d6e8de;
-  --sand: #b6d2c5;
-  --taupe: #6f9187;
-  --taupe-deep: #3d6157;
-  --blush: #f2d3c4;
-  --blush-deep: #bc6430;
-  --sage: #bcd8c8;
-  --sage-deep: #5d8a73;
-  --sky: #b9d1d8;
-  --gold: #d9a45c;
+  /* Bloomia — Lis.
+     Sešit s lisovanými květinami. Studeně šeříkový papír, na něm lístky,
+     a barvy usušených okvětních plátků. Krémový papír by z toho udělal
+     svatební oznámení, proto je chladný.
 
-  --page: var(--cream);
-  --card: var(--porcelain);
-  --card-muted: var(--linen);
-  --line: #e8e0d5;
-  --fg: #2b2521;
-  --fg-soft: #6c6058;
-  --fg-faint: #9a8f86;
+     Ozdobné barvy (růže, levandule, sláma, list) jsou schválně měkké — na
+     ploškách, okrajích lístků a razítkách. Na data jsou moc bledé, proto má
+     graf vlastní, hlubší sadu (--s1…--s4 níž). */
+  --slip: #fbfafc;
+  --paper: #eeebf1;
+  --paper-deep: #e5e1eb;
+  --petal: #ded9e6;
+  --stem: #c6bed2;
+  --rose: #b9748a;
+  --rose-deep: #9c5771;
+  --lavender: #8c86c4;
+  --lavender-deep: #6b63a8;
+  --straw: #c9a961;
+  --leaf: #7e9478;
+  --leaf-deep: #5e7359;
 
-  /* Datová paleta — z akvarelové duhy na obálce diáře, prohloubená tak, aby
-     unesla data. Prošla všemi šesti kontrolami validátoru včetně barvosleposti.
+  /* Staré názvy zůstávají, jen ukazují na Lis. Sáhne na ně půlka souboru;
+     přepsat je jedním místem je bezpečnější než honit stovky výskytů. */
+  --porcelain: var(--slip);
+  --cream: var(--paper);
+  --linen: var(--paper-deep);
+  --champagne: var(--petal);
+  --sand: var(--stem);
+  --taupe: var(--lavender);
+  --taupe-deep: var(--lavender-deep);
+  --blush: #eed8e0;
+  --blush-deep: var(--rose);
+  --sage: #cfd8cb;
+  --sage-deep: var(--leaf);
+  --sky: #cdcae0;
+  --gold: var(--straw);
+
+  --page: var(--paper);
+  --card: var(--slip);
+  --card-muted: var(--paper-deep);
+  --line: #ddd8e2;
+  --fg: #2b2431;
+  --fg-soft: #6f6579;
+  --fg-faint: #948ba0;
+
+  /* Datová paleta — stejné čtyři odstíny jako ozdobné, ale prohloubené tak,
+     aby unesly graf. Prošly všemi pěti kontrolami validátoru v obou režimech
+     včetně simulace protanopie a deuteranopie.
      s1 = co dnešek žádá, s2 = co na to máte, s3 = úzkost, s4 = naděje. */
-  --s1: #bc6430;
-  --s2: #1f9479;
-  --s3: #c75673;
-  --s4: #7268cc;
+  --s1: #c23d5d;
+  --s2: #7143bb;
+  --s3: #be8800;
+  --s4: #006c35;
 
-  --display: 'EB Garamond', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
-  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --sans: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 
-  --r-xs: 0.5rem;
-  --r-sm: 0.75rem;
-  --r-md: 1.125rem;
-  --r-lg: 1.5rem;
-  --r-xl: 2rem;
-  --r-2xl: 2.75rem;
+  /* Lístek, ne dlaždice. Papír se neohýbá do velkých oblouků — proto malé
+     poloměry. Kulaté zůstávají jen prvky, které mají být na klepnutí:
+     tlačítka, chipy, dávky. */
+  --r-xs: 3px;
+  --r-sm: 5px;
+  --r-md: 7px;
+  --r-lg: 10px;
+  --r-xl: 14px;
+  --r-2xl: 18px;
 
-  --halo: rgb(172 125 28 / 0.045);
-  --sheen: rgb(255 255 255 / 0.6);
-  --track: #eae1d6;
+  --halo: rgb(185 116 138 / 0.055);
+  --sheen: rgb(255 255 255 / 0.72);
+  --track: #e3dfe9;
 
-  --veil: 0 1px 2px rgb(43 37 33 / 0.03), 0 8px 24px -12px rgb(43 37 33 / 0.1);
-  --lift: 0 2px 4px rgb(43 37 33 / 0.04), 0 18px 44px -20px rgb(43 37 33 / 0.18);
-  --float: 0 4px 8px rgb(43 37 33 / 0.05), 0 32px 72px -28px rgb(43 37 33 / 0.26);
+  --veil: 0 1px 0 rgb(43 36 49 / 0.05), 0 4px 14px -6px rgb(43 36 49 / 0.12);
+  --lift: 0 1px 0 rgb(43 36 49 / 0.06), 0 10px 26px -12px rgb(43 36 49 / 0.2);
+  --float: 0 2px 2px rgb(43 36 49 / 0.06), 0 24px 56px -22px rgb(43 36 49 / 0.28);
   --calm: cubic-bezier(0.22, 0.61, 0.36, 1);
   color-scheme: light;
 }
 
+/* Noc v Lisu: švestkově černá, ne neutrální — drží to pohromadě s papírem. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --page: #071417;
-    --card: #0e2126;
-    --card-muted: #163036;
-    --line: rgb(255 255 255 / 0.075);
-    --fg: #eef6f3;
-    --fg-soft: #a5bcb6;
-    --fg-faint: #71908a;
-    --halo: rgb(211 118 63 / 0.16);
-    --sheen: rgb(255 255 255 / 0.05);
-    --track: rgb(255 255 255 / 0.085);
-    --s1: #d3763f;
-    --s2: #34a98c;
-    --s3: #dc6c87;
-    --s4: #8a82d6;
+    --slip: #1e1926;
+    --paper: #16121b;
+    --paper-deep: #261f30;
+    --petal: #322943;
+    --stem: #4b3f5c;
+    --rose: #d48da4;
+    --rose-deep: #b9748a;
+    --lavender: #a49ddd;
+    --lavender-deep: #8c86c4;
+    --straw: #ddbe79;
+    --leaf: #93a98c;
+    --leaf-deep: #7e9478;
+    --blush: #3a2b34;
+    --sage: #2b3830;
+    --sky: #2c2a3d;
+
+    --page: var(--paper);
+    --card: var(--slip);
+    --card-muted: var(--paper-deep);
+    --line: rgb(255 255 255 / 0.085);
+    --fg: #f0ecf4;
+    --fg-soft: #b3a9be;
+    --fg-faint: #857f8f;
+    --halo: rgb(212 141 164 / 0.15);
+    --sheen: rgb(255 255 255 / 0.045);
+    --track: rgb(255 255 255 / 0.09);
+    --s1: #c14d66;
+    --s2: #8557c8;
+    --s3: #bb8a00;
+    --s4: #00793d;
     color-scheme: dark;
   }
 }
 
 :root[data-theme='dark'] {
-  --page: #071417;
-  --card: #0e2126;
-  --card-muted: #163036;
-  --line: rgb(255 255 255 / 0.075);
-  --fg: #eef6f3;
-  --fg-soft: #a5bcb6;
-  --fg-faint: #71908a;
-  --halo: rgb(211 118 63 / 0.16);
-  --sheen: rgb(255 255 255 / 0.05);
-  --track: rgb(255 255 255 / 0.085);
-  --s1: #d3763f;
-  --s2: #34a98c;
-  --s3: #dc6c87;
-  --s4: #8a82d6;
+  --slip: #1e1926;
+  --paper: #16121b;
+  --paper-deep: #261f30;
+  --petal: #322943;
+  --stem: #4b3f5c;
+  --rose: #d48da4;
+  --rose-deep: #b9748a;
+  --lavender: #a49ddd;
+  --lavender-deep: #8c86c4;
+  --straw: #ddbe79;
+  --leaf: #93a98c;
+  --leaf-deep: #7e9478;
+  --blush: #3a2b34;
+  --sage: #2b3830;
+  --sky: #2c2a3d;
+
+  --page: var(--paper);
+  --card: var(--slip);
+  --card-muted: var(--paper-deep);
+  --line: rgb(255 255 255 / 0.085);
+  --fg: #f0ecf4;
+  --fg-soft: #b3a9be;
+  --fg-faint: #857f8f;
+  --halo: rgb(212 141 164 / 0.15);
+  --sheen: rgb(255 255 255 / 0.045);
+  --track: rgb(255 255 255 / 0.09);
+  --s1: #c14d66;
+  --s2: #8557c8;
+  --s3: #bb8a00;
+  --s4: #00793d;
   color-scheme: dark;
 }
 
 :root[data-theme='light'] {
-  --page: var(--cream);
-  --card: var(--porcelain);
-  --card-muted: var(--linen);
-  --line: #dbe8e1;
-  --fg: #10231e;
-  --fg-soft: #47635c;
-  --fg-faint: #7a938c;
-  --halo: rgb(188 100 48 / 0.06);
-  --sheen: rgb(255 255 255 / 0.6);
-  --track: #dceae3;
-  --s1: #bc6430;
-  --s2: #1f9479;
-  --s3: #c75673;
-  --s4: #7268cc;
+  --slip: #fbfafc;
+  --paper: #eeebf1;
+  --paper-deep: #e5e1eb;
+  --petal: #ded9e6;
+  --stem: #c6bed2;
+  --rose: #b9748a;
+  --rose-deep: #9c5771;
+  --lavender: #8c86c4;
+  --lavender-deep: #6b63a8;
+  --straw: #c9a961;
+  --leaf: #7e9478;
+  --leaf-deep: #5e7359;
+  --blush: #eed8e0;
+  --sage: #cfd8cb;
+  --sky: #cdcae0;
+
+  --page: var(--paper);
+  --card: var(--slip);
+  --card-muted: var(--paper-deep);
+  --line: #ddd8e2;
+  --fg: #2b2431;
+  --fg-soft: #6f6579;
+  --fg-faint: #948ba0;
+  --halo: rgb(185 116 138 / 0.055);
+  --sheen: rgb(255 255 255 / 0.72);
+  --track: #e3dfe9;
+  --s1: #c23d5d;
+  --s2: #7143bb;
+  --s3: #be8800;
+  --s4: #006c35;
   color-scheme: light;
 }
 
@@ -672,20 +745,21 @@ textarea.field { resize: vertical; line-height: 1.6; }
 /* --- prstenec ----------------------------------------------------------- */
 .ringwrap { display: flex; flex-direction: column; align-items: center; }
 .bigring { position: relative; width: 218px; height: 218px; max-width: 100%; }
-.bigring svg { display: block; width: 100%; height: auto; transform: rotate(-90deg); }
-.bigring-mid {
-  position: absolute; inset: 0; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; text-align: center;
-}
+.bigring svg { display: block; width: 100%; height: auto; }
+/* Číslo a popisek stojí pod květem — uvnitř by je plátky rozbily.
+   Odsazení musí počítat s tím, že při line-height pod 1 přetéká horní
+   část číslice ven z řádku: bez rezervy do ní spodní plátek zajede. */
+.bignum, .ringlabel { text-align: center; }
 .bignum {
-  font-family: var(--display); font-size: 4.4rem; line-height: .85; color: var(--fg); margin: 0;
+  font-family: var(--display); font-size: 4.4rem; line-height: 1; color: var(--fg);
+  margin: 1.1rem 0 0;
 }
 /* „/10" v garamondu vypadá jako „IO" — jednička má patkový tvar blízký I. */
 .bignum small {
   font-family: var(--sans); font-size: .9375rem; color: var(--fg-faint);
   letter-spacing: .02em; margin-left: .12rem;
 }
-.arc { transition: stroke-dasharray .9s var(--calm); }
+.bloom ellipse { transition: fill .5s var(--calm), fill-opacity .5s var(--calm); }
 
 .serieskey { display: flex; gap: 1.1rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
 .serieskey.left { justify-content: flex-start; margin-top: .6rem; }
@@ -836,17 +910,15 @@ textarea.field { resize: vertical; line-height: 1.6; }
      obojí, takže záře nikdy nevyteče z karty a pás zůstane na obloucích. */
   --ring: min(244px, 76%);
 }
-/* Světlo za prstencem. Bez něj je to jen kolečko. */
+/* Světlo za květem. Měkký nádech pod plátky, ne prstenec — kruhový pás
+   by z květu udělal terč. */
 .ringwrap::before {
-  /* Světlo musí ležet POD oblouky, ne ve prázdném středu. Původní kruh byl
-     menší než prstenec, takže svítil do dírky a působil jako flek.
-     Proto pás: uvnitř průhledno, maximum na dráze oblouků, pak dohasnutí. */
   content: ''; position: absolute; left: 50%;
   top: calc(1.25rem + var(--ring) / 2);
-  width: calc(var(--ring) * 1.32); aspect-ratio: 1;
+  width: calc(var(--ring) * 1.05); aspect-ratio: 1;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, transparent 50%, var(--halo) 63%, transparent 82%);
-  pointer-events: none; z-index: 0;
+  border-radius: 50%; pointer-events: none; z-index: 0;
+  background: radial-gradient(circle, var(--halo) 0%, transparent 68%);
 }
 .bigring { width: var(--ring); aspect-ratio: 1; position: relative; z-index: 1; }
 .bignum {
@@ -855,16 +927,19 @@ textarea.field { resize: vertical; line-height: 1.6; }
 }
 .bignum small { font-size: 1rem; opacity: .75; }
 
-/* Oblouk se nasype, ne naskočí. */
-.arc {
-  transition: stroke-dasharray 1.1s cubic-bezier(.16, 1, .3, 1) .12s;
-  filter: drop-shadow(0 0 9px color-mix(in oklab, var(--s1) 42%, transparent));
+/* Květ se rozvine, ne naskočí. Plátky jdou po řadě, ne všechny naráz. */
+.bloom { transform-origin: 109px 109px; animation: bloomin .9s var(--calm) both; }
+.bloom ellipse { mix-blend-mode: multiply; }
+:root[data-theme='dark'] .bloom ellipse,
+:root:not([data-theme='light']) .bloom ellipse { mix-blend-mode: normal; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) .bloom ellipse { mix-blend-mode: multiply; }
 }
-.arc-in {
-  transition-delay: .28s;
-  filter: drop-shadow(0 0 9px color-mix(in oklab, var(--s2) 42%, transparent));
+@keyframes bloomin { from { transform: scale(.86) rotate(-8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .bloom { animation: none; }
+  .bloom ellipse { transition: none; }
 }
-@media (prefers-reduced-motion: reduce) { .arc { transition: none; } }
 
 .statepill {
   background: linear-gradient(180deg, var(--sheen) 0%, transparent 60%), var(--card-muted);
@@ -950,26 +1025,23 @@ textarea.field { resize: vertical; line-height: 1.6; }
   border: 1px solid color-mix(in oklab, var(--s1) 26%, transparent);
 }
 
-/* --- prstenec: střed patří číslici ---------------------------------------
-   Jmenovatel „/10" je mimo tok, takže na optickém středu prstence stojí
-   velká číslice. Dokud byl v toku, vystředila se skupina „3/10" a číslice
-   sedávala o 13 px vlevo. */
+/* --- číslo pod květem ------------------------------------------------------
+   Jmenovatel „/10" stojí vedle číslice, ne pod ní. Číslo už není uvnitř
+   květu, takže se nemusí prát s plátky o místo a může být velké. */
+/* Jmenovatel „/10" visí mimo tok. Kdyby byl v toku, vystředila by se
+   skupina „4/10" a číslice by seděla o 16 px vlevo od osy květu. */
 .bignum { position: relative; display: inline-block; }
 .bignum .d { display: block; text-align: center; }
 .bignum small {
-  position: absolute; left: 100%; bottom: 1.05rem; margin-left: .12rem;
-  font-family: var(--sans); font-size: 1rem; font-weight: 400;
-  color: var(--fg-faint); letter-spacing: .02em; opacity: .75;
+  position: absolute; left: 100%; bottom: .55rem; margin-left: .14rem;
+  font-family: var(--sans); font-size: 1.05rem; font-weight: 400;
+  color: var(--fg-faint); letter-spacing: .02em; opacity: .8;
 }
 
-/* Popisek musí projít mezi vnitřním prstencem. Ve staré velikosti mu
-   zbývalo dohromady 10 px a opticky se dotýkal tahu. */
-/* Popisek se zmenšuje spolu s prstencem — jinak by se na malém telefonu
-   dotýkal vnitřní dráhy. Šířka je svázaná s mírou prstence. */
 .ringlabel {
-  margin: .35rem 0 0; font-size: clamp(.42rem, 2vw, .5rem); font-weight: 600;
-  letter-spacing: .09em; text-transform: uppercase; color: var(--fg-faint);
-  max-width: calc(var(--ring) * 0.56); text-align: center; line-height: 1.3;
+  margin: .3rem 0 0; font-size: .6875rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg-faint);
+  text-align: center; line-height: 1.3;
 }
 
 /* Záře se nesmí protáhnout přes kartu na úzkém displeji. */
@@ -1242,26 +1314,44 @@ body::before {
 .nextpill b { display: block; font-weight: 500; }
 .nextpill span { display: block; font-size: .6875rem; color: var(--fg-faint); margin-top: .1rem; }
 
-/* --- časová osa ---------------------------------------------------------- */
-.tl { position: relative; padding-left: 1.6rem; margin-top: .8rem; }
-.tl::before { content: ''; position: absolute; left: .45rem; top: .3rem; bottom: .3rem; width: 1px; background: var(--line); }
-.tlday { margin: 1.5rem 0 .7rem -1.6rem; }
+/* --- časová osa: nalepené lístky ------------------------------------------
+   Osa není linka s puntíky, ale sešit s lístky. Každý záznam je papírek
+   přilepený o stupeň nakřivo, s barevným okrajem podle toho, o co jde.
+   Naklonění se střídá po dvou, aby to vypadalo lepené rukou, ne generované. */
+.tl { display: flex; flex-direction: column; gap: .5rem; margin-top: .8rem; }
+/* Lístky patří na papír, ne na bílou kartu — na ní by zmizely. Karta,
+   která nese osu, se proto sama stáhne do papíru. */
+.surface:has(> .tl) { background: var(--page); border-color: transparent; box-shadow: none; }
+.tlday { margin: 1.3rem 0 .2rem; }
 .tlday:first-child { margin-top: 0; }
 .tlday p {
-  display: inline-block; background: var(--page); padding-right: .6rem;
-  font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-faint); font-weight: 600;
+  display: inline-block; padding: .18rem .6rem;
+  background: var(--paper-deep); border-radius: 2px; transform: rotate(-1.2deg);
+  font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg-soft); font-weight: 600;
 }
-.tlitem { position: relative; padding: .55rem 0; }
+.tlitem {
+  position: relative; padding: .7rem .85rem .75rem 1rem;
+  background: var(--card); border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 rgb(43 36 49 / .05), 0 4px 12px -6px rgb(43 36 49 / .14);
+  transform: rotate(-.55deg);
+}
+.tlitem:nth-child(even) { transform: rotate(.45deg); }
+.tlitem:nth-child(3n) { transform: rotate(-.25deg); }
+/* Barevný okraj lístku říká, o co jde, dřív než ho přečtete. */
 .tlitem::before {
-  content: ''; position: absolute; left: -1.32rem; top: .95rem;
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--page); border: 1px solid var(--fg-faint);
+  content: ''; position: absolute; left: 0; top: .75rem; bottom: .75rem;
+  width: 3px; border-radius: 0 2px 2px 0; background: var(--lavender);
 }
-.tlitem.major::before { background: var(--s1); border-color: var(--s1); box-shadow: 0 0 0 3px color-mix(in oklab, var(--s1) 18%, transparent); }
+.tlitem.major::before { background: var(--s1); }
 .tlitem .when { font-size: .6875rem; color: var(--fg-faint); }
-.tlitem b { display: block; font-weight: 500; font-size: .9375rem; margin-top: .1rem; }
+.tlitem b { display: block; font-weight: 600; font-size: .9375rem; margin-top: .1rem; }
 .tlitem.major b { font-family: var(--display); font-weight: 400; font-size: 1.1rem; }
 .tlitem .det { display: block; font-size: .8125rem; color: var(--fg-soft); line-height: 1.5; margin-top: .15rem; }
+@media (prefers-reduced-motion: reduce) {
+  .tlitem, .tlitem:nth-child(even), .tlitem:nth-child(3n), .tlday p { transform: none; }
+}
 
 /* --- připomínky ---------------------------------------------------------- */
 .nudges { display: flex; flex-direction: column; gap: .5rem; margin-top: .8rem; }
@@ -1309,7 +1399,7 @@ body::before {
 /* Tvar i tečku na lince dědí z .tlitem, tady se jen shazuje vzhled tlačítka. */
 button.tlitem {
   display: block; width: 100%; text-align: left;
-  background: none; border: 0; cursor: pointer; font: inherit; color: inherit;
+  border: 0; cursor: pointer; font: inherit; color: inherit;
 }
 button.tlitem:hover b { color: var(--s1); }
 

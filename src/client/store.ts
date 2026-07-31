@@ -313,7 +313,9 @@ function blank(): Save {
     exercises: [],
     eventState: {},
     posts: [],
-    theme: 'dark',
+    // Lis je papírový směr — světlý režim je ten hlavní. `auto` znamená
+    // „podle zařízení“; kdo si přepne ručně, tomu se volba nepřepisuje.
+    theme: 'auto',
     dayOffset: 0,
     seenTour: false,
   }
