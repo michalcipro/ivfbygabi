@@ -15,6 +15,11 @@ import { applyTopicAffinity, type WeightedAffinity } from '../lib/content/affini
  * nejsilnější naplnění slibu o soukromí: data o léčbě neopustí prohlížeč.
  */
 
+/**
+ * Klíč v úložišti zůstává i po přejmenování na Bloomia. Kdyby se změnil,
+ * každá uživatelka by přišla o celý svůj deník — a to je ta poslední věc,
+ * kterou smí rebranding udělat.
+ */
 const KEY = 'ivf-by-gabi/v1'
 
 export interface JournalRow {

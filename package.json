@@ -2,7 +2,7 @@
   "name": "ivf-by-gabi",
   "version": "0.1.0",
   "private": true,
-  "description": "IVF by Gabi — prémiová česká platforma pro ženy na cestě za dítětem",
+  "description": "Bloomia — prémiová česká platforma pro ženy na cestě za dítětem",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

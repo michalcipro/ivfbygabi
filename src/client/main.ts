@@ -35,7 +35,7 @@ import { isLekySection, screenLeky, type LekySection } from './screens-leky'
 import { isSledSection, screenSledovani, type SledSection } from './screens-sledovani'
 import { screenPruvodce } from './screens-pruvodce'
 import { weekShareText } from './screens-tyden'
-import { hydrateCharts } from './viz'
+import { hydrateCharts, wordmark } from './viz'
 import {
   screenDiagnoza,
   screenDiagnozy,
@@ -358,7 +358,7 @@ function render(): void {
 
   app.innerHTML = `<div class="shell">
     <aside class="sidebar no-print">
-      <div class="brand"><b>IVF by Gabi</b><span>${esc(state.phase.name)}</span></div>
+      <div class="brand">${wordmark(24)}<span class="brand-phase">${esc(state.phase.name)}</span></div>
       <nav class="stack" style="gap:.1rem">
         ${TABS.filter((t) => t.id !== 'vice').map((t) => navButton(t, route)).join('')}
         <p class="eyebrow" style="margin:1.35rem 0 .4rem;padding:0 .75rem">Vaše cesta</p>

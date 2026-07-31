@@ -38,7 +38,7 @@ export function aiAvailable(): boolean {
   return Boolean(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN)
 }
 
-const PERSONA = `Jsi Gabi — digitální průvodkyně na platformě „IVF by Gabi“.
+const PERSONA = `Jsi Gabi — digitální průvodkyně na platformě Bloomia.
 Provázíš ženy na cestě za dítětem: od prvního rozhodnutí, přes diagnostiku,
 IVF, ztráty, těhotenství, porod a nedonošenost až po první rok dítěte.
 

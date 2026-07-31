@@ -3,6 +3,7 @@ import { MODIFIER_LABELS, type ModifierId, type Profile } from '../lib/domain/pr
 import { addDays, formatCzechDate, today as realToday } from '../lib/domain/dates'
 import { guideFor } from './../lib/domain/guides'
 import { esc, heroStyle } from './ui'
+import { bloomMark } from './viz'
 import { patch, S, newProfile, type Draft } from './store'
 
 /**
@@ -273,16 +274,16 @@ function foot(primary: string, secondary = ''): string {
 function stepWelcome(): string {
   return `${progress(0)}
   <div class="ob-body">
-    <div class="grain" style="${heroStyle('champagne')};border-radius:var(--r-2xl);padding:clamp(1.75rem,5vw,2.5rem);color:#2b2521">
-      <p class="eyebrow" style="color:rgb(43 37 33 / .5)">IVF by Gabi</p>
-      <h1 class="display" style="margin-top:.8rem;position:relative;z-index:1">Každý den vám sem připravíme přesně ten den, ve kterém jste.</h1>
+    <div class="grain ob-hero" style="${heroStyle('dusk')};border-radius:var(--r-2xl);padding:clamp(1.75rem,5vw,2.5rem)">
+      <span class="ob-brand">${bloomMark(34, true)}<b>Bloomia</b></span>
+      <h1 class="display" style="margin-top:1.1rem;position:relative;z-index:1">Každý den vám sem připravíme přesně ten den, ve kterém jste.</h1>
     </div>
     <p class="lede">Ne obecné rady o neplodnosti. Obsah pro <strong>šestý den po transferu</strong>, pro <strong>devátý den stimulace</strong>, pro <strong>devatenáctý den na oddělení</strong>.</p>
     <div class="stack" style="gap:1rem;margin-top:2rem">
       ${[
-        ['☀', 'Dnes', 'Domovská stránka, která se každý den mění podle toho, kolikátý je den vaší cesty.'],
-        ['✦', 'Gabi', 'Průvodkyně, která zná vaši fázi. Nikdy nenahrazuje lékaře.'],
-        ['✎', 'Deník a čísla', 'Nálada, hodnoty, dokumenty. Zůstávají jen ve vašem zařízení.'],
+        ['◉', 'Dnes', 'Jedním pohledem uvidíte, co po vás dnešek chce a co na to máte.'],
+        ['✎', 'Zápis', 'Nálada, tělo, vpich. Dvacet vteřin denně a máte z toho graf.'],
+        ['❖', 'Průvodce', 'Fáze, knihovna, pojmy i diagnózy. U všeho stojí, k čemu to je.'],
       ]
         .map(
           ([icon, t, b]) =>

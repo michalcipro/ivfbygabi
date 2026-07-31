@@ -1,23 +1,26 @@
 /* ==========================================================================
-   IVF by Gabi — prohlížečová verze aplikace.
+   Bloomia — prohlížečová verze aplikace.
    Tokeny jsou 1:1 ze src/app/globals.css. Tohle není prezentace o aplikaci,
    je to aplikace.
    ========================================================================== */
 
 :root {
+  /* Bloomia — botanická noc.
+     Hluboká borovicová zeleň jako listí po setmění a v ní teplé květy.
+     Meruňková je hlavní akcent: květ proti listu. */
   --porcelain: #ffffff;
-  --cream: #fbf8f4;
-  --linen: #f5efe6;
-  --champagne: #ecdcc4;
-  --sand: #ddcdb8;
-  --taupe: #a3907c;
-  --taupe-deep: #7b6a59;
-  --blush: #e3cec7;
-  --blush-deep: #b98f83;
-  --sage: #bfcabb;
-  --sage-deep: #7d8c78;
-  --sky: #c3cdd6;
-  --gold: #c8a878;
+  --cream: #f5faf7;
+  --linen: #e9f2ed;
+  --champagne: #d6e8de;
+  --sand: #b6d2c5;
+  --taupe: #6f9187;
+  --taupe-deep: #3d6157;
+  --blush: #f2d3c4;
+  --blush-deep: #bc6430;
+  --sage: #bcd8c8;
+  --sage-deep: #5d8a73;
+  --sky: #b9d1d8;
+  --gold: #d9a45c;
 
   --page: var(--cream);
   --card: var(--porcelain);
@@ -30,10 +33,10 @@
   /* Datová paleta — z akvarelové duhy na obálce diáře, prohloubená tak, aby
      unesla data. Prošla všemi šesti kontrolami validátoru včetně barvosleposti.
      s1 = co dnešek žádá, s2 = co na to máte, s3 = úzkost, s4 = naděje. */
-  --s1: #ac7d1c;
-  --s2: #3391b8;
-  --s3: #d06a4a;
-  --s4: #9769b8;
+  --s1: #bc6430;
+  --s2: #1f9479;
+  --s3: #c75673;
+  --s4: #7268cc;
 
   --display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
   --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
@@ -58,39 +61,39 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --page: #0c0a0b;
-    --card: #151113;
-    --card-muted: #1d1719;
-    --line: rgb(255 255 255 / 0.07);
-    --fg: #f6efeb;
-    --fg-soft: #b8a8a4;
-    --fg-faint: #877873;
-    --halo: rgb(184 135 34 / 0.13);
-    --sheen: rgb(255 255 255 / 0.045);
+    --page: #071417;
+    --card: #0e2126;
+    --card-muted: #163036;
+    --line: rgb(255 255 255 / 0.075);
+    --fg: #eef6f3;
+    --fg-soft: #a5bcb6;
+    --fg-faint: #71908a;
+    --halo: rgb(211 118 63 / 0.16);
+    --sheen: rgb(255 255 255 / 0.05);
     --track: rgb(255 255 255 / 0.085);
-    --s1: #b88722;
-    --s2: #3391b8;
-    --s3: #d06a4a;
-    --s4: #9769b8;
+    --s1: #d3763f;
+    --s2: #34a98c;
+    --s3: #dc6c87;
+    --s4: #8a82d6;
     color-scheme: dark;
   }
 }
 
 :root[data-theme='dark'] {
-  --page: #0c0a0b;
-  --card: #151113;
-  --card-muted: #1d1719;
-  --line: rgb(255 255 255 / 0.07);
-  --fg: #f6efeb;
-  --fg-soft: #b8a8a4;
-  --fg-faint: #877873;
-  --halo: rgb(184 135 34 / 0.13);
-  --sheen: rgb(255 255 255 / 0.045);
+  --page: #071417;
+  --card: #0e2126;
+  --card-muted: #163036;
+  --line: rgb(255 255 255 / 0.075);
+  --fg: #eef6f3;
+  --fg-soft: #a5bcb6;
+  --fg-faint: #71908a;
+  --halo: rgb(211 118 63 / 0.16);
+  --sheen: rgb(255 255 255 / 0.05);
   --track: rgb(255 255 255 / 0.085);
-  --s1: #b88722;
-  --s2: #3391b8;
-  --s3: #d06a4a;
-  --s4: #9769b8;
+  --s1: #d3763f;
+  --s2: #34a98c;
+  --s3: #dc6c87;
+  --s4: #8a82d6;
   color-scheme: dark;
 }
 
@@ -98,17 +101,17 @@
   --page: var(--cream);
   --card: var(--porcelain);
   --card-muted: var(--linen);
-  --line: #e8e0d5;
-  --fg: #2b2521;
-  --fg-soft: #6c6058;
-  --fg-faint: #9a8f86;
-  --halo: rgb(172 125 28 / 0.045);
+  --line: #dbe8e1;
+  --fg: #10231e;
+  --fg-soft: #47635c;
+  --fg-faint: #7a938c;
+  --halo: rgb(188 100 48 / 0.06);
   --sheen: rgb(255 255 255 / 0.6);
-  --track: #eae1d6;
-  --s1: #ac7d1c;
-  --s2: #3391b8;
-  --s3: #d06a4a;
-  --s4: #9769b8;
+  --track: #dceae3;
+  --s1: #bc6430;
+  --s2: #1f9479;
+  --s3: #c75673;
+  --s4: #7268cc;
   color-scheme: light;
 }
 
@@ -137,7 +140,7 @@ ul, ol { margin: 0; }
 button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--taupe); outline-offset: 3px; border-radius: 4px; }
 
-::selection { background: var(--champagne); color: #2b2521; }
+::selection { background: var(--champagne); color: #10231e; }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
@@ -204,9 +207,10 @@ button { font: inherit; color: inherit; }
 }
 @media (min-width: 1024px) { .sidebar { display: flex; } }
 
-.brand { padding: 0 0.75rem 1.5rem; }
-.brand b { font-family: var(--display); font-size: 1.4rem; font-weight: 400; display: block; letter-spacing: -0.02em; }
-.brand span { font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-faint); }
+/* Značka je vložený prvek se znakem, ne holý <b> — název fáze proto musí
+   mít vlastní třídu, jinak by zdědil verzálky i řádek od wordmarku. */
+.brand { padding: 0 0.75rem 1.5rem; display: flex; flex-direction: column; align-items: flex-start; gap: .3rem; }
+.brand-phase { font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-faint); }
 
 .navlink {
   display: flex; align-items: center; gap: 0.8rem; width: 100%;
@@ -1116,3 +1120,39 @@ button.daycell:hover { border-color: var(--sand); }
   border: 1px solid color-mix(in oklab, var(--s1) 35%, transparent);
   font-size: .875rem; line-height: 1.6; color: var(--fg-soft);
 }
+
+/* ==========================================================================
+   Bloomia — značka a atmosféra.
+   ========================================================================== */
+
+.bloom { display: block; flex: none; overflow: visible; }
+.wordmark { display: inline-flex; align-items: center; gap: .55rem; }
+.wordmark b {
+  font-family: var(--display); font-weight: 400; font-size: 1.35rem;
+  letter-spacing: -0.01em; color: var(--fg);
+}
+@keyframes petal {
+  from { opacity: 0; transform: scale(.4); }
+  to { opacity: 1; transform: scale(1); }
+}
+/* Lístky rostou ze středu květu, ne z rohu plátna. */
+.bloom path { transform-origin: 24px 24px; transform-box: view-box; }
+@media (prefers-reduced-motion: reduce) { .bloom path { animation: none !important; } }
+
+/* Atmosféra: dvě velmi tiché záře, teplá nahoře a listová vlevo dole.
+   Nesmí to být vidět jako skvrna — jen aby plocha nebyla mrtvá. */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(70rem 40rem at 78% -8%, color-mix(in oklab, var(--s1) 12%, transparent), transparent 62%),
+    radial-gradient(56rem 44rem at -10% 108%, color-mix(in oklab, var(--sage-deep) 14%, transparent), transparent 60%);
+}
+
+/* Uvítací panel — jméno se znakem, který se rozevře po okvětních lístcích. */
+.ob-hero { color: #f2f8f4; }
+.ob-brand { display: inline-flex; align-items: center; gap: .6rem; position: relative; z-index: 1; }
+.ob-brand b {
+  font-family: var(--display); font-weight: 400; font-size: 1.5rem;
+  letter-spacing: -0.01em; color: #f2f8f4;
+}
+.ob-hero .display { color: #f7fbf9; }

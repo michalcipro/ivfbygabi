@@ -3,17 +3,23 @@ import { KIND_ICONS, KIND_LABELS } from '../lib/content/types'
 
 /** Stavební prvky. Všechny obrazovky se skládají z těchhle kousků. */
 
+/**
+ * Obrazy ke článkům.
+ *
+ * Bloomia je botanická noc — listí, mech, ranní mlha a v tom teplé květy.
+ * Gradienty jsou proto laděné do zeleně a meruňky, ne do béžové.
+ */
 export const HERO: Record<HeroToken, string> = {
-  champagne: 'linear-gradient(135deg, #f2e3cd 0%, #e2cbaa 55%, #cdb08c 100%)',
-  taupe: 'linear-gradient(135deg, #cbbdae 0%, #a3907c 60%, #7b6a59 100%)',
-  blush: 'linear-gradient(135deg, #f3e2dd 0%, #e3cec7 55%, #c9a89f 100%)',
-  sage: 'linear-gradient(135deg, #e2e8dd 0%, #bfcabb 60%, #93a28c 100%)',
-  sky: 'linear-gradient(135deg, #dfe6ec 0%, #c3cdd6 60%, #94a4b0 100%)',
-  linen: 'linear-gradient(135deg, #faf5ee 0%, #efe5d6 60%, #ded0bb 100%)',
-  sand: 'linear-gradient(135deg, #ece0d1 0%, #ddcdb8 60%, #c2ac92 100%)',
-  dusk: 'linear-gradient(145deg, #b8a698 0%, #8d7a6c 45%, #5d4f45 100%)',
-  dawn: 'linear-gradient(135deg, #fdf1e5 0%, #f0d9c6 45%, #dcb9a0 100%)',
-  pearl: 'linear-gradient(135deg, #ffffff 0%, #f3efe8 55%, #e3dcd0 100%)',
+  champagne: 'linear-gradient(135deg, #e6f2ea 0%, #c8e0d2 55%, #a4c6b3 100%)',
+  taupe: 'linear-gradient(135deg, #b3ccc2 0%, #6f9187 60%, #3d6157 100%)',
+  blush: 'linear-gradient(135deg, #fbe6da 0%, #f2d3c4 55%, #dda882 100%)',
+  sage: 'linear-gradient(135deg, #dfeee4 0%, #bcd8c8 60%, #8ab39a 100%)',
+  sky: 'linear-gradient(135deg, #dceaee 0%, #b9d1d8 60%, #8aabb4 100%)',
+  linen: 'linear-gradient(135deg, #f4faf6 0%, #e3efe8 60%, #c9ded3 100%)',
+  sand: 'linear-gradient(135deg, #dceee3 0%, #b6d2c5 60%, #8fb5a3 100%)',
+  dusk: 'linear-gradient(145deg, #5e8b80 0%, #33564d 45%, #16302b 100%)',
+  dawn: 'linear-gradient(135deg, #fdeee0 0%, #f6d6bd 45%, #e2a97d 100%)',
+  pearl: 'linear-gradient(135deg, #ffffff 0%, #eef6f1 55%, #d7e8de 100%)',
 }
 
 export const heroStyle = (token: HeroToken | string): string =>

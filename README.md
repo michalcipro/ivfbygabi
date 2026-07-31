@@ -1,4 +1,4 @@
-# IVF by Gabi
+# Bloomia
 
 Prémiová česká platforma pro ženy na cestě za dítětem — od prvního rozhodnutí, přes
 diagnostiku, IVF a případné ztráty, přes těhotenství a porod (včetně předčasného a NICU),

@@ -313,7 +313,7 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
       const lastIdx = [...s.data].map((v, i) => (v === null ? -1 : i)).filter((i) => i >= 0).pop()
       if (lastIdx !== undefined) {
         // Prstenec z plochy, aby poslední bod nesplynul s čárou pod ním.
-        svg.appendChild(mk('circle', { cx: x(lastIdx), cy: y(s.data[lastIdx]!), r: 4, fill: s.color, stroke: 'var(--page)', 'stroke-width': 2 }))
+        svg.appendChild(mk('circle', { cx: x(lastIdx), cy: y(s.data[lastIdx]!), r: 4, fill: s.color, stroke: 'var(--card)', 'stroke-width': 2 }))
       }
     }
 
@@ -321,7 +321,7 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
     // Body se rodí na počátku plochy, ne na souřadnici 0 — jinak vyčnívají
     // z grafu, i když jsou průhledné.
     const dots = spec.series.map((s) =>
-      svg.appendChild(mk('circle', { cx: L, cy: B, r: 4, fill: s.color, stroke: 'var(--page)', 'stroke-width': 2, opacity: 0 })),
+      svg.appendChild(mk('circle', { cx: L, cy: B, r: 4, fill: s.color, stroke: 'var(--card)', 'stroke-width': 2, opacity: 0 })),
     )
     const hit = svg.appendChild(mk('rect', { x: L, y: T, width: R - L, height: B - T, fill: 'transparent' }))
 
@@ -512,4 +512,41 @@ export function toggleRow(key: string, title: string, body: string, on: boolean)
     <span class="txt"><b>${esc(title)}</b><span>${esc(body)}</span></span>
     <span class="knob"></span>
   </button>`
+}
+
+// ------------------------------------------------------------------ značka ---
+
+/**
+ * Kvetoucí znak.
+ *
+ * Šest okvětních lístků vyrůstá ze středu — čím dál od středu, tím
+ * otevřenější. Kreslí se tahem, ne výplní, aby fungoval i v malé velikosti
+ * a v obou motivech. Vnitřek nese barvu meruňky, obvod barvu listu:
+ * květ proti listí, což je celý nápad Bloomie.
+ */
+export function bloomMark(size = 28, animate = false): string {
+  const petals = 6
+  const out: string[] = []
+  for (let i = 0; i < petals; i++) {
+    const a = (i * 360) / petals
+    // Otočení musí být na obalu, ne na tahu. Kdyby bylo na tahu, přepsala
+    // by ho CSS transformace z animace a všechny lístky by se složily na sebe.
+    out.push(
+      `<g transform="rotate(${a} 24 24)">
+        <path d="M24 25 C 23 17, 18 11, 24 4 C 30 11, 25 17, 24 25 Z"
+              fill="none" stroke="${i % 2 === 0 ? 'var(--s1)' : 'var(--sage-deep)'}"
+              stroke-width="2" stroke-linejoin="round"
+              ${animate ? `style="animation:petal .85s var(--calm) ${i * 80}ms both"` : ''}/>
+      </g>`,
+    )
+  }
+  return `<svg class="bloom" width="${size}" height="${size}" viewBox="0 0 48 48" aria-hidden="true">
+    ${out.join('')}
+    <circle cx="24" cy="24" r="3" fill="var(--s1)"/>
+  </svg>`
+}
+
+/** Jméno se znakem. Používá se v postranním panelu a v uvítání. */
+export function wordmark(size = 26): string {
+  return `<span class="wordmark">${bloomMark(size)}<b>Bloomia</b></span>`
 }
