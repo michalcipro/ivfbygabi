@@ -48,7 +48,7 @@ export interface MedRow {
 export interface SymptomLog {
   symptomId: string
   /** 0–10. */
-  intensity: number
+  intensity: number | null
 }
 
 // --------------------------------------------------------------- pomocníci ---
@@ -301,14 +301,20 @@ export function topSymptoms(
   logs: SymptomLog[],
   labelOf: (id: string) => string,
   limit = 5,
-): { id: string; label: string; count: number; avgIntensity: number }[] {
-  const bucket = new Map<string, { count: number; sum: number }>()
+): { id: string; label: string; count: number; avgIntensity: number | null }[] {
+  // `rated` je počet zápisů, u kterých uživatelka intenzitu opravdu zadala.
+  // Průměrovat přes všechny by starší zápisy bez intenzity počítalo jako nulu
+  // a průměr by tvrdil něco, co nikdo nezapsal.
+  const bucket = new Map<string, { count: number; rated: number; sum: number }>()
 
   for (const l of logs) {
     if (!l.symptomId) continue
-    const cur = bucket.get(l.symptomId) ?? { count: 0, sum: 0 }
+    const cur = bucket.get(l.symptomId) ?? { count: 0, rated: 0, sum: 0 }
     cur.count++
-    cur.sum += Number.isFinite(l.intensity) ? l.intensity : 0
+    if (l.intensity !== null && Number.isFinite(l.intensity)) {
+      cur.rated++
+      cur.sum += l.intensity
+    }
     bucket.set(l.symptomId, cur)
   }
 
@@ -317,12 +323,12 @@ export function topSymptoms(
       id,
       label: labelOf(id) || id,
       count: b.count,
-      avgIntensity: round(b.sum / b.count, 1),
+      avgIntensity: b.rated > 0 ? round(b.sum / b.rated, 1) : null,
     }))
     .sort(
       (a, b) =>
         b.count - a.count ||
-        b.avgIntensity - a.avgIntensity ||
+        (b.avgIntensity ?? -1) - (a.avgIntensity ?? -1) ||
         a.label.localeCompare(b.label, 'cs'),
     )
     .slice(0, Math.max(0, limit))
@@ -375,7 +381,7 @@ export function compare(a: CycleRow, b: CycleRow): { label: string; a: string; b
     { label: 'Odebraná vajíčka', a: cell(na.eggs), b: cell(nb.eggs) },
     { label: 'Zralá vajíčka', a: cell(na.mature), b: cell(nb.mature) },
     { label: 'Oplozená', a: cell(na.fertilized), b: cell(nb.fertilized) },
-    { label: 'Míra oplození', a: cellRate(na.fertilizationRate), b: cellRate(nb.fertilizationRate) },
+    { label: 'Podíl oplozených', a: cellRate(na.fertilizationRate), b: cellRate(nb.fertilizationRate) },
     { label: 'Blastocysty', a: cell(na.blastocysts), b: cell(nb.blastocysts) },
     { label: 'Podíl blastocyst', a: cellRate(na.blastRate), b: cellRate(nb.blastRate) },
     { label: 'Zamražená embrya', a: cell(na.frozen), b: cell(nb.frozen) },

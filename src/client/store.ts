@@ -109,8 +109,12 @@ export interface SymptomLog {
   date: IsoDate
   at: string
   symptomId: string
-  /** 0–10. */
-  intensity: number
+  /**
+   * 0–10, nebo `null`, když uživatelka jen zaškrtla příznak a intenzitu
+   * neurčila. Nula znamená „nic“ — to je odpověď, ne chybějící údaj, a
+   * plést si to dvoje by pokřivilo každý průměr.
+   */
+  intensity: number | null
   note: string
 }
 
@@ -361,6 +365,21 @@ function migrate(d: Save): Save {
       cycleId: old.cycleId ?? null,
     }
   })
+
+  // Příznaky se dřív zaškrtávaly jen v deníku, bez intenzity a bez času.
+  // Statistiky i časová osa čtou `symptomLogs`, takže by starší zápisy
+  // zmizely — proto se dotáhnou. Intenzita zůstává `null`: uživatelka ji
+  // tenkrát nezadala a dosazovat za ni číslo by bylo vymýšlení.
+  const logged = new Set(d.symptomLogs.map((l) => `${l.date}|${l.symptomId}`))
+  for (const [date, row] of Object.entries(d.journal)) {
+    for (const symptomId of row?.symptoms ?? []) {
+      const key = `${date}|${symptomId}`
+      if (logged.has(key)) continue
+      logged.add(key)
+      d.symptomLogs.push({ id: uid('sl'), date, at: '', symptomId, intensity: null, note: '' })
+    }
+  }
+
   return d
 }
 
@@ -673,6 +692,41 @@ export function updateCycle(id: string, patchFn: (c: CycleRow) => void): void {
   patch((d) => {
     const c = d.cycles.find((x) => x.id === id)
     if (c) patchFn(c)
+  })
+}
+
+// -------------------------------------------------------------- příznaky ---
+
+/** Zápisy příznaků pro jeden den. */
+export function symptomLogsOn(date: IsoDate): SymptomLog[] {
+  return data.symptomLogs.filter((l) => l.date === date)
+}
+
+/**
+ * Zaškrtnutí příznaku.
+ *
+ * Deník drží seznam („co jsem dnes měla“), `symptomLogs` k tomu přidává
+ * intenzitu a čas. Obojí se musí měnit naráz, jinak se rozejde to, co je
+ * vidět v Zápisu, s tím, co se počítá ve Statistikách.
+ */
+export function toggleSymptomLog(date: IsoDate, symptomId: string): void {
+  patch((d) => {
+    const has = d.symptomLogs.some((l) => l.date === date && l.symptomId === symptomId)
+    if (has) {
+      d.symptomLogs = d.symptomLogs.filter((l) => !(l.date === date && l.symptomId === symptomId))
+      return
+    }
+    d.symptomLogs.push({ id: uid('sl'), date, at: '', symptomId, intensity: null, note: '' })
+  })
+}
+
+/** Intenzita 0–10. Mimo rozsah se ořízne, ať se do dat nedostane nesmysl. */
+export function setSymptomIntensity(date: IsoDate, symptomId: string, intensity: number): void {
+  const value = Math.max(0, Math.min(10, Math.round(intensity)))
+  patch((d) => {
+    const row = d.symptomLogs.find((l) => l.date === date && l.symptomId === symptomId)
+    if (row) row.intensity = value
+    else d.symptomLogs.push({ id: uid('sl'), date, at: '', symptomId, intensity: value, note: '' })
   })
 }
 

@@ -6,8 +6,13 @@ import { parseReport, type ParsedReport } from '../lib/health/parse-report'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import type { Letter } from '../lib/shared/records'
 
+import { cycleTitle, type CycleKind, type CycleOutcome } from '../lib/domain/cycle'
+
 import { esc } from './ui'
 import {
+  addCycle,
+  cycleById,
+  deleteCycle,
   journey,
   journalFor,
   learn,
@@ -26,7 +31,13 @@ import {
   isOnboarded,
   addShot,
   activeCycleId,
+  setSymptomIntensity,
+  toggleSymptomLog,
+  updateCycle,
+  type HealthKind,
   type JournalRow,
+  type QuestionPriority,
+  type QuestionStatus,
 } from './store'
 import { draft, profileFromDraft, renderOnboarding, stepHasDate } from './onboarding'
 import { screenCesta, screenObjevit, screenProc } from './screens-home'
@@ -35,6 +46,10 @@ import { isZapisSection, screenZapis, type ZapisSection } from './screens-zapis'
 import { isLekySection, screenLeky, type LekySection } from './screens-leky'
 import { isSledSection, screenSledovani, type SledSection } from './screens-sledovani'
 import { screenPruvodce } from './screens-pruvodce'
+import { isJourneySection, screenJourney, type JourneySection } from './screens-journey'
+import { screenCyklus } from './screens-cyklus'
+import { isOtazkySection, otazkyCopyText, screenOtazky, type OtazkySection } from './screens-otazky'
+import { isZdravSection, measureTitle, screenZdravotni, type ZdravSection } from './screens-zdravotni'
 import { weekShareText } from './screens-tyden'
 import { hydrateCharts, wordmark } from './viz'
 import { quickButton, quickSheet } from './quick-add'
@@ -86,6 +101,9 @@ const TABS = [
 ]
 
 const SECONDARY = [
+  { id: 'journey', label: 'Moje léčba', icon: '✧' },
+  { id: 'zdravotni', label: 'Zdravotní data', icon: '◉' },
+  { id: 'otazky', label: 'Otázky pro lékaře', icon: '?' },
   { id: 'faze', label: 'Moje fáze', icon: '❖' },
   { id: 'gabi', label: 'Hledat v aplikaci', icon: '✦' },
   { id: 'denik', label: 'Deník a cvičení', icon: '✎' },
@@ -117,6 +135,10 @@ const TITLES: Record<string, string> = {
   sledovani: 'Sledování',
   pruvodce: 'Průvodce',
   nuzky: 'Nůžky dne',
+  journey: 'Moje léčba',
+  cyklus: 'Cyklus',
+  otazky: 'Otázky pro lékaře',
+  zdravotni: 'Zdravotní data',
   objevit: 'Objevit',
   gabi: 'Gabi',
   denik: 'Deník',
@@ -146,6 +168,9 @@ const TITLES: Record<string, string> = {
 
 /** Tvar do věty „Zpět na …“. Uvedené jsou jen ty, kde se název skloňuje. */
 const BACK_TITLES: Record<string, string> = {
+  journey: 'Moji léčbu',
+  otazky: 'Otázky pro lékaře',
+  zdravotni: 'Zdravotní data',
   cesta: 'celou cestu',
   faze: 'vaši fázi',
   diagnozy: 'Diagnózy',
@@ -177,6 +202,10 @@ const PARENT: Record<string, string> = {
   nastaveni: 'pruvodce',
   clenstvi: 'pruvodce',
   proc: 'dnes',
+  journey: 'dnes',
+  cyklus: 'journey/historie',
+  otazky: 'journey',
+  zdravotni: 'journey',
   zapis: 'dnes',
   leky: 'dnes',
   sledovani: 'dnes',
@@ -196,6 +225,9 @@ const SUMMARY_HIDDEN = [
   'cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi',
   // Na těchhle obrazovkách je prstenec nebo graf sám o sobě souhrnem.
   'dnes', 'zapis', 'leky', 'sledovani', 'pruvodce', 'nuzky',
+  // Tyhle mají vlastní hlavičku se stavem cyklu — druhý souhrn nad ní
+  // by říkal totéž jinými slovy.
+  'journey', 'cyklus', 'otazky', 'zdravotni',
 ]
 
 /** Stav, který nemá cenu ukládat — přežívá jen do zavření záložky. */
@@ -260,6 +292,22 @@ function screenFor(route: string): string {
       return screenPruvodce()
     case 'nuzky':
       return screenNuzky()
+    case 'journey': {
+      const want = a.split('/')[0]
+      return screenJourney(isJourneySection(want) ? (want as JourneySection) : 'prehled', view.accordion)
+    }
+    case 'cyklus':
+      // Bez rozbalené sekce by formulář byl celý zavřený a nově založený
+      // cyklus by neměl kam psát. Výchozí je Základ, zbytek je na klepnutí.
+      return screenCyklus(a, view.accordion ?? 'cyklus-zaklad')
+    case 'otazky': {
+      const want = a.split('/')[0]
+      return screenOtazky(isOtazkySection(want) ? (want as OtazkySection) : 'ceka', view.accordion)
+    }
+    case 'zdravotni': {
+      const want = a.split('/')[0]
+      return screenZdravotni(isZdravSection(want) ? (want as ZdravSection) : 'mereni')
+    }
     case 'objevit':
       return screenObjevit()
     case 'gabi':
@@ -415,6 +463,42 @@ function applyTheme(): void {
 const val = (id: string): string => {
   const el = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null
   return el ? el.value.trim() : ''
+}
+
+/** Číslo z pole. Prázdné pole je `null` — „nevíme“, ne nula. */
+const numOrNull = (id: string): number | null => {
+  const raw = val(id).replace(',', '.')
+  if (!raw) return null
+  const n = Number(raw)
+  return Number.isFinite(n) ? n : null
+}
+
+/** Datum z pole. Prázdné je `null`. */
+const dateOrNull = (id: string): string | null => val(id) || null
+
+/** Zaškrtnuté radio ve skupině. */
+const radio = (name: string): string =>
+  document.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)?.value ?? ''
+
+/**
+ * Skok na pole a kurzor do něj.
+ *
+ * Používají to prázdné stavy: tlačítko má vést k tomu, co věta nad ním
+ * doporučuje, ne na jinou obrazovku.
+ */
+function focusField(id: string): void {
+  const el = document.getElementById(id) as HTMLElement | null
+  if (!el) return
+  el.scrollIntoView({ block: 'center', behavior: 'smooth' })
+  ;(el as HTMLInputElement).focus?.()
+}
+
+/** Text do schránky. Nikam se nic neodesílá — vzniká to v prohlížeči. */
+function copyText(text: string, ok: string): void {
+  navigator.clipboard?.writeText(text).then(
+    () => toast(ok),
+    () => toast('Kopírování se nepovedlo. Text zůstal na obrazovce.'),
+  )
 }
 
 /**
@@ -574,6 +658,45 @@ function onboardingAction(act: string, argValue: string): boolean {
   }
 }
 
+/**
+ * Uloží formulář cyklu do dat.
+ *
+ * Volá se nejen z tlačítka, ale i před rozbalením jiné sekce. Stránka se
+ * překresluje celá, takže bez toho by rozepsané pole zmizelo ve chvíli, kdy
+ * uživatelka otevře další sekci — a to je ztráta dat, ne jen nepohodlí.
+ *
+ * Prázdné pole znamená „nevím“, ne nulu. Jediná výjimka je `startedOn`,
+ * které je povinné — tam se drží původní hodnota.
+ */
+function saveCycleForm(id: string): void {
+  if (!document.getElementById('cyc-startedOn')) return
+      updateCycle(id, (row) => {
+        row.name = val('cyc-name')
+        row.kind = (val('cyc-kind') || row.kind) as CycleKind
+        row.clinic = val('cyc-clinic')
+        row.doctor = val('cyc-doctor')
+        row.protocol = val('cyc-protocol')
+        row.cd1On = dateOrNull('cyc-cd1On')
+        row.startedOn = val('cyc-startedOn') || row.startedOn
+        row.endedOn = dateOrNull('cyc-endedOn')
+        row.stimStartOn = dateOrNull('cyc-stimStartOn')
+        row.triggerOn = dateOrNull('cyc-triggerOn')
+        row.triggerAt = val('cyc-triggerAt')
+        row.retrievalOn = dateOrNull('cyc-retrievalOn')
+        row.transferOn = dateOrNull('cyc-transferOn')
+        row.betaOn = dateOrNull('cyc-betaOn')
+        row.eggs = numOrNull('cyc-eggs')
+        row.mature = numOrNull('cyc-mature')
+        row.fertilized = numOrNull('cyc-fertilized')
+        row.blastocysts = numOrNull('cyc-blastocysts')
+        row.frozen = numOrNull('cyc-frozen')
+        row.transferred = numOrNull('cyc-transferred')
+        row.embryoDay = numOrNull('cyc-embryoDay')
+        row.outcome = (val('cyc-outcome') || row.outcome) as CycleOutcome
+        row.note = val('cyc-note')
+  })
+}
+
 function action(act: string, argValue: string): void {
   if (!isOnboarded()) {
     if (onboardingAction(act, argValue)) render()
@@ -624,7 +747,26 @@ function action(act: string, argValue: string): void {
     case 'sled-sec':
       go(`sledovani/${argValue}`)
       return
+    case 'journey-sec':
+      // Přepnutí dílku ruší rozbalenou položku — id z Historie nemá na
+      // Časové ose význam a naopak.
+      view.accordion = null
+      go(`journey/${argValue}`)
+      return
+    case 'otazky-sec':
+      view.accordion = null
+      go(`otazky/${argValue}`)
+      return
+    case 'zdrav-sec':
+      go(`zdravotni/${argValue}`)
+      return
+    case 'tl-filter':
+      view.accordion = argValue === 'vse' ? null : argValue
+      break
     case 'acc':
+      // Na detailu cyklu je harmonika součástí jednoho formuláře. Než se
+      // překreslí, musí se rozepsaná pole uložit.
+      if (base(currentRoute()) === 'cyklus') saveCycleForm(arg(currentRoute()))
       view.accordion = view.accordion === argValue ? null : argValue
       break
     case 'quick':
@@ -645,9 +787,20 @@ function action(act: string, argValue: string): void {
       break
     }
     case 'symptom': {
-      const cur = journalFor(viewDate())?.symptoms ?? []
+      // Deník drží seznam, `symptomLogs` intenzitu. Musí se to měnit naráz,
+      // jinak Statistiky ukazují něco jiného než Zápis.
+      const date = viewDate()
+      const cur = journalFor(date)?.symptoms ?? []
       const next = cur.includes(argValue) ? cur.filter((x) => x !== argValue) : [...cur, argValue]
       writeJournal({ symptoms: next })
+      toggleSymptomLog(date, argValue)
+      break
+    }
+    case 'sym-int': {
+      const [symptomId, raw] = argValue.split(':')
+      const n = Number(raw)
+      if (!symptomId || !(n >= 0 && n <= 10)) return
+      setSymptomIntensity(viewDate(), symptomId, n)
       break
     }
     case 'shot': {
@@ -841,6 +994,157 @@ function action(act: string, argValue: string): void {
     case 'med-del':
       patch((d) => {
         d.meds = d.meds.filter((m) => m.id !== argValue)
+      })
+      break
+
+    // --- cykly ------------------------------------------------------------
+    case 'cycle-new': {
+      // Založit a rovnou otevřít. Prázdný cyklus v seznamu, který si musí
+      // sama najít a rozkliknout, by byl krok navíc pro nic.
+      const row = addCycle()
+      view.accordion = null
+      view.quick = false
+      go(`cyklus/${row.id}`)
+      return
+    }
+    case 'cycle-save': {
+      if (!cycleById(argValue)) return
+      saveCycleForm(argValue)
+      toast('Cyklus uložen.')
+      break
+    }
+    case 'cycle-del': {
+      const c = cycleById(argValue)
+      if (!c) return
+      if (!confirm(`Opravdu smazat ${cycleTitle(c)}? Milníky i čísla z laboratoře zmizí a vrátit to nejde.`)) return
+      deleteCycle(argValue)
+      go('journey/historie')
+      return
+    }
+
+    // --- otázky pro lékaře ------------------------------------------------
+    case 'q-add': {
+      // Bez argumentu se čte formulář, s argumentem přichází hotové znění
+      // z návrhů. Návrh nesmí přepsat rozepsanou otázku ve formuláři.
+      const fromForm = !argValue
+      const text = fromForm ? val('q-text') : argValue
+      if (text.length < 2) return
+      const priority = (fromForm ? radio('q-prio') : '') || 'stredni'
+      const category = (fromForm ? radio('q-cat') : '') || 'Jiné'
+      const forDate = fromForm ? dateOrNull('q-for') : null
+      patch((d) => {
+        d.questions.unshift({
+          id: uid('q'),
+          text,
+          category,
+          priority: priority as QuestionPriority,
+          forDate,
+          answer: '',
+          status: 'ceka',
+          createdOn: viewDate(),
+        })
+      })
+      break
+    }
+    case 'q-answer': {
+      const text = val(`q-ans-${argValue}`)
+      patch((d) => {
+        const q = d.questions.find((x) => x.id === argValue)
+        if (q) q.answer = text
+      })
+      toast('Odpověď uložena.')
+      break
+    }
+    case 'q-status': {
+      const [id, status] = argValue.split(':')
+      if (!['ceka', 'vyreseno', 'archiv'].includes(status)) return
+      patch((d) => {
+        const q = d.questions.find((x) => x.id === id)
+        if (q) q.status = status as QuestionStatus
+      })
+      break
+    }
+    case 'q-del': {
+      if (!confirm('Opravdu smazat tuhle otázku? Vrátit to nejde.')) return
+      patch((d) => {
+        d.questions = d.questions.filter((q) => q.id !== argValue)
+      })
+      break
+    }
+    case 'q-copy':
+      copyText(otazkyCopyText(argValue), 'Zkopírováno. Nikam se nic neodeslalo.')
+      return
+    case 'q-focus':
+      focusField('q-text')
+      return
+
+    // --- zdravotní data ---------------------------------------------------
+    case 'hz-add': {
+      const kind = argValue as HealthKind
+      const value = numOrNull(`hz-${kind}-val`)
+      const value2 = kind === 'tlak' ? numOrNull(`hz-${kind}-val2`) : null
+      // U tlaku stačí jedna ze dvou složek, jinde musí být hodnota.
+      if (value === null && value2 === null) {
+        toast('Zapište prosím hodnotu — bez čísla není co uložit.')
+        return
+      }
+      patch((d) => {
+        d.health.push({
+          id: uid('hz'),
+          date: val(`hz-${kind}-date`) || viewDate(),
+          at: val(`hz-${kind}-at`),
+          kind,
+          value,
+          value2,
+          text: '',
+          note: val(`hz-${kind}-note`),
+          attachments: [],
+        })
+      })
+      toast(`${measureTitle(kind)} uložena.`)
+      break
+    }
+    case 'hz-del':
+      patch((d) => {
+        d.health = d.health.filter((r) => r.id !== argValue)
+      })
+      break
+    case 'hz-focus':
+      focusField(`hz-${argValue || 'bbt'}-val`)
+      return
+    case 'us-add': {
+      // Velikosti přijdou tak, jak je lékař nadiktoval: „18, 16, 14“.
+      const sizes = (id: string): number[] =>
+        val(id)
+          .split(/[^0-9.,]+/)
+          .map((x) => Number(x.replace(',', '.')))
+          .filter((n) => Number.isFinite(n) && n > 0)
+      const left = sizes('us-left')
+      const right = sizes('us-right')
+      const endometrium = numOrNull('us-endo')
+      const usNote = val('us-note')
+      if (!left.length && !right.length && endometrium === null && !usNote) {
+        toast('Prázdný ultrazvuk se neukládá. Zapište folikuly, sliznici nebo poznámku.')
+        return
+      }
+      patch((d) => {
+        d.ultrasounds.push({
+          id: uid('uz'),
+          date: val('us-date') || viewDate(),
+          cycleId: activeCycleId(),
+          left,
+          right,
+          endometrium,
+          note: usNote,
+          attachments: [],
+        })
+      })
+      toast('Ultrazvuk uložen.')
+      break
+    }
+    case 'us-del':
+      patch((d) => {
+        d.ultrasounds = d.ultrasounds.filter((u) => u.id !== argValue)
       })
       break
 

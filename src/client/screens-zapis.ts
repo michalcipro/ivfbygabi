@@ -1,7 +1,22 @@
 import { formatCzechDate } from '../lib/domain/dates'
 import { promptFor } from '../lib/domain/journal-prompts'
-import { SYMPTOM_GROUPS, SYMPTOM_BY_ID, warningsFor } from '../lib/domain/symptoms'
-import { dayReading, journalFor, journey, S, shotsOn, viewDate, zoneLastUsed } from './store'
+import {
+  SYMPTOM_GROUPS,
+  SYMPTOM_BY_ID,
+  intensityLabel,
+  intensityTone,
+  warningsFor,
+} from '../lib/domain/symptoms'
+import {
+  dayReading,
+  journalFor,
+  journey,
+  S,
+  shotsOn,
+  symptomLogsOn,
+  viewDate,
+  zoneLastUsed,
+} from './store'
 import { esc } from './ui'
 import { accordion, bellyMap, dial, segmented, SHOT_ZONES } from './viz'
 
@@ -92,6 +107,59 @@ function paneNalada(): string {
 
 // ----------------------------------------------------------------- tělo ---
 
+/** Název příznaku — z katalogu, nebo z vlastních, které si uživatelka přidala. */
+function symptomLabel(id: string): string {
+  return SYMPTOM_BY_ID[id]?.label ?? S.d.customSymptoms.find((x) => x.id === id)?.label ?? id
+}
+
+/**
+ * Intenzita zaškrtnutých příznaků.
+ *
+ * Zaškrtnutí samo o sobě říká jen „bylo to“. Rozdíl mezi dvojkou a devítkou
+ * je přitom to jediné, co v ordinaci opravdu zazní — proto je stupnice hned
+ * u seznamu a ne schovaná v detailu. Nezadaná intenzita zůstává nezadaná;
+ * nic se nedosazuje.
+ */
+function intensityCard(date: string, chosen: string[]): string {
+  if (chosen.length === 0) return ''
+
+  const logs = symptomLogsOn(date)
+  const valueOf = (id: string): number | null =>
+    logs.find((l) => l.symptomId === id)?.intensity ?? null
+
+  const rows = chosen
+    .map((id) => {
+      const v = valueOf(id)
+      const tone = v === null ? null : intensityTone(v)
+      const scale = Array.from({ length: 11 }, (_, n) => {
+        const on = v === n
+        return `<button type="button" data-act="sym-int" data-arg="${esc(id)}:${n}"
+          aria-pressed="${on}" aria-label="${esc(symptomLabel(id))} — intenzita ${n} z 10"
+          style="${on && tone ? `background:var(${tone})` : ''}">${n}</button>`
+      }).join('')
+
+      return `<div style="margin-top:1.15rem">
+        <p class="label" style="display:flex;gap:.5rem;align-items:baseline">
+          <span style="flex:1;min-width:0">${esc(symptomLabel(id))}</span>
+          <span class="faint" style="font-weight:400;text-transform:none;letter-spacing:0">${
+            v === null ? 'intenzita nezadaná' : `${esc(String(v))}/10 · ${esc(intensityLabel(v))}`
+          }</span>
+        </p>
+        <div class="scale">${scale}</div>
+      </div>`
+    })
+    .join('')
+
+  return `<section class="surface pad rise">
+    <p class="eyebrow">Jak silné to dnes bylo</p>
+    <p class="faint" style="font-size:.8125rem;margin-top:.3rem;line-height:1.55">
+      Nula znamená „nic“, deset „nesnesitelné“. Nemusíte vyplnit nic — bez čísla se
+      příznak počítá dál, jen se z něj nedělá průměr.
+    </p>
+    ${rows}
+  </section>`
+}
+
 function paneTelo(openGroup: string | null): string {
   const date = viewDate()
   const row = journalFor(date)
@@ -119,14 +187,9 @@ function paneTelo(openGroup: string | null): string {
         Rozdělené podle toho, odkud potíž jde. „Bolest v místě vpichu“ a „píchání ve vaječnících“
         nejsou totéž — a když se to zapíše zvlášť, dá se s tím pak něco dělat.
       </p>
-      ${
-        chosen.size
-          ? `<p class="faint" style="margin-top:.7rem;font-size:.8125rem">Dnes zaškrtnuto: ${[...chosen]
-              .map((id) => esc(SYMPTOM_BY_ID[id]?.label ?? id))
-              .join(', ')}</p>`
-          : ''
-      }
     </section>`,
+
+    intensityCard(date, [...chosen]),
 
     warnings.length
       ? warnings

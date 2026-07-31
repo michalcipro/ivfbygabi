@@ -15,7 +15,10 @@ export interface QuickItem {
   icon: string
   label: string
   hint: string
-  route: string
+  /** Kam to vede. Když je místo toho `act`, spustí se rovnou akce. */
+  route?: string
+  /** Akce místo přechodu — pro věci, které vznikají jedním klepnutím. */
+  act?: string
 }
 
 /**
@@ -34,7 +37,7 @@ export const QUICK_ITEMS: QuickItem[] = [
   { icon: '▤', label: 'Lékařská zpráva', hint: 'Vložit text a vytáhnout hodnoty', route: 'dokumenty' },
   { icon: '❦', label: 'Poznámka nebo fotka', hint: 'Cokoli k dnešnímu dni', route: 'denik' },
   { icon: '◆', label: 'Vlastní událost', hint: 'Termín, kontrola, cokoli dalšího', route: 'kalendar' },
-  { icon: '✧', label: 'Nový cyklus', hint: 'Založit další IVF cyklus', route: 'journey/historie' },
+  { icon: '✧', label: 'Nový cyklus', hint: 'Založit další IVF cyklus', act: 'cycle-new' },
 ]
 
 /** Plovoucí tlačítko. Schované tam, kde by překáželo čtení. */
@@ -56,7 +59,9 @@ export function quickSheet(open: boolean): string {
     </div>
     <div class="quickgrid">
       ${QUICK_ITEMS.map(
-        (i) => `<button class="quickitem" data-go="${esc(i.route)}">
+        (i) => `<button class="quickitem" ${
+          i.act ? `data-act="${esc(i.act)}"` : `data-go="${esc(i.route ?? 'dnes')}"`
+        }>
           <span class="ic">${i.icon}</span>
           <span class="txt"><b>${esc(i.label)}</b><span>${esc(i.hint)}</span></span>
         </button>`,
