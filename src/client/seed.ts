@@ -73,34 +73,4 @@ export const SEED_POSTS: Record<PhaseGroup, SeedPost[]> = {
       ],
     },
   ],
-  pregnancy: [
-    {
-      author: 'Anonymně · Těhotenství',
-      body: 'Po třech letech léčby se pořád bojím se radovat. Zvládl to někdo jinak?',
-      hearts: 27,
-      replies: [
-        { author: 'Anonymně · Šestinedělí', body: 'Ne. A myslím, že to ani nejde. Mně pomohlo přestat po sobě chtít, abych to cítila „správně“.' },
-      ],
-    },
-  ],
-  birth: [
-    {
-      author: 'Anonymně · Příprava na porod',
-      body: 'Sepsala jsem porodní plán a připadám si trapně, že ho vůbec chci ukazovat. Máte s tím zkušenost?',
-      hearts: 15,
-      replies: [
-        { author: 'Anonymně · Šestinedělí', body: 'Na jednu A4 a nadpis „preferuji“. Nikdo se nesmál a hodně to pomohlo, když jsem sama nebyla schopná mluvit.' },
-      ],
-    },
-  ],
-  baby: [
-    {
-      author: 'Anonymně · Šestinedělí',
-      body: 'Devátý den po císaři. Kdy jste zvládly první procházku ven?',
-      hearts: 19,
-      replies: [
-        { author: 'Anonymně · První rok', body: 'Desátý den kolem bloku, pomalu. Nechtějte po sobě víc, než jde — jizva to spočítá.' },
-      ],
-    },
-  ],
 }

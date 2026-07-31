@@ -38,7 +38,7 @@ const TWW_STATE = resolveJourney(profileWith({ transferOn: '2026-05-01' }), '202
 
 test('obsah pro aktuální fázi má vyšší skóre než cizí', () => {
   const match = item({ id: 'a', phases: ['two_week_wait'] })
-  const other = item({ id: 'b', phases: ['nicu'] })
+  const other = item({ id: 'b', phases: ['thinking'] })
   assert.ok(scoreItem(match, TWW_STATE, emptyAffinity()) > scoreItem(other, TWW_STATE, emptyAffinity()))
 })
 
@@ -50,20 +50,20 @@ test('obsah cílený na den fáze vyhrává nad obecným', () => {
 
 test('vyloučený modifikátor obsah úplně vyřadí', () => {
   const state = resolveJourney(
-    profileWith({ transferOn: '2026-05-01', modifiers: ['csection'] }),
+    profileWith({ transferOn: '2026-05-01', modifiers: ['pcos'] }),
     '2026-05-06',
   )
-  const excluded = item({ id: 'a', phases: ['two_week_wait'], excludeModifiers: ['csection'] })
+  const excluded = item({ id: 'a', phases: ['two_week_wait'], excludeModifiers: ['pcos'] })
   assert.equal(scoreItem(excluded, state, emptyAffinity()), 0)
 })
 
 test('cílený modifikátor zvedne skóre nad obecný obsah', () => {
   const state = resolveJourney(
-    profileWith({ birthOn: '2026-01-01', modifiers: ['csection'] }),
+    profileWith({ stimulationStartOn: '2026-01-01', modifiers: ['pcos'] }),
     '2026-01-10',
   )
-  const targeted = item({ id: 'a', phases: ['postpartum'], modifiers: ['csection'] })
-  const generic = item({ id: 'b', phases: ['postpartum'] })
+  const targeted = item({ id: 'a', phases: ['stimulation'], modifiers: ['pcos'] })
+  const generic = item({ id: 'b', phases: ['stimulation'] })
   assert.ok(scoreItem(targeted, state, emptyAffinity()) > scoreItem(generic, state, emptyAffinity()))
 })
 
@@ -120,7 +120,7 @@ test('řady se obsahem nepřekrývají', () => {
 const cards: DailyCard[] = [
   { id: 'range', phases: ['two_week_wait'], dayRange: [1, 14], headline: 'Obecná', body: '' },
   { id: 'exact', phases: ['two_week_wait'], day: 5, headline: 'Přesná', body: '' },
-  { id: 'other', phases: ['nicu'], headline: 'Cizí', body: '' },
+  { id: 'other', phases: ['loss_miscarriage'], headline: 'Cizí', body: '' },
 ]
 
 test('přesná shoda na den vyhrává nad rozsahem', () => {
@@ -139,34 +139,34 @@ test('karta z jiné fáze se nikdy nevybere', () => {
 
 test('karta cílená na modifikátor přebije obecnou', () => {
   const state = resolveJourney(
-    profileWith({ birthOn: '2026-01-01', modifiers: ['csection'] }),
+    profileWith({ stimulationStartOn: '2026-01-01', modifiers: ['pcos'] }),
     '2026-01-05',
   )
   const withMods: DailyCard[] = [
-    { id: 'obecna', phases: ['postpartum'], dayRange: [0, 41], headline: 'Obecná', body: '' },
+    { id: 'obecna', phases: ['stimulation'], dayRange: [0, 41], headline: 'Obecná', body: '' },
     {
-      id: 'cisar',
-      phases: ['postpartum'],
+      id: 'pcos-varianta',
+      phases: ['stimulation'],
       dayRange: [0, 41],
-      modifiers: ['csection'],
-      headline: 'Po císaři',
+      modifiers: ['pcos'],
+      headline: 'Varianta pro PCOS',
       body: '',
     },
   ]
-  assert.equal(pickDailyCard(withMods, state)?.id, 'cisar')
+  assert.equal(pickDailyCard(withMods, state)?.id, 'pcos-varianta')
 })
 
 test('vyloučený modifikátor kartu zablokuje', () => {
   const state = resolveJourney(
-    profileWith({ birthOn: '2026-01-01', modifiers: ['csection'] }),
+    profileWith({ stimulationStartOn: '2026-01-01', modifiers: ['pcos'] }),
     '2026-01-05',
   )
   const blocked: DailyCard[] = [
     {
       id: 'jen-prirozeny',
-      phases: ['postpartum'],
+      phases: ['stimulation'],
       dayRange: [0, 41],
-      excludeModifiers: ['csection'],
+      excludeModifiers: ['pcos'],
       headline: 'Po přirozeném porodu',
       body: '',
     },

@@ -24,8 +24,6 @@ type DateField =
   | 'betaTestOn'
   | 'diagnosticsStartedOn'
   | 'lossOn'
-  | 'dueDate'
-  | 'birthOn'
   | 'tryingSince'
 
 export interface RouteDef {
@@ -42,15 +40,11 @@ export interface RouteDef {
   mods: ModifierId[]
   /** Situace, která z volby plyne sama — přidá se bez ptaní. */
   implied?: ModifierId[]
-  /** Doptat se na gestační týden porodu (kvůli korigovanému věku). */
-  askWeek?: boolean
 }
 
 const DG: ModifierId[] = ['pcos', 'endometriosis', 'low_amh', 'male_factor', 'thyroid', 'unexplained']
 const TX: ModifierId[] = ['icsi', 'pgt', 'frozen_transfer', 'donor_egg', 'donor_sperm']
 const SIT: ModifierId[] = ['after_loss', 'repeated_failure', 'single_mother', 'same_sex_couple']
-const PREG: ModifierId[] = ['twins', 'high_risk', 'gestational_diabetes', 'after_loss', 'donor_egg']
-const BABY: ModifierId[] = ['csection', 'breastfeeding', 'formula_feeding', 'pumping', 'twins', 'colic']
 
 export const ROUTES: RouteDef[] = [
   {
@@ -139,58 +133,6 @@ export const ROUTES: RouteDef[] = [
     mods: [...DG, ...TX, 'after_loss', 'repeated_failure'],
   },
   {
-    id: 'loss',
-    group: 'around',
-    label: 'Prošla jsem ztrátou',
-    hint: 'Těhotenství skončilo',
-    phase: 'loss_miscarriage',
-    field: 'lossOn',
-    dateLabel: 'Kdy to bylo?',
-    dateHint: 'Nemusí to být přesné. Slouží to jen k tomu, abychom vám nepodsouvali obsah, na který ještě není čas.',
-    quick: [0, -3, -7, -21],
-    mods: ['repeated_failure', ...DG],
-    implied: ['after_loss'],
-  },
-
-  {
-    id: 'pregnant',
-    group: 'further',
-    label: 'Jsem těhotná',
-    hint: 'Obsah týden po týdnu podle gestačního stáří',
-    phase: 'pregnancy',
-    field: 'dueDate',
-    dateLabel: 'Jaký máte termín porodu?',
-    dateHint: 'Z termínu spočítáme, ve kterém jste týdnu. Když ho ještě nevíte, přeskočte to.',
-    quick: [280 - 84, 280 - 140, 280 - 196, 280 - 245],
-    mods: PREG,
-  },
-  {
-    id: 'baby',
-    group: 'further',
-    label: 'Miminko je tu',
-    hint: 'Šestinedělí a první rok',
-    phase: 'postpartum',
-    field: 'birthOn',
-    dateLabel: 'Kdy se miminko narodilo?',
-    dateHint: 'Podle toho počítáme jeho věk a co se právě teď děje.',
-    quick: [0, -3, -10, -40],
-    mods: BABY,
-  },
-  {
-    id: 'nicu',
-    group: 'further',
-    label: 'Miminko je na oddělení',
-    hint: 'Nedonošené miminko, JIP nebo NICU',
-    phase: 'nicu',
-    field: 'birthOn',
-    dateLabel: 'Kdy se miminko narodilo?',
-    dateHint: 'Vývoj u nedonošených dětí počítáme korigovaně — od původního termínu.',
-    quick: [0, -5, -14, -30],
-    mods: ['csection', 'pumping', 'breastfeeding', 'twins'],
-    implied: ['preterm', 'nicu_stay'],
-    askWeek: true,
-  },
-  {
     id: 'trying',
     group: 'further',
     label: 'Snažíme se přirozeně',
@@ -250,12 +192,8 @@ export function profileFromDraft(dr: Draft): Profile {
   const mods = new Set<ModifierId>([...dr.mods, ...(route.implied ?? [])])
   p.modifiers = [...mods]
 
-  if (dr.week && dr.week >= 22 && dr.week <= 42) p.gestationalWeeksAtBirth = dr.week
-
   if (route.field && !dr.skipDate && dr.date) {
     p[route.field] = dr.date
-    // Nedonošenost potřebuje datum příjmu, jinak by fáze NICU neuměla počítat den.
-    if (route.id === 'nicu') p.nicuAdmissionOn = dr.date
   }
 
   return p
@@ -381,15 +319,6 @@ function stepWhen(): string {
         : ''
     }
 
-    ${
-      route.askWeek
-        ? `<div class="formrow" style="margin-top:1.5rem">
-            <label class="label" for="ob-week">V kolikátém týdnu se miminko narodilo?</label>
-            <input class="field" type="number" id="ob-week" min="22" max="42" inputmode="numeric" placeholder="například 29" value="${dr.week ?? ''}" data-act="ob-week">
-            <p class="faint" style="margin-top:.45rem;font-size:.8125rem;line-height:1.5">Z toho spočítáme korigovaný věk — podle něj se u nedonošených dětí hodnotí vývoj.</p>
-          </div>`
-        : ''
-    }
 
     <button class="btn btn-ghost" data-act="ob-skip-date" style="margin-top:1.25rem;align-self:flex-start">${dr.skipDate ? '✓ ' : ''}Datum zatím nevím</button>
   </div>

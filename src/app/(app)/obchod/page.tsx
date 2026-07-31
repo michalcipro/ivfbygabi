@@ -39,19 +39,6 @@ export default async function MarketplacePage({
       score += hits > 0 ? hits * 6 : -3
     }
 
-    if (p.gestWeeks && state.gestationWeek !== null) {
-      const [lo, hi] = p.gestWeeks
-      score += state.gestationWeek >= lo && state.gestationWeek <= hi ? 5 : -4
-    }
-    if (p.babyWeeks) {
-      const ageDays = state.usesCorrectedAge ? state.correctedAgeDays : state.babyAgeDays
-      if (ageDays !== null && ageDays >= 0) {
-        const weeks = Math.floor(ageDays / 7)
-        const [lo, hi] = p.babyWeeks
-        score += weeks >= lo && weeks <= hi ? 5 : -4
-      }
-    }
-
     score += p.rating - 4.5
     return { product: p, score }
   })

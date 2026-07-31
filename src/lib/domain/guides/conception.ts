@@ -886,7 +886,8 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'beta_positive',
-    summary: 'Test vyšel. Teď se sleduje, jestli hodnota roste tak, jak má — a čeká se na první ultrazvuk.',
+    summary:
+      'Test vyšel. Sleduje se, jestli hodnota roste tak, jak má, a čeká se na první ultrazvuk — pak vás centrum předá gynekologovi.',
     whatAwaits: [
       'Opakovaný odběr beta hCG za dva až tři dny. Sleduje se zdvojovací čas, ne jedno číslo.',
       'První ultrazvuk zhruba v 6.–7. týdnu — potvrzení, že těhotenství je v děloze a má srdeční akci.',
@@ -900,6 +901,10 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Rozmyslet si, komu to řeknete a kdy.',
     ],
     mind: [
+      {
+        title: 'Tady vaše cesta v téhle aplikaci končí',
+        body: 'Bloomia vás doprovází od rozhodnutí až sem — k pozitivnímu testu. Průběh těhotenství je jiná etapa s jinými otázkami a patří vašemu gynekologovi, ke kterému vás centrum v následujících týdnech předá. Deník, hodnoty i poznámky vám tu zůstávají: jsou vaše a hodí se na první návštěvě u nového lékaře. A kdyby se cesta znovu otočila, najdete tu i to.',
+      },
       {
         title: 'Radovat se neumíte a je to v pořádku',
         body: 'Po dlouhé léčbě málokdo přepne do radosti. Většina žen popisuje opatrnost, nedůvěru a čekání na ránu. Není to nevděk ani špatné znamení — je to naučená obrana po letech zklamání.',

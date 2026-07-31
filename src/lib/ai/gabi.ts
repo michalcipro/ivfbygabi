@@ -86,8 +86,6 @@ function journeyContext(state: JourneyState, profile: Profile): string {
   lines.push(`Fáze cesty: ${state.phase.title}`)
   lines.push(`Kde přesně je: ${state.dayLabel}`)
 
-  if (state.gestationLabel) lines.push(`Gestační stáří: ${state.gestationLabel}`)
-  if (state.babyAgeLabel) lines.push(`Věk dítěte: ${state.babyAgeLabel}`)
   if (state.daysPastTransfer !== null && state.daysPastTransfer >= 0) {
     lines.push(`Dní po transferu: ${state.daysPastTransfer}`)
   }

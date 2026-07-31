@@ -246,34 +246,6 @@ export const JOURNAL_PROMPTS: JournalPrompt[] = [
   },
 
   // --- těhotenství a dál ---------------------------------------------------
-  {
-    id: 'p-teh-radost',
-    groups: ['pregnancy'],
-    text: 'Dovolila jste si dnes radost? Co ji přerušilo?',
-    why: 'Po dlouhé léčbě přichází radost opatrně. Není to nevděk, je to naučená obrana.',
-    kind: 'uvedomeni',
-  },
-  {
-    id: 'p-teh-dopis',
-    groups: ['pregnancy'],
-    text: 'Co byste dnes chtěla říct miminku?',
-    why: 'Za pár let si nevzpomenete, jaké to bylo. Tohle zůstane.',
-    kind: 'motivace',
-  },
-  {
-    id: 'p-baby-zvladla',
-    groups: ['baby', 'birth'],
-    text: 'Co jste dnes zvládla, i když jste skoro nespala?',
-    why: 'V prvních týdnech se laťka posouvá. To, co je dnes běžné, by před rokem bylo hrdinství.',
-    kind: 'motivace',
-  },
-  {
-    id: 'p-baby-sobe',
-    groups: ['baby'],
-    text: 'Kdy jste dnes udělala něco jen pro sebe? A pokud vůbec, co by to mohlo být zítra?',
-    why: 'Vlastní potřeby jdou po porodu na konec seznamu. Někdy je potřeba je vrátit nahoru.',
-    kind: 'uvedomeni',
-  },
 ]
 
 /**

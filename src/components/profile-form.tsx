@@ -34,18 +34,6 @@ const MODIFIER_GROUPS: Array<{ title: string; ids: (keyof typeof MODIFIER_LABELS
     ids: ['icsi', 'pgt', 'frozen_transfer', 'donor_egg', 'donor_sperm', 'donor_embryo', 'surrogacy'],
   },
   {
-    title: 'Těhotenství',
-    ids: ['twins', 'high_risk', 'gestational_diabetes', 'preeclampsia', 'cervical_insufficiency'],
-  },
-  {
-    title: 'Porod',
-    ids: ['vaginal_birth', 'csection', 'induced_birth', 'preterm', 'nicu_stay'],
-  },
-  {
-    title: 'Krmení',
-    ids: ['breastfeeding', 'formula_feeding', 'combination_feeding', 'pumping', 'reflux', 'colic'],
-  },
-  {
     title: 'Vaše situace',
     ids: [
       'after_loss',
@@ -69,12 +57,8 @@ const DATE_FIELDS: Array<{ name: keyof Profile; label: string; hint?: string }> 
   {
     name: 'lastPeriodOn',
     label: 'První den poslední menstruace',
-    hint: 'Pro výpočet týdne těhotenství',
+    hint: 'Pro výpočet dne cyklu',
   },
-  { name: 'dueDate', label: 'Termín porodu', hint: 'Podle ultrazvuku, pokud ho znáte' },
-  { name: 'birthOn', label: 'Datum narození miminka' },
-  { name: 'nicuAdmissionOn', label: 'Přijetí na novorozeneckou JIP' },
-  { name: 'cameHomeOn', label: 'První den doma' },
 ]
 
 const NUMBER_FIELDS: Array<{
@@ -362,12 +346,6 @@ function relevantDateFields(phaseId: string): (keyof Profile)[] {
       return ['transferOn', 'betaTestOn', 'retrievalOn']
     case 'loss':
       return ['lossOn', 'transferOn', 'lastPeriodOn']
-    case 'pregnancy':
-      return ['lastPeriodOn', 'dueDate', 'transferOn', 'betaTestOn']
-    case 'birth':
-      return ['dueDate', 'birthOn', 'nicuAdmissionOn', 'lastPeriodOn']
-    case 'baby':
-      return ['birthOn', 'dueDate', 'cameHomeOn', 'nicuAdmissionOn']
     default:
       return ['tryingSince']
   }

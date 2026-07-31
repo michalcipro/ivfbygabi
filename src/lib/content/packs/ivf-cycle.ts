@@ -757,7 +757,7 @@ Mírný OHSS je nepříjemná daň za dobrou odpověď vaječníků. Těžký OH
       minutes: 8,
       phases: ['stimulation', 'retrieval', 'fertilization', 'embryo_culture'],
       dayRange: [6, 14],
-      topics: ['stimulace', 'zdravi_ditete', 'hormony', 'klinika'],
+      topics: ['stimulace', 'hormony', 'klinika'],
       modifiers: ['pcos'],
       level: 'essential',
       hero: 'blush',

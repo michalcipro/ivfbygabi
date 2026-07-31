@@ -72,18 +72,6 @@ export function groupSpecsFor(profile: Profile, state: JourneyState): GroupSpec[
     })
   }
 
-  // 3. Termín porodu.
-  if (profile.dueDate && !profile.birthOn) {
-    const ym = profile.dueDate.slice(0, 7)
-    out.push({
-      slug: `termin-${ym}`,
-      name: `Termín ${czMonthYear(ym)}`,
-      description: 'Miminka, která se mají narodit ve stejném měsíci.',
-      kind: 'due',
-      matchKey: `due:${ym}`,
-    })
-  }
-
   // 4. Diagnózy a situace.
   for (const mod of profile.modifiers) {
     const label = MODIFIER_LABELS[mod]

@@ -41,13 +41,9 @@ function whenLabel(inDays: number): string {
   return inDays === 0 ? 'Dnes' : inDays === 1 ? 'Zítra' : `Za ${czDays(inDays)}`
 }
 
-/** Kolikátý týden ve fázi — u těhotenství gestační týden. */
+/** Kolikátý týden ve fázi. */
 function weekLabel(): string {
   const state = journey()
-  if (state.gestationLabel) return `${state.gestationWeek}. týden`
-  if (state.babyAgeDays !== null && state.babyAgeDays >= 0) {
-    return `${Math.floor(state.babyAgeDays / 7) + 1}. týden`
-  }
   if (state.anchorDate) return `${Math.floor(Math.max(0, state.dayInPhase) / 7) + 1}. týden fáze`
   return 'bez měření'
 }
@@ -122,8 +118,6 @@ function panelTyden(): string {
       <dt>Den</dt><dd>${esc(state.dayLabel.replace(/^Dnes (je|jste) /, ''))}</dd>
       ${cd ? `<dt>Den cyklu</dt><dd class="num">${cd}.</dd>` : ''}
       ${p.lastPeriodOn ? `<dt>Poslední menstruace</dt><dd>${esc(formatCzechDate(p.lastPeriodOn))}</dd>` : ''}
-      ${state.gestationLabel ? `<dt>Gestační stáří</dt><dd>${esc(state.gestationLabel)}</dd>` : ''}
-      ${state.babyAgeLabel ? `<dt>Věk miminka</dt><dd>${esc(state.babyAgeLabel)}</dd>` : ''}
       ${state.journeyDays !== null ? `<dt>Na cestě</dt><dd>${esc(czDays(state.journeyDays))}</dd>` : ''}
     </dl>
     ${
@@ -132,7 +126,7 @@ function panelTyden(): string {
            <ul class="bullets">${guide.whatAwaits.slice(0, 3).map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>`
         : ''
     }
-    ${!cycleDay() && !state.gestationLabel ? '<p class="faint" style="margin-top:.9rem;font-size:.8125rem">Den cyklu spočítáme, jakmile v nastavení doplníte první den poslední menstruace.</p>' : ''}
+    ${!cycleDay() ? '<p class="faint" style="margin-top:.9rem;font-size:.8125rem">Den cyklu spočítáme, jakmile v nastavení doplníte první den poslední menstruace.</p>' : ''}
     <button class="btn btn-sm" data-go="nastaveni" style="margin-top:1rem">Upravit data</button>`
 }
 

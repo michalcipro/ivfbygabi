@@ -104,26 +104,6 @@ export default async function HealthPage() {
               <Stat value={injections} label="zaznamenaných injekcí" />
             </Card>
           )}
-          {state.gestationLabel && (
-            <Card className="p-6">
-              <Stat value={state.gestationLabel} label="gestační stáří" />
-            </Card>
-          )}
-          {state.babyAgeDays !== null && state.babyAgeDays >= 0 && (
-            <Card className="p-6">
-              <Stat
-                value={humanAge(state.babyAgeDays)}
-                label="věk miminka"
-                hint={
-                  state.usesCorrectedAge && state.correctedAgeDays !== null
-                    ? state.correctedAgeDays >= 0
-                      ? `korigovaně ${humanAge(state.correctedAgeDays)}`
-                      : `do termínu zbývá ${czDays(-state.correctedAgeDays)}`
-                    : undefined
-                }
-              />
-            </Card>
-          )}
           <Card className="p-6">
             <Stat value={journal.length} label="zápisů v deníku" />
           </Card>

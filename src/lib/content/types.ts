@@ -76,10 +76,6 @@ export interface ContentItem {
   phases: PhaseId[]
   /** Rozsah dní ve fázi, kdy je obsah nejrelevantnější. Např. [3, 7] = 3.–7. den. */
   dayRange?: [number, number]
-  /** Gestační týdny, kdy je obsah relevantní. */
-  gestWeeks?: [number, number]
-  /** Věk dítěte v týdnech (u nedonošených korigovaný). */
-  babyWeeks?: [number, number]
 
   topics: TopicId[]
   /** Obsah cílený na konkrétní situaci (císař, dvojčata, kojení…). */
@@ -136,8 +132,6 @@ export interface DailyCard {
   /** Přesný den ve fázi, nebo rozsah. Přesná shoda vyhrává nad rozsahem. */
   day?: number
   dayRange?: [number, number]
-  gestWeeks?: [number, number]
-  babyWeeks?: [number, number]
   modifiers?: ModifierId[]
   excludeModifiers?: ModifierId[]
 
@@ -188,8 +182,6 @@ export interface Product {
   modifiers?: ModifierId[]
   excludeModifiers?: ModifierId[]
   /** Zúžení relevance na část těhotenství nebo věku dítěte. */
-  gestWeeks?: [number, number]
-  babyWeeks?: [number, number]
   rating: number
   reviews: number
   vendor: string
@@ -210,7 +202,7 @@ export interface LabParameter {
   explain: string
   topics: TopicId[]
   /** Kontext, ve kterém se hodnota měří. */
-  context: 'cycle' | 'pregnancy' | 'general' | 'male' | 'baby'
+  context: 'cycle' | 'general' | 'male'
   /** Očekává se růst v čase (beta HCG)? Ovlivňuje graf. */
   trend?: 'rising' | 'stable' | 'falling'
 }

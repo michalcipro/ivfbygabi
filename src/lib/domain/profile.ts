@@ -25,25 +25,8 @@ export const MODIFIER_IDS = [
   'pgt',
   'frozen_transfer',
   'surrogacy',
-  // Těhotenství
+  // Situace při transferu
   'twins',
-  'high_risk',
-  'gestational_diabetes',
-  'preeclampsia',
-  'cervical_insufficiency',
-  // Porod
-  'csection',
-  'vaginal_birth',
-  'induced_birth',
-  'preterm',
-  'nicu_stay',
-  // Po porodu
-  'breastfeeding',
-  'formula_feeding',
-  'combination_feeding',
-  'pumping',
-  'reflux',
-  'colic',
   // Situace
   'after_loss',
   'repeated_failure',
@@ -73,21 +56,6 @@ export const MODIFIER_LABELS: Record<ModifierId, string> = {
   frozen_transfer: 'Kryoembryotransfer (KET)',
   surrogacy: 'Náhradní mateřství',
   twins: 'Dvojčata',
-  high_risk: 'Rizikové těhotenství',
-  gestational_diabetes: 'Gestační diabetes',
-  preeclampsia: 'Preeklampsie',
-  cervical_insufficiency: 'Zkracující se čípek',
-  csection: 'Císařský řez',
-  vaginal_birth: 'Přirozený porod',
-  induced_birth: 'Vyvolávaný porod',
-  preterm: 'Předčasný porod',
-  nicu_stay: 'Pobyt na NICU',
-  breastfeeding: 'Kojení',
-  formula_feeding: 'Umělá výživa',
-  combination_feeding: 'Kombinované krmení',
-  pumping: 'Odstříkávání',
-  reflux: 'Reflux',
-  colic: 'Koliky',
   after_loss: 'Po ztrátě',
   repeated_failure: 'Opakované neúspěchy',
   single_mother: 'Sama',
@@ -111,18 +79,7 @@ export const TOPIC_IDS = [
   'partner',
   'ztrata',
   'tehotenstvi',
-  'rizikove',
-  'porod',
-  'cisar',
-  'nedonosenost',
-  'nicu',
-  'sestinedeli',
-  'kojeni',
-  'umela_vyziva',
   'spanek',
-  'vyvoj',
-  'zdravi_ditete',
-  'prikrmy',
   'finance',
   'klinika',
   'genetika',
@@ -148,18 +105,7 @@ export const TOPIC_LABELS: Record<TopicId, string> = {
   partner: 'Partner',
   ztrata: 'Ztráta',
   tehotenstvi: 'Těhotenství',
-  rizikove: 'Rizikové těhotenství',
-  porod: 'Porod',
-  cisar: 'Císařský řez',
-  nedonosenost: 'Nedonošenost',
-  nicu: 'NICU',
-  sestinedeli: 'Šestinedělí',
-  kojeni: 'Kojení',
-  umela_vyziva: 'Umělá výživa',
   spanek: 'Spánek',
-  vyvoj: 'Vývoj dítěte',
-  zdravi_ditete: 'Zdraví dítěte',
-  prikrmy: 'Příkrmy',
   finance: 'Finance',
   klinika: 'Klinika',
   genetika: 'Genetika',
@@ -194,10 +140,6 @@ export interface Profile {
   betaTestOn: IsoDate | null
   lossOn: IsoDate | null
   lastPeriodOn: IsoDate | null
-  dueDate: IsoDate | null
-  birthOn: IsoDate | null
-  nicuAdmissionOn: IsoDate | null
-  cameHomeOn: IsoDate | null
 
   // --- Čísla cesty -------------------------------------------------------
   amh: number | null
@@ -234,10 +176,6 @@ export function emptyProfile(userId: string, id: string, now: string): Profile {
     betaTestOn: null,
     lossOn: null,
     lastPeriodOn: null,
-    dueDate: null,
-    birthOn: null,
-    nicuAdmissionOn: null,
-    cameHomeOn: null,
     amh: null,
     ivfCycles: 0,
     transfersDone: 0,

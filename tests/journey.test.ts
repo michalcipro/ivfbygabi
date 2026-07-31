@@ -1,12 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {
-  correctedAgeDaysFor,
-  estimatedDueDate,
-  gestationDaysFor,
-  inferPhase,
-  resolveJourney,
-} from '../src/lib/domain/journey'
+import { inferPhase, resolveJourney } from '../src/lib/domain/journey'
 import { emptyProfile, type Profile } from '../src/lib/domain/profile'
 import { addDays, czDays, daysBetween, gestationLabel, humanAge, isValidIsoDate, pickDeterministic, seedFrom } from '../src/lib/domain/dates'
 
@@ -93,16 +87,13 @@ test('stimulace se pozná z jejího data', () => {
   assert.equal(inferPhase(p, '2026-04-05'), 'stimulation')
 })
 
-test('těhotenství se odvodí z poslední menstruace', () => {
+test('poslední menstruace sama o sobě nedělá z uživatelky těhotnou', () => {
+  // Rozsah aplikace končí u pozitivní bety. Fáze těhotenství neexistují,
+  // takže se z data menstruace nesmí odvodit — dřív se z něj počítal
+  // gestační týden a uživatelka spadla do fáze, která tu už není.
   const p = profileWith({ lastPeriodOn: '2026-01-01' })
-  assert.equal(inferPhase(p, '2026-02-15'), 'early_pregnancy') // ~6. týden
-  assert.equal(inferPhase(p, '2026-05-01'), 'pregnancy') // ~17. týden
-  assert.equal(inferPhase(p, '2026-10-01'), 'birth_prep') // ~39. týden
-})
-
-test('rizikové těhotenství přebíjí běžné', () => {
-  const p = profileWith({ lastPeriodOn: '2026-01-01', modifiers: ['high_risk'] })
-  assert.equal(inferPhase(p, '2026-05-01'), 'high_risk_pregnancy')
+  const phase = inferPhase(p, '2026-05-01')
+  assert.ok(!['early_pregnancy', 'pregnancy', 'birth_prep'].includes(phase))
 })
 
 test('ztráta přebíjí těhotenská data, ale jen dokud je čerstvá', () => {
@@ -117,116 +108,13 @@ test('zvolená fáze ztráty se respektuje', () => {
   assert.equal(inferPhase(p, '2026-03-05'), 'loss_ectopic')
 })
 
-test('po porodu jde šestinedělí, pak první rok, pak batole', () => {
-  const p = profileWith({ birthOn: '2026-01-01' })
-  assert.equal(inferPhase(p, '2026-01-20'), 'postpartum')
-  assert.equal(inferPhase(p, '2026-06-01'), 'baby_first_year')
-  assert.equal(inferPhase(p, '2027-06-01'), 'toddler')
-})
-
-test('nedonošené miminko jde nejdřív na NICU', () => {
-  const p = profileWith({
-    birthOn: '2026-01-01',
-    modifiers: ['preterm', 'nicu_stay'],
-    gestationalWeeksAtBirth: 30,
-  })
-  assert.equal(inferPhase(p, '2026-01-20'), 'nicu')
-})
-
-test('po propuštění z NICU následuje návrat domů', () => {
-  const p = profileWith({
-    birthOn: '2026-01-01',
-    cameHomeOn: '2026-02-20',
-    modifiers: ['preterm', 'nicu_stay'],
-    gestationalWeeksAtBirth: 30,
-  })
-  assert.equal(inferPhase(p, '2026-02-25'), 'coming_home')
-})
-
 test('opakované neúspěchy se poznají z počtu cyklů', () => {
   assert.equal(inferPhase(profileWith({ ivfCycles: 4 }), '2026-05-01'), 'repeated_failure')
 })
 
 // --------------------------------------------------------- gestační výpočty ---
 
-test('gestační stáří z poslední menstruace', () => {
-  const p = profileWith({ lastPeriodOn: '2026-01-01' })
-  assert.equal(gestationDaysFor(p, '2026-01-01'), 0)
-  assert.equal(gestationDaysFor(p, '2026-03-01'), 59)
-})
-
-test('gestační stáří z termínu porodu má přednost', () => {
-  const p = profileWith({ lastPeriodOn: '2026-01-01', dueDate: '2026-10-15' })
-  // 280 dní minus dny do termínu
-  assert.equal(gestationDaysFor(p, '2026-10-15'), 280)
-  assert.equal(gestationDaysFor(p, '2026-10-08'), 273)
-})
-
-test('gestační stáří po transferu počítá se dnem kultivace embrya', () => {
-  const p = profileWith({
-    transferOn: '2026-01-10',
-    betaTestOn: '2026-01-20',
-    embryoDayAtTransfer: 5,
-  })
-  // Den transferu blastocysty = gestačně 2 týdny a 5 dní.
-  assert.equal(gestationDaysFor(p, '2026-01-10'), 19)
-  assert.equal(gestationDaysFor(p, '2026-01-17'), 26)
-})
-
-test('odhad termínu porodu z poslední menstruace', () => {
-  const p = profileWith({ lastPeriodOn: '2026-01-01' })
-  assert.equal(estimatedDueDate(p), addDays('2026-01-01', 280))
-})
-
-test('odhad termínu porodu z transferu', () => {
-  const p = profileWith({ transferOn: '2026-01-10', embryoDayAtTransfer: 5 })
-  const due = estimatedDueDate(p)
-  assert.ok(due)
-  // Zpětná kontrola: v termínu musí gestační stáří vyjít na 280 dní.
-  assert.equal(gestationDaysFor({ ...p, dueDate: due }, due!), 280)
-})
-
 // ------------------------------------------------------- korigovaný věk ---
-
-test('korigovaný věk je nižší než skutečný u nedonošeného dítěte', () => {
-  const p = profileWith({
-    birthOn: '2026-01-01',
-    gestationalWeeksAtBirth: 30,
-    modifiers: ['preterm'],
-  })
-  const corrected = correctedAgeDaysFor(p, '2026-04-01')
-  const actual = daysBetween('2026-01-01', '2026-04-01')
-  assert.ok(corrected !== null)
-  assert.ok(corrected! < actual)
-  // 10 týdnů před termínem = rozdíl 70 dní.
-  assert.equal(actual - corrected!, 70)
-})
-
-test('korigovaný věk může být před termínem záporný', () => {
-  const p = profileWith({
-    birthOn: '2026-01-01',
-    gestationalWeeksAtBirth: 28,
-    modifiers: ['preterm'],
-  })
-  assert.ok(correctedAgeDaysFor(p, '2026-02-01')! < 0)
-})
-
-test('u donošeného dítěte korigovaný věk nepočítáme', () => {
-  const state = resolveJourney(
-    profileWith({ birthOn: '2026-01-01', gestationalWeeksAtBirth: 39 }),
-    '2026-03-01',
-  )
-  assert.equal(state.usesCorrectedAge, false)
-})
-
-test('korekce se přestane používat po druhých narozeninách', () => {
-  const p = profileWith({
-    birthOn: '2024-01-01',
-    gestationalWeeksAtBirth: 30,
-    modifiers: ['preterm'],
-  })
-  assert.equal(resolveJourney(p, '2026-06-01').usesCorrectedAge, false)
-})
 
 // ------------------------------------------------------------- resolveJourney ---
 
@@ -245,29 +133,6 @@ test('resolveJourney počítá ekvivalent dní po ovulaci', () => {
   assert.equal(state.daysPastOvulationEquivalent, 10)
 })
 
-test('resolveJourney popíše těhotenství gestačně', () => {
-  const state = resolveJourney(profileWith({ lastPeriodOn: '2026-01-01' }), '2026-05-01')
-  assert.equal(state.gestationWeek, 17)
-  assert.match(state.dayLabel, /17/)
-})
-
-test('resolveJourney seřadí milníky a najde nejbližší budoucí', () => {
-  const state = resolveJourney(
-    profileWith({
-      transferOn: '2026-05-01',
-      retrievalOn: '2026-04-25',
-      dueDate: '2027-01-20',
-    }),
-    '2026-05-06',
-  )
-  assert.ok(state.milestones.length >= 3)
-  assert.deepEqual(
-    [...state.milestones].map((m) => m.date),
-    [...state.milestones].map((m) => m.date).sort(),
-  )
-  assert.equal(state.nextMilestone?.key, 'dueDate')
-})
-
 test('postup ve fázi je vždy mezi 0 a 1', () => {
   for (const day of [-5, 0, 3, 40, 400]) {
     const state = resolveJourney(
@@ -280,22 +145,19 @@ test('postup ve fázi je vždy mezi 0 a 1', () => {
   }
 })
 
-test('šestinedělí se popisuje po dnech od porodu', () => {
-  const state = resolveJourney(profileWith({ birthOn: '2026-01-01' }), '2026-01-08')
-  assert.equal(state.phase.id, 'postpartum')
-  assert.match(state.dayLabel, /8\. den vašeho šestinedělí/)
-})
-
-test('u nedonošeného dítěte se popisek řídí korigovaným věkem', () => {
+test('resolveJourney seřadí milníky a najde nejbližší budoucí', () => {
   const state = resolveJourney(
     profileWith({
-      birthOn: '2025-10-01',
-      gestationalWeeksAtBirth: 30,
-      modifiers: ['preterm'],
-      cameHomeOn: '2025-11-20',
+      retrievalOn: '2026-04-25',
+      transferOn: '2026-05-01',
+      betaTestOn: '2026-05-12',
     }),
-    '2026-05-01',
+    '2026-05-06',
   )
-  assert.equal(state.usesCorrectedAge, true)
-  assert.match(state.dayLabel, /korigovaně/)
+  assert.ok(state.milestones.length >= 3)
+  assert.deepEqual(
+    [...state.milestones].map((m) => m.date),
+    [...state.milestones].map((m) => m.date).sort(),
+  )
+  assert.equal(state.nextMilestone?.key, 'betaTestOn')
 })

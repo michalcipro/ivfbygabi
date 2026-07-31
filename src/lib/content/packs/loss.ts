@@ -206,7 +206,7 @@ Stává se, že první vyšetření vyjde nejednoznačně a pošlou vás domů s
       minutes: 7,
       phases: ['loss_ectopic', 'loss_biochemical'],
       dayRange: [0, 7],
-      topics: ['ztrata', 'zdravi_ditete', 'klinika'],
+      topics: ['ztrata', 'klinika'],
       level: 'essential',
       hero: 'dusk',
       author: 'Gabi',

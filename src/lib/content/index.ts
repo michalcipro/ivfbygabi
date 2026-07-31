@@ -11,18 +11,12 @@ import type {
 import { pack as planning } from './packs/planning'
 import { pack as diagnostics } from './packs/diagnostics'
 import { pack as loss } from './packs/loss'
-import { pack as pregnancy } from './packs/pregnancy'
-import { pack as birth } from './packs/birth'
-import { pack as baby } from './packs/baby'
 import { pack as ivfCycle } from './packs/ivf-cycle'
 import { pack as transferWait } from './packs/transfer-wait'
 import { pack as iui } from './packs/iui'
 import { pack as glossaryJourney } from './packs/glossary-journey'
 import { pack as marketplace } from './packs/marketplace'
 import { pack as cardsCycle } from './packs/cards-cycle'
-import { pack as cardsPregnancy } from './packs/cards-pregnancy'
-import { pack as cardsPostpartum } from './packs/cards-postpartum'
-import { pack as cardsNicu } from './packs/cards-nicu'
 import { pack as cardsGaps } from './packs/cards-gaps'
 import { pack as encouragements } from './packs/encouragements'
 import { pack as meditations } from './packs/meditations'
@@ -39,18 +33,12 @@ const PACKS: ContentPack[] = [
   planning,
   diagnostics,
   loss,
-  pregnancy,
-  birth,
-  baby,
   ivfCycle,
   transferWait,
   iui,
   glossaryJourney,
   marketplace,
   cardsCycle,
-  cardsPregnancy,
-  cardsPostpartum,
-  cardsNicu,
   cardsGaps,
   encouragements,
   meditations,

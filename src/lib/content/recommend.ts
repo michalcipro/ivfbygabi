@@ -87,36 +87,6 @@ function daysSince(from: string, to: string): number {
   return Math.round((b - a) / 86_400_000)
 }
 
-/** Vyhodnotí, jestli obsah odpovídá gestačnímu týdnu / věku dítěte. */
-function timeWindowAffinity(state: JourneyState, item: ContentItem): number {
-  let score = 1
-
-  if (item.gestWeeks) {
-    if (state.gestationWeek === null) return item.phases.length ? 0.15 : 0.4
-    const [lo, hi] = item.gestWeeks
-    if (state.gestationWeek < lo || state.gestationWeek > hi) {
-      const d = state.gestationWeek < lo ? lo - state.gestationWeek : state.gestationWeek - hi
-      score *= Math.max(0.05, 1 - d / 6)
-    } else {
-      score *= 1.35
-    }
-  }
-
-  if (item.babyWeeks) {
-    const ageDays = state.usesCorrectedAge ? state.correctedAgeDays : state.babyAgeDays
-    if (ageDays === null) return item.phases.length ? 0.15 : 0.4
-    const weeks = Math.floor(ageDays / 7)
-    const [lo, hi] = item.babyWeeks
-    if (weeks < lo || weeks > hi) {
-      const d = weeks < lo ? lo - weeks : weeks - hi
-      score *= Math.max(0.05, 1 - d / 8)
-    } else {
-      score *= 1.35
-    }
-  }
-
-  return score
-}
 
 export function scoreItem(
   item: ContentItem,
@@ -128,7 +98,6 @@ export function scoreItem(
 
   const phase = phaseAffinity(state, item.phases)
   const day = item.dayRange ? rangeAffinity(state.dayInPhase, item.dayRange) : 1
-  const window = timeWindowAffinity(state, item)
   const topic = topicAffinity(item, affinity)
   const novelty = noveltyFactor(item, affinity)
   const fresh = freshnessFactor(item, state.today)
@@ -136,7 +105,7 @@ export function scoreItem(
 
   const levelWeight = item.level === 'essential' ? 1.2 : item.level === 'comfort' ? 1.0 : 0.85
 
-  return phase * day * window * mod * topic * novelty * fresh * boost * levelWeight
+  return phase * day * mod * topic * novelty * fresh * boost * levelWeight
 }
 
 export interface RecommendOptions {
@@ -207,22 +176,6 @@ export function pickDailyCard(
       if (state.dayInPhase < lo || state.dayInPhase > hi) continue
       // Užší rozsah = konkrétnější = lepší
       score += 40 - Math.min(35, hi - lo)
-    }
-
-    if (card.gestWeeks) {
-      if (state.gestationWeek === null) continue
-      const [lo, hi] = card.gestWeeks
-      if (state.gestationWeek < lo || state.gestationWeek > hi) continue
-      score += 60 - Math.min(50, (hi - lo) * 4)
-    }
-
-    if (card.babyWeeks) {
-      const ageDays = state.usesCorrectedAge ? state.correctedAgeDays : state.babyAgeDays
-      if (ageDays === null || ageDays < 0) continue
-      const weeks = Math.floor(ageDays / 7)
-      const [lo, hi] = card.babyWeeks
-      if (weeks < lo || weeks > hi) continue
-      score += 60 - Math.min(50, (hi - lo) * 3)
     }
 
     if (card.modifiers && card.modifiers.length > 0) {

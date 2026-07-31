@@ -1,10 +1,16 @@
 /**
- * Životní cesta uživatelky.
+ * Cesta uživatelky.
  *
- * Platforma nesleduje jeden IVF cyklus — sleduje celý život rodiny od prvního
- * rozhodnutí mít dítě až po první rok dítěte (a dál). Fáze je uzel v této cestě.
- * Modifikátory (dvojčata, nedonošenost, císař, dárcovství…) fázi nemění, ale
- * mění obsah, který se v ní zobrazuje.
+ * Aplikace pokrývá cestu od prvního rozhodnutí mít dítě po pozitivní betu —
+ * a všechny odbočky, které po cestě přijdou, včetně ztrát. Fáze je uzel
+ * v této cestě. Modifikátory (dárcovství, PGT, kryotransfer…) fázi nemění,
+ * ale mění obsah, který se v ní zobrazuje.
+ *
+ * ROZSAH KONČÍ U POZITIVNÍHO TESTU. Průběh těhotenství, porod a péče
+ * o dítě jsou samostatná etapa a patří do samostatné aplikace — kdyby se
+ * sem přilepily, byla by tahle z poloviny o něčem jiném a přestala by být
+ * dobrá v tom, kvůli čemu vzniká. `beta_positive` je proto koncová fáze
+ * a předává ženu do péče jejího gynekologa.
  */
 
 export const PHASE_IDS = [
@@ -33,21 +39,6 @@ export const PHASE_IDS = [
   'loss_miscarriage',
   'uterine_revision',
   'genetic_testing',
-  // Těhotenství
-  'early_pregnancy',
-  'pregnancy',
-  'high_risk_pregnancy',
-  'hospitalization',
-  // Porod
-  'birth_prep',
-  'birth',
-  'preterm_birth',
-  'nicu',
-  'coming_home',
-  // Po porodu
-  'postpartum',
-  'baby_first_year',
-  'toddler',
 ] as const
 
 export type PhaseId = (typeof PHASE_IDS)[number]
@@ -59,9 +50,6 @@ export const PHASE_GROUPS = [
   'treatment',
   'waiting',
   'loss',
-  'pregnancy',
-  'birth',
-  'baby',
 ] as const
 
 export type PhaseGroup = (typeof PHASE_GROUPS)[number]
@@ -101,10 +89,6 @@ export type AnchorKey =
   | 'betaTestOn'
   | 'lossOn'
   | 'lastPeriodOn'
-  | 'dueDate'
-  | 'birthOn'
-  | 'nicuAdmissionOn'
-  | 'cameHomeOn'
 
 const G = (n: number) => n
 
@@ -146,7 +130,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     anchor: 'tryingSince',
     dayLabel: (d) => `${Math.floor(d / 30) + 1}. měsíc snažení`,
     typicalDays: null,
-    next: ['diagnostics', 'early_pregnancy'],
+    next: ['diagnostics', 'beta_positive'],
     tone: 'hopeful',
     selectableAtOnboarding: true,
   },
@@ -282,7 +266,8 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     anchor: 'betaTestOn',
     dayLabel: (d) => `${d}. den od pozitivního testu`,
     typicalDays: G(21),
-    next: ['early_pregnancy'],
+    // Koncová fáze aplikace. Odsud se pokračuje u gynekologa, ne tady.
+    next: [],
     tone: 'joyful',
     selectableAtOnboarding: true,
   },
@@ -390,168 +375,6 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     tone: 'practical',
     selectableAtOnboarding: true,
   },
-  early_pregnancy: {
-    id: 'early_pregnancy',
-    group: 'pregnancy',
-    name: 'Rané těhotenství',
-    title: 'Rané těhotenství',
-    description:
-      'Od pozitivního testu po první ultrazvuk a první srdíčko. Období opatrné naděje.',
-    anchor: 'lastPeriodOn',
-    dayLabel: (d) => `${Math.floor(d / 7)}. týden těhotenství`,
-    typicalDays: G(56),
-    next: ['pregnancy', 'loss_missed', 'loss_ectopic'],
-    tone: 'tender',
-    selectableAtOnboarding: true,
-  },
-  pregnancy: {
-    id: 'pregnancy',
-    group: 'pregnancy',
-    name: 'Těhotenství',
-    title: 'Těhotenství týden po týdnu',
-    description:
-      'Co se děje s miminkem, co s vámi, jaká vyšetření vás čekají a jak se na ně připravit.',
-    anchor: 'lastPeriodOn',
-    dayLabel: (d) => `${Math.floor(d / 7)}. týden, ${d % 7}. den`,
-    typicalDays: G(280),
-    next: ['high_risk_pregnancy', 'birth_prep', 'preterm_birth'],
-    tone: 'joyful',
-    selectableAtOnboarding: true,
-  },
-  high_risk_pregnancy: {
-    id: 'high_risk_pregnancy',
-    group: 'pregnancy',
-    name: 'Rizikové těhotenství',
-    title: 'Rizikové těhotenství',
-    description:
-      'Hypertenze, preeklampsie, gestační diabetes, zkracující se čípek, klidový režim. Bez strašení, s fakty.',
-    anchor: 'lastPeriodOn',
-    dayLabel: (d) => `${Math.floor(d / 7)}. týden těhotenství`,
-    typicalDays: null,
-    next: ['hospitalization', 'birth_prep', 'preterm_birth'],
-    tone: 'practical',
-    selectableAtOnboarding: true,
-  },
-  hospitalization: {
-    id: 'hospitalization',
-    group: 'pregnancy',
-    name: 'Hospitalizace',
-    title: 'Hospitalizace v těhotenství',
-    description: 'Život na oddělení rizikového těhotenství. Co si vzít, jak si udržet mysl.',
-    anchor: null,
-    typicalDays: null,
-    next: ['birth', 'preterm_birth', 'pregnancy'],
-    tone: 'intense',
-    selectableAtOnboarding: true,
-  },
-  birth_prep: {
-    id: 'birth_prep',
-    group: 'birth',
-    name: 'Příprava na porod',
-    title: 'Příprava na porod',
-    description: 'Porodní plán, taška do porodnice, předzvěsti, kdy vyrazit.',
-    anchor: 'dueDate',
-    dayLabel: (d) => (d <= 0 ? `${-d} dní do termínu` : `${d}. den po termínu`),
-    typicalDays: G(42),
-    next: ['birth'],
-    tone: 'practical',
-    selectableAtOnboarding: true,
-  },
-  birth: {
-    id: 'birth',
-    group: 'birth',
-    name: 'Porod',
-    title: 'Porod',
-    description: 'Přirozený porod, vyvolávaný porod, císařský řez — a první hodiny po něm.',
-    anchor: 'birthOn',
-    dayLabel: (d) => (d === 0 ? 'Den porodu' : `${d}. den po porodu`),
-    typicalDays: G(3),
-    next: ['postpartum', 'nicu'],
-    tone: 'joyful',
-    selectableAtOnboarding: true,
-  },
-  preterm_birth: {
-    id: 'preterm_birth',
-    group: 'birth',
-    name: 'Předčasný porod',
-    title: 'Předčasný porod',
-    description:
-      'Porod, na který se nedá připravit. Co se děje, co znamenají čísla a kde brát sílu.',
-    anchor: 'birthOn',
-    dayLabel: (d) => (d === 0 ? 'Den porodu' : `${d}. den po porodu`),
-    typicalDays: G(3),
-    next: ['nicu'],
-    tone: 'intense',
-    selectableAtOnboarding: true,
-  },
-  nicu: {
-    id: 'nicu',
-    group: 'birth',
-    name: 'NICU',
-    title: 'Novorozenecká intenzivní péče',
-    description:
-      'Monitory, sondička, CPAP, klokánkování, první krmení, první koupání. Den po dni až domů.',
-    anchor: 'nicuAdmissionOn',
-    dayLabel: (d) => `${d + 1}. den na oddělení`,
-    typicalDays: null,
-    next: ['coming_home'],
-    tone: 'intense',
-    selectableAtOnboarding: true,
-  },
-  coming_home: {
-    id: 'coming_home',
-    group: 'baby',
-    name: 'Návrat domů',
-    title: 'Návrat domů',
-    description: 'První dny doma bez monitorů. Úleva i panika v jednom.',
-    anchor: 'cameHomeOn',
-    dayLabel: (d) => `${d + 1}. den doma`,
-    typicalDays: G(21),
-    next: ['postpartum', 'baby_first_year'],
-    tone: 'tender',
-    selectableAtOnboarding: true,
-  },
-  postpartum: {
-    id: 'postpartum',
-    group: 'baby',
-    name: 'Šestinedělí',
-    title: 'Šestinedělí',
-    description:
-      'Šest týdnů, o kterých se málo mluví. Hojení, hormony, psychika, spánek, pánevní dno, jizva.',
-    anchor: 'birthOn',
-    dayLabel: (d) => `${d + 1}. den šestinedělí`,
-    typicalDays: G(42),
-    next: ['baby_first_year'],
-    tone: 'tender',
-    selectableAtOnboarding: true,
-  },
-  baby_first_year: {
-    id: 'baby_first_year',
-    group: 'baby',
-    name: 'První rok',
-    title: 'První rok dítěte',
-    description:
-      'Vývoj, spánek, krmení, zoubky, nemoci, příkrmy, milníky. U nedonošených podle korigovaného věku.',
-    anchor: 'birthOn',
-    dayLabel: (d) => `${Math.floor(d / 7)}. týden života`,
-    typicalDays: G(365),
-    next: ['toddler'],
-    tone: 'joyful',
-    selectableAtOnboarding: true,
-  },
-  toddler: {
-    id: 'toddler',
-    group: 'baby',
-    name: 'Batole',
-    title: 'Batolecí období',
-    description: 'Po prvních narozeninách cesta nekončí. Vývoj, jídlo, spánek, hranice, školka.',
-    anchor: 'birthOn',
-    dayLabel: (d) => `${Math.floor(d / 30.4)}. měsíc`,
-    typicalDays: null,
-    next: ['thinking', 'trying_naturally'],
-    tone: 'joyful',
-    selectableAtOnboarding: true,
-  },
 }
 
 export const PHASE_GROUP_META: Record<
@@ -582,21 +405,6 @@ export const PHASE_GROUP_META: Record<
     name: 'Ztráty',
     blurb: 'Když to bolí',
     accent: 'var(--color-blush)',
-  },
-  pregnancy: {
-    name: 'Těhotenství',
-    blurb: 'Týden po týdnu',
-    accent: 'var(--color-blush)',
-  },
-  birth: {
-    name: 'Porod',
-    blurb: 'Přirozený, císař, předčasný, NICU',
-    accent: 'var(--color-champagne)',
-  },
-  baby: {
-    name: 'Miminko',
-    blurb: 'Šestinedělí a první rok',
-    accent: 'var(--color-sage)',
   },
 }
 

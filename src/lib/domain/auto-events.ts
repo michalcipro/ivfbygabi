@@ -1,5 +1,4 @@
 import type { JourneyState } from './journey'
-import { estimatedDueDate } from './journey'
 import type { Profile } from './profile'
 import { addDays } from './dates'
 import type { CalendarEvent } from '../shared/records'
@@ -48,30 +47,6 @@ export function autoEventsFor(profile: Profile, state: JourneyState): AutoEvent[
       atTime: null,
       location: profile.clinicName,
       note: null,
-    })
-  }
-
-  const due = estimatedDueDate(profile)
-  if (due && !profile.birthOn) {
-    out.push({
-      title: 'Termín porodu',
-      kind: 'porod',
-      onDate: due,
-      atTime: null,
-      location: null,
-      note: null,
-    })
-  }
-
-  // Kontrola po šestinedělí.
-  if (profile.birthOn) {
-    out.push({
-      title: 'Kontrola po šestinedělí',
-      kind: 'kontrola',
-      onDate: addDays(profile.birthOn, 42),
-      atTime: null,
-      location: null,
-      note: 'Přesný termín domluvte se svým gynekologem.',
     })
   }
 

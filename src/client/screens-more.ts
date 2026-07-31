@@ -583,8 +583,7 @@ export function screenNastaveni(): string {
   const modGroups: [string, ModifierId[]][] = [
     ['Diagnózy', ['pcos', 'endometriosis', 'adenomyosis', 'low_amh', 'male_factor', 'tubal_factor', 'thyroid', 'thrombophilia', 'immunology', 'unexplained']],
     ['Léčba', ['icsi', 'pgt', 'frozen_transfer', 'donor_egg', 'donor_sperm', 'donor_embryo', 'surrogacy']],
-    ['Těhotenství', ['twins', 'high_risk', 'gestational_diabetes', 'preeclampsia', 'cervical_insufficiency']],
-    ['Porod a miminko', ['csection', 'vaginal_birth', 'induced_birth', 'preterm', 'nicu_stay', 'breastfeeding', 'formula_feeding', 'combination_feeding', 'pumping', 'reflux', 'colic']],
+    ['U transferu', ['twins']],
     ['Situace', ['after_loss', 'repeated_failure', 'single_mother', 'same_sex_couple', 'secondary_infertility']],
   ]
 
@@ -633,8 +632,6 @@ export function screenNastaveni(): string {
             ['retrievalOn', 'Odběr vajíček'],
             ['transferOn', 'Transfer'],
             ['betaTestOn', 'Beta hCG'],
-            ['dueDate', 'Termín porodu'],
-            ['birthOn', 'Narození'],
           ] as const
         )
           .map(

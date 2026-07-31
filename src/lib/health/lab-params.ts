@@ -94,7 +94,7 @@ export const LAB_PARAMS: LabParameter[] = [
     explain:
       'Beta HCG tvoří vyvíjející se placenta. V prvních týdnech je důležitější dynamika než jedna hodnota — proto se odběr obvykle opakuje. Rozptyl mezi zdravými těhotenstvími je obrovský, srovnávat své číslo s cizím nedává smysl.',
     topics: ['cekani', 'vysledky', 'tehotenstvi'],
-    context: 'pregnancy',
+    context: 'cycle',
     trend: 'rising',
   },
   {
@@ -210,51 +210,7 @@ export const LAB_PARAMS: LabParameter[] = [
     reference: { low: 120, high: 160, note: 'V těhotenství fyziologicky mírně klesá.' },
     explain:
       'Ukazuje, jestli nemáte chudokrevnost. V těhotenství a po porodu se sleduje pravidelně — nízká hodnota vysvětluje velkou část únavy.',
-    topics: ['vysledky', 'tehotenstvi', 'sestinedeli'],
-    context: 'general',
-  },
-  {
-    key: 'ferritin',
-    name: 'Feritin',
-    unit: 'µg/l',
-    patterns: ['feritin', 'ferritin'],
-    reference: { low: 30, note: 'Zásoby železa. Doplňuje obraz, který dává hemoglobin.' },
-    explain:
-      'Feritin ukazuje zásobní železo. Může být nízký ještě dřív, než klesne hemoglobin — a projevit se únavou nebo vypadáváním vlasů.',
-    topics: ['vysledky', 'strava'],
-    context: 'general',
-  },
-  {
-    key: 'glukoza',
-    name: 'Glykémie nalačno',
-    unit: 'mmol/l',
-    patterns: ['glukoza', 'glykemie', 'glucose', 'ogtt'],
-    reference: { low: 3.3, high: 5.5, note: 'V těhotenství platí přísnější cílové hodnoty.' },
-    explain:
-      'Hladina cukru v krvi. V těhotenství se dělá oGTT, protože gestační diabetes obvykle nebolí a nic se navenek neprojeví — proto se testuje plošně.',
-    topics: ['vysledky', 'rizikove'],
-    context: 'pregnancy',
-  },
-  {
-    key: 'bilirubin',
-    name: 'Bilirubin (novorozenec)',
-    unit: 'µmol/l',
-    patterns: ['bilirubin', 'tsb'],
-    reference: { note: 'Hodnotí se vždy podle hodin života a gestačního věku dítěte, ne samostatně.' },
-    explain:
-      'Novorozenecká žloutenka je velmi častá. Zda je potřeba fototerapie, se rozhoduje podle grafu, který kombinuje hodnotu, stáří v hodinách a zralost dítěte.',
-    topics: ['zdravi_ditete', 'nicu', 'nedonosenost'],
-    context: 'baby',
-  },
-  {
-    key: 'crp',
-    name: 'CRP',
-    unit: 'mg/l',
-    patterns: ['crp', 'c-reaktivni'],
-    reference: { high: 5, note: 'Nespecifický ukazatel zánětu.' },
-    explain:
-      'Zvýšené CRP signalizuje zánět v těle. Samo o sobě neurčuje příčinu — vždy se hodnotí spolu s klinickým stavem.',
-    topics: ['vysledky', 'zdravi_ditete'],
+    topics: ['vysledky', 'tehotenstvi'],
     context: 'general',
   },
 ]

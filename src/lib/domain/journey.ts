@@ -50,19 +50,6 @@ export interface JourneyState {
   modifiers: ModifierId[]
   group: PhaseGroup
 
-  /** Gestační stáří ve dnech, pokud je uživatelka těhotná. */
-  gestationDays: number | null
-  gestationWeek: number | null
-  /** „24+3“ */
-  gestationLabel: string | null
-
-  /** Věk dítěte ve dnech od narození. */
-  babyAgeDays: number | null
-  /** Korigovaný věk u nedonošených — může být záporný před termínem. */
-  correctedAgeDays: number | null
-  usesCorrectedAge: boolean
-  babyAgeLabel: string | null
-
   /** Dny po transferu (DPT) a dny po odběru (DPO) — pro obsah 2WW. */
   daysPastTransfer: number | null
   daysPastRetrieval: number | null
@@ -75,13 +62,6 @@ export interface JourneyState {
   /** Kolik dní je uživatelka na cestě celkem. */
   journeyDays: number | null
 }
-
-/**
- * Nejdelší doba, po kterou ještě považujeme dítě bez zadaného návratu domů
- * za hospitalizované. Delší pobyty existují, ale po půl roce je pravděpodobnější,
- * že uživatelka jen nevyplnila datum propuštění.
- */
-const MAX_PLAUSIBLE_NICU_DAYS = 180
 
 /** Datum kotvy pro danou fázi. */
 function anchorValue(profile: Profile, phase: PhaseDefinition): IsoDate | null {
@@ -102,27 +82,6 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
   }
   const mods = new Set(profile.modifiers)
 
-  // Miminko je na světě.
-  if (has('birthOn')) {
-    const age = daysBetween(profile.birthOn!, today)
-    if (age >= 0) {
-      if (mods.has('nicu_stay') || mods.has('preterm')) {
-        if (has('cameHomeOn') && daysBetween(profile.cameHomeOn!, today) >= 0) {
-          const sinceHome = daysBetween(profile.cameHomeOn!, today)
-          if (sinceHome <= 21) return 'coming_home'
-          return age <= 42 ? 'postpartum' : age <= 365 ? 'baby_first_year' : 'toddler'
-        }
-        // Bez data návratu domů předpokládáme pobyt na oddělení — ale jen po dobu,
-        // kdy to dává smysl. Půlroční dítě nesmí zůstat viset na NICU jen proto,
-        // že si uživatelka zapomněla zapsat datum propuštění.
-        if (age <= MAX_PLAUSIBLE_NICU_DAYS) return 'nicu'
-      }
-      if (age <= 42) return 'postpartum'
-      if (age <= 365) return 'baby_first_year'
-      return 'toddler'
-    }
-  }
-
   // Ztráta má přednost před těhotenskými daty — je to nejčerstvější událost.
   if (has('lossOn')) {
     const since = daysBetween(profile.lossOn!, today)
@@ -135,18 +94,6 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
     if (since > 90 && !has('lastPeriodOn') && !has('transferOn')) {
       return 'waiting_next_attempt'
     }
-  }
-
-  // Těhotenství — počítá se z první menstruace nebo z termínu porodu.
-  const gest = gestationDaysFor(profile, today)
-  if (gest !== null && gest >= 0 && gest < 320) {
-    const week = Math.floor(gest / 7)
-    if (week < 10) return 'early_pregnancy'
-    if (week >= 37) return 'birth_prep'
-    if (mods.has('high_risk') || mods.has('preeclampsia') || mods.has('cervical_insufficiency')) {
-      return 'high_risk_pregnancy'
-    }
-    return 'pregnancy'
   }
 
   // Pozitivní beta bez zadaného těhotenství.
@@ -192,60 +139,6 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
   return profile.declaredPhase ?? 'thinking'
 }
 
-/**
- * Gestační stáří ve dnech.
- * Priorita: termín porodu (nejpřesnější po UZ korekci) → první den poslední
- * menstruace → datum transferu + den kultivace embrya (u IVF nejpřesnější
- * hned po termínu).
- */
-export function gestationDaysFor(profile: Profile, today: IsoDate = todayIso()): number | null {
-  if (profile.dueDate) {
-    const toDue = daysBetween(today, profile.dueDate)
-    return 280 - toDue
-  }
-  if (profile.lastPeriodOn) {
-    return daysBetween(profile.lastPeriodOn, today)
-  }
-  if (profile.transferOn && profile.betaTestOn) {
-    // Transfer 5denního embrya = gestačně 2 týdny + 5 dní.
-    const embryoDay = profile.embryoDayAtTransfer ?? 5
-    const dpt = daysBetween(profile.transferOn, today)
-    if (dpt < 0) return null
-    return 14 + embryoDay + dpt
-  }
-  return null
-}
-
-/** Odhadovaný termín porodu — dopočítá se, pokud ho uživatelka nezadala. */
-export function estimatedDueDate(profile: Profile): IsoDate | null {
-  if (profile.dueDate) return profile.dueDate
-  if (profile.lastPeriodOn) return addDays(profile.lastPeriodOn, 280)
-  if (profile.transferOn) {
-    const embryoDay = profile.embryoDayAtTransfer ?? 5
-    // Zpětně: den transferu odpovídá gestačně 14 + embryoDay.
-    return addDays(profile.transferOn, 280 - (14 + embryoDay))
-  }
-  return null
-}
-
-/**
- * Korigovaný věk u nedonošených dětí: věk od data, kdy měly původně přijít.
- * Používá se pro hodnocení vývoje zhruba do 2 let.
- */
-export function correctedAgeDaysFor(profile: Profile, today: IsoDate = todayIso()): number | null {
-  if (!profile.birthOn) return null
-  const due = profile.dueDate ?? estimatedDueDateFromBirth(profile)
-  if (!due) return null
-  return daysBetween(due, today)
-}
-
-function estimatedDueDateFromBirth(profile: Profile): IsoDate | null {
-  if (!profile.birthOn || profile.gestationalWeeksAtBirth === null) return null
-  const daysEarly = 280 - profile.gestationalWeeksAtBirth * 7
-  if (daysEarly <= 0) return null
-  return addDays(profile.birthOn, daysEarly)
-}
-
 function buildMilestones(profile: Profile, today: IsoDate): Milestone[] {
   const raw: Array<{ key: string; label: string; date: IsoDate | null; icon: string }> = [
     { key: 'tryingSince', label: 'Začátek snažení', date: profile.tryingSince, icon: '✦' },
@@ -266,15 +159,6 @@ function buildMilestones(profile: Profile, today: IsoDate): Milestone[] {
     { key: 'transferOn', label: 'Transfer', date: profile.transferOn, icon: '❋' },
     { key: 'betaTestOn', label: 'Beta HCG', date: profile.betaTestOn, icon: '✶' },
     { key: 'lossOn', label: 'Ztráta', date: profile.lossOn, icon: '❍' },
-    { key: 'dueDate', label: 'Termín porodu', date: estimatedDueDate(profile), icon: '❀' },
-    { key: 'birthOn', label: 'Narození', date: profile.birthOn, icon: '✿' },
-    {
-      key: 'nicuAdmissionOn',
-      label: 'Přijetí na NICU',
-      date: profile.nicuAdmissionOn,
-      icon: '◉',
-    },
-    { key: 'cameHomeOn', label: 'Návrat domů', date: profile.cameHomeOn, icon: '⌂' },
   ]
 
   return raw
@@ -299,18 +183,6 @@ export function resolveJourney(profile: Profile, today: IsoDate = todayIso()): J
 
   const anchorDate = anchorValue(profile, phase)
   const dayInPhase = anchorDate ? daysBetween(anchorDate, today) : 0
-
-  const gestationDays = gestationDaysFor(profile, today)
-  const inPregnancy = gestationDays !== null && gestationDays >= 0 && gestationDays < 320
-
-  const babyAgeDays = profile.birthOn ? daysBetween(profile.birthOn, today) : null
-  const isPreterm =
-    profile.modifiers.includes('preterm') ||
-    (profile.gestationalWeeksAtBirth !== null && profile.gestationalWeeksAtBirth < 37)
-  const correctedAgeDays = isPreterm ? correctedAgeDaysFor(profile, today) : null
-  // Korekce má smysl zhruba do dvou let.
-  const usesCorrectedAge =
-    isPreterm && correctedAgeDays !== null && babyAgeDays !== null && babyAgeDays < 730
 
   const daysPastTransfer = profile.transferOn ? daysBetween(profile.transferOn, today) : null
   const daysPastRetrieval = profile.retrievalOn ? daysBetween(profile.retrievalOn, today) : null
@@ -337,13 +209,7 @@ export function resolveJourney(profile: Profile, today: IsoDate = todayIso()): J
     today,
     phase,
     dayInPhase,
-    dayLabel: buildDayLabel(phase, dayInPhase, {
-      gestationDays,
-      babyAgeDays,
-      correctedAgeDays,
-      usesCorrectedAge,
-      hasAnchor: anchorDate !== null,
-    }),
+    dayLabel: buildDayLabel(phase, dayInPhase, { hasAnchor: anchorDate !== null }),
     anchorDate,
     progress:
       phase.typicalDays && phase.typicalDays > 0
@@ -351,20 +217,6 @@ export function resolveJourney(profile: Profile, today: IsoDate = todayIso()): J
         : null,
     modifiers: profile.modifiers,
     group: phase.group,
-    gestationDays: inPregnancy ? gestationDays : null,
-    gestationWeek: inPregnancy ? Math.floor(gestationDays! / 7) : null,
-    gestationLabel: inPregnancy ? gestationLabel(gestationDays!) : null,
-    babyAgeDays,
-    correctedAgeDays,
-    usesCorrectedAge,
-    babyAgeLabel:
-      babyAgeDays !== null && babyAgeDays >= 0
-        ? usesCorrectedAge && correctedAgeDays !== null
-          ? `${humanAge(babyAgeDays)} (korigovaně ${
-              correctedAgeDays >= 0 ? humanAge(correctedAgeDays) : 'ještě před termínem'
-            })`
-          : humanAge(babyAgeDays)
-        : null,
     daysPastTransfer,
     daysPastRetrieval,
     daysPastOvulationEquivalent,
@@ -377,41 +229,12 @@ export function resolveJourney(profile: Profile, today: IsoDate = todayIso()): J
 function buildDayLabel(
   phase: PhaseDefinition,
   day: number,
-  ctx: {
-    gestationDays: number | null
-    babyAgeDays: number | null
-    correctedAgeDays: number | null
-    usesCorrectedAge: boolean
-    hasAnchor: boolean
-  },
+  ctx: { hasAnchor: boolean },
 ): string {
-  // Těhotenství se vždycky popisuje gestačně — tak to říkají i lékaři.
-  if (
-    (phase.group === 'pregnancy' || phase.id === 'birth_prep') &&
-    ctx.gestationDays !== null &&
-    ctx.gestationDays >= 0
-  ) {
-    const w = Math.floor(ctx.gestationDays / 7)
-    const d = ctx.gestationDays % 7
-    return d === 0 ? `Dnes jste v ${w}. týdnu těhotenství` : `Dnes jste ${w}+${d}`
-  }
-
-  // Vývoj dítěte u nedonošených jede podle korigovaného věku.
-  if (phase.group === 'baby' && ctx.usesCorrectedAge && ctx.correctedAgeDays !== null) {
-    if (ctx.correctedAgeDays < 0) {
-      return `Vaše miminko by se mělo teprve narodit za ${czDays(-ctx.correctedAgeDays)}`
-    }
-    return `Vašemu miminku je korigovaně ${humanAge(ctx.correctedAgeDays)}`
-  }
-
-  if (phase.group === 'baby' && ctx.babyAgeDays !== null && ctx.babyAgeDays >= 0) {
-    if (phase.id === 'postpartum') return `Dnes je ${ctx.babyAgeDays + 1}. den vašeho šestinedělí`
-    return `Vašemu miminku je ${humanAge(ctx.babyAgeDays)}`
-  }
-
   if (!ctx.hasAnchor || !phase.dayLabel) return phase.title
   return `Dnes je ${phase.dayLabel(day)}`.replace('Dnes je Den', 'Dnes je den')
 }
+
 
 /**
  * Jak dobře daný obsah sedí na aktuální stav. Používá doporučovací systém.

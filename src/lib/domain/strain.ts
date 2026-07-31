@@ -84,9 +84,6 @@ const BASE: Record<JourneyState['group'], number> = {
   treatment: 4,
   waiting: 5,
   loss: 7,
-  pregnancy: 3,
-  birth: 5,
-  baby: 4,
 }
 
 /** Události, které den samy o sobě zatíží. Číslo platí pro „dnes“. */
@@ -138,9 +135,6 @@ function phaseDayLoad(state: JourneyState): Part[] {
   }
   if (state.group === 'loss' && state.dayInPhase <= 21) {
     parts.push({ label: 'Čerstvá ztráta', points: 1.5 })
-  }
-  if (state.phase.id === 'nicu') {
-    parts.push({ label: 'Miminko je na JIP', points: 2 })
   }
   return parts
 }

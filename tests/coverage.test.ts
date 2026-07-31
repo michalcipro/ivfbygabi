@@ -55,76 +55,6 @@ test('stimulace má kartu na každý den 0–12', () => {
   assert.deepEqual(missing, [], `chybí karty pro dny stimulace: ${missing.join(', ')}`)
 })
 
-test('těhotenství má kartu na každý týden 5–40', () => {
-  const missing: number[] = []
-  for (let week = 5; week <= 40; week++) {
-    const state = resolveJourney(profileWith({ lastPeriodOn: addDays(NOW, -week * 7) }))
-    if (!pickDailyCard(DAILY_CARDS, state)) missing.push(week)
-  }
-  assert.deepEqual(missing, [], `chybí karty pro týdny těhotenství: ${missing.join(', ')}`)
-})
-
-test('šestinedělí má kartu na každý den 0–41', () => {
-  const missing: number[] = []
-  for (let day = 0; day <= 41; day++) {
-    const state = resolveJourney(
-      profileWith({ birthOn: addDays(NOW, -day), gestationalWeeksAtBirth: 39 }),
-    )
-    if (!pickDailyCard(DAILY_CARDS, state)) missing.push(day)
-  }
-  assert.deepEqual(missing, [], `chybí karty pro dny šestinedělí: ${missing.join(', ')}`)
-})
-
-test('první rok dítěte má kartu na každý týden 7–52', () => {
-  const missing: number[] = []
-  for (let week = 7; week <= 52; week++) {
-    const state = resolveJourney(
-      profileWith({ birthOn: addDays(NOW, -week * 7), gestationalWeeksAtBirth: 39 }),
-    )
-    if (!pickDailyCard(DAILY_CARDS, state)) missing.push(week)
-  }
-  assert.deepEqual(missing, [], `chybí karty pro týdny prvního roku: ${missing.join(', ')}`)
-})
-
-test('nedonošené dítě dostane kartu podle korigovaného věku', () => {
-  const state = resolveJourney(
-    profileWith({
-      birthOn: addDays(NOW, -180),
-      cameHomeOn: addDays(NOW, -120),
-      gestationalWeeksAtBirth: 30,
-      modifiers: ['preterm', 'nicu_stay'],
-    }),
-  )
-  assert.equal(state.usesCorrectedAge, true)
-  assert.ok(pickDailyCard(DAILY_CARDS, state), 'chybí karta pro nedonošené dítě')
-})
-
-test('nedonošené dítě na oddělení i po návratu domů má kartu', () => {
-  const cases: Array<[string, Partial<Profile>]> = [
-    [
-      'na oddělení',
-      {
-        birthOn: addDays(NOW, -20),
-        gestationalWeeksAtBirth: 29,
-        modifiers: ['preterm', 'nicu_stay'],
-      },
-    ],
-    [
-      'čerstvě doma',
-      {
-        birthOn: addDays(NOW, -70),
-        cameHomeOn: addDays(NOW, -5),
-        gestationalWeeksAtBirth: 29,
-        modifiers: ['preterm', 'nicu_stay'],
-      },
-    ],
-  ]
-  for (const [label, patch] of cases) {
-    const state = resolveJourney(profileWith(patch))
-    assert.ok(pickDailyCard(DAILY_CARDS, state), `chybí karta: ${label} (fáze ${state.phase.id})`)
-  }
-})
-
 test('každá fáze cesty má aspoň jednu denní kartu', () => {
   const byPhase = new Map<string, number>()
   for (const card of DAILY_CARDS) {
@@ -169,24 +99,6 @@ test('obsah používá jen platné výčtové hodnoty', () => {
   for (const card of DAILY_CARDS) {
     for (const p of card.phases) assert.ok(phases.has(p), `${card.id}: neznámá fáze ${p}`)
     for (const m of card.modifiers ?? []) assert.ok(mods.has(m), `${card.id}: neznámý modifikátor ${m}`)
-  }
-})
-
-test('rozsahy jsou zapsané správně', () => {
-  const checkRange = (id: string, name: string, range?: [number, number]) => {
-    if (!range) return
-    assert.equal(range.length, 2, `${id}: ${name} musí mít dvě čísla`)
-    assert.ok(range[0] <= range[1], `${id}: ${name} má obrácené meze`)
-  }
-  for (const item of CATALOG) {
-    checkRange(item.id, 'dayRange', item.dayRange)
-    checkRange(item.id, 'gestWeeks', item.gestWeeks)
-    checkRange(item.id, 'babyWeeks', item.babyWeeks)
-  }
-  for (const card of DAILY_CARDS) {
-    checkRange(card.id, 'dayRange', card.dayRange)
-    checkRange(card.id, 'gestWeeks', card.gestWeeks)
-    checkRange(card.id, 'babyWeeks', card.babyWeeks)
   }
 })
 

@@ -184,9 +184,6 @@ function syncMilestonesFromProfile(userId: string, profile: ReturnType<typeof ge
     [profile.transferOn, 'Transfer embrya', '❋'],
     [profile.betaTestOn, 'Pozitivní beta HCG', '✶'],
     [profile.lossOn, 'Ztráta', '❍'],
-    [profile.birthOn, 'Narození miminka', '✿'],
-    [profile.nicuAdmissionOn, 'Přijetí na novorozeneckou JIP', '◉'],
-    [profile.cameHomeOn, 'První den doma', '⌂'],
   ]
 
   for (const [date, title, icon] of milestones) {

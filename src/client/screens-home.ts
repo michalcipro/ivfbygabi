@@ -193,8 +193,6 @@ export function screenDnes(): string {
     <p class="eyebrow">${esc(formatCzechDate(date, { weekday: true }))}</p>
     <h1 class="display">${esc(greeting)}</h1>
     <p class="lede">${esc(state.dayLabel)}</p>
-    ${state.gestationLabel ? `<p class="faint" style="margin-top:.3rem;font-size:.875rem">Gestační stáří ${esc(state.gestationLabel)}</p>` : ''}
-    ${state.babyAgeLabel ? `<p class="faint" style="margin-top:.3rem;font-size:.875rem">${esc(state.babyAgeLabel)}</p>` : ''}
   </header>`
 
   const dayCard = card
@@ -484,8 +482,6 @@ export function screenProc(): string {
       <dl class="kv" style="margin-top:.9rem">
         <dt>Fáze</dt><dd>${esc(state.phase.title)}</dd>
         <dt>Den ve fázi</dt><dd>${esc(state.dayLabel)}</dd>
-        ${state.gestationLabel ? `<dt>Gestační stáří</dt><dd>${esc(state.gestationLabel)}</dd>` : ''}
-        ${state.babyAgeLabel ? `<dt>Věk miminka</dt><dd>${esc(state.babyAgeLabel)}</dd>` : ''}
         <dt>Situace</dt><dd>${p.modifiers.length ? p.modifiers.map((m) => esc(MODIFIER_LABELS[m])).join(', ') : 'žádná'}</dd>
         <dt>Datum</dt><dd>${esc(formatCzechDate(viewDate(), { weekday: true }))}</dd>
       </dl>

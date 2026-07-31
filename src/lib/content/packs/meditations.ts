@@ -293,7 +293,7 @@ A prosím — jestli je toho na vás moc, jestli nemůžete jíst, spát, nebo v
     'Na usnutí',
     'Když je hlava plná a spánek nikde.',
     15,
-    ['two_week_wait', 'stimulation', 'pregnancy', 'postpartum', 'waiting_next_attempt'],
+    ['two_week_wait', 'stimulation', 'waiting_next_attempt'],
     ['spanek', 'psychika', 'sebepece'],
     'Postupné uvolnění celého těla. Nahrávka na konci ztichne — usnutí je cíl, ne selhání.',
     `Lehněte si tak, jak budete spát.
@@ -346,7 +346,7 @@ Výdech.`,
     'Při úzkosti',
     'Šest minut, když se vám stahuje hrudník a nejde se nadechnout.',
     6,
-    ['two_week_wait', 'stimulation', 'high_risk_pregnancy', 'nicu', 'postpartum'],
+    ['two_week_wait', 'stimulation'],
     ['psychika', 'sebepece'],
     'Krátká nahrávka pro akutní úzkost. Začíná rychleji než ostatní a zpomaluje postupně.',
     `Jestli se vám teď špatně dýchá, nejste v nebezpečí. Úzkost to takhle dělá.
@@ -385,187 +385,11 @@ A jestli se vrací často a brání vám fungovat, řekněte o tom svému léka�
   ),
 
   audio(
-    'med-nicu',
-    'Pro maminku na NICU',
-    'Deset minut pro sebe, když je vaše miminko na oddělení.',
-    10,
-    ['nicu', 'preterm_birth'],
-    ['nicu', 'nedonosenost', 'psychika'],
-    'Nahrávka určená pro chvíli mezi návštěvami. Nepracuje s vizualizacemi ani sliby.',
-    `Vaše miminko je někde jinde než vy. To je proti všemu, co vaše tělo čeká.
-
-Sedněte si. Klidně v autě, v čekárně, na chodbě.
-
-Nádech. Výdech.
-
-Nikdo vás nepřipravoval na to, že budete matkou dítěte, které nemůžete jen tak vzít do náruče. Že se budete ptát na dovolení, abyste se ho směla dotknout.
-
-Nádech.
-
-Ať vám kdokoliv říká cokoliv, tohle je těžké. Nemusíte být statečná. Nemusíte být vděčná za to, jak dobrou máte péči — můžete být vděčná a zároveň zoufalá.
-
-Výdech.
-
-To, co dneska pro své dítě děláte, se nedá vidět na monitoru. Odsáváte mléko v noci. Jezdíte tam a zpátky. Držíte ho na hrudi, i když se vám třesou ruce.
-
-Jste tam. Každý den.
-
-Položte si ruce na hrudník.
-
-Nádech.
-
-Výdech.
-
-Tohle období skončí. Nevím kdy a nikdo vám to přesně neřekne. Ale jednou pojedete domů.
-
-A do té doby máte právo být unavená, naštvaná i vyděšená.
-
-Ještě dva nádechy.
-
-A pak jděte za ním.`,
-    { modifiers: ['preterm', 'nicu_stay'] },
-  ),
-
-  audio(
-    'med-pred-porodem',
-    'Před porodem',
-    'Pro poslední týdny, kdy čekáte na první kontrakci.',
-    12,
-    ['birth_prep', 'pregnancy'],
-    ['porod', 'psychika'],
-    'Nahrávka obsahuje dechovou techniku, kterou lze použít i během kontrakcí.',
-    `Za pár dní nebo týdnů to začne. Nikdo vám neřekne kdy — a to je nejspíš to nejtěžší.
-
-Lehněte si na bok, ideálně na levý, s polštářem mezi koleny.
-
-Nádech nosem. Výdech ústy.
-
-Naučíme se teď dech, který se bude hodit i při kontrakcích.
-
-Nádech nosem na čtyři doby.
-
-Výdech ústy na šest až osm, s uvolněnou čelistí. Zvuk může vyjít ven — nemusí to být tiché.
-
-Ještě jednou. Nádech nosem, čtyři.
-
-Výdech, dlouhý, uvolněná čelist.
-
-Uvolněná čelist a uvolněné pánevní dno spolu souvisí víc, než by se zdálo. Když povolíte ústa, povolí se i dole.
-
-Ještě dvakrát, svým tempem.
-
-Vaše tělo tuhle práci umí. Nebude to příjemné a nebudete mít kontrolu nad tím, jak dlouho to potrvá.
-
-Ale nebudete tam sama. Bude tam tým lidí, jejichž prací je vás tím provést.
-
-Nádech.
-
-Výdech.
-
-Nemusíte mít porod naplánovaný do detailu. Stačí vědět, co je pro vás důležité, a to říct nahlas.
-
-Ještě jeden nádech.
-
-A teď si odpočiňte. Sílu budete potřebovat.`,
-  ),
-
-  audio(
-    'med-sestinedeli',
-    'V šestinedělí',
-    'Osm minut pro ženu, na kterou se nikdo neptá.',
-    8,
-    ['postpartum', 'coming_home'],
-    ['sestinedeli', 'psychika', 'sebepece'],
-    'Nahrávka počítá s tím, že ji posloucháte s miminkem na hrudi nebo mezi kojením.',
-    `Všichni se ptají, jak je miminku.
-
-Tahle nahrávka se ptá, jak jste vy.
-
-Sedněte si nebo si lehněte. Miminko klidně nechte, kde je.
-
-Nádech. Výdech.
-
-Vaše tělo prošlo za posledních pár týdnů něčím, po čem by kdokoliv jiný ležel měsíc. Vy místo toho vstáváte každé dvě hodiny.
-
-Nádech.
-
-Bolí to. Krvácíte. Hormony vám dělají věci, kterým sama nerozumíte. A přitom se od vás čeká, že budete zářit.
-
-Výdech.
-
-Nemusíte.
-
-Můžete být vyčerpaná. Můžete se cítit ztracená ve vlastním těle. Můžete milovat své dítě a zároveň si přát, aby vás jednu hodinu nikdo nepotřeboval.
-
-Nic z toho z vás nedělá špatnou matku.
-
-Položte si ruku na břicho — na to měkké, změněné břicho, které devět měsíců neslo člověka.
-
-Nádech.
-
-Výdech.
-
-Tohle období je nejtěžší a nikdo o něm dost nemluví. Vy o něm mluvit můžete.
-
-A jestli je smutek každý den silnější místo slabší, jestli nemůžete spát ani když můžete, řekněte to. Svému lékaři, gynekoložce, komukoliv. Poporodní deprese je nemoc, ne selhání.
-
-Ještě jeden nádech.
-
-Zvládáte to.`,
-  ),
-
-  audio(
-    'med-kojeni-ve-tri-rano',
-    'Kojení ve tři ráno',
-    'Pro nejtišší a nejosamělejší hodinu dne.',
-    7,
-    ['postpartum', 'coming_home', 'baby_first_year'],
-    ['kojeni', 'spanek', 'psychika'],
-    'Velmi tichá nahrávka. Určená k poslechu se sluchátky, aby nevzbudila okolí.',
-    `Jsou tři ráno a vy jste vzhůru.
-
-Nemusíte nic dělat. Jen dýchejte a poslouchejte.
-
-Nádech. Výdech.
-
-Tahle hodina je nejosamělejší z celého dne. Zbytek domu spí a vy sedíte s dítětem u prsu a počítáte, kolik hodin zbývá do rána.
-
-Nádech.
-
-Právě teď je vzhůru spousta dalších žen. Sedí přesně jako vy, ve tmě, s bolavými zády a s miminkem, které pije.
-
-Nejste v tom sama, i když to tak vypadá.
-
-Výdech.
-
-Uvolněte ramena. Jsou nejspíš nahoře.
-
-Povolte čelist.
-
-Opřete si záda. Podložte si ruku, ve které držíte miminko.
-
-Nádech.
-
-Tahle noc skončí. Skončí i tenhle týden. A jednou skončí i tohle období, i když si to teď neumíte představit.
-
-Ale právě teď nemusíte nikam spěchat.
-
-Výdech.
-
-Až miminko dopije, položte ho a jděte si lehnout. Nádobí počká. Telefon počká. Všechno počká.
-
-Ještě jeden nádech.
-
-Zvládla jste další noc.`,
-    { modifiers: ['breastfeeding'] },
-  ),
-
-  audio(
     'med-afirmace',
     'Afirmace bez vaty',
     'Sedm vět, které nelžou.',
     5,
-    ['two_week_wait', 'stimulation', 'waiting_next_attempt', 'diagnostics', 'postpartum'],
+    ['two_week_wait', 'stimulation', 'waiting_next_attempt', 'diagnostics'],
     ['psychika', 'sebepece'],
     'Krátká nahrávka s pauzami mezi větami. Každou větu je možné si zopakovat nahlas.',
     `Většina afirmací lže. Slibují výsledek, který nikdo nemůže zaručit, a když nevyjde, cítíte se hůř.
@@ -612,7 +436,7 @@ To je všechno. Můžete se vrátit ke svému dni.`,
     'Smíření s tělem',
     'Pro vztah k tělu, které vás podle vás zklamalo.',
     11,
-    ['diagnostics', 'repeated_failure', 'waiting_next_attempt', 'postpartum'],
+    ['diagnostics', 'repeated_failure', 'waiting_next_attempt'],
     ['psychika', 'sebepece'],
     'Nahrávka pro chvíle, kdy máte na vlastní tělo vztek.',
     `Hodně žen v léčbě popisuje, že se cítí zrazené vlastním tělem. Že jim nefunguje to jediné, co má fungovat samo.
