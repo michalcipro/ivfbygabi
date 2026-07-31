@@ -661,7 +661,13 @@ textarea.field { resize: vertical; line-height: 1.6; }
    aby se ve sloupcích nekývala.
    ========================================================================== */
 
-.num, .statv, .bignum { font-variant-numeric: tabular-nums; }
+/* Cormorant sází minuskové číslice: 3, 5, 7 a 9 klesají pod účaří a výšky
+   se liší od „1“ po „6“ skoro o polovinu. V běžném textu je to krásné,
+   u čísla, které je samo obsahem, je to vada — padá do popisku pod sebou
+   a hodnoty vypadají různě velké. Proto verzálkové číslice. */
+.num, .statv, .bignum, .triocell b, .daycell b {
+  font-variant-numeric: lining-nums tabular-nums;
+}
 
 /* --- prstenec ----------------------------------------------------------- */
 .ringwrap { display: flex; flex-direction: column; align-items: center; }
