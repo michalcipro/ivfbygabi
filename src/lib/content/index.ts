@@ -26,6 +26,7 @@ import { pack as cardsNicu } from './packs/cards-nicu'
 import { pack as cardsGaps } from './packs/cards-gaps'
 import { pack as encouragements } from './packs/encouragements'
 import { pack as meditations } from './packs/meditations'
+import { pack as podpora } from './packs/podpora'
 
 /**
  * Registr obsahu.
@@ -53,6 +54,7 @@ const PACKS: ContentPack[] = [
   cardsGaps,
   encouragements,
   meditations,
+  podpora,
 ]
 
 function dedupe<T extends { id: string }>(items: T[]): T[] {

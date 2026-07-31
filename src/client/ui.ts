@@ -75,8 +75,16 @@ export function md(text: string): string {
   const flushTable = () => {
     if (!table) return
     const head = `<tr>${table.head.map((c) => `<th>${inline(c)}</th>`).join('')}</tr>`
+    // Každá buňka si nese název svého sloupce. Na telefonu se tabulka
+    // rozpadne na kartičky a `data-label` je jediné, z čeho se pak dá
+    // poznat, co to číslo znamená — hlavička už tam není.
     const rows = table.rows
-      .map((r) => `<tr>${r.map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`)
+      .map(
+        (r) =>
+          `<tr>${r
+            .map((c, i) => `<td data-label="${esc(table!.head[i] ?? '')}">${inline(c)}</td>`)
+            .join('')}</tr>`,
+      )
       .join('')
     out.push(`<div class="tablewrap"><table><thead>${head}</thead><tbody>${rows}</tbody></table></div>`)
     table = null
