@@ -60,7 +60,13 @@ function sentenceOfWeek(to: string): { text: string; date: string } | null {
   return { text: best.win.trim(), date: best.date }
 }
 
-export function screenTyden(): string {
+/**
+ * Týdenní ohlédnutí.
+ *
+ * `embedded` = vykresluje se pod přepínačem v Sledování, takže si nekreslí
+ * vlastní hlavičku.
+ */
+export function screenTyden(embedded = false): string {
   const to = viewDate()
   const from = addDays(to, -6)
   const rows = weekRows(to)
@@ -92,10 +98,12 @@ export function screenTyden(): string {
 
   if (journalWeek.length === 0) {
     return [
-      `<header class="head rise">
-        <p class="eyebrow">${esc(formatCzechDateShort(from))}–${esc(formatCzechDate(to))}</p>
-        <h1 class="display">Váš týden</h1>
-      </header>`,
+      embedded
+        ? ''
+        : `<header class="head rise">
+            <p class="eyebrow">${esc(formatCzechDateShort(from))}–${esc(formatCzechDate(to))}</p>
+            <h1 class="display">Váš týden</h1>
+          </header>`,
       empty(
         'Tenhle týden zatím nemá co shrnout',
         'Ohlédnutí se skládá z toho, co si zapíšete. Stačí pár dní a bude z čeho brát.',
@@ -106,11 +114,13 @@ export function screenTyden(): string {
   }
 
   return [
-    `<header class="head rise">
-      <p class="eyebrow">${esc(formatCzechDateShort(from))} – ${esc(formatCzechDate(to))}</p>
-      <h1 class="display">Váš týden</h1>
-      <p class="lede">Není to hodnocení. Je to ohlédnutí, které si můžete nechat.</p>
-    </header>`,
+    embedded
+      ? `<p class="lede rise" style="margin-top:1.25rem">${esc(formatCzechDateShort(from))} – ${esc(formatCzechDate(to))}. Není to hodnocení, je to ohlédnutí, které si můžete nechat.</p>`
+      : `<header class="head rise">
+          <p class="eyebrow">${esc(formatCzechDateShort(from))} – ${esc(formatCzechDate(to))}</p>
+          <h1 class="display">Váš týden</h1>
+          <p class="lede">Není to hodnocení. Je to ohlédnutí, které si můžete nechat.</p>
+        </header>`,
 
     `<section class="surface pad rise">
       <p class="eyebrow">Jak šel týden</p>

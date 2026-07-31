@@ -964,3 +964,155 @@ textarea.field { resize: vertical; line-height: 1.6; }
 
 /* Záře se nesmí protáhnout přes kartu na úzkém displeji. */
 
+
+/* ==========================================================================
+   Strukturální prvky.
+   Rozvržení a chování vychází z reference — způsob, jak dělit obrazovku
+   přepínačem, jak nabízet akci kartou a jak vysvětlovat řádky rozcestníku.
+   Barvy, poloměry a písmo zůstávají naše.
+   ========================================================================== */
+
+/* --- přepínač nahoře ----------------------------------------------------- */
+/* Na širokém displeji by se dílky roztáhly přes celou stránku — přepínač
+   je ovládací prvek, ne banner. Stejné pravidlo jako u číselníků. */
+.segmented {
+  display: flex; gap: .25rem; padding: .25rem; margin-top: 1.25rem; max-width: 32rem;
+  background: var(--card-muted); border-radius: 999px;
+  border: 1px solid var(--line);
+}
+.segmented button {
+  flex: 1; border: 0; background: transparent; color: var(--fg-soft);
+  font-family: inherit; font-size: .875rem; font-weight: 500;
+  padding: .6rem .5rem; border-radius: 999px; cursor: pointer;
+  transition: all .28s var(--calm); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.segmented button:hover { color: var(--fg); }
+.segmented button[aria-selected='true'] {
+  background: var(--card); color: var(--fg); box-shadow: var(--veil);
+}
+
+/* --- trojice čísel ------------------------------------------------------- */
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; margin-top: .9rem; }
+.triocell {
+  background: linear-gradient(180deg, var(--sheen) 0%, transparent 55%), var(--card);
+  border: 1px solid var(--line); border-radius: 18px;
+  padding: .9rem .5rem; text-align: center;
+}
+.triocell .ic {
+  display: grid; place-items: center; width: 30px; height: 30px; margin: 0 auto;
+  border-radius: 50%; background: color-mix(in oklab, var(--s1) 18%, transparent);
+  color: var(--s1); font-size: .875rem;
+}
+.triocell b { display: block; font-family: var(--display); font-size: 1.75rem; line-height: 1; margin-top: .45rem; }
+.triocell .lb { display: block; font-size: .6875rem; color: var(--fg-faint); margin-top: .2rem; }
+
+/* --- nadpis sekce na ploše ----------------------------------------------- */
+.sechead {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin: 1.75rem 0 .1rem;
+}
+.sechead h3 { font-size: 1.25rem; margin: 0; }
+.addbtn {
+  width: 2rem; height: 2rem; border-radius: 50%; flex: none;
+  border: 1px solid var(--line); background: var(--card); color: var(--s1);
+  font-size: 1.15rem; line-height: 1; cursor: pointer; font-family: inherit;
+  transition: all .25s var(--calm);
+}
+.addbtn:hover { border-color: var(--s1); transform: translateY(-1px); }
+
+/* --- akční karta a řádek rozcestníku ------------------------------------- */
+.actioncard, .hubrow {
+  display: flex; align-items: center; gap: .9rem; width: 100%; text-align: left;
+  background: linear-gradient(180deg, var(--sheen) 0%, transparent 45%), var(--card);
+  border: 1px solid var(--line); border-radius: 20px;
+  padding: 1rem 1.15rem; margin-top: .6rem; cursor: pointer;
+  color: var(--fg); font-family: inherit; transition: all .28s var(--calm);
+}
+.actioncard:hover, .hubrow:hover { border-color: var(--sand); transform: translateY(-1px); }
+.actioncard .ic, .hubrow .ic { flex: none; font-size: 1.25rem; line-height: 1; color: var(--s1); }
+.actioncard .txt, .hubrow .txt { flex: 1; min-width: 0; }
+.actioncard b, .hubrow b { display: block; font-weight: 500; font-size: 1rem; }
+.actioncard .txt > span, .hubrow .why {
+  display: block; font-size: .8125rem; color: var(--fg-faint);
+  line-height: 1.45; margin-top: .15rem;
+}
+.actioncard .go, .hubrow .go { flex: none; color: var(--fg-faint); font-size: 1.15rem; }
+.hubrow b { font-family: var(--display); font-size: 1.2rem; font-weight: 400; }
+
+/* --- pás dnů ------------------------------------------------------------- */
+.daystrip {
+  display: flex; gap: .55rem; overflow-x: auto; margin-top: .7rem;
+  padding-bottom: .35rem; scrollbar-width: none;
+  /* Bez tohohle by pás roztlačil buňku mřížky na šířku svého obsahu. */
+  min-width: 0;
+}
+.daystrip::-webkit-scrollbar { display: none; }
+.daycell {
+  flex: 0 0 auto; width: 6.6rem; text-align: center; font-family: inherit;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  padding: .7rem .5rem; color: var(--fg); cursor: default;
+}
+button.daycell { cursor: pointer; transition: border-color .25s var(--calm); }
+button.daycell:hover { border-color: var(--sand); }
+.daycell b { display: block; font-size: .875rem; font-weight: 500; }
+.daycell .sub { display: block; font-size: .6875rem; color: var(--fg-faint); }
+.daycell .counts { display: flex; justify-content: center; gap: .5rem; margin-top: .45rem; font-size: .8125rem; color: var(--fg-soft); }
+
+/* --- rozbalovací skupina ------------------------------------------------- */
+.acc {
+  border: 1px solid var(--line); border-radius: 18px; margin-top: .55rem;
+  background: var(--card); overflow: hidden;
+}
+.acc.open { border-color: var(--sand); }
+.acchead {
+  display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left;
+  background: transparent; border: 0; padding: .95rem 1.15rem;
+  cursor: pointer; font-family: inherit; color: var(--fg);
+}
+.acchead .txt { flex: 1; min-width: 0; }
+.acchead b { display: block; font-weight: 500; font-size: 1rem; }
+.acchead .txt > span { display: block; font-size: .75rem; color: var(--fg-faint); margin-top: .1rem; }
+.acchead .caret { flex: none; color: var(--fg-faint); transition: transform .3s var(--calm); }
+.acc.open .acchead .caret { transform: rotate(180deg); }
+.accbody { padding: 0 1.15rem 1.05rem; animation: rise .32s var(--calm) both; }
+
+/* --- přepínač v nastavení ------------------------------------------------ */
+.togglerow {
+  display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left;
+  background: transparent; border: 0; padding: .95rem 0; cursor: pointer;
+  font-family: inherit; color: var(--fg);
+}
+.togglerow + .togglerow { border-top: 1px solid var(--line); }
+.togglerow .txt { flex: 1; min-width: 0; }
+.togglerow b { display: block; font-weight: 500; font-size: .9375rem; }
+.togglerow .txt > span { display: block; font-size: .8125rem; color: var(--fg-faint); margin-top: .1rem; }
+.togglerow .knob {
+  flex: none; width: 46px; height: 27px; border-radius: 999px;
+  background: var(--line); position: relative; transition: background .28s var(--calm);
+}
+.togglerow .knob::after {
+  content: ''; position: absolute; top: 3px; left: 3px; width: 21px; height: 21px;
+  border-radius: 50%; background: var(--card); box-shadow: var(--veil);
+  transition: left .28s var(--calm);
+}
+.togglerow[aria-pressed='true'] .knob { background: var(--s1); }
+.togglerow[aria-pressed='true'] .knob::after { left: 22px; background: #fff; }
+
+/* --- výběr příznaku ------------------------------------------------------ */
+.symgrid { display: flex; flex-wrap: wrap; gap: .4rem; }
+.symgrid button {
+  border: 1px solid var(--line); background: var(--card-muted); color: var(--fg-soft);
+  border-radius: 999px; padding: .4rem .8rem; font-size: .8125rem;
+  font-family: inherit; cursor: pointer; transition: all .25s var(--calm);
+}
+.symgrid button:hover { border-color: var(--sand); color: var(--fg); }
+.symgrid button[aria-pressed='true'] { background: var(--s3); border-color: var(--s3); color: #fff; }
+/* Příznak, u kterého se ukazuje, kdy zavolat na kliniku. */
+.symgrid button.flag[aria-pressed='true'] { background: var(--s1); border-color: var(--s1); }
+.symwarn {
+  margin-top: .8rem; padding: .9rem 1.05rem; border-radius: 14px;
+  background: color-mix(in oklab, var(--s1) 10%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--s1) 35%, transparent);
+  font-size: .875rem; line-height: 1.6; color: var(--fg-soft);
+}

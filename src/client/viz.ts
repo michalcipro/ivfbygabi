@@ -381,3 +381,135 @@ export function statTile(label: string, value: string, sub?: string, color?: str
     ${sub ? `<p class="faint" style="font-size:.75rem;margin-top:.2rem">${esc(sub)}</p>` : ''}
   </div>`
 }
+
+// ------------------------------------------------- vzory převzaté ze vzoru ---
+/**
+ * Následující prvky vychází ze způsobu, jakým je členěná referenční aplikace.
+ * Přebíráme z ní chování a rozvržení, ne vzhled — barvy, poloměry i písmo
+ * zůstávají naše.
+ */
+
+export interface SegmentItem {
+  id: string
+  label: string
+}
+
+/**
+ * Přepínač nahoře na obrazovce.
+ *
+ * Nejsilnější vzor z reference: každá záložka se dělí na dvě až tři části,
+ * takže se pět záložek chová jako dvanáct obrazovek — bez zanořování.
+ */
+export function segmented(items: SegmentItem[], active: string, act: string): string {
+  return `<div class="segmented" role="tablist">
+    ${items
+      .map(
+        (i) =>
+          `<button type="button" role="tab" data-act="${esc(act)}" data-arg="${esc(i.id)}"
+                   aria-selected="${i.id === active}">${esc(i.label)}</button>`,
+      )
+      .join('')}
+  </div>`
+}
+
+/** Trojice čísel pod přepínačem — celkem, hotovo, zbývá. */
+export function statTrio(cells: { icon: string; value: string | number; label: string }[]): string {
+  return `<div class="trio">
+    ${cells
+      .map(
+        (c) => `<div class="triocell">
+          <span class="ic">${c.icon}</span>
+          <b class="num">${esc(c.value)}</b>
+          <span class="lb">${esc(c.label)}</span>
+        </div>`,
+      )
+      .join('')}
+  </div>`
+}
+
+/** Nadpis sekce ležící přímo na ploše, volitelně s akcí vpravo. */
+export function sectionHead(title: string, action?: { label: string; act?: string; go?: string }): string {
+  return `<div class="sechead">
+    <h3 class="display">${esc(title)}</h3>
+    ${
+      action
+        ? `<button class="addbtn" ${action.go ? `data-go="${esc(action.go)}"` : `data-act="${esc(action.act ?? '')}"`}
+                   aria-label="${esc(action.label)}">+</button>`
+        : ''
+    }
+  </div>`
+}
+
+/** Karta, která nabízí akci: ikona, tučný název, věta navíc, šipka. */
+export function actionCard(opts: {
+  icon: string
+  title: string
+  body: string
+  go?: string
+  act?: string
+  arg?: string
+}): string {
+  const target = opts.go
+    ? `data-go="${esc(opts.go)}"`
+    : `data-act="${esc(opts.act ?? '')}"${opts.arg ? ` data-arg="${esc(opts.arg)}"` : ''}`
+  return `<button class="actioncard" ${target}>
+    <span class="ic">${opts.icon}</span>
+    <span class="txt">
+      <b>${esc(opts.title)}</b>
+      <span>${esc(opts.body)}</span>
+    </span>
+    <span class="go">›</span>
+  </button>`
+}
+
+/**
+ * Řádek rozcestníku s vysvětlením.
+ *
+ * To „ⓘ“ je z reference to nejlepší: u každé položky je vidět, k čemu je,
+ * aniž by se tam muselo kliknout.
+ */
+export function hubRow(route: string, icon: string, title: string, why: string): string {
+  return `<button class="hubrow" data-go="${esc(route)}">
+    <span class="ic">${icon}</span>
+    <span class="txt"><b>${esc(title)}</b><span class="why">${esc(why)}</span></span>
+    <span class="go">›</span>
+  </button>`
+}
+
+/** Vodorovný pás posledních dnů — rychlý pohled zpátky bez grafu. */
+export function dayStrip(
+  days: { date: string; label: string; sub: string; counts: { icon: string; n: number }[] }[],
+  act?: string,
+): string {
+  if (days.length === 0) return ''
+  return `<div class="daystrip">
+    ${days
+      .map(
+        (d) => `<${act ? 'button' : 'div'} class="daycell"${act ? ` data-act="${esc(act)}" data-arg="${esc(d.date)}"` : ''}>
+          <b>${esc(d.label)}</b>
+          <span class="sub">${esc(d.sub)}</span>
+          <span class="counts">${d.counts.map((c) => `<span>${c.icon} <b class="num">${c.n}</b></span>`).join('')}</span>
+        </${act ? 'button' : 'div'}>`,
+      )
+      .join('')}
+  </div>`
+}
+
+/** Rozbalovací skupina — používá se u taxonomie příznaků. */
+export function accordion(id: string, name: string, hint: string, open: boolean, body: string): string {
+  return `<div class="acc${open ? ' open' : ''}">
+    <button class="acchead" data-act="acc" data-arg="${esc(id)}" aria-expanded="${open}">
+      <span class="txt"><b>${esc(name)}</b><span>${esc(hint)}</span></span>
+      <span class="caret">⌄</span>
+    </button>
+    ${open ? `<div class="accbody">${body}</div>` : ''}
+  </div>`
+}
+
+/** Přepínač zapnuto/vypnuto v nastavení. */
+export function toggleRow(key: string, title: string, body: string, on: boolean): string {
+  return `<button class="togglerow" data-act="pref" data-arg="${esc(key)}" aria-pressed="${on}">
+    <span class="txt"><b>${esc(title)}</b><span>${esc(body)}</span></span>
+    <span class="knob"></span>
+  </button>`
+}

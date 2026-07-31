@@ -30,9 +30,11 @@ import {
 import { draft, profileFromDraft, renderOnboarding, stepHasDate } from './onboarding'
 import { screenCesta, screenObjevit, screenProc } from './screens-home'
 import { screenDnes, screenNuzky } from './screens-dnes'
-import { screenZapis } from './screens-zapis'
-import { screenVyvoj } from './screens-vyvoj'
-import { screenTyden, weekShareText } from './screens-tyden'
+import { isZapisSection, screenZapis, type ZapisSection } from './screens-zapis'
+import { isLekySection, screenLeky, type LekySection } from './screens-leky'
+import { isSledSection, screenSledovani, type SledSection } from './screens-sledovani'
+import { screenPruvodce } from './screens-pruvodce'
+import { weekShareText } from './screens-tyden'
 import { hydrateCharts } from './viz'
 import {
   screenDiagnoza,
@@ -76,9 +78,9 @@ import {
 const TABS = [
   { id: 'dnes', label: 'Dnes', icon: '◉' },
   { id: 'zapis', label: 'Zápis', icon: '✎' },
-  { id: 'vyvoj', label: 'Vývoj', icon: '◫' },
-  { id: 'tyden', label: 'Týden', icon: '❋' },
-  { id: 'vice', label: 'Průvodce', icon: '❖' },
+  { id: 'leky', label: 'Léky', icon: '✚' },
+  { id: 'sledovani', label: 'Sledování', icon: '◫' },
+  { id: 'pruvodce', label: 'Průvodce', icon: '❖' },
 ]
 
 const SECONDARY = [
@@ -109,8 +111,9 @@ const TERTIARY = [
 const TITLES: Record<string, string> = {
   dnes: 'Dnes',
   zapis: 'Zápis',
-  vyvoj: 'Vývoj',
-  tyden: 'Týden',
+  leky: 'Léky',
+  sledovani: 'Sledování',
+  pruvodce: 'Průvodce',
   nuzky: 'Nůžky dne',
   objevit: 'Objevit',
   gabi: 'Gabi',
@@ -151,41 +154,43 @@ const BACK_TITLES: Record<string, string> = {
 
 /** Kam vede „zpět“, když uživatelka přišla přímo z odkazu. */
 const PARENT: Record<string, string> = {
-  cesta: 'vice',
-  objevit: 'vice',
+  cesta: 'pruvodce',
+  objevit: 'pruvodce',
   pojem: 'faze',
   cviceni: 'denik',
   hodnota: 'zdravi',
   diagnoza: 'faze',
-  diagnozy: 'vice',
-  knihovna: 'vice',
+  diagnozy: 'pruvodce',
+  knihovna: 'pruvodce',
   cist: 'objevit',
-  checklisty: 'vice',
-  kalendar: 'vice',
-  zdravi: 'vice',
-  dokumenty: 'vice',
-  komunita: 'vice',
+  checklisty: 'pruvodce',
+  kalendar: 'pruvodce',
+  zdravi: 'pruvodce',
+  dokumenty: 'pruvodce',
+  komunita: 'pruvodce',
   skupina: 'komunita',
-  pribeh: 'vice',
-  obchod: 'vice',
-  partner: 'vice',
-  nastaveni: 'vice',
-  clenstvi: 'vice',
+  pribeh: 'pruvodce',
+  obchod: 'pruvodce',
+  partner: 'pruvodce',
+  nastaveni: 'pruvodce',
+  clenstvi: 'pruvodce',
   proc: 'dnes',
   zapis: 'dnes',
-  vyvoj: 'dnes',
-  tyden: 'dnes',
+  leky: 'dnes',
+  sledovani: 'dnes',
+  pruvodce: 'dnes',
   nuzky: 'dnes',
-  faze: 'vice',
-  denik: 'vice',
-  gabi: 'vice',
+  faze: 'pruvodce',
+  denik: 'pruvodce',
+  gabi: 'pruvodce',
+  vice: 'pruvodce',
 }
 
 /** Obrazovky, kde by souhrn rušil — čtení a soustředěná práce. */
 const SUMMARY_HIDDEN = [
   'cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi',
   // Na těchhle obrazovkách je prstenec nebo graf sám o sobě souhrnem.
-  'dnes', 'zapis', 'vyvoj', 'tyden', 'nuzky',
+  'dnes', 'zapis', 'leky', 'sledovani', 'pruvodce', 'nuzky',
 ]
 
 /** Stav, který nemá cenu ukládat — přežívá jen do zavření záložky. */
@@ -194,6 +199,8 @@ const view = {
   kind: 'vse',
   /** Která dlaždice souhrnu je rozbalená. */
   summary: null as SummaryId | null,
+  /** Která skupina příznaků je rozbalená. */
+  accordion: null as string | null,
   parsed: null as ParsedReport | null,
   docText: '',
 }
@@ -230,12 +237,20 @@ function screenFor(route: string): string {
   switch (b) {
     case 'dnes':
       return screenDnes()
-    case 'zapis':
-      return screenZapis()
-    case 'vyvoj':
-      return screenVyvoj()
-    case 'tyden':
-      return screenTyden()
+    case 'zapis': {
+      const want = a.split('/')[0]
+      return screenZapis(isZapisSection(want) ? (want as ZapisSection) : 'nalada', view.accordion)
+    }
+    case 'leky': {
+      const want = a.split('/')[0]
+      return screenLeky(isLekySection(want) ? (want as LekySection) : 'dnes')
+    }
+    case 'sledovani': {
+      const want = a.split('/')[0]
+      return screenSledovani(isSledSection(want) ? (want as SledSection) : 'vyvoj')
+    }
+    case 'pruvodce':
+      return screenPruvodce()
     case 'nuzky':
       return screenNuzky()
     case 'objevit':
@@ -587,6 +602,21 @@ function action(act: string, argValue: string): void {
       writeJournal({ mood: Number(argValue) })
       break
     }
+
+    // --- přepínače v záhlaví ---------------------------------------------
+    // Dílek jde do adresy, ne do stavu — tím funguje zpět i sdílení odkazu.
+    case 'zapis-sec':
+      go(`zapis/${argValue}`)
+      return
+    case 'leky-sec':
+      go(`leky/${argValue}`)
+      return
+    case 'sled-sec':
+      go(`sledovani/${argValue}`)
+      return
+    case 'acc':
+      view.accordion = view.accordion === argValue ? null : argValue
+      break
 
     // --- zápis dne --------------------------------------------------------
     case 'dial': {
