@@ -96,12 +96,12 @@ const TABS = [
   { id: 'dnes', label: 'Dnes', icon: '◉' },
   { id: 'zapis', label: 'Zápis', icon: '✎' },
   { id: 'leky', label: 'Léky', icon: '✚' },
-  { id: 'sledovani', label: 'Sledování', icon: '◫' },
+  { id: 'journey', label: 'Moje léčba', icon: '✧' },
   { id: 'pruvodce', label: 'Průvodce', icon: '❖' },
 ]
 
 const SECONDARY = [
-  { id: 'journey', label: 'Moje léčba', icon: '✧' },
+  { id: 'sledovani', label: 'Sledování', icon: '◫' },
   { id: 'zdravotni', label: 'Zdravotní data', icon: '◉' },
   { id: 'otazky', label: 'Otázky pro lékaře', icon: '?' },
   { id: 'faze', label: 'Moje fáze', icon: '❖' },

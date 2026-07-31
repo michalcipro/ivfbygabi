@@ -32,6 +32,7 @@ import {
   S,
   viewDate,
 } from './store'
+import { paneVyvoj } from './screens-sledovani'
 import { empty, esc, note, plural } from './ui'
 import { accordion, actionCard, sectionHead, segmented, statTile, statTrio } from './viz'
 
@@ -91,14 +92,13 @@ import { accordion, actionCard, sectionHead, segmented, statTile, statTrio } fro
 
 export const JOURNEY_SECTIONS = [
   { id: 'prehled', label: 'Přehled' },
-  // Přepínač nese čtyři dílky vedle sebe. „Časová osa“ se na 390px uřízne
-  // na „Časová …“, což je horší než krátké slovo — celý název je v nadpisu uvnitř.
-  { id: 'osa', label: 'Osa' },
+  { id: 'osa', label: 'Časová osa' },
+  { id: 'vyvoj', label: 'Vývoj' },
   { id: 'historie', label: 'Historie' },
   { id: 'statistiky', label: 'Statistiky' },
 ]
 
-export type JourneySection = 'prehled' | 'osa' | 'historie' | 'statistiky'
+export type JourneySection = 'prehled' | 'osa' | 'vyvoj' | 'historie' | 'statistiky'
 
 export function isJourneySection(s: string): s is JourneySection {
   return JOURNEY_SECTIONS.some((x) => x.id === s)
@@ -903,7 +903,8 @@ function eyebrowText(): string {
 /** Jedna věta pod nadpisem. Vysvětluje krátký název dílku v přepínači. */
 const SECTION_LEDE: Record<JourneySection, string> = {
   prehled: 'Kde jste dnes a co vás čeká nejdřív.',
-  osa: 'Časová osa — co se v léčbě dělo, den po dni.',
+  osa: 'Co se v léčbě dělo, den po dni.',
+  vyvoj: 'Nálada, úzkost a naděje v čase — a jak se k tomu měl dnešek.',
   historie: 'Všechny vaše cykly i s čísly z laboratoře.',
   statistiky: 'Součty přes všechny cykly. Aplikace je nehodnotí.',
 }
@@ -919,11 +920,13 @@ export function screenJourney(section: JourneySection, openId: string | null): s
   const pane =
     section === 'osa'
       ? paneTimeline(openId)
-      : section === 'historie'
-        ? paneHistory(openId)
-        : section === 'statistiky'
-          ? paneStats()
-          : paneOverview()
+      : section === 'vyvoj'
+        ? paneVyvoj()
+        : section === 'historie'
+          ? paneHistory(openId)
+          : section === 'statistiky'
+            ? paneStats()
+            : paneOverview()
 
   return header + pane
 }

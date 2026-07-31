@@ -30,7 +30,14 @@ const DAYS = 14
 
 // ---------------------------------------------------------------- vývoj ---
 
-function paneVyvoj(): string {
+/**
+ * Vývoj v čase.
+ *
+ * Exportuje se, protože stejný obsah nese i dílek „Vývoj“ v Mojí léčbě —
+ * od chvíle, co se Sledování přestalo vejít do spodní lišty. Je to jedno
+ * vykreslení na dvou místech, ne dvě kopie.
+ */
+export function paneVyvoj(): string {
   const s = readingSeries(DAYS)
   const rows = journalList().slice(-DAYS)
   const withReserve = s.filter((r) => r.reserve !== null).length

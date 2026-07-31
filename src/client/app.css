@@ -985,17 +985,21 @@ textarea.field { resize: vertical; line-height: 1.6; }
 /* --- přepínač nahoře ----------------------------------------------------- */
 /* Na širokém displeji by se dílky roztáhly přes celou stránku — přepínač
    je ovládací prvek, ne banner. Stejné pravidlo jako u číselníků. */
+/* Pět dílků se na 390px do řádku nevejde. Dřív se popisky ořezávaly
+   („Časová …“), což je horší než rolování — název dílku musí být čitelný
+   celý, jinak uživatelka neví, kam kliká. */
 .segmented {
   display: flex; gap: .25rem; padding: .25rem; margin-top: 1.25rem; max-width: 32rem;
   background: var(--card-muted); border-radius: 999px;
   border: 1px solid var(--line);
+  overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
 }
+.segmented::-webkit-scrollbar { display: none; }
 .segmented button {
-  flex: 1; border: 0; background: transparent; color: var(--fg-soft);
+  flex: 1 0 auto; border: 0; background: transparent; color: var(--fg-soft);
   font-family: inherit; font-size: .875rem; font-weight: 500;
-  padding: .6rem .5rem; border-radius: 999px; cursor: pointer;
-  transition: all .28s var(--calm); white-space: nowrap;
-  overflow: hidden; text-overflow: ellipsis;
+  padding: .6rem .85rem; border-radius: 999px; cursor: pointer;
+  transition: background .28s var(--calm), color .28s var(--calm); white-space: nowrap;
 }
 .segmented button:hover { color: var(--fg); }
 .segmented button[aria-selected='true'] {

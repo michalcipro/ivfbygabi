@@ -33,6 +33,9 @@ const READ: Row[] = [
 ]
 
 const RECORD: Row[] = [
+  ['otazky', '?', 'Otázky pro lékaře', 'Sepište je doma. V ordinaci je přečtete z telefonu.'],
+  ['zdravotni', '◉', 'Zdravotní data', 'Teplota, váha, tlak, ultrazvuk a laboratoř na jednom místě.'],
+  ['sledovani/tyden', '◫', 'Týdenní ohlédnutí', 'Co bylo nejtěžší, co pomohlo a co příště jinak.'],
   ['denik', '✎', 'Deník a cvičení', 'Delší zápisy, ohlédnutí a cvičení na práci s hlavou.'],
   ['kalendar', '◈', 'Kalendář', 'Termíny a kontroly. Část se doplní sama z vašich dat.'],
   ['zdravi', '◉', 'Zdraví', 'Vaše hodnoty v čase. Graf ukazuje vývoj, ne diagnózu.'],
