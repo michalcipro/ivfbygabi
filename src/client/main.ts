@@ -25,6 +25,7 @@ import {
   viewDate,
   isOnboarded,
   addShot,
+  activeCycleId,
   type JournalRow,
 } from './store'
 import { draft, profileFromDraft, renderOnboarding, stepHasDate } from './onboarding'
@@ -36,6 +37,7 @@ import { isSledSection, screenSledovani, type SledSection } from './screens-sled
 import { screenPruvodce } from './screens-pruvodce'
 import { weekShareText } from './screens-tyden'
 import { hydrateCharts, wordmark } from './viz'
+import { quickButton, quickSheet } from './quick-add'
 import {
   screenDiagnoza,
   screenDiagnozy,
@@ -187,6 +189,9 @@ const PARENT: Record<string, string> = {
 }
 
 /** Obrazovky, kde by souhrn rušil — čtení a soustředěná práce. */
+/** Kde by plovoucí tlačítko překáželo — při čtení a při vyplňování. */
+const QUICK_HIDDEN = ['cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi', 'cyklus']
+
 const SUMMARY_HIDDEN = [
   'cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi',
   // Na těchhle obrazovkách je prstenec nebo graf sám o sobě souhrnem.
@@ -201,6 +206,8 @@ const view = {
   summary: null as SummaryId | null,
   /** Která skupina příznaků je rozbalená. */
   accordion: null as string | null,
+  /** Je otevřené rychlé přidání? */
+  quick: false,
   parsed: null as ParsedReport | null,
   docText: '',
 }
@@ -381,6 +388,9 @@ function render(): void {
       <div class="page ${narrow ? 'page-narrow' : ''}">${SUMMARY_HIDDEN.includes(base(route)) ? '' : renderSummary(view.summary)}${screenFor(route)}</div>
     </main>
   </div>
+
+  ${QUICK_HIDDEN.includes(base(route)) ? '' : quickButton(view.quick)}
+  ${quickSheet(view.quick)}
 
   <nav class="tabbar no-print">
     ${TABS.map(
@@ -617,6 +627,12 @@ function action(act: string, argValue: string): void {
     case 'acc':
       view.accordion = view.accordion === argValue ? null : argValue
       break
+    case 'quick':
+      view.quick = !view.quick
+      break
+    case 'quick-close':
+      view.quick = false
+      break
 
     // --- zápis dne --------------------------------------------------------
     case 'dial': {
@@ -803,7 +819,22 @@ function action(act: string, argValue: string): void {
       const name = val('med-name')
       if (!name) return
       patch((d) => {
-        d.meds.push({ id: uid('md'), name, dose: '', timeOfDay: val('med-time') })
+        d.meds.push({
+          id: uid('md'),
+          name,
+          kind: 'injekce',
+          dose: val('med-dose'),
+          times: val('med-time') ? [val('med-time')] : [],
+          repeat: 'denne',
+          startOn: null,
+          endOn: null,
+          doctorNote: '',
+          instructions: '',
+          notify: true,
+          history: [],
+          photo: '',
+          cycleId: activeCycleId(),
+        })
       })
       break
     }
@@ -1049,6 +1080,9 @@ document.addEventListener('click', (ev) => {
 
   if (target.dataset.go !== undefined) {
     ev.preventDefault()
+    // Odchod z panelu rychlého přidání ho musí zavřít, jinak by visel
+    // nad obrazovkou, na kterou právě odkázal.
+    view.quick = false
     const route = target.dataset.go
     // Otevření obsahu je signál pro doporučování — přesně jako v aplikaci.
     if (route.startsWith('cist/')) {

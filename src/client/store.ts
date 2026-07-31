@@ -3,6 +3,7 @@ import { resolveJourney, type JourneyState } from '../lib/domain/journey'
 import { addDays, daysBetween, today as realToday } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { findPattern, readDay, type DayLog, type DayReading, type Pattern } from '../lib/domain/strain'
+import { activeCycle, emptyCycle, readCycle, type CycleRow, type CycleStatus } from '../lib/domain/cycle'
 import { CATALOG } from '../lib/content'
 import { emptyAffinity, type Affinity } from '../lib/content/recommend'
 import { applyTopicAffinity, type WeightedAffinity } from '../lib/content/affinity'
@@ -71,11 +72,105 @@ export interface EventRow {
   done: boolean
 }
 
+/** Příloha u záznamu. Ukládá se jako data: URI, takže nikam neodchází. */
+export interface Attachment {
+  id: string
+  kind: 'foto' | 'pdf' | 'zprava' | 'zvuk'
+  name: string
+  data: string
+}
+
+export type MedKind = 'injekce' | 'tableta' | 'gel' | 'naplast' | 'cipek' | 'sprej'
+
 export interface MedRow {
   id: string
   name: string
+  kind: MedKind
   dose: string
-  timeOfDay: string
+  /** Víc časů denně. Starý `timeOfDay` se při načtení převede sem. */
+  times: string[]
+  repeat: 'denne' | 'obden' | 'jednou'
+  startOn: IsoDate | null
+  endOn: IsoDate | null
+  doctorNote: string
+  instructions: string
+  notify: boolean
+  /** Historie změn dávkování — u stimulace se dávka mění běžně. */
+  history: { on: IsoDate; dose: string; why: string }[]
+  photo: string
+  cycleId: string | null
+  /** Ponecháno kvůli starým uloženým datům. */
+  timeOfDay?: string
+}
+
+/** Zápis příznaku s intenzitou a časem. */
+export interface SymptomLog {
+  id: string
+  date: IsoDate
+  at: string
+  symptomId: string
+  /** 0–10. */
+  intensity: number
+  note: string
+}
+
+export type HealthKind =
+  | 'bbt'
+  | 'vaha'
+  | 'tlak'
+  | 'tep'
+  | 'spanek'
+  | 'pitny'
+  | 'procedura'
+
+export interface HealthRow {
+  id: string
+  date: IsoDate
+  at: string
+  kind: HealthKind
+  value: number | null
+  /** Druhá složka — diastola u tlaku. */
+  value2: number | null
+  text: string
+  note: string
+  attachments: Attachment[]
+}
+
+/** Ultrazvuk. Folikuly se měří po jednotlivých velikostech, ne jen počtem. */
+export interface UltrasoundRow {
+  id: string
+  date: IsoDate
+  cycleId: string | null
+  /** Velikosti folikulů v mm. */
+  left: number[]
+  right: number[]
+  /** Výška sliznice v mm. */
+  endometrium: number | null
+  note: string
+  attachments: Attachment[]
+}
+
+export type QuestionStatus = 'ceka' | 'vyreseno' | 'archiv'
+export type QuestionPriority = 'vysoka' | 'stredni' | 'nizka'
+
+export interface QuestionRow {
+  id: string
+  text: string
+  category: string
+  priority: QuestionPriority
+  /** Ke které kontrole se otázka váže. */
+  forDate: IsoDate | null
+  answer: string
+  status: QuestionStatus
+  createdOn: IsoDate
+}
+
+export interface NoteRow {
+  id: string
+  date: IsoDate
+  at: string
+  text: string
+  attachments: Attachment[]
 }
 
 export interface LabRow {
@@ -156,6 +251,16 @@ export interface Save {
   meds: MedRow[]
   labs: LabRow[]
   shots: ShotRow[]
+  cycles: CycleRow[]
+  symptomLogs: SymptomLog[]
+  health: HealthRow[]
+  ultrasounds: UltrasoundRow[]
+  questions: QuestionRow[]
+  notes: NoteRow[]
+  /** Oblíbené příznaky — nabízejí se první. */
+  favSymptoms: string[]
+  /** Vlastní příznaky, které si uživatelka přidala. */
+  customSymptoms: { id: string; label: string; group: string }[]
   docs: DocRow[]
   letters: LetterRow[]
   story: StoryRow[]
@@ -190,6 +295,14 @@ function blank(): Save {
     meds: [],
     labs: [],
     shots: [],
+    cycles: [],
+    symptomLogs: [],
+    health: [],
+    ultrasounds: [],
+    questions: [],
+    notes: [],
+    favSymptoms: [],
+    customSymptoms: [],
     docs: [],
     letters: [],
     story: [],
@@ -209,7 +322,7 @@ export function load(): Save {
     const raw = localStorage.getItem(KEY)
     if (raw) {
       const parsed = JSON.parse(raw) as Save
-      if (parsed && parsed.v === 1) data = { ...blank(), ...parsed }
+      if (parsed && parsed.v === 1) data = migrate({ ...blank(), ...parsed })
     }
   } catch {
     // Poškozený nebo nedostupný localStorage nesmí aplikaci shodit —
@@ -217,6 +330,38 @@ export function load(): Save {
     data = blank()
   }
   return data
+}
+
+/**
+ * Doplní tvary, které ve starších uložených datech ještě nebyly.
+ *
+ * Rebranding ani rozšíření modelu nesmí uživatelce smazat deník, takže
+ * se staré záznamy dopočítají, ne zahodí.
+ */
+function migrate(d: Save): Save {
+  // Starý lék měl jediný čas v `timeOfDay` a nic dalšího. Skládá se
+  // explicitně, ne rozprostřením — spread by u typovaného MedRow přepsal
+  // i pole, která ve starých datech vůbec nejsou.
+  d.meds = d.meds.map((m) => {
+    const old = m as Partial<MedRow> & { timeOfDay?: string }
+    return {
+      id: old.id ?? uid('med'),
+      name: old.name ?? '',
+      kind: old.kind ?? 'injekce',
+      dose: old.dose ?? '',
+      times: old.times?.length ? old.times : old.timeOfDay ? [old.timeOfDay] : [],
+      repeat: old.repeat ?? 'denne',
+      startOn: old.startOn ?? null,
+      endOn: old.endOn ?? null,
+      doctorNote: old.doctorNote ?? '',
+      instructions: old.instructions ?? '',
+      notify: old.notify ?? true,
+      history: old.history ?? [],
+      photo: old.photo ?? '',
+      cycleId: old.cycleId ?? null,
+    }
+  })
+  return d
 }
 
 export function save(): void {
@@ -489,4 +634,50 @@ export function pattern(): Pattern | null {
     readingSeries(28).map((r) => ({ date: r.date, gap: r.gap })),
     allEvents().map((e) => ({ onDate: e.onDate, kind: e.kind })),
   )
+}
+
+// ----------------------------------------------------------------- cykly ---
+
+export function cycles(): CycleRow[] {
+  return [...data.cycles].sort((a, b) => b.startedOn.localeCompare(a.startedOn))
+}
+
+/** Cyklus, který právě běží. */
+export function currentCycle(): CycleRow | null {
+  return activeCycle(data.cycles, viewDate())
+}
+
+export function activeCycleId(): string | null {
+  return currentCycle()?.id ?? null
+}
+
+export function cycleById(id: string): CycleRow | null {
+  return data.cycles.find((c) => c.id === id) ?? null
+}
+
+/** Stav probíhajícího cyklu k dnešku. */
+export function cycleStatus(c: CycleRow | null = currentCycle()): CycleStatus | null {
+  return c ? readCycle(c, viewDate()) : null
+}
+
+export function addCycle(): CycleRow {
+  const next = data.cycles.reduce((max, c) => Math.max(max, c.number), 0) + 1
+  const row = emptyCycle(uid('cyc'), next, viewDate())
+  patch((d) => {
+    d.cycles.push(row)
+  })
+  return row
+}
+
+export function updateCycle(id: string, patchFn: (c: CycleRow) => void): void {
+  patch((d) => {
+    const c = d.cycles.find((x) => x.id === id)
+    if (c) patchFn(c)
+  })
+}
+
+export function deleteCycle(id: string): void {
+  patch((d) => {
+    d.cycles = d.cycles.filter((c) => c.id !== id)
+  })
 }
