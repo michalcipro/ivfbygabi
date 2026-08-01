@@ -1,5 +1,5 @@
 import { CATALOG, CONTENT_STATS, GLOSSARY, contentById, searchContent, searchGlossary } from '../lib/content'
-import { KIND_ICONS, KIND_LABELS, type ContentKind } from '../lib/content/types'
+import { KIND_ICONS, KIND_LABELS, type ContentItem, type ContentKind } from '../lib/content/types'
 import { recommend } from '../lib/content/recommend'
 import { TOPIC_LABELS } from '../lib/domain/profile'
 import { formatCzechDate } from '../lib/domain/dates'
@@ -13,8 +13,88 @@ import {
 } from '../lib/search/app-search'
 import { affinity, journalFor, journalList, journey, S, viewDate } from './store'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, ring, sectionTitle } from './ui'
+import { czechVoice, speechAvailable, speechState, toChunks } from './speech'
 
 /** Knihovna, čtečka, deník, Gabi a checklisty. */
+
+// ------------------------------------------------------------------- média ---
+
+/**
+ * Přehrávač meditace.
+ *
+ * Aplikace nemá server a nahrávka dvanáctiminutové meditace by vážila víc než
+ * všechno ostatní dohromady. Prohlížeč ale umí mluvit — a česky. Meditace se
+ * proto předčítá. Není to studiová nahrávka a obrazovka to říká rovnou;
+ * předstírat něco jiného by bylo horší než ta věc sama.
+ *
+ * Pauzy mezi větami dělá `speech.ts`. Bez nich by to nebyla meditace, ale
+ * přečtený článek.
+ */
+function audioPlayer(item: ContentItem): string {
+  if (!speechAvailable()) {
+    return `<div class="player">
+      <p class="eyebrow">Poslech</p>
+      <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
+        Váš prohlížeč neumí číst nahlas. Scénář níž je celý — dá se přečíst
+        očima nebo si ho někdo může přečíst nahlas vám.
+      </p>
+    </div>`
+  }
+
+  const st = speechState()
+  const mine = st.id === item.id
+  const total = mine ? st.total : toChunks(item.body).length
+
+  return `<div class="player">
+    <p class="eyebrow">Poslech</p>
+    <div class="row wrap" style="gap:.6rem;margin-top:.75rem">
+      <button class="btn btn-primary" id="say-btn" data-act="say" data-arg="${esc(item.id)}">${
+        mine && !st.paused ? '❙❙ Pauza' : mine ? '▶ Pokračovat' : '▶ Přehrát'
+      }</button>
+      <button class="btn btn-sm" data-act="say-restart">Od začátku</button>
+      <!-- Zastavit je tu i když nic nehraje. Přehrávač se po spuštění
+           nepřekresluje, takže tlačítko, které by mělo přibýt až za běhu,
+           by nepřibylo nikdy. -->
+      <button class="btn btn-sm btn-ghost" data-act="say-stop">Zastavit</button>
+      <span class="faint num" id="say-pos" style="font-size:.8125rem;align-self:center">${
+        mine ? `Úsek ${st.at + 1} z ${total}` : `${plural(total, 'úsek', 'úseky', 'úseků')}`
+      }</span>
+    </div>
+    <p class="faint" id="say-voice" style="margin-top:.75rem;font-size:.8125rem;line-height:1.55">${
+      czechVoice()
+        ? 'Čte hlas vašeho zařízení, ne nahrané studio. Mezi větami se dělají pauzy — jsou součástí meditace.'
+        : 'České hlasy se ještě načítají, nebo je zařízení nemá. Bez nich zní výslovnost divně; text níž je celý.'
+    }</p>
+  </div>`
+}
+
+/**
+ * Video.
+ *
+ * Dokud u položky není soubor, obrazovka to napíše. Nadpis „Video: …“ nad
+ * textem, který žádné video není, je slib, který aplikace nedodrží.
+ */
+function videoBlock(item: ContentItem): string {
+  if (item.mediaSrc) {
+    return `<div class="player">
+      <video controls preload="metadata" playsinline style="width:100%;border-radius:var(--r-lg);display:block"
+             src="${esc(item.mediaSrc)}"></video>
+    </div>`
+  }
+  return `<div class="player">
+    <p class="eyebrow">Video se připravuje</p>
+    <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
+      Natáčí se. Než bude hotové, je níž celý přepis — je v něm všechno, co
+      ve videu uslyšíte a uvidíte.
+    </p>
+  </div>`
+}
+
+function mediaBlock(item: ContentItem): string {
+  if (item.kind === 'audio') return audioPlayer(item)
+  if (item.kind === 'video') return videoBlock(item)
+  return ''
+}
 
 // ------------------------------------------------------------------ čtečka ---
 
@@ -120,6 +200,7 @@ export function screenCist(id: string): string {
       ${item.author ? `<span class="badge">${esc(item.author)}</span>` : ''}
     </div>
 
+    ${mediaBlock(item)}
     ${item.mediaNote ? `<div style="margin-top:1.5rem">${note(item.mediaNote)}</div>` : ''}
 
     <div class="prose" style="margin-top:2rem">${md(item.body)}</div>

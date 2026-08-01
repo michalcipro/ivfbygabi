@@ -47,7 +47,7 @@ const meditations: ContentItem[] = [
     10,
     ['transfer', 'embryo_culture'],
     ['transfer', 'psychika', 'sebepece'],
-    'Klidný ženský hlas, na pozadí jemný tón bez rytmu. Nahrávka počítá s tím, že ji posloucháte v čekárně nebo cestou na kliniku.',
+    'Psané k poslechu v čekárně nebo cestou na kliniku. Krátké věty, dlouhé pauzy.',
     `Najděte si polohu, ve které nemusíte nic držet. Když sedíte, opřete se. Když ležíte, nechte ruce volně podél těla.
 
 Zavřete oči, jestli vám to je příjemné. Jestli ne, nechte pohled spočinout na jednom místě před sebou.
@@ -90,7 +90,7 @@ A až budete připravená, otevřete oči.`,
     9,
     ['transfer', 'two_week_wait'],
     ['transfer', 'cekani', 'psychika'],
-    'Nahrávka určená na první hodiny po návratu domů. Ticho mezi větami je delší než obvykle.',
+    'Určeno na první hodiny po návratu domů. Ticho mezi větami je delší než obvykle.',
     `Máte to za sebou. Ta část, kterou jste mohla ovlivnit, skončila.
 
 Lehněte si nebo se pohodlně opřete. Nemusíte ležet nehybně — to nikomu nepomůže.
@@ -125,7 +125,7 @@ Až budete připravená, otevřete oči a pomalu se posaďte.`,
     12,
     ['two_week_wait'],
     ['cekani', 'psychika'],
-    'Delší nahrávka určená na večer. Obsahuje techniku ukotvení pro chvíle, kdy myšlenky ujíždějí.',
+    'Delší, určené na večer. Obsahuje techniku ukotvení pro chvíle, kdy myšlenky ujíždějí.',
     `Tohle čekání je jedna z nejtěžších věcí, kterou po vás někdo může chtít. Ne proto, že by bylo bolestivé, ale proto, že se během něj nedá nic dělat.
 
 Sedněte si nebo si lehněte. Nechte ruce volně.
@@ -172,7 +172,7 @@ A vy jste ho zvládla o jeden den víc.`,
     8,
     ['two_week_wait', 'beta_positive'],
     ['cekani', 'psychika', 'vysledky'],
-    'Krátká ranní nahrávka. Počítá s tím, že jste nespala a máte staženo v žaludku.',
+    'Krátké, ranní. Počítá s tím, že jste nespala a máte staženo v žaludku.',
     `Dnes se to dozvíte.
 
 Nejspíš jste toho moc nenaspala. Možná se vám dělá špatně od žaludku. Možná jste od pěti ráno vzhůru a díváte se do stropu.
@@ -209,7 +209,7 @@ A teď vstaňte. Zvládnete to.`,
     11,
     ['waiting_next_attempt', 'repeated_failure', 'loss_biochemical'],
     ['ztrata', 'psychika'],
-    'Nahrávka nemluví o dalším pokusu ani o naději. Zůstává u dneška.',
+    'Nemluví o dalším pokusu ani o naději. Zůstává u dneška.',
     `Nevyšlo to.
 
 Nebudu vám říkat, že to bude dobré. Ani že příště. Ani že se to děje z nějakého důvodu.
@@ -251,7 +251,7 @@ Zůstaňte tu, jak dlouho potřebujete.`,
     13,
     ['loss_miscarriage', 'loss_missed', 'loss_ectopic', 'loss_biochemical'],
     ['ztrata', 'psychika'],
-    'Nejtišší nahrávka v knihovně. Dlouhé pauzy jsou záměrné.',
+    'Nejtišší text v knihovně. Dlouhé pauzy jsou záměrné.',
     `Nebudu vám říkat nic užitečného. Na tohle nic užitečného není.
 
 Jen tu s vámi chvíli budu.
@@ -295,7 +295,7 @@ A prosím — jestli je toho na vás moc, jestli nemůžete jíst, spát, nebo v
     15,
     ['two_week_wait', 'stimulation', 'waiting_next_attempt'],
     ['spanek', 'psychika', 'sebepece'],
-    'Postupné uvolnění celého těla. Nahrávka na konci ztichne — usnutí je cíl, ne selhání.',
+    'Postupné uvolnění celého těla. Na konci to ztichne — usnutí je cíl, ne selhání.',
     `Lehněte si tak, jak budete spát.
 
 Není potřeba se snažit usnout. Tahle nahrávka nemá žádný cíl, který byste mohla nesplnit.
@@ -348,7 +348,7 @@ Výdech.`,
     6,
     ['two_week_wait', 'stimulation'],
     ['psychika', 'sebepece'],
-    'Krátká nahrávka pro akutní úzkost. Začíná rychleji než ostatní a zpomaluje postupně.',
+    'Krátké, pro akutní úzkost. Začíná rychleji než ostatní a zpomaluje postupně.',
     `Jestli se vám teď špatně dýchá, nejste v nebezpečí. Úzkost to takhle dělá.
 
 Postavte se nebo se posaďte tak, abyste měla rovná záda.
@@ -391,7 +391,7 @@ A jestli se vrací často a brání vám fungovat, řekněte o tom svému léka�
     5,
     ['two_week_wait', 'stimulation', 'waiting_next_attempt', 'diagnostics'],
     ['psychika', 'sebepece'],
-    'Krátká nahrávka s pauzami mezi větami. Každou větu je možné si zopakovat nahlas.',
+    'Krátké, s pauzami mezi větami. Každou větu je možné si zopakovat nahlas.',
     `Většina afirmací lže. Slibují výsledek, který nikdo nemůže zaručit, a když nevyjde, cítíte se hůř.
 
 Tyhle nelžou. Zopakujte si každou z nich, jestli chcete.
@@ -438,7 +438,7 @@ To je všechno. Můžete se vrátit ke svému dni.`,
     11,
     ['diagnostics', 'repeated_failure', 'waiting_next_attempt'],
     ['psychika', 'sebepece'],
-    'Nahrávka pro chvíle, kdy máte na vlastní tělo vztek.',
+    'Pro chvíle, kdy máte na vlastní tělo vztek.',
     `Hodně žen v léčbě popisuje, že se cítí zrazené vlastním tělem. Že jim nefunguje to jediné, co má fungovat samo.
 
 Jestli to znáte, tahle nahrávka je pro vás.

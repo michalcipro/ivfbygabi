@@ -2149,7 +2149,7 @@ Ještě jeden dlouhý výdech. A teď dýchejte normálně.
       author: 'Gabi',
       publishedOn: '2026-01-22',
       mediaNote:
-        'Ženský hlas, tiché tempo, žádná hudba pod řečí — jen jemný podkres na začátku a na konci. Dlouhé pauzy mezi větami, aby se stihlo dýchat. Vhodné do sluchátek v čekárně, celkem deset minut včetně ticha.',
+        'Scénář je psaný k poslechu: krátké věty a dlouhé pauzy mezi nimi, aby se stihlo dýchat. S tichem trvá zhruba deset minut. Do sluchátek v čekárně se hodí líp než na reproduktor.',
     },
     {
       id: 'diag-podcast-kdyz-najdou-neco-navic',

@@ -1827,7 +1827,7 @@ Nic velkého. Napijte se vody, projděte se k oknu. Jestli vám to pomohlo, pozn
       author: 'Gabi',
       publishedOn: '2026-02-23',
       mediaNote:
-        'Klidný ženský hlas, tempo pomalé, v pozadí jen tichý šum. Bez hudby s melodií, bez zvonků na konci. Nahrávka nikde nezmiňuje slova jako miminko, naděje ani úspěch — záměrně.',
+        'Tempo je pomalé a scénář nikde nezmiňuje slova jako miminko, naděje ani úspěch — záměrně. Žádná vizualizace, žádná výzva na konci.',
       boost: 0.55,
     },
     {
@@ -1876,7 +1876,7 @@ Pokud po ní zůstáváte rozrušená nebo vás nutí přemýšlet víc, ne mí�
       author: 'Gabi',
       publishedOn: '2026-03-02',
       mediaNote:
-        'Pomalu vedený hlas s dlouhými pauzami, v pozadí jen tlumený šum. Nahrávka nikde nepopisuje embryo ani nesugeruje výsledek — soustředí se na dech, dotyk dlaně na podbřišku a na vděk vlastnímu tělu. Bez závěrečné hudby.',
+        'Pomalé vedení s dlouhými pauzami. Scénář nikde nepopisuje embryo ani nesugeruje výsledek — soustředí se na dech, dotyk dlaně na podbřišku a na vděk vlastnímu tělu.',
     },
     {
       id: 'tww-podcast-dva-tydny-nahlas',

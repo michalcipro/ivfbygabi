@@ -1225,7 +1225,7 @@ Než si to pustíte, zkontrolujte dvě věci: že máte nastavený budík na rá
       author: 'Gabi',
       publishedOn: '2025-11-09',
       mediaNote:
-        'Dvanáctiminutová nahrávka s ženským hlasem, bez hudby, jen jemný podkres. Tři části: pojmenování toho, co máte za sebou, dech s prodlouženým výdechem a pomalé projití těla. Končí tichem, bez závěrečné výzvy.',
+        'Tři části: pojmenování toho, co máte za sebou, dech s prodlouženým výdechem a pomalé projití těla. S pauzami zhruba dvanáct minut. Končí tichem, bez závěrečné výzvy.',
       boost: 0.6,
     },
     {

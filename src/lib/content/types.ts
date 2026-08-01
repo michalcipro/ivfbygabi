@@ -101,8 +101,17 @@ export interface ContentItem {
   quiz?: QuizQuestion[]
   /** Kapitoly kurzu, pokud kind === 'course'. */
   chapters?: { title: string; minutes: number; body: string }[]
-  /** U videa/audia: popis toho, co uvidí/uslyší (nemáme reálné soubory). */
+  /** U videa/audia: popis toho, co uvidí/uslyší. */
   mediaNote?: string
+  /**
+   * Cesta k opravdovému souboru, až bude.
+   *
+   * Meditace se dají přehrát bez souboru — prohlížeč je umí přečíst nahlas.
+   * Video ne. Dokud tady nic není, obrazovka to řekne rovnou: video se
+   * připravuje. Popisek „Video: …“ nad textem, který žádné video není, je
+   * horší než přiznaná mezera.
+   */
+  mediaSrc?: string
 }
 
 export interface ChecklistEntry {

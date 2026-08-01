@@ -1960,7 +1960,7 @@ Nahrávku můžete poslouchat opakovaně. Právě opakování dělá z dechovéh
       author: 'Gabi',
       publishedOn: '2026-03-12',
       mediaNote:
-        'Klidný ženský hlas, bez hudby v první polovině, v druhé jen velmi tichý podkres. Nahrávka počítá s tím, že možná pláčete — jsou v ní záměrně dlouhé pauzy a nikdo po vás nic nechce.',
+        'Scénář počítá s tím, že možná pláčete — jsou v něm záměrně dlouhé pauzy a nikdo po vás nic nechce. Nemusíte ho poslouchat celý.',
     },
     {
       id: 'plan-podcast-rok-snazeni',

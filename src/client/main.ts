@@ -62,6 +62,15 @@ import {
   type SectionId,
 } from './screens-phase'
 import { screenChecklisty, screenCist, screenGabi, screenKnihovna } from './screens-tools'
+import {
+  czechVoice,
+  onSpeechChange,
+  restartSpeech,
+  speechAvailable,
+  speechState,
+  stopSpeech,
+  toggleSpeech,
+} from './speech'
 import { DENIK_SECTIONS, screenCviceni, screenDenik, type DenikSection } from './screens-denik'
 import { screenHodnota, screenZdravi } from './screens-zdravi'
 import { renderSummary, type SummaryId } from './summary'
@@ -554,6 +563,26 @@ function stopBreathing(): void {
   if (label) label.textContent = 'Připravená?'
 }
 
+/**
+ * Přemalování přehrávače meditace.
+ *
+ * Předčítání běží mimo render — plné překreslení stránky každé čtyři vteřiny
+ * by při poslechu shodilo scroll i pozornost. Mění se proto jen ty tři prvky,
+ * které se opravdu mění.
+ */
+function speechTick(): void {
+  const st = speechState()
+  const btn = document.getElementById('say-btn')
+  const pos = document.getElementById('say-pos')
+  const voice = document.getElementById('say-voice')
+  if (btn) btn.textContent = st.id === null ? '▶ Přehrát' : st.paused ? '▶ Pokračovat' : '❙❙ Pauza'
+  if (pos && st.id !== null) pos.textContent = `Úsek ${st.at + 1} z ${st.total}`
+  if (voice && czechVoice()) {
+    voice.textContent =
+      'Čte hlas vašeho zařízení, ne nahrané studio. Mezi větami se dělají pauzy — jsou součástí meditace.'
+  }
+}
+
 function startBreathing(): void {
   stopBreathing()
   const box = document.getElementById('breath')
@@ -935,6 +964,24 @@ function action(act: string, argValue: string): void {
       return
     case 'breath-stop':
       stopBreathing()
+      return
+
+    // --- předčítání meditace ----------------------------------------------
+    // Nevrací se přes render(). Kdyby se stránka překreslila při každém
+    // úseku, uživatelka by během poslechu poskakovala po stránce.
+    case 'say': {
+      const item = contentById(argValue)
+      if (item) toggleSpeech(item.id, item.body)
+      speechTick()
+      return
+    }
+    case 'say-restart':
+      restartSpeech()
+      speechTick()
+      return
+    case 'say-stop':
+      stopSpeech()
+      render()
       return
 
     // --- kalendář ---------------------------------------------------------
@@ -1455,6 +1502,10 @@ document.addEventListener('keydown', (ev) => {
 
 window.addEventListener('hashchange', () => {
   stopBreathing()
+  // Meditace se nesmí táhnout přes odchod z obrazovky. Hlas, který mluví
+  // z jiné stránky a nedá se zastavit, je to nejhorší, co může přehrávač
+  // udělat.
+  stopSpeech()
   const route = currentRoute()
   if (stack.length > 1 && stack[stack.length - 2] === route) stack.pop()
   else stack.push(route)
@@ -1465,6 +1516,12 @@ window.addEventListener('hashchange', () => {
 
 load()
 applyTheme()
+
+// Seznam hlasů se v některých prohlížečích plní až po startu. Až doteče,
+// přepíše se upozornění „hlasy se ještě načítají“.
+onSpeechChange(speechTick)
+if (speechAvailable()) window.speechSynthesis.addEventListener('voiceschanged', speechTick)
+
 stack = [currentRoute()]
 if (!location.hash) location.hash = '#/dnes'
 render()

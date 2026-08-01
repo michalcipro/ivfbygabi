@@ -1239,7 +1239,7 @@ Cíl není „přestat být smutná". Cíl je, aby smutek přestal být jediné,
     {
       id: 'loss-audio-prvni-noci',
       kind: 'audio',
-      title: 'Nahrávka na první noci: když nejde spát',
+      title: 'Na první noci: když nejde spát',
       excerpt:
         'Dvanáct minut hlasu, který po vás nic nechce — na noc, kdy je ticho nesnesitelné.',
       body: `## O čem tahle nahrávka je
@@ -1283,7 +1283,7 @@ Nahrávka je opora, ne léčba. Když nespíte déle než dva týdny, budí vás
       publishedOn: '2025-09-29',
       boost: 0.8,
       mediaNote:
-        'Dvanáctiminutová audionahrávka, ženský hlas, velmi pomalé tempo, bez hudby v první části a s tichým podkladem ve druhé. Struktura: pojmenování situace (1,5 min), práce s dechem s důrazem na delší výdech (4 min), postupné uvolnění pozornosti tělem shora dolů s pauzou u břicha (5 min), závěrečná pasáž o tom, že dnes v noci není potřeba nic řešit (1,5 min). Končí tichem, nikoli výzvou k probuzení.',
+        'Velmi pomalé tempo, zhruba dvanáct minut i s pauzami. Struktura: pojmenování situace, práce s dechem s důrazem na delší výdech, postupné uvolnění pozornosti tělem shora dolů s pauzou u břicha a závěrečná pasáž o tom, že dnes v noci není potřeba nic řešit. Končí tichem, nikoli výzvou k probuzení.',
     },
     {
       id: 'loss-vyroci-a-termin',
