@@ -4,6 +4,7 @@ import { addDays, daysBetween, today as realToday } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { findPattern, readDay, type DayLog, type DayReading, type Pattern } from '../lib/domain/strain'
 import { activeCycle, emptyCycle, readCycle, type CycleRow, type CycleStatus } from '../lib/domain/cycle'
+import { readToday, type TodayBalance } from '../lib/domain/today-tasks'
 import { CATALOG } from '../lib/content'
 import { emptyAffinity, type Affinity } from '../lib/content/recommend'
 import { applyTopicAffinity, type WeightedAffinity } from '../lib/content/affinity'
@@ -694,6 +695,44 @@ export function updateCycle(id: string, patchFn: (c: CycleRow) => void): void {
   patch((d) => {
     const c = d.cycles.find((x) => x.id === id)
     if (c) patchFn(c)
+  })
+}
+
+/**
+ * Co je dnes na uživatelce.
+ *
+ * Skládá se z toho, co aplikace už zná: rozpis léků, hodina triggeru,
+ * termíny v kalendáři, zápis dne. Nic navíc se nedoptává.
+ */
+export function todayBalance(): TodayBalance {
+  const date = viewDate()
+  const c = currentCycle()
+  const st = cycleStatus(c)
+  return readToday({
+    today: date,
+    meds: data.meds.map((m) => ({
+      id: m.id,
+      name: m.name,
+      dose: m.dose,
+      times: m.times,
+      repeat: m.repeat,
+      startOn: m.startOn,
+      endOn: m.endOn,
+    })),
+    checks: data.checks,
+    events: allEvents().map((e) => ({
+      id: e.id,
+      title: e.title,
+      kind: e.kind,
+      onDate: e.onDate,
+      atTime: data.events.find((x) => x.id === e.id)?.atTime ?? null,
+      done: eventState(e.id).done,
+    })),
+    triggerOn: c?.triggerOn ?? null,
+    triggerAt: c?.triggerAt ?? '',
+    hasJournalToday: journalFor(date) !== null,
+    openQuestions: data.questions.filter((q) => q.status === 'ceka').length,
+    stage: st?.stage ?? null,
   })
 }
 

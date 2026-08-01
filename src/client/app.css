@@ -1051,6 +1051,8 @@ textarea.field { resize: vertical; line-height: 1.6; }
   position: absolute; left: 100%; bottom: .55rem; margin-left: .14rem;
   font-family: var(--sans); font-size: 1.05rem; font-weight: 400;
   color: var(--fg-faint); letter-spacing: .02em; opacity: .8;
+  /* „z 6" se bez tohohle láme na dva řádky — box vedle číslice je úzký. */
+  white-space: nowrap;
 }
 
 .ringlabel {
@@ -1459,3 +1461,12 @@ button.tlitem:hover b { color: var(--s1); }
   .prose tr td:first-child { font-weight: 600; font-size: 1rem; }
   .prose tr td:first-child::before { content: none; }
 }
+
+
+/* --- prázdný puntík v legendě -------------------------------------------
+   „Není na vás" se nevyplňuje ani v legendě — dutý kroužek to řekne dřív
+   než text vedle něj. */
+.serieskey i.hollow { background: none !important; border: 2px solid currentColor; }
+
+/* Plátky, které se nikdy nevyplní, nemají blikat při překreslení. */
+.bloom ellipse[stroke-dasharray] { transition: none; }

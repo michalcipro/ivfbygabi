@@ -5,6 +5,7 @@ import { buildRails, pickDailyCard } from '../lib/content/recommend'
 import {
   affinity,
   dayReading,
+  todayBalance,
   eventState,
   journalFor,
   journey,
@@ -16,7 +17,7 @@ import {
   viewDate,
 } from './store'
 import { contentCard, esc, plural, sectionTitle } from './ui'
-import { chart, partsList, scissorRing, seriesKey } from './viz'
+import { bloomToday, chart, partsList, scissorRing, seriesKey } from './viz'
 
 /**
  * Dnes.
@@ -84,6 +85,7 @@ export function screenDnes(): string {
   const state = journey()
   const date = viewDate()
   const r = dayReading(date)
+  const bal = todayBalance()
   const guide = guideFor(state.phase.id)
   const row = journalFor(date)
   const p = profile()
@@ -106,26 +108,37 @@ export function screenDnes(): string {
     </header>`,
 
     `<section class="surface pad rise">
-      ${scissorRing(r)}
-      <div class="reading${r.state === 'zavrene' ? ' cool' : ''}" style="margin-top:1.3rem">
-        <p class="eyebrow">Co to znamená</p>
+      ${bloomToday(bal)}
+      <div class="reading${bal.criticalOpen ? '' : ' cool'}" style="margin-top:1.3rem">
+        <p class="eyebrow">${bal.criticalOpen ? 'Dnes hlavně tohle' : 'Co to znamená'}</p>
         <p class="soft" style="margin-top:.4rem;line-height:1.7">
-          <strong style="color:var(--fg);font-weight:500">${esc(r.headline)}</strong> ${esc(r.advice)}
+          <strong style="color:var(--fg);font-weight:500">${esc(bal.headline)}</strong> ${esc(bal.detail)}
         </p>
       </div>
-      <button class="btn btn-sm" data-go="nuzky" style="margin-top:1rem">Z čeho se to počítá</button>
     </section>`,
 
-    row
-      ? ''
-      : `<section class="surface pad rise">
-          <p class="eyebrow">Chybí druhá půlka prstence</p>
-          <p class="soft" style="margin-top:.5rem;line-height:1.7">
-            Dokud si dnešek nezapíšete, aplikace ví jen to, co po vás den chce — ne to,
-            co na to máte. Trvá to dvacet vteřin.
-          </p>
-          <button class="btn btn-primary" data-go="zapis" style="margin-top:1.1rem">Zapsat dnešek</button>
-        </section>`,
+    // Druhý věnec potřebuje vysvětlit, jinak vypadá jako nedodělaná data.
+    // Tohle je zároveň nejcennější věta na celé obrazovce.
+    `<section class="surface pad rise">
+      <p class="eyebrow">Co dnes na vás není</p>
+      <p class="soft" style="margin-top:.5rem;line-height:1.7">
+        Tyhle plátky se nevyplní — a je to tak správně. Rozhoduje o nich biologie
+        nebo laboratoř, ne vaše snaha.
+      </p>
+      <ul class="linelist" style="margin-top:1rem">
+        ${bal.notYours
+          .map(
+            (n) => `<li>
+              <span style="min-width:0;flex:1">
+                <b style="display:block;font-weight:600;font-size:.9375rem">${esc(n.label)}</b>
+                <span class="faint" style="display:block;font-size:.8125rem;line-height:1.5;margin-top:.15rem">${esc(n.why)}</span>
+              </span>
+            </li>`,
+          )
+          .join('')}
+      </ul>
+      <button class="btn btn-sm btn-ghost" data-go="nuzky" style="margin-top:1.1rem">Jak se obsah přizpůsobuje dni</button>
+    </section>`,
 
     `<div class="quickrow rise">
       <button data-go="zapis"><i>◕</i>Nálada</button>

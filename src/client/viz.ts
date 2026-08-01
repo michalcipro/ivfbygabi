@@ -1,5 +1,6 @@
 import { STATE_LABEL, type DayReading } from '../lib/domain/strain'
 import { esc } from './ui'
+import type { TodayBalance } from '../lib/domain/today-tasks'
 
 /**
  * Datové prvky aplikace.
@@ -78,6 +79,81 @@ export function scissorRing(r: DayReading): string {
     <span class="statepill${r.state === 'siroke' || r.state === 'otevrene' ? ' alert' : ''}">
       ${esc(STATE_LABEL[r.state])}${r.gap !== null && r.gap > 0 ? ` · ${r.gap} ${r.gap === 1 ? 'bod' : r.gap < 5 ? 'body' : 'bodů'}` : ''}
     </span>
+  </div>`
+}
+
+/**
+ * Květ dneška.
+ *
+ * Vnější věnec = co je dnes na uživatelce. Jeden plátek na jednu věc,
+ * vybarvený, když je hotová. Počet plátků se den ode dne mění — klidný
+ * den je malý květ, den s triggerem a kontrolou velký. To je záměr:
+ * tvar sám nese informaci dřív, než člověk stihne přečíst číslo.
+ *
+ * Vnitřní věnec = co na ní dnes není. Ty plátky se nikdy nevyplní,
+ * proto jsou kreslené jen obrysem. Prázdný vnitřek není chybějící data,
+ * je to odpověď.
+ */
+export function bloomToday(b: TodayBalance): string {
+  // Tvarosloví má jedno pravidlo, a proto se dá číst bez legendy:
+  // čárkovaný plátek se nikdy nevyplní, plný obrys se vyplnit může.
+  const petals = (
+    count: number,
+    geo: { cy: number; rx: number; ry: number },
+    style: (i: number) => { color: string; filled: boolean; dashed: boolean; strong: boolean },
+  ): string =>
+    Array.from({ length: count }, (_, i) => {
+      const f = style(i)
+      return `<ellipse cx="109" cy="${geo.cy}" rx="${geo.rx}" ry="${geo.ry}"
+        fill="${f.color}" fill-opacity="${f.filled ? 0.52 : 0.1}"
+        stroke="${f.color}" stroke-opacity="${f.strong ? 0.9 : f.filled ? 0.32 : 0.5}"
+        stroke-width="${f.strong ? 2 : 1}"${f.dashed ? ' stroke-dasharray="4 4"' : ''}
+        transform="rotate(${(i * 360) / Math.max(count, 1)} 109 109)"/>`
+    }).join('')
+
+  const outer = petals(b.tasks.length, { cy: 29, rx: 15, ry: 24 }, (i) => {
+    const t = b.tasks[i]
+    const done = Boolean(t?.done)
+    const urgent = Boolean(t && !t.done && t.critical)
+    return {
+      color: done ? 'var(--s1)' : urgent ? 'var(--s3)' : 'var(--fg-faint)',
+      filled: done,
+      dashed: false,
+      strong: urgent,
+    }
+  })
+
+  const inner = petals(b.notYours.length, { cy: 80, rx: 11, ry: 21 }, () => ({
+    color: 'var(--s2)',
+    filled: false,
+    dashed: true,
+    strong: false,
+  }))
+
+  const label =
+    b.total === 0
+      ? 'Dnes na vás nečeká žádný úkol'
+      : `Hotovo ${b.done} z ${b.total} věcí, které jsou dnes na vás`
+
+  return `<div class="ringwrap">
+    <div class="bigring">
+      <svg viewBox="0 0 218 218" role="img" aria-label="${esc(label)}">
+        <g class="bloom">${outer}${inner}</g>
+        <circle cx="109" cy="109" r="7" fill="var(--card)" opacity=".9"/>
+      </svg>
+    </div>
+
+    <p class="bignum"><span class="d">${b.done}</span><small>z ${b.total}</small></p>
+    <p class="ringlabel">Co je dnes na vás</p>
+
+    <div class="serieskey">
+      <span><i style="background:var(--s1)"></i> Hotovo <b class="num">${b.done}</b></span>
+      <span><i class="hollow" style="border-color:var(--s2)"></i> Není na vás <b class="num">${b.notYours.length}</b></span>
+    </div>
+
+    <span class="statepill${b.criticalOpen ? ' alert' : ''}">${esc(
+      b.total === 0 ? 'Volný den' : b.done === b.total ? 'Máte hotovo' : b.headline,
+    )}</span>
   </div>`
 }
 
