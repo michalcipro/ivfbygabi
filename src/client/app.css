@@ -461,6 +461,18 @@ button { font: inherit; color: inherit; }
 .linelist li { display: flex; align-items: baseline; gap: 0.85rem; font-size: 0.9375rem; }
 .linelist .when { width: 5.5rem; flex: none; font-size: 0.75rem; color: var(--fg-faint); }
 
+/* Milníky pod květem. Bez nich by se nedalo poznat, který plátek je který. */
+.track { list-style: none; padding: 0; margin: 1.1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.track li {
+  display: flex; align-items: center; gap: 0.3rem;
+  font-size: 0.75rem; letter-spacing: 0.01em; color: var(--fg-faint);
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  padding: 0.3rem 0.55rem; background: var(--card);
+}
+.track li.done { color: var(--fg); border-color: var(--s1); background: var(--card-muted); }
+.track li i { font-style: normal; font-size: 0.6875rem; color: var(--fg-faint); }
+.track li.done i { color: var(--s1); }
+
 /* Pás cesty — kde jsem, co bylo, co přijde. */
 .journey {
   display: flex; align-items: stretch; gap: 0.5rem; width: 100%;

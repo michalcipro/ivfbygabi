@@ -1,10 +1,13 @@
 import { czDays, formatCzechDate, formatCzechDateShort } from '../lib/domain/dates'
+import type { DayTask, TodayBalance } from '../lib/domain/today-tasks'
 import { guideFor } from '../lib/domain/guides'
 import { CATALOG, DAILY_CARDS, contentById } from '../lib/content'
 import { buildRails, pickDailyCard } from '../lib/content/recommend'
 import {
+  activeCycleId,
   affinity,
   dayReading,
+  endurance,
   todayBalance,
   eventState,
   journalFor,
@@ -12,12 +15,11 @@ import {
   profile,
   readingSeries,
   reminders,
-  S,
   shotsOn,
   viewDate,
 } from './store'
 import { contentCard, esc, plural, sectionTitle } from './ui'
-import { bloomToday, chart, partsList, scissorRing, seriesKey } from './viz'
+import { bloomEndurance, chart, partsList, scissorRing, seriesKey, trackStrip } from './viz'
 
 /**
  * Dnes.
@@ -35,47 +37,72 @@ function contentBudget(gap: number | null): number {
   return 3
 }
 
-function todayEvents(): string {
-  const date = viewDate()
-  const need = reminders(date)
-  if (need.length === 0) return ''
+/**
+ * Jeden dnešní úkol.
+ *
+ * Odškrtávací věci jsou tlačítka, která opravdu odškrtávají. Zápis a otázky
+ * odškrtnout nejdou — ty se dělají jinde, takže vedou tam. Tvářit se, že
+ * i ony jsou zaškrtávátko, by znamenalo lhát o tom, co klepnutí udělá.
+ */
+function taskRow(t: DayTask): string {
+  // Trigger má hodinu už v popisku („Trigger ve 21:30“). Přilepit ji podruhé
+  // by z nejdůležitějšího řádku dne udělalo koktavý.
+  const time = t.at && !t.label.includes(t.at) ? `<span class="faint"> · ${esc(t.at)}</span>` : ''
+  const label = `<span class="txt" style="font-size:.9375rem;line-height:1.5">
+    <span${t.critical ? ' style="font-weight:600"' : ''}>${esc(t.label)}</span>${time}`
 
-  return `<section class="surface pad">
-    <p class="eyebrow">Odškrtněte, co proběhlo</p>
-    <div class="stack" style="gap:.35rem;margin-top:.6rem">
-      ${need
-        .slice(0, 5)
-        .map((e) => {
-          const st = eventState(e.id)
-          const when = e.onDate === date ? 'dnes' : e.onDate > date ? 'zítra' : 'nestihnuté'
-          return `<button class="check" data-act="event-done" data-arg="${esc(e.id)}" aria-pressed="${st.done}">
-            <span class="box">✓</span>
-            <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(e.title)}
-              <br><span class="faint" style="font-size:.8125rem">${esc(when)}</span></span>
-          </button>`
-        })
-        .join('')}
+  if (t.kind === 'zapis' || t.kind === 'otazka') {
+    return `<button class="check" data-go="${esc(t.route)}">
+      <span class="box">${t.done ? '✓' : '→'}</span>
+      ${label}<br><span class="faint" style="font-size:.8125rem">${
+        t.done ? 'hotovo, můžete doplnit' : 'otevře se obrazovka'
+      }</span></span>
+    </button>`
+  }
+
+  const act = t.kind === 'kontrola' ? 'event-done' : 'check'
+  const arg = t.kind === 'kontrola' ? t.id.slice(3) : t.id
+  return `<button class="check" data-act="${act}" data-arg="${esc(arg)}" aria-pressed="${t.done}">
+    <span class="box">✓</span>
+    ${label}</span>
+  </button>`
+}
+
+/**
+ * Dnešní úkoly v jednom seznamu.
+ *
+ * Dřív byly na obrazovce dvakrát — léky zvlášť, termíny zvlášť — a trigger,
+ * jediná věc v cyklu, u které se počítají minuty, nikde. `tasksFor` je skládá
+ * dohromady i s hodinou, takže tady stačí je vypsat v pořadí dne.
+ */
+function todayTasks(bal: TodayBalance): string {
+  if (bal.tasks.length === 0) return ''
+  return `<section class="surface pad rise">
+    <p class="eyebrow">Dnes je na vás · ${bal.done} z ${bal.total}</p>
+    <div class="stack" style="gap:.2rem;margin-top:.6rem">
+      ${bal.tasks.map(taskRow).join('')}
     </div>
   </section>`
 }
 
-/** Léky na dnešek. Odškrtávají se přímo tady, ne v nastavení. */
-function medsToday(): string {
-  const meds = S.d.meds
-  if (meds.length === 0) return ''
+/** Nestihnuté z minulých dnů. Do dneška nepatří, ztratit se ale nesmí. */
+function overdue(): string {
   const date = viewDate()
-  return `<section class="surface pad">
-    <p class="eyebrow">Dnes stačí tohle</p>
-    <div class="stack" style="gap:.2rem;margin-top:.6rem">
-      ${meds
-        .map((m) => {
-          const key = `med:${date}:${m.id}`
-          return `<button class="check" data-act="check" data-arg="${esc(key)}" aria-pressed="${Boolean(S.d.checks[key])}">
+  const late = reminders(date).filter((e) => e.onDate < date)
+  if (late.length === 0) return ''
+
+  return `<section class="surface pad rise">
+    <p class="eyebrow">Zůstalo z minulých dnů</p>
+    <div class="stack" style="gap:.35rem;margin-top:.6rem">
+      ${late
+        .slice(0, 5)
+        .map(
+          (e) => `<button class="check" data-act="event-done" data-arg="${esc(e.id)}" aria-pressed="${eventState(e.id).done}">
             <span class="box">✓</span>
-            <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(m.name)}
-              <span class="faint">· ${esc(m.dose)}${m.timeOfDay ? ` · ${esc(m.timeOfDay)}` : ''}</span></span>
-          </button>`
-        })
+            <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(e.title)}
+              <br><span class="faint" style="font-size:.8125rem">${esc(formatCzechDateShort(e.onDate))}</span></span>
+          </button>`,
+        )
         .join('')}
     </div>
   </section>`
@@ -86,6 +113,7 @@ export function screenDnes(): string {
   const date = viewDate()
   const r = dayReading(date)
   const bal = todayBalance()
+  const end = endurance()
   const guide = guideFor(state.phase.id)
   const row = journalFor(date)
   const p = profile()
@@ -107,23 +135,48 @@ export function screenDnes(): string {
       <p class="lede">${esc(state.dayLabel)}</p>
     </header>`,
 
+    // Květ neukazuje dnešek. Ukazuje, co má za sebou — protože právě to se
+    // v léčbě ztrácí a nikdo jiný jí to nepřipomene.
     `<section class="surface pad rise">
-      ${bloomToday(bal)}
-      <div class="reading${bal.criticalOpen ? '' : ' cool'}" style="margin-top:1.3rem">
-        <p class="eyebrow">${bal.criticalOpen ? 'Dnes hlavně tohle' : 'Co to znamená'}</p>
+      ${bloomEndurance(end)}
+      <div class="reading cool" style="margin-top:1.3rem">
+        <p class="eyebrow">Co už jste unesla</p>
+        <p class="soft" style="margin-top:.4rem;line-height:1.7">
+          <strong style="color:var(--fg);font-weight:500">${esc(end.headline)}</strong> ${esc(end.detail)}
+        </p>
+      </div>
+      ${trackStrip(end)}
+      <button class="btn btn-sm btn-ghost" data-go="${
+        // Bez běžícího cyklu vede „cyklus“ na hlášku, že takový cyklus není.
+        // Historie je správný cíl — tam se zakládá.
+        activeCycleId() ? `cyklus/${esc(activeCycleId() ?? '')}` : 'journey/historie'
+      }" style="margin-top:1.1rem">${activeCycleId() ? 'Celá karta cyklu' : 'Založit cyklus'}</button>
+    </section>`,
+
+    `<section class="surface pad rise">
+      <div class="reading${bal.criticalOpen ? '' : ' cool'}">
+        <p class="eyebrow">${bal.criticalOpen ? 'Dnes hlavně tohle' : 'Dnešek'}</p>
         <p class="soft" style="margin-top:.4rem;line-height:1.7">
           <strong style="color:var(--fg);font-weight:500">${esc(bal.headline)}</strong> ${esc(bal.detail)}
         </p>
       </div>
     </section>`,
 
-    // Druhý věnec potřebuje vysvětlit, jinak vypadá jako nedodělaná data.
-    // Tohle je zároveň nejcennější věta na celé obrazovce.
+    `<div class="quickrow rise">
+      <button data-go="zapis"><i>◕</i>Nálada</button>
+      <button data-go="zapis#vpich"><i>✚</i>Vpich${shots.length ? ` · ${shots.length}` : ''}</button>
+      <button data-go="zapis#telo"><i>◍</i>Tělo</button>
+    </div>`,
+
+    todayTasks(bal),
+    overdue(),
+
+    // Nejcennější věta na celé obrazovce: co dneska není její starost.
     `<section class="surface pad rise">
       <p class="eyebrow">Co dnes na vás není</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.7">
-        Tyhle plátky se nevyplní — a je to tak správně. Rozhoduje o nich biologie
-        nebo laboratoř, ne vaše snaha.
+        O těchhle věcech rozhoduje biologie nebo laboratoř, ne vaše snaha.
+        Nedají se odškrtnout a nemají se hlídat.
       </p>
       <ul class="linelist" style="margin-top:1rem">
         ${bal.notYours
@@ -139,15 +192,6 @@ export function screenDnes(): string {
       </ul>
       <button class="btn btn-sm btn-ghost" data-go="nuzky" style="margin-top:1.1rem">Jak se obsah přizpůsobuje dni</button>
     </section>`,
-
-    `<div class="quickrow rise">
-      <button data-go="zapis"><i>◕</i>Nálada</button>
-      <button data-go="zapis#vpich"><i>✚</i>Vpich${shots.length ? ` · ${shots.length}` : ''}</button>
-      <button data-go="zapis#telo"><i>◍</i>Tělo</button>
-    </div>`,
-
-    medsToday(),
-    todayEvents(),
 
     // Karta dne se sama zkracuje. Při rozevřených nůžkách zůstane jen nadpis
     // a odstavec — víc by v takový den bylo na obtíž.

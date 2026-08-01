@@ -5,6 +5,7 @@ import { autoEventsFor } from '../lib/domain/auto-events'
 import { findPattern, readDay, type DayLog, type DayReading, type Pattern } from '../lib/domain/strain'
 import { activeCycle, emptyCycle, readCycle, type CycleRow, type CycleStatus } from '../lib/domain/cycle'
 import { readToday, type TodayBalance } from '../lib/domain/today-tasks'
+import { readEndurance, type Endurance, type StepKey } from '../lib/domain/endurance'
 import { CATALOG } from '../lib/content'
 import { emptyAffinity, type Affinity } from '../lib/content/recommend'
 import { applyTopicAffinity, type WeightedAffinity } from '../lib/content/affinity'
@@ -734,6 +735,82 @@ export function todayBalance(): TodayBalance {
     openQuestions: data.questions.filter((q) => q.status === 'ceka').length,
     stage: st?.stage ?? null,
   })
+}
+
+/**
+ * Co už uživatelka unesla.
+ *
+ * Sčítá se z toho, co v aplikaci opravdu je: milníky cyklu, odškrtnuté dávky
+ * injekčních léků, zapsané vpichy, proběhlé termíny. Nic se nedopočítává
+ * odhadem — číslo, které má být důkazem, si nesmí nic domýšlet.
+ */
+export function endurance(): Endurance {
+  const date = viewDate()
+  const c = currentCycle()
+  const st = cycleStatus(c)
+
+  // Injekční léky se z klíče `med:{datum}:{id}` zpětně dohledají, aby se
+  // do počtu nedostaly tablety, gely ani čípky.
+  const injectable = new Map(
+    data.meds.filter((m) => m.kind === 'injekce').map((m) => [m.id, m.name] as const),
+  )
+  const doses: { date: IsoDate; med: string }[] = []
+  for (const [key, on] of Object.entries(data.checks)) {
+    if (!on) continue
+    const m = /^med:(\d{4}-\d{2}-\d{2}):(.+)$/.exec(key)
+    if (!m) continue
+    const name = injectable.get(m[2])
+    if (name === undefined) continue
+    doses.push({ date: m[1] as IsoDate, med: name })
+  }
+
+  return readEndurance({
+    today: date,
+    cycle: c
+      ? {
+          kind: c.kind,
+          number: c.number,
+          dates: {
+            cd1: c.cd1On,
+            stim: c.stimStartOn,
+            trigger: c.triggerOn,
+            odber: c.retrievalOn,
+            transfer: c.transferOn,
+            beta: c.betaOn,
+            konec: c.endedOn,
+          } satisfies Partial<Record<StepKey, IsoDate | null>>,
+          progress: st?.progress ?? null,
+          stageHeadline: st?.headline ?? null,
+        }
+      : null,
+    cycleTotal: data.cycles.length,
+    doses,
+    shots: data.shots.map((s) => ({ date: s.date, med: s.med })),
+    visits: allEvents().map((e) => ({ onDate: e.onDate, kind: e.kind })),
+    startedOn: journeyStart(),
+  })
+}
+
+/**
+ * Odkdy je uživatelka na cestě.
+ *
+ * Nejdřív se ptáme profilu — „od kdy to zkoušíte“ je často roky zpátky a
+ * ta doba se počítá. Když v profilu nic není, bere se nejstarší stopa
+ * v datech, ať se počítadlo nerozjede až dneškem.
+ */
+function journeyStart(): IsoDate | null {
+  const p = profile()
+  const fromProfile =
+    p.tryingSince ?? p.diagnosticsStartedOn ?? p.stimulationStartOn ?? p.lastPeriodOn ?? null
+  if (fromProfile) return fromProfile
+
+  const traces = [
+    ...data.cycles.map((c) => c.cd1On ?? c.startedOn),
+    ...Object.keys(data.journal),
+    ...data.shots.map((s) => s.date),
+  ].filter((d): d is IsoDate => Boolean(d))
+  if (traces.length === 0) return null
+  return traces.sort()[0]
 }
 
 // -------------------------------------------------------------- příznaky ---

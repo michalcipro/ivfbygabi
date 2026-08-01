@@ -1,6 +1,6 @@
 import { STATE_LABEL, type DayReading } from '../lib/domain/strain'
 import { esc } from './ui'
-import type { TodayBalance } from '../lib/domain/today-tasks'
+import { zNum, type Endurance } from '../lib/domain/endurance'
 
 /**
  * Datové prvky aplikace.
@@ -82,79 +82,96 @@ export function scissorRing(r: DayReading): string {
   </div>`
 }
 
+// --------------------------------------------------------------- unesla ---
+
+/** Obvod vnitřního kruhu při r = 34. Vypočtené jednou, ať se to nehádá. */
+const RING_C = 2 * Math.PI * 34
+
 /**
- * Květ dneška.
+ * Květ „co už jste unesla“.
  *
- * Vnější věnec = co je dnes na uživatelce. Jeden plátek na jednu věc,
- * vybarvený, když je hotová. Počet plátků se den ode dne mění — klidný
- * den je malý květ, den s triggerem a kontrolou velký. To je záměr:
- * tvar sám nese informaci dřív, než člověk stihne přečíst číslo.
+ * Vnější věnec: jeden plátek na milník cyklu, vyplněné jsou ty za ní.
+ * Vnitřní kruh: čas — jak daleko cyklus je. Ten se na rozdíl od plátků
+ * hýbe každý den, a právě proto tu je.
  *
- * Vnitřní věnec = co na ní dnes není. Ty plátky se nikdy nevyplní,
- * proto jsou kreslené jen obrysem. Prázdný vnitřek není chybějící data,
- * je to odpověď.
+ * Věnec se nekreslí čárkovaně. Čárkovaný plátek v téhle aplikaci znamená
+ * „nikdy se nevyplní“ a milník před ní se vyplní vždycky — buď proto, že
+ * přijde, nebo proto, že cyklus skončí.
  */
-export function bloomToday(b: TodayBalance): string {
-  // Tvarosloví má jedno pravidlo, a proto se dá číst bez legendy:
-  // čárkovaný plátek se nikdy nevyplní, plný obrys se vyplnit může.
-  const petals = (
-    count: number,
-    geo: { cy: number; rx: number; ry: number },
-    style: (i: number) => { color: string; filled: boolean; dashed: boolean; strong: boolean },
-  ): string =>
-    Array.from({ length: count }, (_, i) => {
-      const f = style(i)
-      return `<ellipse cx="109" cy="${geo.cy}" rx="${geo.rx}" ry="${geo.ry}"
-        fill="${f.color}" fill-opacity="${f.filled ? 0.52 : 0.1}"
-        stroke="${f.color}" stroke-opacity="${f.strong ? 0.9 : f.filled ? 0.32 : 0.5}"
-        stroke-width="${f.strong ? 2 : 1}"${f.dashed ? ' stroke-dasharray="4 4"' : ''}
-        transform="rotate(${(i * 360) / Math.max(count, 1)} 109 109)"/>`
-    }).join('')
+export function bloomEndurance(e: Endurance): string {
+  const petals = e.steps
+    .map((s, i) => {
+      const c = s.passed ? 'var(--s1)' : 'var(--fg-faint)'
+      return `<ellipse cx="109" cy="29" rx="15" ry="24"
+        fill="${c}" fill-opacity="${s.passed ? 0.55 : 0.08}"
+        stroke="${c}" stroke-opacity="${s.passed ? 0.3 : 0.45}"
+        transform="rotate(${Math.round(((i * 360) / Math.max(e.steps.length, 1)) * 10) / 10} 109 109)"><title>${esc(
+          `${s.label}${s.passed ? ' — za vámi' : ' — před vámi'}`,
+        )}</title></ellipse>`
+    })
+    .join('')
 
-  const outer = petals(b.tasks.length, { cy: 29, rx: 15, ry: 24 }, (i) => {
-    const t = b.tasks[i]
-    const done = Boolean(t?.done)
-    const urgent = Boolean(t && !t.done && t.critical)
-    return {
-      color: done ? 'var(--s1)' : urgent ? 'var(--s3)' : 'var(--fg-faint)',
-      filled: done,
-      dashed: false,
-      strong: urgent,
-    }
-  })
+  // Kruh bez cyklu jen naznačí dráhu. Prázdný oblouk by tvrdil nulový postup,
+  // což není totéž jako „žádný cyklus neběží“.
+  const p = e.cycleProgress === null ? null : Math.max(0, Math.min(1, e.cycleProgress))
+  const ring =
+    `<circle cx="109" cy="109" r="34" fill="none" stroke="var(--s1)" stroke-width="6" stroke-opacity=".25"/>` +
+    (p === null || p === 0
+      ? ''
+      : `<circle cx="109" cy="109" r="34" fill="none" stroke="var(--s1)" stroke-width="6" stroke-linecap="round"
+          stroke-dasharray="${Math.round(RING_C * p * 10) / 10} ${Math.round(RING_C * 10) / 10}"
+          transform="rotate(-90 109 109)"/>`)
 
-  const inner = petals(b.notYours.length, { cy: 80, rx: 11, ry: 21 }, () => ({
-    color: 'var(--s2)',
-    filled: false,
-    dashed: true,
-    strong: false,
-  }))
-
-  const label =
-    b.total === 0
-      ? 'Dnes na vás nečeká žádný úkol'
-      : `Hotovo ${b.done} z ${b.total} věcí, které jsou dnes na vás`
+  const label = `Za vámi ${e.passed} ${e.passed === 1 ? 'milník' : e.passed >= 2 && e.passed <= 4 ? 'milníky' : 'milníků'} ${zNum(e.total)} ${e.total}${
+    p === null ? '' : `, cyklus je z ${Math.round(p * 100)} procent za vámi`
+  }`
 
   return `<div class="ringwrap">
     <div class="bigring">
       <svg viewBox="0 0 218 218" role="img" aria-label="${esc(label)}">
-        <g class="bloom">${outer}${inner}</g>
-        <circle cx="109" cy="109" r="7" fill="var(--card)" opacity=".9"/>
+        <g class="bloom">${petals}${ring}</g>
       </svg>
     </div>
 
-    <p class="bignum"><span class="d">${b.done}</span><small>z ${b.total}</small></p>
-    <p class="ringlabel">Co je dnes na vás</p>
+    <p class="bignum"><span class="d">${e.big.value}</span>${
+      e.big.of === null ? '' : `<small>${zNum(e.big.of)} ${e.big.of}</small>`
+    }</p>
+    <p class="ringlabel">${esc(e.big.caption)}</p>
 
     <div class="serieskey">
-      <span><i style="background:var(--s1)"></i> Hotovo <b class="num">${b.done}</b></span>
-      <span><i class="hollow" style="border-color:var(--s2)"></i> Není na vás <b class="num">${b.notYours.length}</b></span>
+      ${
+        // Legenda vysvětluje barvy, které jsou na obrázku. Řádek „Za vámi 0“
+        // by popisoval barvu, která tam není, a četl by se jako výtka.
+        e.passed > 0
+          ? `<span><i style="background:var(--s1)"></i> Za vámi <b class="num">${e.passed}</b></span>`
+          : ''
+      }
+      ${
+        e.total - e.passed > 0
+          ? `<span><i class="hollow" style="border-color:var(--fg-faint)"></i> Před vámi <b class="num">${e.total - e.passed}</b></span>`
+          : ''
+      }
     </div>
 
-    <span class="statepill${b.criticalOpen ? ' alert' : ''}">${esc(
-      b.total === 0 ? 'Volný den' : b.done === b.total ? 'Máte hotovo' : b.headline,
-    )}</span>
+    <span class="statepill">${esc(e.pill)}</span>
   </div>`
+}
+
+/**
+ * Milníky vypsané pod květem.
+ *
+ * Bez nich je věnec hezký obrázek, o kterém se nedá zjistit, který plátek je
+ * který. Tenhle proužek z něj dělá čitelný graf.
+ */
+export function trackStrip(e: Endurance): string {
+  return `<ol class="track">
+    ${e.steps
+      .map(
+        (s) =>
+          `<li class="${s.passed ? 'done' : ''}"><i aria-hidden="true">${s.passed ? '✓' : '·'}</i>${esc(s.label)}</li>`,
+      )
+      .join('')}
+  </ol>`
 }
 
 /** Rozpad čísla na složky. Nic není černá skříňka. */
