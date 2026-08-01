@@ -299,14 +299,16 @@ export function buildTimeline(input: TimelineInput): TimelineItem[] {
       if (asEvent) covered.add(`${m.date}|${asEvent}`)
       if (m.key === 'beta' && betaResults.has(m.date)) continue
       out.push({
-        id: `mil:${c.id}:${m.key}`,
+        id: `mil:${c.id}:${m.id}`,
         date: m.date,
         // Hodinu triggeru už nese `label` z cycleMilestones. Kdyby byla
         // i v `at`, vykreslila by se na řádku dvakrát.
         at: '',
         kind: meta.kind,
         title: m.label,
-        detail: milestoneDetail(c, m.key),
+        // Transfer i beta si popisek nesou sami — je v nich číslo, které
+        // z řádku cyklu vyčíst nejde, protože jich může být víc.
+        detail: m.detail || milestoneDetail(c, m.key),
         icon: meta.icon,
         major: true,
         source: { route: 'cyklus' },
@@ -484,13 +486,6 @@ function milestoneDetail(c: CycleRow, key: string): string {
       return c.protocol ? `Protokol ${c.protocol}` : ''
     case 'odber':
       return join([c.clinic, c.doctor])
-    case 'transfer': {
-      const what = c.transferred
-        ? plural(c.transferred, 'přenesené embryo', 'přenesená embrya', 'přenesených embryí')
-        : ''
-      const day = c.embryoDay ? `${c.embryoDay}. den kultivace` : ''
-      return join([what, day])
-    }
     case 'konec':
       return OUTCOME_LABEL[c.outcome]
     default:
@@ -543,18 +538,37 @@ function embryologyItems(c: CycleRow): TimelineItem[] {
     })
   }
 
-  if (c.blastocysts !== null || c.frozen !== null) {
+  // Vývoj embryí den po dni. Každý den je vlastní zpráva z laboratoře a
+  // vlastní telefonát — na ose proto stojí zvlášť, ne slitý do jednoho bodu.
+  const days: [number, number | null, string][] = [
+    [3, c.day3, 'se vyvíjí'],
+    [4, c.day4, 've stádiu moruly'],
+    [5, c.day5, 'došlo do blastocysty'],
+    [6, c.day6, 'došlo do blastocysty'],
+  ]
+  for (const [day, count, what] of days) {
+    if (count === null) continue
     out.push({
-      id: `emb:${c.id}:blastocysty`,
-      date: addDays(c.retrievalOn, 5),
+      id: `emb:${c.id}:den${day}`,
+      date: addDays(c.retrievalOn, day),
       at: '',
       kind: 'embryologie',
-      title: 'Kultivace',
-      detail: join([
-        c.blastocysts !== null &&
-          plural(c.blastocysts, 'blastocysta', 'blastocysty', 'blastocyst'),
-        c.frozen !== null && plural(c.frozen, 'zamražená', 'zamražené', 'zamražených'),
-      ], ', '),
+      title: `${day}. den kultivace`,
+      detail: `${plural(count, 'embryo', 'embrya', 'embryí')} ${what}`,
+      icon: 'embryo',
+      major: true,
+      source: { route: 'cyklus' },
+    })
+  }
+
+  if (c.frozen !== null) {
+    out.push({
+      id: `emb:${c.id}:zamrazeno`,
+      date: addDays(c.retrievalOn, c.day6 !== null ? 6 : 5),
+      at: '',
+      kind: 'embryologie',
+      title: 'Zamražení',
+      detail: plural(c.frozen, 'zamražené embryo', 'zamražená embrya', 'zamražených embryí'),
       icon: 'embryo',
       major: true,
       source: { route: 'cyklus' },

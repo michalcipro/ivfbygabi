@@ -6,13 +6,26 @@ import { parseReport, type ParsedReport } from '../lib/health/parse-report'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import type { Letter } from '../lib/shared/records'
 
-import { cycleTitle, type CycleKind, type CycleOutcome } from '../lib/domain/cycle'
+import {
+  cycleTitle,
+  type CycleKind,
+  type CycleOutcome,
+  type HcgKind,
+  type HcgLook,
+  type TransferKind,
+  type TransferOutcome,
+} from '../lib/domain/cycle'
 
 import { esc } from './ui'
+import { addPhotos, allPhotos, initPhotos, photoUrl, pickImages, removePhoto } from './photos'
 import {
   addCycle,
+  addDoc,
+  addHcgTest,
+  addTransfer,
   cycleById,
   deleteCycle,
+  deleteDoc,
   journey,
   journalFor,
   learn,
@@ -33,7 +46,12 @@ import {
   activeCycleId,
   setSymptomIntensity,
   toggleSymptomLog,
+  photosOf,
+  removeHcgTest,
+  removeTransfer,
+  toggleCycleMethod,
   updateCycle,
+  withPhotos,
   type HealthKind,
   type JournalRow,
   type QuestionPriority,
@@ -698,32 +716,132 @@ function onboardingAction(act: string, argValue: string): boolean {
  * které je povinné — tam se drží původní hodnota.
  */
 function saveCycleForm(id: string): void {
-  if (!document.getElementById('cyc-startedOn')) return
-      updateCycle(id, (row) => {
-        row.name = val('cyc-name')
-        row.kind = (val('cyc-kind') || row.kind) as CycleKind
-        row.clinic = val('cyc-clinic')
-        row.doctor = val('cyc-doctor')
-        row.protocol = val('cyc-protocol')
-        row.cd1On = dateOrNull('cyc-cd1On')
-        row.startedOn = val('cyc-startedOn') || row.startedOn
-        row.endedOn = dateOrNull('cyc-endedOn')
-        row.stimStartOn = dateOrNull('cyc-stimStartOn')
-        row.triggerOn = dateOrNull('cyc-triggerOn')
-        row.triggerAt = val('cyc-triggerAt')
-        row.retrievalOn = dateOrNull('cyc-retrievalOn')
-        row.transferOn = dateOrNull('cyc-transferOn')
-        row.betaOn = dateOrNull('cyc-betaOn')
-        row.eggs = numOrNull('cyc-eggs')
-        row.mature = numOrNull('cyc-mature')
-        row.fertilized = numOrNull('cyc-fertilized')
-        row.blastocysts = numOrNull('cyc-blastocysts')
-        row.frozen = numOrNull('cyc-frozen')
-        row.transferred = numOrNull('cyc-transferred')
-        row.embryoDay = numOrNull('cyc-embryoDay')
-        row.outcome = (val('cyc-outcome') || row.outcome) as CycleOutcome
-        row.note = val('cyc-note')
+  if (!document.getElementById('cyc-cd1On')) return
+  updateCycle(id, (row) => {
+    row.name = val('cyc-name')
+    row.kind = (val('cyc-kind') || row.kind) as CycleKind
+    row.clinic = val('cyc-clinic')
+    row.doctor = val('cyc-doctor')
+    row.protocol = val('cyc-protocol')
+
+    // Začátek cyklu je jeden údaj, i když ho model drží ve dvou polích:
+    // `cd1On` počítá den cyklu, `startedOn` řadí historii. Dvě kolonky pro
+    // totéž si uživatelka vyplní rozdílně a pak nesedí nic.
+    const start = val('cyc-cd1On')
+    row.cd1On = start || null
+    row.startedOn = start || row.startedOn
+
+    row.endedOn = dateOrNull('cyc-endedOn')
+    row.stimStartOn = dateOrNull('cyc-stimStartOn')
+    row.triggerOn = dateOrNull('cyc-triggerOn')
+    row.triggerAt = val('cyc-triggerAt')
+    row.retrievalOn = dateOrNull('cyc-retrievalOn')
+    row.eggs = numOrNull('cyc-eggs')
+    row.mature = numOrNull('cyc-mature')
+    row.fertilized = numOrNull('cyc-fertilized')
+    row.day3 = numOrNull('cyc-day3')
+    row.day4 = numOrNull('cyc-day4')
+    row.day5 = numOrNull('cyc-day5')
+    row.day6 = numOrNull('cyc-day6')
+    row.frozen = numOrNull('cyc-frozen')
+    row.methodsNote = val('cyc-methodsNote')
+
+    // Seznamy se čtou po položkách. Chybějící pole se přeskočí — kdyby
+    // se přečetlo jako prázdné, uložení by smazalo, co uživatelka zapsala.
+    for (const t of row.transfers) {
+      const k = (field: string): string => `cyc-tr.${t.id}.${field}`
+      if (!document.getElementById(k('date'))) continue
+      t.kind = (val(k('kind')) || t.kind) as TransferKind
+      t.date = dateOrNull(k('date'))
+      t.embryos = numOrNull(k('embryos'))
+      t.embryoDay = numOrNull(k('embryoDay'))
+      t.grade = val(k('grade'))
+      t.note = val(k('note'))
+      if (document.getElementById(k('outcome'))) {
+        t.outcome = (val(k('outcome')) || t.outcome) as TransferOutcome
+      }
+    }
+
+    for (const t of row.hcgTests) {
+      const k = (field: string): string => `cyc-hcg.${t.id}.${field}`
+      if (!document.getElementById(k('date'))) continue
+      t.kind = (val(k('kind')) || t.kind) as HcgKind
+      t.date = dateOrNull(k('date'))
+      t.transferId = val(k('transferId'))
+      t.look = val(k('look')) as HcgLook
+      t.value = numOrNull(k('value'))
+      t.note = val(k('note'))
+    }
+
+    row.outcome = (val('cyc-outcome') || row.outcome) as CycleOutcome
+    row.note = val('cyc-note')
   })
+}
+
+/** Fotky, které v cyklu visí — všechny sloty dohromady. */
+function cyclePhotoIds(id: string): string[] {
+  const c = cycleById(id)
+  if (!c) return []
+  return [
+    ...c.protocolPhotos,
+    ...c.labPhotos,
+    ...c.resultPhotos,
+    ...c.transfers.flatMap((t) => t.photos),
+    ...c.hcgTests.flatMap((t) => t.photos),
+  ].map((p) => p.id)
+}
+
+/**
+ * Nahrání fotky k libovolnému záznamu.
+ *
+ * Výběr souboru i zmenšení jsou asynchronní, takže se nedají udělat uprostřed
+ * synchronní akce. Rozepsaný formulář cyklu se proto uloží hned — než
+ * uživatelka vybere soubor, může uběhnout půl minuty a pole by se ztratila.
+ */
+function attachPhoto(scope: string): void {
+  if (scope.startsWith('cyc:')) saveCycleForm(scope.split(':')[1])
+  void (async () => {
+    const files = await pickImages()
+    if (files.length === 0) return
+    const refs = await addPhotos(files, realToday())
+    if (refs.length === 0) {
+      toast('Fotku se nepodařilo přečíst. Zkuste ji uložit jako JPEG.')
+      return
+    }
+    withPhotos(scope, (list) => list.push(...refs))
+    toast(refs.length === 1 ? 'Fotka uložena.' : `Uloženo ${refs.length} fotek.`)
+    render()
+  })()
+}
+
+/** Zvětšení fotky přes celou obrazovku. Mimo render — je to jen náhled. */
+function zoomPhoto(id: string): void {
+  const url = photoUrl(id)
+  if (!url) return
+  document.querySelector('.photolay')?.remove()
+
+  const lay = document.createElement('div')
+  lay.className = 'photolay'
+  lay.setAttribute('role', 'dialog')
+  lay.setAttribute('aria-label', 'Zvětšená fotka')
+  const img = document.createElement('img')
+  img.src = url
+  img.alt = ''
+  lay.appendChild(img)
+
+  const close = (): void => {
+    lay.remove()
+    document.removeEventListener('keydown', onKey)
+  }
+  const onKey = (ev: KeyboardEvent): void => {
+    if (ev.key === 'Escape') {
+      ev.stopPropagation()
+      close()
+    }
+  }
+  lay.addEventListener('click', close)
+  document.addEventListener('keydown', onKey)
+  document.body.appendChild(lay)
 }
 
 function action(act: string, argValue: string): void {
@@ -1033,6 +1151,7 @@ function action(act: string, argValue: string): void {
           notify: true,
           history: [],
           photo: '',
+          photos: [],
           cycleId: activeCycleId(),
         })
       })
@@ -1063,11 +1182,82 @@ function action(act: string, argValue: string): void {
     case 'cycle-del': {
       const c = cycleById(argValue)
       if (!c) return
-      if (!confirm(`Opravdu smazat ${cycleTitle(c)}? Milníky i čísla z laboratoře zmizí a vrátit to nejde.`)) return
+      if (
+        !confirm(
+          `Opravdu smazat ${cycleTitle(c)}? Milníky, čísla z laboratoře, transfery, testy i nahrané fotky zmizí a vrátit to nejde.`,
+        )
+      ) {
+        return
+      }
+      // Fotky žijí mimo cyklus, takže by po smazání zůstaly v úložišti ležet.
+      for (const photoId of cyclePhotoIds(argValue)) removePhoto(photoId)
       deleteCycle(argValue)
       go('journey/historie')
       return
     }
+    case 'cyc-tr-add': {
+      if (!cycleById(argValue)) return
+      saveCycleForm(argValue)
+      addTransfer(argValue)
+      view.accordion = 'cyklus-transfery'
+      break
+    }
+    case 'cyc-tr-del': {
+      const [cycleId, transferId] = argValue.split('|')
+      const c = cycleById(cycleId)
+      const t = c?.transfers.find((x) => x.id === transferId)
+      if (!c || !t) return
+      if (!confirm('Opravdu smazat tenhle transfer i s jeho fotkami? Vrátit to nejde.')) return
+      for (const p of t.photos) removePhoto(p.id)
+      saveCycleForm(cycleId)
+      removeTransfer(cycleId, transferId)
+      break
+    }
+    case 'cyc-hcg-add': {
+      const [cycleId, kind] = argValue.split('|')
+      if (!cycleById(cycleId)) return
+      saveCycleForm(cycleId)
+      addHcgTest(cycleId, kind === 'krev' ? 'krev' : 'domaci')
+      view.accordion = 'cyklus-vysledek'
+      break
+    }
+    case 'cyc-hcg-del': {
+      const [cycleId, testId] = argValue.split('|')
+      const c = cycleById(cycleId)
+      const t = c?.hcgTests.find((x) => x.id === testId)
+      if (!c || !t) return
+      if (!confirm('Opravdu smazat tenhle test i s fotkou?')) return
+      for (const p of t.photos) removePhoto(p.id)
+      saveCycleForm(cycleId)
+      removeHcgTest(cycleId, testId)
+      break
+    }
+    case 'cyc-method': {
+      const [cycleId, methodId] = argValue.split('|')
+      if (!cycleById(cycleId)) return
+      saveCycleForm(cycleId)
+      toggleCycleMethod(cycleId, methodId)
+      break
+    }
+    case 'photo-add':
+      attachPhoto(argValue)
+      return
+    case 'photo-rm': {
+      const cut = argValue.lastIndexOf('|')
+      if (cut < 0) return
+      const scope = argValue.slice(0, cut)
+      const photoId = argValue.slice(cut + 1)
+      if (scope.startsWith('cyc:')) saveCycleForm(scope.split(':')[1])
+      withPhotos(scope, (list) => {
+        const i = list.findIndex((p) => p.id === photoId)
+        if (i >= 0) list.splice(i, 1)
+      })
+      removePhoto(photoId)
+      break
+    }
+    case 'photo-zoom':
+      zoomPhoto(argValue)
+      return
 
     // --- otázky pro lékaře ------------------------------------------------
     case 'q-add': {
@@ -1184,6 +1374,7 @@ function action(act: string, argValue: string): void {
           endometrium,
           note: usNote,
           attachments: [],
+          photos: [],
         })
       })
       toast('Ultrazvuk uložen.')
@@ -1225,6 +1416,32 @@ function action(act: string, argValue: string): void {
       view.parsed = parseReport(text)
       break
     }
+    case 'doc-photo': {
+      // Zpráva vznikne až s fotkou. Kdyby se založila dopředu, zrušený
+      // výběr souboru by po sobě nechal prázdný záznam v seznamu.
+      void (async () => {
+        const files = await pickImages()
+        if (files.length === 0) return
+        const refs = await addPhotos(files, realToday())
+        if (refs.length === 0) {
+          toast('Fotku se nepodařilo přečíst. Zkuste ji uložit jako JPEG.')
+          return
+        }
+        const id = addDoc('Vyfocená zpráva')
+        withPhotos(`doc:${id}`, (list) => list.push(...refs))
+        toast('Zpráva uložena.')
+        render()
+      })()
+      return
+    }
+    case 'doc-del': {
+      const doc = S.d.docs.find((x) => x.id === argValue)
+      if (!doc) return
+      if (!confirm('Opravdu smazat tuhle zprávu i s fotkami? Hodnoty ve Zdraví zůstanou.')) return
+      for (const p of doc.photos) removePhoto(p.id)
+      deleteDoc(argValue)
+      break
+    }
     case 'doc-save': {
       const parsed = view.parsed
       if (!parsed) return
@@ -1238,6 +1455,7 @@ function action(act: string, argValue: string): void {
           title: `Zpráva z ${onDate}`,
           addedOn: viewDate(),
           found: parsed.values.map((v) => ({ paramKey: v.paramKey, value: v.value, unit: v.unit })),
+          photos: [],
         })
       })
       view.parsed = null
@@ -1357,7 +1575,11 @@ function action(act: string, argValue: string): void {
       applyTheme()
       break
     case 'export': {
-      const blob = new Blob([JSON.stringify(S.d, null, 2)], { type: 'application/json' })
+      // Fotky žijí mimo `S.d` (v IndexedDB), takže se do exportu musí přidat
+      // ručně. Bez nich by soubor tvrdil, že je kompletní, a nebyl by.
+      const blob = new Blob([JSON.stringify({ ...S.d, photos: allPhotos() }, null, 2)], {
+        type: 'application/json',
+      })
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
@@ -1525,3 +1747,8 @@ if (speechAvailable()) window.speechSynthesis.addEventListener('voiceschanged', 
 stack = [currentRoute()]
 if (!location.hash) location.hash = '#/dnes'
 render()
+
+// Fotky se načítají z IndexedDB, tedy asynchronně. První vykreslení na ně
+// nečeká — místo nich se krátce ukáže zástupný rámeček a jakmile doteče
+// obsah, obrazovka se překreslí.
+void initPhotos().then(render)

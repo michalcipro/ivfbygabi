@@ -12,6 +12,7 @@ import {
   type HealthRow,
   type UltrasoundRow,
 } from './store'
+import { photoStrip } from './photo-ui'
 import { empty, esc, note, plural, tile } from './ui'
 import { actionCard, chart, hubRow, sectionHead, segmented, seriesKey, statTrio } from './viz'
 
@@ -523,6 +524,7 @@ function ultrasoundList(scans: UltrasoundRow[]): string {
               <b class="num" style="font-weight:500">${esc(headline)}</b>
               ${detail ? `<span class="faint" style="display:block;font-size:.8125rem;line-height:1.5;margin-top:.2rem">${esc(detail)}</span>` : ''}
               ${u.note ? `<span class="soft" style="display:block;font-size:.8125rem;line-height:1.5;margin-top:.25rem">${esc(u.note)}</span>` : ''}
+              ${photoStrip(`uz:${u.id}`, u.photos, 'Výtisk z ultrazvuku')}
             </span>
             <button class="btn btn-ghost btn-sm" data-act="us-del" data-arg="${esc(u.id)}"
                     aria-label="Smazat ultrazvuk ze dne ${esc(formatCzechDateShort(u.date))}">×</button>

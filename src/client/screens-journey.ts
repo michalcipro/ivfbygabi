@@ -7,8 +7,14 @@ import {
 } from '../lib/domain/dates'
 import {
   cycleTitle,
+  betaDate,
+  bloodTests,
   estimatedBeta,
+  methodLabel,
   nextUp,
+  sortedTransfers,
+  TRANSFER_KIND_SHORT,
+  TRANSFER_OUTCOME_LABEL,
   KIND_LABEL,
   OUTCOME_LABEL,
   type CycleRow,
@@ -228,7 +234,7 @@ function cycleCard(c: CycleRow, st: CycleStatus, today: string): string {
         objeví se tady pás toho, co přijde.
       </p>`
 
-  const beta = !c.betaOn && estimatedBeta(c)
+  const beta = !betaDate(c) && estimatedBeta(c, today)
   const betaHint = beta
     ? `<p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
         Beta HCG vychází orientačně na ${esc(formatCzechDateShort(beta))}. Přesný termín
@@ -616,6 +622,49 @@ function paneTimeline(openId: string | null): string {
 
 // --------------------------------------------------------------- historie ---
 
+/**
+ * Transfery jako řádky tabulky.
+ *
+ * V jednom cyklu jich může být víc — po čerstvém transferu následují
+ * kryotransfery ze stejné zásoby. Slít je do jednoho řádku by zahodilo
+ * přesně tu informaci, kvůli které se do historie chodí.
+ */
+function transferRows(c: CycleRow): [string, string | null][] {
+  const list = sortedTransfers(c)
+  return list.map((t, i) => {
+    const label = list.length > 1 ? `${i + 1}. transfer` : 'Transfer'
+    const parts = [
+      t.date ? formatCzechDateShort(t.date) : null,
+      TRANSFER_KIND_SHORT[t.kind],
+      t.embryos !== null ? plural(t.embryos, 'embryo', 'embrya', 'embryí') : null,
+      t.embryoDay !== null ? `${t.embryoDay}. den` : null,
+      t.grade.trim() || null,
+      TRANSFER_OUTCOME_LABEL[t.outcome],
+    ].filter((x): x is string => Boolean(x))
+    return [label, parts.join(' · ')]
+  })
+}
+
+/** Odběry bety. Po druhém transferu jich v cyklu bývá víc. */
+function betaRows(c: CycleRow): [string, string | null][] {
+  const list = bloodTests(c)
+  return list.map((t, i) => [
+    list.length > 1 ? `Beta HCG — ${i + 1}. odběr` : 'Beta HCG',
+    [
+      t.date ? formatCzechDateShort(t.date) : null,
+      t.value !== null ? `${t.value} IU/l` : null,
+    ]
+      .filter((x): x is string => Boolean(x))
+      .join(' · '),
+  ])
+}
+
+function methodsText(c: CycleRow): string | null {
+  const named = c.methods.map(methodLabel)
+  const all = c.methodsNote.trim() ? [...named, c.methodsNote.trim()] : named
+  return all.length === 0 ? null : all.join(', ')
+}
+
 /** Všechna čísla jednoho cyklu. Co není zapsané, se nezobrazuje. */
 function historyBody(c: CycleRow): string {
   const n = numbersFor(c)
@@ -640,13 +689,15 @@ function historyBody(c: CycleRow): string {
     ['Z toho zralá', numOrNull(c.mature)],
     ['Oplozená', numOrNull(c.fertilized)],
     ['Podíl oplozených', pct(n.fertilizationRate)],
-    ['Blastocysty', numOrNull(c.blastocysts)],
+    ['Embrya 3. den', numOrNull(c.day3)],
+    ['Embrya 4. den', numOrNull(c.day4)],
+    ['Blastocysty 5. den', numOrNull(c.day5)],
+    ['Blastocysty 6. den', numOrNull(c.day6)],
     ['Podíl blastocyst', pct(n.blastRate)],
     ['Zamražená embrya', numOrNull(c.frozen)],
-    ['Transfer', c.transferOn ? formatCzechDateShort(c.transferOn) : null],
-    ['Přenesená embrya', numOrNull(c.transferred)],
-    ['Den embrya při transferu', c.embryoDay !== null ? `${c.embryoDay}. den` : null],
-    ['Beta HCG', c.betaOn ? formatCzechDateShort(c.betaOn) : null],
+    ...transferRows(c),
+    ...betaRows(c),
+    ['Doplňkové metody', methodsText(c)],
     ['Uzavřeno', c.endedOn ? formatCzechDateShort(c.endedOn) : null],
     [
       'Léky v cyklu',

@@ -8,6 +8,7 @@ import { LAB_BY_KEY } from '../lib/health/lab-params'
 import { guidanceFor } from '../lib/health/lab-guidance'
 import { EVENT_KINDS, LETTER_TARGETS } from '../lib/shared/records'
 import { CATALOG, CONTENT_STATS, PRODUCTS } from '../lib/content'
+import { photoStrip } from './photo-ui'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
 import { eventState, journey, moodAverage, profile, S, viewDate } from './store'
 import { SEED_POSTS } from './seed'
@@ -291,6 +292,15 @@ export function screenDokumenty(
           )
       : '',
 
+    `<section class="surface pad">
+      <p class="eyebrow">Nebo ji vyfoťte</p>
+      <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
+        Většina zpráv přijde na papíře a přepisovat je nikdo nechce. Vyfocená zpráva
+        se sice sama nerozpozná, ale máte ji u sebe — v čekárně i v noci.
+      </p>
+      <button class="btn" data-act="doc-photo" style="margin-top:1.1rem">Vyfotit zprávu</button>
+    </section>`,
+
     S.d.docs.length
       ? `<section>${sectionTitle('Uložené zprávy', 'Zůstávají ve vašem zařízení')}
           <div class="stack" style="gap:.6rem">
@@ -300,14 +310,20 @@ export function screenDokumenty(
                   `<div class="surface" style="padding:1rem 1.2rem">
                     <p style="font-weight:500">${esc(d.title)}</p>
                     <p class="faint" style="font-size:.8125rem;margin-top:.2rem">${esc(formatCzechDate(d.addedOn))} · ${esc(plural(d.found.length, 'hodnota', 'hodnoty', 'hodnot'))}</p>
-                    <div class="chips" style="margin-top:.6rem">
-                      ${d.found
-                        .map(
-                          (f) =>
-                            `<button data-go="hodnota/${esc(f.paramKey)}">${esc(LAB_BY_KEY[f.paramKey]?.name ?? f.paramKey)}: ${f.value} ${esc(f.unit)}</button>`,
-                        )
-                        .join('')}
-                    </div>
+                    ${
+                      d.found.length
+                        ? `<div class="chips" style="margin-top:.6rem">
+                            ${d.found
+                              .map(
+                                (f) =>
+                                  `<button data-go="hodnota/${esc(f.paramKey)}">${esc(LAB_BY_KEY[f.paramKey]?.name ?? f.paramKey)}: ${f.value} ${esc(f.unit)}</button>`,
+                              )
+                              .join('')}
+                          </div>`
+                        : ''
+                    }
+                    ${photoStrip(`doc:${d.id}`, d.photos, 'Fotky zprávy')}
+                    <button class="btn btn-ghost btn-sm" data-act="doc-del" data-arg="${esc(d.id)}" style="margin-top:.8rem">Smazat zprávu</button>
                   </div>`,
               )
               .join('')}

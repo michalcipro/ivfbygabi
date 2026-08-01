@@ -1,6 +1,6 @@
 import type { IsoDate } from './profile'
 import { addDays, czDays, daysBetween, formatCzechDate } from './dates'
-import { estimatedBeta, type CycleRow, type CycleStatus } from './cycle'
+import { betaDate, estimatedBeta, type CycleRow, type CycleStatus } from './cycle'
 
 /**
  * Chytré připomínky.
@@ -227,8 +227,9 @@ export function nudges(input: NudgeInput): Nudge[] {
   // --- 3. beta -------------------------------------------------------------
   // Když datum zadané není, spočítá se orientačně — a je to v textu vidět.
   if (running && status && !['pred', 'stimulace', 'trigger'].includes(status.stage)) {
-    const betaOn = cycle.betaOn ?? estimatedBeta(cycle)
-    const exact = Boolean(cycle.betaOn)
+    const known = betaDate(cycle)
+    const betaOn = known ?? estimatedBeta(cycle, today)
+    const exact = Boolean(known)
     if (betaOn && betaOn >= today) {
       const inDays = daysBetween(today, betaOn)
       if (exact && inDays === 0) {

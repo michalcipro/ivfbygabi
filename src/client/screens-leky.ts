@@ -1,6 +1,7 @@
 import { formatCzechDate } from '../lib/domain/dates'
 import { guideFor } from '../lib/domain/guides'
 import { journey, S, viewDate } from './store'
+import { photoStrip } from './photo-ui'
 import { empty, esc, plural } from './ui'
 import { actionCard, sectionHead, segmented, statTrio } from './viz'
 
@@ -113,9 +114,14 @@ function paneProtokol(): string {
             ${meds
               .map(
                 (m) =>
-                  `<li><span style="font-weight:500">${esc(m.name)}</span>
-                   <span class="faint">${esc(m.dose)}${m.timeOfDay ? ` · ${esc(m.timeOfDay)}` : ''}</span>
-                   <button class="btn btn-ghost btn-sm" data-act="med-del" data-arg="${esc(m.id)}" style="margin-left:auto">×</button></li>`,
+                  `<li>
+                    <span style="min-width:0;flex:1">
+                      <b style="font-weight:500">${esc(m.name)}</b>
+                      <span class="faint">${esc(m.dose)}${m.timeOfDay ? ` · ${esc(m.timeOfDay)}` : ''}</span>
+                      ${photoStrip(`med:${m.id}`, m.photos, 'Krabička, leták nebo rozpis dávek')}
+                    </span>
+                    <button class="btn btn-ghost btn-sm" data-act="med-del" data-arg="${esc(m.id)}">×</button>
+                  </li>`,
               )
               .join('')}
           </ul>

@@ -1,6 +1,14 @@
 import type { IsoDate } from './profile'
 import { czDays, daysBetween, formatCzechDate, formatCzechDateShort } from './dates'
-import { cycleTitle, estimatedBeta, nextUp, type CycleRow, type CycleStatus } from './cycle'
+import {
+  betaDate,
+  cycleTitle,
+  estimatedBeta,
+  lastTransferDate,
+  nextUp,
+  type CycleRow,
+  type CycleStatus,
+} from './cycle'
 import { SYMPTOM_BY_ID } from './symptoms'
 
 /**
@@ -451,7 +459,7 @@ function buildQuestions(
 
   // Na betu se ptáme, až když je na co navázat: transfer naplánovaný nebo
   // odběr za sebou. Před stimulací by ta otázka byla o dva kroky napřed.
-  if (c && !c.betaOn && (c.transferOn || (c.retrievalOn && c.retrievalOn <= ctx.to))) {
+  if (c && !betaDate(c) && (lastTransferDate(c) || (c.retrievalOn && c.retrievalOn <= ctx.to))) {
     out.push('Kdy přesně mám jít na odběr bety a je potřeba být nalačno?')
   }
 
@@ -482,7 +490,7 @@ function buildQuestions(
   }
 
   const lastScan = ctx.scans[ctx.scans.length - 1]
-  if (lastScan && lastScan.endometrium !== null && c && !c.transferOn) {
+  if (lastScan && lastScan.endometrium !== null && c && !lastTransferDate(c)) {
     out.push('Jak jsme na tom se sliznicí a kdy se rozhodne o termínu transferu?')
   }
 
@@ -558,8 +566,8 @@ export function buildSummary(input: SummaryInput): VisitSummary {
       ahead.push(`${day(n.date)} — ${n.label} (${inDaysLabel(n.inDays)})`)
     }
     // Odhad bety je orientační a je tak i popsaný. Přesný termín dává klinika.
-    if (!input.cycle.betaOn) {
-      const est = estimatedBeta(input.cycle)
+    if (!betaDate(input.cycle)) {
+      const est = estimatedBeta(input.cycle, to)
       if (est && est >= to) {
         ahead.push(
           `Beta HCG zatím nemá zapsané datum. Podle data transferu by orientačně vycházela na ${day(est)} — přesný termín potvrďte na klinice.`,

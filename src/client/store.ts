@@ -3,7 +3,21 @@ import { resolveJourney, type JourneyState } from '../lib/domain/journey'
 import { addDays, daysBetween, today as realToday } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { findPattern, readDay, type DayLog, type DayReading, type Pattern } from '../lib/domain/strain'
-import { activeCycle, emptyCycle, readCycle, type CycleRow, type CycleStatus } from '../lib/domain/cycle'
+import {
+  activeCycle,
+  betaDate,
+  currentTransfer,
+  emptyCycle,
+  emptyHcgTest,
+  emptyTransfer,
+  readCycle,
+  type CycleRow,
+  type CycleStatus,
+  type CycleTransfer,
+  type HcgTest,
+  type PhotoRef,
+  type TransferOutcome,
+} from '../lib/domain/cycle'
 import { readToday, type TodayBalance } from '../lib/domain/today-tasks'
 import { readEndurance, type Endurance, type StepKey } from '../lib/domain/endurance'
 import { CATALOG } from '../lib/content'
@@ -99,7 +113,9 @@ export interface MedRow {
   notify: boolean
   /** Historie změn dávkování — u stimulace se dávka mění běžně. */
   history: { on: IsoDate; dose: string; why: string }[]
+  /** Ponecháno kvůli starým uloženým datům. Nové fotky jdou do `photos`. */
   photo: string
+  photos: PhotoRef[]
   cycleId: string | null
   /** Ponecháno kvůli starým uloženým datům. */
   timeOfDay?: string
@@ -153,7 +169,9 @@ export interface UltrasoundRow {
   /** Výška sliznice v mm. */
   endometrium: number | null
   note: string
+  /** Ponecháno kvůli starým uloženým datům. Nové fotky jdou do `photos`. */
   attachments: Attachment[]
+  photos: PhotoRef[]
 }
 
 export type QuestionStatus = 'ceka' | 'vyreseno' | 'archiv'
@@ -192,6 +210,7 @@ export interface DocRow {
   title: string
   addedOn: IsoDate
   found: { paramKey: string; value: number; unit: string }[]
+  photos: PhotoRef[]
 }
 
 export interface LetterRow {
@@ -366,9 +385,13 @@ function migrate(d: Save): Save {
       notify: old.notify ?? true,
       history: old.history ?? [],
       photo: old.photo ?? '',
+      photos: old.photos ?? [],
       cycleId: old.cycleId ?? null,
     }
   })
+
+  d.ultrasounds = d.ultrasounds.map((u) => ({ ...u, photos: u.photos ?? [] }))
+  d.docs = d.docs.map((x) => ({ ...x, photos: x.photos ?? [] }))
 
   // Příznaky se dřív zaškrtávaly jen v deníku, bez intenzity a bez času.
   // Statistiky i časová osa čtou `symptomLogs`, takže by starší zápisy
@@ -384,7 +407,93 @@ function migrate(d: Save): Save {
     }
   }
 
+  d.cycles = d.cycles.map(migrateCycle)
+
   return d
+}
+
+/** Jak dopadl transfer, když se to dá odvodit jen z výsledku celého cyklu. */
+const OUTCOME_TO_TRANSFER: Record<string, TransferOutcome> = {
+  tehotenstvi: 'pozitivni',
+  negativni: 'negativni',
+  ztrata: 'ztrata',
+  zruseno: 'zruseno',
+  probiha: 'ceka',
+  zamrazeno: 'ceka',
+}
+
+/**
+ * Starý cyklus měl jeden transfer, jednu betu a jedno číslo „blastocysty“.
+ *
+ * Teď je transferů seznam — v jednom cyklu jich po odběru bývá víc — a vývoj
+ * embryí se zapisuje po dnech. Zapsaná data se proto překlopí, ne zahodí:
+ * datum transferu se stane prvním transferem v seznamu, datum bety prvním
+ * odběrem krve a blastocysty pátým dnem kultivace. Pátý den je odhad, ale
+ * je to ten správný odhad: klinika mluví o blastocystách hlavně u něj.
+ */
+function migrateCycle(c: CycleRow): CycleRow {
+  const old = c as Partial<CycleRow> & {
+    blastocysts?: number | null
+    transferOn?: IsoDate | null
+    betaOn?: IsoDate | null
+    transferred?: number | null
+    embryoDay?: number | null
+  }
+
+  const transfers: CycleTransfer[] = old.transfers ?? []
+  if (
+    transfers.length === 0 &&
+    (old.transferOn || (old.transferred ?? null) !== null || (old.embryoDay ?? null) !== null)
+  ) {
+    transfers.push({
+      ...emptyTransfer(uid('tr'), old.kind === 'fet' ? 'kryo' : 'cerstvy'),
+      date: old.transferOn ?? null,
+      embryos: old.transferred ?? null,
+      embryoDay: old.embryoDay ?? null,
+      outcome: OUTCOME_TO_TRANSFER[old.outcome ?? 'probiha'] ?? 'ceka',
+    })
+  }
+
+  const hcgTests: HcgTest[] = old.hcgTests ?? []
+  if (hcgTests.length === 0 && old.betaOn) {
+    hcgTests.push({ ...emptyHcgTest(uid('hcg'), 'krev'), date: old.betaOn })
+  }
+
+  const base = emptyCycle(old.id ?? uid('cyc'), old.number ?? 1, old.startedOn ?? realToday())
+  return {
+    ...base,
+    id: base.id,
+    number: base.number,
+    kind: old.kind ?? base.kind,
+    name: old.name ?? '',
+    clinic: old.clinic ?? '',
+    doctor: old.doctor ?? '',
+    protocol: old.protocol ?? '',
+    protocolPhotos: old.protocolPhotos ?? [],
+    cd1On: old.cd1On ?? null,
+    startedOn: base.startedOn,
+    endedOn: old.endedOn ?? null,
+    stimStartOn: old.stimStartOn ?? null,
+    triggerOn: old.triggerOn ?? null,
+    triggerAt: old.triggerAt ?? '',
+    retrievalOn: old.retrievalOn ?? null,
+    eggs: old.eggs ?? null,
+    mature: old.mature ?? null,
+    fertilized: old.fertilized ?? null,
+    day3: old.day3 ?? null,
+    day4: old.day4 ?? null,
+    day5: old.day5 ?? old.blastocysts ?? null,
+    day6: old.day6 ?? null,
+    frozen: old.frozen ?? null,
+    labPhotos: old.labPhotos ?? [],
+    methods: old.methods ?? [],
+    methodsNote: old.methodsNote ?? '',
+    transfers,
+    hcgTests,
+    outcome: old.outcome ?? 'probiha',
+    note: old.note ?? '',
+    resultPhotos: old.resultPhotos ?? [],
+  }
 }
 
 export function save(): void {
@@ -700,6 +809,119 @@ export function updateCycle(id: string, patchFn: (c: CycleRow) => void): void {
 }
 
 /**
+ * Kam patří fotka uvnitř cyklu.
+ *
+ * Slot je `protokol`, `laborator`, `vysledek`, `transfer:{id}` nebo `hcg:{id}`.
+ * Vrací přímo pole v uloženém cyklu, takže se do něj dá zapsat.
+ */
+function cyclePhotoSlot(c: CycleRow, slot: string): PhotoRef[] | null {
+  if (slot === 'protokol') return c.protocolPhotos
+  if (slot === 'laborator') return c.labPhotos
+  if (slot === 'vysledek') return c.resultPhotos
+  const [kind, id] = slot.split(':')
+  if (kind === 'transfer') return c.transfers.find((t) => t.id === id)?.photos ?? null
+  if (kind === 'hcg') return c.hcgTests.find((t) => t.id === id)?.photos ?? null
+  return null
+}
+
+/**
+ * Fotky u libovolného záznamu — rozklíčování `scope` (viz `photo-ui.ts`).
+ *
+ * Jedno místo pro celou aplikaci: přidat další místo, kam jde nahrát fotka,
+ * znamená doplnit sem jednu větev. Vrací `null`, když scope na nic neukazuje —
+ * třeba když se záznam mezitím smazal.
+ */
+function photoSlot(d: Save, scope: string): PhotoRef[] | null {
+  const [kind, id, ...rest] = scope.split(':')
+  switch (kind) {
+    case 'cyc': {
+      const c = d.cycles.find((x) => x.id === id)
+      return c ? cyclePhotoSlot(c, rest.join(':')) : null
+    }
+    case 'uz':
+      return d.ultrasounds.find((x) => x.id === id)?.photos ?? null
+    case 'doc':
+      return d.docs.find((x) => x.id === id)?.photos ?? null
+    case 'med':
+      return d.meds.find((x) => x.id === id)?.photos ?? null
+    default:
+      return null
+  }
+}
+
+/** Fotky pro vykreslení. Neexistující scope vrací prázdno, ne výjimku. */
+export function photosOf(scope: string): PhotoRef[] {
+  return photoSlot(data, scope) ?? []
+}
+
+/** Zápis do fotek daného záznamu. Uloží se rovnou. */
+export function withPhotos(scope: string, fn: (list: PhotoRef[]) => void): void {
+  patch((d) => {
+    const list = photoSlot(d, scope)
+    if (list) fn(list)
+  })
+}
+
+/** Nová vyfocená zpráva. Vrací id, aby se do ní dala rovnou přidat fotka. */
+export function addDoc(title: string): string {
+  const id = uid('doc')
+  patch((d) => {
+    d.docs.push({ id, title, addedOn: viewDate(), found: [], photos: [] })
+  })
+  return id
+}
+
+export function deleteDoc(id: string): void {
+  patch((d) => {
+    d.docs = d.docs.filter((x) => x.id !== id)
+  })
+}
+
+/**
+ * Nový transfer v cyklu.
+ *
+ * První je čerstvý, každý další kryo — po odběru se přenáší z rozmražené
+ * zásoby. Uhodnutý druh se dá přepnout, ale ve většině případů sedí.
+ */
+export function addTransfer(cycleId: string): void {
+  updateCycle(cycleId, (c) => {
+    const kind = c.transfers.length === 0 && c.kind !== 'fet' ? 'cerstvy' : 'kryo'
+    c.transfers.push(emptyTransfer(uid('tr'), kind))
+  })
+}
+
+export function removeTransfer(cycleId: string, transferId: string): void {
+  updateCycle(cycleId, (c) => {
+    c.transfers = c.transfers.filter((t) => t.id !== transferId)
+    // Test, který visel na smazaném transferu, zůstává — jen ztratí vazbu.
+    for (const t of c.hcgTests) if (t.transferId === transferId) t.transferId = ''
+  })
+}
+
+export function addHcgTest(cycleId: string, kind: 'domaci' | 'krev'): void {
+  updateCycle(cycleId, (c) => {
+    const t = emptyHcgTest(uid('hcg'), kind)
+    t.date = viewDate()
+    t.transferId = currentTransfer(c, viewDate())?.id ?? ''
+    c.hcgTests.push(t)
+  })
+}
+
+export function removeHcgTest(cycleId: string, testId: string): void {
+  updateCycle(cycleId, (c) => {
+    c.hcgTests = c.hcgTests.filter((t) => t.id !== testId)
+  })
+}
+
+export function toggleCycleMethod(cycleId: string, methodId: string): void {
+  updateCycle(cycleId, (c) => {
+    c.methods = c.methods.includes(methodId)
+      ? c.methods.filter((m) => m !== methodId)
+      : [...c.methods, methodId]
+  })
+}
+
+/**
  * Co je dnes na uživatelce.
  *
  * Skládá se z toho, co aplikace už zná: rozpis léků, hodina triggeru,
@@ -775,8 +997,10 @@ export function endurance(): Endurance {
             stim: c.stimStartOn,
             trigger: c.triggerOn,
             odber: c.retrievalOn,
-            transfer: c.transferOn,
-            beta: c.betaOn,
+            // Po druhém transferu v cyklu je milníkem ten, který už proběhl —
+            // plátek se nesmí vyprázdnit jen proto, že je naplánovaný další.
+            transfer: currentTransfer(c, date)?.date ?? null,
+            beta: betaDate(c),
             konec: c.endedOn,
           } satisfies Partial<Record<StepKey, IsoDate | null>>,
           progress: st?.progress ?? null,

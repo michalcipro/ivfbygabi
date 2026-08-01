@@ -1,8 +1,12 @@
 import type { IsoDate } from './profile'
 import { addDays, czDays, daysBetween, formatCzechDateShort } from './dates'
 import {
+  blastocystsOf,
+  currentTransfer,
   cycleTitle,
+  embryosTransferred,
   KIND_LABEL,
+  methodLabel,
   OUTCOME_LABEL,
   type CycleOutcome,
   type CycleRow,
@@ -106,8 +110,15 @@ export interface CycleNumbers {
   eggs: number | null
   mature: number | null
   fertilized: number | null
+  /** Kolik embryí se vyvíjelo třetí den kultivace. */
+  day3: number | null
+  /** Součet pátého a šestého dne — kolik jich došlo do blastocysty. */
   blastocysts: number | null
   frozen: number | null
+  /** Kolik transferů cyklus měl. Kryotransfery z téže zásoby se počítají. */
+  transfers: number
+  /** Kolik embryí se dohromady přeneslo, přes všechny transfery. */
+  embryosTransferred: number | null
   /** 0–1. Oplozená ze zralých; když zralá nejsou zapsaná, ze všech vajíček. */
   fertilizationRate: number | null
   /** 0–1. Blastocysty z oplozených. */
@@ -139,8 +150,7 @@ function hasRetrieval(c: CycleRow): boolean {
 
 /** Proběhl transfer? Stačí datum nebo počet přenesených embryí. */
 function hasTransfer(c: CycleRow): boolean {
-  const t = num(c.transferred)
-  return c.transferOn !== null || (t !== null && t > 0)
+  return c.transfers.some((t) => t.date !== null || (num(t.embryos) ?? 0) > 0)
 }
 
 /**
@@ -159,7 +169,7 @@ export function numbersFor(c: CycleRow): CycleNumbers {
   const eggs = num(c.eggs)
   const mature = num(c.mature)
   const fertilized = num(c.fertilized)
-  const blastocysts = num(c.blastocysts)
+  const blastocysts = num(blastocystsOf(c))
   const frozen = num(c.frozen)
 
   return {
@@ -170,8 +180,11 @@ export function numbersFor(c: CycleRow): CycleNumbers {
     eggs,
     mature,
     fertilized,
+    day3: num(c.day3),
     blastocysts,
     frozen,
+    transfers: c.transfers.length,
+    embryosTransferred: num(embryosTransferred(c)),
     // Zralá vajíčka jsou přesnější základ. Když je klinika neřekla,
     // počítá se ze všech odebraných — a v UI se to má takhle i popsat.
     fertilizationRate: rate(fertilized, mature ?? eggs),
@@ -361,6 +374,12 @@ function cellDate(iso: IsoDate | null): string {
   return iso ? formatCzechDateShort(iso) : DASH
 }
 
+function cellMethods(c: CycleRow): string {
+  const named = c.methods.map(methodLabel)
+  const all = c.methodsNote.trim() ? [...named, c.methodsNote.trim()] : named
+  return all.length === 0 ? DASH : all.join(', ')
+}
+
 /**
  * Srovnání dvou cyklů — vrátí řádky pro tabulku.
  *
@@ -382,11 +401,20 @@ export function compare(a: CycleRow, b: CycleRow): { label: string; a: string; b
     { label: 'Zralá vajíčka', a: cell(na.mature), b: cell(nb.mature) },
     { label: 'Oplozená', a: cell(na.fertilized), b: cell(nb.fertilized) },
     { label: 'Podíl oplozených', a: cellRate(na.fertilizationRate), b: cellRate(nb.fertilizationRate) },
-    { label: 'Blastocysty', a: cell(na.blastocysts), b: cell(nb.blastocysts) },
+    { label: 'Embrya 3. den', a: cell(na.day3), b: cell(nb.day3) },
+    { label: 'Blastocysty (5. a 6. den)', a: cell(na.blastocysts), b: cell(nb.blastocysts) },
     { label: 'Podíl blastocyst', a: cellRate(na.blastRate), b: cellRate(nb.blastRate) },
     { label: 'Zamražená embrya', a: cell(na.frozen), b: cell(nb.frozen) },
-    { label: 'Přenesená embrya', a: cell(num(a.transferred)), b: cell(num(b.transferred)) },
-    { label: 'Den embrya při transferu', a: cell(num(a.embryoDay)), b: cell(num(b.embryoDay)) },
+    { label: 'Počet transferů', a: cell(na.transfers || null), b: cell(nb.transfers || null) },
+    { label: 'Přenesená embrya', a: cell(na.embryosTransferred), b: cell(nb.embryosTransferred) },
+    {
+      label: 'Den embrya při transferu',
+      a: cell(num(currentTransfer(a)?.embryoDay ?? null)),
+      b: cell(num(currentTransfer(b)?.embryoDay ?? null)),
+    },
+    // Nejčastější otázka mezi cykly zní „co bylo minule jinak“. Odpověď bývá
+    // právě tady — v tom, co se přidalo nebo ubralo.
+    { label: 'Doplňkové metody', a: cellMethods(a), b: cellMethods(b) },
     { label: 'Výsledek', a: OUTCOME_LABEL[a.outcome], b: OUTCOME_LABEL[b.outcome] },
   ]
 
