@@ -952,34 +952,17 @@ Co víme: tenhle výsledek je informace o embryích z jednoho cyklu. Rozhodnutí
   },
 ]
 
+// PGT-A, PGT-M a Karyotyp tady záměrně nejsou — pojmy už definuje balík
+// `diagnostics` a registr slovníku dedupuje podle `term`, takže druhá
+// definice by se stejně nikdy nezobrazila. Jejich synonyma jsou doplněná
+// do původních hesel v `diagnostics.ts`.
 const glossary: GlossaryTerm[] = [
-  {
-    term: 'PGT-A',
-    aliases: ['testování na aneuploidie', 'preimplantační testování na aneuploidie'],
-    short: 'Testování embryí na počet chromozomů před přenosem.',
-    long: 'Provádí se v rámci IVF: z embrya vhodného stadia se obvykle pátý až šestý den odeberou buňky trofektodermu, embryo se zamrazí a vzorek jde do genetické laboratoře. Netvoří embrya ani nezvyšuje jejich počet — jen vybírá z těch, která vznikla. Přínos PGT-A je předmětem odborné diskuse a liší se podle věku ženy a podle počtu embryí; u malého počtu embryí se může stát, že k transferu nezbude žádné. Není vhodné pro každou pacientku a rozhodnutí patří páru a jeho lékaři, po genetické konzultaci.',
-    topics: ['genetika', 'embryologie'],
-  },
-  {
-    term: 'PGT-M',
-    aliases: ['testování na monogenní onemocnění'],
-    short: 'Testování embryí na jednu konkrétní známou dědičnou mutaci.',
-    long: 'Používá se, když je v páru předem přesně popsaná mutace způsobující dědičné onemocnění. Test se připravuje na míru dané mutaci, což trvá týdny až měsíce a často k tomu laboratoř potřebuje vzorky i od dalších příbuzných — s tím je nutné počítat při plánování cyklu. Testuje jen to jedno onemocnění, nezaručuje těhotenství a nenahrazuje prenatální diagnostiku v těhotenství.',
-    topics: ['genetika', 'embryologie'],
-  },
   {
     term: 'PGT-SR',
     aliases: ['testování na strukturální přestavby'],
     short: 'Testování embryí u páru, kde jeden z partnerů nese chromozomovou přestavbu.',
     long: 'Zvažuje se u prokázané vyvážené translokace nebo jiné strukturální přestavby. Sleduje, zda je genetický materiál v zapojených oblastech vyvážený, a k přenosu se vybírají embrya s vyváženým nálezem. Podíl vyvážených embryí se velmi liší podle typu přestavby a u některých přestaveb je nízký, takže vhodné embryo nemusí vzniknout. Běžné metody nemusí odlišit embryo zcela bez přestavby od embrya s vyváženou přestavbou. Konkrétní odhady patří na genetickou konzultaci.',
     topics: ['genetika', 'embryologie'],
-  },
-  {
-    term: 'Karyotyp',
-    aliases: ['vyšetření chromozomů', '46,XX', '46,XY'],
-    short: 'Soupis počtu a hrubé stavby chromozomů, obvykle z odběru krve.',
-    long: 'Buňky se v laboratoři nechají několik dní růst, proto výsledek trvá běžně tři až šest týdnů. Může odhalit strukturální přestavbu, inverzi, mozaiku nebo odchylku počtu pohlavních chromozomů; drobné změny uvnitř genů nezachytí. Zvažuje se zejména při opakovaných ztrátách těhotenství, opakovaně neúspěšné léčbě, výrazném mužském faktoru nebo při nálezu u plodu — není součástí vyšetření každého páru. Vyšetřují se oba partneři a interpretace nálezu patří klinickému genetikovi.',
-    topics: ['genetika', 'vysledky'],
   },
   {
     term: 'Euploidní embryo',

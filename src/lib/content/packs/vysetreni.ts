@@ -666,7 +666,7 @@ Přístroj se zavádí pochvou a děložním hrdlem, dutina se rozvine tekutinou
   {
     id: 'vys-hsg-hyfosy',
     kind: 'article',
-    title: 'HSG a HyFoSy: vyšetření průchodnosti vejcovodů',
+    title: 'HSG a HyFoSy: jak vyšetření probíhá a jak se na něj připravit',
     excerpt:
       'Dvě metody, jak zjistit, jestli je cesta volná. Co která obnáší, jak nepříjemné to bývá a jak se na to připravit.',
     minutes: 4,

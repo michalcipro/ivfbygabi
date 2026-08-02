@@ -2916,6 +2916,7 @@ Ozvěte se odborníkovi, když nespíte déle než dva týdny, když nezvládát
     },
     {
       term: 'Karyotyp',
+      aliases: ['vyšetření chromozomů', '46,XX', '46,XY'],
       short: 'Soupis chromozomů — jejich počtu a struktury.',
       long: 'Karyotyp se vyšetřuje z odběru krve, obvykle u obou partnerů, a zobrazí 46 chromozomů uspořádaných do 23 párů. Na výsledek se čeká týdny, protože se buňky musí nechat množit. Indikuje se hlavně při opakovaných ztrátách těhotenství, opakovaně neúspěšné léčbě nebo výrazně snížených hodnotách ve spermiogramu. Výsledek je doživotní a nikdy se neopakuje.',
       topics: ['genetika', 'vysledky'],
@@ -2928,12 +2929,14 @@ Ozvěte se odborníkovi, když nespíte déle než dva týdny, když nezvládát
     },
     {
       term: 'PGT-A',
+      aliases: ['testování na aneuploidie', 'preimplantační testování na aneuploidie'],
       short: 'Testování embryí na správný počet chromozomů před transferem.',
       long: 'PGT-A hledá aneuploidie, tedy embrya s chybějícím nebo nadbytečným chromozomem. Provádí se v rámci IVF: z blastocysty se odeberou buňky budoucí placenty, embryo se zamrazí a vzorek jde do genetické laboratoře. Netvoří lepší embrya, jen vybírá z těch, která jsou k dispozici — a při malém počtu embryí se může stát, že žádné vhodné nezbude. Odborné diskuze o jeho přínosu u různých skupin pacientek pokračují.',
       topics: ['genetika', 'embryologie'],
     },
     {
       term: 'PGT-M',
+      aliases: ['testování na monogenní onemocnění'],
       short: 'Testování embryí na konkrétní známou dědičnou nemoc v páru.',
       long: 'PGT-M se používá, když je v páru známá konkrétní mutace — například cystická fibróza nebo spinální svalová atrofie. Test se připravuje na míru dané mutaci, což trvá týdny až měsíce, a je proto potřeba s tím počítat při plánování cyklu. Nenahrazuje prenatální diagnostiku v těhotenství.',
       topics: ['genetika', 'embryologie'],

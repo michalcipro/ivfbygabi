@@ -3223,30 +3223,10 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       topics: ['stimulace', 'leky', 'hormony'],
     },
     {
-      term: 'OHSS',
-      aliases: ['ovariální hyperstimulační syndrom', 'hyperstimulace'],
-      short: 'Komplikace stimulace, při které vaječníky přehnaně reagují a tekutina uniká z cév do dutiny břišní.',
-      long: 'Většina případů je mírná a odezní sama. Varovné příznaky, u kterých je nutné okamžitě volat kliniku nebo pohotovost, jsou rychlý nárůst hmotnosti (přes zhruba kilogram za den), rychle rostoucí obvod břicha, dušnost, výrazně menší množství moči, opakované zvracení, závrať nebo bolest a otok lýtka. Riziko je vyšší u PCOS, vysokého AMH a velkého počtu folikulů.',
-      topics: ['stimulace', 'hormony', 'klinika'],
-    },
-    {
-      term: 'ICSI',
-      aliases: ['intracytoplazmatická injekce spermie'],
-      short: 'Metoda oplození, při které embryolog vpraví jednu vybranou spermii přímo do vajíčka.',
-      long: 'Používá se například u mužského faktoru, po předchozím selhání oplození klasickým IVF, u chirurgicky získaných spermií nebo před genetickým testováním embryí. Obchází bariéru obalu vajíčka, ale neřeší kvalitu vajíčka ani genetiku spermie a oplození nezaručuje.',
-      topics: ['embryologie', 'partner'],
-    },
-    {
       term: 'PICSI',
       short: 'Způsob výběru spermie podle schopnosti navázat se na kyselinu hyaluronovou.',
       long: 'Kyselina hyaluronová se přirozeně nachází v obalu vajíčka a zralé spermie se na ni váží. Embryolog pak vybírá pro ICSI z těch navázaných. Zvažuje se cíleně, například při vyšší fragmentaci DNA spermií nebo po opakovaném neúspěchu.',
       topics: ['embryologie', 'partner'],
-    },
-    {
-      term: 'Blastocysta',
-      short: 'Stádium embrya obvykle pátý den po oplození, s dutinou a prvním rozdělením buněk.',
-      long: 'Vnitřní buněčná masa dá vzniknout plodu, vnější vrstva (trofektoderm) placentě a plodovým obalům. Blastocysta je nejčastější okamžik pro transfer, zamrazení nebo odběr buněk k genetickému testování. Blastocysty šestého dne nejsou horší — jen pomalejší.',
-      topics: ['embryologie', 'transfer'],
     },
     {
       term: 'Morula',
@@ -3269,24 +3249,10 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       topics: ['embryologie', 'klinika'],
     },
     {
-      term: 'PGT-A',
-      aliases: ['preimplantační genetické testování', 'genetické testování embryí'],
-      short: 'Vyšetření počtu chromozomů embrya z několika buněk odebraných z blastocysty.',
-      long: 'Nezjišťuje všechny genetické nemoci, nezaručuje těhotenství ani zdravé dítě a nezvyšuje počet vašich dobrých embryí — pomáhá je seřadit. Výsledek může být i mozaikový, což vyžaduje genetickou konzultaci. O vhodnosti testování rozhoduje lékař společně s klinickým genetikem.',
-      topics: ['genetika', 'embryologie'],
-    },
-    {
       term: 'Antagonistický protokol',
       short: 'Nejčastější stimulační protokol, kde se předčasné ovulaci brání antagonistou.',
       long: 'Stimulace začíná na začátku cyklu a po několika dnech se přidá druhá injekce blokující signál k ovulaci. Bývá kratší a šetrnější a umožňuje agonistický trigger, který snižuje riziko těžkého OHSS. Volbu protokolu určuje lékař podle vašich vyšetření.',
       topics: ['stimulace', 'leky'],
-    },
-    {
-      term: 'Estradiol',
-      aliases: ['E2'],
-      short: 'Hlavní hormon produkovaný rostoucími folikuly, sledovaný z krve během stimulace.',
-      long: 'Jeho hladina stoupá úměrně počtu a velikosti folikulů. Hodnotí se vždy v kontextu ultrazvukového nálezu a předchozího odběru, nikdy jako izolované číslo. Velmi rychlý vzestup je jedním z varovných signálů rizika OHSS.',
-      topics: ['hormony', 'vysledky'],
     },
     {
       term: 'Torze vaječníku',
