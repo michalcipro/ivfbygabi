@@ -81,7 +81,7 @@ function stepLabel(key: StepKey, kind: CycleKind): string {
     case 'transfer':
       return kind === 'iui' ? 'Inseminace' : 'Transfer'
     case 'beta':
-      return 'Beta HCG'
+      return 'Odběr hCG'
     case 'konec':
       return 'Uzavření cyklu'
   }

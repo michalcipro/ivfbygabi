@@ -129,6 +129,8 @@ export interface Profile {
 
   birthYear: number | null
   modifiers: ModifierId[]
+  /** Vybrané důvody, proč je žena indikovaná k IVF — id z `DIAGNOSES`. */
+  diagnoses: string[]
 
   // --- Kotevní data cesty ------------------------------------------------
   tryingSince: IsoDate | null
@@ -167,6 +169,7 @@ export function emptyProfile(userId: string, id: string, now: string): Profile {
     declaredPhase: null,
     birthYear: null,
     modifiers: [],
+    diagnoses: [],
     tryingSince: null,
     diagnosticsStartedOn: null,
     iuiOn: null,

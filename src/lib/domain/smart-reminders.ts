@@ -233,17 +233,17 @@ export function nudges(input: NudgeInput): Nudge[] {
     if (betaOn && betaOn >= today) {
       const inDays = daysBetween(today, betaOn)
       if (exact && inDays === 0) {
-        push('beta-dnes', 'dulezite', 'Dnes je odběr beta HCG. Vezměte si s sebou kartičku pojišťovny a doklady z kliniky.', {
+        push('beta-dnes', 'dulezite', 'Dnes je odběr hCG. Vezměte si s sebou kartičku pojišťovny a doklady z kliniky.', {
           label: 'Otevřít cyklus',
           route: 'cyklus',
         })
       } else if (exact && inDays === 1) {
-        push('beta-zitra', 'dulezite', 'Beta HCG je zítra. Zkontrolujte si čas odběru a jak se na kliniku dostanete.', {
+        push('beta-zitra', 'dulezite', 'Odběr hCG je zítra. Zkontrolujte si čas odběru a jak se na kliniku dostanete.', {
           label: 'Otevřít cyklus',
           route: 'cyklus',
         })
       } else if (exact && inDays <= 3) {
-        push('beta-blizko', 'info', `Beta HCG je za ${czDays(inDays)} — ${formatCzechDate(betaOn, { year: false })}.`, {
+        push('beta-blizko', 'info', `Odběr hCG je za ${czDays(inDays)} — ${formatCzechDate(betaOn, { year: false })}.`, {
           label: 'Otevřít cyklus',
           route: 'cyklus',
         })
@@ -251,7 +251,7 @@ export function nudges(input: NudgeInput): Nudge[] {
         push(
           'beta-odhad',
           'info',
-          `Beta HCG vychází orientačně na ${formatCzechDate(betaOn, { year: false })}. Přesný termín vám dá klinika — můžete si ho doplnit do cyklu.`,
+          `Odběr hCG vychází orientačně na ${formatCzechDate(betaOn, { year: false })}. Přesný termín vám dá klinika — můžete si ho doplnit do cyklu.`,
           { label: 'Doplnit termín', route: 'cyklus' },
         )
       }

@@ -2,7 +2,6 @@ import { PHASES, isPhaseId } from '../lib/domain/phases'
 import { isModifierId, type ModifierId } from '../lib/domain/profile'
 import { today as realToday } from '../lib/domain/dates'
 import { contentById } from '../lib/content'
-import { parseReport, type ParsedReport } from '../lib/health/parse-report'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import type { Letter } from '../lib/shared/records'
 
@@ -10,6 +9,8 @@ import {
   cycleTitle,
   type CycleKind,
   type CycleOutcome,
+  type FertMethod,
+  type PrepKind,
   type HcgKind,
   type HcgLook,
   type TransferKind,
@@ -19,13 +20,21 @@ import {
 import { esc } from './ui'
 import { addPhotos, allPhotos, initPhotos, photoUrl, pickImages, removePhoto } from './photos'
 import {
+  addCustomExam,
   addCycle,
   addDoc,
+  addEmbryo,
+  addSupport,
   addHcgTest,
   addTransfer,
   cycleById,
   deleteCycle,
   deleteDoc,
+  deleteEmbryo,
+  deleteExam,
+  deleteSupport,
+  embryoById,
+  ensureExam,
   journey,
   journalFor,
   learn,
@@ -50,8 +59,13 @@ import {
   removeHcgTest,
   removeTransfer,
   toggleCycleMethod,
+  toggleDiagnosis,
   updateCycle,
+  updateEmbryo,
+  updateExam,
+  updateSupport,
   withPhotos,
+  type DocKind,
   type HealthKind,
   type JournalRow,
   type QuestionPriority,
@@ -66,6 +80,17 @@ import { isSledSection, screenSledovani, type SledSection } from './screens-sled
 import { screenPruvodce } from './screens-pruvodce'
 import { isJourneySection, screenJourney, type JourneySection } from './screens-journey'
 import { screenCyklus } from './screens-cyklus'
+import type { EmbryoFate, EmbryoStage, PgtKind, PgtResult, ThawResult } from '../lib/domain/embryo'
+import {
+  isExamWho,
+  screenDiagnoza as screenMojeDiagnoza,
+  screenEmbrya,
+  screenHistorieIvf,
+  screenPodpora,
+  screenTransfery,
+  screenVysetreni,
+  stageForDay,
+} from './screens-ivf'
 import { isOtazkySection, otazkyCopyText, screenOtazky, type OtazkySection } from './screens-otazky'
 import { isZdravSection, measureTitle, screenZdravotni, type ZdravSection } from './screens-zdravotni'
 import { weekShareText } from './screens-tyden'
@@ -79,7 +104,7 @@ import {
   SECTIONS,
   type SectionId,
 } from './screens-phase'
-import { screenChecklisty, screenCist, screenGabi, screenKnihovna } from './screens-tools'
+import { screenChecklisty, screenCist, screenHledat, screenKnihovna } from './screens-tools'
 import {
   czechVoice,
   onSpeechChange,
@@ -95,6 +120,7 @@ import { renderSummary, type SummaryId } from './summary'
 import {
   screenClenstvi,
   screenDokumenty,
+  screenProfil,
   screenKalendar,
   screenKomunita,
   screenNastaveni,
@@ -121,18 +147,26 @@ import {
  */
 const TABS = [
   { id: 'dnes', label: 'Dnes', icon: '◉' },
-  { id: 'zapis', label: 'Zápis', icon: '✎' },
-  { id: 'leky', label: 'Léky', icon: '✚' },
-  { id: 'journey', label: 'Moje léčba', icon: '✧' },
-  { id: 'pruvodce', label: 'Průvodce', icon: '❖' },
+  { id: 'journey', label: 'Moje cesta', icon: '✧' },
+  { id: 'pruvodce', label: 'Obsah', icon: '❖' },
+  { id: 'denik', label: 'Deník', icon: '✎' },
+  { id: 'profil', label: 'Profil', icon: '◍' },
 ]
 
 const SECONDARY = [
+  { id: 'zapis', label: 'Zápis dne', icon: '✎' },
+  { id: 'leky', label: 'Léky a injekce', icon: '✚' },
+  { id: 'embrya', label: 'Moje embrya', icon: '❖' },
+  { id: 'transfery', label: 'Moje transfery', icon: '❋' },
+  { id: 'historie', label: 'Moje IVF historie', icon: '✧' },
+  { id: 'mojediagnoza', label: 'Moje diagnóza', icon: '◈' },
+  { id: 'vysetreni', label: 'Moje vyšetření', icon: '◉' },
+  { id: 'podpora', label: 'Podpůrná péče', icon: '♡' },
   { id: 'sledovani', label: 'Sledování', icon: '◫' },
   { id: 'zdravotni', label: 'Zdravotní data', icon: '◉' },
   { id: 'otazky', label: 'Otázky pro lékaře', icon: '?' },
   { id: 'faze', label: 'Moje fáze', icon: '❖' },
-  { id: 'gabi', label: 'Hledat v aplikaci', icon: '✦' },
+  { id: 'hledat', label: 'Hledat v aplikaci', icon: '✦' },
   { id: 'denik', label: 'Deník a cvičení', icon: '✎' },
   { id: 'cesta', label: 'Celá cesta', icon: '✧' },
   { id: 'objevit', label: 'Objevit', icon: '❋' },
@@ -162,12 +196,13 @@ const TITLES: Record<string, string> = {
   sledovani: 'Sledování',
   pruvodce: 'Průvodce',
   nuzky: 'Nůžky dne',
-  journey: 'Moje léčba',
+  journey: 'Moje cesta',
+  profil: 'Profil',
   cyklus: 'Cyklus',
   otazky: 'Otázky pro lékaře',
   zdravotni: 'Zdravotní data',
   objevit: 'Objevit',
-  gabi: 'Gabi',
+  hledat: 'Hledání',
   denik: 'Deník',
   vice: 'Více',
   cesta: 'Celá cesta',
@@ -183,6 +218,12 @@ const TITLES: Record<string, string> = {
   kalendar: 'Kalendář',
   zdravi: 'Zdraví',
   dokumenty: 'Dokumenty',
+  embrya: 'Moje embrya',
+  transfery: 'Moje transfery',
+  mojediagnoza: 'Moje diagnóza',
+  vysetreni: 'Moje vyšetření',
+  podpora: 'Podpůrná péče',
+  historie: 'Moje IVF historie',
   komunita: 'Komunita',
   skupina: 'Skupina',
   pribeh: 'Můj příběh',
@@ -195,7 +236,7 @@ const TITLES: Record<string, string> = {
 
 /** Tvar do věty „Zpět na …“. Uvedené jsou jen ty, kde se název skloňuje. */
 const BACK_TITLES: Record<string, string> = {
-  journey: 'Moji léčbu',
+  journey: 'Moji cestu',
   otazky: 'Otázky pro lékaře',
   zdravotni: 'Zdravotní data',
   cesta: 'celou cestu',
@@ -221,6 +262,12 @@ const PARENT: Record<string, string> = {
   kalendar: 'pruvodce',
   zdravi: 'pruvodce',
   dokumenty: 'pruvodce',
+  embrya: 'journey',
+  transfery: 'journey',
+  mojediagnoza: 'journey',
+  vysetreni: 'journey',
+  podpora: 'journey',
+  historie: 'journey',
   komunita: 'pruvodce',
   skupina: 'komunita',
   pribeh: 'pruvodce',
@@ -230,6 +277,7 @@ const PARENT: Record<string, string> = {
   clenstvi: 'pruvodce',
   proc: 'dnes',
   journey: 'dnes',
+  profil: 'dnes',
   cyklus: 'journey/historie',
   otazky: 'journey',
   zdravotni: 'journey',
@@ -240,7 +288,7 @@ const PARENT: Record<string, string> = {
   nuzky: 'dnes',
   faze: 'pruvodce',
   denik: 'pruvodce',
-  gabi: 'pruvodce',
+  hledat: 'pruvodce',
   vice: 'pruvodce',
 }
 
@@ -265,9 +313,10 @@ const view = {
   summary: null as SummaryId | null,
   /** Která skupina příznaků je rozbalená. */
   accordion: null as string | null,
+  /** Rozbalená karta embrya. Vlastní stav — harmonika sekcí je jiná věc. */
+  embryo: null as string | null,
   /** Je otevřené rychlé přidání? */
   quick: false,
-  parsed: null as ParsedReport | null,
   docText: '',
 }
 
@@ -326,7 +375,7 @@ function screenFor(route: string): string {
     case 'cyklus':
       // Bez rozbalené sekce by formulář byl celý zavřený a nově založený
       // cyklus by neměl kam psát. Výchozí je Základ, zbytek je na klepnutí.
-      return screenCyklus(a, view.accordion ?? 'cyklus-zaklad')
+      return screenCyklus(a, view.accordion ?? 'cyklus-zaklad', view.embryo)
     case 'otazky': {
       const want = a.split('/')[0]
       return screenOtazky(isOtazkySection(want) ? (want as OtazkySection) : 'ceka', view.accordion)
@@ -337,8 +386,8 @@ function screenFor(route: string): string {
     }
     case 'objevit':
       return screenObjevit()
-    case 'gabi':
-      return screenGabi()
+    case 'hledat':
+      return screenHledat(view.query)
     case 'denik': {
       const wanted = a.split('/')[0]
       const section = (DENIK_SECTIONS.some((x) => x.id === wanted) ? wanted : 'dnes') as DenikSection
@@ -376,7 +425,21 @@ function screenFor(route: string): string {
     case 'hodnota':
       return screenHodnota(a)
     case 'dokumenty':
-      return screenDokumenty(view.parsed)
+      return screenDokumenty()
+    case 'profil':
+      return screenProfil()
+    case 'embrya':
+      return screenEmbrya(view.embryo)
+    case 'transfery':
+      return screenTransfery()
+    case 'mojediagnoza':
+      return screenMojeDiagnoza()
+    case 'vysetreni':
+      return screenVysetreni(isExamWho(a) ? a : 'zena')
+    case 'podpora':
+      return screenPodpora()
+    case 'historie':
+      return screenHistorieIvf()
     case 'komunita':
       return screenKomunita()
     case 'skupina':
@@ -628,17 +691,6 @@ function startBreathing(): void {
   step('in')
 }
 
-/**
- * Hledání v aplikaci. Uloží se jen dotaz — výsledky se počítají při
- * vykreslení, takže po doplnění obsahu ukáže starý dotaz nové nálezy.
- */
-function askGabiSearch(question: string): void {
-  patch((d) => {
-    d.chat.push({ role: 'user', text: question, refs: [] })
-    d.chat.push({ role: 'gabi', text: question, refs: [] })
-  })
-}
-
 function onboardingAction(act: string, argValue: string): boolean {
   const dr = draft()
   switch (act) {
@@ -738,7 +790,10 @@ function saveCycleForm(id: string): void {
     row.retrievalOn = dateOrNull('cyc-retrievalOn')
     row.eggs = numOrNull('cyc-eggs')
     row.mature = numOrNull('cyc-mature')
+    row.inseminated = numOrNull('cyc-inseminated')
+    row.fertMethod = (val('cyc-fertMethod') || row.fertMethod) as FertMethod
     row.fertilized = numOrNull('cyc-fertilized')
+    row.day2 = numOrNull('cyc-day2')
     row.day3 = numOrNull('cyc-day3')
     row.day4 = numOrNull('cyc-day4')
     row.day5 = numOrNull('cyc-day5')
@@ -756,6 +811,11 @@ function saveCycleForm(id: string): void {
       t.embryos = numOrNull(k('embryos'))
       t.embryoDay = numOrNull(k('embryoDay'))
       t.grade = val(k('grade'))
+      t.prep = (val(k('prep')) || t.prep) as PrepKind
+      t.endometrium = numOrNull(k('endometrium'))
+      t.meds = val(k('meds'))
+      t.cancelled = val(k('cancelled')) === 'ano'
+      t.cancelReason = val(k('cancelReason'))
       t.note = val(k('note'))
       if (document.getElementById(k('outcome'))) {
         t.outcome = (val(k('outcome')) || t.outcome) as TransferOutcome
@@ -844,6 +904,38 @@ function zoomPhoto(id: string): void {
   document.body.appendChild(lay)
 }
 
+
+/**
+ * Uloží kartu embrya.
+ *
+ * Volá se z tlačítka i před každou akcí, která překreslí stránku — přidání
+ * dne kultivace nebo smazání by jinak zahodilo rozepsané kolonky.
+ */
+function saveEmbryoForm(id: string): void {
+  const e = embryoById(id)
+  if (!e || !document.getElementById(`emb-${id}-fate`)) return
+  updateEmbryo(id, (row) => {
+    row.label = val(`emb-${id}-label`)
+    row.fate = (val(`emb-${id}-fate`) || row.fate) as EmbryoFate
+    row.frozenOn = dateOrNull(`emb-${id}-frozenOn`)
+    row.frozenDay = numOrNull(`emb-${id}-frozenDay`)
+    row.thawedOn = dateOrNull(`emb-${id}-thawedOn`)
+    row.thawResult = val(`emb-${id}-thawResult`) as ThawResult
+    row.pgt = val(`emb-${id}-pgt`) as PgtKind
+    row.pgtSampledOn = dateOrNull(`emb-${id}-pgtSampledOn`)
+    row.pgtResult = val(`emb-${id}-pgtResult`) as PgtResult
+    row.pgtNote = val(`emb-${id}-pgtNote`)
+    row.note = val(`emb-${id}-note`)
+    for (const d of row.days) {
+      const base = `emb-${id}-d${d.day}`
+      if (!document.getElementById(`${base}-stage`)) continue
+      d.stage = val(`${base}-stage`) as EmbryoStage
+      d.grade = val(`${base}-grade`)
+      d.note = val(`${base}-note`)
+    }
+  })
+}
+
 function action(act: string, argValue: string): void {
   if (!isOnboarded()) {
     if (onboardingAction(act, argValue)) render()
@@ -914,6 +1006,8 @@ function action(act: string, argValue: string): void {
       // Na detailu cyklu je harmonika součástí jednoho formuláře. Než se
       // překreslí, musí se rozepsaná pole uložit.
       if (base(currentRoute()) === 'cyklus') saveCycleForm(arg(currentRoute()))
+      // Totéž u karet embryí — otevřená karta je rozepsaný formulář.
+      if (view.embryo) saveEmbryoForm(view.embryo)
       view.accordion = view.accordion === argValue ? null : argValue
       break
     case 'quick':
@@ -1004,20 +1098,9 @@ function action(act: string, argValue: string): void {
       view.summary = view.summary === argValue ? null : (argValue as SummaryId)
       break
 
-    // --- Gabi -------------------------------------------------------------
-    case 'ask': {
-      const q = val('ask')
-      if (q.length < 3) return
-      askGabiSearch(q)
-      break
-    }
-    case 'prompt':
-      askGabiSearch(argValue)
-      break
-    case 'chat-clear':
-      patch((d) => {
-        d.chat = []
-      })
+    // --- hledání ----------------------------------------------------------
+    case 'hledat':
+      view.query = argValue
       break
 
     // --- deník ------------------------------------------------------------
@@ -1232,6 +1315,29 @@ function action(act: string, argValue: string): void {
       removeHcgTest(cycleId, testId)
       break
     }
+    case 'cyc-tr-embryo': {
+      const [cycleId, transferId, embryoId] = argValue.split('|')
+      if (!cycleById(cycleId)) return
+      saveCycleForm(cycleId)
+      let prirazeno = false
+      updateCycle(cycleId, (c) => {
+        const t = c.transfers.find((x) => x.id === transferId)
+        if (!t) return
+        prirazeno = !t.embryoIds.includes(embryoId)
+        t.embryoIds = prirazeno
+          ? [...t.embryoIds, embryoId]
+          : t.embryoIds.filter((x) => x !== embryoId)
+      })
+      // Přiřazené embryo se přeneslo — osud se dopíše sám, ať ho uživatelka
+      // nemusí zadávat na dvou místech. Odebrání se ale nevrací zpátky:
+      // nevíme, co bylo předtím, a přepsat zápis by bylo horší než nechat ho.
+      if (prirazeno) {
+        updateEmbryo(embryoId, (e) => {
+          if (e.fate === 'kultivace' || e.fate === 'kryo') e.fate = 'transfer'
+        })
+      }
+      break
+    }
     case 'cyc-method': {
       const [cycleId, methodId] = argValue.split('|')
       if (!cycleById(cycleId)) return
@@ -1258,6 +1364,117 @@ function action(act: string, argValue: string): void {
     case 'photo-zoom':
       zoomPhoto(argValue)
       return
+
+    // --- embrya -----------------------------------------------------------
+    case 'emb-add': {
+      if (!cycleById(argValue)) return
+      saveCycleForm(argValue)
+      const row = addEmbryo(argValue)
+      view.accordion = 'cyklus-embrya'
+      view.embryo = row.id
+      break
+    }
+    case 'emb-open':
+      if (view.embryo) saveEmbryoForm(view.embryo)
+      view.embryo = view.embryo === argValue ? null : argValue
+      break
+    case 'emb-save': {
+      saveEmbryoForm(argValue)
+      toast('Embryo uloženo.')
+      break
+    }
+    case 'emb-del': {
+      const e = embryoById(argValue)
+      if (!e) return
+      if (!confirm('Opravdu smazat kartu tohohle embrya i s fotkami? Vrátit to nejde.')) return
+      for (const p of e.photos) removePhoto(p.id)
+      deleteEmbryo(argValue)
+      break
+    }
+    case 'emb-day': {
+      const [embryoId, dayRaw] = argValue.split('|')
+      const day = Number(dayRaw)
+      if (!embryoById(embryoId) || !Number.isFinite(day)) return
+      saveEmbryoForm(embryoId)
+      updateEmbryo(embryoId, (e) => {
+        const i = e.days.findIndex((d) => d.day === day)
+        if (i >= 0) e.days.splice(i, 1)
+        else e.days.push({ day, stage: stageForDay(day), grade: '', note: '' })
+      })
+      break
+    }
+
+    // --- moje diagnóza ----------------------------------------------------
+    case 'dg-toggle':
+      toggleDiagnosis(argValue)
+      break
+
+    // --- vyšetření --------------------------------------------------------
+    case 'ex-toggle': {
+      const [examId, who] = argValue.split('|')
+      if (!isExamWho(who)) return
+      const row = ensureExam(examId, who)
+      updateExam(row.id, (e) => {
+        e.done = !e.done
+        if (e.done && !e.onDate) e.onDate = viewDate()
+      })
+      break
+    }
+    case 'ex-save': {
+      updateExam(argValue, (e) => {
+        e.onDate = dateOrNull(`ex-${argValue}-onDate`)
+        e.result = val(`ex-${argValue}-result`)
+      })
+      toast('Uloženo.')
+      break
+    }
+    case 'ex-del': {
+      const row = S.d.exams.find((x) => x.id === argValue)
+      if (row) for (const p of row.photos) removePhoto(p.id)
+      deleteExam(argValue)
+      break
+    }
+    case 'ex-custom': {
+      const name = val('ex-custom').trim()
+      if (!name || !isExamWho(argValue)) {
+        toast('Vyšetření potřebuje název.')
+        return
+      }
+      addCustomExam(name, argValue)
+      break
+    }
+
+    // --- podpůrná péče ----------------------------------------------------
+    case 'sup-add':
+      addSupport(argValue)
+      break
+    case 'sup-custom': {
+      const name = val('sup-custom').trim()
+      if (!name) {
+        toast('Napište, o co jde.')
+        return
+      }
+      const row = addSupport('')
+      updateSupport(row.id, (e) => {
+        e.custom = name
+      })
+      break
+    }
+    case 'sup-save': {
+      updateSupport(argValue, (e) => {
+        e.date = dateOrNull(`sup-${argValue}-date`)
+        e.provider = val(`sup-${argValue}-provider`)
+        const f = val(`sup-${argValue}-feeling`)
+        e.feeling = f ? Number(f) : null
+        e.ongoing = val(`sup-${argValue}-ongoing`) !== 'ne'
+        e.note = val(`sup-${argValue}-note`)
+      })
+      toast('Uloženo.')
+      break
+    }
+    case 'sup-del':
+      deleteSupport(argValue)
+      break
 
     // --- otázky pro lékaře ------------------------------------------------
     case 'q-add': {
@@ -1409,13 +1626,6 @@ function action(act: string, argValue: string): void {
       break
 
     // --- dokumenty --------------------------------------------------------
-    case 'doc-parse': {
-      const text = val('doc-text')
-      if (text.length < 3) return
-      view.docText = text
-      view.parsed = parseReport(text)
-      break
-    }
     case 'doc-photo': {
       // Zpráva vznikne až s fotkou. Kdyby se založila dopředu, zrušený
       // výběr souboru by po sobě nechal prázdný záznam v seznamu.
@@ -1427,9 +1637,14 @@ function action(act: string, argValue: string): void {
           toast('Fotku se nepodařilo přečíst. Zkuste ji uložit jako JPEG.')
           return
         }
-        const id = addDoc('Vyfocená zpráva')
+        const id = addDoc(
+          val('doc-title') || 'Vyfocený dokument',
+          (val('doc-kind') || 'zprava') as DocKind,
+          dateOrNull('doc-date') ?? undefined,
+          val('doc-note'),
+        )
         withPhotos(`doc:${id}`, (list) => list.push(...refs))
-        toast('Zpráva uložena.')
+        toast('Dokument uložen.')
         render()
       })()
       return
@@ -1442,25 +1657,106 @@ function action(act: string, argValue: string): void {
       deleteDoc(argValue)
       break
     }
-    case 'doc-save': {
-      const parsed = view.parsed
-      if (!parsed) return
-      const onDate = parsed.detectedDate ?? viewDate()
+    case 'us-add': {
+      // Velikosti přijdou tak, jak je lékař nadiktoval: „18, 16, 14“.
+      const sizes = (id: string): number[] =>
+        val(id)
+          .split(/[^0-9.,]+/)
+          .map((x) => Number(x.replace(',', '.')))
+          .filter((n) => Number.isFinite(n) && n > 0)
+      const left = sizes('us-left')
+      const right = sizes('us-right')
+      const endometrium = numOrNull('us-endo')
+      const usNote = val('us-note')
+      if (!left.length && !right.length && endometrium === null && !usNote) {
+        toast('Prázdný ultrazvuk se neukládá. Zapište folikuly, sliznici nebo poznámku.')
+        return
+      }
       patch((d) => {
-        for (const v of parsed.values) {
-          d.labs.push({ id: uid('lb'), paramKey: v.paramKey, value: v.value, unit: v.unit, onDate })
-        }
-        d.docs.push({
-          id: uid('dc'),
-          title: `Zpráva z ${onDate}`,
-          addedOn: viewDate(),
-          found: parsed.values.map((v) => ({ paramKey: v.paramKey, value: v.value, unit: v.unit })),
+        d.ultrasounds.push({
+          id: uid('uz'),
+          date: val('us-date') || viewDate(),
+          cycleId: activeCycleId(),
+          left,
+          right,
+          endometrium,
+          note: usNote,
+          attachments: [],
           photos: [],
         })
       })
-      view.parsed = null
-      go('zdravi')
+      toast('Ultrazvuk uložen.')
+      break
+    }
+    case 'us-del':
+      patch((d) => {
+        d.ultrasounds = d.ultrasounds.filter((u) => u.id !== argValue)
+      })
+      break
+
+    // --- zdraví -----------------------------------------------------------
+    case 'lab-add': {
+      const key = val('lab-key')
+      const value = Number(val('lab-value').replace(',', '.'))
+      if (!key || !Number.isFinite(value)) return
+      patch((d) => {
+        d.labs.push({
+          id: uid('lb'),
+          paramKey: key,
+          value,
+          unit: LAB_BY_KEY[key]?.unit ?? '',
+          onDate: val('lab-date') || viewDate(),
+        })
+      })
+      break
+    }
+    case 'lab-del':
+      patch((d) => {
+        d.labs = d.labs.filter((l) => l.id !== argValue)
+      })
+      break
+
+    // --- dokumenty --------------------------------------------------------
+    case 'doc-photo': {
+      // Zpráva vznikne až s fotkou. Kdyby se založila dopředu, zrušený
+      // výběr souboru by po sobě nechal prázdný záznam v seznamu.
+      void (async () => {
+        const files = await pickImages()
+        if (files.length === 0) return
+        const refs = await addPhotos(files, realToday())
+        if (refs.length === 0) {
+          toast('Fotku se nepodařilo přečíst. Zkuste ji uložit jako JPEG.')
+          return
+        }
+        const id = addDoc(
+          val('doc-title') || 'Vyfocený dokument',
+          (val('doc-kind') || 'zprava') as DocKind,
+          dateOrNull('doc-date') ?? undefined,
+          val('doc-note'),
+        )
+        withPhotos(`doc:${id}`, (list) => list.push(...refs))
+        toast('Dokument uložen.')
+        render()
+      })()
       return
+    }
+    case 'doc-del': {
+      const doc = S.d.docs.find((x) => x.id === argValue)
+      if (!doc) return
+      if (!confirm('Opravdu smazat tuhle zprávu i s fotkami? Hodnoty ve Zdraví zůstanou.')) return
+      for (const p of doc.photos) removePhoto(p.id)
+      deleteDoc(argValue)
+      break
+    }
+    case 'doc-add': {
+      const title = val('doc-title').trim()
+      if (!title) {
+        toast('Dokument potřebuje název — ať ho pak najdete.')
+        return
+      }
+      addDoc(title, (val('doc-kind') || 'zprava') as DocKind, dateOrNull('doc-date') ?? undefined, val('doc-note'))
+      toast('Dokument uložen.')
+      break
     }
 
     // --- komunita ---------------------------------------------------------
@@ -1556,6 +1852,13 @@ function action(act: string, argValue: string): void {
       patch((d) => {
         if (d.profile) d.profile.anonymousInCommunity = !d.profile.anonymousInCommunity
       })
+      break
+    case 'sub-toggle':
+      patch((d) => {
+        const on = !d.subscription.active
+        d.subscription = { active: on, since: on ? realToday() : null }
+      })
+      toast(S.d.subscription.active ? 'Předplatné aktivováno.' : 'Předplatné zrušeno. Data vám zůstávají.')
       break
     case 'theme':
       patch((d) => {
@@ -1715,10 +2018,6 @@ document.addEventListener('input', (ev) => {
 
 document.addEventListener('keydown', (ev) => {
   const el = ev.target as HTMLElement | null
-  if (ev.key === 'Enter' && el?.id === 'ask') {
-    ev.preventDefault()
-    action('ask', '')
-  }
   if (ev.key === 'Escape' && !TABS.some((t) => t.id === base(currentRoute()))) back()
 })
 

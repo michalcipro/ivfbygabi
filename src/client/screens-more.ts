@@ -10,7 +10,7 @@ import { EVENT_KINDS, LETTER_TARGETS } from '../lib/shared/records'
 import { CATALOG, CONTENT_STATS, PRODUCTS } from '../lib/content'
 import { photoStrip } from './photo-ui'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
-import { eventState, journey, moodAverage, profile, S, viewDate } from './store'
+import { DOC_KIND_LABEL, eventState, journey, moodAverage, profile, S, viewDate, type DocKind } from './store'
 import { SEED_POSTS } from './seed'
 import { ROUTES } from './onboarding'
 
@@ -24,7 +24,7 @@ const ANCHOR_LABELS: Record<string, string> = {
   stimulationStartOn: 'začátku stimulace',
   retrievalOn: 'odběru',
   transferOn: 'transferu',
-  betaTestOn: 'beta hCG',
+  betaTestOn: 'odběr hCG',
   lossOn: 'ztráty',
   lastPeriodOn: 'poslední menstruace',
   dueDate: 'termínu porodu',
@@ -63,6 +63,52 @@ export function screenVice(): string {
       <p class="soft" style="font-size:.9375rem">Chcete vidět, jak se obsah skládá?</p>
       <button class="btn btn-sm" data-go="proc" style="margin-top:.75rem">Proč vidím právě tohle</button>
     </section>`,
+  ].join('')
+}
+
+/**
+ * Profil.
+ *
+ * Všechno, co je „o mně“, ne „o dnešku“: proč jdu na IVF, co mám vyšetřené,
+ * co si k tomu beru mimo kliniku, kde mám papíry a jak je aplikace nastavená.
+ */
+export function screenProfil(): string {
+  const p = profile()
+  const state = journey()
+  const dg = (p.diagnoses ?? []).length
+  const vys = S.d.exams.filter((e) => e.done).length
+  const pod = S.d.support.filter((e) => e.ongoing).length
+
+  const items: [string, string, string, string][] = [
+    ['mojediagnoza', '◈', 'Moje diagnóza', dg ? `${dg} označených důvodů` : 'Proč jdu na IVF — může jich být víc'],
+    ['vysetreni', '◉', 'Moje vyšetření', vys ? `${vys} zapsaných` : 'Co může být relevantní a co už mám za sebou'],
+    ['podpora', '♡', 'Podpůrná péče', pod ? `${pod} právě využívám` : 'Co si k léčbě beru mimo kliniku'],
+    ['dokumenty', '▤', 'Moje dokumenty', S.d.docs.length ? `${S.d.docs.length} uložených` : 'Papíry z kliniky na jednom místě'],
+    ['otazky', '?', 'Otázky pro lékaře', 'Co se chci zeptat, než na to zapomenu'],
+    ['partner', '♡', 'Pro partnera', 'Co ukázat tomu, kdo je vedle vás'],
+    ['komunita', '◍', 'Komunita', 'Ženy ve stejné fázi. Můžete zůstat anonymní'],
+    ['clenstvi', '✦', 'Předplatné', 'Jak funguje a jak ho spravovat'],
+    ['nastaveni', '⚙', 'Nastavení', 'Fáze, situace, vzhled a vaše data'],
+    ['vice', '⋯', 'Všechno ostatní', 'Rozcestník na zbytek aplikace'],
+  ]
+
+  return [
+    `<header class="head rise">
+      <p class="eyebrow">${esc(p.displayName ? `${p.displayName} · ` : '')}${esc(PHASE_GROUP_META[state.group].name)}</p>
+      <h1 class="display">Profil</h1>
+      <p class="lede">${esc(state.dayLabel)}. Všechno, co je o vás — a co si aplikace pamatuje.</p>
+    </header>`,
+
+    `<div class="tiles">${items
+      .map(
+        ([r, i, t, b]) =>
+          `<button class="tile" data-go="${r}"><i>${i}</i><span style="min-width:0"><h4 class="display">${esc(t)}</h4><p>${esc(b)}</p></span><span class="go">›</span></button>`,
+      )
+      .join('')}</div>`,
+
+    note(
+      'Všechna vaše data zůstávají ve vašem zařízení. Nic se nikam neodesílá a aplikace je nikomu nesdílí — sdílet je s lékařem můžete jen vy.',
+    ),
   ].join('')
 }
 
@@ -241,98 +287,92 @@ export function screenKalendar(): string {
 
 // -------------------------------------------------------------- dokumenty ---
 
-export function screenDokumenty(
-  parsed: { values: { paramKey: string; paramName: string; value: number; unit: string }[]; detectedDate: string | null } | null,
-): string {
+export function screenDokumenty(): string {
+  const docs = [...S.d.docs].sort((a, b) => (b.onDate ?? '').localeCompare(a.onDate ?? ''))
+  const groups = (Object.keys(DOC_KIND_LABEL) as DocKind[])
+    .map((kind) => ({ kind, items: docs.filter((d) => (d.kind ?? 'zprava') === kind) }))
+    .filter((g) => g.items.length > 0)
+
+  const card = (d: (typeof docs)[number]) => `<div class="surface" style="padding:1.1rem 1.25rem">
+    <div class="row wrap" style="justify-content:space-between;gap:.5rem;align-items:baseline">
+      <p style="font-weight:500;min-width:0">${esc(d.title)}</p>
+      <span class="faint" style="font-size:.8125rem;white-space:nowrap">${esc(formatCzechDate(d.onDate ?? d.addedOn))}</span>
+    </div>
+    ${d.note?.trim() ? `<p class="soft" style="margin-top:.45rem;font-size:.875rem;line-height:1.6">${esc(d.note)}</p>` : ''}
+    ${
+      d.found?.length
+        ? `<div class="chips" style="margin-top:.6rem">
+            ${d.found
+              .map(
+                (f) =>
+                  `<button data-go="hodnota/${esc(f.paramKey)}">${esc(LAB_BY_KEY[f.paramKey]?.name ?? f.paramKey)}: ${f.value} ${esc(f.unit)}</button>`,
+              )
+              .join('')}
+          </div>`
+        : ''
+    }
+    ${photoStrip(`doc:${d.id}`, d.photos ?? [], 'Fotky dokumentu')}
+    <button class="btn btn-ghost btn-sm" data-act="doc-del" data-arg="${esc(d.id)}" style="margin-top:.8rem">Smazat dokument</button>
+  </div>`
+
   return [
     head(
-      'Zprávy a nálezy',
+      'Moje dokumenty',
       'Dokumenty',
-      'Vložte text lékařské zprávy. Vytáhneme z něj hodnoty, vysvětlíme pojmy a ukážeme, co s tím dál — nikdy ale nehodnotíme, jestli je výsledek dobrý.',
+      'Papíry z kliniky na jednom místě. Aplikace je neanalyzuje a nevykládá — jenom je uspořádá tak, abyste je našla, když je budete potřebovat.',
     ),
 
     `<section class="surface pad">
-      <label class="label" for="doc-text">Text zprávy</label>
-      <textarea class="field" id="doc-text" rows="7" placeholder="Zkopírujte sem text ze zprávy, například:&#10;AMH 1,2 ng/ml&#10;FSH 7,4 IU/l&#10;TSH 2,1 mIU/l"></textarea>
-      <button class="btn btn-primary" data-act="doc-parse" style="margin-top:1.1rem">Rozpoznat hodnoty</button>
-      <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">Rozpoznávání je deterministické — hledá dvojice parametr a číslo. Nic se nikam neodesílá.</p>
-    </section>`,
-
-    parsed
-      ? parsed.values.length
-        ? `<section>
-            ${sectionTitle(
-              `Našli jsme ${plural(parsed.values.length, 'hodnotu', 'hodnoty', 'hodnot')}`,
-              parsed.detectedDate ? `Datum ve zprávě: ${formatCzechDate(parsed.detectedDate)}` : 'Datum se ve zprávě nepodařilo najít',
-            )}
-            <div class="stack" style="gap:.75rem">
-              ${parsed.values
-                .map((v) => {
-                  const param = LAB_BY_KEY[v.paramKey]
-                  const g = guidanceFor(v.paramKey)
-                  return `<div class="surface" style="padding:1.15rem 1.3rem">
-                    <div class="row wrap" style="justify-content:space-between;gap:.5rem">
-                      <p style="font-weight:500">${esc(v.paramName)}</p>
-                      <p class="num" style="font-weight:600">${v.value} ${esc(v.unit)}</p>
-                    </div>
-                    ${param?.explain ? `<p class="soft" style="margin-top:.5rem;font-size:.875rem;line-height:1.6">${esc(param.explain)}</p>` : ''}
-                    ${g ? `<p class="whybox" style="margin-top:.6rem">${esc(g.inBody)}</p>` : ''}
-                    <button class="btn btn-ghost btn-sm" data-go="hodnota/${esc(v.paramKey)}" style="margin-top:.6rem">Co to znamená a co s tím →</button>
-                  </div>`
-                })
-                .join('')}
-            </div>
-            <button class="btn btn-primary" data-act="doc-save" style="margin-top:1.25rem">Uložit do Zdraví</button>
-            <p class="faint" style="margin-top:.75rem;font-size:.8125rem">Po uložení uvidíte hodnoty v grafu spolu s dřívějšími.</p>
-          </section>`
-        : empty(
-            'Žádné hodnoty jsme nenašli',
-            'Parser hledá dvojice „parametr → hodnota“. Zkuste vložit i řádky s jednotkami, nebo hodnoty zadejte ručně ve Zdraví.',
-            '<button class="btn" data-go="zdravi">Zadat ručně</button>',
-          )
-      : '',
-
-    `<section class="surface pad">
-      <p class="eyebrow">Nebo ji vyfoťte</p>
-      <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
-        Většina zpráv přijde na papíře a přepisovat je nikdo nechce. Vyfocená zpráva
-        se sice sama nerozpozná, ale máte ji u sebe — v čekárně i v noci.
-      </p>
-      <button class="btn" data-act="doc-photo" style="margin-top:1.1rem">Vyfotit zprávu</button>
-    </section>`,
-
-    S.d.docs.length
-      ? `<section>${sectionTitle('Uložené zprávy', 'Zůstávají ve vašem zařízení')}
-          <div class="stack" style="gap:.6rem">
-            ${S.d.docs
-              .map(
-                (d) =>
-                  `<div class="surface" style="padding:1rem 1.2rem">
-                    <p style="font-weight:500">${esc(d.title)}</p>
-                    <p class="faint" style="font-size:.8125rem;margin-top:.2rem">${esc(formatCzechDate(d.addedOn))} · ${esc(plural(d.found.length, 'hodnota', 'hodnoty', 'hodnot'))}</p>
-                    ${
-                      d.found.length
-                        ? `<div class="chips" style="margin-top:.6rem">
-                            ${d.found
-                              .map(
-                                (f) =>
-                                  `<button data-go="hodnota/${esc(f.paramKey)}">${esc(LAB_BY_KEY[f.paramKey]?.name ?? f.paramKey)}: ${f.value} ${esc(f.unit)}</button>`,
-                              )
-                              .join('')}
-                          </div>`
-                        : ''
-                    }
-                    ${photoStrip(`doc:${d.id}`, d.photos, 'Fotky zprávy')}
-                    <button class="btn btn-ghost btn-sm" data-act="doc-del" data-arg="${esc(d.id)}" style="margin-top:.8rem">Smazat zprávu</button>
-                  </div>`,
-              )
+      <p class="eyebrow">Přidat dokument</p>
+      <div class="two" style="margin-top:1rem">
+        <div>
+          <label class="label" for="doc-title">Název</label>
+          <input class="field" id="doc-title" placeholder="např. Zpráva z embryologie" autocomplete="off">
+        </div>
+        <div>
+          <label class="label" for="doc-kind">Druh</label>
+          <select class="field" id="doc-kind">
+            ${(Object.entries(DOC_KIND_LABEL) as [string, string][])
+              .map(([v, l]) => `<option value="${esc(v)}">${esc(l)}</option>`)
               .join('')}
-          </div>
-        </section>`
-      : '',
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:1.1rem">
+        <label class="label" for="doc-date">Datum na dokumentu</label>
+        <input class="field" type="date" id="doc-date" value="${esc(viewDate())}">
+      </div>
+      <div style="margin-top:1.1rem">
+        <label class="label" for="doc-note">Poznámka</label>
+        <textarea class="field" id="doc-note" rows="2" placeholder="Co v něm je, co z něj chcete probrat na kontrole"></textarea>
+      </div>
+      <div class="row wrap" style="gap:.6rem;margin-top:1.25rem">
+        <button class="btn btn-primary" data-act="doc-add">Uložit dokument</button>
+        <button class="btn" data-act="doc-photo">Rovnou vyfotit</button>
+      </div>
+      <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
+        Fotku můžete přidat i později u každého dokumentu. Všechno zůstává ve vašem zařízení.
+      </p>
+    </section>`,
+
+    docs.length === 0
+      ? empty(
+          'Zatím tu žádný dokument není',
+          'Většina zpráv přijde na papíře a doma se ztratí. Vyfoťte je hned na klinice — v čekárně před další konzultací je budete mít po ruce.',
+          '',
+          '▤',
+        )
+      : groups
+          .map(
+            (g) => `<section style="margin-top:1.5rem">
+              ${sectionTitle(DOC_KIND_LABEL[g.kind], plural(g.items.length, 'dokument', 'dokumenty', 'dokumentů'))}
+              <div class="stack" style="gap:.6rem">${g.items.map(card).join('')}</div>
+            </section>`,
+          )
+          .join(''),
 
     note(
-      'Rozpoznání **nikdy neříká, jestli je výsledek dobrý nebo špatný.** Sdílení dokumentů s lékařem by v ostré verzi proběhlo jen s vaším souhlasem; tady dokumenty nikam neodcházejí.',
+      'Aplikace dokumenty **nečte a nevyhodnocuje.** Hodnoty se zapisují ručně ve Zdraví, aby v záznamu nikdy nebylo špatně přečtené číslo. Dokumenty nikam neodcházejí — sdílet je s lékařem můžete jen vy.',
     ),
   ].join('')
 }
@@ -647,7 +687,7 @@ export function screenNastaveni(): string {
             ['stimulationStartOn', 'Začátek stimulace'],
             ['retrievalOn', 'Odběr vajíček'],
             ['transferOn', 'Transfer'],
-            ['betaTestOn', 'Beta hCG'],
+            ['betaTestOn', 'Odběr hCG'],
           ] as const
         )
           .map(
@@ -730,28 +770,59 @@ export function screenNastaveni(): string {
 // --------------------------------------------------------------- členství ---
 
 export function screenClenstvi(): string {
-  const plans: [string, string, string, string[]][] = [
-    ['Měsíčně', '349 Kč', 'měsíc', ['Celý obsah', 'AI Gabi bez omezení', 'Deník, kalendář, komunita']],
-    ['Ročně', '2 990 Kč', 'rok', ['Vše z měsíčního', 'Ušetříte 28 %', 'Rodinná kronika k vytištění']],
-    ['Cesta', '4 990 Kč', 'jednorázově', ['Přístup na 2 roky', 'Pro celý IVF cyklus i těhotenství', 'Partner mode zdarma']],
+  const aktivni = S.d.subscription?.active ?? false
+  const od = S.d.subscription?.since ?? null
+
+  const zahrnuto = [
+    'Celý odborný obsah — články, checklisty, slovník, „Co když…“',
+    'Moje IVF cykly: stimulace, odběr, embrya, transfery, výsledky',
+    'Karta pro každé embryo a pro každý transfer, bez omezení počtu',
+    'Deník, kalendář, připomínky a otázky pro lékaře',
+    'Dokumenty a fotky z kliniky ve vašem zařízení',
+    'Podpora ve všech výsledcích — nejen v tom, který skončí pozitivně',
   ]
 
   return [
-    head('Obchodní model', 'Členství', 'Předplatné, ne reklama. Nikdo si tu nekupuje lepší pozici a data se neprodávají — z toho plyne i to, jak vypadá marketplace.'),
+    head(
+      'Předplatné',
+      '199 Kč měsíčně',
+      'Jedna cena za celou aplikaci. Neprodáváme jednotlivé články a neplatíte za „šťastný konec“ — obsah pro negativní hCG, zrušený transfer nebo ztrátu je v ceně stejně jako ten ostatní.',
+    ),
 
-    `<div class="tiles">
-      ${plans
-        .map(
-          ([name, price, per, feats]) => `<div class="surface pad">
-            <p class="eyebrow">${esc(name)}</p>
-            <p class="display" style="font-size:2rem;margin-top:.5rem">${esc(price)}</p>
-            <p class="faint" style="font-size:.8125rem">za ${esc(per)}</p>
-            <ul class="bullets" style="margin-top:1.1rem">${feats.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
-          </div>`,
-        )
-        .join('')}
-    </div>`,
+    `<section class="surface pad rise">
+      <div class="row wrap" style="justify-content:space-between;gap:1rem;align-items:baseline">
+        <div>
+          <p class="eyebrow">${aktivni ? 'Aktivní' : 'Neaktivní'}</p>
+          <p class="display" style="font-size:2.2rem;margin-top:.35rem">199 Kč</p>
+          <p class="faint" style="font-size:.8125rem">za měsíc · kdykoli zrušíte</p>
+        </div>
+        <button class="btn ${aktivni ? 'btn-ghost' : 'btn-primary'}" data-act="sub-toggle">
+          ${aktivni ? 'Zrušit předplatné' : 'Aktivovat předplatné'}
+        </button>
+      </div>
+      ${
+        aktivni && od
+          ? `<p class="faint" style="margin-top:1rem;font-size:.8125rem">Aktivní od ${esc(formatCzechDate(od))}. Po zrušení vám data zůstanou — jsou ve vašem zařízení.</p>`
+          : ''
+      }
+      <ul class="bullets" style="margin-top:1.3rem">${zahrnuto.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
+    </section>`,
 
-    note('Tohle je ukázka obchodního modelu, ne funkční platba. V téhle verzi je celá aplikace otevřená.'),
+    `<section class="surface pad rise">
+      <p class="eyebrow">Proč jedna cena</p>
+      <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
+        Kdyby se platilo za jednotlivé texty, aplikace by měla důvod psát jich co nejvíc
+        a řadit dopředu ty, které se dobře prodávají. To by v léčbě dopadlo špatně.
+        Předplatné znamená, že se vyplatí psát to, co se vás právě týká — a nic víc.
+      </p>
+      <p class="soft" style="margin-top:.9rem;line-height:1.7;font-size:.9375rem">
+        Nikdo si tu nekupuje lepší pozici a data se neprodávají. Z toho plyne i to,
+        jak vypadá marketplace: řadí se podle vaší fáze, ne podle provize.
+      </p>
+    </section>`,
+
+    note(
+      'V téhle verzi je aplikace otevřená a tlačítko jen přepíná stav — žádná platba neprobíhá a nikam se neposílají žádné údaje.',
+    ),
   ].join('')
 }

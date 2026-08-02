@@ -210,7 +210,7 @@ function biggestFollicle(u: UltrasoundRow): number | null {
  * Malé písmeno jen na prvním znaku.
  *
  * Popisek stavu cyklu se lepí doprostřed věty. Celé `toLowerCase()` by
- * z „Beta HCG“ udělalo „beta hcg“ — zkratky musí zůstat, jak jsou.
+ * z „hCG“ udělalo „hcg“ — zkratky musí zůstat, jak jsou.
  */
 function lowerFirst(s: string): string {
   return s ? s[0].toLocaleLowerCase('cs') + s.slice(1) : s
@@ -457,10 +457,10 @@ function buildQuestions(
     out.push('V kolik přesně mám píchnout trigger a co dělat, kdybych se o hodinu minula?')
   }
 
-  // Na betu se ptáme, až když je na co navázat: transfer naplánovaný nebo
+  // Na odběr hCG se ptáme, až když je na co navázat: transfer naplánovaný nebo
   // odběr za sebou. Před stimulací by ta otázka byla o dva kroky napřed.
   if (c && !betaDate(c) && (lastTransferDate(c) || (c.retrievalOn && c.retrievalOn <= ctx.to))) {
-    out.push('Kdy přesně mám jít na odběr bety a je potřeba být nalačno?')
+    out.push('Kdy přesně mám jít na odběr hCG a je potřeba být nalačno?')
   }
 
   if (ctx.doseChanged) {
@@ -565,12 +565,12 @@ export function buildSummary(input: SummaryInput): VisitSummary {
     for (const n of nextUp(input.cycle, to)) {
       ahead.push(`${day(n.date)} — ${n.label} (${inDaysLabel(n.inDays)})`)
     }
-    // Odhad bety je orientační a je tak i popsaný. Přesný termín dává klinika.
+    // Odhad je orientační a je tak i popsaný. Přesný termín dává klinika.
     if (!betaDate(input.cycle)) {
       const est = estimatedBeta(input.cycle, to)
       if (est && est >= to) {
         ahead.push(
-          `Beta HCG zatím nemá zapsané datum. Podle data transferu by orientačně vycházela na ${day(est)} — přesný termín potvrďte na klinice.`,
+          `Odběr hCG zatím nemá zapsané datum. Podle data transferu by orientačně vycházela na ${day(est)} — přesný termín potvrďte na klinice.`,
         )
       }
     }

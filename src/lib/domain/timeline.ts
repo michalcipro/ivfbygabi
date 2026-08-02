@@ -287,7 +287,7 @@ export function buildTimeline(input: TimelineInput): TimelineItem[] {
 
   // --- milníky cyklu ------------------------------------------------------
   const covered = new Set<string>()
-  // Den bety, kde už je zapsaná hodnota. Samotný milník by pak stál vedle
+  // Den odběru hCG, kde už je zapsaná hodnota. Samotný milník by pak stál vedle
   // výsledku jako prázdná ozvěna.
   const betaResults = new Set(
     input.labs.filter((l) => l.paramKey.includes('hcg')).map((l) => l.onDate),

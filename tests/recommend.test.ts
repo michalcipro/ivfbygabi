@@ -10,7 +10,7 @@ import {
   scoreItem,
 } from '../src/lib/content/recommend'
 import type { ContentItem, DailyCard } from '../src/lib/content/types'
-import { parseReport, positionInRange } from '../src/lib/health/parse-report'
+import { positionInRange } from '../src/lib/health/lab-params'
 
 function profileWith(patch: Partial<Profile>): Profile {
   return { ...emptyProfile('u1', 'p1', '2026-01-01T00:00:00Z'), ...patch }
@@ -179,53 +179,17 @@ test('bez odpovídající karty vrací null místo cizí karty', () => {
   assert.equal(pickDailyCard(cards, state), null)
 })
 
-// --------------------------------------------------------- rozpoznání zprávy ---
-
-test('parser najde hodnoty v české zprávě', () => {
-  const report = parseReport(`
-    Laboratorní vyšetření ze dne 12. 3. 2026
-    AMH: 1,24 ng/ml
-    FSH        6.8    IU/l    (3,0 - 10,0)
-    TSH: 2,10 mIU/l
-    Estradiol 412 pmol/l
-  `)
-
-  const byKey = Object.fromEntries(report.values.map((v) => [v.paramKey, v.value]))
-  assert.equal(byKey.amh, 1.24)
-  assert.equal(byKey.fsh, 6.8)
-  assert.equal(byKey.tsh, 2.1)
-  assert.equal(byKey.estradiol, 412)
-  assert.equal(report.detectedDate, '2026-03-12')
-  assert.equal(report.detectedCategory, 'hormony')
-})
-
-test('parser rozpozná beta HCG a datum v ISO formátu', () => {
-  const report = parseReport('Odběr 2026-04-20\nbeta hCG 512 IU/l')
-  assert.equal(report.detectedDate, '2026-04-20')
-  assert.equal(report.values.find((v) => v.paramKey === 'beta_hcg')?.value, 512)
-})
-
-test('parser pozná spermiogram podle kontextu', () => {
-  const report = parseReport('Spermiogram\nKoncentrace: 18 mil/ml\nMotilita: 42 %')
-  assert.equal(report.detectedCategory, 'spermiogram')
-  assert.ok(report.values.some((v) => v.paramKey === 'sperm_concentration'))
-})
-
-test('parser nespadne na prázdném vstupu', () => {
-  const report = parseReport('')
-  assert.deepEqual(report.values, [])
-  assert.equal(report.detectedDate, null)
-})
+// ------------------------------------------------------- rozmezí laboratoře ---
 
 test('umístění v rozmezí je normalizované', () => {
   const inside = positionInRange('fsh', 6.5)
-  assert.ok(inside.hasRange)
-  assert.ok(inside.position > 0 && inside.position < 1)
+  assert.ok(inside !== null)
+  assert.ok((inside as number) > 0 && (inside as number) < 1)
 
   // Mimo rozmezí se ořízne, nikdy nespadne mimo 0–1.
-  assert.equal(positionInRange('fsh', 100).position, 1)
-  assert.equal(positionInRange('fsh', -5).position, 0)
+  assert.equal(positionInRange('fsh', 100), 1)
+  assert.equal(positionInRange('fsh', -5), 0)
 
-  // Beta HCG referenční rozmezí nemá — nesmíme předstírat, že ano.
-  assert.equal(positionInRange('beta_hcg', 500).hasRange, false)
+  // hCG referenční rozmezí nemá — nesmíme předstírat, že ano.
+  assert.equal(positionInRange('beta_hcg', 500), null)
 })

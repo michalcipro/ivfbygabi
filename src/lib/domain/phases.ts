@@ -1,7 +1,7 @@
 /**
  * Cesta uživatelky.
  *
- * Aplikace pokrývá cestu od prvního rozhodnutí mít dítě po pozitivní betu —
+ * Aplikace pokrývá cestu od prvního rozhodnutí mít dítě po pozitivní hCG —
  * a všechny odbočky, které po cestě přijdou, včetně ztrát. Fáze je uzel
  * v této cestě. Modifikátory (dárcovství, PGT, kryotransfer…) fázi nemění,
  * ale mění obsah, který se v ní zobrazuje.
@@ -246,7 +246,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     id: 'two_week_wait',
     group: 'waiting',
     name: 'Čekání na HCG',
-    title: 'Čekání na beta HCG',
+    title: 'Čekání na hCG',
     description:
       'Nejdelších deset dní vašeho života. Každý den vám řekneme, co se právě děje a co je normální cítit.',
     anchor: 'transferOn',
@@ -260,7 +260,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     id: 'beta_positive',
     group: 'waiting',
     name: 'Pozitivní HCG',
-    title: 'Pozitivní beta HCG',
+    title: 'Pozitivní hCG',
     description:
       'Dvě čárky nebo číslo, na které jste čekala. A hned s ním nová vlna otázek a opatrné radosti.',
     anchor: 'betaTestOn',

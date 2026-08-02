@@ -29,6 +29,68 @@ import { bloomEndurance, chart, partsList, scissorRing, seriesKey, trackStrip } 
  * na procházení je Průvodce.
  */
 
+/**
+ * Věta, která přijde dřív než plán.
+ *
+ * Po negativním výsledku, po ztrátě nebo po zrušeném transferu je první
+ * obrazovka dne to jediné, co žena uvidí — a nesmí na ní stát „další krok“.
+ * Nejdřív uznání, teprve pak nabídka. Kdo chce pokračovat hned, klikne;
+ * kdo nechce, nemusí nic.
+ *
+ * Žádná motivace, žádné „příště to vyjde“. To by tady bylo přesně to,
+ * co ženě říká celé okolí a co nikomu nepomáhá.
+ */
+function softLanding(): string {
+  const phase = journey().phase.id
+  const texty: Partial<Record<string, { title: string; body: string; go: string; label: string }>> = {
+    waiting_next_attempt: {
+      title: 'Mrzí mě, že to nevyšlo.',
+      body: 'Nemusíte dnes řešit další krok. Až budete připravená, můžeme projít, co se z transferu dá vyčíst a co ne — a na co se zeptat na konzultaci.',
+      go: 'faze',
+      label: 'Až budu chtít, projdeme to',
+    },
+    loss_biochemical: {
+      title: 'Pozitivní test byl skutečný. Vaše ztráta je skutečná.',
+      body: 'Biochemické těhotenství okolí často zlehčuje. Vy jste ho zažila celé — od dvou čárek po číslo, které kleslo.',
+      go: 'faze',
+      label: 'Co může následovat',
+    },
+    loss_ectopic: {
+      title: 'Tohle bylo na tělo i na hlavu.',
+      body: 'Mimoděložní těhotenství je zdravotně vážná věc a rekonvalescence trvá. Dnes nemusíte plánovat nic.',
+      go: 'faze',
+      label: 'Co teď sledovat',
+    },
+    loss_missed: {
+      title: 'Nemusíte dnes řešit další krok.',
+      body: 'Dejte si prostor. Až budete chtít, najdete tu, co se může dít fyzicky a na co se zeptat.',
+      go: 'faze',
+      label: 'Až budu chtít',
+    },
+    loss_miscarriage: {
+      title: 'Nemusíte dnes řešit další krok.',
+      body: 'Dejte si prostor. Až budete chtít, najdete tu, co se může dít fyzicky a na co se zeptat.',
+      go: 'faze',
+      label: 'Až budu chtít',
+    },
+    repeated_failure: {
+      title: 'Tolikátý pokus už není o naději, ale o vytrvalosti.',
+      body: 'Máte za sebou víc, než většina lidí kolem vás tuší. Před další konzultací se hodí přehled všech transferů — máte ho v Moje cesta.',
+      go: 'transfery',
+      label: 'Otevřít přehled transferů',
+    },
+  }
+
+  const t = texty[phase]
+  if (!t) return ''
+
+  return `<section class="surface pad rise">
+    <p class="display" style="font-size:1.15rem;line-height:1.4">${esc(t.title)}</p>
+    <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">${esc(t.body)}</p>
+    <button class="btn btn-ghost btn-sm" data-go="${esc(t.go)}" style="margin-top:1rem">${esc(t.label)}</button>
+  </section>`
+}
+
 /** Kolik obsahu vůbec nabídnout. Při rozevřených nůžkách se ubírá. */
 function contentBudget(gap: number | null): number {
   if (gap === null) return 2
@@ -162,11 +224,16 @@ export function screenDnes(): string {
       </div>
     </section>`,
 
+    // Zápis a Léky přestaly být záložkami — na denní použití k nim musí
+    // vést cesta odsud, jinak by se injekce odškrtávaly přes rozcestník.
     `<div class="quickrow rise">
       <button data-go="zapis"><i>◕</i>Nálada</button>
       <button data-go="zapis#vpich"><i>✚</i>Vpich${shots.length ? ` · ${shots.length}` : ''}</button>
+      <button data-go="leky"><i>✚</i>Léky</button>
       <button data-go="zapis#telo"><i>◍</i>Tělo</button>
     </div>`,
+
+    softLanding(),
 
     todayTasks(bal),
     overdue(),

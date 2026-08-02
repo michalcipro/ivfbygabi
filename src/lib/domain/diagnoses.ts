@@ -204,3 +204,107 @@ after_loss: {
 export function diagnosisInfo(id: ModifierId): DiagnosisInfo | null {
   return DIAGNOSIS_INFO[id] ?? null
 }
+
+// ------------------------------------------------------------ moje diagnóza ---
+
+/**
+ * Katalog důvodů, proč je žena indikovaná k IVF.
+ *
+ * Vlastní seznam vedle `MODIFIER_IDS`, a to schválně. Modifikátory řídí
+ * doporučování obsahu a je jich záměrně málo; diagnóz, které si žena chce
+ * zapsat, je víc a jsou jemnější. Kde se dvojice potkává, je uvedený `modifier`
+ * a obsah se pak cílí sám.
+ *
+ * Diagnóz může být zapsaných víc naráz — kombinovaný faktor je v IVF pravidlo,
+ * ne výjimka. Aplikace ze zapsané diagnózy **nic neodvozuje o léčbě**; slouží
+ * k tomu, aby se ženě ukazoval obsah, který se jí týká.
+ */
+export interface DiagnosisDef {
+  id: string
+  label: string
+  group: string
+  /** Napojení na doporučovací systém. Bez něj se obsah necílí. */
+  modifier?: ModifierId
+  /** Jedna věta pod nálepkou, ať není nálepka bez vysvětlení. */
+  note: string
+}
+
+export const DIAGNOSIS_GROUPS = [
+  'Ovulace a vaječníky',
+  'Děloha a vejcovody',
+  'Mužský faktor',
+  'Genetika a opakované ztráty',
+  'Další důvody',
+] as const
+
+export const DIAGNOSES: DiagnosisDef[] = [
+  // --- ovulace a vaječníky
+  { id: 'ovulation', label: 'Poruchy ovulace', group: 'Ovulace a vaječníky', note: 'Ovulace nenastává pravidelně nebo nenastává vůbec.' },
+  { id: 'irregular_cycle', label: 'Nepravidelný cyklus', group: 'Ovulace a vaječníky', note: 'Délka cyklu se výrazně mění nebo se nedá předvídat.' },
+  { id: 'pcos', label: 'PCOS', group: 'Ovulace a vaječníky', modifier: 'pcos', note: 'Syndrom polycystických ovarií.' },
+  { id: 'low_reserve', label: 'Snížená ovariální rezerva', group: 'Ovulace a vaječníky', modifier: 'low_amh', note: 'Ve vaječnících je méně vajíček, než odpovídá věku.' },
+  { id: 'low_amh', label: 'Nízké AMH', group: 'Ovulace a vaječníky', modifier: 'low_amh', note: 'Hodnota, která orientačně popisuje ovariální rezervu.' },
+  { id: 'poi', label: 'Předčasná ovariální insuficience', group: 'Ovulace a vaječníky', note: 'Vaječníky přestaly pracovat dřív, než je obvyklé.' },
+  { id: 'endometriosis', label: 'Endometrióza', group: 'Ovulace a vaječníky', modifier: 'endometriosis', note: 'Tkáň podobná sliznici roste mimo dělohu.' },
+
+  // --- děloha a vejcovody
+  { id: 'tubal', label: 'Neprůchodné vejcovody', group: 'Děloha a vejcovody', modifier: 'tubal_factor', note: 'Vejcovody neumožňují setkání vajíčka a spermie.' },
+  { id: 'tubal_damage', label: 'Poškozené vejcovody', group: 'Děloha a vejcovody', modifier: 'tubal_factor', note: 'Po zánětu, operaci nebo mimoděložním těhotenství.' },
+  { id: 'tubes_removed', label: 'Odstraněné vejcovody', group: 'Děloha a vejcovody', modifier: 'tubal_factor', note: 'Po operaci — cesta k otěhotnění vede přes IVF.' },
+  { id: 'hydrosalpinx', label: 'Hydrosalpinx', group: 'Děloha a vejcovody', modifier: 'tubal_factor', note: 'Vejcovod naplněný tekutinou.' },
+  { id: 'adenomyosis', label: 'Adenomyóza', group: 'Děloha a vejcovody', modifier: 'adenomyosis', note: 'Sliznice prorůstá do svaloviny dělohy.' },
+  { id: 'uterus_anatomy', label: 'Anatomická odchylka dělohy', group: 'Děloha a vejcovody', note: 'Přepážka, dvojrohá děloha, srůsty a podobně.' },
+  { id: 'myoma', label: 'Myomy nebo polypy', group: 'Děloha a vejcovody', note: 'Nezhoubné útvary v děloze nebo na ní.' },
+
+  // --- mužský faktor
+  { id: 'male_factor', label: 'Mužský faktor', group: 'Mužský faktor', modifier: 'male_factor', note: 'Souhrnný název pro odchylky ve vzorku partnera.' },
+  { id: 'sperm_count', label: 'Nízký počet spermií', group: 'Mužský faktor', modifier: 'male_factor', note: 'Koncentrace ve vzorku je nižší, než se očekává.' },
+  { id: 'sperm_motility', label: 'Snížená pohyblivost spermií', group: 'Mužský faktor', modifier: 'male_factor', note: 'Spermie se pohybují méně nebo jinak.' },
+  { id: 'sperm_morphology', label: 'Snížená kvalita spermií', group: 'Mužský faktor', modifier: 'male_factor', note: 'Odchylky v morfologii nebo ve fragmentaci DNA.' },
+  { id: 'azoospermia', label: 'Spermie ve vzorku nejsou', group: 'Mužský faktor', modifier: 'male_factor', note: 'Řeší se odběrem přímo z varlete nebo dárcovstvím.' },
+
+  // --- genetika a opakované ztráty
+  { id: 'genetic', label: 'Genetická indikace', group: 'Genetika a opakované ztráty', note: 'Nález, kvůli kterému se zvažuje testování embryí.' },
+  { id: 'genetic_load', label: 'Genetická zátěž v rodině', group: 'Genetika a opakované ztráty', note: 'Dědičné onemocnění v rodině jednoho z partnerů.' },
+  { id: 'recurrent_loss', label: 'Opakované potraty', group: 'Genetika a opakované ztráty', modifier: 'after_loss', note: 'Dvě a víc ztrát těhotenství.' },
+  { id: 'repeated_failure', label: 'Opakovaně neúspěšné transfery', group: 'Genetika a opakované ztráty', modifier: 'repeated_failure', note: 'Transfery, po kterých nepřišlo těhotenství.' },
+
+  // --- další
+  { id: 'unexplained', label: 'Nevysvětlená neplodnost', group: 'Další důvody', modifier: 'unexplained', note: 'Vyšetření nenašla příčinu. Je to diagnóza, ne chyba.' },
+  { id: 'age', label: 'Věk', group: 'Další důvody', note: 'Sám o sobě není nemoc — mění ale, kolik je času.' },
+  { id: 'combined', label: 'Kombinovaný faktor', group: 'Další důvody', note: 'Sešlo se víc důvodů naráz. V IVF spíš pravidlo než výjimka.' },
+  { id: 'thyroid', label: 'Porucha štítné žlázy', group: 'Další důvody', modifier: 'thyroid', note: 'Ovlivňuje cyklus i těhotenství, obvykle se dá upravit.' },
+  { id: 'insulin', label: 'Inzulinová rezistence', group: 'Další důvody', note: 'Často jde ruku v ruce s PCOS.' },
+  { id: 'immunology', label: 'Imunologický nález', group: 'Další důvody', modifier: 'immunology', note: 'Oblast, kde je řada postupů diskutovaná a důkazy omezené.' },
+  { id: 'thrombophilia', label: 'Trombofilie', group: 'Další důvody', modifier: 'thrombophilia', note: 'Zvýšená srážlivost krve.' },
+  { id: 'preservation', label: 'Zachování plodnosti', group: 'Další důvody', note: 'Zamražení vajíček nebo embryí do budoucna.' },
+  { id: 'oncology', label: 'Onkologická léčba', group: 'Další důvody', note: 'Plodnost se zajišťuje před zahájením léčby.' },
+  { id: 'single', label: 'Bez partnera', group: 'Další důvody', modifier: 'single_mother', note: 'Cesta s darovanými spermiemi.' },
+  { id: 'same_sex', label: 'Stejnopohlavní pár', group: 'Další důvody', modifier: 'same_sex_couple', note: 'Cesta s darovanými spermiemi.' },
+  { id: 'other', label: 'Jiný důvod', group: 'Další důvody', note: 'Co se do seznamu nevešlo — dopište si ho vlastními slovy.' },
+]
+
+const DIAGNOSIS_BY_ID = new Map(DIAGNOSES.map((d) => [d.id, d]))
+
+export function diagnosisById(id: string): DiagnosisDef | null {
+  return DIAGNOSIS_BY_ID.get(id) ?? null
+}
+
+export function diagnosisLabel(id: string): string {
+  return DIAGNOSIS_BY_ID.get(id)?.label ?? id
+}
+
+/**
+ * Modifikátory, které z vybraných diagnóz plynou.
+ *
+ * Slouží jen k cílení obsahu. Diagnóza bez napojení se prostě nepromítne —
+ * to je lepší než vymýšlet vazbu, která nedává smysl.
+ */
+export function modifiersFromDiagnoses(ids: string[]): ModifierId[] {
+  const out = new Set<ModifierId>()
+  for (const id of ids) {
+    const m = DIAGNOSIS_BY_ID.get(id)?.modifier
+    if (m) out.add(m)
+  }
+  return [...out]
+}

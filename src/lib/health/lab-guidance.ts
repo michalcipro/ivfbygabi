@@ -186,7 +186,7 @@ export const LAB_GUIDANCE: Record<string, LabGuidance> = {
         evidence: 'standard',
       },
     ],
-    checkups: ['Beta hCG v domluvený den.', 'Kontrola sedmý den po ovulaci u přirozených cyklů, pokud se ověřuje ovulace.'],
+    checkups: ['hCG v domluvený den.', 'Kontrola sedmý den po ovulaci u přirozených cyklů, pokud se ověřuje ovulace.'],
     ask: ['Do kdy mám progesteron brát?', 'Co když zapomenu dávku?', 'Má u mě smysl hladinu měřit?'],
   },
 

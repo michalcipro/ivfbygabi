@@ -157,7 +157,7 @@ function buildMilestones(profile: Profile, today: IsoDate): Milestone[] {
     },
     { key: 'retrievalOn', label: 'Odběr vajíček', date: profile.retrievalOn, icon: '◍' },
     { key: 'transferOn', label: 'Transfer', date: profile.transferOn, icon: '❋' },
-    { key: 'betaTestOn', label: 'Beta HCG', date: profile.betaTestOn, icon: '✶' },
+    { key: 'betaTestOn', label: 'Odběr hCG', date: profile.betaTestOn, icon: '✶' },
     { key: 'lossOn', label: 'Ztráta', date: profile.lossOn, icon: '❍' },
   ]
 

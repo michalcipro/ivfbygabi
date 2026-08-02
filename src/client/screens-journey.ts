@@ -104,6 +104,28 @@ export const JOURNEY_SECTIONS = [
   { id: 'statistiky', label: 'Statistiky' },
 ]
 
+/**
+ * Rozcestník do databází cesty.
+ *
+ * Cyklus přestal být jedinou jednotkou — embrya a transfery mají vlastní
+ * karty a napříč cykly dávají smysl samy o sobě. Odsud se k nim dostane
+ * i žena, která zrovna žádný cyklus otevřený nemá.
+ */
+function journeyHubs(): string {
+  return `<div class="tiles" style="margin-bottom:1.5rem">
+    ${[
+      ['embrya', '❖', 'Moje embrya', 'Karta pro každé embryo — vývoj po dnech, genetika, osud.'],
+      ['transfery', '❋', 'Moje transfery', 'Všechny transfery napříč cykly, od nejnovějšího.'],
+      ['historie', '✧', 'Moje IVF historie', 'Celá cesta v přehledu — co bylo v kterém cyklu.'],
+    ]
+      .map(
+        ([r, i, t, b]) =>
+          `<button class="tile" data-go="${r}"><i>${i}</i><span style="min-width:0"><h4 class="display">${t}</h4><p>${b}</p></span><span class="go">›</span></button>`,
+      )
+      .join('')}
+  </div>`
+}
+
 export type JourneySection = 'prehled' | 'osa' | 'vyvoj' | 'historie' | 'statistiky'
 
 export function isJourneySection(s: string): s is JourneySection {
@@ -237,7 +259,7 @@ function cycleCard(c: CycleRow, st: CycleStatus, today: string): string {
   const beta = !betaDate(c) && estimatedBeta(c, today)
   const betaHint = beta
     ? `<p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
-        Beta HCG vychází orientačně na ${esc(formatCzechDateShort(beta))}. Přesný termín
+        Odběr hCG vychází orientačně na ${esc(formatCzechDateShort(beta))}. Přesný termín
         určuje klinika — můžete si ho doplnit do cyklu.
       </p>`
     : ''
@@ -645,11 +667,11 @@ function transferRows(c: CycleRow): [string, string | null][] {
   })
 }
 
-/** Odběry bety. Po druhém transferu jich v cyklu bývá víc. */
+/** Odběry hCG. Po druhém transferu jich v cyklu bývá víc. */
 function betaRows(c: CycleRow): [string, string | null][] {
   const list = bloodTests(c)
   return list.map((t, i) => [
-    list.length > 1 ? `Beta HCG — ${i + 1}. odběr` : 'Beta HCG',
+    list.length > 1 ? `Odběr hCG — ${i + 1}.` : 'Odběr hCG',
     [
       t.date ? formatCzechDateShort(t.date) : null,
       t.value !== null ? `${t.value} IU/l` : null,
@@ -963,7 +985,7 @@ const SECTION_LEDE: Record<JourneySection, string> = {
 export function screenJourney(section: JourneySection, openId: string | null): string {
   const header = `<header class="head rise">
     <p class="eyebrow">${esc(eyebrowText())}</p>
-    <h1 class="display">Moje léčba</h1>
+    <h1 class="display">Moje cesta</h1>
     <p class="lede">${esc(SECTION_LEDE[section])}</p>
     ${segmented(JOURNEY_SECTIONS, section, 'journey-sec')}
   </header>`
@@ -979,5 +1001,6 @@ export function screenJourney(section: JourneySection, openId: string | null): s
             ? paneStats()
             : paneOverview()
 
-  return header + pane
+  // Rozcestník jen na přehledu — na ose a ve statistikách by překážel.
+  return header + (section === 'prehled' ? journeyHubs() : '') + pane
 }

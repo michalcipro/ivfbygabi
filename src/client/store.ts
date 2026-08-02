@@ -18,6 +18,10 @@ import {
   type PhotoRef,
   type TransferOutcome,
 } from '../lib/domain/cycle'
+import { emptyEmbryo, sortEmbryos, type Embryo } from '../lib/domain/embryo'
+import { emptyExam, type ExamEntry, type ExamWho } from '../lib/domain/exams'
+import { emptySupport, type SupportEntry } from '../lib/domain/support'
+import { modifiersFromDiagnoses } from '../lib/domain/diagnoses'
 import { readToday, type TodayBalance } from '../lib/domain/today-tasks'
 import { readEndurance, type Endurance, type StepKey } from '../lib/domain/endurance'
 import { CATALOG } from '../lib/content'
@@ -205,10 +209,42 @@ export interface LabRow {
   onDate: IsoDate
 }
 
+/** Druh dokumentu. Podle něj se v přehledu skládají složky. */
+export type DocKind =
+  | 'laborator'
+  | 'ultrazvuk'
+  | 'zprava'
+  | 'embryologie'
+  | 'genetika'
+  | 'spermiogram'
+  | 'jine'
+
+export const DOC_KIND_LABEL: Record<DocKind, string> = {
+  laborator: 'Laboratorní výsledek',
+  ultrazvuk: 'Ultrazvuk',
+  zprava: 'Lékařská zpráva',
+  embryologie: 'Embryologická zpráva',
+  genetika: 'Genetický výsledek',
+  spermiogram: 'Spermiogram',
+  jine: 'Jiný dokument',
+}
+
+/**
+ * Uložený dokument.
+ *
+ * Aplikace dokumenty **nečte a nevyhodnocuje** — jenom je uspořádá. Rozpoznávání
+ * hodnot ze zprávy tu bylo a je pryč: špatně přečtené číslo ve zdravotním
+ * záznamu je horší než žádné číslo. Hodnoty se zapisují ručně ve Zdraví,
+ * dokument je vedle nich jako důkaz.
+ */
 export interface DocRow {
   id: string
   title: string
+  kind: DocKind
+  onDate: IsoDate
   addedOn: IsoDate
+  note: string
+  /** Ponecháno kvůli starým datům z dřívějšího rozpoznávání hodnot. */
   found: { paramKey: string; value: number; unit: string }[]
   photos: PhotoRef[]
 }
@@ -277,6 +313,12 @@ export interface Save {
   labs: LabRow[]
   shots: ShotRow[]
   cycles: CycleRow[]
+  /** Jednotlivá embrya napříč cykly. Vazba je přes `cycleId`. */
+  embryos: Embryo[]
+  /** Zapsaná vyšetření — vzniknou, až do nich uživatelka něco napíše. */
+  exams: ExamEntry[]
+  /** Podpůrná péče mimo kliniku. */
+  support: SupportEntry[]
   symptomLogs: SymptomLog[]
   health: HealthRow[]
   ultrasounds: UltrasoundRow[]
@@ -296,6 +338,12 @@ export interface Save {
    */
   eventState: Record<string, { done: boolean; note: string }>
   posts: PostRow[]
+  /**
+   * Předplatné. V téhle verzi je to jen stav — žádná platba neprobíhá.
+   * Aplikace zůstává celá otevřená, i když je neaktivní: zamykat obsah
+   * ženě uprostřed léčby by bylo horší než nevydělat.
+   */
+  subscription: { active: boolean; since: IsoDate | null }
   /** Výchozí je tmavý — prstenec a grafy na něm svítí. Přepínatelné v nastavení. */
   theme: 'auto' | 'light' | 'dark'
   /** 0 = dnešek. Nenulové jen když si uživatelka vědomě přepne na jiný den. */
@@ -321,6 +369,9 @@ function blank(): Save {
     labs: [],
     shots: [],
     cycles: [],
+    embryos: [],
+    exams: [],
+    support: [],
     symptomLogs: [],
     health: [],
     ultrasounds: [],
@@ -334,6 +385,7 @@ function blank(): Save {
     exercises: [],
     eventState: {},
     posts: [],
+    subscription: { active: false, since: null },
     // Lis je papírový směr — světlý režim je ten hlavní. `auto` znamená
     // „podle zařízení“; kdo si přepne ručně, tomu se volba nepřepisuje.
     theme: 'auto',
@@ -391,7 +443,14 @@ function migrate(d: Save): Save {
   })
 
   d.ultrasounds = d.ultrasounds.map((u) => ({ ...u, photos: u.photos ?? [] }))
-  d.docs = d.docs.map((x) => ({ ...x, photos: x.photos ?? [] }))
+  d.docs = d.docs.map((x) => ({
+    ...x,
+    kind: x.kind ?? 'zprava',
+    onDate: x.onDate ?? x.addedOn,
+    note: x.note ?? '',
+    found: x.found ?? [],
+    photos: x.photos ?? [],
+  }))
 
   // Příznaky se dřív zaškrtávaly jen v deníku, bez intenzity a bez času.
   // Statistiky i časová osa čtou `symptomLogs`, takže by starší zápisy
@@ -408,6 +467,10 @@ function migrate(d: Save): Save {
   }
 
   d.cycles = d.cycles.map(migrateCycle)
+  d.embryos = (d.embryos ?? []).map((e) => ({ ...emptyEmbryo(e.id, e.cycleId, e.number), ...e }))
+  d.exams = d.exams ?? []
+  d.support = d.support ?? []
+  d.subscription = d.subscription ?? { active: false, since: null }
 
   return d
 }
@@ -423,11 +486,11 @@ const OUTCOME_TO_TRANSFER: Record<string, TransferOutcome> = {
 }
 
 /**
- * Starý cyklus měl jeden transfer, jednu betu a jedno číslo „blastocysty“.
+ * Starý cyklus měl jeden transfer, jeden odběr hCG a jedno číslo „blastocysty“.
  *
  * Teď je transferů seznam — v jednom cyklu jich po odběru bývá víc — a vývoj
  * embryí se zapisuje po dnech. Zapsaná data se proto překlopí, ne zahodí:
- * datum transferu se stane prvním transferem v seznamu, datum bety prvním
+ * datum transferu se stane prvním transferem v seznamu, datum odběru hCG prvním
  * odběrem krve a blastocysty pátým dnem kultivace. Pátý den je odhad, ale
  * je to ten správný odhad: klinika mluví o blastocystách hlavně u něj.
  */
@@ -479,7 +542,10 @@ function migrateCycle(c: CycleRow): CycleRow {
     retrievalOn: old.retrievalOn ?? null,
     eggs: old.eggs ?? null,
     mature: old.mature ?? null,
+    inseminated: old.inseminated ?? null,
+    fertMethod: old.fertMethod ?? '',
     fertilized: old.fertilized ?? null,
+    day2: old.day2 ?? null,
     day3: old.day3 ?? null,
     day4: old.day4 ?? null,
     day5: old.day5 ?? old.blastocysts ?? null,
@@ -488,7 +554,9 @@ function migrateCycle(c: CycleRow): CycleRow {
     labPhotos: old.labPhotos ?? [],
     methods: old.methods ?? [],
     methodsNote: old.methodsNote ?? '',
-    transfers,
+    // Transfery ze starých dat nemusí mít nová pole — doplní se prázdná,
+    // ne vymyšlená.
+    transfers: transfers.map((t) => ({ ...emptyTransfer(t.id, t.kind), ...t })),
     hcgTests,
     outcome: old.outcome ?? 'probiha',
     note: old.note ?? '',
@@ -862,11 +930,20 @@ export function withPhotos(scope: string, fn: (list: PhotoRef[]) => void): void 
   })
 }
 
-/** Nová vyfocená zpráva. Vrací id, aby se do ní dala rovnou přidat fotka. */
-export function addDoc(title: string): string {
+/** Nový dokument. Vrací id, aby se do něj dala rovnou přidat fotka. */
+export function addDoc(title: string, kind: DocKind = 'zprava', onDate?: IsoDate, note = ''): string {
   const id = uid('doc')
   patch((d) => {
-    d.docs.push({ id, title, addedOn: viewDate(), found: [], photos: [] })
+    d.docs.push({
+      id,
+      title,
+      kind,
+      onDate: onDate || viewDate(),
+      addedOn: viewDate(),
+      note,
+      found: [],
+      photos: [],
+    })
   })
   return id
 }
@@ -875,6 +952,147 @@ export function deleteDoc(id: string): void {
   patch((d) => {
     d.docs = d.docs.filter((x) => x.id !== id)
   })
+}
+
+// ----------------------------------------------------------------- embrya ---
+
+/** Embrya jednoho cyklu, seřazená podle pořadí. */
+export function embryosOf(cycleId: string): Embryo[] {
+  return sortEmbryos(data.embryos.filter((e) => e.cycleId === cycleId))
+}
+
+export function embryoById(id: string): Embryo | null {
+  return data.embryos.find((e) => e.id === id) ?? null
+}
+
+/** Všechna embrya napříč cykly — pro databázi „Moje embrya“. */
+export function allEmbryos(): Embryo[] {
+  return [...data.embryos].sort((a, b) => {
+    const ca = data.cycles.find((c) => c.id === a.cycleId)?.number ?? 0
+    const cb = data.cycles.find((c) => c.id === b.cycleId)?.number ?? 0
+    return ca === cb ? a.number - b.number : ca - cb
+  })
+}
+
+export function addEmbryo(cycleId: string): Embryo {
+  const next = data.embryos.filter((e) => e.cycleId === cycleId).reduce((m, e) => Math.max(m, e.number), 0) + 1
+  const row = emptyEmbryo(uid('emb'), cycleId, next)
+  patch((d) => {
+    d.embryos.push(row)
+  })
+  return row
+}
+
+export function updateEmbryo(id: string, fn: (e: Embryo) => void): void {
+  patch((d) => {
+    const e = d.embryos.find((x) => x.id === id)
+    if (e) fn(e)
+  })
+}
+
+export function deleteEmbryo(id: string): void {
+  patch((d) => {
+    d.embryos = d.embryos.filter((e) => e.id !== id)
+    // Transfer, který na embryo odkazoval, o něj jen přijde — mazat celý
+    // transfer kvůli smazané kartě embrya by byla nečekaná ztráta.
+    for (const c of d.cycles) {
+      for (const t of c.transfers) t.embryoIds = t.embryoIds.filter((x) => x !== id)
+    }
+  })
+}
+
+// ------------------------------------------------------------- vyšetření ---
+
+export function exams(): ExamEntry[] {
+  return data.exams
+}
+
+export function examEntryFor(examId: string): ExamEntry | null {
+  return data.exams.find((e) => e.examId === examId) ?? null
+}
+
+/** Vrátí zápis vyšetření; když ještě neexistuje, založí ho. */
+export function ensureExam(examId: string, who: ExamWho): ExamEntry {
+  const found = data.exams.find((e) => e.examId === examId)
+  if (found) return found
+  const row = emptyExam(uid('ex'), examId, who)
+  patch((d) => {
+    d.exams.push(row)
+  })
+  return row
+}
+
+export function addCustomExam(name: string, who: ExamWho): ExamEntry {
+  const row = { ...emptyExam(uid('ex'), '', who), custom: name }
+  patch((d) => {
+    d.exams.push(row)
+  })
+  return row
+}
+
+export function updateExam(id: string, fn: (e: ExamEntry) => void): void {
+  patch((d) => {
+    const e = d.exams.find((x) => x.id === id)
+    if (e) fn(e)
+  })
+}
+
+export function deleteExam(id: string): void {
+  patch((d) => {
+    d.exams = d.exams.filter((e) => e.id !== id)
+  })
+}
+
+// --------------------------------------------------------- podpůrná péče ---
+
+export function supportEntries(): SupportEntry[] {
+  return [...data.support].sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
+}
+
+export function addSupport(supportId = ''): SupportEntry {
+  const row = { ...emptySupport(uid('sup'), supportId), date: viewDate() }
+  patch((d) => {
+    d.support.push(row)
+  })
+  return row
+}
+
+export function updateSupport(id: string, fn: (e: SupportEntry) => void): void {
+  patch((d) => {
+    const e = d.support.find((x) => x.id === id)
+    if (e) fn(e)
+  })
+}
+
+export function deleteSupport(id: string): void {
+  patch((d) => {
+    d.support = d.support.filter((e) => e.id !== id)
+  })
+}
+
+// ---------------------------------------------------------- moje diagnóza ---
+
+/**
+ * Uloží vybrané diagnózy a promítne je do modifikátorů.
+ *
+ * Modifikátory řídí, jaký obsah se ženě ukazuje. Ručně přidané zůstávají —
+ * výběr diagnóz jen přidává, nikdy nemaže něco, co si uživatelka nastavila
+ * jinde.
+ */
+export function setDiagnoses(ids: string[]): void {
+  patch((d) => {
+    if (!d.profile) return
+    d.profile.diagnoses = ids
+    const derived = modifiersFromDiagnoses(ids)
+    const merged = new Set<ModifierId>([...d.profile.modifiers, ...derived])
+    d.profile.modifiers = [...merged]
+  })
+}
+
+export function toggleDiagnosis(id: string): void {
+  const p = profile()
+  const cur = p.diagnoses ?? []
+  setDiagnoses(cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id])
 }
 
 /**

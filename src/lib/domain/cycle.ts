@@ -18,26 +18,41 @@ import { addDays, daysBetween, today as todayIso } from './dates'
  * transferu, ale seznam. Stejně tak testování hCG: doma se testuje víc dní
  * po sobě a každý proužek je vlastní záznam.
  *
- * Datum transferu ani bety se proto v řádku cyklu neukládá. Kdyby se ukládalo
+ * Datum transferu ani odběru hCG se proto v řádku cyklu neukládá. Kdyby se ukládalo
  * vedle seznamu, jednou by se ty dva zdroje rozešly a obrazovka by tvrdila
  * něco jiného než karta. Kdo je potřebuje, ptá se přes `currentTransfer()`,
  * `lastTransferDate()` a `betaDate()`.
  */
 
+/**
+ * Jak cyklus dopadl.
+ *
+ * IVF cesta není binární „vyšlo / nevyšlo“. Cyklus může skončit tím, že
+ * nezbylo embryo k transferu, že se transfer zrušil, biochemickým nebo
+ * mimoděložním těhotenstvím. Každá z těch větví je vlastní výsledek
+ * a v aplikaci má vlastní cestu — kdyby se schovaly pod „negativní“,
+ * ženě by aplikace tvrdila, že se nic nestalo.
+ */
 export type CycleOutcome =
   | 'probiha'
   | 'tehotenstvi'
   | 'negativni'
+  | 'biochemicke'
+  | 'mimodelozni'
   | 'ztrata'
+  | 'bez_embrya'
   | 'zruseno'
   | 'zamrazeno'
 
 export const OUTCOME_LABEL: Record<CycleOutcome, string> = {
   probiha: 'Probíhá',
   tehotenstvi: 'Těhotenství',
-  negativni: 'Negativní',
-  ztrata: 'Ztráta',
-  zruseno: 'Zrušeno',
+  negativni: 'Negativní hCG',
+  biochemicke: 'Biochemické těhotenství',
+  mimodelozni: 'Mimoděložní těhotenství',
+  ztrata: 'Ztráta těhotenství',
+  bez_embrya: 'Nebylo embryo k transferu',
+  zruseno: 'Cyklus zrušen',
   zamrazeno: 'Embrya zamražena',
 }
 
@@ -79,17 +94,43 @@ export type TransferOutcome =
   | 'ceka'
   | 'pozitivni'
   | 'biochemicke'
+  | 'mimodelozni'
   | 'negativni'
   | 'ztrata'
   | 'zruseno'
 
 export const TRANSFER_OUTCOME_LABEL: Record<TransferOutcome, string> = {
   ceka: 'Čeká na výsledek',
-  pozitivni: 'Pozitivní',
+  pozitivni: 'Pozitivní hCG',
   biochemicke: 'Biochemické těhotenství',
-  negativni: 'Negativní',
-  ztrata: 'Ztráta',
-  zruseno: 'Nedošlo na něj',
+  mimodelozni: 'Mimoděložní těhotenství',
+  negativni: 'Negativní hCG',
+  ztrata: 'Ztráta těhotenství',
+  zruseno: 'Zrušený transfer',
+}
+
+/** Příprava sliznice před transferem. */
+export type PrepKind = '' | 'prirozeny' | 'modifikovany' | 'substituovany' | 'jiny'
+
+export const PREP_LABEL: Record<PrepKind, string> = {
+  '': 'Nezapsáno',
+  prirozeny: 'Přirozený cyklus',
+  modifikovany: 'Modifikovaný přirozený cyklus',
+  substituovany: 'Hormonálně řízený (substituovaný)',
+  jiny: 'Jiná příprava',
+}
+
+/** Metoda oplodnění. Volí ji embryolog s lékařem podle situace páru. */
+export type FertMethod = '' | 'ivf' | 'icsi' | 'imsi' | 'picsi' | 'macs' | 'kombinace'
+
+export const FERT_LABEL: Record<FertMethod, string> = {
+  '': 'Nezapsáno',
+  ivf: 'Klasické IVF',
+  icsi: 'ICSI',
+  imsi: 'IMSI',
+  picsi: 'PICSI',
+  macs: 'MACS',
+  kombinace: 'Kombinace metod',
 }
 
 /** Jeden transfer uvnitř cyklu. */
@@ -97,12 +138,25 @@ export interface CycleTransfer {
   id: string
   kind: TransferKind
   date: IsoDate | null
+  /** Která embrya se přenesla — id z `Embryo`. Může být prázdné. */
+  embryoIds: string[]
   /** Kolik embryí bylo vloženo. */
   embryos: number | null
   /** Den kultivace přeneseného embrya — obvykle 3 až 6. */
   embryoDay: number | null
   /** Hodnocení embrya tak, jak ho řekla embryologie — „4AA“. */
   grade: string
+  /** Jak se připravovala sliznice. */
+  prep: PrepKind
+  /** Výška sliznice v den transferu, v mm. */
+  endometrium: number | null
+  /** Léky a podpora luteální fáze — vlastními slovy. */
+  meds: string
+  /** Doplňkové metody u tohohle transferu — id z `METHODS`. */
+  support: string[]
+  /** Zrušený transfer je taky výsledek — a má vlastní důvod. */
+  cancelled: boolean
+  cancelReason: string
   outcome: TransferOutcome
   note: string
   photos: PhotoRef[]
@@ -113,9 +167,16 @@ export function emptyTransfer(id: string, kind: TransferKind = 'cerstvy'): Cycle
     id,
     kind,
     date: null,
+    embryoIds: [],
     embryos: null,
     embryoDay: null,
     grade: '',
+    prep: '',
+    endometrium: null,
+    meds: '',
+    support: [],
+    cancelled: false,
+    cancelReason: '',
     outcome: 'ceka',
     note: '',
     photos: [],
@@ -128,7 +189,7 @@ export type HcgKind = 'domaci' | 'krev'
 
 export const HCG_KIND_LABEL: Record<HcgKind, string> = {
   domaci: 'Domácí test',
-  krev: 'Odběr krve (beta hCG)',
+  krev: 'Odběr krve (hCG)',
 }
 
 /** Jak proužek vypadal. U odběru krve se nepoužívá — tam mluví číslo. */
@@ -149,7 +210,7 @@ export interface HcgTest {
   /** Ke kterému transferu se test váže. Prázdné = nespárováno. */
   transferId: string
   look: HcgLook
-  /** Hodnota beta hCG v IU/l. U domácího testu zůstává prázdná. */
+  /** Hodnota hCG v IU/l. U domácího testu zůstává prázdná. */
   value: number | null
   note: string
   photos: PhotoRef[]
@@ -260,6 +321,11 @@ export interface CycleRow {
   // --- laboratoř ----------------------------------------------------------
   eggs: number | null
   mature: number | null
+  /** Kolik vajíček šlo do oplodnění. */
+  inseminated: number | null
+  /** Metoda oplodnění — volí ji klinika podle situace páru. */
+  fertMethod: FertMethod
+  /** Normálně oplozená vajíčka (2PN), tedy první den kultivace. */
   fertilized: number | null
   /**
    * Kolik embryí došlo do kterého dne kultivace.
@@ -268,7 +334,11 @@ export interface CycleRow {
    * a čtvrtý den je to počet embryí, která se ještě vyvíjejí; pátý a šestý
    * den počet těch, která právě ten den došla do stádia blastocysty. Proto
    * se dají `day5` a `day6` sečíst a nic se nezapočítá dvakrát.
+   *
+   * Když má cyklus zapsaná jednotlivá embrya, jsou přesnější ona — tahle
+   * čísla zůstávají pro ženy, které karty embryí vyplňovat nechtějí.
    */
+  day2: number | null
   day3: number | null
   day4: number | null
   day5: number | null
@@ -310,7 +380,10 @@ export function emptyCycle(id: string, number: number, startedOn: IsoDate): Cycl
     retrievalOn: null,
     eggs: null,
     mature: null,
+    inseminated: null,
+    fertMethod: '',
     fertilized: null,
+    day2: null,
     day3: null,
     day4: null,
     day5: null,
@@ -377,12 +450,12 @@ export function bloodTests(c: CycleRow): HcgTest[] {
 }
 
 /**
- * Datum bety, která patří k transferu, o který teď jde.
+ * Datum odběru hCG, který patří k transferu, o který teď jde.
  *
  * Po druhém transferu v cyklu je beta z toho prvního minulost. Kdyby se
- * vracela, hlavička by tvrdila „Beta HCG“ ženě, která je čtyři dny po
+ * vracela, hlavička by tvrdila „Odběr hCG“ ženě, která je čtyři dny po
  * kryotransferu a na odběr jde za týden. Když k současnému transferu ještě
- * žádná beta zapsaná není, vrací `null` — a stav se pozná z transferu.
+ * žádný odběr hCG zapsaný není, vrací `null` — a stav se pozná z transferu.
  */
 export function betaDate(c: CycleRow, today: IsoDate = todayIso()): IsoDate | null {
   const bloods = bloodTests(c)
@@ -503,7 +576,7 @@ export function readCycle(c: CycleRow, today: IsoDate = todayIso()): CycleStatus
   }
 
   if (beta && today >= beta) {
-    return { ...base, stage: 'beta', headline: 'Beta HCG', detail: 'Čekání na výsledek odběru.', progress: 0.95 }
+    return { ...base, stage: 'beta', headline: 'Odběr hCG', detail: 'Čekání na výsledek odběru.', progress: 0.95 }
   }
 
   if (dpt !== null && dpt >= 0) {
@@ -519,7 +592,7 @@ export function readCycle(c: CycleRow, today: IsoDate = todayIso()): CycleStatus
         ...base,
         stage: 'cekani',
         headline: head,
-        detail: toBeta === 0 ? 'Beta dnes.' : `Do bety zbývá ${czDaysShort(toBeta)}.`,
+        detail: toBeta === 0 ? 'Odběr hCG dnes.' : `Do odběru hCG zbývá ${czDaysShort(toBeta)}.`,
         progress: 0.8 + Math.min(0.14, dpt * 0.01),
       }
     }
@@ -620,7 +693,7 @@ export function cycleMilestones(c: CycleRow): Milestone[] {
     put(
       'beta',
       `beta-${t.id}`,
-      bloods.length > 1 ? `Beta HCG — ${i + 1}. odběr` : 'Beta HCG',
+      bloods.length > 1 ? `Odběr hCG — ${i + 1}.` : 'Odběr hCG',
       t.date,
       t.value !== null ? `${t.value} IU/l` : '',
     )
@@ -642,7 +715,7 @@ export function nextUp(c: CycleRow, today: IsoDate = todayIso()): NextUp[] {
 }
 
 /**
- * Odhad data bety, když ho uživatelka nezadala.
+ * Odhad data odběru hCG, když ho uživatelka nezadala.
  * Blastocysta 10 dní po transferu, třetí den 12 — orientačně.
  */
 export function estimatedBeta(c: CycleRow, today: IsoDate = todayIso()): IsoDate | null {

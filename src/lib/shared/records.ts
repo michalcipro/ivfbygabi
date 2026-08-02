@@ -28,7 +28,7 @@ export const EVENT_KINDS: Record<string, { label: string; icon: string }> = {
   odber: { label: 'Odběr', icon: '◍' },
   transfer: { label: 'Transfer', icon: '❋' },
   uz: { label: 'Ultrazvuk', icon: '◉' },
-  hcg: { label: 'Beta HCG', icon: '✶' },
+  hcg: { label: 'Odběr hCG', icon: '✶' },
   ockovani: { label: 'Očkování', icon: '✚' },
   lek: { label: 'Lék', icon: '◐' },
   porod: { label: 'Porod', icon: '✿' },

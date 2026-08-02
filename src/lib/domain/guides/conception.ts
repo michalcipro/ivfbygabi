@@ -742,7 +742,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     prepareFor: [
       'Vzít si s sebou ponožky a něco na čtení. Čekání na sále bývá delší než samotný výkon.',
       'Vědět, že po transferu můžete normálně chodit, jet autem a jít domů. Embryo nevypadne.',
-      'Domluvit si, kdy bude odběr beta hCG — obvykle 9.–12. den po transferu blastocysty.',
+      'Domluvit si, kdy bude odběr hCG — obvykle 9.–12. den po transferu blastocysty.',
       'Připravit se na to, že po transferu nastane zvláštní ticho: všechno je hotové a nezbývá než čekat.',
     ],
     mind: [
@@ -795,7 +795,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     ],
     askDoctor: [
       'Kolikátý den kultivace bylo embryo a jak vypadalo?',
-      'Kdy přesně mám jít na beta hCG?',
+      'Kdy přesně mám jít na hCG?',
       'Co mám dělat, když začnu špinit?',
       'Jak dlouho beru progesteron a co když zapomenu dávku?',
     ],
@@ -806,7 +806,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     phase: 'two_week_wait',
     summary: 'Dvoutýdenní čekání. Nejtěžší část celé léčby — a jediná, kde není co dělat.',
     whatAwaits: [
-      'Deset až čtrnáct dní do odběru beta hCG.',
+      'Deset až čtrnáct dní do odběru hCG.',
       'Příznaky, které nic neznamenají: napětí v prsou, křeče, únava, nadýmání. Dělá je progesteron stejně jako těhotenství.',
       'Implantační špinění u části žen, obvykle 6.–10. den po transferu. Jeho nepřítomnost nic neznamená.',
       'Silné nutkání testovat doma dřív, než má smysl.',
@@ -873,7 +873,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Který den po transferu právě je.',
       'Nálada, úzkost, naděje — zpětně uvidíte, že to houpalo, i když to v tu chvíli vypadalo na rovnou čáru dolů.',
       'Špinění a bolest, kdyby se na to lékař ptal.',
-      'Datum a výsledek beta hCG.',
+      'Datum a výsledek hCG.',
     ],
     askDoctor: [
       'Kdy přesně mám jít na odběr a je potřeba být nalačno?',
@@ -881,7 +881,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Kdy se dozvím výsledek a kdo mi ho sdělí?',
       'Bude se beta opakovat za dva dny?',
     ],
-    terms: ['Beta hCG', 'Implantace', 'Implantační okno', 'Progesteron', 'Zdvojovací čas', 'Biochemické těhotenství'],
+    terms: ['hCG', 'Implantace', 'Implantační okno', 'Progesteron', 'Zdvojovací čas', 'Biochemické těhotenství'],
   },
 
   {
@@ -889,7 +889,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     summary:
       'Test vyšel. Sleduje se, jestli hodnota roste tak, jak má, a čeká se na první ultrazvuk — pak vás centrum předá gynekologovi.',
     whatAwaits: [
-      'Opakovaný odběr beta hCG za dva až tři dny. Sleduje se zdvojovací čas, ne jedno číslo.',
+      'Opakovaný odběr hCG za dva až tři dny. Sleduje se zdvojovací čas, ne jedno číslo.',
       'První ultrazvuk zhruba v 6.–7. týdnu — potvrzení, že těhotenství je v děloze a má srdeční akci.',
       'Pokračování v podpoře luteální fáze, často až do 10.–12. týdne.',
       'Období, kdy se radost mísí se strachem víc, než jste čekala.',
@@ -954,7 +954,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Když má strach, nevyvracejte ho. Po tom, čím prošla, dává smysl.',
     ],
     track: [
-      'Hodnoty beta hCG s daty odběrů — z toho vznikne křivka růstu.',
+      'Hodnoty hCG s daty odběrů — z toho vznikne křivka růstu.',
       'Datum prvního ultrazvuku.',
       'Léky, které pořád berete, a do kdy.',
     ],
@@ -964,7 +964,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Do kdy beru progesteron?',
       'Kdy mě předáte do péče gynekologa?',
     ],
-    terms: ['Beta hCG', 'Zdvojovací čas', 'Biochemické těhotenství', 'Mimoděložní těhotenství', 'Gestační váček'],
+    terms: ['hCG', 'Zdvojovací čas', 'Biochemické těhotenství', 'Mimoděložní těhotenství', 'Gestační váček'],
   },
 
   {

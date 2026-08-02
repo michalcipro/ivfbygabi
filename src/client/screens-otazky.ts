@@ -2,6 +2,7 @@ import { addDays, czDays, daysBetween, formatCzechDate, formatCzechDateShort } f
 import { SYMPTOM_BY_ID } from '../lib/domain/symptoms'
 import { adherence } from '../lib/domain/cycle-stats'
 import { buildSummary, type VisitSummary } from '../lib/domain/visit-summary'
+import { questionGroupsFor } from '../lib/domain/question-bank'
 import { EVENT_KINDS } from '../lib/shared/records'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import {
@@ -9,6 +10,7 @@ import {
   currentCycle,
   cycleStatus,
   eventState,
+  journey,
   S,
   viewDate,
   type QuestionPriority,
@@ -521,6 +523,47 @@ function urgentBlock(summary: VisitSummary): string {
 }
 
 /** Návrhy otázek. Co už v seznamu je, se znovu nenabízí — ani ve vyřešených. */
+/**
+ * Zásobník otázek podle fáze.
+ *
+ * Návrhy z dat vznikají jen tehdy, když je co odvodit. Tenhle blok je tu
+ * vždycky: dvanáct minut v ordinaci se dá utratit i mlčením, když si člověk
+ * nevzpomene. Skupina k dnešní fázi stojí první, ostatní jsou pod ní.
+ */
+function bank(): string {
+  const taken = new Set(questions().map((q) => q.text.trim().toLocaleLowerCase('cs')))
+  const groups = questionGroupsFor(journey().phase.id)
+    .map((g) => ({ ...g, questions: g.questions.filter((t) => !taken.has(t.trim().toLocaleLowerCase('cs'))) }))
+    .filter((g) => g.questions.length > 0)
+  if (groups.length === 0) return ''
+
+  return `<section class="surface pad rise">
+    ${sectionHead('Na co se ženy ptají')}
+    <p class="faint" style="font-size:.8125rem;margin-top:-.3rem;line-height:1.55">
+      Hotové otázky k odkliknutí. Nejsou to rady, co si máte přát — jsou to věty,
+      které se v ordinaci hodí říct nahlas. Nahoře je to, co patří k vaší fázi.
+    </p>
+    ${groups
+      .map(
+        (g) => `<div style="margin-top:1.3rem">
+          <p class="eyebrow">${esc(g.title)}</p>
+          <ul class="linelist" style="margin-top:.6rem">
+            ${g.questions
+              .map(
+                (t) => `<li>
+                  <span>${esc(t)}</span>
+                  <button class="btn btn-ghost btn-sm" data-act="q-add" data-arg="${esc(t)}"
+                    style="margin-left:auto;flex:none">Přidat</button>
+                </li>`,
+              )
+              .join('')}
+          </ul>
+        </div>`,
+      )
+      .join('')}
+  </section>`
+}
+
 function suggestions(summary: VisitSummary, from: string, to: string): string {
   const taken = new Set(questions().map((q) => q.text.trim().toLocaleLowerCase('cs')))
   const fresh = summary.suggestedQuestions.filter((t) => !taken.has(t.trim().toLocaleLowerCase('cs')))
@@ -595,7 +638,7 @@ function paneCeka(openId: string | null, sum: VisitSummary, from: string, to: st
         '?',
       )
 
-  return [urgentBlock(sum), addForm(), visitCard(), list, suggestions(sum, from, to), summaryBlock(sum)].join('')
+  return [urgentBlock(sum), addForm(), visitCard(), list, suggestions(sum, from, to), bank(), summaryBlock(sum)].join('')
 }
 
 function paneVyreseno(openId: string | null): string {

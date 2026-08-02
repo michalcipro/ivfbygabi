@@ -27,10 +27,10 @@ export function autoEventsFor(profile: Profile, state: JourneyState): AutoEvent[
       location: profile.clinicName,
       note: null,
     })
-    // Odběr beta HCG se běžně dělá zhruba 10.–12. den po transferu blastocysty.
+    // Odběr hCG se běžně dělá zhruba 10.–12. den po transferu blastocysty.
     const embryoDay = profile.embryoDayAtTransfer ?? 5
     out.push({
-      title: 'Odběr beta HCG (orientačně)',
+      title: 'Odběr hCG (orientačně)',
       kind: 'hcg',
       onDate: addDays(profile.transferOn, embryoDay === 3 ? 12 : 10),
       atTime: null,

@@ -151,7 +151,7 @@ test('po druhém transferu hlavička říká, o který jde', () => {
   const st = readCycle(c, TODAY)
   assert.equal(st.stage, 'cekani')
   assert.equal(st.headline, '2. transfer +4')
-  assert.equal(st.detail, 'Do bety zbývá 7 dní.')
+  assert.equal(st.detail, 'Do odběru hCG zbývá 7 dní.')
   assert.equal(st.daysPastTransfer, 4)
 })
 

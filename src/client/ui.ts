@@ -47,7 +47,7 @@ function inline(s: string): string {
 
 /**
  * Velmi lehký markdown: ## ### - 1. > ** _ a tabulky.
- * Renderer je záměrně stejný jako `Markdown` v components/ui.tsx — obsah
+ * Renderer je záměrně minimální — obsah
  * píšeme my, takže si vystačíme s podmnožinou a nic cizího nesanitizujeme.
  */
 export function md(text: string): string {

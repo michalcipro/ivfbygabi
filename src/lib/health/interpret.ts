@@ -1,5 +1,4 @@
-import { LAB_BY_KEY } from './lab-params'
-import { positionInRange } from './parse-report'
+import { LAB_BY_KEY, positionInRange } from './lab-params'
 import { daysBetween } from '../domain/dates'
 
 /**
@@ -72,7 +71,7 @@ export function readSeries(paramKey: string, points: SeriesPoint[]): SeriesReadi
   const param = LAB_BY_KEY[paramKey]
   const range = param?.reference
   const pos = positionInRange(paramKey, latest.value)
-  const hasRange = pos.hasRange
+  const hasRange = pos !== null
 
   const positionText = !hasRange
     ? null
@@ -100,7 +99,7 @@ export function readSeries(paramKey: string, points: SeriesPoint[]): SeriesReadi
     trend,
     changePct,
     changeText,
-    position: hasRange ? pos.position : null,
+    position: pos,
     positionText,
     doublingHours,
     doublingText,

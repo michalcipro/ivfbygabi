@@ -3,7 +3,7 @@ import { KIND_ICONS, KIND_LABELS, type ContentItem, type ContentKind } from '../
 import { recommend } from '../lib/content/recommend'
 import { TOPIC_LABELS } from '../lib/domain/profile'
 import { formatCzechDate } from '../lib/domain/dates'
-import { RED_FLAGS } from '../lib/ai/offline'
+import { RED_FLAGS } from '../lib/domain/red-flags'
 import {
   groupHits,
   HIT_GROUP_TITLES,
@@ -15,7 +15,7 @@ import { affinity, journalFor, journalList, journey, S, viewDate } from './store
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, ring, sectionTitle } from './ui'
 import { czechVoice, speechAvailable, speechState, toChunks } from './speech'
 
-/** Knihovna, čtečka, deník, Gabi a checklisty. */
+/** Knihovna, čtečka, deník, hledání a checklisty. */
 
 // ------------------------------------------------------------------- média ---
 
@@ -237,7 +237,7 @@ export function screenKnihovna(query: string, kind: string): string {
     head('Celá knihovna', 'Knihovna', `${CONTENT_STATS.items} materiálů a ${GLOSSARY.length} pojmů. Hledá se v nadpisech i v textu.`),
 
     `<div class="stack" style="gap:1rem">
-      <input class="searchbar" id="q" placeholder="Zkuste: beta hcg, blastocysta, císař, kojení…" value="${esc(query)}" autocomplete="off">
+      <input class="searchbar" id="q" placeholder="Zkuste: hcg, blastocysta, OHSS, endometrium…" value="${esc(query)}" autocomplete="off">
       <div class="chips">
         ${kinds
           .map(
@@ -307,18 +307,26 @@ export function screenChecklisty(): string {
   ].join('')
 }
 
-// ------------------------------------------------------------------- Gabi ---
+// ---------------------------------------------------------------- hledání ---
 
 /**
- * Gabi — vyhledávání v aplikaci.
+ * Hledání v aplikaci.
  *
- * Není to chatbot a nic si nevymýšlí. Napíšete klíčové slovo nebo otázku
- * a ona projde všechno, co v aplikaci je: články, videa, příběhy, pojmy,
- * rady z průvodců fázemi, doplňky, tipy i vysvětlení diagnóz.
+ * Deterministické. Projde všechno, co v aplikaci je — články, pojmy, rady
+ * z průvodců fázemi, diagnózy, doplňky, hodnoty — a vrátí to, co se shoduje.
+ * Nikam se nic neodesílá, nic se negeneruje a nic se nedopočítává: když se
+ * něco nenajde, znamená to, že to tu není. Vymyšlená odpověď by v léčbě byla
+ * horší než přiznaná mezera.
+ *
+ * Jediná výjimka z „jen hledám“ je `RED_FLAGS`: když dotaz zní jako akutní
+ * stav, stojí věta o kontaktu na kliniku nad výsledky. To není diagnóza,
+ * to je odmítnutí odpovídat článkem.
  */
-export function screenGabi(): string {
+export function screenHledat(query: string): string {
   const state = journey()
-  const msgs = S.d.chat
+  const q = query.trim()
+  const hits = q.length >= 2 ? searchApp(q, { phase: state.phase.id }) : []
+  const flag = q.length >= 2 ? RED_FLAGS.find((f) => f.pattern.test(q)) : undefined
   const suggestions = searchSuggestions(state.phase.id)
 
   const hitRow = (h: SearchHit) => `<button class="tile" data-go="${esc(h.route)}" style="align-items:flex-start">
@@ -331,77 +339,58 @@ export function screenGabi(): string {
     <span class="go">›</span>
   </button>`
 
-  const answer = (m: (typeof msgs)[number]) => {
-    const hits = searchApp(m.text, { phase: state.phase.id })
-    const flag = RED_FLAGS.find((f) => f.pattern.test(m.text))
-    const warning = flag
-      ? `<div class="doctorbox" style="margin-bottom:1rem"><p style="font-size:.9375rem;line-height:1.65">${esc(flag.message)}</p></div>`
-      : ''
-    if (hits.length === 0) {
-      return `<div class="bubble bubble-gabi">
-        ${warning}
-        <p style="line-height:1.7">K tomuhle v aplikaci zatím nic nemám. Zkuste to napsat jinak, kratším slovem, nebo se podívejte do knihovny.</p>
-        <div class="row wrap" style="gap:.5rem;margin-top:1rem">
-          <button class="btn btn-sm" data-go="knihovna">Otevřít knihovnu</button>
-          <button class="btn btn-sm" data-go="faze">Průvodce mojí fází</button>
-        </div>
-      </div>`
-    }
-    const groups = groupHits(hits)
-    return `<div class="bubble bubble-gabi">
-      ${warning}
-      <p style="line-height:1.7">Našla jsem k tomu v aplikaci ${esc(plural(hits.length, 'výsledek', 'výsledky', 'výsledků'))}${
-        groups[0]?.items.some((i) => i.phase === state.phase.id) ? ' — nahoře je to, co patří k vaší fázi' : ''
-      }:</p>
-      ${groups
-        .map(
-          (g) => `<div style="margin-top:1.15rem">
-            <p class="eyebrow">${esc(HIT_GROUP_TITLES[g.kind])}</p>
-            <div class="stack" style="gap:.5rem;margin-top:.5rem">${g.items.map(hitRow).join('')}</div>
-          </div>`,
-        )
-        .join('')}
-    </div>`
-  }
+  const vysledky =
+    q.length < 2
+      ? `<div class="empty">
+          <p class="mark">✦</p>
+          <h3 class="display">Co hledáte?</h3>
+          <p>Stačí jedno slovo — „OHSS“, „progesteron“, „hatching“ — nebo celá otázka.</p>
+        </div>`
+      : hits.length === 0
+        ? empty(
+            'K tomuhle tu zatím nic není',
+            'Zkuste to napsat jinak nebo kratším slovem. Když se nic nenajde, znamená to, že tenhle obsah v aplikaci ještě není — nic si nedomýšlíme.',
+            '<button class="btn" data-go="knihovna">Otevřít knihovnu</button>',
+          )
+        : groupHits(hits)
+            .map(
+              (g) => `<section style="margin-top:1.6rem">
+                <p class="eyebrow">${esc(HIT_GROUP_TITLES[g.kind])}</p>
+                <div class="stack" style="gap:.5rem;margin-top:.6rem">${g.items.map(hitRow).join('')}</div>
+              </section>`,
+            )
+            .join('')
 
   return [
     head(
-      'Vyhledávání v aplikaci',
-      'Gabi',
-      'Napište klíčové slovo nebo otázku. Gabi projde všechno, co v aplikaci je — články, videa, pojmy, rady, doplňky i vysvětlení diagnóz.',
+      'Hledání',
+      'Najít v aplikaci',
+      'Napište klíčové slovo nebo otázku. Prohledá se všechno, co v aplikaci je — články, pojmy, rady, diagnózy, doplňky i hodnoty.',
     ),
 
-    note(
-      'Gabi **nehledá na internetu a nic si nevymýšlí.** Ukazuje jen to, co je v aplikaci. Když se něco nenajde, znamená to, že to tu zatím není — a to je poctivější než vymyšlená odpověď. **Nenahrazuje lékaře.**',
-    ),
+    flag
+      ? `<div class="doctorbox"><p style="font-size:.9375rem;line-height:1.65">${esc(flag.message)}</p></div>`
+      : '',
 
-    msgs.length
-      ? `<section class="chat">
-          ${msgs
-            .map((m) =>
-              m.role === 'user'
-                ? `<div class="bubble bubble-user">${esc(m.text)}</div>`
-                : answer(m),
-            )
-            .join('')}
-        </section>`
-      : `<div class="empty">
-          <p class="mark">✦</p>
-          <h3 class="display">Co hledáte?</h3>
-          <p>Stačí jedno slovo — „OHSS“, „progesteron“, „cvičení“ — nebo celá otázka.</p>
-        </div>`,
+    `<input class="searchbar" id="q" placeholder="Napište slovo nebo otázku…" value="${esc(query)}" autocomplete="off">`,
 
-    `<div class="ask">
-      <input id="ask" placeholder="Napište slovo nebo otázku…" autocomplete="off">
-      <button class="btn btn-primary" data-act="ask">Hledat</button>
-    </div>`,
+    q.length >= 2 && hits.length > 0
+      ? `<p class="faint" style="margin-top:.8rem;font-size:.8125rem">${esc(
+          plural(hits.length, 'výsledek', 'výsledky', 'výsledků'),
+        )}${hits.some((h) => h.phase === state.phase.id) ? ' — nahoře je to, co patří k vaší fázi' : ''}</p>`
+      : '',
 
-    `<section>
+    vysledky,
+
+    `<section style="margin-top:2rem">
       <p class="eyebrow" style="margin-bottom:.75rem">Zkuste</p>
       <div class="chips">
-        ${suggestions.map((q) => `<button data-act="prompt" data-arg="${esc(q)}">${esc(q)}</button>`).join('')}
+        ${suggestions.map((s2) => `<button data-act="hledat" data-arg="${esc(s2)}">${esc(s2)}</button>`).join('')}
       </div>
-      ${msgs.length ? '<button class="btn btn-ghost btn-sm" data-act="chat-clear" style="margin-top:1.25rem">Vymazat historii hledání</button>' : ''}
     </section>`,
+
+    note(
+      'Hledání **nechodí na internet a nic negeneruje.** Ukazuje jen to, co je v aplikaci. **Nenahrazuje lékaře** — o vaší léčbě rozhoduje váš tým na klinice.',
+    ),
   ].join('')
 }

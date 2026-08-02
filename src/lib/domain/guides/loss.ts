@@ -18,7 +18,7 @@ export const LOSS_GUIDES: PhaseGuide[] = [
     phase: 'loss_biochemical',
     summary: 'Biochemické těhotenství — pozitivní test, který nepokračoval. Byla to ztráta, i když ji nikdo neviděl.',
     whatAwaits: [
-      'Klesající hodnoty beta hCG při kontrolních odběrech.',
+      'Klesající hodnoty hCG při kontrolních odběrech.',
       'Krvácení, které přichází obvykle krátce po tom, často jako silnější menstruace.',
       'Pokyn k vysazení podpory luteální fáze — vždycky až od lékaře.',
       'Návrat cyklu obvykle do čtyř až šesti týdnů.',
@@ -67,7 +67,7 @@ export const LOSS_GUIDES: PhaseGuide[] = [
       'Zeptejte se, jestli chce být sama, nebo ne. A ptejte se znovu za dva dny, odpověď se mění.',
     ],
     track: [
-      'Klesající hodnoty beta hCG a datum každého odběru.',
+      'Klesající hodnoty hCG a datum každého odběru.',
       'Kdy začalo a skončilo krvácení.',
       'Nálada — bude houpat víc, než čekáte.',
     ],
@@ -77,14 +77,14 @@ export const LOSS_GUIDES: PhaseGuide[] = [
       'Má v naší situaci smysl něco vyšetřit?',
       'Kdy mám vysadit progesteron?',
     ],
-    terms: ['Biochemické těhotenství', 'Beta hCG', 'Zdvojovací čas', 'Progesteron'],
+    terms: ['Biochemické těhotenství', 'hCG', 'Zdvojovací čas', 'Progesteron'],
   },
 
   {
     phase: 'loss_ectopic',
     summary: 'Mimoděložní těhotenství. Je to akutní zdravotní stav a zároveň ztráta — obojí najednou.',
     whatAwaits: [
-      'Sledování hodnot beta hCG a opakované ultrazvuky.',
+      'Sledování hodnot hCG a opakované ultrazvuky.',
       'Léčba metotrexátem, nebo operace — nejčastěji laparoskopicky. O způsobu rozhoduje stav a nález.',
       'Po metotrexátu dlouhé sledování hodnot až k nule a doporučená pauza před dalším těhotenstvím.',
       'Kontrola stavu vejcovodu a informace, co to znamená pro další pokusy.',
@@ -135,7 +135,7 @@ export const LOSS_GUIDES: PhaseGuide[] = [
       'V dalším těhotenství s ní jděte na první ultrazvuk. Ten strach neuklidníte slovy.',
     ],
     track: [
-      'Hodnoty beta hCG až k nule.',
+      'Hodnoty hCG až k nule.',
       'Datum zákroku nebo podání metotrexátu.',
       'Doporučená doba, po kterou se nemá počínat.',
     ],
@@ -145,7 +145,7 @@ export const LOSS_GUIDES: PhaseGuide[] = [
       'Jaké je riziko opakování a dá se s tím něco dělat?',
       'Můžeme příště potvrdit uložení těhotenství dřív?',
     ],
-    terms: ['Mimoděložní těhotenství', 'Metotrexát', 'Laparoskopie', 'Hydrosalpinx', 'Beta hCG'],
+    terms: ['Mimoděložní těhotenství', 'Metotrexát', 'Laparoskopie', 'Hydrosalpinx', 'hCG'],
   },
 
   {
@@ -294,7 +294,7 @@ export const LOSS_GUIDES: PhaseGuide[] = [
       'Kdy se můžeme pokusit znovu?',
       'Po kolika ztrátách má smysl začít vyšetřovat příčinu?',
     ],
-    terms: ['Očistky', 'Revize dutiny děložní', 'Opakované ztráty těhotenství', 'Beta hCG'],
+    terms: ['Očistky', 'Revize dutiny děložní', 'Opakované ztráty těhotenství', 'hCG'],
   },
 
   {

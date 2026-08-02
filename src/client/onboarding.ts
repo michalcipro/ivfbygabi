@@ -28,7 +28,7 @@ type DateField =
 
 export interface RouteDef {
   id: string
-  group: 'cycle' | 'around' | 'further'
+  group: 'before' | 'cycle' | 'waiting' | 'result' | 'further'
   label: string
   hint: string
   phase: PhaseId
@@ -47,10 +47,85 @@ const TX: ModifierId[] = ['icsi', 'pgt', 'frozen_transfer', 'donor_egg', 'donor_
 const SIT: ModifierId[] = ['after_loss', 'repeated_failure', 'single_mother', 'same_sex_couple']
 
 export const ROUTES: RouteDef[] = [
+  // ---------------------------------------------------------- před cyklem ---
+  {
+    id: 'thinking',
+    group: 'before',
+    label: 'Teprve o IVF přemýšlím',
+    hint: 'Chci vědět, do čeho bych šla',
+    phase: 'thinking',
+    field: null,
+    dateLabel: '',
+    dateHint: '',
+    quick: [],
+    mods: [],
+  },
+  {
+    id: 'referral',
+    group: 'before',
+    label: 'Mám doporučení k IVF',
+    hint: 'Lékař mi IVF doporučil, ještě jsme nezačali',
+    phase: 'ivf_prep',
+    field: null,
+    dateLabel: '',
+    dateHint: '',
+    quick: [],
+    mods: [...DG],
+  },
+  {
+    id: 'tests_ahead',
+    group: 'before',
+    label: 'Čekají mě první vyšetření',
+    hint: 'Termíny máme, výsledky ještě ne',
+    phase: 'diagnostics',
+    field: 'diagnosticsStartedOn',
+    dateLabel: 'Kdy vyšetřování začalo nebo začne?',
+    dateHint: 'Stačí přibližně.',
+    quick: [0, -7, -30, -90],
+    mods: [...DG, ...SIT],
+  },
+  {
+    id: 'tests_done',
+    group: 'before',
+    label: 'Mám za sebou vyšetření',
+    hint: 'Výsledky jsou, řešíme, co dál',
+    phase: 'diagnostics',
+    field: 'diagnosticsStartedOn',
+    dateLabel: 'Kdy jste s vyšetřením začali?',
+    dateHint: 'Stačí přibližně.',
+    quick: [-30, -90, -180, -365],
+    mods: [...DG, ...SIT],
+  },
+  {
+    id: 'ivf_prep',
+    group: 'before',
+    label: 'Připravuji se na IVF',
+    hint: 'Máme plán, cyklus ještě nezačal',
+    phase: 'ivf_prep',
+    field: null,
+    dateLabel: '',
+    dateHint: '',
+    quick: [],
+    mods: [...DG, ...TX],
+  },
+
+  // -------------------------------------------------------------- v cyklu ---
+  {
+    id: 'stim_start',
+    group: 'cycle',
+    label: 'Začínám stimulaci',
+    hint: 'První injekce jsou přede mnou nebo právě teď',
+    phase: 'stimulation',
+    field: 'stimulationStartOn',
+    dateLabel: 'Kdy začíná stimulace?',
+    dateHint: 'První den injekcí. Podle toho počítáme, kolikátý je dnes den.',
+    quick: [0, 1, -1, -2],
+    mods: [...DG, ...TX],
+  },
   {
     id: 'stimulation',
     group: 'cycle',
-    label: 'Jsem ve stimulaci',
+    label: 'Právě stimuluji',
     hint: 'Píchám injekce, chodím na kontroly folikulů',
     phase: 'stimulation',
     field: 'stimulationStartOn',
@@ -60,21 +135,72 @@ export const ROUTES: RouteDef[] = [
     mods: [...DG, ...TX],
   },
   {
+    id: 'retrieval_ahead',
+    group: 'cycle',
+    label: 'Čeká mě odběr vajíček',
+    hint: 'Trigger je za dveřmi nebo už byl',
+    phase: 'retrieval',
+    field: 'retrievalOn',
+    dateLabel: 'Kdy je odběr?',
+    dateHint: 'Přesný termín vám dala klinika.',
+    quick: [0, 1, 2, 3],
+    mods: [...DG, ...TX],
+  },
+  {
+    id: 'fertilization',
+    group: 'cycle',
+    label: 'Čekám na oplodnění',
+    hint: 'Odběr proběhl, zítra volá embryologie',
+    phase: 'fertilization',
+    field: 'retrievalOn',
+    dateLabel: 'Kdy byl odběr?',
+    dateHint: 'Od toho dne se počítá kultivace.',
+    quick: [0, -1, -2],
+    mods: [...DG, ...TX],
+  },
+  {
     id: 'retrieval',
     group: 'cycle',
-    label: 'Po odběru vajíček',
-    hint: 'Čekám na zprávy z embryologie',
+    label: 'Čekám na vývoj embryí',
+    hint: 'Embrya jsou v laboratoři, čeká se na každý den',
     phase: 'embryo_culture',
     field: 'retrievalOn',
     dateLabel: 'Kdy byl odběr?',
     dateHint: 'Od toho dne se počítá, kolikátý den se embrya kultivují.',
-    quick: [0, -1, -2, -3],
+    quick: [-1, -2, -3, -4],
     mods: [...DG, ...TX],
   },
   {
-    id: 'transfer',
+    id: 'transfer_ahead',
     group: 'cycle',
-    label: 'Po transferu',
+    label: 'Čeká mě embryotransfer',
+    hint: 'Termín čerstvého transferu je domluvený',
+    phase: 'transfer',
+    field: null,
+    dateLabel: '',
+    dateHint: '',
+    quick: [],
+    mods: [...TX, ...DG],
+  },
+  {
+    id: 'fet_ahead',
+    group: 'cycle',
+    label: 'Čeká mě kryoembryotransfer',
+    hint: 'Připravuje se sliznice na rozmražené embryo',
+    phase: 'transfer',
+    field: null,
+    dateLabel: '',
+    dateHint: '',
+    quick: [],
+    mods: [...TX, ...DG],
+    implied: ['frozen_transfer'],
+  },
+
+  // -------------------------------------------------------------- čekání ---
+  {
+    id: 'transfer',
+    group: 'waiting',
+    label: 'Jsem po transferu',
     hint: 'Čekání na výsledek — nejtěžší dny z celé léčby',
     phase: 'two_week_wait',
     field: 'transferOn',
@@ -84,47 +210,48 @@ export const ROUTES: RouteDef[] = [
     mods: [...TX, ...DG, 'after_loss', 'repeated_failure'],
   },
   {
+    id: 'waiting_hcg',
+    group: 'waiting',
+    label: 'Čekám na hCG',
+    hint: 'Odběr je naplánovaný, doma se počítají dny',
+    phase: 'two_week_wait',
+    field: 'transferOn',
+    dateLabel: 'Kdy byl transfer?',
+    dateHint: 'Podle toho víme, kolikátý den po transferu dnes je.',
+    quick: [-6, -8, -10, -12],
+    mods: [...TX, ...DG, 'after_loss', 'repeated_failure'],
+  },
+  {
     id: 'beta',
-    group: 'cycle',
-    label: 'Po pozitivní beta hCG',
+    group: 'waiting',
+    label: 'Mám pozitivní hCG',
     hint: 'Test vyšel, čekáme na první ultrazvuk',
     phase: 'beta_positive',
     field: 'betaTestOn',
-    dateLabel: 'Kdy jste měla odběr beta hCG?',
+    dateLabel: 'Kdy jste měla odběr hCG?',
     dateHint: 'První pozitivní odběr.',
     quick: [0, -2, -5, -9],
     mods: [...TX, 'twins', 'after_loss', 'repeated_failure'],
   },
 
+  // ------------------------------------------------------------- výsledky ---
   {
-    id: 'ivf_prep',
-    group: 'around',
-    label: 'Připravujeme se na IVF',
-    hint: 'Máme plán, cyklus ještě nezačal',
-    phase: 'ivf_prep',
+    id: 'negative',
+    group: 'result',
+    label: 'Mám negativní hCG',
+    hint: 'Přišel výsledek a nevyšel',
+    phase: 'waiting_next_attempt',
     field: null,
     dateLabel: '',
     dateHint: '',
     quick: [],
-    mods: [...DG, ...TX],
-  },
-  {
-    id: 'diagnostics',
-    group: 'around',
-    label: 'Jsme ve vyšetřování',
-    hint: 'Odběry, spermiogram, hledáme příčinu',
-    phase: 'diagnostics',
-    field: 'diagnosticsStartedOn',
-    dateLabel: 'Kdy jste začali s vyšetřením?',
-    dateHint: 'Stačí přibližně.',
-    quick: [-7, -30, -90, -180],
-    mods: [...DG, ...SIT],
+    mods: [...DG, ...TX, 'repeated_failure'],
   },
   {
     id: 'between',
-    group: 'around',
-    label: 'Mezi pokusy',
-    hint: 'Cyklus nevyšel, čekáme na další',
+    group: 'result',
+    label: 'IVF nevyšlo',
+    hint: 'Cyklus skončil, čekáme na další krok',
     phase: 'waiting_next_attempt',
     field: null,
     dateLabel: '',
@@ -133,22 +260,76 @@ export const ROUTES: RouteDef[] = [
     mods: [...DG, ...TX, 'after_loss', 'repeated_failure'],
   },
   {
-    id: 'trying',
-    group: 'further',
-    label: 'Snažíme se přirozeně',
-    hint: 'Zatím bez léčby',
-    phase: 'trying_naturally',
-    field: 'tryingSince',
-    dateLabel: 'Odkdy se snažíte?',
-    dateHint: 'Stačí přibližně.',
-    quick: [-30, -90, -180, -365],
-    mods: [...DG, ...SIT],
+    id: 'biochemical',
+    group: 'result',
+    label: 'Zažila jsem biochemické těhotenství',
+    hint: 'hCG stouplo a pak kleslo',
+    phase: 'loss_biochemical',
+    field: 'lossOn',
+    dateLabel: 'Kdy se to stalo?',
+    dateHint: 'Stačí přibližně. Nic se od toho nepočítá dopředu.',
+    quick: [0, -7, -30, -90],
+    mods: [...TX, 'after_loss', 'repeated_failure'],
+    implied: ['after_loss'],
   },
   {
-    id: 'thinking',
+    id: 'ectopic',
+    group: 'result',
+    label: 'Zažila jsem mimoděložní těhotenství',
+    hint: 'Těhotenství se uhnízdilo mimo dělohu',
+    phase: 'loss_ectopic',
+    field: 'lossOn',
+    dateLabel: 'Kdy se to stalo?',
+    dateHint: 'Stačí přibližně.',
+    quick: [0, -7, -30, -90],
+    mods: [...TX, 'after_loss', 'tubal_factor'],
+    implied: ['after_loss'],
+  },
+  {
+    id: 'loss',
+    group: 'result',
+    label: 'Zažila jsem ztrátu',
+    hint: 'Těhotenství skončilo',
+    phase: 'loss_miscarriage',
+    field: 'lossOn',
+    dateLabel: 'Kdy se to stalo?',
+    dateHint: 'Stačí přibližně. Nic se od toho nepočítá dopředu.',
+    quick: [0, -7, -30, -90],
+    mods: [...TX, 'after_loss', 'repeated_failure'],
+    implied: ['after_loss'],
+  },
+  {
+    id: 'next_transfer',
+    group: 'result',
+    label: 'Čeká mě další transfer',
+    hint: 'Máme zamražená embrya a plánujeme kryotransfer',
+    phase: 'transfer',
+    field: null,
+    dateLabel: '',
+    dateHint: '',
+    quick: [],
+    mods: [...TX, ...DG, 'repeated_failure'],
+    implied: ['frozen_transfer'],
+  },
+  {
+    id: 'next_cycle',
+    group: 'result',
+    label: 'Čeká mě další IVF cyklus',
+    hint: 'Jdeme znovu od stimulace',
+    phase: 'ivf_prep',
+    field: null,
+    dateLabel: '',
+    dateHint: '',
+    quick: [],
+    mods: [...DG, ...TX, 'repeated_failure'],
+  },
+
+  // ----------------------------------------------------------------- jinak ---
+  {
+    id: 'unsure',
     group: 'further',
-    label: 'Zatím jen přemýšlíme',
-    hint: 'Chci vědět, do čeho jdu',
+    label: 'Nevím, kde přesně začít',
+    hint: 'Ukažte mi to od začátku, projdu si to sama',
     phase: 'thinking',
     field: null,
     dateLabel: '',
@@ -159,9 +340,11 @@ export const ROUTES: RouteDef[] = [
 ]
 
 const GROUP_TITLES: Record<RouteDef['group'], string> = {
+  before: 'Než cyklus začne',
   cycle: 'Jsem v IVF cyklu',
-  around: 'Kolem cyklu',
-  further: 'Dál na cestě',
+  waiting: 'Po transferu a čekání na hCG',
+  result: 'Výsledek a co dál',
+  further: 'Nevím',
 }
 
 export const STEPS = 5
@@ -214,14 +397,14 @@ function stepWelcome(): string {
   <div class="ob-body">
     <div class="grain ob-hero" style="${heroStyle('dusk')};border-radius:var(--r-2xl);padding:clamp(1.75rem,5vw,2.5rem)">
       <span class="ob-brand">${bloomMark(34, true)}<b>Bloomia</b></span>
-      <h1 class="display" style="margin-top:1.1rem;position:relative;z-index:1">Každý den vám sem připravíme přesně ten den, ve kterém jste.</h1>
+      <h1 class="display" style="margin-top:1.1rem;position:relative;z-index:1">Vaše cesta. Vaše tempo. Vaše IVF.</h1>
     </div>
-    <p class="lede">Ne obecné rady o neplodnosti. Obsah pro <strong>šestý den po transferu</strong>, pro <strong>devátý den stimulace</strong>, pro <strong>devatenáctý den na oddělení</strong>.</p>
+    <p class="lede">Ne obecné rady o neplodnosti. Obsah pro <strong>šestý den po transferu</strong>, pro <strong>devátý den stimulace</strong>, pro <strong>den, kdy nezbylo žádné embryo</strong>.</p>
     <div class="stack" style="gap:1rem;margin-top:2rem">
       ${[
         ['◉', 'Dnes', 'Jedním pohledem uvidíte, co po vás dnešek chce a co na to máte.'],
-        ['✎', 'Zápis', 'Nálada, tělo, vpich. Dvacet vteřin denně a máte z toho graf.'],
-        ['❖', 'Průvodce', 'Fáze, knihovna, pojmy i diagnózy. U všeho stojí, k čemu to je.'],
+        ['✧', 'Moje cesta', 'Cykly, embrya, transfery a výsledky. Celá historie na jednom místě.'],
+        ['❖', 'Obsah', 'Fáze, knihovna, pojmy i diagnózy. U všeho stojí, k čemu to je.'],
       ]
         .map(
           ([icon, t, b]) =>
@@ -236,7 +419,7 @@ function stepWelcome(): string {
 
 function stepWhere(): string {
   const dr = draft()
-  const groups = (['cycle', 'around', 'further'] as const)
+  const groups = (['before', 'cycle', 'waiting', 'result', 'further'] as const)
     .map(
       (g) => `<div class="ob-group">
         <p class="eyebrow">${GROUP_TITLES[g]}</p>
@@ -268,9 +451,9 @@ function stepWhere(): string {
 
   return `${progress(1)}
   <div class="ob-body">
-    <p class="eyebrow">Krok 1 ze 4</p>
+    <p class="eyebrow">Vítejte na své IVF cestě</p>
     <h1 class="display" style="margin-top:.7rem">Kde právě jste?</h1>
-    <p class="lede">Podle toho poskládáme obsah. Až se posunete, změníte to jedním klikem.</p>
+    <p class="lede">Podle toho poskládáme celou aplikaci — dnešek, obsah, checklisty i kalendář. Až se posunete, změníte to jedním klikem.</p>
     ${groups}
     ${preview}
   </div>

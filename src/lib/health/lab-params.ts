@@ -85,14 +85,14 @@ export const LAB_PARAMS: LabParameter[] = [
   },
   {
     key: 'beta_hcg',
-    name: 'Beta HCG',
+    name: 'Odběr hCG',
     unit: 'IU/l',
     patterns: ['hcg', 'beta hcg', 'b-hcg', 'β-hcg', 'choriogonadotropin'],
     reference: {
       note: 'V rané fázi se sleduje především zdvojení hodnoty zhruba za 48–72 hodin, ne absolutní číslo.',
     },
     explain:
-      'Beta HCG tvoří vyvíjející se placenta. V prvních týdnech je důležitější dynamika než jedna hodnota — proto se odběr obvykle opakuje. Rozptyl mezi zdravými těhotenstvími je obrovský, srovnávat své číslo s cizím nedává smysl.',
+      'hCG tvoří vyvíjející se placenta. V prvních týdnech je důležitější dynamika než jedna hodnota — proto se odběr obvykle opakuje. Rozptyl mezi zdravými těhotenstvími je obrovský, srovnávat své číslo s cizím nedává smysl.',
     topics: ['cekani', 'vysledky', 'tehotenstvi'],
     context: 'cycle',
     trend: 'rising',
@@ -234,4 +234,20 @@ export function findParamByText(text: string): LabParameter | null {
     }
   }
   return null
+}
+
+
+/**
+ * Kde hodnota leží v orientačním rozmezí laboratoře — 0 dole, 1 nahoře.
+ *
+ * `null`, když parametr rozmezí nemá nebo je jednostranné. Slouží jen
+ * k popisu polohy na ose, nikdy k hodnocení. Co konkrétní číslo znamená
+ * pro danou ženu, ví její lékař.
+ */
+export function positionInRange(paramKey: string, value: number): number | null {
+  const range = LAB_BY_KEY[paramKey]?.reference
+  if (!range || range.low === undefined || range.high === undefined) return null
+  if (range.high <= range.low) return null
+  const pos = (value - range.low) / (range.high - range.low)
+  return Math.max(0, Math.min(1, pos))
 }
