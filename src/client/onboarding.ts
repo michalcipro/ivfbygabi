@@ -2,6 +2,7 @@ import type { PhaseId } from '../lib/domain/phases'
 import { MODIFIER_LABELS, type ModifierId, type Profile } from '../lib/domain/profile'
 import { addDays, formatCzechDate, today as realToday } from '../lib/domain/dates'
 import { guideFor } from './../lib/domain/guides'
+import { DIAGNOSES, DIAGNOSIS_GROUPS, modifiersFromDiagnoses } from '../lib/domain/diagnoses'
 import { esc, heroStyle } from './ui'
 import { bloomMark } from './viz'
 import { patch, S, newProfile, type Draft } from './store'
@@ -29,6 +30,14 @@ type DateField =
 export interface RouteDef {
   id: string
   group: 'before' | 'cycle' | 'waiting' | 'result' | 'further'
+  /**
+   * Hlavní volba se nabízí hned. Ostatní jsou pod „Potřebuji jinou fázi“ —
+   * deset dlaždic se přečte, třiadvacet ne, ale ani jedna z nich nesmí
+   * zmizet: žena, která je přesně mezi odběrem a oplodněním, se musí trefit.
+   */
+  primary: boolean
+  /** Znak do dlaždice. Jediné místo v aplikaci, kde se emoji používá. */
+  icon: string
   label: string
   hint: string
   phase: PhaseId
@@ -49,7 +58,23 @@ const SIT: ModifierId[] = ['after_loss', 'repeated_failure', 'single_mother', 's
 export const ROUTES: RouteDef[] = [
   // ---------------------------------------------------------- před cyklem ---
   {
+    id: 'snazime',
+    primary: true,
+    icon: '🌱',
+    group: 'before',
+    label: 'Snažíme se o miminko',
+    hint: 'Zatím IVF vůbec neřeším',
+    phase: 'trying_naturally',
+    field: 'tryingSince',
+    dateLabel: 'Odkdy se snažíte?',
+    dateHint: 'Stačí přibližně. Podle toho poznáme, kdy má smysl mluvit o vyšetření.',
+    quick: [-90, -180, -365, -730],
+    mods: [...DG, ...SIT],
+  },
+  {
     id: 'thinking',
+    primary: false,
+    icon: '',
     group: 'before',
     label: 'Teprve o IVF přemýšlím',
     hint: 'Chci vědět, do čeho bych šla',
@@ -62,6 +87,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'referral',
+    primary: true,
+    icon: '🏥',
     group: 'before',
     label: 'Mám doporučení k IVF',
     hint: 'Lékař mi IVF doporučil, ještě jsme nezačali',
@@ -73,10 +100,12 @@ export const ROUTES: RouteDef[] = [
     mods: [...DG],
   },
   {
-    id: 'tests_ahead',
+    id: 'resime',
+    primary: true,
+    icon: '🔎',
     group: 'before',
-    label: 'Čekají mě první vyšetření',
-    hint: 'Termíny máme, výsledky ještě ne',
+    label: 'Řešíme, proč se nedaří',
+    hint: 'Vyšetření, diagnóza, hledání příčiny',
     phase: 'diagnostics',
     field: 'diagnosticsStartedOn',
     dateLabel: 'Kdy vyšetřování začalo nebo začne?',
@@ -86,6 +115,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'tests_done',
+    primary: false,
+    icon: '',
     group: 'before',
     label: 'Mám za sebou vyšetření',
     hint: 'Výsledky jsou, řešíme, co dál',
@@ -98,6 +129,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'ivf_prep',
+    primary: true,
+    icon: '💉',
     group: 'before',
     label: 'Připravuji se na IVF',
     hint: 'Máme plán, cyklus ještě nezačal',
@@ -112,6 +145,8 @@ export const ROUTES: RouteDef[] = [
   // -------------------------------------------------------------- v cyklu ---
   {
     id: 'stim_start',
+    primary: false,
+    icon: '',
     group: 'cycle',
     label: 'Začínám stimulaci',
     hint: 'První injekce jsou přede mnou nebo právě teď',
@@ -124,9 +159,11 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'stimulation',
+    primary: true,
+    icon: '🌸',
     group: 'cycle',
-    label: 'Právě stimuluji',
-    hint: 'Píchám injekce, chodím na kontroly folikulů',
+    label: 'Jsem v IVF cyklu',
+    hint: 'Stimulace, odběr, embrya v laboratoři',
     phase: 'stimulation',
     field: 'stimulationStartOn',
     dateLabel: 'Kdy jste začala se stimulací?',
@@ -136,6 +173,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'retrieval_ahead',
+    primary: false,
+    icon: '',
     group: 'cycle',
     label: 'Čeká mě odběr vajíček',
     hint: 'Trigger je za dveřmi nebo už byl',
@@ -148,6 +187,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'fertilization',
+    primary: false,
+    icon: '',
     group: 'cycle',
     label: 'Čekám na oplodnění',
     hint: 'Odběr proběhl, zítra volá embryologie',
@@ -160,6 +201,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'retrieval',
+    primary: false,
+    icon: '',
     group: 'cycle',
     label: 'Čekám na vývoj embryí',
     hint: 'Embrya jsou v laboratoři, čeká se na každý den',
@@ -171,10 +214,12 @@ export const ROUTES: RouteDef[] = [
     mods: [...DG, ...TX],
   },
   {
-    id: 'transfer_ahead',
+    id: 'mam_embrya',
+    primary: true,
+    icon: '❄️',
     group: 'cycle',
-    label: 'Čeká mě embryotransfer',
-    hint: 'Termín čerstvého transferu je domluvený',
+    label: 'Mám embrya a čeká mě transfer',
+    hint: 'Čerstvý embryotransfer nebo kryotransfer',
     phase: 'transfer',
     field: null,
     dateLabel: '',
@@ -184,6 +229,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'fet_ahead',
+    primary: false,
+    icon: '',
     group: 'cycle',
     label: 'Čeká mě kryoembryotransfer',
     hint: 'Připravuje se sliznice na rozmražené embryo',
@@ -199,6 +246,8 @@ export const ROUTES: RouteDef[] = [
   // -------------------------------------------------------------- čekání ---
   {
     id: 'transfer',
+    primary: true,
+    icon: '🤍',
     group: 'waiting',
     label: 'Jsem po transferu',
     hint: 'Čekání na výsledek — nejtěžší dny z celé léčby',
@@ -211,6 +260,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'waiting_hcg',
+    primary: false,
+    icon: '',
     group: 'waiting',
     label: 'Čekám na hCG',
     hint: 'Odběr je naplánovaný, doma se počítají dny',
@@ -223,6 +274,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'beta',
+    primary: true,
+    icon: '🌱',
     group: 'waiting',
     label: 'Mám pozitivní hCG',
     hint: 'Test vyšel, čekáme na první ultrazvuk',
@@ -237,6 +290,8 @@ export const ROUTES: RouteDef[] = [
   // ------------------------------------------------------------- výsledky ---
   {
     id: 'negative',
+    primary: false,
+    icon: '',
     group: 'result',
     label: 'Mám negativní hCG',
     hint: 'Přišel výsledek a nevyšel',
@@ -249,9 +304,11 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'between',
+    primary: true,
+    icon: '🕊️',
     group: 'result',
     label: 'IVF nevyšlo',
-    hint: 'Cyklus skončil, čekáme na další krok',
+    hint: 'Potřebuji zpracovat výsledek a případně pokračovat',
     phase: 'waiting_next_attempt',
     field: null,
     dateLabel: '',
@@ -261,6 +318,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'biochemical',
+    primary: false,
+    icon: '',
     group: 'result',
     label: 'Zažila jsem biochemické těhotenství',
     hint: 'hCG stouplo a pak kleslo',
@@ -274,6 +333,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'ectopic',
+    primary: false,
+    icon: '',
     group: 'result',
     label: 'Zažila jsem mimoděložní těhotenství',
     hint: 'Těhotenství se uhnízdilo mimo dělohu',
@@ -287,9 +348,11 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'loss',
+    primary: true,
+    icon: '🕊️',
     group: 'result',
     label: 'Zažila jsem ztrátu',
-    hint: 'Těhotenství skončilo',
+    hint: 'Těhotenství skončilo — potřebuji čas',
     phase: 'loss_miscarriage',
     field: 'lossOn',
     dateLabel: 'Kdy se to stalo?',
@@ -300,6 +363,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'next_transfer',
+    primary: false,
+    icon: '',
     group: 'result',
     label: 'Čeká mě další transfer',
     hint: 'Máme zamražená embrya a plánujeme kryotransfer',
@@ -313,6 +378,8 @@ export const ROUTES: RouteDef[] = [
   },
   {
     id: 'next_cycle',
+    primary: false,
+    icon: '',
     group: 'result',
     label: 'Čeká mě další IVF cyklus',
     hint: 'Jdeme znovu od stimulace',
@@ -327,6 +394,8 @@ export const ROUTES: RouteDef[] = [
   // ----------------------------------------------------------------- jinak ---
   {
     id: 'unsure',
+    primary: false,
+    icon: '',
     group: 'further',
     label: 'Nevím, kde přesně začít',
     hint: 'Ukažte mi to od začátku, projdu si to sama',
@@ -347,7 +416,7 @@ const GROUP_TITLES: Record<RouteDef['group'], string> = {
   further: 'Nevím',
 }
 
-export const STEPS = 5
+export const STEPS = 6
 
 export function routeById(id: string): RouteDef | undefined {
   return ROUTES.find((r) => r.id === id)
@@ -356,7 +425,16 @@ export function routeById(id: string): RouteDef | undefined {
 export function draft(): Draft {
   if (!S.d.draft) {
     patch((d) => {
-      d.draft = { route: '', date: realToday(), skipDate: false, week: null, mods: [], name: '', anon: true }
+      d.draft = {
+        route: '',
+        date: realToday(),
+        skipDate: false,
+        week: null,
+        mods: [],
+        diagnoses: [],
+        name: '',
+        anon: true,
+      }
     })
   }
   return S.d.draft!
@@ -372,7 +450,15 @@ export function profileFromDraft(dr: Draft): Profile {
   p.displayName = dr.name.trim()
   p.anonymousInCommunity = dr.anon
 
-  const mods = new Set<ModifierId>([...dr.mods, ...(route.implied ?? [])])
+  // Diagnózy z druhého kroku se promítnou i do modifikátorů, které řídí
+  // cílení obsahu. „Zatím nevím“ a „žádná diagnóza“ se do nich nepromítá —
+  // nejsou to diagnózy, jsou to odpovědi.
+  p.diagnoses = (dr.diagnoses ?? []).filter((d) => d !== 'nevim' && d !== 'zadna')
+  const mods = new Set<ModifierId>([
+    ...dr.mods,
+    ...(route.implied ?? []),
+    ...modifiersFromDiagnoses(p.diagnoses),
+  ])
   p.modifiers = [...mods]
 
   if (route.field && !dr.skipDate && dr.date) {
@@ -417,26 +503,54 @@ function stepWelcome(): string {
   ${foot('<button class="btn btn-primary" data-act="ob-next">Začít</button>')}`
 }
 
-function stepWhere(): string {
-  const dr = draft()
-  const groups = (['before', 'cycle', 'waiting', 'result', 'further'] as const)
-    .map(
-      (g) => `<div class="ob-group">
+/**
+ * Kde právě jste.
+ *
+ * Deset dlaždic, které pokrývají skoro každou ženu, a pod nimi odkaz na
+ * jemnější dělení. Tohle není otázka „kterou sekci chcete otevřít“ —
+ * je to jediná otázka, ze které se poskládá celý zbytek aplikace.
+ *
+ * Nikdo se tím nezamyká: fáze jde kdykoli změnit a nic se přitom nesmaže.
+ */
+export function phasePicker(vybrano: string, act: string, vsechny: boolean): string {
+  const primary = ROUTES.filter((r) => r.primary)
+  const ostatni = ROUTES.filter((r) => !r.primary)
+
+  const dlazdice = (r: RouteDef) => `<button class="pick" data-act="${esc(act)}" data-arg="${esc(r.id)}"
+    aria-pressed="${vybrano === r.id}">
+    <span class="mark">✓</span>
+    <span><b>${r.icon ? `${r.icon} ` : ''}${esc(r.label)}</b><span>${esc(r.hint)}</span></span>
+  </button>`
+
+  const skupiny = (['before', 'cycle', 'waiting', 'result', 'further'] as const)
+    .map((g) => {
+      const list = ostatni.filter((r) => r.group === g)
+      if (list.length === 0) return ''
+      return `<div class="ob-group">
         <p class="eyebrow">${GROUP_TITLES[g]}</p>
-        <div class="picker" style="margin-top:0">
-          ${ROUTES.filter((r) => r.group === g)
-            .map(
-              (r) => `<button class="pick" data-act="ob-route" data-arg="${r.id}" aria-pressed="${dr.route === r.id}">
-                <span class="mark">✓</span>
-                <span><b>${esc(r.label)}</b><span>${esc(r.hint)}</span></span>
-              </button>`,
-            )
-            .join('')}
-        </div>
-      </div>`,
-    )
+        <div class="picker" style="margin-top:0">${list.map(dlazdice).join('')}</div>
+      </div>`
+    })
     .join('')
 
+  return `<div class="picker">${primary.map(dlazdice).join('')}</div>
+    ${
+      vsechny
+        ? `<div style="margin-top:1.6rem">
+            <p class="eyebrow">Jemnější dělení</p>
+            <p class="faint" style="font-size:.8125rem;margin-top:.35rem;line-height:1.5">
+              Když se do žádné dlaždice netrefíte přesně, vyberte si tady.
+            </p>
+            ${skupiny}
+          </div>`
+        : `<button class="btn btn-ghost btn-block" data-act="ob-more" style="margin-top:1.1rem">
+            Potřebuji jinou fázi
+          </button>`
+    }`
+}
+
+function stepWhere(): string {
+  const dr = draft()
   const picked = routeById(dr.route)
   const guide = picked ? guideFor(picked.phase) : null
   const preview = guide
@@ -445,7 +559,7 @@ function stepWhere(): string {
         <p class="soft" style="margin-top:.6rem;line-height:1.65">${esc(guide.summary)}</p>
         <p class="eyebrow" style="margin-top:1.25rem">Co vás čeká</p>
         <ul class="bullets">${guide.whatAwaits.slice(0, 3).map((w) => `<li>${esc(w)}</li>`).join('')}</ul>
-        <p class="faint" style="margin-top:1rem;font-size:.8125rem;line-height:1.55">A dál: články a videa, práce s hlavou, pohyb, doplňky, rady pro partnera, otázky pro lékaře a slovníček pojmů téhle fáze.</p>
+        <p class="faint" style="margin-top:1rem;font-size:.8125rem;line-height:1.55">A dál: články, práce s hlavou, pohyb, doplňky, rady pro partnera, otázky pro lékaře a slovníček pojmů téhle fáze.</p>
       </div>`
     : ''
 
@@ -453,8 +567,8 @@ function stepWhere(): string {
   <div class="ob-body">
     <p class="eyebrow">Vítejte na své IVF cestě</p>
     <h1 class="display" style="margin-top:.7rem">Kde právě jste?</h1>
-    <p class="lede">Podle toho poskládáme celou aplikaci — dnešek, obsah, checklisty i kalendář. Až se posunete, změníte to jedním klikem.</p>
-    ${groups}
+    <p class="lede">Podle toho poskládáme celou aplikaci — dnešek, obsah, checklisty i kalendář. Až se posunete, změníte to jedním klikem a nic se přitom nesmaže.</p>
+    ${phasePicker(dr.route, 'ob-route', S.d.obMore === true)}
     ${preview}
   </div>
   ${foot(
@@ -516,9 +630,9 @@ function stepWhat(): string {
   const route = routeById(dr.route)
   const mods = route?.mods ?? []
 
-  return `${progress(3)}
+  return `${progress(4)}
   <div class="ob-body">
-    <p class="eyebrow">Krok 3 ze 4</p>
+    <p class="eyebrow">Krok 4 ze 5</p>
     <h1 class="display" style="margin-top:.7rem">Co se vás týká?</h1>
     <p class="lede">Vyberte, co platí. Podle toho se mění obsah uvnitř fáze — po císaři se šestinedělí čte jinak než po přirozeném porodu.</p>
 
@@ -549,11 +663,62 @@ function stepWhat(): string {
   )}`
 }
 
+/**
+ * Co už o své cestě víte.
+ *
+ * Diagnóza není podmínka. Většina žen ji na začátku nezná a „zatím nevím“
+ * je legitimní odpověď — proto je v seznamu první a nic se za ni neschovává.
+ * Výběr jen personalizuje obsah; aplikace z něj neodvozuje léčbu.
+ */
+function stepDiagnosis(): string {
+  const dr = draft()
+  const vybrane = dr.diagnoses ?? []
+
+  const skupina = (g: string) => {
+    const items = DIAGNOSES.filter((d) => d.group === g)
+    if (items.length === 0) return ''
+    return `<div style="margin-top:1.4rem">
+      <p class="eyebrow">${esc(g)}</p>
+      <div class="chips" style="margin-top:.6rem">
+        ${items
+          .map(
+            (d) =>
+              `<button data-act="ob-dg" data-arg="${esc(d.id)}" aria-pressed="${vybrane.includes(d.id)}">${esc(d.label)}</button>`,
+          )
+          .join('')}
+      </div>
+    </div>`
+  }
+
+  return `${progress(3)}
+  <div class="ob-body">
+    <p class="eyebrow">Krok 3 ze 5</p>
+    <h1 class="display" style="margin-top:.7rem">Co už o své cestě víte?</h1>
+    <p class="lede">Vyberte, co se vás týká — může toho být víc. Kombinovaný faktor je v IVF spíš pravidlo než výjimka.</p>
+
+    <div class="chips" style="margin-top:1.75rem">
+      <button data-act="ob-dg" data-arg="nevim" aria-pressed="${vybrane.includes('nevim')}">Zatím nevím</button>
+      <button data-act="ob-dg" data-arg="zadna" aria-pressed="${vybrane.includes('zadna')}">Nemáme žádnou diagnózu</button>
+    </div>
+
+    ${DIAGNOSIS_GROUPS.map(skupina).join('')}
+
+    <p class="faint" style="margin-top:1.75rem;font-size:.8125rem;line-height:1.6">
+      Podle výběru se vám nabízí obsah, který se vás týká. Léčbu z toho aplikace neodvozuje
+      a kdykoli to změníte v Profilu.
+    </p>
+  </div>
+  ${foot(
+    '<button class="btn btn-primary" data-act="ob-next">Pokračovat</button>',
+    '<button class="btn btn-ghost" data-act="ob-back">Zpět</button>',
+  )}`
+}
+
 function stepWho(): string {
   const dr = draft()
-  return `${progress(4)}
+  return `${progress(5)}
   <div class="ob-body">
-    <p class="eyebrow">Krok 4 ze 4</p>
+    <p class="eyebrow">Krok 5 ze 5</p>
     <h1 class="display" style="margin-top:.7rem">Jak vám máme říkat?</h1>
     <p class="lede">Jenom kvůli oslovení na domovské stránce. Klidně to nechte prázdné.</p>
 
@@ -595,8 +760,10 @@ export function renderOnboarding(): string {
         : step === 2
           ? stepWhen()
           : step === 3
-            ? stepWhat()
-            : stepWho()
+            ? stepDiagnosis()
+            : step === 4
+              ? stepWhat()
+              : stepWho()
 
   return `<div class="ob">${body}</div>`
 }

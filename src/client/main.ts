@@ -17,7 +17,8 @@ import {
   type TransferOutcome,
 } from '../lib/domain/cycle'
 
-import { esc } from './ui'
+import { esc, head, note } from './ui'
+import { emptyContact } from '../lib/domain/clinic'
 import { addPhotos, allPhotos, initPhotos, photoUrl, pickImages, removePhoto } from './photos'
 import {
   addCustomExam,
@@ -60,6 +61,7 @@ import {
   removeTransfer,
   toggleCycleMethod,
   toggleDiagnosis,
+  updateClinic,
   updateCycle,
   updateEmbryo,
   updateExam,
@@ -71,7 +73,7 @@ import {
   type QuestionPriority,
   type QuestionStatus,
 } from './store'
-import { draft, profileFromDraft, renderOnboarding, stepHasDate } from './onboarding'
+import { draft, phasePicker, profileFromDraft, renderOnboarding, ROUTES, routeById, stepHasDate } from './onboarding'
 import { screenCesta, screenObjevit, screenProc } from './screens-home'
 import { screenDnes, screenNuzky } from './screens-dnes'
 import { isZapisSection, screenZapis, type ZapisSection } from './screens-zapis'
@@ -86,9 +88,11 @@ import {
   screenDiagnoza as screenMojeDiagnoza,
   screenEmbrya,
   screenHistorieIvf,
+  screenKlinika,
   screenPodpora,
   screenTransfery,
   screenVysetreni,
+  screenVysledky,
   stageForDay,
 } from './screens-ivf'
 import { isOtazkySection, otazkyCopyText, screenOtazky, type OtazkySection } from './screens-otazky'
@@ -148,7 +152,7 @@ import {
 const TABS = [
   { id: 'dnes', label: 'Dnes', icon: '◉' },
   { id: 'journey', label: 'Moje cesta', icon: '✧' },
-  { id: 'pruvodce', label: 'Obsah', icon: '❖' },
+  { id: 'pruvodce', label: 'Poznej IVF', icon: '❖' },
   { id: 'denik', label: 'Deník', icon: '✎' },
   { id: 'profil', label: 'Profil', icon: '◍' },
 ]
@@ -194,10 +198,11 @@ const TITLES: Record<string, string> = {
   zapis: 'Zápis',
   leky: 'Léky',
   sledovani: 'Sledování',
-  pruvodce: 'Průvodce',
+  pruvodce: 'Poznej IVF',
   nuzky: 'Nůžky dne',
   journey: 'Moje cesta',
   profil: 'Profil',
+  'faze-zmena': 'Změnit fázi',
   cyklus: 'Cyklus',
   otazky: 'Otázky pro lékaře',
   zdravotni: 'Zdravotní data',
@@ -225,6 +230,8 @@ const TITLES: Record<string, string> = {
   vysetreni: 'Moje vyšetření',
   podpora: 'Podpůrná péče',
   historie: 'Moje IVF historie',
+  klinika: 'Moje klinika',
+  vysledky: 'Moje výsledky',
   komunita: 'Komunita',
   skupina: 'Skupina',
   pribeh: 'Můj příběh',
@@ -269,6 +276,8 @@ const PARENT: Record<string, string> = {
   vysetreni: 'journey',
   podpora: 'journey',
   historie: 'journey',
+  klinika: 'profil',
+  vysledky: 'journey',
   komunita: 'pruvodce',
   skupina: 'komunita',
   pribeh: 'pruvodce',
@@ -279,6 +288,7 @@ const PARENT: Record<string, string> = {
   proc: 'dnes',
   journey: 'dnes',
   profil: 'dnes',
+  'faze-zmena': 'dnes',
   cyklus: 'journey/historie',
   otazky: 'journey',
   zdravotni: 'journey',
@@ -432,6 +442,8 @@ function screenFor(route: string): string {
       return screenDokumenty()
     case 'profil':
       return screenProfil()
+    case 'faze-zmena':
+      return screenZmenaFaze()
     case 'embrya':
       return screenEmbrya(view.embryo)
     case 'transfery':
@@ -444,6 +456,10 @@ function screenFor(route: string): string {
       return screenPodpora()
     case 'historie':
       return screenHistorieIvf()
+    case 'klinika':
+      return screenKlinika()
+    case 'vysledky':
+      return screenVysledky()
     case 'komunita':
       return screenKomunita()
     case 'skupina':
@@ -718,6 +734,21 @@ function onboardingAction(act: string, argValue: string): boolean {
       })
       return true
     }
+    case 'ob-dg': {
+      patch((d) => {
+        const list = d.draft!.diagnoses ?? []
+        d.draft!.diagnoses = list.includes(argValue)
+          ? list.filter((x) => x !== argValue)
+          : [...list, argValue]
+      })
+      return true
+    }
+    case 'ob-more': {
+      patch((d) => {
+        d.obMore = true
+      })
+      return true
+    }
     case 'ob-date': {
       patch((d) => {
         d.draft!.date = argValue
@@ -937,6 +968,66 @@ function saveEmbryoForm(id: string): void {
       d.grade = val(`${base}-grade`)
       d.note = val(`${base}-note`)
     }
+  })
+}
+
+/**
+ * Uloží formulář kliniky.
+ *
+ * Volá se i před přidáním kontaktu — překreslení by jinak zahodilo, co má
+ * uživatelka rozepsané v hlavních polích.
+ */
+/**
+ * Změna fáze.
+ *
+ * Musí být po ruce, ne schovaná v nastavení: v léčbě se fáze mění každých
+ * pár týdnů a žena, která se právě dozvěděla negativní výsledek, nemá hledat,
+ * kde se to přepíná. Nic se přitom nesmaže — mění se jen to, co aplikace
+ * ukazuje.
+ */
+function screenZmenaFaze(): string {
+  const p = profile()
+  const state = journey()
+  const aktualni = ROUTES.find((r) => r.phase === p.declaredPhase)?.id ?? ''
+
+  return [
+    head(
+      'Moje fáze',
+      'Změnila se vaše situace?',
+      'Vyberte, kde jste teď. Aplikace přepočítá dnešek, obsah i checklisty — ale nic z toho, co máte zapsané, nezmizí.',
+    ),
+    `<section class="surface pad rise">
+      <p class="eyebrow">Teď máte nastaveno</p>
+      <p class="display" style="font-size:1.15rem;margin-top:.3rem">${esc(state.phase.name)}</p>
+      <p class="soft" style="margin-top:.35rem;font-size:.9375rem">${esc(state.dayLabel)}</p>
+    </section>`,
+    `<div style="margin-top:1.4rem">${phasePicker(aktualni, 'faze-zmena', S.d.obMore === true)}</div>`,
+    note(
+      'Cykly, embrya, transfery, deník ani dokumenty se změnou fáze nemažou. Vaše cesta se skládá dál — jen se posune to, co je nahoře.',
+    ),
+  ].join('')
+}
+
+function saveClinicForm(): void {
+  if (!document.getElementById('cl-name')) return
+  updateClinic((c) => {
+    c.name = val('cl-name')
+    c.phone = val('cl-phone')
+    c.emergencyPhone = val('cl-emergencyPhone')
+    c.email = val('cl-email')
+    c.address = val('cl-address')
+    c.web = val('cl-web')
+    c.hours = val('cl-hours')
+    c.instructions = val('cl-instructions')
+    c.note = val('cl-note')
+    c.contacts.forEach((k, i) => {
+      if (!document.getElementById(`ct-${i}-role`)) return
+      k.role = val(`ct-${i}-role`)
+      k.name = val(`ct-${i}-name`)
+      k.phone = val(`ct-${i}-phone`)
+      k.email = val(`ct-${i}-email`)
+      k.note = val(`ct-${i}-note`)
+    })
   })
 }
 
@@ -1404,6 +1495,51 @@ function action(act: string, argValue: string): void {
         const i = e.days.findIndex((d) => d.day === day)
         if (i >= 0) e.days.splice(i, 1)
         else e.days.push({ day, stage: stageForDay(day), grade: '', note: '' })
+      })
+      break
+    }
+
+    // --- změna fáze -------------------------------------------------------
+    case 'faze-zmena': {
+      const r = routeById(argValue)
+      if (!r) return
+      // Fáze se mění, data zůstávají. Kotevní datum se přepíše jen tehdy,
+      // když ho nová fáze potřebuje a uživatelka ho ještě nemá — jinak by
+      // se přepsala historie, kterou si zapsala dřív.
+      patch((d) => {
+        if (!d.profile) return
+        d.profile.declaredPhase = r.phase
+        for (const m of r.implied ?? []) {
+          if (!d.profile.modifiers.includes(m)) d.profile.modifiers.push(m)
+        }
+      })
+      toast(`Fáze změněna na ${r.label.toLowerCase()}. Vaše data zůstávají.`)
+      go('dnes')
+      return
+    }
+    case 'faze-more':
+      patch((d) => {
+        d.obMore = true
+      })
+      break
+
+    // --- moje klinika -----------------------------------------------------
+    case 'clinic-save':
+      saveClinicForm()
+      toast('Uloženo.')
+      break
+    case 'clinic-contact-add':
+      saveClinicForm()
+      updateClinic((c) => {
+        c.contacts.push(emptyContact(argValue))
+      })
+      break
+    case 'clinic-contact-del': {
+      const i = Number(argValue)
+      if (!Number.isFinite(i)) return
+      saveClinicForm()
+      updateClinic((c) => {
+        c.contacts.splice(i, 1)
       })
       break
     }

@@ -6,6 +6,8 @@ import { buildRails, pickDailyCard } from '../lib/content/recommend'
 import {
   activeCycleId,
   affinity,
+  journeyCard,
+  openQuestions,
   dayReading,
   endurance,
   todayBalance,
@@ -18,6 +20,7 @@ import {
   shotsOn,
   viewDate,
 } from './store'
+import { ivfCard } from './screens-ivf'
 import { contentCard, esc, plural, sectionTitle } from './ui'
 import { bloomEndurance, chart, partsList, scissorRing, seriesKey, trackStrip } from './viz'
 
@@ -28,6 +31,34 @@ import { bloomEndurance, chart, partsList, scissorRing, seriesKey, trackStrip } 
  * proč, a pak jenom to, co se dnes doopravdy hodí. Nic k procházení —
  * na procházení je Průvodce.
  */
+
+/**
+ * Otázky pro lékaře na dashboardu.
+ *
+ * Když je před dveřmi kontrola, je to nejdůležitější tlačítko dne. Když
+ * není, stačí počet — ale i tak musí být na očích: sepsané otázky, na které
+ * si člověk v ordinaci nevzpomene, jsou k ničemu.
+ */
+function questionsCard(): string {
+  const open = openQuestions()
+  const nejblizsi = reminders(viewDate()).find((e) => e.kind === 'kontrola' || e.kind === 'odber')
+
+  return `<button class="surface pad rise" data-go="otazky"
+    style="display:flex;gap:1rem;align-items:center;width:100%;text-align:left;cursor:pointer;border:1px solid var(--line)">
+    <span style="font-size:1.35rem;color:var(--s1);flex:none">?</span>
+    <span style="flex:1;min-width:0">
+      <span class="display" style="display:block;font-size:1.05rem">Otázky na lékaře</span>
+      <span class="soft" style="display:block;font-size:.875rem;line-height:1.5;margin-top:.2rem">${esc(
+        open === 0
+          ? 'Zatím žádná zapsaná. Sepište je doma — v ordinaci je přečtete z telefonu.'
+          : nejblizsi
+            ? `${plural(open, 'nevyřešená otázka', 'nevyřešené otázky', 'nevyřešených otázek')} · nezapomeňte se zeptat na kontrole`
+            : plural(open, 'nevyřešená otázka', 'nevyřešené otázky', 'nevyřešených otázek'),
+      )}</span>
+    </span>
+    <span class="go">›</span>
+  </button>`
+}
 
 /**
  * Věta, která přijde dřív než plán.
@@ -176,6 +207,7 @@ export function screenDnes(): string {
   const r = dayReading(date)
   const bal = todayBalance()
   const end = endurance()
+  const ivf = journeyCard()
   const guide = guideFor(state.phase.id)
   const row = journalFor(date)
   const p = profile()
@@ -195,7 +227,17 @@ export function screenDnes(): string {
       <p class="eyebrow">${esc(formatCzechDate(date, { weekday: true }))}</p>
       <h1 class="display">${p.displayName ? `Dobrý den, ${esc(p.displayName)}.` : 'Dnešek'}</h1>
       <p class="lede">${esc(state.dayLabel)}</p>
+      <div class="phasechip">
+        <span>Moje fáze: <strong>${esc(state.phase.name)}</strong></span>
+        <button data-go="faze-zmena">Změnit →</button>
+      </div>
     </header>`,
+
+    // Osobní IVF karta. Ženě, která zrovna žádný cyklus neřeší, se nekreslí
+    // technika — karta se ukáže, až má co ukazovat.
+    ivf ? ivfCard(ivf, true) : '',
+
+    softLanding(),
 
     // Květ neukazuje dnešek. Ukazuje, co má za sebou — protože právě to se
     // v léčbě ztrácí a nikdo jiný jí to nepřipomene.
@@ -233,7 +275,10 @@ export function screenDnes(): string {
       <button data-go="zapis#telo"><i>◍</i>Tělo</button>
     </div>`,
 
-    softLanding(),
+    // Otázky pro lékaře patří nahoru, ne někam hluboko do obsahu. Ženě,
+    // která si tři týdny psala poznámky, jsou k ničemu, když si na ně
+    // v ordinaci nevzpomene.
+    questionsCard(),
 
     todayTasks(bal),
     overdue(),

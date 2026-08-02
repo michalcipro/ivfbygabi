@@ -79,8 +79,10 @@ export function screenProfil(): string {
   const vys = S.d.exams.filter((e) => e.done).length
   const pod = S.d.support.filter((e) => e.ongoing).length
 
+  const c = S.d.clinic
   const items: [string, string, string, string][] = [
     ['mojediagnoza', '◈', 'Moje diagnóza', dg ? `${dg} označených důvodů` : 'Proč jdu na IVF — může jich být víc'],
+    ['klinika', '✚', 'Moje klinika', c.name.trim() || 'Kontakty, telefon i to, kam volat mimo ordinační hodiny'],
     ['vysetreni', '◉', 'Moje vyšetření', vys ? `${vys} zapsaných` : 'Co může být relevantní a co už mám za sebou'],
     ['podpora', '♡', 'Podpůrná péče', pod ? `${pod} právě využívám` : 'Co si k léčbě beru mimo kliniku'],
     ['dokumenty', '▤', 'Moje dokumenty', S.d.docs.length ? `${S.d.docs.length} uložených` : 'Papíry z kliniky na jednom místě'],

@@ -21,6 +21,8 @@ import {
 import { emptyEmbryo, sortEmbryos, type Embryo } from '../lib/domain/embryo'
 import { emptyExam, type ExamEntry, type ExamWho } from '../lib/domain/exams'
 import { emptySupport, type SupportEntry } from '../lib/domain/support'
+import { emptyClinic, type Clinic } from '../lib/domain/clinic'
+import { buildCard, buildFunnel, type FunnelStep, type JourneyCard } from '../lib/domain/journey-card'
 import { modifiersFromDiagnoses } from '../lib/domain/diagnoses'
 import { readToday, type TodayBalance } from '../lib/domain/today-tasks'
 import { readEndurance, type Endurance, type StepKey } from '../lib/domain/endurance'
@@ -291,6 +293,8 @@ export interface Draft {
   /** Gestační týden v době porodu — bez něj neumíme korigovaný věk. */
   week: number | null
   mods: ModifierId[]
+  /** Vybrané diagnózy z druhého kroku onboardingu. */
+  diagnoses: string[]
   name: string
   anon: boolean
 }
@@ -319,6 +323,8 @@ export interface Save {
   exams: ExamEntry[]
   /** Podpůrná péče mimo kliniku. */
   support: SupportEntry[]
+  /** Kontakty na kliniku. Číslo se hledá ve chvíli, kdy se hledat nedá. */
+  clinic: Clinic
   symptomLogs: SymptomLog[]
   health: HealthRow[]
   ultrasounds: UltrasoundRow[]
@@ -349,6 +355,8 @@ export interface Save {
   /** 0 = dnešek. Nenulové jen když si uživatelka vědomě přepne na jiný den. */
   dayOffset: number
   seenTour: boolean
+  /** Rozbalené jemnější dělení fází v onboardingu i v přepínači. */
+  obMore: boolean
 }
 
 function blank(): Save {
@@ -372,6 +380,7 @@ function blank(): Save {
     embryos: [],
     exams: [],
     support: [],
+    clinic: emptyClinic(),
     symptomLogs: [],
     health: [],
     ultrasounds: [],
@@ -391,6 +400,7 @@ function blank(): Save {
     theme: 'auto',
     dayOffset: 0,
     seenTour: false,
+    obMore: false,
   }
 }
 
@@ -469,7 +479,8 @@ function migrate(d: Save): Save {
   d.cycles = d.cycles.map(migrateCycle)
   d.embryos = (d.embryos ?? []).map((e) => ({ ...emptyEmbryo(e.id, e.cycleId, e.number), ...e }))
   d.exams = d.exams ?? []
-  d.support = d.support ?? []
+  d.support = (d.support ?? []).map((e) => ({ ...emptySupport(e.id), ...e }))
+  d.clinic = { ...emptyClinic(), ...(d.clinic ?? {}) }
   d.subscription = d.subscription ?? { active: false, since: null }
 
   return d
@@ -1068,6 +1079,57 @@ export function deleteSupport(id: string): void {
   patch((d) => {
     d.support = d.support.filter((e) => e.id !== id)
   })
+}
+
+/**
+ * Naměřené hodnoty seskupené podle parametru, v čase.
+ *
+ * Jednotlivá hodnota nic neříká; řada už ano. Řadí se od nejstarší, protože
+ * takhle se vývoj čte. Parametry s jedinou hodnotou zůstávají — první měření
+ * je taky informace, jen se z něj ještě nedá číst směr.
+ */
+export function labSeries(): { key: string; name: string; unit: string; body: { onDate: IsoDate; value: number }[] }[] {
+  const byKey = new Map<string, { key: string; name: string; unit: string; body: { onDate: IsoDate; value: number }[] }>()
+  for (const l of [...data.labs].sort((a, b) => a.onDate.localeCompare(b.onDate))) {
+    const cur = byKey.get(l.paramKey)
+    if (cur) cur.body.push({ onDate: l.onDate, value: l.value })
+    else byKey.set(l.paramKey, { key: l.paramKey, name: l.paramKey, unit: l.unit, body: [{ onDate: l.onDate, value: l.value }] })
+  }
+  return [...byKey.values()]
+}
+
+/** Kolik otázek pro lékaře čeká na odpověď. Číslo patří na dashboard. */
+export function openQuestions(): number {
+  return data.questions.filter((q) => q.status === 'ceka').length
+}
+
+// ---------------------------------------------------------- moje klinika ---
+
+export function clinic(): Clinic {
+  return data.clinic
+}
+
+export function updateClinic(fn: (c: Clinic) => void): void {
+  patch((d) => fn(d.clinic))
+}
+
+// -------------------------------------------------------------- IVF karta ---
+
+/**
+ * Osobní karta cyklu, o který teď jde.
+ *
+ * `null`, když žádný cyklus není — na obrazovce pak stojí pozvánka
+ * k založení, ne prázdná kostra.
+ */
+export function journeyCard(): JourneyCard | null {
+  const c = currentCycle() ?? [...data.cycles].sort((a, b) => b.startedOn.localeCompare(a.startedOn))[0]
+  return c ? buildCard(c, embryosOf(c.id), viewDate()) : null
+}
+
+/** Trychtýř „co se stalo s mými vajíčky“ pro daný cyklus. */
+export function funnel(cycleId: string): FunnelStep[] {
+  const c = cycleById(cycleId)
+  return c ? buildFunnel(c, embryosOf(c.id)) : []
 }
 
 // ---------------------------------------------------------- moje diagnóza ---

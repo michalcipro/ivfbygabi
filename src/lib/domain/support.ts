@@ -93,13 +93,30 @@ export function supportLabel(id: string): string {
   return SUPPORT_BY_ID.get(id)?.label ?? id
 }
 
+/** Jak často se to dělá. */
+export type Frequency = '' | 'denne' | 'tydne' | 'obtydne' | 'mesicne' | 'naraz' | 'nepravidelne'
+
+export const FREQUENCY_LABEL: Record<Frequency, string> = {
+  '': 'Nezapsáno',
+  denne: 'Denně',
+  tydne: 'Týdně',
+  obtydne: 'Jednou za dva týdny',
+  mesicne: 'Měsíčně',
+  naraz: 'Jednorázově',
+  nepravidelne: 'Nepravidelně',
+}
+
 /** Jeden zápis podpůrné péče. */
 export interface SupportEntry {
   id: string
   /** Id z katalogu, nebo prázdné u vlastní aktivity. */
   supportId: string
   custom: string
+  /** Odkdy to využívám. Tohle je ta zajímavější informace než jedno datum. */
+  since: IsoDate | null
+  /** Datum posledního zápisu — u jednorázových věcí je to jediné datum. */
   date: IsoDate | null
+  frequency: Frequency
   /** Kdo to vedl — jméno, pracoviště. */
   provider: string
   /** Jak se u toho cítila, 1–5. `null` = nezapsáno. */
@@ -110,7 +127,18 @@ export interface SupportEntry {
 }
 
 export function emptySupport(id: string, supportId = ''): SupportEntry {
-  return { id, supportId, custom: '', date: null, provider: '', feeling: null, note: '', ongoing: true }
+  return {
+    id,
+    supportId,
+    custom: '',
+    since: null,
+    date: null,
+    frequency: '',
+    provider: '',
+    feeling: null,
+    note: '',
+    ongoing: true,
+  }
 }
 
 export function supportTitle(e: SupportEntry): string {

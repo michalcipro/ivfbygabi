@@ -27,10 +27,12 @@ import {
   type TimelineKind,
 } from '../lib/domain/timeline'
 import { adherence, numbersFor, overall, topSymptoms } from '../lib/domain/cycle-stats'
+import { funnelBlock, ivfCard } from './screens-ivf'
 import { SYMPTOM_BY_ID } from '../lib/domain/symptoms'
 import {
   allEvents,
   currentCycle,
+  journeyCard,
   cycles,
   cycleStatus,
   eventState,
@@ -112,11 +114,16 @@ export const JOURNEY_SECTIONS = [
  * i žena, která zrovna žádný cyklus otevřený nemá.
  */
 function journeyHubs(): string {
-  return `<div class="tiles" style="margin-bottom:1.5rem">
+  return `<div class="tiles" style="margin:1.5rem 0">
     ${[
       ['embrya', '❖', 'Moje embrya', 'Karta pro každé embryo — vývoj po dnech, genetika, osud.'],
       ['transfery', '❋', 'Moje transfery', 'Všechny transfery napříč cykly, od nejnovějšího.'],
+      ['vysledky', '◉', 'Moje výsledky', 'Hodnoty a čísla z cyklů vedle sebe v čase.'],
       ['historie', '✧', 'Moje IVF historie', 'Celá cesta v přehledu — co bylo v kterém cyklu.'],
+      ['kalendar', '◈', 'Kalendář', 'Termíny, kontroly a odběry. Část se doplní sama.'],
+      ['zdravotni', '◉', 'Zdravotní data', 'Ultrazvuky, laboratoř, měření.'],
+      ['dokumenty', '▤', 'Dokumenty', 'Papíry z kliniky na jednom místě.'],
+      ['pribeh', '❦', 'Můj příběh', 'Chronologie celé cesty. Jednou z toho může být kronika.'],
     ]
       .map(
         ([r, i, t, b]) =>
@@ -485,12 +492,17 @@ function overviewEmpty(): string {
 function paneOverview(): string {
   const today = viewDate()
   const c = currentCycle()
-  if (!c) return overviewEmpty()
+  if (!c) return [ivfCard(journeyCard()), journeyHubs(), overviewEmpty()].join('')
 
   const st = cycleStatus(c)
-  if (!st) return overviewEmpty()
+  if (!st) return [ivfCard(journeyCard()), journeyHubs(), overviewEmpty()].join('')
 
   return [
+    // Osobní karta nahoře: celý cyklus na pěti řádcích. Detail cyklu je
+    // pod ní pro ty dny, kdy jde o konkrétní číslo.
+    ivfCard(journeyCard()),
+    journeyHubs(),
+    funnelBlock(c.id),
     cycleCard(c, st, today),
     medsBlock(today),
     nextVisitBlock(today),
@@ -1001,6 +1013,7 @@ export function screenJourney(section: JourneySection, openId: string | null): s
             ? paneStats()
             : paneOverview()
 
-  // Rozcestník jen na přehledu — na ose a ve statistikách by překážel.
-  return header + (section === 'prehled' ? journeyHubs() : '') + pane
+  // Rozcestník vykresluje `paneOverview()` až pod osobní kartou — nahoře
+  // musí být vidět, kde cyklus je, ne kam se dá odbočit.
+  return header + pane
 }

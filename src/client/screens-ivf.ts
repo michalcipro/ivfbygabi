@@ -44,14 +44,22 @@ import {
   supportTitle,
   type SupportGroup,
 } from '../lib/domain/support'
+import { CONTACT_ROLES, hasClinic, telHref, type ClinicContact } from '../lib/domain/clinic'
+import { type CardStep, type FunnelStep, type JourneyCard } from '../lib/domain/journey-card'
+import { LAB_BY_KEY } from '../lib/health/lab-params'
 import { photoStrip } from './photo-ui'
 import {
   allEmbryos,
+  clinic,
   cycleById,
   cycles,
   embryoById,
   embryosOf,
   exams,
+  funnel,
+  journeyCard,
+  labSeries,
+  openQuestions,
   profile,
   supportEntries,
   viewDate,
@@ -305,6 +313,12 @@ export function screenEmbrya(openId?: string | null): string {
       { icon: '❋', value: prenesena, label: 'přenesených' },
     ]),
 
+    `<section class="surface pad rise">
+      <p class="eyebrow">Přehled</p>
+      ${embryoTable(list)}
+      <p class="faint" style="margin-top:.9rem;font-size:.8125rem">Klepnutím na embryo otevřete jeho kartu níž.</p>
+    </section>`,
+
     byCycle
       .filter((g) => g.items.length > 0)
       .map(
@@ -319,6 +333,107 @@ export function screenEmbrya(openId?: string | null): string {
       'Hodnocení embrya popisuje, jak embryo vypadá — není to předpověď. Co znamená pro vás, řekne jedině embryolog a váš lékař.',
     ),
   ].join('')
+}
+
+// =========================================================== osobní karta ===
+
+const STAV_ZNAK: Record<CardStep['state'], string> = {
+  hotovo: '✓',
+  probiha: '◔',
+  ceka: '○',
+  neproběhlo: '×',
+}
+
+/**
+ * Osobní IVF karta.
+ *
+ * Celý cyklus na pěti řádcích. Tohle je jediné místo, kde se z dat stává
+ * věta „kde jsem“ — všechno ostatní jsou formuláře. Proto stojí nahoře
+ * na Dnes i na Mojí cestě a proto se nekreslí prázdné kroky.
+ */
+export function ivfCard(card: JourneyCard | null, compact = false): string {
+  if (!card) {
+    return `<section class="surface pad rise">
+      <p class="eyebrow">Moje IVF cesta</p>
+      <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
+        Zatím tu není žádný cyklus. Až ho založíte, uvidíte tady celou jeho cestu
+        na jednom místě — stimulaci, odběr, embrya i každý transfer.
+      </p>
+      <button class="btn btn-primary btn-sm" data-act="cycle-new" style="margin-top:1.1rem">Založit cyklus</button>
+    </section>`
+  }
+
+  const kroky = card.steps
+    .map(
+      (st) => `<li class="ivfstep ivfstep-${esc(st.state)}">
+        <span class="mark">${STAV_ZNAK[st.state]}</span>
+        <span class="name">${esc(st.label)}</span>
+        <span class="val">${esc(st.value)}</span>
+      </li>`,
+    )
+    .join('')
+
+  return `<section class="surface pad rise">
+    <div class="row wrap" style="justify-content:space-between;gap:.6rem;align-items:baseline">
+      <p class="eyebrow">Moje IVF cesta</p>
+      <button class="btn btn-ghost btn-sm" data-go="cyklus/${esc(card.cycleId)}">Karta cyklu</button>
+    </div>
+    <h3 class="display" style="font-size:1.3rem;margin-top:.35rem">${esc(card.title)}</h3>
+
+    ${kroky ? `<ol class="ivfsteps">${kroky}</ol>` : ''}
+
+    ${
+      card.today || card.next
+        ? `<div class="ivfnow">
+            ${card.today ? `<p class="display" style="font-size:1.05rem">${esc(card.today)}</p>` : ''}
+            ${card.next ? `<p class="soft" style="margin-top:.2rem;font-size:.9375rem">${esc(card.next)}</p>` : ''}
+          </div>`
+        : ''
+    }
+
+    ${
+      card.frozen > 0 && !compact
+        ? `<p class="faint" style="margin-top:.9rem;font-size:.8125rem">
+            ${esc(plural(card.frozen, 'zamražené embryo', 'zamražená embrya', 'zamražených embryí'))} k dalšímu transferu.
+          </p>`
+        : ''
+    }
+  </section>`
+}
+
+// ================================================================ trychtýř ===
+
+/**
+ * Co se stalo s mými vajíčky.
+ *
+ * Čísla mezi kroky klesají a je to normální — jenom to nikdo neřekne nahlas.
+ * Když stojí pod sebou s proporčním pruhem, je ten pokles vidět jako tvar
+ * cesty, ne jako řada ztrát.
+ */
+export function funnelBlock(cycleId: string): string {
+  const kroky: FunnelStep[] = funnel(cycleId)
+  if (kroky.length < 2) return ''
+  const max = Math.max(...kroky.map((k) => k.count), 1)
+
+  return `<section class="surface pad rise">
+    <p class="eyebrow">Co se stalo s mými vajíčky</p>
+    <ol class="funnel">
+      ${kroky
+        .map(
+          (k) => `<li>
+            <span class="n">${k.count}</span>
+            <span class="bar"><i style="width:${Math.max(4, Math.round((k.count / max) * 100))}%"></i></span>
+            <span class="lbl">${esc(k.label)}${k.note ? `<em>${esc(k.note)}</em>` : ''}</span>
+          </li>`,
+        )
+        .join('')}
+    </ol>
+    <p class="faint" style="margin-top:1rem;font-size:.8125rem;line-height:1.55">
+      Že čísla mezi kroky klesají, je běžné — ne v každém folikulu je vajíčko,
+      ne každé se oplodní a ne každé embryo doroste dál. Není to seznam ztrát,
+      je to tvar cesty.
+    </p>
+  </section>`
 }
 
 // ============================================================== transfery ===
@@ -408,6 +523,139 @@ export function screenTransfery(): string {
     note(
       'Přehled je součet toho, co máte zapsané. Co z něj plyne pro další krok, patří vašemu lékaři — aplikace nic nevyhodnocuje.',
     ),
+  ].join('')
+}
+
+// ========================================================== tabulka embryí ===
+
+/**
+ * Embrya v tabulce.
+ *
+ * Karty jsou dobré na vyplňování, ale na otázku „která embrya mám“ se
+ * odpovídá pohledem, ne scrollováním. Tabulka je proto první a karty
+ * pod ní. Na úzkém displeji se posouvá do stran ve vlastním rámu —
+ * stránka jako celek nikdy.
+ */
+export function embryoTable(list: Embryo[]): string {
+  if (list.length === 0) return ''
+
+  const radek = (e: Embryo) => {
+    const last = lastDay(e)
+    return `<tr>
+      <td><button class="linkish" data-act="emb-open" data-arg="${esc(e.id)}">${esc(embryoTitle(e))}</button></td>
+      <td class="num">${last ? `D${last.day}` : DASH}</td>
+      <td>${last && last.stage ? esc(STAGE_LABEL[last.stage]) : DASH}</td>
+      <td>${last?.grade.trim() ? esc(last.grade) : DASH}</td>
+      <td>${e.pgt ? esc(PGT_LABEL[e.pgt]) + (e.pgtResult ? `<br><span class="faint">${esc(PGT_RESULT_LABEL[e.pgtResult])}</span>` : '') : DASH}</td>
+      <td><span class="badge badge-soft">${esc(FATE_LABEL[e.fate])}</span></td>
+    </tr>`
+  }
+
+  return `<div class="tablewrap">
+    <table class="datatable">
+      <thead>
+        <tr><th>Embryo</th><th>Den</th><th>Stadium</th><th>Hodnocení</th><th>Genetika</th><th>Stav</th></tr>
+      </thead>
+      <tbody>${list.map(radek).join('')}</tbody>
+    </table>
+  </div>`
+}
+
+// ========================================================== moje klinika ===
+
+/** „Moje klinika“ — kontakty, které se hledají ve chvíli, kdy se hledat nedá. */
+export function screenKlinika(): string {
+  const c = clinic()
+
+  const telRow = (label: string, phone: string, zvyraznit = false) =>
+    phone.trim()
+      ? `<a class="btn ${zvyraznit ? 'btn-primary' : ''} btn-block" href="${esc(telHref(phone))}" style="margin-top:.6rem">
+          ${esc(label)} · ${esc(phone)}
+        </a>`
+      : ''
+
+  const kontakt = (k: ClinicContact, i: number) => `<div class="subcard">
+    <div class="row" style="justify-content:space-between;align-items:baseline;gap:.6rem">
+      <p class="label" style="margin:0">${esc(k.role || `Kontakt ${i + 1}`)}</p>
+      <button type="button" class="btn btn-ghost btn-sm" data-act="clinic-contact-del" data-arg="${i}">Smazat</button>
+    </div>
+    <div class="two" style="margin-top:.9rem">
+      ${textField(`ct-${i}-role`, 'Role', k.role, 'lékař, embryolog, sestra…')}
+      ${textField(`ct-${i}-name`, 'Jméno', k.name, 'MUDr. …')}
+    </div>
+    <div class="two" style="margin-top:1.1rem">
+      ${textField(`ct-${i}-phone`, 'Telefon', k.phone, '+420…')}
+      ${textField(`ct-${i}-email`, 'E-mail', k.email, '')}
+    </div>
+    <div style="margin-top:1.1rem">
+      ${textField(`ct-${i}-note`, 'Poznámka', k.note, 'kdy je k zastižení, na co se ptát')}
+    </div>
+    ${telRow('Zavolat', k.phone)}
+  </div>`
+
+  return [
+    head(
+      'Moje klinika',
+      c.name.trim() || 'Klinika',
+      'Kontakty na jednom místě. V šest ráno s bolestí břicha se číslo nehledá dobře — proto je tady i to, kam volat mimo ordinační hodiny.',
+    ),
+
+    hasClinic(c)
+      ? `<section class="surface pad rise">
+          <p class="eyebrow">Rychlý kontakt</p>
+          ${telRow('Zavolat na kliniku', c.phone, true)}
+          ${telRow('Mimo ordinační hodiny', c.emergencyPhone)}
+          ${
+            c.hours.trim()
+              ? `<p class="soft" style="margin-top:.9rem;font-size:.9375rem;line-height:1.6">${esc(c.hours)}</p>`
+              : ''
+          }
+          ${
+            c.instructions.trim()
+              ? `<div class="whybox" style="margin-top:1rem"><strong>Instrukce z kliniky:</strong> ${esc(c.instructions)}</div>`
+              : ''
+          }
+        </section>`
+      : '',
+
+    `<section class="surface pad rise">
+      <p class="eyebrow">Údaje kliniky</p>
+      <div class="two" style="margin-top:1rem">
+        ${textField('cl-name', 'Název kliniky', c.name, 'např. Repromeda')}
+        ${textField('cl-phone', 'Telefon', c.phone, '+420…')}
+      </div>
+      <div class="two" style="margin-top:1.1rem">
+        ${textField('cl-emergencyPhone', 'Telefon mimo ordinační hodiny', c.emergencyPhone, '', 'Číslo, které vám klinika dala pro akutní situace.')}
+        ${textField('cl-email', 'E-mail', c.email, '')}
+      </div>
+      <div class="two" style="margin-top:1.1rem">
+        ${textField('cl-address', 'Adresa', c.address, '')}
+        ${textField('cl-web', 'Web', c.web, '')}
+      </div>
+      <div style="margin-top:1.1rem">
+        ${textField('cl-hours', 'Ordinační hodiny', c.hours, 'po–pá 7–15, odběry do 9')}
+      </div>
+      <div style="margin-top:1.1rem">
+        ${areaField('cl-instructions', 'Důležité instrukce', c.instructions, 'Co vám klinika řekla, že máte dělat — a kdy volat.')}
+      </div>
+      <div style="margin-top:1.1rem">
+        ${areaField('cl-note', 'Vlastní poznámky', c.note, 'Kde parkovat, kterými dveřmi jít, jak se jmenuje sestra na recepci.')}
+      </div>
+      <button class="btn btn-primary btn-block" data-act="clinic-save" style="margin-top:1.3rem">Uložit</button>
+    </section>`,
+
+    `<section class="surface pad rise">
+      <p class="eyebrow">Lidé</p>
+      <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
+        Lékař, embryolog, sestra. Během léčby mluvíte s víc lidmi a každý řeší něco jiného.
+      </p>
+      ${c.contacts.map(kontakt).join('')}
+      <div class="chips" style="margin-top:1.1rem">
+        ${CONTACT_ROLES.map((r) => `<button data-act="clinic-contact-add" data-arg="${esc(r)}">+ ${esc(r)}</button>`).join('')}
+      </div>
+    </section>`,
+
+    note('Kontakty zůstávají ve vašem zařízení. Aplikace nikam nevolá ani nic neodesílá — jen připraví číslo k vytočení.'),
   ].join('')
 }
 
@@ -702,6 +950,111 @@ export function screenPodpora(): string {
       'Aplikace **neslibuje, že cokoli z tohohle zvýší šanci na otěhotnění.** Péče o sebe má smysl sama o sobě. Doplňky stravy nejsou automaticky vhodné pro každou — proberte je s klinikou, protože mohou zasahovat do léčby.',
     ),
   ].join('')
+}
+
+// ============================================================== výsledky ===
+
+/**
+ * Moje výsledky v čase.
+ *
+ * Jednotlivá hodnota nic neříká. AMH 1,4 je číslo; AMH 1,8 → 1,4 za rok
+ * je informace, se kterou se dá jít k lékaři. Stejně tak dvanáct vajíček
+ * v prvním cyklu a osm ve druhém.
+ *
+ * Aplikace ten rozdíl **nevykládá** — jen ho postaví vedle sebe. Co znamená,
+ * závisí na věku, protokolu, laboratoři a kontextu, který aplikace nemá.
+ */
+export function screenVysledky(): string {
+  const list = cycles()
+  const rady = labSeries()
+
+  const sipka = (a: number, b: number): string => (b > a ? '↑' : b < a ? '↓' : '→')
+
+  const radaBlok = (r: { key: string; name: string; unit: string; body: { onDate: string; value: number }[] }) => {
+    const prvni = r.body[0]
+    const posledni = r.body[r.body.length - 1]
+    return `<div class="surface" style="padding:1.05rem 1.2rem">
+      <div class="row wrap" style="justify-content:space-between;gap:.5rem;align-items:baseline">
+        <p style="font-weight:500">${esc(LAB_BY_KEY[r.key]?.name ?? r.name)}</p>
+        ${
+          r.body.length > 1
+            ? `<span class="faint num" style="font-size:.8125rem">${esc(czNum(prvni.value))} ${esc(sipka(prvni.value, posledni.value))} ${esc(czNum(posledni.value))} ${esc(LAB_BY_KEY[r.key]?.unit ?? r.unit)}</span>`
+            : `<span class="faint num" style="font-size:.8125rem">${esc(czNum(posledni.value))} ${esc(LAB_BY_KEY[r.key]?.unit ?? r.unit)}</span>`
+        }
+      </div>
+      <ul class="linelist" style="margin-top:.6rem">
+        ${r.body
+          .map(
+            (b) => `<li>
+              <span class="when">${esc(formatCzechDateShort(b.onDate))}</span>
+              <span style="flex:1;min-width:0" class="num">${esc(czNum(b.value))} ${esc(LAB_BY_KEY[r.key]?.unit ?? r.unit)}</span>
+            </li>`,
+          )
+          .join('')}
+      </ul>
+      <button class="btn btn-ghost btn-sm" data-go="hodnota/${esc(r.key)}" style="margin-top:.6rem">Co to je →</button>
+    </div>`
+  }
+
+  const cyklusBlok = (c: CycleRow) => {
+    const kroky = funnel(c.id)
+    if (kroky.length === 0) return ''
+    return `<div class="surface" style="padding:1.15rem 1.3rem">
+      <div class="row wrap" style="justify-content:space-between;gap:.5rem;align-items:baseline">
+        <p style="font-weight:500">${esc(cycleTitle(c))}</p>
+        <span class="badge badge-soft">${esc(OUTCOME_LABEL[c.outcome])}</span>
+      </div>
+      <p class="soft" style="margin-top:.5rem;font-size:.9375rem;line-height:1.65">
+        ${esc(kroky.map((k) => `${k.count} ${k.short}`).join('  →  '))}
+      </p>
+      <button class="btn btn-ghost btn-sm" data-go="cyklus/${esc(c.id)}" style="margin-top:.7rem">Karta cyklu</button>
+    </div>`
+  }
+
+  const maCykly = list.some((c) => funnel(c.id).length > 0)
+
+  if (rady.length === 0 && !maCykly) {
+    return [
+      head('Moje výsledky', 'Výsledky', 'Hodnoty a čísla z cyklů vedle sebe v čase.'),
+      empty(
+        'Zatím tu není co srovnávat',
+        'Až zapíšete první hodnoty ve Zdravotních datech nebo čísla z embryologie do cyklu, uvidíte tady jejich vývoj.',
+        '<button class="btn" data-go="zdravotni/laborator">Zapsat hodnotu</button>',
+        '◉',
+      ),
+    ].join('')
+  }
+
+  return [
+    head(
+      'Moje výsledky',
+      'Výsledky',
+      'Hodnoty a čísla z cyklů vedle sebe v čase. Jednotlivé číslo neřekne skoro nic — vývoj už ano.',
+    ),
+
+    rady.length
+      ? `<section style="margin-top:1.4rem">
+          ${sectionHead('Hodnoty v čase')}
+          <div class="stack" style="gap:.7rem">${rady.map(radaBlok).join('')}</div>
+        </section>`
+      : '',
+
+    maCykly
+      ? `<section style="margin-top:1.8rem">
+          ${sectionHead('Čísla z cyklů')}
+          <div class="stack" style="gap:.7rem">${list.map(cyklusBlok).join('')}</div>
+        </section>`
+      : '',
+
+    note(
+      'Aplikace čísla **nevykládá a nepočítá z nich žádné šance.** Co znamená rozdíl mezi dvěma odběry, závisí na věku, protokolu, laboratoři a kontextu, který zná jedině váš lékař.',
+    ),
+  ].join('')
+}
+
+/** České číslo — desetinná čárka, bez zbytečných nul. */
+function czNum(v: number): string {
+  return Number.isInteger(v) ? String(v) : v.toFixed(2).replace(/0+$/, '').replace(/\.$/, '').replace('.', ',')
 }
 
 // ================================================================ historie ===
