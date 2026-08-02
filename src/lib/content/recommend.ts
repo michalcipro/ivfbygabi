@@ -9,7 +9,7 @@ import type { ContentItem, ContentKind, DailyCard } from './types'
  *
  * Cíl: uživatelka nikdy nesmí vidět prázdnou obrazovku a nikdy nesmí vidět
  * dvakrát stejnou domovskou stránku. Zároveň musí být pořadí deterministické
- * v rámci jednoho dne — když aplikaci zavře a otevře, obsah se nepřehází.
+ * v rámci jednoho dne, když aplikaci zavře a otevře, obsah se nepřehází.
  *
  * Skóre = fáze × den × modifikátory × naučená témata × novost × kurátorský boost
  */
@@ -19,9 +19,9 @@ export interface Affinity {
   topics: Partial<Record<TopicId, number>>
   /** ID obsahu, který už viděla. */
   seen: Set<string>
-  /** ID obsahu v oblíbených — mírně zvyšuje příbuzný obsah. */
+  /** ID obsahu v oblíbených. Mírně zvyšuje příbuzný obsah. */
   saved: Set<string>
-  /** ID obsahu, který dnes už byl doporučen — kvůli rozmanitosti. */
+  /** ID obsahu, který dnes už byl doporučen, kvůli rozmanitosti. */
   usedToday?: Set<string>
 }
 
@@ -34,8 +34,8 @@ export const emptyAffinity = (): Affinity => ({
 /**
  * Jak blízko je aktuální den doporučenému rozsahu.
  *
- * Trefa do okna je cennější než obecný obsah bez rozsahu (proto > 1) —
- * článek napsaný přímo na 5. den po transferu má přednost před obecným
+ * Trefa do okna je cennější než obecný obsah bez rozsahu (proto > 1).
+ * Článek napsaný přímo na 5. den po transferu má přednost před obecným
  * článkem o čekání. Mimo okno hodnota rychle klesá.
  */
 function rangeAffinity(day: number, range: [number, number]): number {
@@ -111,7 +111,7 @@ export function scoreItem(
 export interface RecommendOptions {
   kind?: ContentKind | ContentKind[]
   limit?: number
-  /** Minimální skóre — brání doporučení zcela nerelevantního obsahu. */
+  /** Minimální skóre. Brání doporučení zcela nerelevantního obsahu. */
   threshold?: number
   /** Vyloučit konkrétní ID (např. už použitá v jiné řadě). */
   exclude?: Set<string>
@@ -154,7 +154,7 @@ export function recommend(
   return scored.slice(0, limit).map((s) => s.item)
 }
 
-/** Vybere denní kartu — nejpřesnější shoda na den vyhrává. */
+/** Vybere denní kartu. Nejpřesnější shoda na den vyhrává. */
 export function pickDailyCard(
   cards: readonly DailyCard[],
   state: JourneyState,
@@ -198,13 +198,13 @@ export function pickDailyCard(
 }
 
 /**
- * Sestaví „řady“ jako na Netflixu — každá s vlastním důvodem, proč tu je.
+ * Sestaví „řady“ jako na Netflixu. Každá s vlastním důvodem, proč tu je.
  * Řady se nesmí opakovat obsahem, proto se průběžně vylučuje, co už padlo.
  */
 export interface Rail {
   id: string
   title: string
-  /** „Protože jste 8 dní po transferu“ — tohle dělá ten Netflix pocit. */
+  /** „Protože jste 8 dní po transferu“. Tohle dělá ten Netflix pocit. */
   reason: string
   items: ContentItem[]
 }
@@ -256,7 +256,7 @@ export function buildRails(
     limit: 8,
   })
 
-  // Naučená témata — „protože často čtete o…“
+  // Naučená témata, „protože často čtete o…“
   const topTopic = Object.entries(affinity.topics)
     .sort((a, b) => (b[1] ?? 0) - (a[1] ?? 0))
     .find(([, v]) => (v ?? 0) > 0.3)?.[0] as TopicId | undefined

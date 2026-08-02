@@ -89,7 +89,7 @@ test('stimulace se pozná z jejího data', () => {
 
 test('poslední menstruace sama o sobě nedělá z uživatelky těhotnou', () => {
   // Rozsah aplikace končí u pozitivní bety. Fáze těhotenství neexistují,
-  // takže se z data menstruace nesmí odvodit — dřív se z něj počítal
+  // takže se z data menstruace nesmí odvodit. Dřív se z něj počítal
   // gestační týden a uživatelka spadla do fáze, která tu už není.
   const p = profileWith({ lastPeriodOn: '2026-01-01' })
   const phase = inferPhase(p, '2026-05-01')

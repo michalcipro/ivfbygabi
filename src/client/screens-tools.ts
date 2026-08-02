@@ -23,7 +23,7 @@ import { czechVoice, speechAvailable, speechState, toChunks } from './speech'
  * Přehrávač meditace.
  *
  * Aplikace nemá server a nahrávka dvanáctiminutové meditace by vážila víc než
- * všechno ostatní dohromady. Prohlížeč ale umí mluvit — a česky. Meditace se
+ * všechno ostatní dohromady. Prohlížeč ale umí mluvit. A česky. Meditace se
  * proto předčítá. Není to studiová nahrávka a obrazovka to říká rovnou;
  * předstírat něco jiného by bylo horší než ta věc sama.
  *
@@ -35,7 +35,7 @@ function audioPlayer(item: ContentItem): string {
     return `<div class="player">
       <p class="eyebrow">Poslech</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
-        Váš prohlížeč neumí číst nahlas. Scénář níž je celý — dá se přečíst
+        Váš prohlížeč neumí číst nahlas. Scénář níž je celý. Dá se přečíst
         očima nebo si ho někdo může přečíst nahlas vám.
       </p>
     </div>`
@@ -62,7 +62,7 @@ function audioPlayer(item: ContentItem): string {
     </div>
     <p class="faint" id="say-voice" style="margin-top:.75rem;font-size:.8125rem;line-height:1.55">${
       czechVoice()
-        ? 'Čte hlas vašeho zařízení, ne nahrané studio. Mezi větami se dělají pauzy — jsou součástí meditace.'
+        ? 'Čte hlas vašeho zařízení, ne nahrané studio. Mezi větami se dělají pauzy. Jsou součástí meditace.'
         : 'České hlasy se ještě načítají, nebo je zařízení nemá. Bez nich zní výslovnost divně; text níž je celý.'
     }</p>
   </div>`
@@ -84,7 +84,7 @@ function videoBlock(item: ContentItem): string {
   return `<div class="player">
     <p class="eyebrow">Video se připravuje</p>
     <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
-      Natáčí se. Než bude hotové, je níž celý přepis — je v něm všechno, co
+      Natáčí se. Než bude hotové, je níž celý přepis. Je v něm všechno, co
       ve videu uslyšíte a uvidíte.
     </p>
   </div>`
@@ -268,7 +268,7 @@ export function screenKnihovna(query: string, kind: string): string {
           <div class="grid-cards">${items.slice(0, 60).map((i) => contentCard(i)).join('')}</div>
           ${items.length > 60 ? `<p class="faint center" style="font-size:.8125rem;margin-top:1rem">Zobrazeno prvních 60 z ${items.length}. Zkuste hledání zúžit.</p>` : ''}
         </section>`
-      : empty('Nic se nenašlo', 'Zkuste kratší slovo nebo jiný výraz — hledáme i v textu článků.'),
+      : empty('Nic se nenašlo', 'Zkuste kratší slovo nebo jiný výraz. Hledáme i v textu článků.'),
   ].join('')
 }
 
@@ -281,7 +281,7 @@ export function screenChecklisty(): string {
   if (lists.length === 0) {
     return [
       head('Ať na nic nezapomenete', 'Checklisty', 'Pro vaši fázi tu zatím žádný není.'),
-      empty('Zatím nic', 'Checklisty se objeví, jakmile se dostanete do fáze, kde jsou potřeba — před odběrem, před porodem, do porodnice.'),
+      empty('Zatím nic', 'Checklisty se objeví, jakmile se dostanete do fáze, kde jsou potřeba. Před odběrem, před porodem, do porodnice.'),
     ].join('')
   }
 
@@ -314,7 +314,7 @@ export function screenChecklisty(): string {
  *
  * Praktická databáze pro chvíle, kdy se něco stane a je půl jedenácté večer.
  * Každá odpověď rozlišuje tři věci, a to pořadí je záměrné: co bývá běžné,
- * co probrat s klinikou a **kdy volat hned**. Aplikace nediagnostikuje —
+ * co probrat s klinikou a **kdy volat hned**. Aplikace nediagnostikuje,
  * jen říká, kdy přestat číst a začít vytáčet číslo.
  */
 export function screenCoKdyz(): string {
@@ -325,7 +325,7 @@ export function screenCoKdyz(): string {
       head('Co když…', 'Co když…', 'Praktické odpovědi na to, co se stane mimo ordinační hodiny.'),
       empty(
         'Tahle část se ještě připravuje',
-        'Zatím zkuste knihovnu nebo hledání — a když jde o akutní stav, volejte přímo klinice.',
+        'Zatím zkuste knihovnu nebo hledání. A když jde o akutní stav, volejte přímo klinice.',
         '<button class="btn" data-go="knihovna">Otevřít knihovnu</button>',
         '?',
       ),
@@ -342,7 +342,7 @@ export function screenCoKdyz(): string {
     `<div class="doctorbox">
       <p style="font-size:.9375rem;line-height:1.65">
         Při silné bolesti břicha, silném krvácení, dušnosti, horečce nebo kolapsu
-        nečtěte — volejte svou kliniku. Mimo její hodiny záchrannou službu na 155.
+        nečtěte. Volejte svou kliniku. Mimo její hodiny záchrannou službu na 155.
       </p>
     </div>`,
 
@@ -361,7 +361,7 @@ export function screenCoKdyz(): string {
         .join('')}
     </div>`,
 
-    note('Texty jsou obecné. O vaší situaci rozhoduje vaše klinika — aplikace ji nenahrazuje.'),
+    note('Texty jsou obecné. O vaší situaci rozhoduje vaše klinika. Aplikace ji nenahrazuje.'),
   ].join('')
 }
 
@@ -370,8 +370,8 @@ export function screenCoKdyz(): string {
 /**
  * Hledání v aplikaci.
  *
- * Deterministické. Projde všechno, co v aplikaci je — články, pojmy, rady
- * z průvodců fázemi, diagnózy, doplňky, hodnoty — a vrátí to, co se shoduje.
+ * Deterministické. Projde všechno, co v aplikaci je. Články, pojmy, rady
+ * z průvodců fázemi, diagnózy, doplňky, hodnoty. A vrátí to, co se shoduje.
  * Nikam se nic neodesílá, nic se negeneruje a nic se nedopočítává: když se
  * něco nenajde, znamená to, že to tu není. Vymyšlená odpověď by v léčbě byla
  * horší než přiznaná mezera.
@@ -402,12 +402,12 @@ export function screenHledat(query: string): string {
       ? `<div class="empty">
           <p class="mark">✦</p>
           <h3 class="display">Co hledáte?</h3>
-          <p>Stačí jedno slovo — „OHSS“, „progesteron“, „hatching“ — nebo celá otázka.</p>
+          <p>Stačí jedno slovo („OHSS“, „progesteron“, „hatching“) nebo celá otázka.</p>
         </div>`
       : hits.length === 0
         ? empty(
             'K tomuhle tu zatím nic není',
-            'Zkuste to napsat jinak nebo kratším slovem. Když se nic nenajde, znamená to, že tenhle obsah v aplikaci ještě není — nic si nedomýšlíme.',
+            'Zkuste to napsat jinak nebo kratším slovem. Když se nic nenajde, znamená to, že tenhle obsah v aplikaci ještě není. Nic si nedomýšlíme.',
             '<button class="btn" data-go="knihovna">Otevřít knihovnu</button>',
           )
         : groupHits(hits)
@@ -423,7 +423,7 @@ export function screenHledat(query: string): string {
     head(
       'Hledání',
       'Najít v aplikaci',
-      'Napište klíčové slovo nebo otázku. Prohledá se všechno, co v aplikaci je — články, pojmy, rady, diagnózy, doplňky i hodnoty.',
+      'Napište klíčové slovo nebo otázku. Prohledá se všechno, co v aplikaci je. Články, pojmy, rady, diagnózy, doplňky i hodnoty.',
     ),
 
     flag
@@ -435,7 +435,7 @@ export function screenHledat(query: string): string {
     q.length >= 2 && hits.length > 0
       ? `<p class="faint" style="margin-top:.8rem;font-size:.8125rem">${esc(
           plural(hits.length, 'výsledek', 'výsledky', 'výsledků'),
-        )}${hits.some((h) => h.phase === state.phase.id) ? ' — nahoře je to, co patří k vaší fázi' : ''}</p>`
+        )}${hits.some((h) => h.phase === state.phase.id) ? '. Nahoře je to, co patří k vaší fázi' : ''}</p>`
       : '',
 
     vysledky,
@@ -448,7 +448,7 @@ export function screenHledat(query: string): string {
     </section>`,
 
     note(
-      'Hledání **nechodí na internet a nic negeneruje.** Ukazuje jen to, co je v aplikaci. **Nenahrazuje lékaře** — o vaší léčbě rozhoduje váš tým na klinice.',
+      'Hledání **nechodí na internet a nic negeneruje.** Ukazuje jen to, co je v aplikaci. **Nenahrazuje lékaře**: o vaší léčbě rozhoduje váš tým na klinice.',
     ),
   ].join('')
 }

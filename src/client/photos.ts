@@ -10,17 +10,17 @@ import type { PhotoRef } from '../lib/domain/cycle'
  * -------------------------------------------------------------- PROČ ZVLÁŠŤ ---
  * Zbytek aplikace žije v localStorage. Fotky tam být nesmí: limit je kolem
  * pěti megabajtů na celý původ a jedna fotka z mobilu je klidně čtyři. Kdyby
- * se tam ukládaly, `save()` by při prvním překročení tiše selhalo — a s ním by
+ * se tam ukládaly, `save()` by při prvním překročení tiše selhalo. A s ním by
  * se přestal ukládat deník, léky i cykly. Ztráta celého záznamu léčby kvůli
  * jedné fotce je nepřijatelná cena.
  *
  * Proto obrázky leží v IndexedDB, kde je místa řádově víc, a v localStorage
- * zůstává jen `PhotoRef` — id a název. Když IndexedDB není k dispozici
+ * zůstává jen `PhotoRef`. Id a název. Když IndexedDB není k dispozici
  * (privátní režim, staré zařízení), fotky žijí jen v paměti do zavření
  * záložky a `photosPersist()` vrátí `false`, aby to obrazovka mohla říct
  * nahlas místo aby předstírala uložení.
  *
- * Nic neodchází ze zařízení — stejně jako u zbytku dat.
+ * Nic neodchází ze zařízení. Stejně jako u zbytku dat.
  */
 
 const DB_NAME = 'ivf-by-gabi/photos'
@@ -215,6 +215,6 @@ export function removePhoto(id: string): void {
   try {
     db.transaction(STORE, 'readwrite').objectStore(STORE).delete(id)
   } catch {
-    // Smazaná z paměti stačí — na obrazovce už není a odkaz na ni taky ne.
+    // Smazaná z paměti stačí. Na obrazovce už není a odkaz na ni taky ne.
   }
 }

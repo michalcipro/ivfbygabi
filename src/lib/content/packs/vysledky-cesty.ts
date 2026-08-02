@@ -4,8 +4,8 @@ import type { ContentItem, ContentPack } from '../types'
  * Výsledky, které nekončí pozitivním testem.
  *
  * Nejcitlivější balík v knihovně. Platí tu jedno pravidlo navíc: text nikdy
- * nezačíná plánem. Nejdřív se pojmenuje, co se stalo, a teprve pak — a jen
- * pokud to dává smysl — se otevírá otázka, co může následovat.
+ * nezačíná plánem. Nejdřív se pojmenuje, co se stalo, a teprve pak. A jen
+ * pokud to dává smysl. Se otevírá otázka, co může následovat.
  */
 
 const items: ContentItem[] = [
@@ -44,15 +44,15 @@ Při odběru se odsává obsah folikulů. Ne v každém folikulu ale vajíčko j
 
 ### Nedošlo k oplodnění
 
-Vajíčko a spermie se spojit nemusí — ani při klasickém IVF, ani po ICSI, kdy embryolog spermii do vajíčka zavádí. Někdy se oplodnění nezdaří u části vajíček, někdy u všech. Příčina může být na straně vajíčka, na straně spermie, nebo se ji nepodaří určit vůbec.
+Vajíčko a spermie se spojit nemusí, ani při klasickém IVF, ani po ICSI, kdy embryolog spermii do vajíčka zavádí. Někdy se oplodnění nezdaří u části vajíček, někdy u všech. Příčina může být na straně vajíčka, na straně spermie, nebo se ji nepodaří určit vůbec.
 
 ### Vývoj se zastavil
 
-Embrya se v laboratoři sledují postupně od 1. do 6. dne vývoje. Zastavení může přijít kdykoli v průběhu — druhý den, čtvrtý den, těsně před dosažením stadia blastocysty. Není to chyba v manipulaci; je to vývojová kapacita konkrétního embrya, která se v těchto dnech projeví.
+Embrya se v laboratoři sledují postupně od 1. do 6. dne vývoje. Zastavení může přijít kdykoli v průběhu. Druhý den, čtvrtý den, těsně před dosažením stadia blastocysty. Není to chyba v manipulaci; je to vývojová kapacita konkrétního embrya, která se v těchto dnech projeví.
 
 ### Žádné embryo nebylo vhodné k přenosu ani ke zmrazení
 
-Někdy embrya vzniknou a vyvíjejí se, ale jejich stav neumožňuje přenos ani zmrazení. Kritéria se mezi pracovišti mírně liší a rozhoduje o nich embryolog na základě toho, co pod mikroskopem vidí. Zeptejte se, jaká kritéria použila právě vaše laboratoř — máte na to nárok.
+Někdy embrya vzniknou a vyvíjejí se, ale jejich stav neumožňuje přenos ani zmrazení. Kritéria se mezi pracovišti mírně liší a rozhoduje o nich embryolog na základě toho, co pod mikroskopem vidí. Zeptejte se, jaká kritéria použila právě vaše laboratoř. Máte na to nárok.
 
 ## Co se z toho dá a nedá vyčíst
 
@@ -62,7 +62,7 @@ Neukázal ale, jak dopadne jiný cyklus s jiným protokolem. Jeden cyklus je jed
 
 ## Co bývá dalším krokem
 
-Obvykle následuje konzultace, na které se probírá průběh stimulace, výsledky z laboratoře a to, co by se dalo v dalším cyklu nastavit jinak. Co konkrétně přichází v úvahu ve vaší situaci, řekne váš lékař — záleží na věku, ovariální rezervě, spermiogramu, na tom, kolikátý cyklus to byl, i na tom, co jste ochotná podstoupit.
+Obvykle následuje konzultace, na které se probírá průběh stimulace, výsledky z laboratoře a to, co by se dalo v dalším cyklu nastavit jinak. Co konkrétně přichází v úvahu ve vaší situaci, řekne váš lékař. Záleží na věku, ovariální rezervě, spermiogramu, na tom, kolikátý cyklus to byl, i na tom, co jste ochotná podstoupit.
 
 Rozhodnutí o dalším postupu nemusíte dělat dnes ani tento týden.
 
@@ -115,7 +115,7 @@ Na většině pracovišť je možné si rozhovor s embryologem vyžádat, i kdy�
 
 1. Jakou metodou se vajíčka oplodňovala a proč právě touto?
 2. Kolik vajíček se oplodnilo?
-3. Když se neoplodnilo žádné nebo jen málo — co pro to podle vás mluví? Vajíčko, spermie, obojí, nebo se to určit nedá?
+3. Když se neoplodnilo žádné nebo jen málo. Co pro to podle vás mluví? Vajíčko, spermie, obojí, nebo se to určit nedá?
 4. Byl vzorek spermií v den odběru srovnatelný s předchozími vyšetřeními?
 
 ## Otázky k vývoji embryí
@@ -154,7 +154,7 @@ Poproste o kopii embryologického protokolu nebo aspoň o čísla: počet získa
 
 Vezměte si s sebou napsané:
 
-1. průběh stimulace — jaké léky, jaké dávky, kolik dní,
+1. průběh stimulace. Jaké léky, jaké dávky, kolik dní,
 2. hodnoty z kontrol, pokud je máte,
 3. počet folikulů před odběrem,
 4. čísla z laboratoře (získaná vajíčka, zralá, oplozená, den zastavení vývoje),
@@ -166,7 +166,7 @@ Ty tři otázky napište nahoru. Konzultace mají tendenci utéct k organizaci a
 
 - Jak si vysvětlujete průběh tohoto cyklu?
 - Reagovaly vaječníky tak, jak jste čekal, nebo jinak?
-- Kde vidíte hlavní úzké místo — počet vajíček, jejich zralost, oplodnění, nebo vývoj embryí?
+- Kde vidíte hlavní úzké místo. Počet vajíček, jejich zralost, oplodnění, nebo vývoj embryí?
 - Je něco, co by mohlo naznačovat, že se to bude opakovat?
 
 ## Otázky k dalšímu cyklu
@@ -216,15 +216,15 @@ Pokud odcházíte s pocitem, že jste nedostala odpovědi, není nevěrnost pož
 
 Skoro každá žena po neúspěšném cyklu prochází vlastní minulost jako vyšetřovatel. Ta káva. Ta cesta autem. Ta hádka. Ten den, kdy jsem si píchla injekci o dvacet minut později. Ta noc, kdy jsem nespala.
 
-Je to pochopitelné. Hledání viny je pokus získat zpátky kontrolu nad něčím, co kontrolovat nešlo. Kdyby to byla vaše chyba, dalo by se to příště změnit — a to je snesitelnější než náhoda.
+Je to pochopitelné. Hledání viny je pokus získat zpátky kontrolu nad něčím, co kontrolovat nešlo. Kdyby to byla vaše chyba, dalo by se to příště změnit. A to je snesitelnější než náhoda.
 
 Ta úleva je ale falešná a stojí hodně.
 
 ## Kde se rozhoduje o potenciálu embrya
 
-Vajíčko, které se v tomto cyklu odebralo, dozrávalo měsíce. Jeho základ vznikl ještě dřív — vaječníky si zásobu vajíček nesou od doby, kdy jste sama byla plodem v děloze své matky.
+Vajíčko, které se v tomto cyklu odebralo, dozrávalo měsíce. Jeho základ vznikl ještě dřív. Vaječníky si zásobu vajíček nesou od doby, kdy jste sama byla plodem v děloze své matky.
 
-Zásadní část toho, jestli bude mít embryo správnou chromozomální výbavu, se odehraje při dělení vajíčka a při spojení se spermií. Jde o proces, který probíhá na úrovni buňky a který nelze ovlivnit chováním v týdnech před odběrem ani v průběhu stimulace. Podíl vajíček s chromozomální odchylkou přirozeně roste s věkem — u všech žen, bez ohledu na životní styl.
+Zásadní část toho, jestli bude mít embryo správnou chromozomální výbavu, se odehraje při dělení vajíčka a při spojení se spermií. Jde o proces, který probíhá na úrovni buňky a který nelze ovlivnit chováním v týdnech před odběrem ani v průběhu stimulace. Podíl vajíček s chromozomální odchylkou přirozeně roste s věkem. U všech žen, bez ohledu na životní styl.
 
 Podobně platí, že spermie dozrávají zhruba tři měsíce. To, co se dělo minulý týden, na jejich výbavu vliv nemá.
 
@@ -247,7 +247,7 @@ Uslyšíte je od dobře míněných lidí a nemusíte na ně nijak reagovat:
 - „Kdyby sis tolik nepřipouštěla stres.“
 - „Známý zná někoho, kdo…“
 
-Stres a psychika nejsou důvodem, proč se embryo nevyvinulo. Kdyby to tak bylo, nikdo z lidí v těžkých životních situacích by nikdy neotěhotněl — a to zjevně neplatí.
+Stres a psychika nejsou důvodem, proč se embryo nevyvinulo. Kdyby to tak bylo, nikdo z lidí v těžkých životních situacích by nikdy neotěhotněl. A to zjevně neplatí.
 
 ## Co s tou vinou dělat
 
@@ -287,7 +287,7 @@ Odložení transferu bývá rozhodnutí ve prospěch bezpečí nebo ve prospěch
 
 ### Stav endometria
 
-Sliznice se nemusí připravit tak, jak se čekalo — může být tenčí, nerovnoměrná, nebo naopak nese nález, který je potřeba nejdřív objasnit. Přenos do sliznice, která není připravená, se obvykle nepovažuje za dobré řešení.
+Sliznice se nemusí připravit tak, jak se čekalo. Může být tenčí, nerovnoměrná, nebo naopak nese nález, který je potřeba nejdřív objasnit. Přenos do sliznice, která není připravená, se obvykle nepovažuje za dobré řešení.
 
 ### Hormonální hladiny
 
@@ -299,7 +299,7 @@ Po silnější reakci na stimulaci může být riziko ovariálního hyperstimula
 
 ### Váš zdravotní stav
 
-Horečka, infekce, akutní onemocnění nebo nález, který vyžaduje nejdřív léčbu — to všechno může transfer odsunout. Někdy jde o dny, jindy o cyklus.
+Horečka, infekce, akutní onemocnění nebo nález, který vyžaduje nejdřív léčbu. To všechno může transfer odsunout. Někdy jde o dny, jindy o cyklus.
 
 ### Vývoj embryí
 
@@ -311,13 +311,13 @@ Bývá to nejvíc frustrující varianta. Změna programu laboratoře, nedostupn
 
 ## Co zrušení znamená pro cyklus
 
-Většinou to neznamená konec cyklu. Jeden IVF cyklus může mít víc transferů — čerstvý i následné kryotransfery z embryí zamrazených ve stejném cyklu. Když se čerstvý přenos odloží, zásoba embryí zůstává a přenos se plánuje do některého z dalších cyklů.
+Většinou to neznamená konec cyklu. Jeden IVF cyklus může mít víc transferů. Čerstvý i následné kryotransfery z embryí zamrazených ve stejném cyklu. Když se čerstvý přenos odloží, zásoba embryí zůstává a přenos se plánuje do některého z dalších cyklů.
 
 Jak dlouhá pauza to bude a co všechno se do ní vejde, řekne vaše klinika. Záleží na důvodu odložení.
 
 ## Co s tímhle dnem
 
-Nemusíte být hned praktická. Ale jedna praktická věc se hodí ještě dnes: zapište si, co přesně vám řekli — datum, důvod, jméno člověka, který volal, a co se má stát dál. Za týden si z toho budete pamatovat jen tón hlasu.
+Nemusíte být hned praktická. Ale jedna praktická věc se hodí ještě dnes: zapište si, co přesně vám řekli. Datum, důvod, jméno člověka, který volal, a co se má stát dál. Za týden si z toho budete pamatovat jen tón hlasu.
 
 ## Kdy kontaktovat kliniku
 
@@ -350,17 +350,17 @@ Doba skladování sama o sobě nezhoršuje stav embrya. To, co rozhoduje, je sta
 
 ## Co se děje při rozmrazení
 
-Před plánovaným přenosem se embryo rozmrazí a laboratoř zkontroluje, jak zmrazení a rozmrazení přečkalo. Většina embryí tento krok zvládne, ale ne všechna — a to je informace, kterou byste měla mít dopředu, aby vás v den přenosu nepřekvapila.
+Před plánovaným přenosem se embryo rozmrazí a laboratoř zkontroluje, jak zmrazení a rozmrazení přečkalo. Většina embryí tento krok zvládne, ale ne všechna. A to je informace, kterou byste měla mít dopředu, aby vás v den přenosu nepřekvapila.
 
 Zeptejte se své laboratoře, jaká je jejich vlastní zkušenost s přežíváním embryí po rozmrazení a kolik embryí obvykle rozmrazují najednou.
 
 ## Odložení bez zmrazení
 
-Někdy se přenos jen posune o den nebo dva v rámci probíhající kultivace — například když se embrya vyvíjejí jinak, než se čekalo. V takovém případě ke zmrazení nedojde a přenos se uskuteční v tomtéž cyklu.
+Někdy se přenos jen posune o den nebo dva v rámci probíhající kultivace, například když se embrya vyvíjejí jinak, než se čekalo. V takovém případě ke zmrazení nedojde a přenos se uskuteční v tomtéž cyklu.
 
 ## Co znamená „zásoba embryí“
 
-Embrya zamrazená v jednom cyklu se dají použít pro víc přenosů. Jeden IVF cyklus tak nemusí znamenat jeden transfer — z jednoho odběru může vzejít čerstvý přenos i několik následných kryotransferů. Když se čerstvý přenos odloží, zásoba zůstává nedotčená.
+Embrya zamrazená v jednom cyklu se dají použít pro víc přenosů. Jeden IVF cyklus tak nemusí znamenat jeden transfer. Z jednoho odběru může vzejít čerstvý přenos i několik následných kryotransferů. Když se čerstvý přenos odloží, zásoba zůstává nedotčená.
 
 ## Praktické věci, které se snadno přehlédnou
 
@@ -413,7 +413,7 @@ Mějte u sebe papír a rovnou si píšte odpovědi.
 ## Co bude dál
 
 1. Kdy nejdřív se dá plánovat další přenos?
-2. Co se do té doby musí stát — vyšetření, léčba, jeden cyklus pauzy?
+2. Co se do té doby musí stát. Vyšetření, léčba, jeden cyklus pauzy?
 3. Jaká příprava sliznice se bude používat a proč právě ta?
 4. Kdo mi dá termín a kdy se mám ozvat?
 
@@ -461,7 +461,7 @@ Není potřeba to zmenšovat. Nikdo vás nemusí přesvědčovat, že to nebylo 
 ## Co je normální dnes cítit
 
 - Nic. Otupělost je běžná první reakce a neznamená, že vám to je jedno.
-- Vztek — na tělo, na kliniku, na těhotné kamarádky, na svět.
+- Vztek. Na tělo, na kliniku, na těhotné kamarádky, na svět.
 - Úlevu, že skončilo čekání. I ta se objevuje a není za ni potřeba se stydět.
 - Stud, jako byste selhala. Tenhle pocit je častý a není pravdivý.
 - Všechno najednou a během jedné hodiny.
@@ -480,7 +480,7 @@ To je celý dnešní seznam.
 
 ## Až budete chtít vědět, co dál
 
-Až budete chtít — dnes, za týden, nikdy — je dobré vědět tohle.
+Až budete chtít (dnes, za týden, nikdy) je dobré vědět tohle.
 
 **S léky nic nedělejte sama.** Progesteron a další podpora se vysazují podle pokynu lékaře, ne podle výsledku testu. Zavolejte na kliniku a zeptejte se, co s medikací.
 
@@ -506,7 +506,7 @@ Při náhlé prudké bolesti, závrati nebo kolapsu vyhledejte akutní lékařsk
     kind: 'article',
     title: 'Co se dá z neúspěšného transferu vyčíst a co ne',
     excerpt:
-      'Poctivá odpověď na otázku „proč se nezahnízdilo“ — včetně toho, kde odpověď neexistuje.',
+      'Poctivá odpověď na otázku „proč se nezahnízdilo“. Včetně toho, kde odpověď neexistuje.',
     minutes: 7,
     phases: ['waiting_next_attempt'],
     topics: ['vysledky', 'klinika'],
@@ -542,13 +542,13 @@ To jsou stavební kameny pro rozhodování o dalším postupu. Nejsou to odpově
 
 ## Proč se embryo nemusí uchytit
 
-Nejčastěji se uvádí chromozomální výbava embrya — část embryí, která vypadají pod mikroskopem dobře, nese odchylku neslučitelnou s dalším vývojem. Podíl takových embryí přirozeně roste s věkem ženy v době odběru vajíček.
+Nejčastěji se uvádí chromozomální výbava embrya. Část embryí, která vypadají pod mikroskopem dobře, nese odchylku neslučitelnou s dalším vývojem. Podíl takových embryí přirozeně roste s věkem ženy v době odběru vajíček.
 
 Roli může hrát i stav sliznice, načasování přenosu vůči okně vnímavosti, prostředí dělohy nebo faktory, které zatím neumíme popsat. U konkrétní ženy se ale obvykle nedá říct, který z těchto faktorů rozhodl.
 
 ## Kdy se začíná pátrat víc
 
-Rozsáhlejší vyšetřování se obvykle zvažuje až po opakovaných neúspěšných přenosech kvalitních embryí, ne po prvním. Kde přesně je ta hranice, se mezi pracovišti liší a záleží na individuální situaci — na věku, počtu embryí, jejich stadiu a na tom, jestli byla geneticky testována.
+Rozsáhlejší vyšetřování se obvykle zvažuje až po opakovaných neúspěšných přenosech kvalitních embryí, ne po prvním. Kde přesně je ta hranice, se mezi pracovišti liší a záleží na individuální situaci. Na věku, počtu embryí, jejich stadiu a na tom, jestli byla geneticky testována.
 
 ## Co s tím prakticky
 
@@ -579,7 +579,7 @@ Příprava tenhle problém řeší lépe než odhodlání. Papír v ruce vydrž�
 
 ## Co si vzít s sebou
 
-1. Přehled cyklu — protokol, dávky, počet dní stimulace.
+1. Přehled cyklu. Protokol, dávky, počet dní stimulace.
 2. Čísla z laboratoře: získaná vajíčka, zralá, oplozená, vývoj embryí po dnech, kolik embryí bylo zmrazeno.
 3. Údaje o přenosu: datum, stadium přeneseného embrya, jak přenos technicky proběhl.
 4. Hodnoty před přenosem, pokud je máte.
@@ -628,7 +628,7 @@ Stává se to. Někdy proto, že odpověď zněla „nevíme“, jindy proto, ž
     kind: 'article',
     title: 'Kdy má smysl další kryotransfer a kdy nový cyklus',
     excerpt:
-      'Přehled toho, co lékař při tomto rozhodování zvažuje. Bez doporučení — rozhodnutí patří vám a vaší klinice.',
+      'Přehled toho, co lékař při tomto rozhodování zvažuje. Bez doporučení. Rozhodnutí patří vám a vaší klinice.',
     minutes: 7,
     phases: ['waiting_next_attempt'],
     topics: ['klinika', 'vysledky'],
@@ -647,13 +647,13 @@ Nejde o lepší a horší variantu. Jde o dvě různé situace s různým smysle
 
 ## Připomínka, která se hodí
 
-Jeden IVF cyklus není totéž co jeden transfer. Z jednoho odběru vajíček může vzejít čerstvý přenos i několik následných kryotransferů z embryí zamrazených ve stejném cyklu. Když mluvíte o „dalším pokusu“, je dobré si ujasnit, jestli myslíte další přenos, nebo celý nový cyklus — pro plánování, peníze i pro tělo je to zásadní rozdíl.
+Jeden IVF cyklus není totéž co jeden transfer. Z jednoho odběru vajíček může vzejít čerstvý přenos i několik následných kryotransferů z embryí zamrazených ve stejném cyklu. Když mluvíte o „dalším pokusu“, je dobré si ujasnit, jestli myslíte další přenos, nebo celý nový cyklus. Pro plánování, peníze i pro tělo je to zásadní rozdíl.
 
 ## Co lékař zvažuje u dalšího kryotransferu
 
 - **Kolik embryí máte zamrazených a v jakém stadiu.** Zásoba je hlavní vstupní informace.
 - **Jak byla embrya hodnocena** a jestli prošla genetickým testováním.
-- **Jak proběhl předchozí přenos** — jestli byl technicky hladký, jak vypadala sliznice, jaké byly hormonální hodnoty.
+- **Jak proběhl předchozí přenos**: jestli byl technicky hladký, jak vypadala sliznice, jaké byly hormonální hodnoty.
 - **Jestli je co změnit v přípravě sliznice.** Existuje víc způsobů přípravy a přechod mezi nimi je běžná úvaha.
 - **Váš zdravotní stav a čas.** Kryotransfer bývá pro tělo méně zatěžující než celý cyklus se stimulací.
 
@@ -661,7 +661,7 @@ Jeden IVF cyklus není totéž co jeden transfer. Z jednoho odběru vajíček m�
 
 - **Že zamrazená embrya došla** nebo jich zbývá málo.
 - **Váš věk a ovariální rezervu**, tedy jestli má smysl s dalším odběrem čekat.
-- **Co ukázal předchozí cyklus** — reakci na stimulaci, počet zralých vajíček, průběh oplodnění a vývoje embryí.
+- **Co ukázal předchozí cyklus**: reakci na stimulaci, počet zralých vajíček, průběh oplodnění a vývoje embryí.
 - **Jestli se má něco změnit v protokolu** nebo ve způsobu oplodnění.
 - **Jestli má smysl zvažovat genetické testování embryí.** Tady záleží na individuální situaci; není to postup vhodný pro každou ženu a jeho přínos se posuzuje případ od případu.
 - **Vaši psychickou a fyzickou kapacitu.** Stimulace je náročnější než příprava na kryotransfer.
@@ -681,7 +681,7 @@ Tohle nejsou vedlejší okolnosti. Pro řadu párů jsou rozhodující a je v po
 
 Tahle formulace pomáhá dostat konkrétní odpověď místo obecného přehledu možností.
 
-> Tento text popisuje, co se do rozhodování obvykle promítá. Nedoporučuje žádný postup — rozhodnutí patří vám a vašemu lékaři, který zná vaši situaci.`,
+> Tento text popisuje, co se do rozhodování obvykle promítá. Nedoporučuje žádný postup. Rozhodnutí patří vám a vašemu lékaři, který zná vaši situaci.`,
   },
 
   // ---------------------------------------------------------------------
@@ -703,7 +703,7 @@ Tahle formulace pomáhá dostat konkrétní odpověď místo obecného přehledu
     boost: 0.9,
     body: `## Co ten pojem znamená
 
-Biochemické těhotenství znamená, že k otěhotnění došlo. Embryo se uchytilo natolik, že začalo tvořit hCG, a ten se objevil v krvi nebo na domácím testu. Těhotenství se pak ale zastavilo velmi brzy — dřív, než by bylo možné na ultrazvuku cokoli zobrazit.
+Biochemické těhotenství znamená, že k otěhotnění došlo. Embryo se uchytilo natolik, že začalo tvořit hCG, a ten se objevil v krvi nebo na domácím testu. Těhotenství se pak ale zastavilo velmi brzy. Dřív, než by bylo možné na ultrazvuku cokoli zobrazit.
 
 Slovo **biochemické** popisuje jedinou věc: že jediným dokladem byla laboratorní hodnota, ne obrázek. Neříká nic o tom, jak dlouho jste na to těhotenství čekala ani jak moc vám teď chybí.
 
@@ -711,7 +711,7 @@ Slovo **biochemické** popisuje jedinou věc: že jediným dokladem byla laborat
 
 Obvykle podle průběhu hodnot hCG. Po pozitivním testu následují kontrolní odběry a hodnota buď neroste tak, jak by se očekávalo, nebo začne klesat. Klinika obvykle pokračuje v odběrech, dokud hodnota neklesne pod měřitelnou mez.
 
-Rychlost růstu i poklesu se liší podle toho, jak vysoko hodnota vystoupala, a podle typu léčby. Srovnávat vlastní čísla s tabulkami z diskuzí nemá smysl — interpretace patří vašemu lékaři.
+Rychlost růstu i poklesu se liší podle toho, jak vysoko hodnota vystoupala, a podle typu léčby. Srovnávat vlastní čísla s tabulkami z diskuzí nemá smysl. Interpretace patří vašemu lékaři.
 
 ## Jak často se to stává
 
@@ -733,12 +733,12 @@ Většinou přijde krvácení podobné menstruaci nebo o něco silnější, čas
 
 ## Kdy kontaktovat kliniku
 
-- silné krvácení — prosáknutí velké vložky za hodinu, a takto dvě hodiny po sobě,
+- silné krvácení. Prosáknutí velké vložky za hodinu, a takto dvě hodiny po sobě,
 - prudká nebo narůstající bolest v podbřišku, zvlášť jednostranná,
 - horečka nad 38 °C nebo zapáchající výtok,
 - hodnoty hCG, které podle kontrolních odběrů neklesají.
 
-Při bolesti v rameni, závrati, mdlobě nebo kolapsu vyhledejte akutní lékařskou pomoc — může jít o příznaky mimoděložního těhotenství.
+Při bolesti v rameni, závrati, mdlobě nebo kolapsu vyhledejte akutní lékařskou pomoc. Může jít o příznaky mimoděložního těhotenství.
 
 > Tento text popisuje obvyklý průběh a nenahrazuje péči vaší kliniky. Vaše konkrétní hodnoty a postup patří vašemu lékaři.`,
   },
@@ -759,7 +759,7 @@ Při bolesti v rameni, závrati, mdlobě nebo kolapsu vyhledejte akutní lékař
 
 Je to zvláštní forma krutosti: těhotenství skončilo a vy dál jezdíte na odběr hCG z krve, sedíte v čekárně a necháváte si píchat do žíly kvůli číslu, které chcete vidět co nejnižší.
 
-Má to praktický důvod. Dokud je v těle měřitelné hCG, chová se tělo, jako by těhotenství trvalo. A dokud lékař nevidí spolehlivý pokles, nemůže s jistotou vyloučit, že někde nezůstala aktivní tkáň — v děloze nebo mimo ni.
+Má to praktický důvod. Dokud je v těle měřitelné hCG, chová se tělo, jako by těhotenství trvalo. A dokud lékař nevidí spolehlivý pokles, nemůže s jistotou vyloučit, že někde nezůstala aktivní tkáň. V děloze nebo mimo ni.
 
 ## Co se v číslech sleduje
 
@@ -779,7 +779,7 @@ Zeptejte se konkrétně: „Jaká hodnota u vás znamená, že už chodit nemus�
 
 ## Léky
 
-Progesteron, estrogeny, injekce, cokoli z vašeho protokolu — o vysazení rozhoduje výhradně lékař. Vysazení na vlastní pěst může krvácení uspíšit, ale také zamlžit obraz, podle kterého se rozhoduje o dalším postupu.
+Progesteron, estrogeny, injekce, cokoli z vašeho protokolu. O vysazení rozhoduje výhradně lékař. Vysazení na vlastní pěst může krvácení uspíšit, ale také zamlžit obraz, podle kterého se rozhoduje o dalším postupu.
 
 Pokud vám nikdo neřekl, co s léky, zavolejte a zeptejte se. To není obtěžování, to je součást péče.
 
@@ -824,7 +824,7 @@ Většina z toho není zlá vůle. Je to bezradnost. To ale neznamená, že to m
 
 ## Co jste ztratila
 
-Ne shluk buněk. Ztratila jste budoucnost, kterou jste si za jedno odpoledne dovolila představit — jméno, Vánoce, pokoj, obličej. Ta představa vznikla v okamžiku, kdy se objevila druhá čárka, a byla úplná.
+Ne shluk buněk. Ztratila jste budoucnost, kterou jste si za jedno odpoledne dovolila představit. Jméno, Vánoce, pokoj, obličej. Ta představa vznikla v okamžiku, kdy se objevila druhá čárka, a byla úplná.
 
 Truchlení se neměří v týdnech ani v milimetrech.
 
@@ -850,7 +850,7 @@ Nic z toho není povinnost. Je to nabídka, ke které se můžete vrátit, až b
 
 ## Kdy vyhledat odbornou pomoc
 
-Když po několika týdnech nejste schopná fungovat v běžném dni, nespíte, nejíte, nemůžete pracovat, nebo se objeví myšlenky na to, že už tu nechcete být — obraťte se na psychologa nebo psychiatra. Nejlépe na někoho se zkušeností s reprodukční medicínou. Není to slabost a není to nadstandard.
+Když po několika týdnech nejste schopná fungovat v běžném dni, nespíte, nejíte, nemůžete pracovat, nebo se objeví myšlenky na to, že už tu nechcete být. Obraťte se na psychologa nebo psychiatra. Nejlépe na někoho se zkušeností s reprodukční medicínou. Není to slabost a není to nadstandard.
 
 Při akutních myšlenkách na sebepoškození vyhledejte akutní lékařskou pomoc.
 
@@ -861,7 +861,7 @@ Při akutních myšlenkách na sebepoškození vyhledejte akutní lékařskou po
     kind: 'article',
     title: 'Co může následovat',
     excerpt:
-      'Praktický přehled toho, co bývá po velmi časné ztrátě dál — až budete chtít vědět.',
+      'Praktický přehled toho, co bývá po velmi časné ztrátě dál. Až budete chtít vědět.',
     minutes: 6,
     phases: ['loss_biochemical'],
     topics: ['ztrata', 'klinika'],
@@ -871,13 +871,13 @@ Při akutních myšlenkách na sebepoškození vyhledejte akutní lékařskou po
     reviewedBy: 'Odborně garantováno lékařem reprodukční medicíny.',
     body: `## Nejbližší dny
 
-Klinika obvykle sleduje pokles hCG do doby, než hodnota klesne pod měřitelnou mez. Zároveň dostanete pokyn, jak naložit s medikací — a ten pokyn je závazný, i kdyby se lišil od toho, co jste četla jinde.
+Klinika obvykle sleduje pokles hCG do doby, než hodnota klesne pod měřitelnou mez. Zároveň dostanete pokyn, jak naložit s medikací. A ten pokyn je závazný, i kdyby se lišil od toho, co jste četla jinde.
 
 Krvácení bývá podobné menstruaci nebo silnější a může přijít se zpožděním. Bolestivost v podbřišku bývá výraznější než u běžné menstruace.
 
 ## Návrat cyklu
 
-První menstruace po ztrátě bývá jiná — dřív, později, silnější, delší. Cyklus se obvykle během jednoho až dvou měsíců srovná. Kdy přesně, se u jednotlivých žen liší.
+První menstruace po ztrátě bývá jiná. Dřív, později, silnější, delší. Cyklus se obvykle během jednoho až dvou měsíců srovná. Kdy přesně, se u jednotlivých žen liší.
 
 Zeptejte se své kliniky, kterou menstruaci mají brát jako první a od které se počítá plánování dalšího kroku.
 
@@ -978,7 +978,7 @@ Tahle informace zásadně mění, jak se s vámi bude zacházet a jak rychle.
 
 ## Když si nejste jistá
 
-Nejste jistá skoro nikdy — bolest po transferu a po stimulaci je běžná a rozlišit ji sama nemůžete. Právě proto tenhle seznam existuje.
+Nejste jistá skoro nikdy. Bolest po transferu a po stimulaci je běžná a rozlišit ji sama nemůžete. Právě proto tenhle seznam existuje.
 
 Kontaktujte svou kliniku vždy, když se objeví nová nebo zhoršující se bolest. Při příznacích ze seznamu nahoře nevolejte na kliniku, ale volejte 155 nebo jeďte na nejbližší gynekologickou pohotovost.
 
@@ -1020,7 +1020,7 @@ Vzácně může být těhotenství uložené současně v děloze i mimo ni. Je 
 
 Někdy vůbec nijak a najde se to při běžné kontrole. Jindy se objeví bolest v podbřišku, špinění nebo krvácení, případně hodnoty hCG, které nerostou očekávaným způsobem.
 
-Příznaky se překrývají s běžnými pocity po transferu a po stimulaci. Rozlišit je sama nemůžete a nemá smysl se o to pokoušet — od toho jsou kontroly.
+Příznaky se překrývají s běžnými pocity po transferu a po stimulaci. Rozlišit je sama nemůžete a nemá smysl se o to pokoušet. Od toho jsou kontroly.
 
 ## Co to znamená pro vás
 
@@ -1051,7 +1051,7 @@ Při jakékoli nové nebo zhoršující se bolesti po transferu kontaktujte svou
     reviewedBy: 'Odborně garantováno lékařem reprodukční medicíny.',
     body: `## Proč diagnóza nebývá hned
 
-Nejtěžší část bývá čekání na jistotu. V časných týdnech nemusí být na ultrazvuku vidět nic použitelného — ani v děloze, ani mimo ni. Lékař pak pracuje s kombinací nálezu a vývoje hodnot v čase.
+Nejtěžší část bývá čekání na jistotu. V časných týdnech nemusí být na ultrazvuku vidět nic použitelného, ani v děloze, ani mimo ni. Lékař pak pracuje s kombinací nálezu a vývoje hodnot v čase.
 
 To znamená opakované návštěvy a odběry, často po dvou dnech. Není to váhavost. Je to jediný způsob, jak stav odlišit od velmi časného nitroděložního těhotenství.
 
@@ -1109,7 +1109,7 @@ Náhlá silná bolest břicha, bolest v rameni, závrať, kolaps nebo krvácení
     reviewedBy: 'Odborně garantováno lékařem reprodukční medicíny.',
     body: `## Co rozhoduje o postupu
 
-Volba léčby patří výhradně lékaři a vychází z vašeho konkrétního nálezu — z hodnot hCG, z toho, co je vidět na ultrazvuku, z vašich příznaků, z celkového stavu a z toho, jestli jde o akutní situaci. Tento text popisuje, jaké možnosti obecně existují, ne co je vhodné pro vás.
+Volba léčby patří výhradně lékaři a vychází z vašeho konkrétního nálezu. Z hodnot hCG, z toho, co je vidět na ultrazvuku, z vašich příznaků, z celkového stavu a z toho, jestli jde o akutní situaci. Tento text popisuje, jaké možnosti obecně existují, ne co je vhodné pro vás.
 
 ## Sledování bez okamžitého zásahu
 
@@ -1119,13 +1119,13 @@ Není to „nedělání ničeho“. Je to postup, který vyžaduje disciplínu a
 
 ## Léčba metotrexátem
 
-Metotrexát je lék, který se v této indikaci podává obvykle injekčně a jehož cílem je zastavit další růst tkáně. Zvažuje se za určitých podmínek, které posuzuje lékař — patří k nim mimo jiné výše hCG, nález na ultrazvuku a stabilní stav bez známek krvácení do dutiny břišní.
+Metotrexát je lék, který se v této indikaci podává obvykle injekčně a jehož cílem je zastavit další růst tkáně. Zvažuje se za určitých podmínek, které posuzuje lékař. Patří k nim mimo jiné výše hCG, nález na ultrazvuku a stabilní stav bez známek krvácení do dutiny břišní.
 
 Co s tím obvykle souvisí:
 
 - Následuje kontrola hodnot hCG v odstupu dní, protože pokles bývá pozvolný a někdy hodnota nejprve ještě stoupne.
 - U části žen je potřeba dávku opakovat nebo postup změnit.
-- Po dobu léčby a určitou dobu po ní platí omezení, která vám sdělí lékař — mimo jiné se obvykle nedoporučuje alkohol, některé léky, doplňky s kyselinou listovou a delší pobyt na slunci.
+- Po dobu léčby a určitou dobu po ní platí omezení, která vám sdělí lékař. Mimo jiné se obvykle nedoporučuje alkohol, některé léky, doplňky s kyselinou listovou a delší pobyt na slunci.
 - Otěhotnění se po této léčbě po určitou dobu nedoporučuje. Konkrétní odstup vám určí lékař.
 - Bolest v podbřišku se v prvních dnech může přechodně zhoršit; kdy je to očekávané a kdy je to důvod k okamžitému vyšetření, se vždy ptejte konkrétně.
 
@@ -1149,7 +1149,7 @@ Fyzická rekonvalescence trvá podle zvoleného postupu obvykle dny až týdny. 
 - kontrolní odběry hCG až do poklesu pod měřitelnou mez,
 - kontrola u lékaře v určeném termínu,
 - omezení fyzické zátěže na dobu, kterou stanoví lékař,
-- pracovní neschopnost, pokud je potřeba — a je v pořádku o ni požádat.
+- pracovní neschopnost, pokud je potřeba. A je v pořádku o ni požádat.
 
 Psychická rekonvalescence trvá obvykle déle než fyzická a nejde s ní spěchat. Řada žen popisuje, že se ke smutku dostala až po skončení akutní fáze, a překvapilo je to.
 
@@ -1251,11 +1251,11 @@ To všechno je reálná zátěž a není přiměřené po sobě chtít, abyste j
 - **Ztráta jazyka.** Poprvé jste to řekla všem. Podruhé jen některým. Teď to neříkáte nikomu a nesete to sama.
 - **Kalendář, který se nehýbe.** Zatímco kolem se dějí těhotenství, porody a druhé děti, váš rok vypadá jako ten minulý.
 - **Naděje, která začíná být nebezpečná.** Doufat po opakovaných neúspěších stojí víc, protože pád je předvídatelný.
-- **Nemožnost plánovat.** Dovolená, práce, stěhování — všechno visí na termínech, které neurčujete vy.
+- **Nemožnost plánovat.** Dovolená, práce, stěhování. Všechno visí na termínech, které neurčujete vy.
 
 ## Co se v takovém stavu děje s rozhodováním
 
-Vyčerpání zužuje pohled. V takovém stavu se špatně rozhoduje o velkých věcech — jak o pokračování, tak o ukončení. Proto se vyplatí důležitá rozhodnutí odložit za hranici první vlny a nedělat je v týdnu po výsledku.
+Vyčerpání zužuje pohled. V takovém stavu se špatně rozhoduje o velkých věcech. Jak o pokračování, tak o ukončení. Proto se vyplatí důležitá rozhodnutí odložit za hranici první vlny a nedělat je v týdnu po výsledku.
 
 To není zdržování. To je ochrana rozhodnutí, se kterým budete žít roky.
 
@@ -1274,7 +1274,7 @@ Pomáhá dohodnout se na jednoduchých věcech: kdy o tom mluvíme a kdy ne, kdo
 
 ## Kdy vyhledat odbornou pomoc
 
-Když několik týdnů nemůžete spát, jíst nebo pracovat, když se stahujete ze všech kontaktů, nebo když se objeví myšlenky na to, že už tu nechcete být — obraťte se na psychologa nebo psychiatra. Při akutních myšlenkách na sebepoškození vyhledejte akutní lékařskou pomoc.
+Když několik týdnů nemůžete spát, jíst nebo pracovat, když se stahujete ze všech kontaktů, nebo když se objeví myšlenky na to, že už tu nechcete být. Obraťte se na psychologa nebo psychiatra. Při akutních myšlenkách na sebepoškození vyhledejte akutní lékařskou pomoc.
 
 > Tento text je psychická podpora. Otázky léčby patří vaší klinice.`,
   },
@@ -1299,7 +1299,7 @@ Přehled na jednom papíře zkracuje dohledávání a posouvá rozhovor k tomu p
 
 ## Jak to strukturovat
 
-Udělejte si dvě části: **cykly** (odběry vajíček) a **přenosy**. Nejsou to totéž. Jeden IVF cyklus může obsahovat víc přenosů — čerstvý i následné kryotransfery z embryí zamrazených ve stejném cyklu. Když to smícháte do jednoho seznamu, přestane být zřejmé, z jakého odběru které embryo pocházelo.
+Udělejte si dvě části: **cykly** (odběry vajíček) a **přenosy**. Nejsou to totéž. Jeden IVF cyklus může obsahovat víc přenosů. Čerstvý i následné kryotransfery z embryí zamrazených ve stejném cyklu. Když to smícháte do jednoho seznamu, přestane být zřejmé, z jakého odběru které embryo pocházelo.
 
 ## Co zapsat ke každému cyklu
 
@@ -1309,7 +1309,7 @@ Udělejte si dvě části: **cykly** (odběry vajíček) a **přenosy**. Nejsou 
 4. Počet folikulů před odběrem.
 5. Počet získaných vajíček a z toho zralých.
 6. Způsob oplodnění a počet oplozených vajíček.
-7. Vývoj embryí po dnech — kolik jich bylo který den a kdy se u kterých vývoj zastavil.
+7. Vývoj embryí po dnech. Kolik jich bylo který den a kdy se u kterých vývoj zastavil.
 8. Kolik embryí bylo přeneseno čerstvě a kolik zmrazeno, v jakém stadiu.
 9. Jestli proběhlo genetické testování embryí a s jakým výsledkem.
 10. Komplikace, pokud byly.
@@ -1323,10 +1323,10 @@ Udělejte si dvě části: **cykly** (odběry vajíček) a **přenosy**. Nejsou 
 5. Způsob přípravy sliznice a použité léky.
 6. Tloušťka a vzhled sliznice před přenosem, pokud to máte ve zprávě.
 7. Hormonální hodnoty před přenosem, pokud je máte.
-8. Jak přenos technicky proběhl — hladce, nebo s obtížemi.
+8. Jak přenos technicky proběhl. Hladce, nebo s obtížemi.
 9. Podpora luteální fáze: co, v jaké dávce, jak dlouho.
 10. Výsledek: hodnota hCG z krve s datem odběru, případně další hodnoty.
-11. Jak to skončilo a kdy — negativní výsledek, velmi časná ztráta, ztráta později.
+11. Jak to skončilo a kdy. Negativní výsledek, velmi časná ztráta, ztráta později.
 
 ## Kde ta data seženete
 
@@ -1340,7 +1340,7 @@ Udělejte si dvě části: **cykly** (odběry vajíček) a **přenosy**. Nejsou 
 
 1. Souhrn v jedné větě na cyklus: „Cyklus 2, srpen 2025, 9 vajíček, 6 zralých, 4 oplozená, 1 blastocysta zmrazena.“
 2. Otevřené otázky, které z přehledu vyplynuly.
-3. Seznam všeho, co jste absolvovala mimo cykly — vyšetření, zákroky, léčbu jiných obtíží.
+3. Seznam všeho, co jste absolvovala mimo cykly. Vyšetření, zákroky, léčbu jiných obtíží.
 
 ## Praktická poznámka
 
@@ -1353,7 +1353,7 @@ Vytiskněte to a jednu kopii nechte lékaři. Ušetří to čas jemu i vám a zv
     kind: 'article',
     title: 'Co lékař po opakovaném neúspěchu obvykle zvažuje',
     excerpt:
-      'Přehled směrů, kterými se úvahy obvykle ubírají — včetně toho, kde jsou důkazy slabé.',
+      'Přehled směrů, kterými se úvahy obvykle ubírají. Včetně toho, kde jsou důkazy slabé.',
     minutes: 9,
     phases: ['repeated_failure'],
     topics: ['klinika', 'vysledky'],
@@ -1395,11 +1395,11 @@ Když vám je nabídnut imunologický nebo hematologický postup, ptejte se konk
 
 Zvažuje se změna typu stimulace, dávek, načasování, způsobu přípravy sliznice, podpory luteální fáze nebo počtu přenášených embryí. Také se zvažuje, jestli má smysl embrya shromažďovat z několika odběrů, než dojde na přenos.
 
-Do této oblasti patří i praktičtější otázky: jestli má smysl zvážit jiné pracoviště, jestli byly přenosy technicky obtížné a jestli se dá něco udělat s celkovým zdravotním stavem — štítná žláza, hmotnost, kouření, kompenzace chronických nemocí.
+Do této oblasti patří i praktičtější otázky: jestli má smysl zvážit jiné pracoviště, jestli byly přenosy technicky obtížné a jestli se dá něco udělat s celkovým zdravotním stavem. Štítná žláza, hmotnost, kouření, kompenzace chronických nemocí.
 
 ## Dárcovství
 
-Podle situace může být zvažováno použití darovaných vajíček, darovaných spermií nebo darovaného embrya. Bývá to téma, které se otevírá po opakovaných neúspěších, a je to zároveň rozhodnutí, které přesahuje medicínu — týká se představy o rodičovství, vztahu a toho, co budete jednou vyprávět dítěti.
+Podle situace může být zvažováno použití darovaných vajíček, darovaných spermií nebo darovaného embrya. Bývá to téma, které se otevírá po opakovaných neúspěších, a je to zároveň rozhodnutí, které přesahuje medicínu. Týká se představy o rodičovství, vztahu a toho, co budete jednou vyprávět dítěti.
 
 Není to poslední možnost ani prohra. Je to jiná cesta a je v pořádku potřebovat čas na rozmyšlenou i odbornou psychologickou podporu při rozhodování.
 
@@ -1415,7 +1415,7 @@ U části párů se ani po širokém vyšetření nenajde vysvětlení. Lékař,
 4. Co z toho pojišťovna hradí a co ne?
 5. Kolik dalších pokusů považujete u nás za smysluplných?
 
-> Tento text je obecný přehled. Nedoporučuje žádné vyšetření ani postup — o tom, co je vhodné ve vaší situaci, rozhoduje výhradně váš lékař.`,
+> Tento text je obecný přehled. Nedoporučuje žádné vyšetření ani postup. O tom, co je vhodné ve vaší situaci, rozhoduje výhradně váš lékař.`,
   },
   {
     id: 'vc-kdy-je-v-poradku-prestat',
@@ -1437,7 +1437,7 @@ Neznamená. Přemýšlet o hranici je normální součást dlouhé léčby a nem
 
 ## Co tenhle text nedělá
 
-Nebude vás přemlouvat, abyste pokračovala, ani abyste skončila. Rozhodnutí je vaše a nikdo zvenčí — ani lékař, ani rodina, ani nikdo v diskusi — nemá dost informací na to, aby ho udělal za vás.
+Nebude vás přemlouvat, abyste pokračovala, ani abyste skončila. Rozhodnutí je vaše a nikdo zvenčí (ani lékař, ani rodina, ani nikdo v diskusi) nemá dost informací na to, aby ho udělal za vás.
 
 Co tenhle text dělá: dává vám povolení o tom přemýšlet nahlas.
 
@@ -1449,7 +1449,7 @@ Nejsou to podmínky ani doporučení. Jsou to věci, které ženy popisují, kdy
 - Rozhodujete se z pocitu, že už není cesta zpět, ne proto, že to chcete.
 - Peníze na další cyklus by vám vzaly bezpečí, které potřebujete.
 - Vztah je pod zátěží, kterou už nezvládá.
-- Vaše zdraví — fyzické nebo psychické — nese následky, které se hromadí.
+- Vaše zdraví (fyzické nebo psychické) nese následky, které se hromadí.
 - Nedokážete si představit, co budete dělat, když to vyjde. Jen to, co budete dělat, když to nevyjde.
 - Poslední roky si pamatujete jako termíny a odběry, ne jako život.
 
@@ -1459,7 +1459,7 @@ Také nejsou doporučením:
 
 - Máte zamrazená embrya a vnitřně víte, že je nechcete nechat nepoužitá.
 - Lékař vidí konkrétní věc, kterou lze ještě zkusit jinak, a vám to dává smysl.
-- Máte na to zdroje — finanční, časové, psychické.
+- Máte na to zdroje. Finanční, časové, psychické.
 - Chcete pokračovat, i když víte, že to nemusí dopadnout.
 
 ## Jak si to rozhodnutí usnadnit
@@ -1475,7 +1475,7 @@ Také nejsou doporučením:
 
 Konec léčby je ztráta a truchlí se po ní. Ne po konkrétním těhotenství, ale po celé jedné budoucnosti a po verzi sebe, kterou jste si představovala.
 
-Ta ztráta je málo viditelná — nemá datum, obřad ani soustrastné zprávy. O to víc si zaslouží, abyste ji brala vážně a dala si na ni čas.
+Ta ztráta je málo viditelná. Nemá datum, obřad ani soustrastné zprávy. O to víc si zaslouží, abyste ji brala vážně a dala si na ni čas.
 
 Konec léčby zároveň nemusí být konec cesty k rodičovství. Existují jiné cesty a je v pořádku se o nich informovat, i kdyby jen proto, abyste věděla, co obnášejí.
 

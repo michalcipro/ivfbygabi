@@ -3,15 +3,15 @@
  *
  * Aplikace nemá server, nemá kam uložit zvukové soubory a nahrávka
  * dvanáctiminutové meditace by vážila víc než celá zbylá aplikace. Prohlížeč
- * ale umí mluvit sám — a česky. Meditace se proto nepřehrává ze souboru,
+ * ale umí mluvit sám. A česky. Meditace se proto nepřehrává ze souboru,
  * ale předčítá se.
  *
  * Není to profesionální namluvení a nepředstírá, že je. Zato to funguje
- * offline, nestojí to ani bajt navíc a hlavně to existuje — místo popisku
+ * offline, nestojí to ani bajt navíc a hlavně to existuje. Místo popisku
  * „nahrávka se připravuje“, který tu byl doteď.
  *
  * PAUZY JSOU TU TO PODSTATNÉ. Meditace není text přečtený v jednom kuse.
- * Prázdný řádek v předloze znamená ticho — a právě v tom tichu ta věc
+ * Prázdný řádek v předloze znamená ticho. A právě v tom tichu ta věc
  * funguje. Proto se text láme na úseky a mezi ně se vkládá skutečná pauza.
  */
 
@@ -46,7 +46,7 @@ export function speechAvailable(): boolean {
  * Český hlas, pokud nějaký je.
  *
  * Seznam hlasů se v některých prohlížečích plní až asynchronně, proto se
- * na něj nikde nespoléháme — když nic českého není, čte se výchozím hlasem
+ * na něj nikde nespoléháme, když nic českého není, čte se výchozím hlasem
  * a uživatelce se to napíše. Špatná výslovnost je pořád lepší než nic,
  * ale nemá o ní být překvapená.
  */
@@ -59,7 +59,7 @@ export function czechVoice(): SpeechSynthesisVoice | null {
 /**
  * Rozdělí text meditace na úseky.
  *
- * Nadpisy a odrážky se vyhazují — čte se to, co je psané k poslechu.
+ * Nadpisy a odrážky se vyhazují. Čte se to, co je psané k poslechu.
  * Prázdný řádek v předloze je pokyn k tichu, ne jen formátování.
  */
 export function toChunks(body: string): Chunk[] {

@@ -7,26 +7,26 @@ import { betaDate, estimatedBeta, type CycleRow, type CycleStatus } from './cycl
  *
  * Jedna otázka, na kterou tenhle modul odpovídá: je dneska něco, co si žena
  * potřebuje pohlídat, a ona to zatím neudělala? Nic víc. Připomínka je vždycky
- * organizační — termín, odškrtnutí, příprava na kontrolu. Nikdy zdravotní.
+ * organizační. Termín, odškrtnutí, příprava na kontrolu. Nikdy zdravotní.
  *
  * ---
  * HRANICE, KTERÁ SE NESMÍ PŘEKROČIT:
  * Modul nehodnotí výsledky, nedoporučuje dávkování, nevykládá čísla z odběrů
- * a nic nepředpovídá. Kde jde o cokoli zdravotního, odkazuje na kliniku —
- * a nenahrazuje ji. Taky nestraší: připomínka je nabídka, ne výtka. Když si
+ * a nic nepředpovídá. Kde jde o cokoli zdravotního, odkazuje na kliniku.
+ * A nenahrazuje ji. Taky nestraší: připomínka je nabídka, ne výtka. Když si
  * žena něco nezapsala, není to selhání a nesmí to tak znít.
  * ---
  *
  * Pravidlo množství: nejvýš čtyři. Deset připomínek není deset pomocí,
  * je to hluk, který se přestane číst. Řazení je podle úrovně a v rámci
- * úrovně podle pořadí, ve kterém se pravidla vyhodnocují — nahoře stojí
+ * úrovně podle pořadí, ve kterém se pravidla vyhodnocují. Nahoře stojí
  * to, co má termín, dole to, co počká.
  *
- * Nůžky dne modul neřeší. Když jsou rozevřené, aplikace ubírá — ale ubrat
+ * Nůžky dne modul neřeší. Když jsou rozevřené, aplikace ubírá, ale ubrat
  * je rozhodnutí volajícího, tady se vrací všechno, co platí.
  *
  * Čistý doménový modul: žádné HTML, žádný prohlížeč, žádné `Date.now()`,
- * žádná náhoda. Stejný vstup vždycky vrátí stejný výstup — jinak by se
+ * žádná náhoda. Stejný vstup vždycky vrátí stejný výstup, jinak by se
  * připomínky měnily pod rukama při každém překreslení.
  *
  * Exportuje:
@@ -36,7 +36,7 @@ import { betaDate, estimatedBeta, type CycleRow, type CycleStatus } from './cycl
  *   leky/dnes, leky/protokol, zapis/nalada, zapis/telo,
  *   zdravotni/mereni, otazky/ceka, kalendar, cyklus
  *
- * Žádné nové CSS třídy — modul nevrací HTML.
+ * Žádné nové CSS třídy. Modul nevrací HTML.
  */
 
 export type NudgeLevel = 'info' | 'dulezite' | 'urgentni'
@@ -45,7 +45,7 @@ export interface Nudge {
   id: string
   level: NudgeLevel
   text: string
-  /** Co s tím — popisek tlačítka a cíl. */
+  /** Co s tím. Popisek tlačítka a cíl. */
   action?: { label: string; route: string }
 }
 
@@ -94,18 +94,18 @@ const MAX_NUDGES = 4
 /** Od kdy má smysl připomínat neodškrtnuté dávky důrazněji. */
 const AFTERNOON_HOUR = 14
 
-/** Český tvar počtu — „1 dávka“, „3 dávky“, „7 dávek“. */
+/** Český tvar počtu. „1 dávka“, „3 dávky“, „7 dávek“. */
 function pl(n: number, one: string, few: string, many: string): string {
   return `${n} ${n === 1 ? one : n >= 2 && n <= 4 ? few : many}`
 }
 
-/** Počet dní v instrumentálu — „před 1 dnem“, „před 9 dny“. */
+/** Počet dní v instrumentálu. „před 1 dnem“, „před 9 dny“. */
 function agoDays(n: number): string {
   return `${n} ${n === 1 ? 'dnem' : 'dny'}`
 }
 
 /**
- * Předložka před časem. „Ve 21:30“, ale „v 18:00“ — čeština používá „ve“
+ * Předložka před časem. „Ve 21:30“, ale „v 18:00“. Čeština používá „ve“
  * před dvojkou, trojkou, čtyřkou a jejich desítkovými obdobami.
  */
 function atPrep(hour: number): string {
@@ -114,7 +114,7 @@ function atPrep(hour: number): string {
 }
 
 /**
- * Předložka před počtem. „Ze 3“, ale „z 5“ — stejné pravidlo jako u „v/ve“.
+ * Předložka před počtem. „Ze 3“, ale „z 5“. Stejné pravidlo jako u „v/ve“.
  */
 function fromPrep(n: number): string {
   return n >= 2 && n <= 4 ? 'ze' : 'z'
@@ -122,7 +122,7 @@ function fromPrep(n: number): string {
 
 /**
  * „ ve 21:30“, nebo prázdno, když hodina není zadaná.
- * Úvodní nula se maže — „v 08:00“ se špatně čte, „v 8:00“ ne.
+ * Úvodní nula se maže. „v 08:00“ se špatně čte, „v 8:00“ ne.
  */
 function timePhrase(time: string): string {
   const t = time.trim()
@@ -133,8 +133,8 @@ function timePhrase(time: string): string {
 }
 
 /**
- * Klíč odškrtnuté dávky. Formát musí sedět s tím, co ukládá store —
- * jeden lék a jeden den, víc časů denně sdílí jedno odškrtnutí.
+ * Klíč odškrtnuté dávky. Formát musí sedět s tím, co ukládá store.
+ * Jeden lék a jeden den, víc časů denně sdílí jedno odškrtnutí.
  */
 function doseKey(date: string, medId: string): string {
   return `med:${date}:${medId}`
@@ -143,7 +143,7 @@ function doseKey(date: string, medId: string): string {
 /**
  * Běží lék v tenhle den podle zadaného rozpisu?
  *
- * Bez `startOn` se lék počítá — nevíme, odkdy běží, ale víme, že v rozpisu
+ * Bez `startOn` se lék počítá. Nevíme, odkdy běží, ale víme, že v rozpisu
  * je. Jednorázový lék bez data se nepočítá vůbec: neexistuje den, ke kterému
  * by patřil, a připomínat ho každý den by bylo otravné a k ničemu.
  */
@@ -167,7 +167,7 @@ const SYMPTOM_STAGES = new Set<CycleStatus['stage']>([
   'beta',
 ])
 
-/** Výčet názvů do věty — „Menopur a Cetrotide“, delší se zkrátí. */
+/** Výčet názvů do věty. „Menopur a Cetrotide“, delší se zkrátí. */
 function nameList(names: string[]): string {
   if (names.length <= 2) return names.join(' a ')
   return `${names.slice(0, 2).join(', ')} a další`
@@ -200,7 +200,7 @@ export function nudges(input: NudgeInput): Nudge[] {
     push(
       'trigger-dnes',
       'urgentni',
-      `Dnes je trigger${timePhrase(cycle.triggerAt)}. Hodinu máte od kliniky — nastavte si budík, ať ji nemusíte hlídat v hlavě.`,
+      `Dnes je trigger${timePhrase(cycle.triggerAt)}. Hodinu máte od kliniky. Nastavte si budík, ať ji nemusíte hlídat v hlavě.`,
       { label: 'Otevřít cyklus', route: 'cyklus' },
     )
   } else if (running && cycle.triggerOn === tomorrow) {
@@ -214,7 +214,7 @@ export function nudges(input: NudgeInput): Nudge[] {
 
   // --- 2. odběr zítra ------------------------------------------------------
   // Dvě věci, na které se zapomíná: pokyny kliniky k jídlu a pití, a doprovod.
-  // Konkrétní časy tady zásadně neuvádíme — ty se liší klinika od kliniky.
+  // Konkrétní časy tady zásadně neuvádíme. Ty se liší klinika od kliniky.
   if (running && cycle.retrievalOn === tomorrow) {
     push(
       'odber-zitra',
@@ -225,7 +225,7 @@ export function nudges(input: NudgeInput): Nudge[] {
   }
 
   // --- 3. beta -------------------------------------------------------------
-  // Když datum zadané není, spočítá se orientačně — a je to v textu vidět.
+  // Když datum zadané není, spočítá se orientačně. A je to v textu vidět.
   if (running && status && !['pred', 'stimulace', 'trigger'].includes(status.stage)) {
     const known = betaDate(cycle)
     const betaOn = known ?? estimatedBeta(cycle, today)
@@ -243,7 +243,7 @@ export function nudges(input: NudgeInput): Nudge[] {
           route: 'cyklus',
         })
       } else if (exact && inDays <= 3) {
-        push('beta-blizko', 'info', `Odběr hCG je za ${czDays(inDays)} — ${formatCzechDate(betaOn, { year: false })}.`, {
+        push('beta-blizko', 'info', `Odběr hCG je za ${czDays(inDays)}, ${formatCzechDate(betaOn, { year: false })}.`, {
           label: 'Otevřít cyklus',
           route: 'cyklus',
         })
@@ -251,7 +251,7 @@ export function nudges(input: NudgeInput): Nudge[] {
         push(
           'beta-odhad',
           'info',
-          `Odběr hCG vychází orientačně na ${formatCzechDate(betaOn, { year: false })}. Přesný termín vám dá klinika — můžete si ho doplnit do cyklu.`,
+          `Odběr hCG vychází orientačně na ${formatCzechDate(betaOn, { year: false })}. Přesný termín vám dá klinika. Můžete si ho doplnit do cyklu.`,
           { label: 'Doplnit termín', route: 'cyklus' },
         )
       }
@@ -262,7 +262,7 @@ export function nudges(input: NudgeInput): Nudge[] {
   // Otázky sepsané doma jsou k ničemu, když si na ně v ordinaci nevzpomene.
   const appt = input.nextAppointment
   if (appt && appt.onDate === tomorrow) {
-    // Název píše uživatelka („UZ“, „Repromeda — kontrola“). Shodit ho na malá
+    // Název píše uživatelka („UZ“, „Repromeda. Kontrola“). Shodit ho na malá
     // písmena by z toho udělalo paskvil, proto věta stojí tak, aby snesla
     // první pád i velké písmeno.
     const what = appt.title.trim()
@@ -270,7 +270,7 @@ export function nudges(input: NudgeInput): Nudge[] {
       push(
         'kontrola-otazky',
         'dulezite',
-        `Zítra máte v kalendáři: ${what}. V seznamu čeká ${pl(input.openQuestions, 'otázka', 'otázky', 'otázek')} pro lékaře — chcete si je projít?`,
+        `Zítra máte v kalendáři: ${what}. V seznamu čeká ${pl(input.openQuestions, 'otázka', 'otázky', 'otázek')} pro lékaře. Chcete si je projít?`,
         { label: 'Otevřít otázky', route: 'otazky/ceka' },
       )
     } else {
@@ -293,7 +293,7 @@ export function nudges(input: NudgeInput): Nudge[] {
       'davky-neodskrtnute',
       afternoon ? 'dulezite' : 'info',
       afternoon
-        ? `Zbývá odškrtnout ${pl(unchecked.length, 'dávku', 'dávky', 'dávek')} z dnešního rozpisu — ${nameList(unchecked.map((m) => m.name))}.`
+        ? `Zbývá odškrtnout ${pl(unchecked.length, 'dávku', 'dávky', 'dávek')} z dnešního rozpisu, ${nameList(unchecked.map((m) => m.name))}.`
         : `Z dnešního rozpisu máte odškrtnuto ${todayMeds.length - unchecked.length} ${fromPrep(todayMeds.length)} ${todayMeds.length}.`,
       { label: 'Odškrtnout léky', route: 'leky/dnes' },
     )
@@ -312,13 +312,13 @@ export function nudges(input: NudgeInput): Nudge[] {
   }
 
   // --- 6. chybějící CD1 ----------------------------------------------------
-  // Bez prvního dne cyklu nemá aplikace od čeho počítat — a je lepší to říct
+  // Bez prvního dne cyklu nemá aplikace od čeho počítat. A je lepší to říct
   // rovnou, než ukazovat prázdný kalendář a nechat ji hádat proč.
   if (running && !cycle.cd1On) {
     push(
       'cd1-chybi',
       'dulezite',
-      'Cyklus zatím nemá zadaný první den (CD1). Bez něj nespočítáme den cyklu — doplnit se dá kdykoli.',
+      'Cyklus zatím nemá zadaný první den (CD1). Bez něj nespočítáme den cyklu. Doplnit se dá kdykoli.',
       { label: 'Doplnit CD1', route: 'cyklus' },
     )
   }
@@ -338,7 +338,7 @@ export function nudges(input: NudgeInput): Nudge[] {
 
   // --- 8. zápisy -----------------------------------------------------------
   // Tyhle tři jsou schválně nejmírnější. Nezapsaný den není problém,
-  // jenom chybějící data — a ta si doplní, když bude chtít.
+  // jenom chybějící data. A ta si doplní, když bude chtít.
   if (!input.hasJournalToday) {
     push('denik-dnes', 'info', 'Dnešek zatím nemáte zapsaný. Stačí čtyři číselníky, zbytek je dobrovolný.', {
       label: 'Zapsat den',

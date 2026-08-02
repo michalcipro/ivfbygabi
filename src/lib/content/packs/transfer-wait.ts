@@ -7,7 +7,7 @@ export const pack: ContentPack = {
       kind: 'article',
       title: 'Den transferu krok za krokem: co se bude dít od rána',
       excerpt:
-        'Celý zákrok trvá pár minut, ale den kolem něj má svůj rytmus — a když ho znáte předem, přestane být strašidelný.',
+        'Celý zákrok trvá pár minut, ale den kolem něj má svůj rytmus. A když ho znáte předem, přestane být strašidelný.',
       body: `## Ráno: nic dramatického se dít nebude
 
 Transfer je z pohledu medicíny jeden z nejjednodušších výkonů celého cyklu. Žádná narkóza, žádné jehly, žádné probouzení se v boxu. A přesto je to den, na který jste čekala týdny nebo roky. Ten rozpor je normální a nemusíte ho nijak řešit.
@@ -18,11 +18,11 @@ Ráno se najezte lehce, ale najezte se. Ženy, které kvůli nervozitě vynechaj
 
 Vezměte si s sebou:
 
-- **doklad totožnosti a kartičku pojišťovny** — na některých pracovištích se ověřuje identita znovu i těsně před výkonem,
+- **doklad totožnosti a kartičku pojišťovny**: na některých pracovištích se ověřuje identita znovu i těsně před výkonem,
 - **ponožky** (nohy budou na opěrkách a bývá tam chladno),
 - **volné oblečení**, ideálně něco, co po zákroku netlačí v pase,
-- **partnera nebo blízkou osobu**, pokud to vaše klinika umožňuje — pravidla se liší, ověřte si to předem,
-- **telefon nabitý** — čekání bývá delší než samotný výkon.
+- **partnera nebo blízkou osobu**, pokud to vaše klinika umožňuje. Pravidla se liší, ověřte si to předem,
+- **telefon nabitý**: čekání bývá delší než samotný výkon.
 
 ## Rozhovor s embryologem
 
@@ -39,19 +39,19 @@ Odpovědi si napište. Ve stresu si z rozhovoru zapamatujete zhruba třetinu, a 
 
 ## Samotný přenos
 
-Ležíte na gynekologickém křesle podobně jako při běžném vyšetření. Lékař zavede zrcadla, opláchne děložní hrdlo a zavede tenký měkký katétr do dutiny děložní. Většina pracovišť dnes navádí katétr **pod ultrazvukovou kontrolou přes břicho** — proto ten plný močový měchýř, který dělá z dělohy dobře viditelný cíl.
+Ležíte na gynekologickém křesle podobně jako při běžném vyšetření. Lékař zavede zrcadla, opláchne děložní hrdlo a zavede tenký měkký katétr do dutiny děložní. Většina pracovišť dnes navádí katétr **pod ultrazvukovou kontrolou přes břicho**: proto ten plný močový měchýř, který dělá z dělohy dobře viditelný cíl.
 
 Embryolog přinese embryo v kapce média, lékař ho vypustí do dutiny a katétr vytáhne. Embryolog pak katétr zkontroluje pod mikroskopem, aby ověřil, že v něm embryo nezůstalo.
 
-**Celý výkon obvykle trvá kolem pěti až deseti minut.** Nebolí — většina žen popisuje pocit podobný stěru nebo mírnému tlaku. Nepříjemné bývá spíš plné močení a zrcadla než samotný přenos.
+**Celý výkon obvykle trvá kolem pěti až deseti minut.** Nebolí. Většina žen popisuje pocit podobný stěru nebo mírnému tlaku. Nepříjemné bývá spíš plné močení a zrcadla než samotný přenos.
 
 ## Co když to nejde hladce
 
-U některých žen je průchod děložním hrdlem obtížnější — kvůli anatomii, po zákrocích na čípku nebo prostě proto, že je hrdlo zahnuté. Lékař pak může použít jiný typ katétru, jemné vodicí zavaděče nebo mírně změnit polohu. Trvá to o pár minut déle. **Neznamená to, že je něco špatně s vámi ani s embryem.**
+U některých žen je průchod děložním hrdlem obtížnější, kvůli anatomii, po zákrocích na čípku nebo prostě proto, že je hrdlo zahnuté. Lékař pak může použít jiný typ katétru, jemné vodicí zavaděče nebo mírně změnit polohu. Trvá to o pár minut déle. **Neznamená to, že je něco špatně s vámi ani s embryem.**
 
 ## Po přenosu
 
-Po výkonu obvykle chvíli ležíte — někde deset minut, jinde vůbec. Delší ležení výsledek neovlivňuje, embryo z dělohy „nevypadne". Pak se můžete vymočit, převléknout a jít domů.
+Po výkonu obvykle chvíli ležíte. Někde deset minut, jinde vůbec. Delší ležení výsledek neovlivňuje, embryo z dělohy „nevypadne". Pak se můžete vymočit, převléknout a jít domů.
 
 Než odejdete, ujistěte se, že máte:
 
@@ -61,7 +61,7 @@ Než odejdete, ujistěte se, že máte:
 
 ## Zbytek dne
 
-Většina žen jede domů a zbytek dne prospí nebo prokouká do stropu. Obojí je v pořádku. Nemusíte den ničím naplnit ani mu dávat rituální význam — ale pokud vám rituál pomáhá, udělejte si ho.
+Většina žen jede domů a zbytek dne prospí nebo prokouká do stropu. Obojí je v pořádku. Nemusíte den ničím naplnit ani mu dávat rituální význam, ale pokud vám rituál pomáhá, udělejte si ho.
 
 Lehké špinění nebo drobné křeče v den transferu bývají z manipulace s hrdlem a nejsou známkou toho, že něco selhalo.
 
@@ -72,7 +72,7 @@ Lehké špinění nebo drobné křeče v den transferu bývají z manipulace s h
 - horečka nad 38 °C,
 - rychle rostoucí obvod břicha, dušnost nebo výrazně snížené močení.
 
-> Tento text popisuje obvyklý průběh a nenahrazuje pokyny vaší kliniky ani konzultaci s lékařem. Postupy se mezi pracovišti liší — vždy se řiďte tím, co vám řekl váš ošetřující lékař.`,
+> Tento text popisuje obvyklý průběh a nenahrazuje pokyny vaší kliniky ani konzultaci s lékařem. Postupy se mezi pracovišti liší. Vždy se řiďte tím, co vám řekl váš ošetřující lékař.`,
       minutes: 8,
       phases: ['transfer'],
       dayRange: [0, 1],
@@ -81,7 +81,7 @@ Lehké špinění nebo drobné křeče v den transferu bývají z manipulace s h
       hero: 'champagne',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-09-08',
       boost: 0.9,
     },
@@ -90,29 +90,29 @@ Lehké špinění nebo drobné křeče v den transferu bývají z manipulace s h
       kind: 'article',
       title: 'Plný močový měchýř: nejnepříjemnější část celého transferu',
       excerpt:
-        'Nikdo vám neřekne, kolik přesně vypít a kdy — a přitom právě tohle rozhoduje o tom, jestli budete zákrok prožívat v klidu, nebo v křeči.',
+        'Nikdo vám neřekne, kolik přesně vypít a kdy. A přitom právě tohle rozhoduje o tom, jestli budete zákrok prožívat v klidu, nebo v křeči.',
       body: `## Proč se to vůbec chce
 
-Při přenosu embrya se katétr většinou navádí ultrazvukem přes břišní stěnu. **Naplněný močový měchýř funguje jako akustické okno** — posune střevní kličky, narovná úhel mezi hrdlem a tělem dělohy a udělá z dutiny děložní dobře viditelný cíl. Lékař pak vidí, kam přesně embryo ukládá, a nemusí odhadovat.
+Při přenosu embrya se katétr většinou navádí ultrazvukem přes břišní stěnu. **Naplněný močový měchýř funguje jako akustické okno**: posune střevní kličky, narovná úhel mezi hrdlem a tělem dělohy a udělá z dutiny děložní dobře viditelný cíl. Lékař pak vidí, kam přesně embryo ukládá, a nemusí odhadovat.
 
 Není to tedy rozmar. Je to praktická podmínka přesnosti.
 
-Na některých pracovištích se používá ultrazvuk přes pochvu nebo se transfer provádí bez zobrazení — tam se plný měchýř nevyžaduje. **Vždy platí pokyn vaší kliniky, ne článek na internetu.**
+Na některých pracovištích se používá ultrazvuk přes pochvu nebo se transfer provádí bez zobrazení. Tam se plný měchýř nevyžaduje. **Vždy platí pokyn vaší kliniky, ne článek na internetu.**
 
 ## Kolik a kdy pít
 
-Obvyklý pokyn zní vypít zhruba půl litru až litr čisté vody přibližně hodinu před plánovaným časem výkonu a pak už nechodit na toaletu. Přesné množství i načasování se ale liší podle pracoviště a podle vás — někdo se naplní za dvacet minut, někdo za hodinu.
+Obvyklý pokyn zní vypít zhruba půl litru až litr čisté vody přibližně hodinu před plánovaným časem výkonu a pak už nechodit na toaletu. Přesné množství i načasování se ale liší podle pracoviště a podle vás. Někdo se naplní za dvacet minut, někdo za hodinu.
 
 Praktické zásady, které fungují:
 
 - **Pijte čistou vodu**, ne kávu ani perlivé nápoje. Kofein je diuretikum a bublinky přidají tlak, který nepotřebujete.
 - **Pijte plynule**, ne naráz. Litr vypitý na ex znamená čtvrt hodiny nesnesitelného napětí a pak úlevu v nesprávnou chvíli.
 - **Počítejte se zpožděním.** Kliniky nabírají podle laboratoře, ne podle hodinek. Zpoždění třiceti minut je běžné.
-- **Zeptejte se sestry, jak jste na tom.** Když už to nezvládáte, řekněte to — někde vás nechají trochu odpustit a znovu dopít. Trpět v tichosti nikomu nepomůže.
+- **Zeptejte se sestry, jak jste na tom.** Když už to nezvládáte, řekněte to. Někde vás nechají trochu odpustit a znovu dopít. Trpět v tichosti nikomu nepomůže.
 
 ## Když jste to přehnala
 
-Přeplněný měchýř paradoxně zhoršuje viditelnost i pohodlí a některým ženám vyvolá reflexní stahy. Pokud máte pocit, že už to opravdu nejde, řekněte to dřív, než si lehnete na křeslo. Sestra vám poradí — na většině pracovišť je tohle denní rutina a nikoho tím nepřekvapíte.
+Přeplněný měchýř paradoxně zhoršuje viditelnost i pohodlí a některým ženám vyvolá reflexní stahy. Pokud máte pocit, že už to opravdu nejde, řekněte to dřív, než si lehnete na křeslo. Sestra vám poradí. Na většině pracovišť je tohle denní rutina a nikoho tím nepřekvapíte.
 
 ## Když se naopak nemůžete naplnit
 
@@ -126,13 +126,13 @@ Někomu se to stane, zvlášť při nervozitě. Pomáhá:
 
 **A měla byste.** Zadržování moči po přenosu nemá žádný smysl a embryu neuškodí, když se vymočíte. Embryo je v dutině děložní, ne v pochvě, a s močením nemá anatomicky nic společného. Tenhle strach je jeden z nejrozšířenějších a jeden z nejzbytečnějších.
 
-Stejně tak vám embryo „nevypadne", když vstanete, sednete si nebo se ohnete. Dutina děložní není nádoba s vodou — je to úzký prostor, jehož stěny jsou v kontaktu.
+Stejně tak vám embryo „nevypadne", když vstanete, sednete si nebo se ohnete. Dutina děložní není nádoba s vodou. Je to úzký prostor, jehož stěny jsou v kontaktu.
 
 ## Malý plán na den transferu
 
-1. Ráno se lehce najezte — plný měchýř na lačno je horší.
+1. Ráno se lehce najezte. Plný měchýř na lačno je horší.
 2. Zjistěte si předem, kde je na klinice nejbližší toaleta.
-3. Vezměte si vložku — po zákroku může odtéct trochu média nebo dezinfekce a působí to znepokojivě, i když to nic neznamená.
+3. Vezměte si vložku. Po zákroku může odtéct trochu média nebo dezinfekce a působí to znepokojivě, i když to nic neznamená.
 4. Vezměte si láhev vody na dopití po výkonu. Dehydratace vám neprospěje, hlavně pokud jste po stimulaci.
 
 ## Kdy volat lékaře
@@ -151,7 +151,7 @@ Stejně tak vám embryo „nevypadne", když vstanete, sednete si nebo se ohnete
       hero: 'sky',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy'],
+      sources: ['ESHRE: doporučené postupy'],
       publishedOn: '2025-09-15',
       boost: 0.6,
     },
@@ -160,16 +160,16 @@ Stejně tak vám embryo „nevypadne", když vstanete, sednete si nebo se ohnete
       kind: 'checklist',
       title: 'Checklist: den transferu',
       excerpt:
-        'Všechno, co si máte vzít, zeptat se a zařídit — abyste v den transferu nemusela nic řešit hlavou, která je jinde.',
+        'Všechno, co si máte vzít, zeptat se a zařídit. Abyste v den transferu nemusela nic řešit hlavou, která je jinde.',
       body: `## Jak checklist použít
 
 Projděte ho večer před transferem, ne ráno. Ráno budete nervózní a nebudete mít čas nic dohánět.
 
-Položky jsou rozdělené do tří skupin: **co si vzít**, **na co se zeptat na klinice** a **co zařídit doma**. Nepovinné položky jsou označené — nejsou zbytečné, jen nejsou nutné.
+Položky jsou rozdělené do tří skupin: **co si vzít**, **na co se zeptat na klinice** a **co zařídit doma**. Nepovinné položky jsou označené. Nejsou zbytečné, jen nejsou nutné.
 
 ## Proč zrovna tohle
 
-Většina žen si den transferu pamatuje jako mlhu. Ne proto, že by byl náročný fyzicky, ale proto, že je emočně přetížený. Informace, které toho dne slyšíte, se v hlavě neuloží. Proto je v checklistu tolik položek typu „zapsat si" — nejde o nedůvěru ve vaši paměť, jde o realitu stresové situace.
+Většina žen si den transferu pamatuje jako mlhu. Ne proto, že by byl náročný fyzicky, ale proto, že je emočně přetížený. Informace, které toho dne slyšíte, se v hlavě neuloží. Proto je v checklistu tolik položek typu „zapsat si". Nejde o nedůvěru ve vaši paměť, jde o realitu stresové situace.
 
 Poslední skupina, „co zařídit doma", vypadá banálně. Přesně ta ale rozhoduje o tom, jestli večer po transferu budete ležet v klidu, nebo shánět po lékárnách progesteron, protože vám došel.
 
@@ -220,10 +220,10 @@ Poslední skupina, „co zařídit doma", vypadá banálně. Přesně ta ale roz
       kind: 'article',
       title: 'Co po transferu smíte a co ne: mýty proti realitě',
       excerpt:
-        'Ležení, létání, sex, káva, cvičení, horká koupel — projdeme každý zákaz zvlášť a řekneme si, co za ním skutečně stojí.',
+        'Ležení, létání, sex, káva, cvičení, horká koupel. Projdeme každý zákaz zvlášť a řekneme si, co za ním skutečně stojí.',
       body: `## Odkud se ty zákazy berou
 
-Většina „pravidel" po transferu nevznikla v laboratoři. Vznikla z představy, že embryo je v děloze volně položené a může se posunout, vypadnout nebo se otřást. Tahle představa je anatomicky mylná — **dutina děložní je štěrbina, jejíž stěny jsou v kontaktu**, ne dutá nádoba s tekutinou.
+Většina „pravidel" po transferu nevznikla v laboratoři. Vznikla z představy, že embryo je v děloze volně položené a může se posunout, vypadnout nebo se otřást. Tahle představa je anatomicky mylná. **dutina děložní je štěrbina, jejíž stěny jsou v kontaktu**, ne dutá nádoba s tekutinou.
 
 To neznamená, že po transferu můžete cokoli. Znamená to, že rozumných omezení je málo a zbytek je folklor, který stojí spoustu zbytečného stresu.
 
@@ -239,7 +239,7 @@ To neznamená, že po transferu můžete cokoli. Znamená to, že rozumných ome
 
 **Mýtus:** letadlo je po transferu zakázané.
 
-**Realita:** tlak v kabině ani letecká výška samy o sobě implantaci neovlivňují. Problém je jinde — dlouhé sezení bez pohybu a **riziko žilní trombózy**, které je po stimulaci vyšší, a fakt, že v cizině nemáte svou kliniku na telefonu.
+**Realita:** tlak v kabině ani letecká výška samy o sobě implantaci neovlivňují. Problém je jinde. Dlouhé sezení bez pohybu a **riziko žilní trombózy**, které je po stimulaci vyšší, a fakt, že v cizině nemáte svou kliniku na telefonu.
 
 **Co dělat:** krátký let po domluvě s lékařem obvykle není překážka. Dlouhý let po čerstvém transferu proberte s lékařem vždy. Při jakékoli cestě pijte, choďte po uličce a mějte kompresní podkolenky.
 
@@ -247,9 +247,9 @@ To neznamená, že po transferu můžete cokoli. Znamená to, že rozumných ome
 
 **Mýtus:** sex embryo vyplaví.
 
-**Realita:** to se nestane. Kliniky se ale v doporučeních liší — některá pracoviště doporučují se pohlavního styku v luteální fázi zdržet, hlavně po čerstvém cyklu, kde jsou vaječníky zvětšené a stahy dělohy nejsou žádoucí.
+**Realita:** to se nestane. Kliniky se ale v doporučeních liší. Některá pracoviště doporučují se pohlavního styku v luteální fázi zdržet, hlavně po čerstvém cyklu, kde jsou vaječníky zvětšené a stahy dělohy nejsou žádoucí.
 
-**Co dělat:** řiďte se pokynem své kliniky. Pokud jste ho nedostala, zeptejte se — je to legitimní otázka, ne trapná.
+**Co dělat:** řiďte se pokynem své kliniky. Pokud jste ho nedostala, zeptejte se. Je to legitimní otázka, ne trapná.
 
 ## Káva
 
@@ -263,7 +263,7 @@ To neznamená, že po transferu můžete cokoli. Znamená to, že rozumných ome
 
 **Mýtus:** dva týdny nezvedat ruce nad hlavu.
 
-**Realita:** to je čirá pověra. Rozumná omezení jsou dvě: **vysoká zátěž** (těžké břemena, silový trénink na maximum, HIIT) a **skoky a otřesy**, hlavně pokud jste po stimulaci a máte zvětšené vaječníky — tam existuje riziko torze vaječníku.
+**Realita:** to je čirá pověra. Rozumná omezení jsou dvě: **vysoká zátěž** (těžké břemena, silový trénink na maximum, HIIT) a **skoky a otřesy**, hlavně pokud jste po stimulaci a máte zvětšené vaječníky. Tam existuje riziko torze vaječníku.
 
 **Co dělat:** chůze, protažení, běžný pohyb ano. Maraton, crossfit a zvedání skříně ne.
 
@@ -271,19 +271,19 @@ To neznamená, že po transferu můžete cokoli. Znamená to, že rozumných ome
 
 **Mýtus:** teplo embryo „uvaří".
 
-**Realita:** krátká vlažná sprcha je bez problému. Sauna, vířivka a horká vana ale zvyšují tělesnou teplotu, rozšiřují cévy a mohou vyvolat mdlobu — a **v místech se stojatou teplou vodou je i vyšší riziko infekce**. Proto se v tomhle období obvykle nedoporučují.
+**Realita:** krátká vlažná sprcha je bez problému. Sauna, vířivka a horká vana ale zvyšují tělesnou teplotu, rozšiřují cévy a mohou vyvolat mdlobu. A **v místech se stojatou teplou vodou je i vyšší riziko infekce**. Proto se v tomhle období obvykle nedoporučují.
 
 **Co dělat:** sprchujte se vlažně, saunu odložte.
 
 ## Zvedání a nošení
 
-Běžné věci — taška s nákupem, dítě, které vás objímá — nejsou problém. Vyhněte se opakovanému zvedání skutečně těžkých břemen.
+Běžné věci (taška s nákupem, dítě, které vás objímá) nejsou problém. Vyhněte se opakovanému zvedání skutečně těžkých břemen.
 
 ## Barvení vlasů, zubař, léky na bolest
 
 - **Barvení vlasů** není zakázané; pokud vám to není příjemné, odložte to, nic neztratíte.
 - **Zubař** ano, i akutní ošetření. Vždy řekněte, že jste po embryotransferu.
-- **Léky proti bolesti a jakékoli volně prodejné přípravky** vždy konzultujte — některé běžné látky nejsou v tomto období vhodné. Neřiďte se radou z diskuse.
+- **Léky proti bolesti a jakékoli volně prodejné přípravky** vždy konzultujte. Některé běžné látky nejsou v tomto období vhodné. Neřiďte se radou z diskuse.
 
 ## Co skutečně stojí za dodržení
 
@@ -309,7 +309,7 @@ Běžné věci — taška s nákupem, dítě, které vás objímá — nejsou pr
       hero: 'sage',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-09-29',
       boost: 1,
     },
@@ -318,10 +318,10 @@ Běžné věci — taška s nákupem, dítě, které vás objímá — nejsou pr
       kind: 'article',
       title: 'Mám ležet? Poctivá odpověď na nejčastější otázku po transferu',
       excerpt:
-        'Ležení nezvyšuje šanci, ale spoustě žen dává pocit kontroly — a právě o tom je tenhle text.',
+        'Ležení nezvyšuje šanci, ale spoustě žen dává pocit kontroly. A právě o tom je tenhle text.',
       body: `## Krátká odpověď
 
-Nemusíte. Prodloužený klid na lůžku po embryotransferu se v odborných doporučeních neetabloval jako opatření, které zvyšuje šanci na otěhotnění. Naopak — dlouhé nehybné ležení má svá vlastní rizika.
+Nemusíte. Prodloužený klid na lůžku po embryotransferu se v odborných doporučeních neetabloval jako opatření, které zvyšuje šanci na otěhotnění. Naopak. Dlouhé nehybné ležení má svá vlastní rizika.
 
 ## Proč se to tak dlouho dělalo
 
@@ -332,19 +332,19 @@ Přesto se drží v hlavách. Protože je to jediná věc, kterou v těch dvou t
 ## Co ležení skutečně dělá
 
 **Co nedělá:**
-- nedrží embryo na místě — nikam se nekutálí,
+- nedrží embryo na místě. Nikam se nekutálí,
 - nezvyšuje prokrvení dělohy,
 - nekompenzuje nic, co proběhlo v laboratoři.
 
 **Co může udělat:**
 - zhorší náladu a prohloubí pocit, že jste nemocná,
 - zhorší spánek,
-- **u žen po stimulaci zvyšuje riziko žilní trombózy** — to je reálné riziko, ne teoretické,
+- **u žen po stimulaci zvyšuje riziko žilní trombózy**: to je reálné riziko, ne teoretické,
 - zvýší zácpu, kterou už tak často způsobuje progesteron.
 
 ## Kdy je klid na místě
 
-Existují situace, kdy vám lékař klidový režim doporučí — například při výraznějším ovariálním hyperstimulačním syndromu, při krvácení nebo z jiného konkrétního důvodu ve vaší anamnéze. **To je individuální doporučení a má přednost před tímto článkem.**
+Existují situace, kdy vám lékař klidový režim doporučí, například při výraznějším ovariálním hyperstimulačním syndromu, při krvácení nebo z jiného konkrétního důvodu ve vaší anamnéze. **To je individuální doporučení a má přednost před tímto článkem.**
 
 Rozdíl je zásadní: klid „pro jistotu" versus klid indikovaný lékařem kvůli konkrétnímu nálezu.
 
@@ -354,14 +354,14 @@ Zlatý střed vypadá takhle:
 
 - **Den transferu ber jako lehký den.** Nikam nespěchejte, nedávejte si na večer nic náročného.
 - **Další dny žijte normálně.** Práce, procházka, běžná domácnost.
-- **Vyhněte se extrémům** — vysoké zátěži, skokům, těžkému zvedání, přehřátí.
+- **Vyhněte se extrémům**: vysoké zátěži, skokům, těžkému zvedání, přehřátí.
 - **Choďte.** Dvacet minut chůze denně dělá pro vaši hlavu i cévy víc než dva dny na gauči.
 
 ## Když vám ležení psychicky pomáhá
 
 Tady je poctivá věc, kterou vám většina článků neřekne: **pokud vám den nebo dva klidu dávají pocit, že jste udělala všechno, co šlo, není to špatně.** Neuškodí to. Jen si prosím nedávejte to břemeno, že když půjdete v pátek do práce, bude to vaše vina.
 
-To je totiž ta skutečná cena mýtu o ležení. Ne pár dní na gauči, ale věta „kdybych tehdy ležela" v případě, že to nevyjde. Ta věta není pravdivá — a je krutá.
+To je totiž ta skutečná cena mýtu o ležení. Ne pár dní na gauči, ale věta „kdybych tehdy ležela" v případě, že to nevyjde. Ta věta není pravdivá. A je krutá.
 
 ## Co když jsem už něco „porušila"
 
@@ -384,7 +384,7 @@ Vyšla jste ráno se psem, uklidila jste kuchyň, zvedla jste nákup. Nic z toho
       hero: 'taupe',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy'],
+      sources: ['ESHRE: doporučené postupy'],
       publishedOn: '2025-10-06',
       boost: 0.5,
     },
@@ -402,7 +402,7 @@ Pojďme na všechny tři.
 
 ## Ublížíme tím embryu?
 
-Ne, embryo se pohlavním stykem nevyplaví ani neposune. Anatomicky to nedává smysl — embryo je v dutině děložní, za uzavřeným děložním hrdlem.
+Ne, embryo se pohlavním stykem nevyplaví ani neposune. Anatomicky to nedává smysl. Embryo je v dutině děložní, za uzavřeným děložním hrdlem.
 
 Přesto řada klinik doporučuje zdržet se styku od transferu do odběru hCG, případně i déle. Důvody jsou tři a jsou věcné:
 
@@ -410,7 +410,7 @@ Přesto řada klinik doporučuje zdržet se styku od transferu do odběru hCG, p
 2. **Orgasmus vyvolává stahy dělohy.** Není doloženo, že by uškodily, ale klinika je z opatrnosti nechce.
 3. **Zavedený progesteron v pochvě** a riziko podráždění či infekce.
 
-**Praktický závěr:** platí to, co vám řekla vaše klinika. Pokud jste žádný pokyn nedostala, zeptejte se — nejlépe hned, sestry tuhle otázku slyší denně.
+**Praktický závěr:** platí to, co vám řekla vaše klinika. Pokud jste žádný pokyn nedostala, zeptejte se. Nejlépe hned, sestry tuhle otázku slyší denně.
 
 ## Když vám doporučili se zdržet
 
@@ -422,13 +422,13 @@ Zdržet se pohlavního styku neznamená zdržet se blízkosti. Tenhle rozdíl b�
 
 ## Když se vám nechce
 
-Progesteron, nafouklé břicho, únava, nervozita a pocit, že vaše tělo je poslední měsíce spíš pracoviště než tělo — to všechno je dost důvodů. Nemusíte to zdůvodňovat.
+Progesteron, nafouklé břicho, únava, nervozita a pocit, že vaše tělo je poslední měsíce spíš pracoviště než tělo. To všechno je dost důvodů. Nemusíte to zdůvodňovat.
 
 Co pomáhá říct: *„Nechci sex, ale chci tebe. Potřebuju, abys byl blízko."* Ta věta zabrání spoustě nedorozumění.
 
 ## Když se naopak chce vám a jemu ne
 
-Stává se to a bývá to bolestivější, protože se o tom mluví ještě míň. Muži v léčbě často vypnou touhu ze strachu — bojí se ublížit, bojí se selhat, bojí se dalšího zklamání. Nebývá to o vás.
+Stává se to a bývá to bolestivější, protože se o tom mluví ještě míň. Muži v léčbě často vypnou touhu ze strachu. Bojí se ublížit, bojí se selhat, bojí se dalšího zklamání. Nebývá to o vás.
 
 ## Po pozitivní betě
 
@@ -457,10 +457,10 @@ I tady platí pokyn kliniky. Po nekomplikovaném začátku těhotenství bývá 
       kind: 'article',
       title: 'Podpora luteální fáze: proč po transferu užíváte progesteron',
       excerpt:
-        'Není to placebo ani „pro jistotu" — je to náhrada za něco, co váš cyklus po IVF nedokáže sám.',
+        'Není to placebo ani „pro jistotu". Je to náhrada za něco, co váš cyklus po IVF nedokáže sám.',
       body: `## Co je luteální fáze
 
-Luteální fáze je druhá polovina cyklu — od ovulace do menstruace nebo do nástupu těhotenství. V přirozeném cyklu ji řídí **žluté tělísko**, útvar, který vznikne z prasklého folikulu a produkuje **progesteron**. Progesteron připraví děložní sliznici tak, aby se do ní embryo mohlo zahnízdit, a udrží ji, dokud tuhle roli nepřevezme placenta.
+Luteální fáze je druhá polovina cyklu. Od ovulace do menstruace nebo do nástupu těhotenství. V přirozeném cyklu ji řídí **žluté tělísko**, útvar, který vznikne z prasklého folikulu a produkuje **progesteron**. Progesteron připraví děložní sliznici tak, aby se do ní embryo mohlo zahnízdit, a udrží ji, dokud tuhle roli nepřevezme placenta.
 
 ## Proč se po IVF musí doplňovat
 
@@ -468,7 +468,7 @@ Po cyklu IVF bývá vlastní tvorba progesteronu nedostatečná. Důvodů je ně
 
 - **Odsátí folikulů při punkci** odstraní i část buněk, ze kterých by žluté tělísko vzniklo.
 - **Léky použité ke stimulaci a k potlačení předčasné ovulace** naruší přirozenou hormonální zpětnou vazbu.
-- **V kryocyklu s hormonální přípravou** ovulace vůbec neproběhne — žluté tělísko tedy neexistuje a veškerý progesteron musí přijít zvenčí.
+- **V kryocyklu s hormonální přípravou** ovulace vůbec neproběhne. Žluté tělísko tedy neexistuje a veškerý progesteron musí přijít zvenčí.
 
 Proto se podpora luteální fáze považuje za standardní součást léčby, ne za nadstavbu.
 
@@ -476,12 +476,12 @@ Proto se podpora luteální fáze považuje za standardní součást léčby, ne
 
 Formy se liší podle pracoviště a podle vás:
 
-- **vaginální** — čípky, kapsle nebo gel; nejčastější varianta, protože působí přímo v děloze,
-- **injekční do svalu** — používá se v některých protokolech a při určitých situacích,
-- **perorální nebo podjazyková** — jako doplněk nebo alternativa,
+- **vaginální**: čípky, kapsle nebo gel; nejčastější varianta, protože působí přímo v děloze,
+- **injekční do svalu**: používá se v některých protokolech a při určitých situacích,
+- **perorální nebo podjazyková**: jako doplněk nebo alternativa,
 - někdy se přidávají **další léky**, například estrogeny, hlavně v kryocyklech.
 
-**Kterou formu, v jaké dávce a jak dlouho — to určuje výhradně váš lékař.** Na internetu najdete desítky rozporuplných schémat; žádné z nich není vaše.
+**Kterou formu, v jaké dávce a jak dlouho. To určuje výhradně váš lékař.** Na internetu najdete desítky rozporuplných schémat; žádné z nich není vaše.
 
 ## Nejdůležitější věta celého článku
 
@@ -490,25 +490,25 @@ Formy se liší podle pracoviště a podle vás:
 ## Praktické zásady užívání
 
 1. **Držte se časů.** Pravidelnost je u progesteronu důležitější, než si většina žen myslí. Nastavte si připomínky.
-2. **Vaginální formy zavádějte vleže** a zůstaňte chvíli ležet — vstřebávání je pak spolehlivější a méně toho vyteče.
-3. **Počítejte s výtokem.** Zbytky nosiče odcházejí a vypadají jako drobivý bílý výtok. Nepletlo by se to s neúspěchem — je to jen zbytek přípravku.
+2. **Vaginální formy zavádějte vleže** a zůstaňte chvíli ležet. Vstřebávání je pak spolehlivější a méně toho vyteče.
+3. **Počítejte s výtokem.** Zbytky nosiče odcházejí a vypadají jako drobivý bílý výtok. Nepletlo by se to s neúspěchem. Je to jen zbytek přípravku.
 4. **Když dávku vynecháte,** vezměte ji co nejdřív, ale nezdvojujte. Při opakovaném vynechání volejte kliniku.
 5. **Mějte zásobu na celé období**, včetně víkendů a svátků.
 
 ## Co progesteron dělá s vaším tělem
 
-Napětí prsou, únava, nafouklé břicho, mírné křeče, změny nálady, zácpa, nevolnost, ospalost. Zní to povědomě? Ano — **jsou to prakticky stejné příznaky, jaké má rané těhotenství.** Právě proto nelze z příznaků v tomhle období usuzovat na výsledek. Podrobněji o tom píšeme v samostatném článku o příznacích.
+Napětí prsou, únava, nafouklé břicho, mírné křeče, změny nálady, zácpa, nevolnost, ospalost. Zní to povědomě? Ano. **jsou to prakticky stejné příznaky, jaké má rané těhotenství.** Právě proto nelze z příznaků v tomhle období usuzovat na výsledek. Podrobněji o tom píšeme v samostatném článku o příznacích.
 
 ## Jak dlouho se to bere
 
-Doba se výrazně liší podle typu cyklu a zvyklostí pracoviště — od ukončení při negativní betě až po pokračování do zhruba 10.–12. týdne těhotenství. **Nechte si to napsat na papír** a při pozitivním výsledku si vždy potvrďte, jak dál.
+Doba se výrazně liší podle typu cyklu a zvyklostí pracoviště. Od ukončení při negativní betě až po pokračování do zhruba 10.–12. týdne těhotenství. **Nechte si to napsat na papír** a při pozitivním výsledku si vždy potvrďte, jak dál.
 
 ## Kdy volat lékaře
 
 - silné krvácení nebo krvácení se sraženinami,
 - prudká bolest v podbřišku,
 - horečka nad 38 °C, silně páchnoucí výtok, pálení a svědění,
-- alergická reakce — vyrážka, otok, dušnost,
+- alergická reakce. Vyrážka, otok, dušnost,
 - bolest, otok nebo zarudnutí lýtka,
 - opakovaně vynechané dávky.
 
@@ -521,7 +521,7 @@ Doba se výrazně liší podle typu cyklu a zvyklostí pracoviště — od ukon�
       hero: 'dawn',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-10-20',
       boost: 0.85,
     },
@@ -537,18 +537,18 @@ Kolik a jak dlouho, to určuje váš lékař. Tenhle článek je o tom, co vám 
 
 ## Výtok, který děsí
 
-Vaginální formy progesteronu obsahují nosič, který se nevstřebá celý. Zbytek odchází — jako **bílý drobivý výtok, mazlavá hmota nebo hrudky**. Objevuje se hlavně ráno a po delším stání.
+Vaginální formy progesteronu obsahují nosič, který se nevstřebá celý. Zbytek odchází, jako **bílý drobivý výtok, mazlavá hmota nebo hrudky**. Objevuje se hlavně ráno a po delším stání.
 
 Co je dobré vědět:
 
 - Je to normální a neznamená to, že se přípravek nevstřebal. Účinná látka se vstřebá i tehdy, když nosič odejde.
 - **Noste slabé vložky, ne tampony.** Tampony v tomhle období nepoužívejte.
 - Zavádění vleže večer omezuje množství toho, co odteče.
-- Pokud výtok **zapáchá, je nazelenalý, žlutý nebo pálí a svědí**, volejte lékaře — to už není nosič.
+- Pokud výtok **zapáchá, je nazelenalý, žlutý nebo pálí a svědí**, volejte lékaře. To už není nosič.
 
 ## Únava, která není normální únava
 
-Progesteron má tlumivý účinek na centrální nervovou soustavu. Řada žen popisuje pocit „mlhy" — hůř se soustředí, hledají slova, usínají u seriálu v osm večer.
+Progesteron má tlumivý účinek na centrální nervovou soustavu. Řada žen popisuje pocit „mlhy". Hůř se soustředí, hledají slova, usínají u seriálu v osm večer.
 
 Co pomáhá:
 
@@ -559,7 +559,7 @@ Co pomáhá:
 
 ## Nafouklé břicho a zácpa
 
-Progesteron zpomaluje střevní peristaltiku. Kombinace s nafouklým břichem po stimulaci umí být opravdu nepříjemná — a navíc svádí k domněnce, že „něco cítíte".
+Progesteron zpomaluje střevní peristaltiku. Kombinace s nafouklým břichem po stimulaci umí být opravdu nepříjemná. A navíc svádí k domněnce, že „něco cítíte".
 
 - Pijte dost, opravdu dost.
 - Vláknina postupně, ne skokově.
@@ -597,7 +597,7 @@ Pokud máte progesteron do svalu, počítejte s tím, že místa vpichu bolí a 
 
 - horečka nad 38 °C,
 - páchnoucí, zbarvený výtok, silné pálení nebo svědění,
-- vyrážka, otok obličeje, dušnost — možná alergická reakce,
+- vyrážka, otok obličeje, dušnost, možná alergická reakce,
 - bolest, otok nebo zarudnutí lýtka,
 - silné krvácení nebo prudká bolest v podbřišku,
 - v místě injekce rostoucí zarudnutí, tvrdý bolestivý útvar nebo horečka.
@@ -618,10 +618,10 @@ Pokud máte progesteron do svalu, počítejte s tím, že místa vpichu bolí a 
       kind: 'article',
       title: 'Příznaky během čekání a proč z nich nic nevyčtete',
       excerpt:
-        'Napětí prsou, křeče, nevolnost i naprostý klid — všechno tohle mají ženy těhotné i netěhotné, a důvod je hormonální.',
+        'Napětí prsou, křeče, nevolnost i naprostý klid. Všechno tohle mají ženy těhotné i netěhotné, a důvod je hormonální.',
       body: `## Nejkrutější hra dvou týdnů
 
-Sledování příznaků je návykové. Každé píchnutí, každý pocit v prsou, každá vlna nevolnosti se stane důkazem — nejdřív pro, pak proti. Ženy popisují, že v tomhle období vnímají své tělo intenzivněji než kdykoli jindy v životě. A že je to vyčerpávající.
+Sledování příznaků je návykové. Každé píchnutí, každý pocit v prsou, každá vlna nevolnosti se stane důkazem. Nejdřív pro, pak proti. Ženy popisují, že v tomhle období vnímají své tělo intenzivněji než kdykoli jindy v životě. A že je to vyčerpávající.
 
 Tenhle text vám nemá vzít naději. Má vám vzít **falešný nástroj**, kterým se dva týdny týráte.
 
@@ -640,7 +640,7 @@ Progesteron způsobuje:
 - zvýšenou bazální teplotu,
 - častější močení.
 
-Přečtěte si ten seznam znovu. To je zároveň seznam „prvních příznaků těhotenství" z každého článku na internetu. **Rozdíl mezi těhotnou a netěhotnou ženou po transferu není v příznacích — je jen v krvi.**
+Přečtěte si ten seznam znovu. To je zároveň seznam „prvních příznaků těhotenství" z každého článku na internetu. **Rozdíl mezi těhotnou a netěhotnou ženou po transferu není v příznacích. Je jen v krvi.**
 
 ## A co když nemám žádné příznaky?
 
@@ -650,7 +650,7 @@ Citlivost na progesteron je individuální. To, že vaše kamarádka byla ve dru
 
 ## Co říct na „mně to tehdy píchlo v boku a věděla jsem to"
 
-Tenhle typ historky uslyšíte často. Funguje na ní **zpětné potvrzení** — ženy, kterým to vyšlo, si retrospektivně vybaví příznak a přisoudí mu význam. Ty, kterým to nevyšlo a měly úplně stejný pocit, žádnou historku nevypráví.
+Tenhle typ historky uslyšíte často. Funguje na ní **zpětné potvrzení**: ženy, kterým to vyšlo, si retrospektivně vybaví příznak a přisoudí mu význam. Ty, kterým to nevyšlo a měly úplně stejný pocit, žádnou historku nevypráví.
 
 To není lhaní. Je to způsob, jakým funguje lidská paměť.
 
@@ -658,11 +658,11 @@ To není lhaní. Je to způsob, jakým funguje lidská paměť.
 
 Ne příznaky těhotenství, ale **varovné příznaky**:
 
-- **krvácení** — slabé špinění se v tomhle období vyskytuje běžně, silné krvácení patří k lékaři,
-- **bolest** — mírné tahání ano, prudká a narůstající bolest ne,
-- **teplota** — horečka nad 38 °C vždy k lékaři,
-- **známky OHSS** — rychle rostoucí břicho, dušnost, výrazně snížené močení, prudký nárůst hmotnosti,
-- **známky trombózy** — bolest a otok lýtka, bolest na hrudi, dušnost.
+- **krvácení**: slabé špinění se v tomhle období vyskytuje běžně, silné krvácení patří k lékaři,
+- **bolest**: mírné tahání ano, prudká a narůstající bolest ne,
+- **teplota**: horečka nad 38 °C vždy k lékaři,
+- **známky OHSS**: rychle rostoucí břicho, dušnost, výrazně snížené močení, prudký nárůst hmotnosti,
+- **známky trombózy**: bolest a otok lýtka, bolest na hrudi, dušnost.
 
 Tenhle seznam má smysl znát nazpaměť. Ten druhý ne.
 
@@ -676,7 +676,7 @@ Tenhle seznam má smysl znát nazpaměť. Ten druhý ne.
 
 ## A co bazální teplota a další metody
 
-Měření teploty v tomhle období nemá vypovídací hodnotu — progesteron ji drží nahoře bez ohledu na výsledek. Podobně to platí pro sledování hlenu nebo polohy čípku. Tyhle nástroje patří do jiné fáze cesty.
+Měření teploty v tomhle období nemá vypovídací hodnotu. Progesteron ji drží nahoře bez ohledu na výsledek. Podobně to platí pro sledování hlenu nebo polohy čípku. Tyhle nástroje patří do jiné fáze cesty.
 
 ## Jediná spolehlivá odpověď
 
@@ -690,7 +690,7 @@ Měření teploty v tomhle období nemá vypovídací hodnotu — progesteron ji
 - rychlý nárůst obvodu břicha, dušnost, snížené močení, prudký nárůst hmotnosti,
 - bolest, otok nebo zarudnutí lýtka.
 
-> Tento článek nenahrazuje lékařskou péči. Při jakékoli pochybnosti volejte svou kliniku — od toho tam telefon je.`,
+> Tento článek nenahrazuje lékařskou péči. Při jakékoli pochybnosti volejte svou kliniku. Od toho tam telefon je.`,
       minutes: 8,
       phases: ['two_week_wait'],
       dayRange: [1, 12],
@@ -699,7 +699,7 @@ Měření teploty v tomhle období nemá vypovídací hodnotu — progesteron ji
       hero: 'dusk',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy'],
+      sources: ['ESHRE: doporučené postupy'],
       publishedOn: '2025-11-03',
       boost: 0.95,
     },
@@ -708,16 +708,16 @@ Měření teploty v tomhle období nemá vypovídací hodnotu — progesteron ji
       kind: 'article',
       title: 'Implantační krvácení: co to je, jak vypadá a kdy to není ono',
       excerpt:
-        'Nejobávanější skvrna na vložce má často nevinné vysvětlení — a existuje pár znaků, podle kterých poznáte, kdy zvednout telefon.',
+        'Nejobávanější skvrna na vložce má často nevinné vysvětlení. A existuje pár znaků, podle kterých poznáte, kdy zvednout telefon.',
       body: `## Co se v těle děje
 
-Když se blastocysta zanořuje do děložní sliznice, naruší drobné cévy. Část krve může odejít ven — obvykle až s odstupem, protože cesta z dutiny děložní trvá. **Tomu se lidově říká implantační krvácení.**
+Když se blastocysta zanořuje do děložní sliznice, naruší drobné cévy. Část krve může odejít ven. Obvykle až s odstupem, protože cesta z dutiny děložní trvá. **Tomu se lidově říká implantační krvácení.**
 
 Typicky by k němu mohlo dojít zhruba **pátý až desátý den po transferu blastocysty**, ale toto rozmezí je orientační a u řady žen se neobjeví vůbec.
 
 ## Jak obvykle vypadá
 
-- **Množství:** velmi malé — kapky, stopa na toaletním papíře, hnědý flek na vložce.
+- **Množství:** velmi malé. Kapky, stopa na toaletním papíře, hnědý flek na vložce.
 - **Barva:** růžová, béžová, hnědá až tmavě hnědá. Hnědá barva znamená starší krev, tedy něco, co odešlo se zpožděním.
 - **Trvání:** hodiny až dva dny.
 - **Charakter:** nestupňuje se, nemá sraženiny, nepotřebuje vložku s vyšší savostí.
@@ -727,7 +727,7 @@ Typicky by k němu mohlo dojít zhruba **pátý až desátý den po transferu bl
 Tohle je důležité, protože **naprostá většina špinění po transferu nemá s implantací nic společného**:
 
 - **podráždění děložního hrdla** při zavádění katétru, při vaginálním ultrazvuku nebo při zavádění progesteronu,
-- **vaginální progesteron sám o sobě** — sliznice je prokrvená a snadno krvácí,
+- **vaginální progesteron sám o sobě**: sliznice je prokrvená a snadno krvácí,
 - **eroze nebo polyp na čípku**, o kterém možná ani nevíte,
 - **hormonální kolísání** ke konci luteální fáze,
 - **infekce nebo záněty**.
@@ -741,11 +741,11 @@ Zvedněte telefon, pokud:
 - krvácení se **stupňuje** místo aby ustávalo,
 - doprovází ho **prudká nebo jednostranná bolest**,
 - máte **horečku** nebo **páchnoucí výtok**,
-- cítíte **slabost, závrať, bušení srdce nebo bolest v rameni** — to jsou příznaky, které je třeba řešit neodkladně.
+- cítíte **slabost, závrať, bušení srdce nebo bolest v rameni**: to jsou příznaky, které je třeba řešit neodkladně.
 
 ## Nejdůležitější věta
 
-**Ani při krvácení nevysazujte podporu luteální fáze sama.** Zavolejte na kliniku a řiďte se tím, co vám řeknou. Krvácení nerovná se konec — a předčasné vysazení progesteronu může uškodit v případě, že těhotenství probíhá.
+**Ani při krvácení nevysazujte podporu luteální fáze sama.** Zavolejte na kliniku a řiďte se tím, co vám řeknou. Krvácení nerovná se konec. A předčasné vysazení progesteronu může uškodit v případě, že těhotenství probíhá.
 
 ## Co udělat, když uvidíte krev
 
@@ -753,7 +753,7 @@ Zvedněte telefon, pokud:
 2. **Podívejte se, kolik toho je.** Vložka, ne toaletní papír, vám dá reálnou představu.
 3. **Zapište si čas, barvu a množství.** Klinika se přesně na tohle bude ptát.
 4. **Vezměte si vložku, ne tampon.**
-5. **Zavolejte na kliniku**, pokud cokoli z výše uvedeného sedí na varovné příznaky — nebo prostě proto, že jste nejistá. To je legitimní důvod.
+5. **Zavolejte na kliniku**, pokud cokoli z výše uvedeného sedí na varovné příznaky, nebo prostě proto, že jste nejistá. To je legitimní důvod.
 
 ## Když se to stane večer nebo o víkendu
 
@@ -771,7 +771,7 @@ Naprosto v pořádku. Většina žen, kterým transfer vyšel, žádné implanta
 - horečka nad 38 °C nebo páchnoucí výtok,
 - krvácení, které trvá déle než dva dny nebo se zhoršuje.
 
-> Tento text nenahrazuje vyšetření lékařem. Při krvácení v tomto období vždy kontaktujte svou kliniku — i když si myslíte, že „to nic není".`,
+> Tento text nenahrazuje vyšetření lékařem. Při krvácení v tomto období vždy kontaktujte svou kliniku. I když si myslíte, že „to nic není".`,
       minutes: 7,
       phases: ['two_week_wait', 'beta_positive'],
       dayRange: [4, 14],
@@ -780,7 +780,7 @@ Naprosto v pořádku. Většina žen, kterým transfer vyšel, žádné implanta
       hero: 'blush',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['Česká gynekologická a porodnická společnost ČLS JEP', 'ESHRE — doporučené postupy'],
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP', 'ESHRE: doporučené postupy'],
       publishedOn: '2025-11-10',
       boost: 0.8,
     },
@@ -789,7 +789,7 @@ Naprosto v pořádku. Většina žen, kterým transfer vyšel, žádné implanta
       kind: 'article',
       title: 'Jak přežít dva týdny čekání, aniž byste se zbláznila',
       excerpt:
-        'Nejde o to být klidná — jde o to mít strukturu, která vás unese, když klidná nebudete.',
+        'Nejde o to být klidná. Jde o to mít strukturu, která vás unese, když klidná nebudete.',
       body: `## Proč je tohle nejtěžší část
 
 Během stimulace máte úkoly. Píchání, odběry, ultrazvuky, punkce. Máte kam jít a co dělat. Po transferu se všechno zastaví. **Zůstane jen tělo, které nemůžete ovlivnit, a čas, který se táhne.**
@@ -798,15 +798,15 @@ To není vaše slabost. Je to strukturální vlastnost téhle fáze: maximum v s
 
 ## Zapomeňte na „nestresujte se"
 
-Tuhle větu vám řekne někdo z rodiny, možná i někdo v bílém plášti. Je neužitečná a navíc škodlivá — přidává vám vinu za to, že cítíte, co logicky cítíte.
+Tuhle větu vám řekne někdo z rodiny, možná i někdo v bílém plášti. Je neužitečná a navíc škodlivá. Přidává vám vinu za to, že cítíte, co logicky cítíte.
 
-Stres z čekání sám o sobě nerozhoduje o výsledku. Vaše práce teď není být klidná. **Vaše práce je ty dva týdny prožít tak, aby vás nezničily** — bez ohledu na to, jak dopadnou.
+Stres z čekání sám o sobě nerozhoduje o výsledku. Vaše práce teď není být klidná. **Vaše práce je ty dva týdny prožít tak, aby vás nezničily**: bez ohledu na to, jak dopadnou.
 
 ## Čtyři věci, které fungují
 
 ### 1. Struktura místo rozjímání
 
-Prázdný den je v téhle fázi nepřítel. Naplánujte si každý den tři konkrétní věci — jednu praktickou, jednu příjemnou, jednu s lidmi. Nemusí být velké. „Vyprat, kafe s Petrou, epizoda seriálu" je plnohodnotný plán.
+Prázdný den je v téhle fázi nepřítel. Naplánujte si každý den tři konkrétní věci. Jednu praktickou, jednu příjemnou, jednu s lidmi. Nemusí být velké. „Vyprat, kafe s Petrou, epizoda seriálu" je plnohodnotný plán.
 
 ### 2. Ohraničení internetu
 
@@ -820,7 +820,7 @@ Vyberte si jednoho člověka, se kterým to řešíte. Ne proto, že byste se m�
 
 ### 4. Plán B napsaný předem
 
-Zní to jako přivolávání neúspěchu. Není. Ženy, které mají předem promyšlené, co udělají, když beta vyjde negativní — komu zavolají, jestli půjdou do práce, kdy je kontrolní schůzka na klinice — popisují ten den jako výrazně snesitelnější.
+Zní to jako přivolávání neúspěchu. Není. Ženy, které mají předem promyšlené, co udělají, když beta vyjde negativní (komu zavolají, jestli půjdou do práce, kdy je kontrolní schůzka na klinice) popisují ten den jako výrazně snesitelnější.
 
 Napište si to a zavřete do zásuvky. Doufejme, že to nebudete potřebovat.
 
@@ -828,7 +828,7 @@ Napište si to a zavřete do zásuvky. Doufejme, že to nebudete potřebovat.
 
 *„Co když je to naposledy."*
 
-Ta myšlenka přijde a vrátí se. Nesnažte se ji vytěsnit — vytěsňování ji zesiluje. Zkuste místo toho: **„Tahle myšlenka je teď se mnou. Nemusím na ni odpovídat."** Zní to jako trik. Je to trik. Funguje.
+Ta myšlenka přijde a vrátí se. Nesnažte se ji vytěsnit. Vytěsňování ji zesiluje. Zkuste místo toho: **„Tahle myšlenka je teď se mnou. Nemusím na ni odpovídat."** Zní to jako trik. Je to trik. Funguje.
 
 ## Techniky, které stojí za pět minut
 
@@ -839,7 +839,7 @@ Ta myšlenka přijde a vrátí se. Nesnažte se ji vytěsnit — vytěsňování
 
 ## Práce: ano, nebo ne?
 
-Neexistuje správná odpověď, ale existuje vzorec: **ženy, které zůstanou doma samy bez programu, to obvykle snášejí hůř.** Práce, která zaměstná hlavu a nevyžaduje fyzickou zátěž, bývá spíš úleva. Práce fyzicky náročná nebo emočně vyčerpávající je jiný příběh — o pracovní neschopnosti se poraďte s lékařem.
+Neexistuje správná odpověď, ale existuje vzorec: **ženy, které zůstanou doma samy bez programu, to obvykle snášejí hůř.** Práce, která zaměstná hlavu a nevyžaduje fyzickou zátěž, bývá spíš úleva. Práce fyzicky náročná nebo emočně vyčerpávající je jiný příběh. O pracovní neschopnosti se poraďte s lékařem.
 
 ## Kdy vyhledat odbornou pomoc
 
@@ -848,7 +848,7 @@ Není žádná ostuda a není to selhání. Ozvěte se psychologovi nebo svému 
 - nespíte několik nocí po sobě,
 - máte panické ataky,
 - nejste schopná fungovat v běžném dni,
-- objevují se myšlenky, že by bylo lepší tu nebýt — **v tom případě vyhledejte pomoc okamžitě**, nečekejte na výsledek bety.
+- objevují se myšlenky, že by bylo lepší tu nebýt. **v tom případě vyhledejte pomoc okamžitě**, nečekejte na výsledek bety.
 
 V Česku funguje bezplatná Linka první psychické pomoci 116 123, nonstop.
 
@@ -869,30 +869,30 @@ V Česku funguje bezplatná Linka první psychické pomoci 116 123, nonstop.
       kind: 'article',
       title: 'Domácí testy: proč brzké testování klame',
       excerpt:
-        'Tři důvody, proč vám proužek osmý den po transferu neřekne pravdu — a co s tím, když už jste ho udělala.',
+        'Tři důvody, proč vám proužek osmý den po transferu neřekne pravdu. A co s tím, když už jste ho udělala.',
       body: `## Co domácí test měří
 
-Těhotenský test z moči detekuje **hCG** — hormon, který začne produkovat zárodečná tkáň po zahnízdění. Test má práh citlivosti: pod určitou koncentrací nezobrazí nic, i když hCG v těle už je.
+Těhotenský test z moči detekuje **hCG**: hormon, který začne produkovat zárodečná tkáň po zahnízdění. Test má práh citlivosti: pod určitou koncentrací nezobrazí nic, i když hCG v těle už je.
 
 Z toho plynou všechny problémy.
 
 ## Důvod první: ještě tam není dost hCG
 
-Po transferu blastocysty začíná tvorba hCG zhruba kolem šestého dne, ale nastupuje postupně a **hodnota v moči zaostává za hodnotou v krvi**. Sedmý ani osmý den proto negativní test často neznamená nic — jen to, že jste testovala brzy.
+Po transferu blastocysty začíná tvorba hCG zhruba kolem šestého dne, ale nastupuje postupně a **hodnota v moči zaostává za hodnotou v krvi**. Sedmý ani osmý den proto negativní test často neznamená nic, jen to, že jste testovala brzy.
 
 Ke všemu se implantace nemusí odehrát „podle učebnice". Rozdíl jednoho dne v načasování zahnízdění posune celou křivku.
 
 ## Důvod druhý: hCG z injekce
 
-Pokud jste dostala **injekci k dozrání vajíček obsahující hCG** (takzvaná spouštěcí injekce), zůstává v těle nějakou dobu — obvykle se popisuje rozmezí zhruba do deseti až čtrnácti dnů, individuálně se to liší.
+Pokud jste dostala **injekci k dozrání vajíček obsahující hCG** (takzvaná spouštěcí injekce), zůstává v těle nějakou dobu. Obvykle se popisuje rozmezí zhruba do deseti až čtrnácti dnů, individuálně se to liší.
 
 Test v tom rozdíl nepozná. Zobrazí druhou čárku, která patří léku, ne těhotenství.
 
-Tohle je nejkrutější varianta falešné naděje, jakou v léčbě potkáte. **Zeptejte se na klinice, jestli se vás to týká** — v kryocyklu obvykle ne, v čerstvém cyklu často ano.
+Tohle je nejkrutější varianta falešné naděje, jakou v léčbě potkáte. **Zeptejte se na klinice, jestli se vás to týká**: v kryocyklu obvykle ne, v čerstvém cyklu často ano.
 
 ## Důvod třetí: proužek neumí říct, co bude
 
-I skutečně pozitivní časný test říká jen to, že hCG je v moči. Neřekne, jestli hodnota stoupá správně. Část velmi časných těhotenství se dál nerozvine — a žena, která testovala od sedmého dne, si projde nadějí a ztrátou dřív, než by o tom vůbec musela vědět.
+I skutečně pozitivní časný test říká jen to, že hCG je v moči. Neřekne, jestli hodnota stoupá správně. Část velmi časných těhotenství se dál nerozvine. A žena, která testovala od sedmého dne, si projde nadějí a ztrátou dřív, než by o tom vůbec musela vědět.
 
 Tomu se odborně říká biochemické těhotenství. Bolí to. A brzké testování počet těchto zážitků zvyšuje.
 
@@ -901,11 +901,11 @@ Tomu se odborně říká biochemické těhotenství. Bolí to. A brzké testová
 Řekněme si to na rovinu: **většina žen testuje doma.** Zákazy tady moc nefungují. Takže když už:
 
 - **Netestujte dřív než devátý až desátý den po transferu blastocysty.** Dřívější výsledek nemá vypovídací hodnotu.
-- **Testujte ranní moč** — je nejkoncentrovanější.
+- **Testujte ranní moč**: je nejkoncentrovanější.
 - **Použijte jeden typ testu**, ne pět značek. Různá citlivost = různé výsledky = zbytečné šílenství.
 - **Netestujte několikrát denně.** Odpolední negativní test po ranním pozitivním vás zničí, aniž by cokoli znamenal.
 - **Nefotografujte proužky a nedávejte je do skupin k posouzení.** Nikdo z fotky nic nepozná.
-- **Ať výsledek vyjde jakkoli, na odběr krve jděte.** Test doma nenahrazuje betu — ani ten pozitivní.
+- **Ať výsledek vyjde jakkoli, na odběr krve jděte.** Test doma nenahrazuje betu, ani ten pozitivní.
 
 ## Co s velmi slabou čárkou
 
@@ -935,7 +935,7 @@ Stává se to a je to jeden z důvodů, proč kliniky testování doma nedoporu�
       hero: 'pearl',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy'],
+      sources: ['ESHRE: doporučené postupy'],
       publishedOn: '2025-11-24',
       boost: 0.95,
     },
@@ -944,10 +944,10 @@ Stává se to a je to jeden z důvodů, proč kliniky testování doma nedoporu�
       kind: 'article',
       title: 'hCG: co to je číslo a proč se sleduje jeho zdvojení',
       excerpt:
-        'Jedna hodnota vám toho o těhotenství řekne překvapivě málo — teprve dvě hodnoty za sebou dávají smysl.',
+        'Jedna hodnota vám toho o těhotenství řekne překvapivě málo. Teprve dvě hodnoty za sebou dávají smysl.',
       body: `## Co se vlastně odebírá
 
-**hCG** (lidský choriový gonadotropin) je hormon, který produkuje tkáň budoucí placenty poté, co se embryo zahnízdí. V krvi se stanovuje jako **hCG** a měří se v jednotkách na litr — nejčastěji IU/l nebo mIU/ml.
+**hCG** (lidský choriový gonadotropin) je hormon, který produkuje tkáň budoucí placenty poté, co se embryo zahnízdí. V krvi se stanovuje jako **hCG** a měří se v jednotkách na litr. Nejčastěji IU/l nebo mIU/ml.
 
 Krev je proti moči přesnější ze dvou důvodů: zachytí i velmi nízké koncentrace a **dá vám číslo**, ne čárku. A o čísla tady jde.
 
@@ -966,7 +966,7 @@ Z toho plyne jediné rozumné doporučení: **nesrovnávejte své číslo s čí
 
 ## Proč se sleduje zdvojení
 
-V raném těhotenství hodnota hCG **stoupá exponenciálně** — u většiny zdravě se vyvíjejících těhotenství se zhruba **zdvojnásobí přibližně za 48 až 72 hodin**. Tempo růstu je informativnější než výchozí číslo.
+V raném těhotenství hodnota hCG **stoupá exponenciálně**: u většiny zdravě se vyvíjejících těhotenství se zhruba **zdvojnásobí přibližně za 48 až 72 hodin**. Tempo růstu je informativnější než výchozí číslo.
 
 Proto vám klinika obvykle naordinuje **druhý odběr s odstupem dvou až tří dnů**. Teprve dvojice hodnot umožňuje posoudit dynamiku.
 
@@ -978,14 +978,14 @@ Několik důležitých výhrad:
 
 ## Kdy se ještě nic neuvidí na ultrazvuku
 
-Ultrazvuk má smysl až od určité hodnoty hCG a od určitého týdne. Proto vás klinika neposílá na sonografii hned po první pozitivní betě — ne proto, že by vás chtěla napínat, ale proto, že by nález nebyl vypovídající. Termín prvního ultrazvuku vám určí lékař.
+Ultrazvuk má smysl až od určité hodnoty hCG a od určitého týdne. Proto vás klinika neposílá na sonografii hned po první pozitivní betě, ne proto, že by vás chtěla napínat, ale proto, že by nález nebyl vypovídající. Termín prvního ultrazvuku vám určí lékař.
 
 ## Co znamená, když hodnota nestoupá podle očekávání
 
 Může to znamenat několik věcí a **žádnou z nich nelze určit z jednoho čísla**:
 
 - těhotenství, které se dál nerozvíjí,
-- **mimoděložní těhotenství** — proto se pomalý vzestup vždy sleduje pečlivě,
+- **mimoděložní těhotenství**: proto se pomalý vzestup vždy sleduje pečlivě,
 - pozdější zahnízdění a posunutou křivku,
 - laboratorní nebo časovou odchylku.
 
@@ -993,7 +993,7 @@ Rozhodnutí, co dál, patří výhradně lékaři.
 
 ## Praktické věci kolem odběru
 
-1. **Přijďte v termín, který vám dala klinika.** Ani o den dřív — hodnota by se hůř interpretovala.
+1. **Přijďte v termín, který vám dala klinika.** Ani o den dřív. Hodnota by se hůř interpretovala.
 2. **Na odběr obvykle nemusíte být nalačno**, ale ověřte si to.
 3. **Nevysazujte léky** kvůli odběru ani po něm, dokud vám to lékař neřekne.
 4. **Zeptejte se předem, kdy a jak se dozvíte výsledek**, a kdo vám ho sdělí.
@@ -1003,7 +1003,7 @@ Rozhodnutí, co dál, patří výhradně lékaři.
 
 - silné krvácení nebo krvácení se sraženinami,
 - prudká, zejména jednostranná bolest v podbřišku,
-- **bolest v rameni, mdloba, závrať, studený pot** — možné příznaky mimoděložního těhotenství, řešte neodkladně,
+- **bolest v rameni, mdloba, závrať, studený pot**: možné příznaky mimoděložního těhotenství, řešte neodkladně,
 - horečka nad 38 °C,
 - rychle rostoucí břicho, dušnost, snížené močení.
 
@@ -1016,7 +1016,7 @@ Rozhodnutí, co dál, patří výhradně lékaři.
       hero: 'champagne',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-12-01',
       boost: 0.9,
     },
@@ -1025,10 +1025,10 @@ Rozhodnutí, co dál, patří výhradně lékaři.
       kind: 'article',
       title: 'Den před odběrem krve: jak ho přežít',
       excerpt:
-        'Poslední noc bývá nejhorší z celých dvou týdnů — má to důvod a dá se to zvládnout líp než zíráním do stropu.',
+        'Poslední noc bývá nejhorší z celých dvou týdnů. Má to důvod a dá se to zvládnout líp než zíráním do stropu.',
       body: `## Proč je zrovna tenhle den nejtěžší
 
-Do teď jste mohla čekat. Zítra už budete vědět. **Mozek si tenhle přechod uvědomuje a reaguje na něj vyplavením stresových hormonů** — proto ta nespavost, sevřený žaludek a myšlenky, které se točí dokola.
+Do teď jste mohla čekat. Zítra už budete vědět. **Mozek si tenhle přechod uvědomuje a reaguje na něj vyplavením stresových hormonů**: proto ta nespavost, sevřený žaludek a myšlenky, které se točí dokola.
 
 Není to selhání. Je to poslední úsek.
 
@@ -1038,7 +1038,7 @@ Není to selhání. Je to poslední úsek.
 2. **Zjistěte, jestli máte být nalačno.** Většinou to není nutné, ale ověřte si to.
 3. **Připravte si kartičku pojišťovny, žádanku a doklad.**
 4. **Vezměte si ráno normální dávku léků**, pokud vám lékař neřekl jinak. Odběr na tom nic nemění.
-5. **Zjistěte, kdy a jak se dozvíte výsledek** — telefonicky, přes portál, nebo si voláte vy? Tohle si ověřte dnes, ne zítra.
+5. **Zjistěte, kdy a jak se dozvíte výsledek**: telefonicky, přes portál, nebo si voláte vy? Tohle si ověřte dnes, ne zítra.
 6. **Dejte si v práci na zítřek prostor.** Ideálně ne den, kdy vedete poradu.
 
 ## Co s dnešním večerem
@@ -1052,11 +1052,11 @@ Cílem není klid. Cílem je, aby vás dnešek nepohltil.
 
 ## Když nemůžete usnout
 
-- **Dýchání s dlouhým výdechem** — nádech na čtyři doby, výdech na šest, po dobu tří minut.
+- **Dýchání s dlouhým výdechem**: nádech na čtyři doby, výdech na šest, po dobu tří minut.
 - **Zapište si, co vám běží hlavou.** Papír na nočním stolku. Není to terapie, jen odkladiště.
 - **Nedívejte se na hodiny.** Otočte je.
 - **Když ležíte vzhůru přes půl hodiny, vstaňte.** Klidná činnost v tlumeném světle je lepší než boj v posteli.
-- **Léky na spaní ani bylinné přípravky si sama nenasazujte** — v tomhle období konzultujte cokoli, i „úplně neškodný" čaj.
+- **Léky na spaní ani bylinné přípravky si sama nenasazujte**: v tomhle období konzultujte cokoli, i „úplně neškodný" čaj.
 
 ## Připravte si obě verze zítřka
 
@@ -1073,7 +1073,7 @@ Napište si obě verze na papír. Zítra nebudete schopná uvažovat prakticky, 
 - kartičku pojišťovny a žádanku,
 - něco k pití a malou svačinu na po odběru,
 - sluchátka,
-- doprovod, pokud chcete — nemusíte to zvládat sama.
+- doprovod, pokud chcete. Nemusíte to zvládat sama.
 
 ## A jedna věc, kterou si nechte
 
@@ -1085,7 +1085,7 @@ Ať zítřek dopadne jakkoli, **za těch čtrnáct dní jste udělala všechno, 
 - prudká bolest v podbřišku,
 - horečka nad 38 °C,
 - rychle rostoucí obvod břicha, dušnost, snížené močení,
-- pokud je vám psychicky tak zle, že nejste schopná fungovat — i to je důvod ozvat se.
+- pokud je vám psychicky tak zle, že nejste schopná fungovat. I to je důvod ozvat se.
 
 > Text nenahrazuje lékařskou péči. Pokyny k odběru a k medikaci vám dává vaše klinika.`,
       minutes: 6,
@@ -1103,7 +1103,7 @@ Ať zítřek dopadne jakkoli, **za těch čtrnáct dní jste udělala všechno, 
       kind: 'article',
       title: 'Jak si říct o výsledek a co se u toho ptát',
       excerpt:
-        'Telefonát trvá dvě minuty a vy si z něj zapamatujete jedno slovo — proto se vyplatí mít otázky připravené předem.',
+        'Telefonát trvá dvě minuty a vy si z něj zapamatujete jedno slovo, proto se vyplatí mít otázky připravené předem.',
       body: `## Zjistěte si předem, jak to na vaší klinice chodí
 
 Systémy se liší: někde volají oni vám, jinde voláte vy, jinde vám výsledek přijde do portálu nebo e-mailem. **Zjistěte si to den předem**, ať nesedíte u telefonu do večera a nedomýšlíte si.
@@ -1129,7 +1129,7 @@ Napište si je předem, protože v tu chvíli je nevymyslíte:
 1. **Jaká je přesná hodnota?** Ne „vyšlo to dobře". Číslo.
 2. **Kolikátý den po transferu byl odběr?** Bez toho číslo nemá kontext.
 3. **Kdy mám jít na kontrolní odběr?**
-4. **Pokračuji v lécích stejně, nebo se něco mění?** — nejčastěji zapomínaná otázka.
+4. **Pokračuji v lécích stejně, nebo se něco mění?**: nejčastěji zapomínaná otázka.
 5. **Kdy je první ultrazvuk a kde se objednávám?**
 6. **Na co si mám dát pozor a kdy mám volat?**
 7. **Můžu dostat výsledek písemně?**
@@ -1146,7 +1146,7 @@ Poslední dvě otázky nemusíte pokládat hned. Ale je dobré vědět, že na n
 
 ## Když vám řeknou „nízká hodnota" nebo „musíme sledovat"
 
-Tohle je nejtěžší varianta — ani ano, ani ne. Zeptejte se:
+Tohle je nejtěžší varianta, ani ano, ani ne. Zeptejte se:
 
 - Co konkrétně budete sledovat a kdy?
 - Jaké jsou možnosti, které v tuhle chvíli zvažujete?
@@ -1184,7 +1184,7 @@ Volejte vy. Není to obtěžování. Systémy selhávají, sestry mají plné ru
       kind: 'article',
       title: 'Když je hodnota nízká: co to znamená a co ne',
       excerpt:
-        'Nízká beta není rozsudek ani slib — je to důvod k druhému odběru a k tomu, abyste na to nebyla sama.',
+        'Nízká beta není rozsudek ani slib. Je to důvod k druhému odběru a k tomu, abyste na to nebyla sama.',
       body: `## Nejdřív to nejdůležitější
 
 **Z jedné nízké hodnoty se nedá určit, jak to dopadne.** Ne proto, že by vám to lékař nechtěl říct, ale proto, že to v tu chvíli skutečně nikdo neví. Rozhodující je, jak se hodnota chová v čase.
@@ -1197,13 +1197,13 @@ Vysvětlení je několik a mají velmi různé důsledky:
 
 - **Pozdější zahnízdění.** Implantace neproběhla „podle kalendáře" a křivka je jen posunutá. Další hodnota může být překvapivě dobrá.
 - **Odběr o den dřív, než by ideálně měl být.** Rozdíl jednoho dne je u exponenciálního růstu velký.
-- **Biochemické těhotenství** — velmi časná ztráta, kdy se zárodek zahnízdil, ale dál se nerozvíjí.
+- **Biochemické těhotenství**: velmi časná ztráta, kdy se zárodek zahnízdil, ale dál se nerozvíjí.
 - **Mimoděložní těhotenství**, kde hCG typicky stoupá pomaleji. Proto se nízké hodnoty vždy sledují pečlivě.
 - **Rozdíly mezi laboratořemi** a metodami stanovení.
 
 ## Co bude následovat
 
-Obvyklý postup vypadá takhle — ale **konkrétní plán vám určí lékař**:
+Obvyklý postup vypadá takhle, ale **konkrétní plán vám určí lékař**:
 
 1. **Kontrolní odběr za dva až tři dny.** Sleduje se dynamika, ne absolutní číslo.
 2. **Pokračování v podpoře luteální fáze**, dokud lékař nerozhodne jinak. **Nevysazujte nic sama.**
@@ -1225,7 +1225,7 @@ Co pomáhá:
 
 ## Když druhá hodnota nestoupá
 
-Pokud se ukáže, že těhotenství nepokračuje, lékař s vámi probere, co dál — a je v pořádku se ptát na cokoli, i na to, jestli jde o mimoděložní těhotenství a jak se to bude sledovat.
+Pokud se ukáže, že těhotenství nepokračuje, lékař s vámi probere, co dál. A je v pořádku se ptát na cokoli, i na to, jestli jde o mimoděložní těhotenství a jak se to bude sledovat.
 
 Tahle ztráta je skutečná ztráta, i když trvala týden a nikdo o ní nevěděl. **Nemusíte ji zlehčovat větou „vždyť to ještě nebylo dítě".** Bylo to vaše těhotenství a vaše naděje.
 
@@ -1247,7 +1247,7 @@ Při nízké nebo pomalu stoupající betě je zvýšená pozornost na místě:
 - **silné krvácení** nebo krvácení se sraženinami,
 - horečka nad 38 °C.
 
-Kombinace bolesti, závrati a bolesti v rameni je urgentní situace — volejte 155 nebo jeďte na nejbližší gynekologickou pohotovost a řekněte, že jste po embryotransferu s pozitivní betou.
+Kombinace bolesti, závrati a bolesti v rameni je urgentní situace. Volejte 155 nebo jeďte na nejbližší gynekologickou pohotovost a řekněte, že jste po embryotransferu s pozitivní betou.
 
 > Tento text nestanovuje diagnózu ani neuvádí konkrétní hraniční hodnoty. Vyhodnocení vašich výsledků a rozhodnutí o dalším postupu patří výhradně vašemu ošetřujícímu lékaři.`,
       minutes: 7,
@@ -1258,7 +1258,7 @@ Kombinace bolesti, závrati a bolesti v rameni je urgentní situace — volejte 
       hero: 'taupe',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-12-22',
     },
     {
@@ -1266,12 +1266,12 @@ Kombinace bolesti, závrati a bolesti v rameni je urgentní situace — volejte 
       kind: 'article',
       title: 'Vysoká beta a otázka dvojčat',
       excerpt:
-        'Vyšší hodnota není potvrzením dvojčat ani zárukou čehokoli — spolehlivou odpověď dá až ultrazvuk.',
+        'Vyšší hodnota není potvrzením dvojčat ani zárukou čehokoli. Spolehlivou odpověď dá až ultrazvuk.',
       body: `## Co vysoká hodnota znamená
 
 Nejčastěji jen to, že **zahnízdění proběhlo dřív** nebo že se odběr trefil do pozdější fáze růstu. Rozpětí hodnot je i u jednočetného těhotenství velmi široké a jednotlivé případy se překrývají.
 
-Vyšší hodnota **může** provázet vícečetné těhotenství. **Nepotvrzuje ho.** Jediná spolehlivá odpověď je ultrazvuk v době, kdy je nález hodnotitelný — termín určí lékař.
+Vyšší hodnota **může** provázet vícečetné těhotenství. **Nepotvrzuje ho.** Jediná spolehlivá odpověď je ultrazvuk v době, kdy je nález hodnotitelný. Termín určí lékař.
 
 ## Proč se lidé tak upínají k číslu
 
@@ -1282,7 +1282,7 @@ Věcný přístup: **hodnota je vstup pro lékaře, ne odpověď pro vás.**
 ## Kdy se dvojčata vůbec zvažují
 
 - Pokud vám byla přenesena **dvě embrya**, existuje možnost, že se uchytila obě.
-- I při přenosu **jednoho embrya** může vzniknout jednovaječné dvojče rozdělením — je to méně časté, ale možné.
+- I při přenosu **jednoho embrya** může vzniknout jednovaječné dvojče rozdělením. Je to méně časté, ale možné.
 - V takovém případě ultrazvuk ukáže **dva plodové váčky**, případně jeden váček se dvěma zárodky. Rozlišení má význam pro sledování těhotenství.
 
 ## Co dvojčata reálně znamenají
@@ -1294,10 +1294,10 @@ Prakticky to znamená:
 - **častější kontroly** a pečlivější sledování,
 - vyšší pravděpodobnost **předčasného porodu** a s ním souvisejících komplikací,
 - vyšší riziko **těhotenské cukrovky, vysokého tlaku a preeklampsie**,
-- větší zátěž pro vaše tělo — únava, dušnost, bolesti zad, otoky,
+- větší zátěž pro vaše tělo. Únava, dušnost, bolesti zad, otoky,
 - vyšší pravděpodobnost **císařského řezu**, i když ne automaticky.
 
-Zároveň: většina dvojčetných těhotenství vedených ve specializované péči dopadne dobře. **Klíčové slovo je „vedených" — proto se u dvojčat tolik dbá na docházení na kontroly.**
+Zároveň: většina dvojčetných těhotenství vedených ve specializované péči dopadne dobře. **Klíčové slovo je „vedených", proto se u dvojčat tolik dbá na docházení na kontroly.**
 
 ## Co se v hlavě děje, když zazní „jsou dvě"
 
@@ -1305,21 +1305,21 @@ Radost, panika a vina za tu paniku. Skoro každá žena popisuje stejný sled. �
 
 ## Praktické kroky, když se dvojčata potvrdí
 
-1. **Zeptejte se, jaký typ dvojčat to je** — počet plodových váčků a placent ovlivňuje způsob sledování.
+1. **Zeptejte se, jaký typ dvojčat to je**: počet plodových váčků a placent ovlivňuje způsob sledování.
 2. **Zjistěte, kde budete vedená** a jak často budete docházet.
 3. **Nekupujte nic hned.** Máte čas a první týdny nejsou na nákupy.
-4. **Řešte praktické věci brzy** — auto, bydlení, pomoc rodiny. U dvojčat je plánování dopředu skutečně užitečné.
+4. **Řešte praktické věci brzy**: auto, bydlení, pomoc rodiny. U dvojčat je plánování dopředu skutečně užitečné.
 5. **Najděte si komunitu rodičů dvojčat.** Praktické rady od nich jsou k nezaplacení.
 
 ## A co když je hodnota vysoká a dvojčata nejsou
 
-Naprosto běžná varianta. Vysoká beta u jednočetného těhotenství neznamená nic zvláštního — jen jiný start téže křivky.
+Naprosto běžná varianta. Vysoká beta u jednočetného těhotenství neznamená nic zvláštního, jen jiný start téže křivky.
 
 ## Kdy volat lékaře
 
 - silné krvácení nebo krvácení se sraženinami,
 - prudká bolest v podbřišku,
-- **rychle rostoucí obvod břicha, dušnost, snížené močení, prudký nárůst hmotnosti** — u vícečetného těhotenství po stimulaci je riziko OHSS vyšší,
+- **rychle rostoucí obvod břicha, dušnost, snížené močení, prudký nárůst hmotnosti**: u vícečetného těhotenství po stimulaci je riziko OHSS vyšší,
 - opakované zvracení a neschopnost udržet tekutiny,
 - horečka nad 38 °C,
 - bolest v rameni, mdloba nebo závrať.
@@ -1334,7 +1334,7 @@ Naprosto běžná varianta. Vysoká beta u jednočetného těhotenství neznamen
       hero: 'dawn',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['Česká gynekologická a porodnická společnost ČLS JEP', 'ESHRE — doporučené postupy'],
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP', 'ESHRE: doporučené postupy'],
       publishedOn: '2026-01-05',
     },
     {
@@ -1342,37 +1342,37 @@ Naprosto běžná varianta. Vysoká beta u jednočetného těhotenství neznamen
       kind: 'article',
       title: 'OHSS po čerstvém transferu: příznaky, které nesmíte přehlédnout',
       excerpt:
-        'Hyperstimulační syndrom se může objevit nebo zhoršit až po transferu — a tohle jsou signály, při kterých se volá hned.',
+        'Hyperstimulační syndrom se může objevit nebo zhoršit až po transferu. A tohle jsou signály, při kterých se volá hned.',
       body: `## Co je OHSS
 
 **Ovariální hyperstimulační syndrom** je komplikace hormonální stimulace. Vaječníky jsou zvětšené, cévy propouštějí tekutinu do dutiny břišní a organismus na to reaguje.
 
-Většina případů je mírná a odezní sama. **Menšina je závažná a vyžaduje lékařskou péči, někdy hospitalizaci.** Rozdíl mezi „nafouklé břicho po stimulaci" a „OHSS, který se zhoršuje", poznáte podle konkrétních příznaků — a právě proto je tenhle článek napsaný.
+Většina případů je mírná a odezní sama. **Menšina je závažná a vyžaduje lékařskou péči, někdy hospitalizaci.** Rozdíl mezi „nafouklé břicho po stimulaci" a „OHSS, který se zhoršuje", poznáte podle konkrétních příznaků. A právě proto je tenhle článek napsaný.
 
 ## Proč se to týká i období po transferu
 
 Existují dvě formy:
 
-- **časná** — nastupuje krátce po punkci a souvisí se spouštěcí injekcí,
-- **pozdní** — nastupuje zhruba týden a více po punkci a **souvisí s hCG, který začne produkovat zahnízděné embryo**.
+- **časná**: nastupuje krátce po punkci a souvisí se spouštěcí injekcí,
+- **pozdní**: nastupuje zhruba týden a více po punkci a **souvisí s hCG, který začne produkovat zahnízděné embryo**.
 
 To znamená paradox, který vás nikdo nepřipraví: **pozdní OHSS se objevuje právě tehdy, když transfer vyšel.** A bývá obvykle protrahovanější než forma časná.
 
-Po **kryoembryotransferu (KET)** riziko OHSS prakticky nehrozí — vaječníky nejsou stimulované. Tenhle článek se tedy týká hlavně žen po čerstvém transferu.
+Po **kryoembryotransferu (KET)** riziko OHSS prakticky nehrozí. Vaječníky nejsou stimulované. Tenhle článek se tedy týká hlavně žen po čerstvém transferu.
 
-## Varovné příznaky — naučte se je
+## Varovné příznaky: naučte se je
 
 **Volejte kliniku nebo pohotovost, pokud:**
 
-- **rychle roste obvod břicha** — kalhoty, které ráno šly zapnout, večer nejdou,
-- **přibýváte na váze rychle** — nárůst o víc než přibližně kilogram za den je varovný signál,
+- **rychle roste obvod břicha**: kalhoty, které ráno šly zapnout, večer nejdou,
+- **přibýváte na váze rychle**: nárůst o víc než přibližně kilogram za den je varovný signál,
 - **hůř se vám dýchá**, hlavně vleže,
 - **močíte výrazně méně** než obvykle nebo je moč velmi tmavá,
 - **opakovaně zvracíte** nebo neudržíte tekutiny,
 - máte **silnou bolest břicha**,
 - máte **otoky nohou nebo zevního genitálu**,
-- máte **bolest, otok nebo zarudnutí lýtka**, bolest na hrudi — podezření na trombózu,
-- cítíte **prudkou jednostrannou bolest** — může jít o torzi vaječníku.
+- máte **bolest, otok nebo zarudnutí lýtka**, bolest na hrudi. Podezření na trombózu,
+- cítíte **prudkou jednostrannou bolest**: může jít o torzi vaječníku.
 
 Tenhle seznam si prosím uložte. Není to strašení; je to jediná část celého balíku, kterou byste měla znát nazpaměť.
 
@@ -1382,10 +1382,10 @@ Pokud vám lékař potvrdil, že jde o mírnou formu, obvykle doporučí:
 
 - **pravidelně se vážit**, ideálně ráno po probuzení, a zapisovat,
 - **sledovat, kolik močíte**,
-- **pít dostatečně** — konkrétní množství a typ tekutin vám doporučí lékař,
+- **pít dostatečně**: konkrétní množství a typ tekutin vám doporučí lékař,
 - **nesportovat**, vyhnout se prudkým pohybům a otřesům kvůli riziku torze vaječníku,
-- **nezůstávat celý den nehybně ležet** — riziko trombózy; lehká chůze bývá vhodnější,
-- **léky proti bolesti užívat jen po konzultaci** — některé běžné volně prodejné přípravky nejsou v tomto období vhodné.
+- **nezůstávat celý den nehybně ležet**: riziko trombózy; lehká chůze bývá vhodnější,
+- **léky proti bolesti užívat jen po konzultaci**: některé běžné volně prodejné přípravky nejsou v tomto období vhodné.
 
 **Nic z toho si prosím nestanovujte sama.** Konkrétní režim vám určí lékař, protože závisí na tíži nálezu.
 
@@ -1403,7 +1403,7 @@ Volejte kliniku při: rychlém růstu břicha, prudkém přírůstku hmotnosti, 
 
 Volejte **155 nebo jeďte na pohotovost** při: dušnosti v klidu, bolesti na hrudi, mdlobě, prudké jednostranné bolesti břicha, bolesti a otoku lýtka.
 
-> Tento text má informativní charakter a nenahrazuje vyšetření lékařem. Při podezření na OHSS vždy kontaktujte svou kliniku — raději jednou navíc.`,
+> Tento text má informativní charakter a nenahrazuje vyšetření lékařem. Při podezření na OHSS vždy kontaktujte svou kliniku. Raději jednou navíc.`,
       minutes: 7,
       phases: ['transfer', 'two_week_wait', 'beta_positive'],
       dayRange: [0, 14],
@@ -1413,7 +1413,7 @@ Volejte **155 nebo jeďte na pohotovost** při: dušnosti v klidu, bolesti na hr
       hero: 'sky',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2026-01-12',
       boost: 0.85,
     },
@@ -1425,16 +1425,16 @@ Volejte **155 nebo jeďte na pohotovost** při: dušnosti v klidu, bolesti na hr
         'Po KET se čeká stejně dlouho, ale tělo je v jiném stavu a některé obavy z čerstvého cyklu tady vůbec neplatí.',
       body: `## Co je jinak hned na začátku
 
-Při kryoembryotransferu (KET) se přenáší embryo, které bylo zamrazené — obvykle metodou vitrifikace. To má několik důsledků, které mění celý průběh čekání:
+Při kryoembryotransferu (KET) se přenáší embryo, které bylo zamrazené. Obvykle metodou vitrifikace. To má několik důsledků, které mění celý průběh čekání:
 
 - **Neproběhla punkce** a vaječníky nejsou zvětšené stimulací.
 - **Riziko OHSS je minimální.** To je asi největší úleva oproti čerstvému cyklu.
-- **Sliznice se připravuje jinak** — buď v přirozeném cyklu podle vaší ovulace, nebo hormonálně.
+- **Sliznice se připravuje jinak**: buď v přirozeném cyklu podle vaší ovulace, nebo hormonálně.
 - **Podpora luteální fáze bývá delší a přísnější**, zvlášť v cyklu s hormonální přípravou.
 
 ## Proč je u KET progesteron ještě důležitější
 
-V cyklu s hormonální přípravou **neproběhne ovulace**, takže **nevznikne žluté tělísko** — jediný zdroj progesteronu je ten, který si podáváte.
+V cyklu s hormonální přípravou **neproběhne ovulace**, takže **nevznikne žluté tělísko**: jediný zdroj progesteronu je ten, který si podáváte.
 
 Z toho plyne nejdůležitější věta tohohle článku: **vynechaná dávka má u KET větší váhu než u čerstvého cyklu.** Nastavte si připomínky, mějte zásobu na celé období a při jakémkoli vynechání volejte kliniku.
 
@@ -1442,7 +1442,7 @@ A samozřejmě: **nikdy nevysazujte sama**, ani při krvácení, ani po negativn
 
 ## Přežití embrya po rozmrazení
 
-Většina kvalitně vitrifikovaných blastocyst rozmrazení přežije. Embryolog vám před transferem řekne, jak vaše embryo vypadá — často se používají pojmy jako **rehydratace** a **reexpanze**, tedy že se blastocysta po rozmrazení znovu nafoukla.
+Většina kvalitně vitrifikovaných blastocyst rozmrazení přežije. Embryolog vám před transferem řekne, jak vaše embryo vypadá. Často se používají pojmy jako **rehydratace** a **reexpanze**, tedy že se blastocysta po rozmrazení znovu nafoukla.
 
 Je legitimní se zeptat:
 
@@ -1452,23 +1452,23 @@ Je legitimní se zeptat:
 
 ## Co u KET neplatí ze všech těch rad
 
-- **Strach z OHSS** — bez stimulace prakticky odpadá.
-- **Zákaz pohybu kvůli zvětšeným vaječníkům** — nemáte je zvětšené, takže běžný pohyb je bez problému.
-- **Nafouklé břicho z folikulů** — to, co cítíte, jde spíš na vrub progesteronu.
+- **Strach z OHSS**: bez stimulace prakticky odpadá.
+- **Zákaz pohybu kvůli zvětšeným vaječníkům**: nemáte je zvětšené, takže běžný pohyb je bez problému.
+- **Nafouklé břicho z folikulů**: to, co cítíte, jde spíš na vrub progesteronu.
 
 ## Co naopak platí stejně
 
-- **Příznaky nic neříkají** — a u KET s hormonální přípravou možná ještě míň, protože hormonů máte v těle víc.
-- **Brzké domácí testy klamou** — zde s jednou výhodou: **pokud jste nedostala spouštěcí injekci s hCG, nehrozí u vás falešná pozitivita z léku.** Ostatní důvody proč netestovat brzy ale zůstávají.
+- **Příznaky nic neříkají**: a u KET s hormonální přípravou možná ještě míň, protože hormonů máte v těle víc.
+- **Brzké domácí testy klamou**: zde s jednou výhodou: **pokud jste nedostala spouštěcí injekci s hCG, nehrozí u vás falešná pozitivita z léku.** Ostatní důvody proč netestovat brzy ale zůstávají.
 - **Termín odběru hCG platí přesně tak, jak vám ho dala klinika.**
 
 ## Časování transferu a proč se počítá jinak
 
-U KET se den transferu odvíjí od toho, kolik dní progesteronu jste dostala, aby sliznice byla v takzvaném **implantačním okně**. Proto vám klinika tak úzkostlivě hlídá časy podávání — a proto je posunutí dávky o několik hodin něco, co je potřeba nahlásit.
+U KET se den transferu odvíjí od toho, kolik dní progesteronu jste dostala, aby sliznice byla v takzvaném **implantačním okně**. Proto vám klinika tak úzkostlivě hlídá časy podávání. A proto je posunutí dávky o několik hodin něco, co je potřeba nahlásit.
 
 ## Psychicky: druhé kolo je jiné kolo
 
-Řada žen jde do KET po neúspěšném čerstvém cyklu. To s sebou nese specifickou tíhu — už víte, jak vypadá špatná zpráva.
+Řada žen jde do KET po neúspěšném čerstvém cyklu. To s sebou nese specifickou tíhu. Už víte, jak vypadá špatná zpráva.
 
 Co pomáhá:
 
@@ -1494,7 +1494,7 @@ Co pomáhá:
       hero: 'pearl',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy'],
+      sources: ['ESHRE: doporučené postupy'],
       publishedOn: '2026-01-19',
       boost: 0.5,
     },
@@ -1503,17 +1503,17 @@ Co pomáhá:
       kind: 'article',
       title: 'Jídlo a pohyb v období čekání: co má smysl a co je pověra',
       excerpt:
-        'Ananasové jádřince ani teplé ponožky implantaci neovlivní — pár věcí ale skutečně stojí za to hlídat.',
+        'Ananasové jádřince ani teplé ponožky implantaci neovlivní. Pár věcí ale skutečně stojí za to hlídat.',
       body: `## Začneme tím, co nefunguje
 
 Kolem stravy po transferu vzniklo neuvěřitelné množství rituálů. Prochází se jimi skoro každá žena, protože dávají pocit, že něco děláte. **Žádný z nich nemá doloženou souvislost s úspěchem transferu:**
 
-- **ananas s jádřincem** — bromelain je v ovoci v množstvích, která nemají systémový efekt; navíc se z čerstvého ovoce v žaludku degraduje,
+- **ananas s jádřincem**: bromelain je v ovoci v množstvích, která nemají systémový efekt; navíc se z čerstvého ovoce v žaludku degraduje,
 - **granátové jablko a šťáva z něj**,
 - **brazilské ořechy v přesném počtu**,
-- **teplé ponožky a zákaz studených nápojů** — teplota nápoje neovlivní teplotu dělohy,
+- **teplé ponožky a zákaz studených nápojů**: teplota nápoje neovlivní teplotu dělohy,
 - **zákaz zvedání rukou nad hlavu**,
-- **speciální „implantační" čaje a bylinné směsi** — tady navíc pozor, řada bylin není v tomhle období vhodná a interaguje s léky.
+- **speciální „implantační" čaje a bylinné směsi**: tady navíc pozor, řada bylin není v tomhle období vhodná a interaguje s léky.
 
 Pokud vám některý z těch rituálů dělá dobře a je neškodný, nemusíte ho rušit. Jen ať vám neslouží jako důkaz vaší viny, kdyby to nevyšlo.
 
@@ -1525,7 +1525,7 @@ Progesteron zpomaluje trávení, po stimulaci může být břicho nafouklé a st
 
 ### Bílkoviny
 
-Během čerstvého cyklu a po něm se často doporučuje dbát na dostatek bílkovin. Konkrétní doporučení k vaší situaci vám dá lékař — zvlášť pokud řešíte projevy OHSS, kde se režim řídí individuálně.
+Během čerstvého cyklu a po něm se často doporučuje dbát na dostatek bílkovin. Konkrétní doporučení k vaší situaci vám dá lékař, zvlášť pokud řešíte projevy OHSS, kde se režim řídí individuálně.
 
 ### Pitný režim
 
@@ -1537,10 +1537,10 @@ Zácpa z progesteronu je nepříjemná a navíc svádí k domněnce, že máte k
 
 ### Čeho se vyvarovat
 
-- **alkohol** — v tomhle období ne,
-- **potraviny s rizikem infekce** — nepasterizované mléčné výrobky, syrové maso a ryby, syrová vejce, neomyté klíčky, delikatesy z lahůdkářského pultu; je rozumné začít s tím už teď,
-- **doplňky stravy a bylinky bez konzultace** — včetně těch „přírodních",
-- **nadměrný kofein** — omezit, ne nutně vysadit; konkrétní míru proberte s lékařem.
+- **alkohol**: v tomhle období ne,
+- **potraviny s rizikem infekce**: nepasterizované mléčné výrobky, syrové maso a ryby, syrová vejce, neomyté klíčky, delikatesy z lahůdkářského pultu; je rozumné začít s tím už teď,
+- **doplňky stravy a bylinky bez konzultace**: včetně těch „přírodních",
+- **nadměrný kofein**: omezit, ne nutně vysadit; konkrétní míru proberte s lékařem.
 
 ## Pohyb: co ano a co ne
 
@@ -1552,9 +1552,9 @@ Zácpa z progesteronu je nepříjemná a navíc svádí k domněnce, že máte k
 **Ne:**
 - těžké silové tréninky a zvedání maximálních břemen,
 - skoky, HIIT, běh v tempu,
-- **jakýkoli sport s otřesy, pokud jste po stimulaci** — riziko torze zvětšeného vaječníku,
+- **jakýkoli sport s otřesy, pokud jste po stimulaci**: riziko torze zvětšeného vaječníku,
 - sauna, vířivka, horká koupel,
-- plavání v bazénu, dokud vám to lékař neschválí — pravidla se liší, zeptejte se.
+- plavání v bazénu, dokud vám to lékař neschválí. Pravidla se liší, zeptejte se.
 
 ## Proč chůze není jen „aby se něco dělo"
 
@@ -1562,7 +1562,7 @@ Po hormonální stimulaci je zvýšené riziko žilní trombózy. **Nehybné le�
 
 ## Váha a otoky
 
-Během čekání se váha běžně mění — voda, zácpa, hormony. **Denní vážení má smysl jen tehdy, když vám ho doporučil lékař** kvůli sledování OHSS. Jinak vám přidá jen další číslo, kterým se budete trápit.
+Během čekání se váha běžně mění. Voda, zácpa, hormony. **Denní vážení má smysl jen tehdy, když vám ho doporučil lékař** kvůli sledování OHSS. Jinak vám přidá jen další číslo, kterým se budete trápit.
 
 ## Kdy volat lékaře
 
@@ -1601,21 +1601,21 @@ Mezi tím je široký prostor a v něm je vaše odpověď.
 
 ## Otázky, které rozhodnou za vás
 
-1. **Je moje práce fyzicky náročná?** Zvedání, dlouhé stání, práce v horku, noční směny — tady má odpočinek nebo úprava režimu smysl. Poraďte se s lékařem.
+1. **Je moje práce fyzicky náročná?** Zvedání, dlouhé stání, práce v horku, noční směny. Tady má odpočinek nebo úprava režimu smysl. Poraďte se s lékařem.
 2. **Odvádí mi práce myšlenky, nebo mi je zaplavuje?** Účetní uzávěrka odvádí. Práce s dětmi na porodním sále nebo v neonatologii spíš zaplavuje.
 3. **Kolik lidí se mě bude ptát?** Pokud jste v týmu, který o vaší léčbě ví, počítejte s tím.
 4. **Mám možnost home office nebo zkráceného úvazku?** Často je to nejlepší kompromis.
-5. **Co mi udělá horší den — ten v práci, nebo ten doma?**
+5. **Co mi udělá horší den. Ten v práci, nebo ten doma?**
 
 ## Pracovní neschopnost
 
-O pracovní neschopnosti rozhoduje lékař na základě vašeho zdravotního stavu — nikoli vaše přání ani rada z internetu. **Zeptejte se přímo na klinice nebo u svého gynekologa**, jaký je v tomto ohledu jejich postup a co je ve vaší situaci vhodné.
+O pracovní neschopnosti rozhoduje lékař na základě vašeho zdravotního stavu, nikoli vaše přání ani rada z internetu. **Zeptejte se přímo na klinice nebo u svého gynekologa**, jaký je v tomto ohledu jejich postup a co je ve vaší situaci vhodné.
 
 Praktické věci, které je dobré vědět předem:
 
-- Zjistěte, **kdo vám neschopenku vystaví** — klinika, nebo registrující gynekolog. Postupy se liší.
+- Zjistěte, **kdo vám neschopenku vystaví**: klinika, nebo registrující gynekolog. Postupy se liší.
 - Vězte, **jaká pravidla platí pro vycházky**, pokud v pracovní neschopnosti budete.
-- Mějte jasno v tom, **co komu v práci sdělujete** — diagnózu sdělovat nemusíte.
+- Mějte jasno v tom, **co komu v práci sdělujete**: diagnózu sdělovat nemusíte.
 
 ## Co říct v práci
 
@@ -1625,7 +1625,7 @@ Nemusíte říkat nic o léčbě. Věty, které fungují:
 - *„Příští dva týdny potřebuju kvůli léčbě omezit cestování."*
 - *„Nemůžu teď zvedat těžké věci, domluvíme to jinak?"*
 
-Pokud jste v týmu, kde se to už ví: můžete rovnou říct, jak s vámi chcete zacházet. *„Prosím, neptejte se mě, jak to jde. Až budu vědět, řeknu to sama."* Většina lidí to ocení — nevědí, jestli se ptát, nebo mlčet, a vy jim tím ulevíte.
+Pokud jste v týmu, kde se to už ví: můžete rovnou říct, jak s vámi chcete zacházet. *„Prosím, neptejte se mě, jak to jde. Až budu vědět, řeknu to sama."* Většina lidí to ocení. Nevědí, jestli se ptát, nebo mlčet, a vy jim tím ulevíte.
 
 ## Když se stane, že se rozbrečíte na poradě
 
@@ -1636,14 +1636,14 @@ Stává se to a nemusí to být katastrofa. Předem promyšlená únikovka pomá
 - **Nepřijímejte nové velké závazky** na tohle období.
 - **Nedělejte si termín na den odběru bety.** Ani na následující den.
 - **Mějte plán, jak se dostanete domů**, kdyby vám bylo zle.
-- **Nastavte si připomínky na léky tak, aby se daly splnit i v práci** — a mějte medikaci s sebou, ne doma na poličce.
+- **Nastavte si připomínky na léky tak, aby se daly splnit i v práci**: a mějte medikaci s sebou, ne doma na poličce.
 
 ## Kdy volat lékaře
 
 - silné krvácení nebo prudká bolest během pracovního dne,
 - horečka nad 38 °C,
 - dušnost, rychle rostoucí břicho, výrazně snížené močení,
-- pokud práci nezvládáte psychicky natolik, že nefungujete — i to je legitimní důvod se ozvat.
+- pokud práci nezvládáte psychicky natolik, že nefungujete. I to je legitimní důvod se ozvat.
 
 > Tento text neposkytuje právní ani lékařské poradenství. O pracovní neschopnosti a vhodné zátěži rozhoduje váš ošetřující lékař.`,
       minutes: 6,
@@ -1660,12 +1660,12 @@ Stává se to a nemusí to být katastrofa. Předem promyšlená únikovka pomá
       kind: 'article',
       title: 'Partner během čekání: jak nebýt na dvou různých planetách',
       excerpt:
-        'On mlčí, vy si to překládáte jako lhostejnost — a přitom jde nejčastěji o dva různé způsoby zvládání téhož strachu.',
+        'On mlčí, vy si to překládáte jako lhostejnost. A přitom jde nejčastěji o dva různé způsoby zvládání téhož strachu.',
       body: `## Proč to skřípe zrovna teď
 
 Do transferu měl partner co dělat: vozit vás, píchat injekce, chodit s vámi na odběry. Po transferu nemá roli. **A muži, kteří ztratí roli, obvykle ztichnou.**
 
-Vy si to přeložíte jako „jemu je to jedno". Jemu to ale jedno není — jen nemá jazyk, kterým by to řekl, a bojí se, že když to řekne špatně, ublíží vám.
+Vy si to přeložíte jako „jemu je to jedno". Jemu to ale jedno není, jen nemá jazyk, kterým by to řekl, a bojí se, že když to řekne špatně, ublíží vám.
 
 ## Tři nejčastější nedorozumění
 
@@ -1699,9 +1699,9 @@ Tohle je nejúčinnější věc v celém článku. Muži v tomhle období funguj
 
 ## Na čem se domluvte předem
 
-1. **Kdo komu volá po výsledku** — a kdo to řekne rodičům.
+1. **Kdo komu volá po výsledku**: a kdo to řekne rodičům.
 2. **Jestli chcete být v den výsledku spolu**, nebo každý sám.
-3. **Co uděláte, když to nevyjde** — první večer, druhý den.
+3. **Co uděláte, když to nevyjde**: první večer, druhý den.
 4. **Jestli si dáte pauzu od tématu.** Třeba jeden večer v týdnu, kdy se o léčbě nemluví vůbec.
 
 ## Pro partnera: pár vět, které fungují
@@ -1713,11 +1713,11 @@ Pokud tenhle text čte on, tady jsou věty, kterými se nedá nic pokazit:
 - *„Chceš, abych mlčel, nebo abych mluvil?"*
 - *„Ať to dopadne jakkoli, zvládneme to spolu."*
 
-A tři věty, které nepomáhají nikdy: *„Neboj, určitě to vyjde."* — *„Nesmíš se stresovat."* — *„Aspoň víme, že to jde."*
+A tři věty, které nepomáhají nikdy: *„Neboj, určitě to vyjde."*. *„Nesmíš se stresovat."*. *„Aspoň víme, že to jde."*
 
-## Když je partnerů víc typů — a když partner není
+## Když je partnerů víc typů: a když partner není
 
-U žen, které jdou do léčby samy, přebírá roli podpory obvykle sestra, kamarádka nebo matka. Platí totéž: **dejte tomu člověku konkrétní úkol a konkrétní instrukci**, jak s vámi mluvit. Lidé, kteří vás mají rádi, chtějí pomoct — jen většinou nevědí jak.
+U žen, které jdou do léčby samy, přebírá roli podpory obvykle sestra, kamarádka nebo matka. Platí totéž: **dejte tomu člověku konkrétní úkol a konkrétní instrukci**, jak s vámi mluvit. Lidé, kteří vás mají rádi, chtějí pomoct, jen většinou nevědí jak.
 
 ## Kdy hledat pomoc mimo vztah
 
@@ -1743,32 +1743,32 @@ Pár sezení u párového terapeuta v tomhle období není známka rozpadu. Je t
       kind: 'video',
       title: 'Co se děje v děloze den po dni',
       excerpt:
-        'Čtrnáct dní od přenosu embrya až po odběr krve — přehledně a bez zbytečné mystiky.',
+        'Čtrnáct dní od přenosu embrya až po odběr krve. Přehledně a bez zbytečné mystiky.',
       body: `## O čem video je
 
 Provedeme vás dvěma týdny po transferu blastocysty tak, jak je popisuje embryologie. Ne proto, abyste si každý den něco představovala, ale proto, že **znalost procesu snižuje úzkost z neznáma**.
 
 ## Přepis hlavních částí
 
-**Den 0 — transfer.** Blastocysta je uložena do dutiny děložní. Je uzavřená v obalu zvaném zona pellucida a zatím se volně pohybuje v tenké vrstvě tekutiny mezi stěnami dělohy.
+**Den 0. Transfer.** Blastocysta je uložena do dutiny děložní. Je uzavřená v obalu zvaném zona pellucida a zatím se volně pohybuje v tenké vrstvě tekutiny mezi stěnami dělohy.
 
-**Den 1 až 2 — líhnutí.** Blastocysta se dál rozpíná a začíná se probourávat ven ze svého obalu. Tomu se říká hatching neboli líhnutí. Bez tohohle kroku by se přichytit nemohla.
+**Den 1 až 2. Líhnutí.** Blastocysta se dál rozpíná a začíná se probourávat ven ze svého obalu. Tomu se říká hatching neboli líhnutí. Bez tohohle kroku by se přichytit nemohla.
 
-**Den 3 až 4 — přichycení.** Vylíhlá blastocysta se dotýká výstelky dělohy a začíná přilnout. Buňky trofoblastu, ze kterých později vznikne placenta, navazují první kontakt se sliznicí.
+**Den 3 až 4. Přichycení.** Vylíhlá blastocysta se dotýká výstelky dělohy a začíná přilnout. Buňky trofoblastu, ze kterých později vznikne placenta, navazují první kontakt se sliznicí.
 
-**Den 5 až 6 — zahnizďování.** Trofoblast proniká do sliznice a zanořuje se. V tuhle chvíli se začíná tvořit hCG. Množství je zatím tak malé, že ho žádný domácí test nezachytí.
+**Den 5 až 6. Zahnizďování.** Trofoblast proniká do sliznice a zanořuje se. V tuhle chvíli se začíná tvořit hCG. Množství je zatím tak malé, že ho žádný domácí test nezachytí.
 
-**Den 7 až 9 — hCG stoupá.** Hormon se dostává do krevního oběhu a jeho hodnota se zhruba každé dva dny zdvojnásobuje. V moči je ho ale stále málo. Negativní test v těchto dnech proto nemá vypovídací hodnotu.
+**Den 7 až 9. hCG stoupá.** Hormon se dostává do krevního oběhu a jeho hodnota se zhruba každé dva dny zdvojnásobuje. V moči je ho ale stále málo. Negativní test v těchto dnech proto nemá vypovídací hodnotu.
 
-**Den 10 až 12 — test bývá spolehlivější.** Koncentrace v moči už může přesáhnout práh citlivosti testu. Stále platí, že jediné rozhodující je vyšetření z krve.
+**Den 10 až 12. Test bývá spolehlivější.** Koncentrace v moči už může přesáhnout práh citlivosti testu. Stále platí, že jediné rozhodující je vyšetření z krve.
 
-**Den 13 až 14 — odběr hCG.** Krev dá číslo a číslo se dá porovnat s druhým odběrem za dva až tři dny. Teprve dynamika říká něco spolehlivého.
+**Den 13 až 14. Odběr hCG.** Krev dá číslo a číslo se dá porovnat s druhým odběrem za dva až tři dny. Teprve dynamika říká něco spolehlivého.
 
 ## Dvě důležité poznámky
 
 Časová osa platí pro **transfer blastocysty**. Pokud vám bylo přeneseno embryo v dřívějším stadiu, je celý průběh posunutý o dva až tři dny.
 
-A druhá poznámka: **tenhle proces nemůžete ovlivnit ani urychlit.** To zní krutě, ale spoustě žen to paradoxně uleví — nic z toho, co uděláte v pátek odpoledne, nerozhodne o výsledku.
+A druhá poznámka: **tenhle proces nemůžete ovlivnit ani urychlit.** To zní krutě, ale spoustě žen to paradoxně uleví. Nic z toho, co uděláte v pátek odpoledne, nerozhodne o výsledku.
 
 > Video má informativní charakter a nenahrazuje lékařskou péči. Termín odběru a další postup určuje vaše klinika.`,
       minutes: 9,
@@ -1779,7 +1779,7 @@ A druhá poznámka: **tenhle proces nemůžete ovlivnit ani urychlit.** To zní 
       hero: 'sky',
       author: 'Tým Bloomia',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy'],
+      sources: ['ESHRE: doporučené postupy'],
       publishedOn: '2026-02-16',
       mediaNote:
         'Animovaný průřez dělohou s klidným komentářem. Na časové ose se den po dni ukazuje líhnutí blastocysty, přichycení, zanořování a nástup tvorby hCG. Vpravo dole běží ukazatel, od kdy má smysl testovat. Bez dramatické hudby, bez ultrazvukových záběrů dětí.',
@@ -1803,11 +1803,11 @@ Nahrávka nemá za cíl, abyste se cítila skvěle. Má za cíl **snížit napě
 
 *Všimněte si, čeho se dotýkáte. Nohy o podlahu, záda o opěrku, dlaně o stehna. Nechte tíhu svého těla, ať se opře.*
 
-*Teď dýchání. Nádech nosem — a delší výdech ústy. Nádech na čtyři doby, výdech na šest. Nemusí to být přesné. Jde jen o to, aby výdech byl delší.*
+*Teď dýchání. Nádech nosem. A delší výdech ústy. Nádech na čtyři doby, výdech na šest. Nemusí to být přesné. Jde jen o to, aby výdech byl delší.*
 
 *Vaše tělo teď dělá práci, kterou nemůžete řídit. Nemusíte jí pomáhat. Nemusíte ji hlídat. To, co se má stát, se stane bez vašeho dohledu.*
 
-*Když se objeví myšlenka — a ona se objeví — nechte ji projít. Nemusíte na ni odpovídat. Není to test, který byste mohla splnit špatně.*
+*Když se objeví myšlenka (a ona se objeví) nechte ji projít. Nemusíte na ni odpovídat. Není to test, který byste mohla splnit špatně.*
 
 *Ještě tři nádechy. Při každém výdechu si všimněte, že vaše ramena mohou klesnout o kousek níž.*
 
@@ -1815,7 +1815,7 @@ Nahrávka nemá za cíl, abyste se cítila skvěle. Má za cíl **snížit napě
 
 ## Co dělat pak
 
-Nic velkého. Napijte se vody, projděte se k oknu. Jestli vám to pomohlo, poznamenejte si to — v příštích dnech se vám bude hodit vědět, co u vás funguje.
+Nic velkého. Napijte se vody, projděte se k oknu. Jestli vám to pomohlo, poznamenejte si to. V příštích dnech se vám bude hodit vědět, co u vás funguje.
 
 > Nahrávka je podpůrná a nenahrazuje odbornou psychologickou ani lékařskou péči. Pokud máte pocit, že situaci nezvládáte, ozvěte se svému lékaři nebo na Linku první psychické pomoci 116 123.`,
       minutes: 10,
@@ -1827,7 +1827,7 @@ Nic velkého. Napijte se vody, projděte se k oknu. Jestli vám to pomohlo, pozn
       author: 'Gabi',
       publishedOn: '2026-02-23',
       mediaNote:
-        'Tempo je pomalé a scénář nikde nezmiňuje slova jako miminko, naděje ani úspěch — záměrně. Žádná vizualizace, žádná výzva na konci.',
+        'Tempo je pomalé a scénář nikde nezmiňuje slova jako miminko, naděje ani úspěch. Záměrně. Žádná vizualizace, žádná výzva na konci.',
       boost: 0.55,
     },
     {
@@ -1838,13 +1838,13 @@ Nic velkého. Napijte se vody, projděte se k oknu. Jestli vám to pomohlo, pozn
         'Nahrávka pro pátý až sedmý den, kdy tělo dělá tu nejtišší práci a vy k ní nemáte přístup.',
       body: `## Pár slov na začátek
 
-Vizualizace nezvyšuje šanci na otěhotnění a tenhle text vám nic takového neslibuje. Co ale umí, je dát vaší úzkosti tvar a na chvíli ji zklidnit — a to není málo.
+Vizualizace nezvyšuje šanci na otěhotnění a tenhle text vám nic takového neslibuje. Co ale umí, je dát vaší úzkosti tvar a na chvíli ji zklidnit. A to není málo.
 
 Pokud vám podobné nahrávky nesedí, klidně ji přeskočte. Nic tím nezmeškáte.
 
 ## Přepis
 
-*„Lehněte si a nechte ruce položené volně podél těla nebo na břiše — podle toho, co je vám příjemnější.*
+*„Lehněte si a nechte ruce položené volně podél těla nebo na břiše. Podle toho, co je vám příjemnější.*
 
 *Představte si svoje tělo zevnitř. Ne dokonale, ne odborně. Jen jako teplé, prokrvené místo.*
 
@@ -1876,17 +1876,17 @@ Pokud po ní zůstáváte rozrušená nebo vás nutí přemýšlet víc, ne mí�
       author: 'Gabi',
       publishedOn: '2026-03-02',
       mediaNote:
-        'Pomalé vedení s dlouhými pauzami. Scénář nikde nepopisuje embryo ani nesugeruje výsledek — soustředí se na dech, dotyk dlaně na podbřišku a na vděk vlastnímu tělu.',
+        'Pomalé vedení s dlouhými pauzami. Scénář nikde nepopisuje embryo ani nesugeruje výsledek. Soustředí se na dech, dotyk dlaně na podbřišku a na vděk vlastnímu tělu.',
     },
     {
       id: 'tww-podcast-dva-tydny-nahlas',
       kind: 'podcast',
       title: 'Dva týdny nahlas: rozhovor o čekání',
       excerpt:
-        'Poslech pro ty dny, kdy potřebujete slyšet, že takhle to má většina žen — a že se z toho dá vyjít.',
+        'Poslech pro ty dny, kdy potřebujete slyšet, že takhle to má většina žen. A že se z toho dá vyjít.',
       body: `## O čem epizoda je
 
-Nejde o zázračné rady. Jde o to slyšet, jak dva týdny čekání prožívají jiné ženy — a zjistit, že vaše reakce nejsou přehnané.
+Nejde o zázračné rady. Jde o to slyšet, jak dva týdny čekání prožívají jiné ženy. A zjistit, že vaše reakce nejsou přehnané.
 
 ## Hlavní body z epizody
 
@@ -1910,7 +1910,7 @@ Nejčastější aha moment celé epizody.
 
 ## Pro koho to je
 
-Pro dny, kdy potřebujete slyšet lidský hlas a ne další seznam doporučení. A taky pro partnery — ti z epizody obvykle pochopí víc než z desítek vašich vysvětlování.
+Pro dny, kdy potřebujete slyšet lidský hlas a ne další seznam doporučení. A taky pro partnery. Ti z epizody obvykle pochopí víc než z desítek vašich vysvětlování.
 
 > Osobní zkušenosti v epizodě nejsou lékařským doporučením. O svém postupu se vždy raďte se svým ošetřujícím lékařem.`,
       minutes: 28,
@@ -1934,7 +1934,7 @@ Pro dny, kdy potřebujete slyšet lidský hlas a ne další seznam doporučení.
 
 Ne k tomu, aby vás nachytal. K tomu, aby vám ukázal, kolik z „pravidel", která kolují mezi ženami v léčbě, nemá oporu.
 
-Každá odpověď má vysvětlení. Přečtěte si i ta u otázek, které jste trefila — obvykle je tam víc než jen potvrzení.
+Každá odpověď má vysvětlení. Přečtěte si i ta u otázek, které jste trefila. Obvykle je tam víc než jen potvrzení.
 
 > Kvíz má informativní charakter a nenahrazuje pokyny vaší kliniky. Pokud se vaše doporučení liší od obecných informací zde, řiďte se svým lékařem.`,
       minutes: 5,
@@ -1952,14 +1952,14 @@ Každá odpověď má vysvětlení. Přečtěte si i ta u otázek, které jste t
           options: ['Ano, proto se doporučuje ležet', 'Ne, dutina děložní není nádoba s tekutinou', 'Jen v prvních dvou hodinách'],
           correct: 1,
           explain:
-            'Stěny dutiny děložní jsou v kontaktu — embryo se v nich nepohybuje jako předmět v nádobě. Prodloužené ležení se v doporučeních neprosadilo jako přínosné a po stimulaci navíc zvyšuje riziko trombózy.',
+            'Stěny dutiny děložní jsou v kontaktu. Embryo se v nich nepohybuje jako předmět v nádobě. Prodloužené ležení se v doporučeních neprosadilo jako přínosné a po stimulaci navíc zvyšuje riziko trombózy.',
         },
         {
           q: 'Co znamená napětí prsou a nevolnost sedmý den po transferu?',
           options: [
             'Že jste velmi pravděpodobně těhotná',
             'Že vám nesedí progesteron',
-            'Nic spolehlivého — progesteron vyvolává prakticky stejné příznaky jako rané těhotenství',
+            'Nic spolehlivého. Progesteron vyvolává prakticky stejné příznaky jako rané těhotenství',
           ],
           correct: 2,
           explain:
@@ -1974,7 +1974,7 @@ Každá odpověď má vysvětlení. Přečtěte si i ta u otázek, které jste t
           ],
           correct: 1,
           explain:
-            'Spouštěcí injekce obsahující hCG se z těla vyplavuje postupně, obvykle v řádu zhruba deseti až čtrnácti dnů. Test rozdíl nepozná. V kryocyklu se vás to obvykle netýká — ověřte si to na klinice.',
+            'Spouštěcí injekce obsahující hCG se z těla vyplavuje postupně, obvykle v řádu zhruba deseti až čtrnácti dnů. Test rozdíl nepozná. V kryocyklu se vás to obvykle netýká. Ověřte si to na klinice.',
         },
         {
           q: 'Můžete po transferu na toaletu?',
@@ -1992,7 +1992,7 @@ Každá odpověď má vysvětlení. Přečtěte si i ta u otázek, které jste t
           ],
           correct: 2,
           explain:
-            'Podporu luteální fáze nikdy nevysazujte sama a nikdy si sama neupravujte dávku. Krvácení v tomto období neznamená automaticky konec — o dalším postupu rozhoduje lékař na základě hCG.',
+            'Podporu luteální fáze nikdy nevysazujte sama a nikdy si sama neupravujte dávku. Krvácení v tomto období neznamená automaticky konec. O dalším postupu rozhoduje lékař na základě hCG.',
         },
         {
           q: 'Proč se dělá druhý odběr hCG s odstupem dvou až tří dnů?',
@@ -2026,7 +2026,7 @@ Každá odpověď má vysvětlení. Přečtěte si i ta u otázek, které jste t
         'Konkrétní kroky, které si nastavíte hned po transferu, aby vás následujících čtrnáct dní nepohltilo.',
       body: `## Jak s tím pracovat
 
-Projděte celý seznam v den transferu nebo den po něm. Většina položek zabere pár minut a udělá se jednou — pak už jen funguje.
+Projděte celý seznam v den transferu nebo den po něm. Většina položek zabere pár minut a udělá se jednou. Pak už jen funguje.
 
 Seznam je rozdělený do tří skupin: **medikace a zdraví**, **hlava** a **lidé kolem**. Ta poslední skupina je nejčastěji přehlížená a přitom rozhoduje o tom, jak těžké ty dva týdny budou.
 
@@ -2062,7 +2062,7 @@ Nepovinné položky jsou označené. Nejsou méně důležité, jen nesedí kaž
         { id: 'tww-cl-w-8', text: 'Domluvit si vlastní pravidlo pro vyhledávání na internetu', hint: 'Například jednou denně, patnáct minut.', group: 'Hlava' },
         { id: 'tww-cl-w-9', text: 'Odhlásit se z diskusních skupin, kde se sdílejí fotky testů', optional: true, group: 'Hlava' },
         { id: 'tww-cl-w-10', text: 'Naplánovat každý den tři konkrétní věci', hint: 'Jednu praktickou, jednu příjemnou, jednu s lidmi.', group: 'Hlava' },
-        { id: 'tww-cl-w-11', text: 'Rozhodnout se, jestli budete testovat doma — a případně od kterého dne', group: 'Hlava' },
+        { id: 'tww-cl-w-11', text: 'Rozhodnout se, jestli budete testovat doma. A případně od kterého dne', group: 'Hlava' },
         { id: 'tww-cl-w-12', text: 'Napsat si plán pro obě varianty výsledku a zavřít do zásuvky', group: 'Hlava' },
         { id: 'tww-cl-w-13', text: 'Uložit si jednu nahrávku nebo playlist na špatné večery', optional: true, group: 'Hlava' },
         { id: 'tww-cl-w-14', text: 'Vybrat si jednoho člověka, se kterým to budete řešit', group: 'Lidé kolem' },
@@ -2078,12 +2078,12 @@ Nepovinné položky jsou označené. Nejsou méně důležité, jen nesedí kaž
       kind: 'story',
       title: 'Čtrnáct dní: příběh třetího transferu',
       excerpt:
-        'Poctivé vyprávění o dvou týdnech, ve kterých se nedělo nic — a přesto to bylo to nejtěžší období z celé léčby.',
+        'Poctivé vyprávění o dvou týdnech, ve kterých se nedělo nic. A přesto to bylo to nejtěžší období z celé léčby.',
       body: `## Den nula
 
 Na transfer jsem šla potřetí a byla jsem přesvědčená, že už mě nic nepřekvapí. Znala jsem cestu, znala jsem chodbu, znala jsem tu židli v čekárně s prasklým čalouněním.
 
-Překvapilo mě, jak moc jsem se bála. Ne zákroku — ten trvá pět minut a nebolí. Bála jsem se toho, co přijde po něm.
+Překvapilo mě, jak moc jsem se bála. Ne zákroku. Ten trvá pět minut a nebolí. Bála jsem se toho, co přijde po něm.
 
 Embryolog řekl číslo a písmeno, kterým jsem nerozuměla, a ukázal fotku. Vypadalo to jako šedý kroužek. Chtěla jsem se zeptat, jestli je to dobré, ale nezeptala jsem se. Dodnes nevím proč.
 
@@ -2130,7 +2130,7 @@ Volali odpoledne. Slyšela jsem číslo, zapsala jsem si ho na okraj novin, prot
 
 **Ptej se embryologa na všechno.** Ta nezodpovězená otázka o kroužku na fotce mi vrtala hlavou celé dva týdny.
 
-**A hlavně:** ty dva týdny nejsou zkouška, kterou můžeš udělat lépe nebo hůře. Nejsou test tvojí síly. Jsou to jen čtrnáct dní, které musíš přejít — a je jedno, jestli je přejdeš vzpřímeně, nebo po kolenou.
+**A hlavně:** ty dva týdny nejsou zkouška, kterou můžeš udělat lépe nebo hůře. Nejsou test tvojí síly. Jsou to jen čtrnáct dní, které musíš přejít. A je jedno, jestli je přejdeš vzpřímeně, nebo po kolenou.
 
 > Osobní příběh není lékařským doporučením. Postup, medikaci i termíny vždy konzultujte se svým ošetřujícím lékařem.`,
       minutes: 8,
@@ -2148,10 +2148,10 @@ Volali odpoledne. Slyšela jsem číslo, zapsala jsem si ho na okraj novin, prot
       kind: 'article',
       title: 'Pozitivní beta: co se děje teď a proč to není konec čekání',
       excerpt:
-        'Číslo přišlo, ale úleva nepřichází — a to je normálnější, než vám kdokoli řekne.',
+        'Číslo přišlo, ale úleva nepřichází. A to je normálnější, než vám kdokoli řekne.',
       body: `## Nejdřív si to dovolte
 
-Ať už jste zavřená v koupelně a brečíte, nebo sedíte a nic necítíte, nebo máte hlavně strach — všechno tohle je běžná reakce na pozitivní betu po IVF.
+Ať už jste zavřená v koupelně a brečíte, nebo sedíte a nic necítíte, nebo máte hlavně strach. Všechno tohle je běžná reakce na pozitivní betu po IVF.
 
 Ženy, které čekaly roky, často popisují, že místo radosti přišlo **ochromení**. Důvod je jednoduchý: **naučila jste se nedoufat, protože to bylo bezpečnější.** Ten obranný mechanismus se nevypne v jedné vteřině a nemusí.
 
@@ -2159,10 +2159,10 @@ Ať už jste zavřená v koupelně a brečíte, nebo sedíte a nic necítíte, n
 
 Konkrétní plán vám dá klinika, ale obvyklý rámec vypadá takhle:
 
-1. **Kontrolní odběr hCG** za dva až tři dny. Sleduje se dynamika — jestli hodnota stoupá tak, jak se očekává.
+1. **Kontrolní odběr hCG** za dva až tři dny. Sleduje se dynamika, jestli hodnota stoupá tak, jak se očekává.
 2. **Pokračování v podpoře luteální fáze**, často delší dobu než dosud. **Nic sama nevysazujte, ani když se cítíte skvěle.**
 3. **První ultrazvuk** v čase, kdy už může něco ukázat. Termín určuje lékař, obvykle to bývá s odstupem několika týdnů od pozitivní bety.
-4. **Předání do péče gynekologa** — kdy a jak, to se mezi pracovišti liší.
+4. **Předání do péče gynekologa**: kdy a jak, to se mezi pracovišti liší.
 
 ## Otázky, které si teď zapište
 
@@ -2180,17 +2180,17 @@ Skoro každá žena po IVF popisuje totéž: **čekání se nezastavilo, jen se 
 Co pomáhá:
 
 - **Nepočítejte dny do ultrazvuku každou hodinu.** Dejte si jeden pevný okamžik denně, kdy si to dovolíte.
-- **Nezakládejte si zatím nic.** Ani seznam jmen, ani výbavičku. Ne z pověrčivosti — jen proto, že v týdnech nejistoty to zvyšuje tlak.
+- **Nezakládejte si zatím nic.** Ani seznam jmen, ani výbavičku. Ne z pověrčivosti, jen proto, že v týdnech nejistoty to zvyšuje tlak.
 - **Řekněte si nahlas, koho chcete informovat teď a koho až po ultrazvuku.** Zpětvzetí zprávy bolí víc než čekání s ní.
 - **Dovolte si opatrnou verzi radosti.** „Dnes jsem těhotná" je pravdivá věta, i když nevíte, co bude za měsíc.
 
 ## Co změnit hned
 
-- **alkohol a kouření** — od teď ne,
-- **léky a doplňky** — cokoli užíváte, včetně volně prodejných věcí a bylin, konzultujte,
+- **alkohol a kouření**: od teď ne,
+- **léky a doplňky**: cokoli užíváte, včetně volně prodejných věcí a bylin, konzultujte,
 - **kyselina listová a další doporučené doplňky** podle pokynu lékaře,
-- **potraviny s rizikem infekce** — nepasterizované sýry, syrové maso a ryby, syrová vejce,
-- **zubař, léky na bolest, rentgen** — vždy ohlaste, že jste těhotná.
+- **potraviny s rizikem infekce**: nepasterizované sýry, syrové maso a ryby, syrová vejce,
+- **zubař, léky na bolest, rentgen**: vždy ohlaste, že jste těhotná.
 
 ## A co když přijde krvácení
 
@@ -2200,9 +2200,9 @@ Co pomáhá:
 
 - **silné krvácení** nebo krvácení se sraženinami,
 - **prudká, zejména jednostranná bolest v podbřišku**,
-- **bolest v rameni nebo mezi lopatkami, mdloba, závrať, studený pot** — možné příznaky mimoděložního těhotenství; volejte 155 nebo jeďte na pohotovost,
+- **bolest v rameni nebo mezi lopatkami, mdloba, závrať, studený pot**: možné příznaky mimoděložního těhotenství; volejte 155 nebo jeďte na pohotovost,
 - **horečka nad 38 °C**,
-- **rychle rostoucí obvod břicha, dušnost, výrazně snížené močení, prudký přírůstek hmotnosti** — po čerstvém cyklu může jít o pozdní OHSS,
+- **rychle rostoucí obvod břicha, dušnost, výrazně snížené močení, prudký přírůstek hmotnosti**: po čerstvém cyklu může jít o pozdní OHSS,
 - **opakované zvracení a neschopnost udržet tekutiny**.
 
 > Tento text nestanovuje diagnózu ani nenahrazuje lékařskou péči. Váš konkrétní plán sledování a medikace určuje výhradně váš ošetřující lékař.`,
@@ -2214,7 +2214,7 @@ Co pomáhá:
       hero: 'dawn',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2026-04-06',
       boost: 0.9,
     },
@@ -2223,10 +2223,10 @@ Co pomáhá:
       kind: 'article',
       title: 'První ultrazvuk po IVF: co uvidíte a čeho se bojíte',
       excerpt:
-        'Vyšetření, na které čekáte s větší úzkostí než na betu — a které vám poprvé ukáže něco skutečného.',
+        'Vyšetření, na které čekáte s větší úzkostí než na betu. A které vám poprvé ukáže něco skutečného.',
       body: `## Proč se nedělá hned
 
-Ultrazvuk potřebuje, aby bylo co vidět. Před určitou hodnotou hCG a určitým gestačním stářím nález nic nepotvrdí ani nevyvrátí — a **předčasné vyšetření obvykle přinese jen další dva týdny nejistoty**, ne odpověď.
+Ultrazvuk potřebuje, aby bylo co vidět. Před určitou hodnotou hCG a určitým gestačním stářím nález nic nepotvrdí ani nevyvrátí. A **předčasné vyšetření obvykle přinese jen další dva týdny nejistoty**, ne odpověď.
 
 Proto klinika termín stanoví podle vašich hodnot a podle data transferu, ne podle toho, kdy byste to nejradši věděla.
 
@@ -2234,16 +2234,16 @@ Proto klinika termín stanoví podle vašich hodnot a podle data transferu, ne p
 
 V raném těhotenství se struktury objevují v určitém pořadí, každá s odstupem několika dnů:
 
-1. **Plodový váček** — první viditelná struktura v děloze.
+1. **Plodový váček**: první viditelná struktura v děloze.
 2. **Žloutkový váček** uvnitř něj.
 3. **Zárodek** a jeho velikost, ze které se počítá gestační stáří.
-4. **Srdeční akce** — okamžik, na který čekáte.
+4. **Srdeční akce**: okamžik, na který čekáte.
 
 Pokud vám lékař řekne, že „ještě není vidět všechno", **nemusí to znamenat problém.** Často jde o rozdíl několika dnů a řešením bývá kontrolní ultrazvuk s odstupem. Ten odstup je nesnesitelný a je to jediný správný postup.
 
 ## Jak vyšetření probíhá
 
-V raném těhotenství se obvykle provádí **vaginální sonografie** — sonda přes pochvu dává v tomhle stádiu výrazně lepší obraz než vyšetření přes břicho. Nebolí, ale bývá nepříjemné, hlavně pokud máte zvětšené vaječníky po stimulaci.
+V raném těhotenství se obvykle provádí **vaginální sonografie**: sonda přes pochvu dává v tomhle stádiu výrazně lepší obraz než vyšetření přes břicho. Nebolí, ale bývá nepříjemné, hlavně pokud máte zvětšené vaječníky po stimulaci.
 
 Praktické:
 
@@ -2253,15 +2253,15 @@ Praktické:
 
 ## Co se bude zjišťovat
 
-- **kolik plodových váčků** — tady se potvrdí nebo vyvrátí vícečetné těhotenství,
-- **uložení** — jestli je těhotenství v děloze; tohle je jeden z hlavních důvodů, proč se vyšetření dělá,
+- **kolik plodových váčků**: tady se potvrdí nebo vyvrátí vícečetné těhotenství,
+- **uložení**: jestli je těhotenství v děloze; tohle je jeden z hlavních důvodů, proč se vyšetření dělá,
 - **velikost a odpovídající stáří**,
 - **srdeční akce**,
 - **stav vaječníků a přítomnost volné tekutiny**, hlavně po čerstvém cyklu.
 
 ## Ta úzkost před vyšetřením
 
-Ženy po IVF popisují cestu na první ultrazvuk jako horší než všechno předtím. Beta je číslo. Ultrazvuk je obraz — a obraz se dá ztratit.
+Ženy po IVF popisují cestu na první ultrazvuk jako horší než všechno předtím. Beta je číslo. Ultrazvuk je obraz. A obraz se dá ztratit.
 
 Co pomáhá:
 
@@ -2272,13 +2272,13 @@ Co pomáhá:
 
 ## Když nález není jednoznačný
 
-Stává se to častěji, než se mluví. Možnosti bývají: příliš brzy, posunuté datum, nutnost kontroly za týden. **Zeptejte se, co konkrétně budete sledovat a kdy je další termín** — plán je jediná věc, kterou v tu chvíli reálně dostanete, a stojí za to si ji odnést.
+Stává se to častěji, než se mluví. Možnosti bývají: příliš brzy, posunuté datum, nutnost kontroly za týden. **Zeptejte se, co konkrétně budete sledovat a kdy je další termín**: plán je jediná věc, kterou v tu chvíli reálně dostanete, a stojí za to si ji odnést.
 
 ## Kdy volat lékaře
 
 - silné krvácení nebo krvácení se sraženinami,
 - prudká, zejména jednostranná bolest v podbřišku,
-- bolest v rameni, mdloba, závrať, studený pot — volejte 155,
+- bolest v rameni, mdloba, závrať, studený pot. Volejte 155,
 - horečka nad 38 °C,
 - rychle rostoucí obvod břicha, dušnost, snížené močení,
 - opakované zvracení a neschopnost udržet tekutiny.
@@ -2292,7 +2292,7 @@ Stává se to častěji, než se mluví. Možnosti bývají: příliš brzy, pos
       hero: 'sky',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['Česká gynekologická a porodnická společnost ČLS JEP', 'ESHRE — doporučené postupy'],
+      sources: ['Česká gynekologická a porodnická společnost ČLS JEP', 'ESHRE: doporučené postupy'],
       publishedOn: '2026-04-13',
       boost: 0.75,
     },
@@ -2301,12 +2301,12 @@ Stává se to častěji, než se mluví. Možnosti bývají: příliš brzy, pos
       kind: 'article',
       title: 'Čekání, když už jste jednou ztratila',
       excerpt:
-        'Dva týdny čekání po ztrátě mají jiná pravidla — a nikdo vám nemá právo říkat, ať se radujete.',
+        'Dva týdny čekání po ztrátě mají jiná pravidla. A nikdo vám nemá právo říkat, ať se radujete.',
       body: `## Proč je tohle jiné
 
 Žena, která čeká poprvé, se bojí neznámého. Žena, která už jednou ztratila, se **bojí konkrétní vzpomínky**. To je jiný druh strachu a zaslouží si jiné zacházení.
 
-Vaše tělo si pamatuje. Pamatuje si tu chodbu, ten telefonát, tu barvu krve. Když vám někdo řekne „teď to bude jiné", není to útěcha — je to věta, kterou nemůže nikdo garantovat.
+Vaše tělo si pamatuje. Pamatuje si tu chodbu, ten telefonát, tu barvu krve. Když vám někdo řekne „teď to bude jiné", není to útěcha. Je to věta, kterou nemůže nikdo garantovat.
 
 ## Co si dovolte
 
@@ -2320,18 +2320,18 @@ Vaše tělo si pamatuje. Pamatuje si tu chodbu, ten telefonát, tu barvu krve. K
 
 Jedinou věc: **vinu.** Ztráta, kterou jste prožila, nebyla vaše chyba. Nebyla způsobená tím, že jste zvedla tašku, jela na kole nebo se moc stresovala. Většina časných ztrát má příčiny, které nikdo neovlivní.
 
-Pokud v hlavě pořád běží „co jsem udělala špatně", je to signál, že by vám prospěla odborná pomoc — ne proto, že jste slabá, ale proto, že tahle smyčka se sama neuzavře.
+Pokud v hlavě pořád běží „co jsem udělala špatně", je to signál, že by vám prospěla odborná pomoc, ne proto, že jste slabá, ale proto, že tahle smyčka se sama neuzavře.
 
 ## Praktické věci, které pomáhají
 
 - **Zeptejte se lékaře, jestli se ve vašem případě něco změnilo** oproti minulému cyklu. Konkrétní odpověď snižuje pocit, že jdete do stejné situace naslepo.
-- **Vyhněte se výročím**, pokud to jde. Termín, který by byl, datum ztráty — vědomí, že to datum spadá do dvou týdnů čekání, se dá předem ošetřit.
+- **Vyhněte se výročím**, pokud to jde. Termín, který by byl, datum ztráty. Vědomí, že to datum spadá do dvou týdnů čekání, se dá předem ošetřit.
 - **Domluvte se předem, jak dostanete výsledek.** Po ztrátě je způsob sdělení ještě důležitější.
 - **Mějte plán pro obě varianty.** U žen po ztrátě to funguje ještě výrazněji než u ostatních.
 
 ## Když se objeví krvácení
 
-Reakce bývá okamžitá a totální — tělo si vybaví minule. Zkuste si předem nachystat postup, který provedete místo paniky:
+Reakce bývá okamžitá a totální. Tělo si vybaví minule. Zkuste si předem nachystat postup, který provedete místo paniky:
 
 1. Podívám se, kolik toho je (vložka, ne papír).
 2. Zapíšu si čas, barvu, množství.
@@ -2351,7 +2351,7 @@ Postup napsaný předem funguje ve chvíli, kdy vám hlava nefunguje.
 - vracející se vzpomínky nebo noční můry na předchozí ztrátu,
 - panické ataky,
 - neschopnost fungovat v běžném dni,
-- pocit, že by bylo lepší tu nebýt — **v tom případě vyhledejte pomoc okamžitě**, Linka první psychické pomoci 116 123 funguje nonstop a zdarma.
+- pocit, že by bylo lepší tu nebýt. **v tom případě vyhledejte pomoc okamžitě**, Linka první psychické pomoci 116 123 funguje nonstop a zdarma.
 
 ## Kdy volat lékaře
 
@@ -2378,56 +2378,56 @@ Postup napsaný předem funguje ve chvíli, kdy vám hlava nefunguje.
       kind: 'glossary',
       title: 'Slovníček: pojmy, které uslyšíte kolem transferu',
       excerpt:
-        'Blastocysta, hatching, luteální podpora, beta — patnáct pojmů vysvětlených tak, abyste na klinice kývala se skutečným porozuměním.',
+        'Blastocysta, hatching, luteální podpora, beta. Patnáct pojmů vysvětlených tak, abyste na klinice kývala se skutečným porozuměním.',
       body: `## Proč tohle potřebujete
 
 Na klinice zazní během pěti minut deset odborných výrazů. Ženy obvykle kývnou a doma googlují. Tady je máte pohromadě.
 
 ## Embryo a laboratoř
 
-**Blastocysta** — stadium embrya zhruba pátý až šestý den po oplození. Má už dva typy buněk: vnitřní buněčnou masu (z ní vzniká plod) a trofoblast (z něj placenta).
+**Blastocysta**: stadium embrya zhruba pátý až šestý den po oplození. Má už dva typy buněk: vnitřní buněčnou masu (z ní vzniká plod) a trofoblast (z něj placenta).
 
-**Hatching (líhnutí)** — proces, při kterém se blastocysta probourává ven z obalu zvaného zona pellucida. Bez toho se nemůže přichytit ke sliznici.
+**Hatching (líhnutí)**: proces, při kterém se blastocysta probourává ven z obalu zvaného zona pellucida. Bez toho se nemůže přichytit ke sliznici.
 
-**Zona pellucida** — obal vajíčka a časného embrya.
+**Zona pellucida**: obal vajíčka a časného embrya.
 
-**Asistovaný hatching** — laboratorní pomoc při narušení obalu. Zda má ve vašem případě smysl, rozhoduje embryolog a lékař.
+**Asistovaný hatching**: laboratorní pomoc při narušení obalu. Zda má ve vašem případě smysl, rozhoduje embryolog a lékař.
 
-**Vitrifikace** — metoda ultrarychlého zamrazení embryí.
+**Vitrifikace**: metoda ultrarychlého zamrazení embryí.
 
-**KET (kryoembryotransfer)** — přenos rozmrazeného embrya.
+**KET (kryoembryotransfer)**: přenos rozmrazeného embrya.
 
 ## Děloha a transfer
 
-**Endometrium** — děložní sliznice, do které se embryo zahnizďuje.
+**Endometrium**: děložní sliznice, do které se embryo zahnizďuje.
 
-**Implantační okno** — časově omezené období, kdy je sliznice připravená přijmout embryo. Právě proto se tak hlídá časování progesteronu.
+**Implantační okno**: časově omezené období, kdy je sliznice připravená přijmout embryo. Právě proto se tak hlídá časování progesteronu.
 
-**Katétr** — tenká měkká hadička, kterou se embryo přenáší do dutiny děložní.
+**Katétr**: tenká měkká hadička, kterou se embryo přenáší do dutiny děložní.
 
-**Implantace (nidace)** — zahnízdění embrya ve sliznici.
+**Implantace (nidace)**: zahnízdění embrya ve sliznici.
 
 ## Hormony a výsledky
 
-**Luteální fáze** — druhá polovina cyklu, od ovulace do menstruace nebo do nástupu těhotenství.
+**Luteální fáze**: druhá polovina cyklu, od ovulace do menstruace nebo do nástupu těhotenství.
 
-**Podpora luteální fáze** — doplňování progesteronu (případně dalších hormonů) po transferu. Po IVF je standardem.
+**Podpora luteální fáze**: doplňování progesteronu (případně dalších hormonů) po transferu. Po IVF je standardem.
 
-**Progesteron** — hormon, který připravuje a udržuje děložní sliznici.
+**Progesteron**: hormon, který připravuje a udržuje děložní sliznici.
 
-**hCG** — hormon produkovaný zárodečnou tkání po zahnízdění. Základ těhotenského testu.
+**hCG**: hormon produkovaný zárodečnou tkání po zahnízdění. Základ těhotenského testu.
 
-**hCG** — stanovení hCG z krve. Přesnější než test z moči a dá vám číslo.
+**hCG**: stanovení hCG z krve. Přesnější než test z moči a dá vám číslo.
 
-**Zdvojovací čas** — doba, za kterou hodnota hCG vzroste na dvojnásobek. V raném těhotenství to bývá zhruba 48 až 72 hodin.
+**Zdvojovací čas**: doba, za kterou hodnota hCG vzroste na dvojnásobek. V raném těhotenství to bývá zhruba 48 až 72 hodin.
 
-**Biochemické těhotenství** — velmi časná ztráta, kdy se hCG objevilo, ale těhotenství se dál nerozvinulo.
+**Biochemické těhotenství**: velmi časná ztráta, kdy se hCG objevilo, ale těhotenství se dál nerozvinulo.
 
 ## Komplikace, o kterých je dobré vědět
 
-**OHSS** — ovariální hyperstimulační syndrom, komplikace stimulace. Pozdní forma souvisí s hCG z nastupujícího těhotenství.
+**OHSS**: ovariální hyperstimulační syndrom, komplikace stimulace. Pozdní forma souvisí s hCG z nastupujícího těhotenství.
 
-**Mimoděložní (ektopické) těhotenství** — zahnízdění mimo dutinu děložní. Vyžaduje neodkladné řešení.
+**Mimoděložní (ektopické) těhotenství**: zahnízdění mimo dutinu děložní. Vyžaduje neodkladné řešení.
 
 > Slovníček slouží k orientaci. Nenahrazuje výklad vašeho lékaře a nestanovuje žádnou diagnózu.`,
       minutes: 6,
@@ -2445,26 +2445,26 @@ Na klinice zazní během pěti minut deset odborných výrazů. Ženy obvykle k�
       kind: 'article',
       title: 'Když beta vyjde negativní: první hodiny a první dny',
       excerpt:
-        'Praktický text pro den, kdy nebudete schopná číst nic dlouhého — proto je krátký a konkrétní.',
+        'Praktický text pro den, kdy nebudete schopná číst nic dlouhého, proto je krátký a konkrétní.',
       body: `## Nejdřív to praktické
 
 **1. Zeptejte se, kdy vysadit léky.** Nevysazujte nic sama, ani teď. Klinika vám řekne přesně, co a kdy.
 
 **2. Počítejte s krvácením.** Po vysazení progesteronu obvykle přijde krvácení do několika dnů. Bývá silnější než běžná menstruace a může trvat déle. Pokud je opravdu silné, volejte.
 
-**3. Domluvte si kontrolní konzultaci.** Ne dnes. Ale domluvte si ji — je to schůzka, kde se probírá, co dál a jestli se něco změní v dalším postupu.
+**3. Domluvte si kontrolní konzultaci.** Ne dnes. Ale domluvte si ji. Je to schůzka, kde se probírá, co dál a jestli se něco změní v dalším postupu.
 
 **4. Zjistěte, jestli vám zůstala zamrazená embrya.** Tuhle informaci nemusíte chtít hned. Ale je dobré vědět, že existuje.
 
 ## A teď to podstatnější
 
-To, co prožíváte, je ztráta. I když nikdo neviděl žádný ultrazvuk. I když to trvalo čtrnáct dní. **Truchlíte po představě, se kterou jste čtrnáct dní žila** — a ta byla skutečná.
+To, co prožíváte, je ztráta. I když nikdo neviděl žádný ultrazvuk. I když to trvalo čtrnáct dní. **Truchlíte po představě, se kterou jste čtrnáct dní žila**: a ta byla skutečná.
 
 Nemusíte být statečná. Nemusíte hned mluvit o dalším pokusu. Nemusíte nikoho uklidňovat.
 
 ## Věty, které dnes uslyšíte a které bolí
 
-*„Aspoň víte, že jde otěhotnět."* — *„Zkusíte to znovu."* — *„Určitě příště."* — *„Nesmíte se stresovat."*
+*„Aspoň víte, že jde otěhotnět."*. *„Zkusíte to znovu."*. *„Určitě příště."*. *„Nesmíte se stresovat."*
 
 Lidé je říkají z bezradnosti, ne ze zlé vůle. Nemusíte na ně reagovat. Můžete říct jen: *„Teď na to nemám sílu."*
 
@@ -2484,13 +2484,13 @@ Ozvěte se odborníkovi, pokud:
 
 - nespíte několik nocí po sobě,
 - nejste schopná fungovat v běžném dni déle než pár týdnů,
-- objeví se myšlenky, že by bylo lepší tu nebýt — **vyhledejte pomoc okamžitě**.
+- objeví se myšlenky, že by bylo lepší tu nebýt. **vyhledejte pomoc okamžitě**.
 
 Linka první psychické pomoci: **116 123**, nonstop a zdarma.
 
 ## Kdy volat lékaře
 
-- **velmi silné krvácení** — promáčená vložka za hodinu a méně, opakovaně,
+- **velmi silné krvácení**: promáčená vložka za hodinu a méně, opakovaně,
 - krvácení se **sraženinami většími než pár centimetrů**,
 - **prudká bolest v podbřišku**,
 - **horečka nad 38 °C** nebo páchnoucí výtok,
@@ -2514,7 +2514,7 @@ Linka první psychické pomoci: **116 123**, nonstop a zdarma.
       kind: 'checklist',
       title: 'Checklist: co se zeptat embryologa a lékaře v den transferu',
       excerpt:
-        'Otázky, které si přečtete v čekárně — protože ve chvíli, kdy se vás zeptají „máte nějaký dotaz?", vám nenapadne nic.',
+        'Otázky, které si přečtete v čekárně, protože ve chvíli, kdy se vás zeptají „máte nějaký dotaz?", vám nenapadne nic.',
       body: `## Proč zrovna v čekárně
 
 Rozhovor s embryologem trvá pár minut a probíhá ve chvíli, kdy jste nervózní a máte plný močový měchýř. **Otázky, které si nepřipravíte předem, si nevzpomenete.**
@@ -2523,7 +2523,7 @@ Nemusíte položit všechny. Vyberte si tři, které vás nejvíc zajímají, a 
 
 ## Jak si odpovědi zapsat
 
-Vezměte si papír, ne telefon — psaní rukou v tomhle prostředí funguje líp a nikoho neurazíte. Nebo požádejte partnera, ať píše on.
+Vezměte si papír, ne telefon. Psaní rukou v tomhle prostředí funguje líp a nikoho neurazíte. Nebo požádejte partnera, ať píše on.
 
 Pokud odpovědi nerozumíte, řekněte to. Věta *„Můžete mi to říct ještě jednou jinak?"* je naprosto legitimní a embryologové ji slyší denně.
 
@@ -2564,9 +2564,9 @@ Pokud odpovědi nerozumíte, řekněte to. Věta *„Můžete mi to říct ješt
 
 Pro ženu, která právě odešla z kliniky po transferu a neví, co s následujícími čtrnácti dny.
 
-Kurz nemá ambici zvýšit vaše šance — to není v moci žádného textu. Má ambici **dát těm dvěma týdnům strukturu**, aby vás nesežraly.
+Kurz nemá ambici zvýšit vaše šance. To není v moci žádného textu. Má ambici **dát těm dvěma týdnům strukturu**, aby vás nesežraly.
 
-Každá kapitola má konkrétní obsah a jeden úkol. Můžete je projít najednou, nebo si je rozložit — první kapitolu v den transferu, poslední v den před odběrem.
+Každá kapitola má konkrétní obsah a jeden úkol. Můžete je projít najednou, nebo si je rozložit. První kapitolu v den transferu, poslední v den před odběrem.
 
 ## Co v kurzu nenajdete
 
@@ -2589,7 +2589,7 @@ Sliby. Rady typu „myslete pozitivně". Seznamy potravin, které mají zaručit
           minutes: 6,
           body: `## Co dnes udělat a co ne
 
-Den transferu berte jako lehký den, ne jako den v posteli. Klid ano, nehybnost ne — po stimulaci má dlouhé ležení svá vlastní rizika.
+Den transferu berte jako lehký den, ne jako den v posteli. Klid ano, nehybnost ne. Po stimulaci má dlouhé ležení svá vlastní rizika.
 
 **Tři věci na dnešek:**
 1. Nastavit připomínky na medikaci.
@@ -2609,7 +2609,7 @@ Napište si na papír jednu větu, kterou budete v příštích dnech říkat li
           minutes: 6,
           body: `## Proč vám tělo lže
 
-Progesteron, který užíváte, vyvolává napětí prsou, únavu, nevolnost, nafouklé břicho i mírné křeče — tedy přesně to, co bývá popisováno jako první příznaky těhotenství. **Rozdíl mezi těhotnou a netěhotnou ženou v tomhle období z příznaků nepoznáte.**
+Progesteron, který užíváte, vyvolává napětí prsou, únavu, nevolnost, nafouklé břicho i mírné křeče, tedy přesně to, co bývá popisováno jako první příznaky těhotenství. **Rozdíl mezi těhotnou a netěhotnou ženou v tomhle období z příznaků nepoznáte.**
 
 ## Symptom spotting a jak z něj ven
 
@@ -2684,15 +2684,15 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['transfer'],
       day: 0,
       headline: 'Dnes je embryo doma',
-      body: 'Přenos trvá pár minut a je to nejjednodušší výkon celého cyklu — a zároveň den, na který jste čekala nejdéle. Embryo je teď v dutině děložní, ve štěrbině, jejíž stěny jsou v kontaktu, takže nikam nevypadne, ať dnes budete dělat cokoli. Vaše jediná skutečná práce od téhle chvíle je užívat podporu luteální fáze přesně podle pokynu.',
+      body: 'Přenos trvá pár minut a je to nejjednodušší výkon celého cyklu. A zároveň den, na který jste čekala nejdéle. Embryo je teď v dutině děložní, ve štěrbině, jejíž stěny jsou v kontaktu, takže nikam nevypadne, ať dnes budete dělat cokoli. Vaše jediná skutečná práce od téhle chvíle je užívat podporu luteální fáze přesně podle pokynu.',
       whatsHappening: [
         'Blastocysta je uložená v děloze a zatím je uzavřená ve svém obalu',
         'Mírné křeče nebo lehké špinění bývají z manipulace s děložním hrdlem',
-        'Po plném močovém měchýři je úleva okamžitá — a na toaletu smíte',
+        'Po plném močovém měchýři je úleva okamžitá. A na toaletu smíte',
         'Po čerstvém cyklu můžete mít stále nafouklé břicho po stimulaci',
       ],
       task: 'Nastavte si v telefonu připomínky na všechny dávky medikace na následujících čtrnáct dní a uložte si číslo na kliniku včetně víkendové pohotovosti.',
-      reflection: 'Co dnes potřebuju od lidí kolem sebe — mluvit, mlčet, nebo mít klid?',
+      reflection: 'Co dnes potřebuju od lidí kolem sebe. Mluvit, mlčet, nebo mít klid?',
       tip: 'Zapište si hned dnes přesný termín odběru hCG a to, co vám řekl embryolog. Za tři dny si z toho rozhovoru vybavíte třetinu.',
       callDoctorIf: [
         'Silné krvácení, silnější než menstruace, nebo se sraženinami',
@@ -2706,15 +2706,15 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 1,
       headline: 'Den 1: blastocysta se začíná líhnout',
-      body: 'Embryo se rozpíná a začíná se probourávat ven ze svého obalu — tomu se říká hatching neboli líhnutí. Bez tohoto kroku by se ke sliznici vůbec nemohlo přichytit. Vy z toho neucítíte vůbec nic a to je naprosto v pořádku.',
+      body: 'Embryo se rozpíná a začíná se probourávat ven ze svého obalu. Tomu se říká hatching neboli líhnutí. Bez tohoto kroku by se ke sliznici vůbec nemohlo přichytit. Vy z toho neucítíte vůbec nic a to je naprosto v pořádku.',
       whatsHappening: [
         'Blastocysta nasává tekutinu, zvětšuje objem a tlačí na obal zvaný zona pellucida',
         'Ještě nedošlo k žádnému kontaktu se sliznicí',
-        'Žádný hormon těhotenství se zatím netvoří — test by neukázal nic',
+        'Žádný hormon těhotenství se zatím netvoří. Test by neukázal nic',
         'Cokoli dnes cítíte, jde na vrub progesteronu nebo doznívající stimulaci',
       ],
       task: 'Naplánujte si na dnešek jednu procházku, klidně jen dvacet minut. Chůze je po stimulaci lepší než ležení.',
-      reflection: 'Čeho se z těch čtrnácti dní bojím nejvíc — výsledku, nebo toho čekání?',
+      reflection: 'Čeho se z těch čtrnácti dní bojím nejvíc. Výsledku, nebo toho čekání?',
       tip: 'Dnes je dobrý den zavést si vlastní pravidlo pro internet. Například: hledám maximálně jednou denně a jen na zdrojích, kterým věřím.',
       callDoctorIf: [
         'Silné krvácení nebo krvácení se sraženinami',
@@ -2728,12 +2728,12 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 2,
       headline: 'Den 2: embryo opouští svůj obal',
-      body: 'Líhnutí obvykle dnes končí — blastocysta se dostává ven ze zony pellucidy a poprvé je nahá v dutině děložní. Teprve teď má vůbec šanci dotknout se výstelky dělohy. Vaše tělo na tom nemá žádný podíl, který byste mohla ovlivnit.',
+      body: 'Líhnutí obvykle dnes končí. Blastocysta se dostává ven ze zony pellucidy a poprvé je nahá v dutině děložní. Teprve teď má vůbec šanci dotknout se výstelky dělohy. Vaše tělo na tom nemá žádný podíl, který byste mohla ovlivnit.',
       whatsHappening: [
         'Vylíhlá blastocysta se volně pohybuje v tenké vrstvě tekutiny mezi stěnami dělohy',
         'Sliznice je připravovaná progesteronem, který užíváte',
         'Napětí prsou a únava, které možná cítíte, jsou účinkem progesteronu, ne známkou výsledku',
-        'Druhý den bývá psychicky horší než první — adrenalin z transferu opadl',
+        'Druhý den bývá psychicky horší než první. Adrenalin z transferu opadl',
       ],
       task: 'Napište si na papír tři konkrétní věci na zítřek: jednu praktickou, jednu příjemnou, jednu s lidmi. Prázdný den je teď nepřítel.',
       reflection: 'Kdo je ten jeden člověk, se kterým tohle chci sdílet, a ví o tom?',
@@ -2744,7 +2744,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 3,
       headline: 'Den 3: první dotek se sliznicí',
-      body: 'Vylíhlá blastocysta se přibližuje k děložní sliznici a dochází k prvnímu kontaktu — odborně se tomu říká apozice. Je to velmi jemný, vratný krok, ještě ne pevné přichycení. Nic z toho nelze urychlit ani zkazit tím, co dnes uděláte.',
+      body: 'Vylíhlá blastocysta se přibližuje k děložní sliznici a dochází k prvnímu kontaktu. Odborně se tomu říká apozice. Je to velmi jemný, vratný krok, ještě ne pevné přichycení. Nic z toho nelze urychlit ani zkazit tím, co dnes uděláte.',
       whatsHappening: [
         'Buňky trofoblastu, ze kterých později vznikne placenta, se dotýkají výstelky dělohy',
         'Endometrium je díky progesteronu v takzvaném implantačním okně',
@@ -2760,10 +2760,10 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 4,
       headline: 'Den 4: přichycení se upevňuje',
-      body: 'Kontakt mezi embryem a sliznicí se mění v pevnější vazbu — adhezi. Buňky trofoblastu začínají navazovat těsné spojení s výstelkou dělohy a připravují se na zanoření. Vy pravděpodobně necítíte nic zvláštního a i to je běžné.',
+      body: 'Kontakt mezi embryem a sliznicí se mění v pevnější vazbu. Adhezi. Buňky trofoblastu začínají navazovat těsné spojení s výstelkou dělohy a připravují se na zanoření. Vy pravděpodobně necítíte nic zvláštního a i to je běžné.',
       whatsHappening: [
         'Trofoblast přilnul ke sliznici a připravuje se pronikat hlouběji',
-        'Zatím žádné hCG — domácí test by byl negativní i v tom nejlepším případě',
+        'Zatím žádné hCG. Domácí test by byl negativní i v tom nejlepším případě',
         'Únava, ospalost a mlha v hlavě jsou typické účinky progesteronu',
         'Čtvrtý den bývá dnem, kdy se poprvé objeví silné nutkání hledat na internetu',
       ],
@@ -2776,7 +2776,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 5,
       headline: 'Den 5: začíná zahnizďování',
-      body: 'Buňky trofoblastu pronikají do děložní sliznice a embryo se do ní zanořuje. Právě v této fázi se rozbíhá tvorba hCG, zatím ale v tak malém množství, že ho nezachytí žádný domácí test. Pokud dnes uvidíte drobné narůžovělé nebo hnědé špinění, může jít o podráždění drobných cév — a stejně tak to může být od progesteronu.',
+      body: 'Buňky trofoblastu pronikají do děložní sliznice a embryo se do ní zanořuje. Právě v této fázi se rozbíhá tvorba hCG, zatím ale v tak malém množství, že ho nezachytí žádný domácí test. Pokud dnes uvidíte drobné narůžovělé nebo hnědé špinění, může jít o podráždění drobných cév. A stejně tak to může být od progesteronu.',
       whatsHappening: [
         'Trofoblast narušuje drobné cévy ve sliznici a zanořuje se hlouběji',
         'Vzniká první, stopové množství hCG',
@@ -2802,12 +2802,12 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       whatsHappening: [
         'Zahnizďování je v plném běhu a začíná se tvořit napojení na váš krevní oběh',
         'hCG stoupá, ale zatím je hluboko pod prahem citlivosti domácích testů',
-        'U části žen se objevuje slabé implantační špinění — kapky, hnědý flek, ne víc',
+        'U části žen se objevuje slabé implantační špinění. Kapky, hnědý flek, ne víc',
         'Stále platí, že příznaky ani jejich nepřítomnost o ničem nevypovídají',
       ],
       task: 'Pošlete partnerovi nebo blízké osobě jednu konkrétní prosbu. Ne pocit, prosbu. Například: „Objednej prosím nákup, nechci dnes do obchodu."',
       reflection: 'Za co bych si dnes zasloužila uznání, i kdyby nakonec beta vyšla negativně?',
-      tip: 'Když vidíte hnědou barvu, znamená to starší krev, která odchází se zpožděním. Silné, jasně červené krvácení je jiná situace — v tom případě volejte.',
+      tip: 'Když vidíte hnědou barvu, znamená to starší krev, která odchází se zpožděním. Silné, jasně červené krvácení je jiná situace. V tom případě volejte.',
       callDoctorIf: [
         'Silné krvácení nebo krvácení se sraženinami',
         'Prudká bolest v podbřišku',
@@ -2820,7 +2820,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 7,
       headline: 'Den 7: hCG je v krvi, ale ne v moči',
-      body: 'Pokud zahnízdění proběhlo, hCG už koluje v krvi a zhruba každé dva dny se zdvojnásobuje. Do moči se ale dostává se zpožděním a v koncentraci, kterou domácí test nezachytí. Tohle je den, kdy nejvíc žen udělá první test — a kdy je výsledek nejméně vypovídající.',
+      body: 'Pokud zahnízdění proběhlo, hCG už koluje v krvi a zhruba každé dva dny se zdvojnásobuje. Do moči se ale dostává se zpožděním a v koncentraci, kterou domácí test nezachytí. Tohle je den, kdy nejvíc žen udělá první test. A kdy je výsledek nejméně vypovídající.',
       whatsHappening: [
         'Zahnizďování se dokončuje, tvoří se první napojení na váš krevní oběh',
         'hCG v krvi roste exponenciálně, v moči zaostává',
@@ -2836,37 +2836,37 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 8,
       headline: 'Den 8: hCG stoupá, testy pořád klamou',
-      body: 'Hodnota hCG se v případě probíhajícího těhotenství přibližně zdvojnásobuje každých 48 až 72 hodin, takže dnes je jí několikanásobně víc než předevčírem. Přesto může být test z moči stále negativní. Negativní proužek osmý den neříká nic — a slabá čárka může patřit zbytku spouštěcí injekce.',
+      body: 'Hodnota hCG se v případě probíhajícího těhotenství přibližně zdvojnásobuje každých 48 až 72 hodin, takže dnes je jí několikanásobně víc než předevčírem. Přesto může být test z moči stále negativní. Negativní proužek osmý den neříká nic. A slabá čárka může patřit zbytku spouštěcí injekce.',
       whatsHappening: [
         'Zárodečná tkáň produkuje hCG a napojuje se na mateřský oběh',
         'Koncentrace v moči zaostává za koncentrací v krvi',
-        'Progesteron může vyvolávat napětí prsou, nevolnost i nafouklé břicho — stejné příznaky jako těhotenství',
+        'Progesteron může vyvolávat napětí prsou, nevolnost i nafouklé břicho. Stejné příznaky jako těhotenství',
         'Osmý až desátý den bývá psychicky nejhorší část celého čekání',
       ],
-      task: 'Udělejte si dnes deset minut jen pro sebe — bez telefonu, bez hledání. Sedněte si a tři minuty dýchejte s delším výdechem než nádechem.',
+      task: 'Udělejte si dnes deset minut jen pro sebe. Bez telefonu, bez hledání. Sedněte si a tři minuty dýchejte s delším výdechem než nádechem.',
       reflection: 'Co bych dnes řekla kamarádce, která by byla na mém místě? A umím to říct sama sobě?',
-      tip: 'Nefotografujte proužky a nedávejte je do skupin k posouzení. Z fotky nepozná nic ani lékař — odpověď dá jen krev.',
+      tip: 'Nefotografujte proužky a nedávejte je do skupin k posouzení. Z fotky nepozná nic ani lékař. Odpověď dá jen krev.',
     },
     {
       id: 'tww-dc-2ww-den-9',
       phases: ['two_week_wait'],
       day: 9,
       headline: 'Den 9: nejtěžší den bývá tenhle',
-      body: 'Biologicky se nic dramatického neděje — hCG dál stoupá podle své křivky a zárodečná tkáň se dál napojuje. Psychicky je tohle často dno celého čekání: první týden je za vámi, výsledek ještě daleko, a energie být statečná došla. To není selhání, to je únava.',
+      body: 'Biologicky se nic dramatického neděje. hCG dál stoupá podle své křivky a zárodečná tkáň se dál napojuje. Psychicky je tohle často dno celého čekání: první týden je za vámi, výsledek ještě daleko, a energie být statečná došla. To není selhání, to je únava.',
       whatsHappening: [
         'Zahnízdění je dokončené, hCG dál roste',
         'U některých žen by dnes už velmi citlivý test mohl něco naznačit, u jiných vůbec ne',
         'Únava, plačtivost a podrážděnost mají hormonální složku, nejste přecitlivělá',
         'Nafouklé břicho po čerstvém cyklu obvykle v těchto dnech ustupuje',
       ],
-      task: 'Zavolejte tomu jednomu člověku, kterého jste si vybrala. Nemusíte řešit léčbu — může to být hovor o čemkoli jiném.',
+      task: 'Zavolejte tomu jednomu člověku, kterého jste si vybrala. Nemusíte řešit léčbu. Může to být hovor o čemkoli jiném.',
       reflection: 'Co mi dneska pomohlo aspoň o kousek? Zapamatuju si to na zítřek.',
       tip: 'Pokud vám myšlenka „co když je to naposledy" chodí dokola, nebojujte s ní. Zkuste větu: „Tahle myšlenka je teď se mnou a nemusím na ni odpovídat."',
       callDoctorIf: [
         'Silné krvácení nebo krvácení se sraženinami',
         'Prudká bolest v podbřišku',
         'Horečka nad 38 °C',
-        'Pokud se cítíte tak zle, že nejste schopná fungovat — i to je důvod se ozvat',
+        'Pokud se cítíte tak zle, že nejste schopná fungovat. I to je důvod se ozvat',
       ],
     },
     {
@@ -2893,7 +2893,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       body: 'Pokud těhotenství probíhá, hCG je dnes už výrazně vyšší než před třemi dny a domácí test bývá spolehlivější. Přesto ani zřetelná čárka neřekne, jestli hodnota stoupá tak, jak by měla. To ukáže až číslo z krve, a hlavně jeho porovnání s druhým odběrem.',
       whatsHappening: [
         'hCG pokračuje v exponenciálním růstu',
-        'Domácí test má od tohoto dne rozumnou výpovědní hodnotu — ale jen orientační',
+        'Domácí test má od tohoto dne rozumnou výpovědní hodnotu, ale jen orientační',
         'Špinění se v těchto dnech u části žen objevuje i při probíhajícím těhotenství',
         'Napětí prsou může být silnější, protože roste i hladina progesteronu',
       ],
@@ -2912,15 +2912,15 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 12,
       headline: 'Den 12: připravte si zítřek a pozítří',
-      body: 'Biologicky se nic nemění — hCG buď roste, nebo neroste, a vy to za pár dnů budete vědět s jistotou. Dnešek je nejlepší den na praktickou přípravu: ověřit čas odběru, zjistit, jestli máte být nalačno, a mít po ruce kartičku pojišťovny i žádanku. Praktické kroky teď fungují lépe než jakékoli uklidňování.',
+      body: 'Biologicky se nic nemění. hCG buď roste, nebo neroste, a vy to za pár dnů budete vědět s jistotou. Dnešek je nejlepší den na praktickou přípravu: ověřit čas odběru, zjistit, jestli máte být nalačno, a mít po ruce kartičku pojišťovny i žádanku. Praktické kroky teď fungují lépe než jakékoli uklidňování.',
       whatsHappening: [
         'V případě probíhajícího těhotenství je hCG už dobře měřitelné z krve',
-        'Napětí a nervozita v těchto dnech stoupají — mozek reaguje na blížící se konec nejistoty',
+        'Napětí a nervozita v těchto dnech stoupají. Mozek reaguje na blížící se konec nejistoty',
         'Nespavost je v posledních dnech čekání velmi častá',
         'Domácí testy už nic nového nepřinesou, jen zvyšují tlak',
       ],
       task: 'Ověřte si čas a místo odběru, připravte si na jedno místo kartičku pojišťovny, žádanku a doklad. Zabere to pět minut a zítra vám to ušetří spoustu nervů.',
-      reflection: 'Mám na den výsledku promyšlené obě varianty — kdo bude se mnou a co udělám?',
+      reflection: 'Mám na den výsledku promyšlené obě varianty. Kdo bude se mnou a co udělám?',
       tip: 'Nedávejte si na den odběru ani na den po něm žádný důležitý pracovní termín. Ten prostor budete potřebovat, ať to dopadne jakkoli.',
     },
     {
@@ -2928,9 +2928,9 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 13,
       headline: 'Den 13: poslední noc před odpovědí',
-      body: 'Poslední noc bývá nejhorší z celých čtrnácti dnů a má to fyziologický důvod — tělo reaguje na blížící se konec nejistoty vyplavením stresových hormonů. Nespavost dnes není špatné znamení a rozhodně ničemu neuškodí. Zítra budete vědět víc a tahle část skončí.',
+      body: 'Poslední noc bývá nejhorší z celých čtrnácti dnů a má to fyziologický důvod. Tělo reaguje na blížící se konec nejistoty vyplavením stresových hormonů. Nespavost dnes není špatné znamení a rozhodně ničemu neuškodí. Zítra budete vědět víc a tahle část skončí.',
       whatsHappening: [
-        'Na některých pracovištích se odběr provádí právě dnes, jinde až zítra — platí váš termín',
+        'Na některých pracovištích se odběr provádí právě dnes, jinde až zítra. Platí váš termín',
         'Nespavost, sevřený žaludek a myšlenky dokola jsou v tento den běžné',
         'hCG, pokud roste, je už v hodnotách, které laboratoř bez potíží změří',
         'Ranní dávku léků si vezměte normálně, pokud vám lékař neřekl jinak',
@@ -2950,12 +2950,12 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 14,
       headline: 'Den 14: dnes se odebírá krev',
-      body: 'hCG z krve je jediné vyšetření, které v tomhle období skutečně něco znamená — dá vám číslo, ne čárku. Jedna hodnota se ale vyhodnocuje vždy v kontextu dne odběru a obvykle se doplní druhým odběrem za dva až tři dny. Ať se dnes dozvíte cokoli, těch čtrnáct dní jste zvládla a to už vám nikdo nevezme.',
+      body: 'hCG z krve je jediné vyšetření, které v tomhle období skutečně něco znamená. Dá vám číslo, ne čárku. Jedna hodnota se ale vyhodnocuje vždy v kontextu dne odběru a obvykle se doplní druhým odběrem za dva až tři dny. Ať se dnes dozvíte cokoli, těch čtrnáct dní jste zvládla a to už vám nikdo nevezme.',
       whatsHappening: [
         'Odběr obvykle nevyžaduje být nalačno, ale ověřte si to na svém pracovišti',
         'Léky si dnes vezměte podle plánu, odběr na tom nic nemění',
         'Výsledek bývá k dispozici v řádu hodin, způsob sdělení se mezi klinikami liší',
-        'Jedno číslo bez druhého odběru nedává úplnou informaci — a to je normální',
+        'Jedno číslo bez druhého odběru nedává úplnou informaci. A to je normální',
       ],
       task: 'Mějte u telefonu papír a tužku a napsaných pět otázek: přesná hodnota, kolikátý den po transferu, kdy kontrolní odběr, jak dál s léky, kdy ultrazvuk.',
       reflection: 'Koho chci slyšet jako prvního, až budu vědět?',
@@ -2974,14 +2974,14 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       dayRange: [1, 12],
       modifiers: ['frozen_transfer'],
       headline: 'U kryotransferu je progesteron ještě důležitější',
-      body: 'V cyklu s hormonální přípravou neproběhla ovulace, takže nevzniklo žluté tělísko — jediný zdroj progesteronu je ten, který si podáváte. Vynechaná nebo výrazně posunutá dávka má proto u kryoembryotransferu větší váhu než u čerstvého cyklu. Dobrá zpráva zní, že riziko hyperstimulačního syndromu je u vás minimální.',
+      body: 'V cyklu s hormonální přípravou neproběhla ovulace, takže nevzniklo žluté tělísko. Jediný zdroj progesteronu je ten, který si podáváte. Vynechaná nebo výrazně posunutá dávka má proto u kryoembryotransferu větší váhu než u čerstvého cyklu. Dobrá zpráva zní, že riziko hyperstimulačního syndromu je u vás minimální.',
       whatsHappening: [
         'Vaječníky nejsou stimulované, takže nafouklé břicho jde spíš na vrub progesteronu',
-        'Časování dávek se odvíjí od implantačního okna — proto ta přísnost na hodiny',
+        'Časování dávek se odvíjí od implantačního okna, proto ta přísnost na hodiny',
         'Pokud jste nedostala spouštěcí injekci s hCG, falešná pozitivita testu vám nehrozí',
         'Termín odběru bety platí přesně tak, jak vám ho dala klinika',
       ],
-      task: 'Zkontrolujte, že máte připomínky nastavené na přesné časy, které vám klinika určila — ne jen orientačně na ráno a večer.',
+      task: 'Zkontrolujte, že máte připomínky nastavené na přesné časy, které vám klinika určila, ne jen orientačně na ráno a večer.',
       reflection: 'Vím, kolik embryí mi zůstává v kryobance? Jistota v tomhle bodě mění hodně.',
       tip: 'Když dávku vynecháte, vezměte ji co nejdřív, ale nezdvojujte. Při opakovaném vynechání volejte kliniku.',
     },
@@ -2991,15 +2991,15 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       dayRange: [1, 14],
       modifiers: ['after_loss', 'repeated_failure'],
       headline: 'Vaše opatrnost není nedostatek víry',
-      body: 'Když už jste jednou ztratila nebo když už jeden transfer nevyšel, nebojíte se neznámého — bojíte se konkrétní vzpomínky. Nemusíte si nutit naději a nemusíte mluvit v budoucím čase. Opatrnost je obrana, ne prokletí, a rozhodně neovlivňuje, jak to dopadne.',
+      body: 'Když už jste jednou ztratila nebo když už jeden transfer nevyšel, nebojíte se neznámého. Bojíte se konkrétní vzpomínky. Nemusíte si nutit naději a nemusíte mluvit v budoucím čase. Opatrnost je obrana, ne prokletí, a rozhodně neovlivňuje, jak to dopadne.',
       whatsHappening: [
-        'Tělo si pamatuje chodbu, telefonát i barvu krve — reakce může být okamžitá a silná',
+        'Tělo si pamatuje chodbu, telefonát i barvu krve. Reakce může být okamžitá a silná',
         'Věty typu „teď to určitě vyjde" nikdo garantovat nemůže a nemusíte je přijímat',
         'Vina za předchozí ztrátu není na místě: většina časných ztrát má příčiny, které nikdo neovlivní',
         'Naděje a strach mohou existovat současně, aniž byste si musela vybrat',
       ],
       task: 'Napište si na papír postup pro případ, že uvidíte krev: podívám se na vložku, zapíšu čas a množství, zavolám kliniku, zavolám svému člověku.',
-      reflection: 'Co jsem si po minulé zkušenosti slíbila, že udělám jinak — a dělám to?',
+      reflection: 'Co jsem si po minulé zkušenosti slíbila, že udělám jinak. A dělám to?',
       tip: 'Pokud se vracejí vzpomínky nebo noční můry, není to slabost a nemá cenu to přecházet. Linka první psychické pomoci 116 123 funguje nonstop a zdarma.',
       callDoctorIf: [
         'Silné krvácení nebo krvácení se sraženinami',
@@ -3013,10 +3013,10 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['beta_positive'],
       day: 1,
       headline: 'Beta je pozitivní. A vy možná necítíte skoro nic.',
-      body: 'Ochromení, nedůvěra nebo strach místo radosti jsou po letech léčby úplně běžná reakce — naučila jste se nedoufat, protože to bylo bezpečnější, a ten mechanismus se nevypne během vteřiny. Dnes nemusíte nic cítit správně. Jediné, co teď skutečně potřebujete, je jasný plán na příštích pár dní.',
+      body: 'Ochromení, nedůvěra nebo strach místo radosti jsou po letech léčby úplně běžná reakce. Naučila jste se nedoufat, protože to bylo bezpečnější, a ten mechanismus se nevypne během vteřiny. Dnes nemusíte nic cítit správně. Jediné, co teď skutečně potřebujete, je jasný plán na příštích pár dní.',
       whatsHappening: [
         'Zárodečná tkáň produkuje hCG a jeho hodnota by měla dál stoupat',
-        'Jedno číslo samo o sobě nevypovídá o průběhu — rozhoduje dynamika',
+        'Jedno číslo samo o sobě nevypovídá o průběhu. Rozhoduje dynamika',
         'Podpora luteální fáze pokračuje, často déle než dosud',
         'Úleva a úzkost se můžou střídat i několikrát za hodinu',
       ],
@@ -3026,7 +3026,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       callDoctorIf: [
         'Silné krvácení nebo krvácení se sraženinami',
         'Prudká, zejména jednostranná bolest v podbřišku',
-        'Bolest v rameni nebo mezi lopatkami, mdloba, závrať, studený pot — volejte 155',
+        'Bolest v rameni nebo mezi lopatkami, mdloba, závrať, studený pot. Volejte 155',
         'Horečka nad 38 °C',
         'Rychle rostoucí obvod břicha, dušnost, výrazně snížené močení',
       ],
@@ -3040,12 +3040,12 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       whatsHappening: [
         'hCG by mělo dál stoupat, u většiny zdravě se vyvíjejících těhotenství zhruba dvojnásobně za 48 až 72 hodin',
         'Domácí testy už nedávají žádnou novou informaci',
-        'Únava a nevolnost můžou být od progesteronu i od nastupujícího těhotenství — rozlišit to nelze',
+        'Únava a nevolnost můžou být od progesteronu i od nastupujícího těhotenství. Rozlišit to nelze',
         'Po čerstvém cyklu může nastupující hCG zhoršit projevy hyperstimulace',
       ],
-      task: 'Naplánujte si dnešek a zítřek konkrétně — tři věci na každý den. Prázdno se teď plní domýšlením.',
+      task: 'Naplánujte si dnešek a zítřek konkrétně. Tři věci na každý den. Prázdno se teď plní domýšlením.',
       reflection: 'Dovolím si dnes větu „dnes jsem těhotná", nebo mi to zatím nejde přes pusu?',
-      tip: 'Nezakládejte zatím seznamy jmen ani výbavičku. Ne z pověrčivosti — jen proto, že v období nejistoty to zbytečně zvyšuje tlak.',
+      tip: 'Nezakládejte zatím seznamy jmen ani výbavičku. Ne z pověrčivosti, jen proto, že v období nejistoty to zbytečně zvyšuje tlak.',
       callDoctorIf: [
         'Silné krvácení nebo krvácení se sraženinami',
         'Prudká jednostranná bolest v podbřišku, bolest v rameni, mdloba',
@@ -3058,11 +3058,11 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['beta_positive'],
       day: 3,
       headline: 'Druhý odběr: proč se sleduje zdvojení',
-      body: 'Teprve dvě hodnoty za sebou umožňují posoudit dynamiku — a ta říká víc než jakékoli jednotlivé číslo. U většiny zdravě se vyvíjejících těhotenství se hodnota přibližně zdvojnásobí za 48 až 72 hodin, s rostoucí hladinou se ale tempo přirozeně zpomaluje. Vyhodnocení patří lékaři, ne kalkulačce na internetu.',
+      body: 'Teprve dvě hodnoty za sebou umožňují posoudit dynamiku. A ta říká víc než jakékoli jednotlivé číslo. U většiny zdravě se vyvíjejících těhotenství se hodnota přibližně zdvojnásobí za 48 až 72 hodin, s rostoucí hladinou se ale tempo přirozeně zpomaluje. Vyhodnocení patří lékaři, ne kalkulačce na internetu.',
       whatsHappening: [
         'Odebírá se druhá hodnota, ideálně ve stejné laboratoři jako první',
         'Tempo růstu je informativnější než výchozí číslo',
-        'Ultrazvuk zatím obvykle nemá smysl — nález by nebyl hodnotitelný',
+        'Ultrazvuk zatím obvykle nemá smysl. Nález by nebyl hodnotitelný',
         'Nesrovnávejte své číslo s čísly cizích žen, nemají stejný den odběru ani stejnou laboratoř',
       ],
       task: 'Zapište si druhou hodnotu vedle první, včetně data a přesného času odběru. Uvidíte tak vývoj a nebudete si ho muset pamatovat.',
@@ -3074,12 +3074,12 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['beta_positive'],
       dayRange: [4, 9],
       headline: 'Co od teď měnit a co naopak nechat být',
-      body: 'Podpora luteální fáze pokračuje podle pokynu lékaře, často až do zhruba desátého až dvanáctého týdne — a nikdy ji nevysazujte sama. Ze životosprávy má teď smysl řešit jen několik konkrétních věcí, zbytek klidně nechte tak, jak je. Přehnaná opatrnost vás vyčerpá dřív, než dojdete k prvnímu ultrazvuku.',
+      body: 'Podpora luteální fáze pokračuje podle pokynu lékaře, často až do zhruba desátého až dvanáctého týdne. A nikdy ji nevysazujte sama. Ze životosprávy má teď smysl řešit jen několik konkrétních věcí, zbytek klidně nechte tak, jak je. Přehnaná opatrnost vás vyčerpá dřív, než dojdete k prvnímu ultrazvuku.',
       whatsHappening: [
         'Alkohol a kouření od teď ne',
         'Volně prodejné léky, doplňky i bylinky vždy konzultujte, včetně těch „přírodních"',
         'U zubaře, na rentgenu a u jakéhokoli lékaře řekněte, že jste těhotná',
-        'Potraviny s rizikem infekce — nepasterizované sýry, syrové maso a ryby, syrová vejce — vynechte',
+        'Potraviny s rizikem infekce (nepasterizované sýry, syrové maso a ryby, syrová vejce) vynechte',
       ],
       task: 'Projděte si domácí lékárničku a vyfoťte složení všeho, co užíváte. Fotku vezměte na nejbližší kontrolu.',
       reflection: 'Co dělám ze strachu, a co proto, že to má opravdu smysl?',
@@ -3097,20 +3097,20 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['beta_positive'],
       dayRange: [10, 20],
       headline: 'Čekání na první ultrazvuk',
-      body: 'Ultrazvuk se nedělá hned, protože před určitým stářím a určitou hodnotou hCG by nález nic nepotvrdil ani nevyvrátil. Tohle čekání popisuje většina žen po IVF jako horší než celé předchozí dva týdny — beta je číslo, ultrazvuk je obraz. Termín určuje lékař podle vašich hodnot, ne podle toho, kdy byste to nejradši věděla.',
+      body: 'Ultrazvuk se nedělá hned, protože před určitým stářím a určitou hodnotou hCG by nález nic nepotvrdil ani nevyvrátil. Tohle čekání popisuje většina žen po IVF jako horší než celé předchozí dva týdny. Beta je číslo, ultrazvuk je obraz. Termín určuje lékař podle vašich hodnot, ne podle toho, kdy byste to nejradši věděla.',
       whatsHappening: [
         'Struktury se objevují postupně: plodový váček, žloutkový váček, zárodek, srdeční akce',
         'V raném těhotenství se vyšetření obvykle provádí vaginální sondou',
         'Věta „ještě není vidět všechno" často znamená jen rozdíl několika dnů',
-        'Špinění v tomto období není vzácné a neznamená automaticky ztrátu — vždy ho ale hlaste',
+        'Špinění v tomto období není vzácné a neznamená automaticky ztrátu. Vždy ho ale hlaste',
       ],
-      task: 'Naplánujte si, co budete dělat hned po vyšetření — konkrétní věc, ne oslavu. A na ten den si nedávejte nic dalšího.',
+      task: 'Naplánujte si, co budete dělat hned po vyšetření. Konkrétní věc, ne oslavu. A na ten den si nedávejte nic dalšího.',
       reflection: 'Co potřebuju od člověka, který se mnou na ultrazvuk půjde?',
       tip: 'Řekněte na začátku vyšetření, jak to chcete slyšet. Například: „Prosím, řekněte mi hned, jestli je vidět srdíčko." Ticho při měření si ženy často vykládají jako katastrofu.',
       callDoctorIf: [
         'Silné krvácení nebo krvácení se sraženinami',
         'Prudká, zejména jednostranná bolest v podbřišku',
-        'Bolest v rameni, mdloba, závrať, studený pot — volejte 155',
+        'Bolest v rameni, mdloba, závrať, studený pot. Volejte 155',
         'Horečka nad 38 °C',
       ],
     },
@@ -3119,12 +3119,12 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['beta_positive'],
       dayRange: [21, 45],
       headline: 'Přechod z kliniky ke gynekologovi',
-      body: 'V určitou chvíli vás reprodukční klinika předá do péče vašeho gynekologa — kdy přesně, to se mezi pracovišti liší. Bývá to zvláštní okamžik: místo, které vás roky vedlo, najednou končí svou roli. Je v pořádku cítit u toho úlevu i úzkost zároveň.',
+      body: 'V určitou chvíli vás reprodukční klinika předá do péče vašeho gynekologa. Kdy přesně, to se mezi pracovišti liší. Bývá to zvláštní okamžik: místo, které vás roky vedlo, najednou končí svou roli. Je v pořádku cítit u toho úlevu i úzkost zároveň.',
       whatsHappening: [
-        'Klinika vám obvykle předá zprávu s průběhem léčby — uschovejte si ji',
+        'Klinika vám obvykle předá zprávu s průběhem léčby. Uschovejte si ji',
         'Objednání k registrujícímu gynekologovi bývá na vás, ověřte si termín',
         'Podpora luteální fáze často pokračuje i po předání, podle pokynu lékaře',
-        'Že jste otěhotněla po IVF, patří do dokumentace — není to nic, co byste měla tajit',
+        'Že jste otěhotněla po IVF, patří do dokumentace. Není to nic, co byste měla tajit',
       ],
       task: 'Objednejte se dnes ke svému gynekologovi a zapište si, do kdy máte podle kliniky pokračovat v medikaci.',
       reflection: 'Mám všechny zprávy a výsledky na jednom místě, kdybych je zítra potřebovala?',
@@ -3143,15 +3143,15 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       dayRange: [1, 45],
       modifiers: ['twins'],
       headline: 'Když jsou dvě: radost, panika a vina za tu paniku',
-      body: 'Skoro každá žena popisuje stejný sled pocitů a ženy po letech léčby k němu často přidávají výčitku, že „si přece nesmí stěžovat". Smíte. Dvojčata jsou jiná životní situace než jedno dítě a je normální ji nejdřív unést a teprve pak oslavit. Z lékařského hlediska jde o rizikovější těhotenství, které potřebuje pečlivější sledování — a právě proto se u nás prosadil přenos jednoho embrya.',
+      body: 'Skoro každá žena popisuje stejný sled pocitů a ženy po letech léčby k němu často přidávají výčitku, že „si přece nesmí stěžovat". Smíte. Dvojčata jsou jiná životní situace než jedno dítě a je normální ji nejdřív unést a teprve pak oslavit. Z lékařského hlediska jde o rizikovější těhotenství, které potřebuje pečlivější sledování. A právě proto se u nás prosadil přenos jednoho embrya.',
       whatsHappening: [
-        'Vyšší hodnota bety sama o sobě dvojčata nepotvrzuje — ukáže je až ultrazvuk',
+        'Vyšší hodnota bety sama o sobě dvojčata nepotvrzuje. Ukáže je až ultrazvuk',
         'Počet plodových váčků a placent ovlivňuje způsob sledování těhotenství',
         'Vyšší je pravděpodobnost předčasného porodu, těhotenské cukrovky i vysokého tlaku',
         'Po čerstvém cyklu je u vícečetného těhotenství vyšší riziko pozdního OHSS',
       ],
       task: 'Napište si tři otázky na nejbližší kontrolu: jaký typ dvojčat to je, kde budu vedená a jak často budu docházet.',
-      reflection: 'Co z toho, co teď cítím, si dovolím říct nahlas — i tu část, která se bojí?',
+      reflection: 'Co z toho, co teď cítím, si dovolím říct nahlas. I tu část, která se bojí?',
       tip: 'Nekupujte zatím nic. Praktické věci jako auto, bydlení a pomoc rodiny má naopak smysl začít řešit brzy.',
       callDoctorIf: [
         'Silné krvácení nebo krvácení se sraženinami',
@@ -3231,14 +3231,14 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       term: 'Hatching',
       aliases: ['líhnutí', 'vylíhnutí blastocysty'],
       short: 'Proces, při kterém se blastocysta probourává ven ze svého obalu.',
-      long: 'Obal zvaný zona pellucida chrání vajíčko a časné embryo. Aby se blastocysta mohla přichytit k děložní sliznici, musí se z něj dostat ven. Po transferu blastocysty k tomu obvykle dochází v prvních dnech. V některých případech laboratoř obal jemně naruší — tomu se říká asistovaný hatching a o jeho vhodnosti rozhoduje embryolog s lékařem.',
+      long: 'Obal zvaný zona pellucida chrání vajíčko a časné embryo. Aby se blastocysta mohla přichytit k děložní sliznici, musí se z něj dostat ven. Po transferu blastocysty k tomu obvykle dochází v prvních dnech. V některých případech laboratoř obal jemně naruší. Tomu se říká asistovaný hatching a o jeho vhodnosti rozhoduje embryolog s lékařem.',
       topics: ['embryologie', 'transfer'],
     },
     {
       term: 'Implantace',
       aliases: ['nidace', 'zahnízdění'],
       short: 'Zahnízdění embrya v děložní sliznici.',
-      long: 'Probíhá v několika krocích: přiblížení k výstelce, přichycení a zanoření do sliznice. Po transferu blastocysty se celý proces obvykle odehrává zhruba mezi druhým a šestým dnem. Právě v jeho průběhu se rozbíhá tvorba hCG. Nelze ho urychlit ani nijak podpořit chováním — a nedá se ani vycítit.',
+      long: 'Probíhá v několika krocích: přiblížení k výstelce, přichycení a zanoření do sliznice. Po transferu blastocysty se celý proces obvykle odehrává zhruba mezi druhým a šestým dnem. Právě v jeho průběhu se rozbíhá tvorba hCG. Nelze ho urychlit ani nijak podpořit chováním. A nedá se ani vycítit.',
       topics: ['embryologie', 'cekani'],
     },
     {
@@ -3249,7 +3249,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
     },
     {
       term: 'Luteální fáze',
-      short: 'Druhá polovina cyklu — od ovulace do menstruace nebo do nástupu těhotenství.',
+      short: 'Druhá polovina cyklu. Od ovulace do menstruace nebo do nástupu těhotenství.',
       long: 'V přirozeném cyklu ji řídí žluté tělísko, které produkuje progesteron a udržuje děložní sliznici. Po IVF bývá vlastní tvorba progesteronu nedostatečná, mimo jiné proto, že punkce odstraní část buněk, ze kterých by žluté tělísko vzniklo. Proto se podává podpora luteální fáze.',
       topics: ['hormony', 'cekani'],
     },
@@ -3257,14 +3257,14 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       term: 'Podpora luteální fáze',
       aliases: ['luteální podpora', 'progesteronová podpora'],
       short: 'Doplňování progesteronu, případně dalších hormonů, po embryotransferu.',
-      long: 'Podává se vaginálně, injekčně do svalu nebo ústy, někdy v kombinaci s dalšími léky. Konkrétní přípravek, dávku i délku užívání určuje výhradně ošetřující lékař. Zásadní pravidlo zní: nikdy nevysazovat sama — ani při krvácení, ani po negativním domácím testu. O ukončení rozhoduje lékař podle hodnoty hCG.',
+      long: 'Podává se vaginálně, injekčně do svalu nebo ústy, někdy v kombinaci s dalšími léky. Konkrétní přípravek, dávku i délku užívání určuje výhradně ošetřující lékař. Zásadní pravidlo zní: nikdy nevysazovat sama, ani při krvácení, ani po negativním domácím testu. O ukončení rozhoduje lékař podle hodnoty hCG.',
       topics: ['leky', 'hormony'],
     },
     {
       term: 'hCG',
       aliases: ['lidský choriový gonadotropin', 'HCG', 'beta', 'odběr hCG'],
       short: 'Hormon, který produkuje zárodečná tkáň po zahnízdění.',
-      long: 'Je základem těhotenských testů. V krvi se objevuje dřív a ve vyšší koncentraci než v moči, proto je odběr spolehlivější než domácí test — a na rozdíl od proužku dá číslo, které se dá porovnávat v čase. Jedna hodnota přitom vypovídá málo: záleží na dni odběru, typu transferu i individuální variabilitě, takže se obvykle doplňuje druhým odběrem s odstupem dvou až tří dnů. Pozor: hCG bývá také součástí spouštěcí injekce podávané před punkcí — její zbytek může způsobit falešně pozitivní domácí test zhruba po dobu deseti až čtrnácti dnů. Interpretace patří výhradně lékaři a hodnoty z různých laboratoří nemusí být plně srovnatelné.',
+      long: 'Je základem těhotenských testů. V krvi se objevuje dřív a ve vyšší koncentraci než v moči, proto je odběr spolehlivější než domácí test. A na rozdíl od proužku dá číslo, které se dá porovnávat v čase. Jedna hodnota přitom vypovídá málo: záleží na dni odběru, typu transferu i individuální variabilitě, takže se obvykle doplňuje druhým odběrem s odstupem dvou až tří dnů. Pozor: hCG bývá také součástí spouštěcí injekce podávané před punkcí. Její zbytek může způsobit falešně pozitivní domácí test zhruba po dobu deseti až čtrnácti dnů. Interpretace patří výhradně lékaři a hodnoty z různých laboratoří nemusí být plně srovnatelné.',
       topics: ['hormony', 'vysledky'],
     },
     {
@@ -3278,7 +3278,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       term: 'Kryoembryotransfer',
       aliases: ['KET', 'mražený transfer', 'FET'],
       short: 'Přenos rozmrazeného embrya.',
-      long: 'Embryo bylo zamrazeno metodou vitrifikace a před transferem se rozmrazí. Sliznice se připravuje buď v přirozeném cyklu podle vaší ovulace, nebo hormonálně. V cyklu s hormonální přípravou nevzniká žluté tělísko, takže veškerý progesteron musí přijít zvenčí — pravidelnost dávek je proto ještě důležitější. Riziko hyperstimulačního syndromu je u KET minimální.',
+      long: 'Embryo bylo zamrazeno metodou vitrifikace a před transferem se rozmrazí. Sliznice se připravuje buď v přirozeném cyklu podle vaší ovulace, nebo hormonálně. V cyklu s hormonální přípravou nevzniká žluté tělísko, takže veškerý progesteron musí přijít zvenčí. Pravidelnost dávek je proto ještě důležitější. Riziko hyperstimulačního syndromu je u KET minimální.',
       topics: ['transfer', 'embryologie'],
     },
   ],

@@ -10,7 +10,7 @@ export const pack: ContentPack = {
         'Tři písmena v propouštěcí zprávě rozhodují o tom, jak dlouho budete píchat a kdy se všechno zlomí. Tady je, co znamenají.',
       body: `## Proč vůbec existují různé protokoly
 
-Cílem stimulace je dostat k dozrání víc vajíček najednou, než kolik by jich dozrálo v přirozeném cyklu. V přirozeném cyklu se z celé skupiny probuzených folikulů prosadí jeden — vedoucí — a ostatní zaniknou. Stimulace tuhle přirozenou selekci na chvíli vypne a udrží ve hře celou skupinu.
+Cílem stimulace je dostat k dozrání víc vajíček najednou, než kolik by jich dozrálo v přirozeném cyklu. V přirozeném cyklu se z celé skupiny probuzených folikulů prosadí jeden (vedoucí) a ostatní zaniknou. Stimulace tuhle přirozenou selekci na chvíli vypne a udrží ve hře celou skupinu.
 
 Problém je, že tělo se brání. Jakmile hladina estradiolu vyroste, mozek vyšle vlastní signál k ovulaci a vajíčka odejdou dřív, než je stihne lékař odebrat. Celý protokol je vlastně odpověď na jedinou otázku: **jak zabránit předčasné ovulaci a přitom nechat folikuly růst**.
 
@@ -18,7 +18,7 @@ Odpovědi jsou v zásadě tři a liší se tím, čím a kdy se ovulace blokuje.
 
 ## Antagonistický protokol
 
-Dnes nejčastější varianta. Stimulace startuje na začátku cyklu, obvykle druhý nebo třetí den menstruace. Zhruba po pěti až šesti dnech, kdy folikuly dorostou do určité velikosti, se přidá druhá injekce — antagonista, který okamžitě zablokuje výdej hormonu spouštějícího ovulaci.
+Dnes nejčastější varianta. Stimulace startuje na začátku cyklu, obvykle druhý nebo třetí den menstruace. Zhruba po pěti až šesti dnech, kdy folikuly dorostou do určité velikosti, se přidá druhá injekce. Antagonista, který okamžitě zablokuje výdej hormonu spouštějícího ovulaci.
 
 - **Délka:** typicky kolem devíti až dvanácti dní píchání.
 - **Výhoda:** kratší, šetrnější, snadněji se u něj mění plán podle toho, jak vaječníky reagují.
@@ -26,7 +26,7 @@ Dnes nejčastější varianta. Stimulace startuje na začátku cyklu, obvykle dr
 
 ## Dlouhý protokol s agonistou
 
-Začíná ještě v předchozím cyklu, obvykle kolem 21. dne. Nejdřív se agonistou uspí vlastní hormonální řízení — tomu se říká downregulace — a teprve na vyřazeném podhoubí se začne stimulovat.
+Začíná ještě v předchozím cyklu, obvykle kolem 21. dne. Nejdřív se agonistou uspí vlastní hormonální řízení (tomu se říká downregulace) a teprve na vyřazeném podhoubí se začne stimulovat.
 
 - **Délka:** celkově čtyři až šest týdnů.
 - **Výhoda:** velmi předvídatelný, vaječníky rostou rovnoměrně, cyklus se dá dobře naplánovat.
@@ -46,11 +46,11 @@ Nižší dávky, méně injekcí, méně vajíček, ale také méně zátěže. 
 
 Rozhoduje kombinace faktorů, které máte na papíře dávno před prvním píchnutím:
 
-1. **AMH a počet antrálních folikulů** — očekávaná odpověď vaječníků.
+1. **AMH a počet antrálních folikulů**: očekávaná odpověď vaječníků.
 2. **Věk** a předchozí cykly, pokud nějaké byly.
-3. **Diagnóza** — PCOS, endometrióza, nízká rezerva, mužský faktor.
-4. **Riziko OHSS** — u vysoké odpovědi se protokol volí tak, aby šel bezpečně ukončit.
-5. **Praxe konkrétního pracoviště.** Ano, i tohle hraje roli a je to v pořádku — tým pracuje nejlépe s tím, co dělá denně.
+3. **Diagnóza**: PCOS, endometrióza, nízká rezerva, mužský faktor.
+4. **Riziko OHSS**: u vysoké odpovědi se protokol volí tak, aby šel bezpečně ukončit.
+5. **Praxe konkrétního pracoviště.** Ano, i tohle hraje roli a je to v pořádku. Tým pracuje nejlépe s tím, co dělá denně.
 
 Neexistuje protokol, který by byl univerzálně nejlepší. Existuje protokol, který nejlépe sedí vašemu tělu a vašim číslům. A pokud první cyklus nedopadne podle plánu, protokol je jedna z prvních věcí, které se mění.
 
@@ -74,7 +74,7 @@ Poslední otázka je nejpraktičtější ze všech. Napište si to jméno a čí
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
       sources: [
-        'ESHRE — doporučené postupy pro ovariální stimulaci',
+        'ESHRE: doporučené postupy pro ovariální stimulaci',
         'Česká gynekologická a porodnická společnost ČLS JEP',
       ],
       publishedOn: '2025-09-04',
@@ -88,23 +88,23 @@ Poslední otázka je nejpraktičtější ze všech. Napište si to jméno a čí
         'Nikdo se nerodí s tím, že si umí píchnout do břicha. Tady je postup, který funguje i když se bojíte.',
       body: `## Než otevřete krabičku
 
-Většina žen popisuje první píchnutí jako nejhorší moment celého cyklu — a zároveň jako moment, který byl mnohem snesitelnější, než čekaly. Jehly pro podkožní aplikaci jsou velmi tenké a krátké. Bolí to méně než odběr krve.
+Většina žen popisuje první píchnutí jako nejhorší moment celého cyklu. A zároveň jako moment, který byl mnohem snesitelnější, než čekaly. Jehly pro podkožní aplikaci jsou velmi tenké a krátké. Bolí to méně než odběr krve.
 
 Co pomáhá nejvíc: **udělat to podle pevného postupu**, ne podle nálady. Rutina vypne panickou část mozku.
 
 ## Příprava: pět minut, které si vezměte
 
 1. **Umyjte si ruce** mýdlem a teplou vodou, pořádně, aspoň dvacet vteřin.
-2. **Připravte si plochu** — stůl, čistý ručník nebo papírová utěrka.
+2. **Připravte si plochu**: stůl, čistý ručník nebo papírová utěrka.
 3. **Vyskládejte si všechno dopředu:** pero nebo lahvičku, jehlu, dezinfekční čtvereček, nádobu na ostrý odpad, papírový kapesník.
-4. **Zkontrolujte lék** — název, koncentraci, expiraci a dávku, kterou máte napsanou od lékaře. Přečtěte si to nahlas. Vážně nahlas, chyby se dělají v tichu.
+4. **Zkontrolujte lék**: název, koncentraci, expiraci a dávku, kterou máte napsanou od lékaře. Přečtěte si to nahlas. Vážně nahlas, chyby se dělají v tichu.
 5. **Nechte lék pár minut mimo chladničku,** pokud se skladuje v chladu. Studený roztok pálí víc.
 
 ## Samotná aplikace
 
 Většina léků na stimulaci se aplikuje **podkožně** (subkutánně), tedy do tukové vrstvy, ne do svalu. Postup:
 
-1. **Vyberte místo** a otřete ho dezinfekčním čtverečkem. Nechte oschnout — do vlhké dezinfekce to štípe.
+1. **Vyberte místo** a otřete ho dezinfekčním čtverečkem. Nechte oschnout. Do vlhké dezinfekce to štípe.
 2. **Uchopte kožní řasu** mezi palec a ukazovák. Nemačkejte ji, jen nadzvedněte.
 3. **Zapíchněte rychle**, kolmo nebo pod úhlem podle pokynů z kliniky. Rychlý pohyb bolí méně než pomalý.
 4. **Aplikujte pomalu.** Tady je pomalost výhoda: rychlé vstříknutí pálí.
@@ -121,21 +121,21 @@ Některé léky přijdou jako prášek v lahvičce a ampulka s tekutinou. Rozpou
 - **Vytryskla kapka léku po vytažení jehly.** Běžné, dávka je prakticky celá uvnitř. Nepřidávejte.
 - **Objevila se krev.** Také běžné, trefila jste drobnou cévku. Přitiskněte, netřete.
 - **Zapíchla jsem a lekla se, jehla je zpola venku.** Vytáhněte, vyhoďte, připravte novou. Nikdy nepíchejte použitou jehlou znovu.
-- **Zapomněla jsem dávku.** Nedávkujte si dvojitě podle vlastního uvážení — volejte na kliniku, i večer. Mají na tohle postup.
+- **Zapomněla jsem dávku.** Nedávkujte si dvojitě podle vlastního uvážení. Volejte na kliniku, i večer. Mají na tohle postup.
 - **Píchla jsem v jiný čas než včera.** Hodina sem, hodina tam u stimulačních injekcí obvykle nevadí; u triggeru je čas kritický a nesmí se posouvat. Vždy se řiďte pokynem svého lékaře.
 
 ## Když to sama nezvládnete
 
 Není to selhání. Možnosti jsou:
 
-- Nechat píchat partnera, kamarádku nebo sestru — mnoho párů to tak dělá a spousta mužů si tímhle najde konečně roli.
+- Nechat píchat partnera, kamarádku nebo sestru. Mnoho párů to tak dělá a spousta mužů si tímhle najde konečně roli.
 - Domluvit si aplikaci u praktické sestry nebo na klinice.
 - Použít pero s automatickým podavačem, pokud ho lék má a klinika ho nabízí.
 - Zapíchnout přes led. Kostka ledu přes látku, třicet vteřin, místo znecitliví.
 
 ## Kdy volat lékaře
 
-Volejte, pokud se objeví vyrážka po celém těle, otok obličeje nebo rtů, dýchací potíže, horečka nad 38 °C, nebo pokud se místo vpichu výrazně zarudne, ztvrdne a je horké — to nejsou očekávané reakce.
+Volejte, pokud se objeví vyrážka po celém těle, otok obličeje nebo rtů, dýchací potíže, horečka nad 38 °C, nebo pokud se místo vpichu výrazně zarudne, ztvrdne a je horké. To nejsou očekávané reakce.
 
 > Tenhle návod je obecný. Přesný postup, dávkování i čas aplikace určuje vaše klinika a její pokyny mají vždy přednost před čímkoli, co si přečtete jinde.`,
       minutes: 7,
@@ -146,7 +146,7 @@ Volejte, pokud se objeví vyrážka po celém těle, otok obličeje nebo rtů, d
       hero: 'linen',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['Souhrny údajů o přípravku (SPC) — obecné zásady aplikace', 'ESHRE — doporučené postupy'],
+      sources: ['Souhrny údajů o přípravku (SPC) (obecné zásady aplikace', 'ESHRE) doporučené postupy'],
       publishedOn: '2025-09-08',
       boost: 0.95,
     },
@@ -158,13 +158,13 @@ Volejte, pokud se objeví vyrážka po celém těle, otok obličeje nebo rtů, d
         'Břicho po deseti dnech vypadá jako mapa. Dá se to zvládnout tak, aby to bolelo míň a bylo míň vidět.',
       body: `## Kam se běžně píchá
 
-Léky na stimulaci se nejčastěji aplikují **podkožně do břicha** — do oblasti kolem pupku, ale **ne blíž než zhruba dva až tři prsty od pupku samotného**. Tahle oblast má stabilní vrstvu podkoží a lék se z ní vstřebává rovnoměrně.
+Léky na stimulaci se nejčastěji aplikují **podkožně do břicha**: do oblasti kolem pupku, ale **ne blíž než zhruba dva až tři prsty od pupku samotného**. Tahle oblast má stabilní vrstvu podkoží a lék se z ní vstřebává rovnoměrně.
 
 Další možná místa, pokud je vaše klinika povolí:
 
-- **Horní zevní část stehna** — snadno dosažitelné, dobré pro ty, kdo se do břicha bojí.
-- **Zadní strana paže** — obvykle potřebujete druhou osobu.
-- **Horní zevní kvadrant hýždě** — u některých olejových přípravků do svalu; to už je jiná technika a klinika vás ji naučí zvlášť.
+- **Horní zevní část stehna**: snadno dosažitelné, dobré pro ty, kdo se do břicha bojí.
+- **Zadní strana paže**: obvykle potřebujete druhou osobu.
+- **Horní zevní kvadrant hýždě**: u některých olejových přípravků do svalu; to už je jiná technika a klinika vás ji naučí zvlášť.
 
 Nikdy nepíchejte do jizvy, mateřského znaménka, do místa se strií, do zarudlé nebo ztvrdlé kůže a do modřiny.
 
@@ -177,7 +177,7 @@ Vpichy nedělejte náhodně. Rozdělte si břicho na čtyři pole a postupujte p
 3. Pravý dolní kvadrant
 4. Levý dolní kvadrant
 
-V každém kvadrantu se posouvejte zhruba o dva centimetry od minula. **Do stejného bodu se nevracejte dřív než za týden.** Když si vedete deník, zakreslete si tečku — po pár dnech si přestanete pamatovat, kde jste byla.
+V každém kvadrantu se posouvejte zhruba o dva centimetry od minula. **Do stejného bodu se nevracejte dřív než za týden.** Když si vedete deník, zakreslete si tečku. Po pár dnech si přestanete pamatovat, kde jste byla.
 
 Pokud píchate dvakrát denně, používejte pro ranní a večerní dávku různé strany.
 
@@ -185,10 +185,10 @@ Pokud píchate dvakrát denně, používejte pro ranní a večerní dávku různ
 
 Modřina znamená, že jehla cestou minula podkožní tuk a trefila drobnou cévku. Není to chyba a nesnižuje to účinek léku. Přispívají k tomu:
 
-- **Tření po vytažení jehly** — nejčastější příčina.
+- **Tření po vytažení jehly**: nejčastější příčina.
 - **Rychlé vstřikování** roztoku.
 - **Studený lék** přímo z lednice.
-- **Nízkomolekulární heparin**, pokud ho užíváte — po něm jsou modřiny prakticky pravidlem.
+- **Nízkomolekulární heparin**, pokud ho užíváte. Po něm jsou modřiny prakticky pravidlem.
 - Vaše vlastní srážlivost a jemnost cév, kterou nezměníte.
 
 ## Co s modřinami prakticky
@@ -196,14 +196,14 @@ Modřina znamená, že jehla cestou minula podkožní tuk a trefila drobnou cév
 - **Hned po vpichu:** přitiskněte suchý čtvereček na deset až patnáct vteřin. Netřete.
 - **Prvních 24 hodin:** chlad. Studený obklad nebo led přes látku, pět minut, několikrát denně. Stahuje cévy.
 - **Po 24 hodinách:** naopak teplo. Vlažný obklad podpoří vstřebávání.
-- **Masti s heparinem nebo výtažkem z kaštanu** — dostupné bez předpisu, aplikují se **mimo čerstvé místo vpichu**, ne do něj. Zeptejte se na klinice, jestli je ve vašem případě mohou doporučit.
+- **Masti s heparinem nebo výtažkem z kaštanu**: dostupné bez předpisu, aplikují se **mimo čerstvé místo vpichu**, ne do něj. Zeptejte se na klinice, jestli je ve vašem případě mohou doporučit.
 - **Netlačte se do stahujícího oblečení.** Gumy v pase přesně přes pole vpichů umí udělat víc než samotná jehla.
 
 ## Když to bolí víc než minule
 
 Pálení během aplikace nejčastěji způsobuje studený roztok, rychlé vstřikování nebo dezinfekce, která nestihla oschnout. Zkuste tyhle tři věci upravit dřív, než začnete hledat složitější vysvětlení. Některé přípravky prostě pálí víc než jiné a je to jejich vlastnost, ne známka toho, že děláte něco špatně.
 
-Pomáhá také **ledování místa třicet vteřin před vpichem** a **rozptýlení** — puštěná hudba, hluboký výdech ve chvíli zapíchnutí.
+Pomáhá také **ledování místa třicet vteřin před vpichem** a **rozptýlení**: puštěná hudba, hluboký výdech ve chvíli zapíchnutí.
 
 ## Kdy volat lékaře
 
@@ -213,7 +213,7 @@ Ozvěte se klinice, pokud:
 - máte **horečku nad 38 °C** bez jiného vysvětlení,
 - z místa vpichu vytéká **hnisavá tekutina**,
 - se objeví **rozsáhlá modřina bez zjevné souvislosti s vpichem**, hlavně pokud užíváte léky ovlivňující srážlivost,
-- máte **kopřivku, otok rtů či obličeje nebo dušnost** — to řešte okamžitě, může jít o alergickou reakci.
+- máte **kopřivku, otok rtů či obličeje nebo dušnost**: to řešte okamžitě, může jít o alergickou reakci.
 
 ## Malá útěcha na závěr
 
@@ -228,7 +228,7 @@ Břicho po stimulaci vypadá pár týdnů jako po přehrané bitvě. Skvrny žlo
       hero: 'blush',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Souhrny údajů o přípravku (SPC) — obecné zásady aplikace'],
+      sources: ['ESHRE (doporučené postupy', 'Souhrny údajů o přípravku (SPC)) obecné zásady aplikace'],
       publishedOn: '2025-09-12',
       boost: 0.7,
     },
@@ -242,37 +242,37 @@ Břicho po stimulaci vypadá pár týdnů jako po přehrané bitvě. Skvrny žlo
 
 Léky, které dostanete na stimulaci, se z hlediska skladování dělí zhruba na dvě skupiny:
 
-- **Ty, které patří do chladničky** (obvykle 2–8 °C) — často gonadotropiny a některá pera.
+- **Ty, které patří do chladničky** (obvykle 2–8 °C). Často gonadotropiny a některá pera.
 - **Ty, které vydrží při pokojové teplotě** (obvykle do 25 °C, mimo přímé světlo).
 
-**Nikdy neodhadujte podle vzhledu.** Rozhoduje příbalový leták a pokyn lékárníka. Když si nejste jistá, vyfoťte krabičku a zavolejte do lékárny — poradí vám během minuty.
+**Nikdy neodhadujte podle vzhledu.** Rozhoduje příbalový leták a pokyn lékárníka. Když si nejste jistá, vyfoťte krabičku a zavolejte do lékárny. Poradí vám během minuty.
 
 ## Praktická pravidla pro chladničku
 
 - Ukládejte léky **do střední police, ne do dvířek** a nikdy ne k zadní stěně, kde bývá nejchladněji. Zmrznutí přípravek znehodnotí.
 - **Zmrzlý lék se nepoužívá**, ani po rozmrazení. Ani když vypadá v pořádku.
-- Nechte přípravky **v původní krabičce** — chrání je před světlem a máte po ruce šarži a expiraci.
+- Nechte přípravky **v původní krabičce**: chrání je před světlem a máte po ruce šarži a expiraci.
 - Vyčleňte jim **vlastní box nebo poličku** a označte ji. Snížíte riziko, že vám je někdo přerovná nebo že do nich narazíte s mraženou zeleninou.
 - Pořiďte si **jednoduchý teploměr do lednice**. Stojí pár stovek a dá vám jistotu, že vaše lednice skutečně drží nastavenou teplotu.
 
 ## Otevřená pera
 
-Naředěné nebo otevřené pero má často jinou dobu použitelnosti než neotevřené balení — bývá to řádově dny až týdny a **je uvedena v příbalovém letáku**. Napište si na pero fixem datum prvního použití. Pomůže vám to víc než jakákoli aplikace v telefonu.
+Naředěné nebo otevřené pero má často jinou dobu použitelnosti než neotevřené balení. Bývá to řádově dny až týdny a **je uvedena v příbalovém letáku**. Napište si na pero fixem datum prvního použití. Pomůže vám to víc než jakákoli aplikace v telefonu.
 
 ## Když vypadne proud nebo se rozbije lednice
 
 1. **Neotevírejte ji.** Zavřená lednice udrží teplotu několik hodin.
-2. Přesuňte léky do **chladicí tašky s chladicí vložkou zabalenou v ručníku** — vložka se nesmí přímo dotýkat balení, hrozí zmrznutí.
+2. Přesuňte léky do **chladicí tašky s chladicí vložkou zabalenou v ručníku**: vložka se nesmí přímo dotýkat balení, hrozí zmrznutí.
 3. Zavolejte do lékárny nebo na kliniku a **popište, jak dlouho a při jaké teplotě lék byl**. Podle toho vám řeknou, jestli se dá dál použít.
 4. Nikdy nevyhazujte lék dřív, než se zeptáte. Řada přípravků snese krátkodobé vybočení z teplotního rozmezí.
 
 ## Nechala jsem lék v teple na stole
 
-Stává se to častěji, než byste čekala — hlavně ráno, ve spěchu. Znovu platí: **nevyhazujte, zavolejte**. U některých přípravků je krátkodobé skladování při pokojové teplotě povolené a v letáku je to napsané. U jiných ne. Rozhodnutí patří lékárníkovi nebo klinice, ne internetu a ne diskusnímu fóru.
+Stává se to častěji, než byste čekala, hlavně ráno, ve spěchu. Znovu platí: **nevyhazujte, zavolejte**. U některých přípravků je krátkodobé skladování při pokojové teplotě povolené a v letáku je to napsané. U jiných ne. Rozhodnutí patří lékárníkovi nebo klinice, ne internetu a ne diskusnímu fóru.
 
 ## Domácí organizace, která vás zachrání
 
-- **Jedna krabice, jedno místo.** Všechno ostatní — jehly, dezinfekce, nádoba na ostrý odpad — v jedné krabici mimo lednici.
+- **Jedna krabice, jedno místo.** Všechno ostatní (jehly, dezinfekce, nádoba na ostrý odpad) v jedné krabici mimo lednici.
 - **Nádoba na ostrý odpad** je povinnost, ne luxus. Dostanete ji v lékárně. Plnou ji odevzdáte zpátky do lékárny nebo podle pokynů vaší kliniky.
 - **Papírový rozpis na lednici.** Datum, lék, dávka, čas, odškrtnuto. Telefon vám vybije baterii, papír ne.
 - **Kontrolujte zásobu tři dny dopředu.** Nic není horšího než v neděli večer zjistit, že vám došlo pero a lékárna otevírá až v pondělí.
@@ -286,7 +286,7 @@ Během stimulace se dávky běžně upravují podle toho, jak vaječníky reaguj
 - Lék **zmrzl** nebo byl několik hodin mimo doporučenou teplotu.
 - Roztok je **zakalený, mění barvu nebo obsahuje viditelné částice**.
 - **Poškozený obal**, prasklá lahvička, netěsnící pero.
-- **Vypršelá expirace** — ani o den, ani „to bude v pohodě".
+- **Vypršelá expirace**: ani o den, ani „to bude v pohodě".
 
 > Tento text popisuje obecné zásady. Vždy se řiďte příbalovým letákem konkrétního přípravku a pokyny své kliniky a lékárny.`,
       minutes: 6,
@@ -297,7 +297,7 @@ Během stimulace se dávky běžně upravují podle toho, jak vaječníky reaguj
       hero: 'pearl',
       author: 'Tým Bloomia',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['Souhrny údajů o přípravku (SPC)', 'Státní ústav pro kontrolu léčiv — obecné zásady uchovávání léčiv'],
+      sources: ['Souhrny údajů o přípravku (SPC)', 'Státní ústav pro kontrolu léčiv. Obecné zásady uchovávání léčiv'],
       publishedOn: '2025-09-16',
     },
     {
@@ -317,7 +317,7 @@ Pokud jste ve fázi příprav před cyklem, cestování obvykle nic nekomplikuje
 1. **Potvrzení od lékaře.** Krátký papír s razítkem, ideálně v angličtině: že užíváte léčbu, potřebujete si vézt injekční aplikátory, jehly a chlazený přípravek. Vyžádejte si ho aspoň týden dopředu.
 2. **Všechny léky do příručního zavazadla.** Nikdy do odbaveného. V nákladovém prostoru teplota klesá pod nulu a zavazadlo se může ztratit.
 3. **Léky v původním obalu** s čitelným štítkem a příbalovým letákem.
-4. **Chladicí taška s gelovou vložkou.** Bezpečnostní kontrola gelové vložky obvykle připouští, když k nim doložíte lékařské potvrzení — ohlaste je aktivně, nečekejte, až je najdou.
+4. **Chladicí taška s gelovou vložkou.** Bezpečnostní kontrola gelové vložky obvykle připouští, když k nim doložíte lékařské potvrzení. Ohlaste je aktivně, nečekejte, až je najdou.
 5. **Jehly ohlaste u kontroly sama.** Vyndejte je z tašky, ukažte potvrzení. Trvá to o dvě minuty déle a ušetří vám to patnáct.
 
 Léky projdou rentgenem bez poškození. Pokud si to nepřejete, můžete požádat o ruční kontrolu, ale není to nutné.
@@ -336,16 +336,16 @@ Tady se to komplikuje a **rozhodnutí musí padnout na klinice, ne ve vaší hla
 
 - Léky v původních krabičkách
 - Chladicí taška + dvě vložky
-- Jehly a stříkačky s rezervou (dvě navíc — pero se dá upustit)
+- Jehly a stříkačky s rezervou (dvě navíc. Pero se dá upustit)
 - Dezinfekční čtverečky
 - Cestovní nádoba na ostrý odpad nebo pevná uzavíratelná lahev
 - Kopie rozpisu dávek a jméno a číslo na kliniku
 - Evropský průkaz zdravotního pojištění nebo cestovní pojištění
-- Volnější kalhoty — nadmuté břicho v úzkých džínách je zážitek, který si odpustíte
+- Volnější kalhoty. Nadmuté břicho v úzkých džínách je zážitek, který si odpustíte
 
 ## Dovolená během stimulace: buďte realistická
 
-Nadmuté břicho, únava, citlivá prsa a den ode dne vyšší hladiny hormonů. **Vyhněte se náročným výletům, potápění, jízdě na koni a kontaktním sportům** — rostoucí vaječníky jsou zvětšené a citlivé, hrozí jejich torze. Plavání v moři nebo klidná procházka jsou v pořádku, pokud vám klinika neřekne jinak.
+Nadmuté břicho, únava, citlivá prsa a den ode dne vyšší hladiny hormonů. **Vyhněte se náročným výletům, potápění, jízdě na koni a kontaktním sportům**: rostoucí vaječníky jsou zvětšené a citlivé, hrozí jejich torze. Plavání v moři nebo klidná procházka jsou v pořádku, pokud vám klinika neřekne jinak.
 
 Dlouhé sezení v autě nebo v letadle: **každou hodinu se projděte, hodně pijte.** Vyšší hladiny estradiolu mírně zvyšují riziko trombózy.
 
@@ -353,9 +353,9 @@ Dlouhé sezení v autě nebo v letadle: **každou hodinu se projděte, hodně pi
 
 Během cesty volejte na kliniku nebo vyhledejte místní lékařskou pomoc, pokud se objeví:
 
-- **prudká bolest břicha**, hlavně jednostranná, se zvracením — může jít o torzi vaječníku,
-- **rychlý nárůst hmotnosti, výrazně nafouklé břicho a dušnost** — varovné příznaky OHSS,
-- **bolest, otok nebo zarudnutí lýtka** či náhlá dušnost a bolest na hrudi — podezření na trombózu,
+- **prudká bolest břicha**, hlavně jednostranná, se zvracením. Může jít o torzi vaječníku,
+- **rychlý nárůst hmotnosti, výrazně nafouklé břicho a dušnost**: varovné příznaky OHSS,
+- **bolest, otok nebo zarudnutí lýtka** či náhlá dušnost a bolest na hrudi. Podezření na trombózu,
 - **teplota nad 38 °C**.
 
 > Text popisuje obecné zásady. Konkrétní pokyny k cestování během léčby vám dá vždy váš ošetřující lékař.`,
@@ -367,7 +367,7 @@ Během cesty volejte na kliniku nebo vyhledejte místní lékařskou pomoc, poku
       hero: 'sky',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Souhrny údajů o přípravku (SPC)'],
+      sources: ['ESHRE: doporučené postupy', 'Souhrny údajů o přípravku (SPC)'],
       publishedOn: '2025-09-20',
     },
     {
@@ -378,7 +378,7 @@ Během cesty volejte na kliniku nebo vyhledejte místní lékařskou pomoc, poku
         'Za tři minuty ultrazvuku se rozhoduje o dávkách i o termínu odběru. Tady je, co se přitom měří.',
       body: `## Co je folikulometrie
 
-Opakované ultrazvukové sledování vaječníků během stimulace. Provádí se **vaginální sondou**, protože ta vidí vaječníky nejlépe — bez plného močového měchýře, bez gelu na břiše, obvykle za tři až pět minut.
+Opakované ultrazvukové sledování vaječníků během stimulace. Provádí se **vaginální sondou**, protože ta vidí vaječníky nejlépe. Bez plného močového měchýře, bez gelu na břiše, obvykle za tři až pět minut.
 
 Cílem je odpovědět na tři otázky:
 
@@ -390,19 +390,19 @@ Cílem je odpovědět na tři otázky:
 
 Typicky se první kontrola dělá **před startem stimulace** (takzvaný vstupní ultrazvuk, kdy se kontroluje klid na vaječnících a tenká sliznice), pak zhruba **po čtyřech až pěti dnech** a dál **každé dva až tři dny**, ke konci často denně. Přesný rytmus je individuální.
 
-Součástí bývá i **odběr krve** — nejčastěji estradiol, podle protokolu i LH a progesteron. Kombinace ultrazvuku a hormonů dává úplnější obrázek než každý zvlášť.
+Součástí bývá i **odběr krve**: nejčastěji estradiol, podle protokolu i LH a progesteron. Kombinace ultrazvuku a hormonů dává úplnější obrázek než každý zvlášť.
 
 ## Co lékař na monitoru měří
 
 - **Počet folikulů** v každém vaječníku zvlášť. Folikul je tekutinou vyplněný váček, ve kterém potenciálně dozrává vajíčko. Na obrazovce jsou to černé kruhy.
 - **Velikost folikulů** v milimetrech, obvykle průměr ze dvou nebo tří rozměrů.
-- **Rovnoměrnost skupiny** — jestli rostou pohromadě, nebo se jeden vytrhl dopředu.
+- **Rovnoměrnost skupiny**: jestli rostou pohromadě, nebo se jeden vytrhl dopředu.
 - **Tloušťka a vzhled endometria.** Sliznice se během stimulace zesiluje a mění strukturu.
-- **Volná tekutina v pánvi** a celkový vzhled vaječníků — jedno ze znamení, která pomáhají odhadnout riziko OHSS.
+- **Volná tekutina v pánvi** a celkový vzhled vaječníků. Jedno ze znamení, která pomáhají odhadnout riziko OHSS.
 
 ## Co znamená, když vám sestra nic neřekne
 
-Většina pracovišť čísla nahlas komentuje, ale ne vždy hned a ne vždy kompletně. Není to tajnůstkářství — údaje ještě jdou k lékaři, který je dá dohromady s krví a rozhodne o dávce. Telefon s pokynem obvykle přijde do několika hodin.
+Většina pracovišť čísla nahlas komentuje, ale ne vždy hned a ne vždy kompletně. Není to tajnůstkářství. Údaje ještě jdou k lékaři, který je dá dohromady s krví a rozhodne o dávce. Telefon s pokynem obvykle přijde do několika hodin.
 
 **Máte právo se zeptat.** Klidně přímo: „Kolik folikulů a jak velkých dnes vidíte?" Naprostá většina lékařů odpoví.
 
@@ -410,18 +410,18 @@ Většina pracovišť čísla nahlas komentuje, ale ne vždy hned a ne vždy kom
 
 **Nepočítejte folikuly jako budoucí děti.** Cesta od folikulu k dítěti má několik filtrů: ne v každém folikulu je vajíčko, ne každé vajíčko je zralé, ne každé zralé se oplodní, ne každé oplozené doroste do blastocysty a ne každá blastocysta se uhnízdí. To není pesimismus, to je aritmetika, kterou zná každý embryolog. Když ji budete znát taky, ušetříte si pár pádů.
 
-**Nesrovnávejte se.** Číslo folikulů říká něco o vaší ovariální rezervě a odpovědi na dávku, ne o kvalitě. Žena se čtyřmi folikuly může mít lepší cyklus než žena s dvaceti. Vaše konkrétní čísla a šance vám řekne vaše klinika — obecné procento z internetu neplatí pro nikoho konkrétního.
+**Nesrovnávejte se.** Číslo folikulů říká něco o vaší ovariální rezervě a odpovědi na dávku, ne o kvalitě. Žena se čtyřmi folikuly může mít lepší cyklus než žena s dvaceti. Vaše konkrétní čísla a šance vám řekne vaše klinika. Obecné procento z internetu neplatí pro nikoho konkrétního.
 
 ## Jak si z kontroly odnést maximum
 
-- Ptejte se na **největší folikul a na počet těch nad určitou velikost** — právě podle nich se plánuje trigger.
+- Ptejte se na **největší folikul a na počet těch nad určitou velikost**: právě podle nich se plánuje trigger.
 - Zapisujte si data do jedné tabulky: datum, počet vpravo, počet vlevo, největší velikost, endometrium, estradiol.
 - Ptejte se, **kdy je další kontrola a co by mohlo změnit plán.**
 - Když vám něco nesedí, řekněte to nahlas přímo v ordinaci. Zpětně po telefonu je to vždy těžší.
 
 ## Co s tím, když vám kontroly ničí práci
 
-Ranní odběry a ultrazvuky několikrát týdně jsou reálný organizační problém. Máte nárok na potvrzení o návštěvě lékaře. Zvažte, jestli chcete zaměstnavateli říct důvod — nemusíte, stačí, že jde o lékařskou péči.
+Ranní odběry a ultrazvuky několikrát týdně jsou reálný organizační problém. Máte nárok na potvrzení o návštěvě lékaře. Zvažte, jestli chcete zaměstnavateli říct důvod. Nemusíte, stačí, že jde o lékařskou péči.
 
 ## Kdy volat lékaře
 
@@ -436,7 +436,7 @@ Mezi kontrolami volejte, pokud se objeví silná bolest břicha, rychlé nafoukn
       hero: 'sage',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy pro ovariální stimulaci', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy pro ovariální stimulaci', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-09-25',
       boost: 0.85,
     },
@@ -448,7 +448,7 @@ Mezi kontrolami volejte, pokud se objeví silná bolest břicha, rychlé nafoukn
         'Čtrnáct, sedmnáct, dvacet dva. Tady je, proč se lékař dívá právě na tahle čísla a co z nich plyne.',
       body: `## Folikul není vajíčko
 
-Nejdřív to nejdůležitější, protože se to plete skoro každé: **folikul je tekutinou vyplněný váček ve vaječníku, ve kterém vajíčko dozrává.** Ultrazvuk vidí folikul. Vajíčko uvnitř nevidí — je mikroskopické. Proto se velikost folikulu používá jako **nepřímý ukazatel zralosti** vajíčka. Není to totéž, ale je to nejlepší, co se dá neinvazivně změřit.
+Nejdřív to nejdůležitější, protože se to plete skoro každé: **folikul je tekutinou vyplněný váček ve vaječníku, ve kterém vajíčko dozrává.** Ultrazvuk vidí folikul. Vajíčko uvnitř nevidí. Je mikroskopické. Proto se velikost folikulu používá jako **nepřímý ukazatel zralosti** vajíčka. Není to totéž, ale je to nejlepší, co se dá neinvazivně změřit.
 
 Z toho plyne i to, proč se počet odebraných vajíček skoro nikdy nerovná počtu folikulů. Některé folikuly jsou prázdné, jiné obsahují nezralé vajíčko.
 
@@ -462,28 +462,28 @@ Lékař proto na kontrole nesleduje jen dnešní číslo, ale **rozdíl proti mi
 
 Konkrétní hranice se u jednotlivých pracovišť liší a **rozhoduje vždy váš lékař**, ale orientačně:
 
-- **Do zhruba 10 mm** — folikul roste, vajíčko uvnitř je s velkou pravděpodobností ještě nezralé.
-- **Kolem 12–14 mm** — v tomhle pásmu se v antagonistickém protokolu obvykle přidává antagonista, aby nedošlo k předčasné ovulaci.
-- **Zhruba 16–22 mm** — pásmo, ve kterém se nejčastěji nacházejí zralá vajíčka. Právě podle počtu folikulů v tomhle rozmezí se plánuje trigger.
-- **Nad 22–24 mm** — folikul může být přezrálý a vajíčko v něm už nemusí být použitelné.
+- **Do zhruba 10 mm**: folikul roste, vajíčko uvnitř je s velkou pravděpodobností ještě nezralé.
+- **Kolem 12–14 mm**: v tomhle pásmu se v antagonistickém protokolu obvykle přidává antagonista, aby nedošlo k předčasné ovulaci.
+- **Zhruba 16–22 mm**: pásmo, ve kterém se nejčastěji nacházejí zralá vajíčka. Právě podle počtu folikulů v tomhle rozmezí se plánuje trigger.
+- **Nad 22–24 mm**: folikul může být přezrálý a vajíčko v něm už nemusí být použitelné.
 
 Právě proto je načasování triggeru kompromis: čeká se, dokud nedozraje co nejvíc folikulů, ale ne tak dlouho, aby ty vedoucí přezrály nebo aby došlo k ovulaci.
 
 ## Proč se nikdy nedozrají všechny
 
-Skupina folikulů není nikdy dokonale srovnaná. Když se počká na malé, velké přerostou. Když se triggeruje brzy, velké jsou akorát, ale malé zůstanou nezralé. **Lékař hledá bod, kdy je zralých co nejvíc** — a nějakou ztrátu na obou koncích spektra počítá dopředu.
+Skupina folikulů není nikdy dokonale srovnaná. Když se počká na malé, velké přerostou. Když se triggeruje brzy, velké jsou akorát, ale malé zůstanou nezralé. **Lékař hledá bod, kdy je zralých co nejvíc**: a nějakou ztrátu na obou koncích spektra počítá dopředu.
 
 To vysvětluje větu, kterou po odběru slyší skoro každá žena: „Odebrali jsme dvanáct vajíček, deset bylo zralých." Ty dvě nezralé nejsou chyba, jsou daň za to, že se čekalo na těch deset.
 
 ## Co znamená, když jich roste málo
 
-Pokud jich roste méně, než se čekalo, lékař může upravit dávku, prodloužit stimulaci nebo cyklus zrušit a příště zvolit jiný protokol. Zrušený cyklus je frustrující, ale je to rozhodnutí ve váš prospěch — neplýtvá se odběrem, u kterého se předem ví, že skoro nic nepřinese.
+Pokud jich roste méně, než se čekalo, lékař může upravit dávku, prodloužit stimulaci nebo cyklus zrušit a příště zvolit jiný protokol. Zrušený cyklus je frustrující, ale je to rozhodnutí ve váš prospěch. Neplýtvá se odběrem, u kterého se předem ví, že skoro nic nepřinese.
 
 **Málo folikulů neznamená špatná vajíčka.** Kvalita a počet jsou dvě různé věci a u některých žen přinesou tři vajíčka lepší výsledek než u jiné patnáct.
 
 ## Co znamená, když jich roste hodně
 
-Vysoký počet je z hlediska zisku vajíček dobrá zpráva a zároveň zvyšuje **riziko OHSS**. Klinika na to reaguje — může snížit dávku, změnit typ triggeru, odložit transfer a všechna embrya zamrazit. Nic z toho není známka toho, že by se něco pokazilo. Je to řízení rizika.
+Vysoký počet je z hlediska zisku vajíček dobrá zpráva a zároveň zvyšuje **riziko OHSS**. Klinika na to reaguje. Může snížit dávku, změnit typ triggeru, odložit transfer a všechna embrya zamrazit. Nic z toho není známka toho, že by se něco pokazilo. Je to řízení rizika.
 
 ## Jak si vést vlastní tabulku
 
@@ -501,7 +501,7 @@ Po třech kontrolách uvidíte vlastní křivku a přestanete se tolik děsit ka
 
 ## Poslední věc
 
-Čísla se stanou vaší posedlostí — je to naprosto normální, protože jsou to jediná data, která v téhle fázi máte. Jen si pamatujte, že **žádné jednotlivé číslo neurčuje výsledek**. Určuje ho až souhrn, který uvidíte za dva týdny.
+Čísla se stanou vaší posedlostí. Je to naprosto normální, protože jsou to jediná data, která v téhle fázi máte. Jen si pamatujte, že **žádné jednotlivé číslo neurčuje výsledek**. Určuje ho až souhrn, který uvidíte za dva týdny.
 
 > Text popisuje obecné principy hodnocení. Vaše konkrétní nálezy může interpretovat pouze váš ošetřující lékař.`,
       minutes: 7,
@@ -512,7 +512,7 @@ Po třech kontrolách uvidíte vlastní křivku a přestanete se tolik děsit ka
       hero: 'sage',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy pro ovariální stimulaci'],
+      sources: ['ESHRE: doporučené postupy pro ovariální stimulaci'],
       publishedOn: '2025-09-29',
       boost: 0.8,
     },
@@ -536,7 +536,7 @@ Co z toho lékař čte:
 - **Stagnace nebo pokles** může znamenat slabší odpověď na dávku nebo to, že se skupina folikulů rozpadá.
 - **Velmi rychlý a vysoký vzestup** je varovná vlajka pro riziko OHSS. Klinika na to reaguje změnou dávky nebo typu triggeru.
 
-Neexistuje jedno „správné" číslo. Hodnota se posuzuje **v kontextu počtu folikulů** — vysoký estradiol při pěti folikulech znamená něco jiného než při dvaceti. Laboratoře navíc používají různé jednotky a různá referenční rozmezí, takže srovnávání čísel s někým jiným je bezcenné.
+Neexistuje jedno „správné" číslo. Hodnota se posuzuje **v kontextu počtu folikulů**: vysoký estradiol při pěti folikulech znamená něco jiného než při dvaceti. Laboratoře navíc používají různé jednotky a různá referenční rozmezí, takže srovnávání čísel s někým jiným je bezcenné.
 
 ## LH (luteinizační hormon)
 
@@ -546,21 +546,21 @@ Celý antagonistický i agonistický protokol existuje právě proto, aby se tom
 
 ## Progesteron
 
-Sleduje se hlavně ke konci stimulace. **Předčasný vzestup progesteronu** před triggerem může znamenat, že se děložní sliznice posunula ve svém vývoji dřív než embryo — takzvaně se rozejde okno pro uhnízdění.
+Sleduje se hlavně ke konci stimulace. **Předčasný vzestup progesteronu** před triggerem může znamenat, že se děložní sliznice posunula ve svém vývoji dřív než embryo. Takzvaně se rozejde okno pro uhnízdění.
 
 Praktický důsledek: klinika může doporučit **odložit transfer a zamrazit všechna embrya**, aby se transfer udělal v pozdějším, lépe připraveném cyklu. Zní to jako komplikace a přitom je to rozhodnutí, které vaši šanci chrání.
 
 ## Co se ještě může sledovat
 
-Podle protokolu a vaší anamnézy může přibýt FSH, prolaktin, hormony štítné žlázy nebo krevní obraz. **U žen s onemocněním štítné žlázy se hodnoty během stimulace mění a často vyžadují úpravu léčby** — pokud štítnou žlázu léčíte, ujistěte se, že o tom váš reprodukční tým ví.
+Podle protokolu a vaší anamnézy může přibýt FSH, prolaktin, hormony štítné žlázy nebo krevní obraz. **U žen s onemocněním štítné žlázy se hodnoty během stimulace mění a často vyžadují úpravu léčby**: pokud štítnou žlázu léčíte, ujistěte se, že o tom váš reprodukční tým ví.
 
 ## Proč vám nikdo neřekne „to je dobré číslo"
 
 Protože to samo o sobě dobré ani špatné není. Hormonální hodnota má smysl jen ve třech kontextech:
 
-1. **Vůči dni stimulace** — čtvrtý den vypadá jinak než desátý.
-2. **Vůči vašemu předchozímu odběru** — trend je důležitější než bod.
-3. **Vůči ultrazvuku** — číslo bez počtu folikulů nic neznamená.
+1. **Vůči dni stimulace**: čtvrtý den vypadá jinak než desátý.
+2. **Vůči vašemu předchozímu odběru**: trend je důležitější než bod.
+3. **Vůči ultrazvuku**: číslo bez počtu folikulů nic neznamená.
 
 Když si tedy budete googlit „estradiol 1800 osmý den", najdete stovky protichůdných odpovědí a žádná z nich nebude o vás.
 
@@ -584,7 +584,7 @@ Volejte, aniž byste čekala na plánovanou kontrolu, pokud máte silnou bolest 
       hero: 'dusk',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy pro ovariální stimulaci', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy pro ovariální stimulaci', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-10-03',
     },
     {
@@ -595,7 +595,7 @@ Volejte, aniž byste čekala na plánovanou kontrolu, pokud máte silnou bolest 
         'Jediná injekce celého cyklu, kterou opravdu nesmíte posunout ani o půl hodiny. Tady je proč.',
       body: `## Co trigger dělá
 
-Dokončovací injekce — česky se jí říká trigger, spouštěč nebo „ta poslední" — má dva úkoly:
+Dokončovací injekce (česky se jí říká trigger, spouštěč nebo „ta poslední") má dva úkoly:
 
 1. **Dokončit zrání vajíček.** Vajíčka v folikulech jsou až do téhle chvíle rozpracovaná. Trigger spustí poslední fázi zrání, při které se vajíčko zbaví poloviny své genetické výbavy a stane se schopným oplození.
 2. **Uvolnit vajíčko ze stěny folikulu**, aby se dalo při odběru odsát.
@@ -616,20 +616,20 @@ Proto vám sestra řekne čas s přesností na minuty, například „ve 21:45".
 Praktické pojistky, které fungují:
 
 - **Nastavte si dva budíky**, jeden na 30 minut předem, druhý na přesný čas.
-- **Připravte si lék o hodinu dřív** — vybalte, přečtěte, položte na stůl.
+- **Připravte si lék o hodinu dřív**: vybalte, přečtěte, položte na stůl.
 - **Řekněte to nahlas partnerovi nebo kamarádce.** Druhý člověk, který ten čas zná, je nejlepší záloha.
 - **Nikam ten večer nechoďte.** Ne restaurace, ne kino, ne návštěva. Doma, v klidu.
 - **Zapište si čas, kdy jste skutečně píchla**, i s minutou. Klinika se na to ráno zeptá.
 
-Pokud píchnete o pár minut později, nic dramatického se neděje — jen to **hned ohlaste klinice** a nechte je rozhodnout. Pokud byste zapomněla úplně nebo se odchýlila o hodinu a víc, **volejte okamžitě, i uprostřed noci.** Existují postupy, jak to řešit, ale musí se rozhodnout hned.
+Pokud píchnete o pár minut později, nic dramatického se neděje, jen to **hned ohlaste klinice** a nechte je rozhodnout. Pokud byste zapomněla úplně nebo se odchýlila o hodinu a víc, **volejte okamžitě, i uprostřed noci.** Existují postupy, jak to řešit, ale musí se rozhodnout hned.
 
 ## Jaké typy triggeru existují
 
 Rozhodnutí patří lékaři a řídí se protokolem a rizikem OHSS:
 
-- **hCG trigger** — nejdéle používaná varianta. Napodobuje přirozený vzestup LH. Nevýhoda: působí v těle dlouho a u vysokých odpovědí zvyšuje riziko OHSS.
-- **Agonistický trigger** — použitelný pouze v antagonistickém protokolu. Vyvolá vlastní krátký výdej LH. **Výrazně snižuje riziko těžkého OHSS** a proto se často volí u žen s velkým počtem folikulů nebo s PCOS. Vyžaduje jiný postup podpory luteální fáze nebo zamrazení všech embryí.
-- **Duální trigger** — kombinace obojího, používá se v konkrétních situacích.
+- **hCG trigger**: nejdéle používaná varianta. Napodobuje přirozený vzestup LH. Nevýhoda: působí v těle dlouho a u vysokých odpovědí zvyšuje riziko OHSS.
+- **Agonistický trigger**: použitelný pouze v antagonistickém protokolu. Vyvolá vlastní krátký výdej LH. **Výrazně snižuje riziko těžkého OHSS** a proto se často volí u žen s velkým počtem folikulů nebo s PCOS. Vyžaduje jiný postup podpory luteální fáze nebo zamrazení všech embryí.
+- **Duální trigger**: kombinace obojího, používá se v konkrétních situacích.
 
 Když vám změní typ triggeru na poslední chvíli, nejde o improvizaci. Jde o reakci na to, co ukázaly folikuly a krev.
 
@@ -639,14 +639,14 @@ Zhruba 36 hodin, během kterých:
 
 - **Se nesmí píchat další stimulace**, pokud vám lékař neřekne jinak.
 - Budete pravděpodobně cítit **tlak, plnost a tupou bolest v podbřišku.** Vaječníky jsou teď opravdu velké.
-- Platí **lačnění** podle pokynů kliniky před výkonem v anestezii — obvykle od půlnoci nic nejíst a v posledních hodinách ani nepít.
+- Platí **lačnění** podle pokynů kliniky před výkonem v anestezii. Obvykle od půlnoci nic nejíst a v posledních hodinách ani nepít.
 - **Vyhněte se pohlavnímu styku, sportu, prudkým pohybům a zvedání těžkého.** Zvětšené vaječníky se mohou zkroutit kolem své osy.
 
 ## Kdy volat lékaře
 
 Neodkládejte telefonát, pokud se v téhle fázi objeví:
 
-- **prudká, jednostranná bolest břicha**, zvlášť se zvracením — podezření na torzi vaječníku,
+- **prudká, jednostranná bolest břicha**, zvlášť se zvracením. Podezření na torzi vaječníku,
 - **náhlé zhoršení nafouknutí a dušnost**,
 - **teplota nad 38 °C**,
 - **mdloba nebo výrazná slabost**,
@@ -665,7 +665,7 @@ Většina žen tuhle noc skoro nespí. Je to jediná noc celého cyklu, kdy je o
       hero: 'dawn',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy pro ovariální stimulaci', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy pro ovariální stimulaci', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-10-08',
       boost: 1,
     },
@@ -695,8 +695,8 @@ Klinika tohle ví předem a přizpůsobuje tomu protokol, dávky, typ triggeru i
 
 Ve dvou vlnách:
 
-- **Časná forma** — obvykle 3 až 7 dní po triggeru či odběru.
-- **Pozdní forma** — zhruba 9 a více dní po odběru, spojená s nastupujícím těhotenstvím. Bývá vleklejší.
+- **Časná forma**: obvykle 3 až 7 dní po triggeru či odběru.
+- **Pozdní forma**: zhruba 9 a více dní po odběru, spojená s nastupujícím těhotenstvím. Bývá vleklejší.
 
 To znamená, že **pozornost nekončí odběrem.** Právě týden po něm je období, kdy je potřeba se sledovat nejvíc.
 
@@ -712,7 +712,7 @@ Po odběru běžně bývá:
 
 Tohle **postupně ustupuje.** Klíčové slovo je postupně. Zhoršování je vždy důvod ozvat se.
 
-## Kdy volat lékaře — okamžitě
+## Kdy volat lékaře: okamžitě
 
 Nečekejte na ordinační hodiny, nečekejte do rána. **Volejte na kliniku nebo na pohotovost, pokud se objeví:**
 
@@ -723,7 +723,7 @@ Nečekejte na ordinační hodiny, nečekejte do rána. **Volejte na kliniku nebo
 - **Výrazně menší množství moči** nebo močení méně než jednou za 6–8 hodin, tmavá moč.
 - **Opakované zvracení** nebo neschopnost udržet tekutiny.
 - **Závrať, mdloba, bušení srdce.**
-- **Bolest, otok nebo zarudnutí lýtka**, bolest na hrudi — podezření na trombózu.
+- **Bolest, otok nebo zarudnutí lýtka**, bolest na hrudi. Podezření na trombózu.
 - **Teplota nad 38 °C.**
 
 Když váháte, jestli je to „ještě normální", je to samo o sobě důvod zavolat. Sestra na klinice tenhle telefonát slyší denně a nikdo vás nebude považovat za hysterickou.
@@ -735,7 +735,7 @@ Jednoduchý domácí monitoring, který dává lékaři cenná data:
 1. **Vážte se každé ráno**, nalačno, na stejné váze, a zapisujte.
 2. **Změřte si obvod břicha** krejčovským metrem ve stejné výšce, jednou denně.
 3. **Sledujte, kolik vypijete a kolikrát močíte.**
-4. Zapište si, **jak bolest reaguje na běžnou úlevu** — polohu, teplo, analgetikum podle doporučení lékaře.
+4. Zapište si, **jak bolest reaguje na běžnou úlevu**: polohu, teplo, analgetikum podle doporučení lékaře.
 
 Tenhle zápis vezměte s sebou, když budete volat. Zkrátí telefonát na polovinu.
 
@@ -743,11 +743,11 @@ Tenhle zápis vezměte s sebou, když budete volat. Zkrátí telefonát na polov
 
 Vždy podle konkrétního doporučení vaší kliniky, obecně se doporučuje:
 
-- **Dostatek tekutin** — často se doporučují nápoje s obsahem minerálů, ne jen čistá voda.
-- **Klid, ale ne úplné ležení** — pohyb v bytě snižuje riziko trombózy.
+- **Dostatek tekutin**: často se doporučují nápoje s obsahem minerálů, ne jen čistá voda.
+- **Klid, ale ne úplné ležení**: pohyb v bytě snižuje riziko trombózy.
 - **Dostatek bílkovin** ve stravě.
 - **Vyhnout se pohlavnímu styku, sportu a zvedání těžkého.**
-- **Nepoužívat léky proti bolesti na vlastní pěst** — některá běžná analgetika nejsou v téhle situaci vhodná. Zeptejte se, co si vzít smíte.
+- **Nepoužívat léky proti bolesti na vlastní pěst**: některá běžná analgetika nejsou v téhle situaci vhodná. Zeptejte se, co si vzít smíte.
 
 ## Věta, kterou si zapamatujte
 
@@ -764,7 +764,7 @@ Mírný OHSS je nepříjemná daň za dobrou odpověď vaječníků. Těžký OH
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
       sources: [
-        'ESHRE — doporučené postupy k prevenci a léčbě OHSS',
+        'ESHRE: doporučené postupy k prevenci a léčbě OHSS',
         'Česká gynekologická a porodnická společnost ČLS JEP',
       ],
       publishedOn: '2025-10-12',
@@ -778,13 +778,13 @@ Mírný OHSS je nepříjemná daň za dobrou odpověď vaječníků. Těžký OH
         'Deset minut nákupu předem vám ušetří tři paniky v šest ráno. Odškrtejte si to dřív, než začnete.',
       body: `## K čemu tenhle seznam je
 
-Stimulace není medicínsky náročná pro vás — je náročná **organizačně**. Píchá se každý den, často ve stejnou hodinu, k tomu chodíte na kontroly a mezitím žijete normální život. Většina chaosu vzniká z toho, že něco chybí, něco došlo nebo něco není po ruce.
+Stimulace není medicínsky náročná pro vás. Je náročná **organizačně**. Píchá se každý den, často ve stejnou hodinu, k tomu chodíte na kontroly a mezitím žijete normální život. Většina chaosu vzniká z toho, že něco chybí, něco došlo nebo něco není po ruce.
 
 Projděte tenhle seznam ideálně **dva dny před startem**, ne ráno v den prvního píchnutí.
 
 ## Jak s ním pracovat
 
-Položky jsou rozdělené do čtyř skupin. Nepovinné jsou označené — jsou to věci, které pomáhají, ale bez kterých se dá přežít.
+Položky jsou rozdělené do čtyř skupin. Nepovinné jsou označené. Jsou to věci, které pomáhají, ale bez kterých se dá přežít.
 
 Až budete mít hotovo, **postavte všechno na jedno místo**, ideálně do jedné krabice, kterou nikdo jiný v domácnosti neotevírá. Léky do lednice podle pokynů, zbytek do krabice.
 
@@ -814,7 +814,7 @@ Poslední rada: **kupte si dvě jehly navíc.** Pero se dá upustit, jehla se d�
         { id: 'cyk-ch-budiky', text: 'Nastavené denní budíky na čas aplikace', group: 'Organizace' },
         { id: 'cyk-ch-kontakt', text: 'Telefon na kliniku uložený v mobilu i napsaný na papíře', hint: 'Včetně čísla pro mimopracovní dobu.', group: 'Organizace' },
         { id: 'cyk-ch-tabulka', text: 'Založená tabulka na zápis kontrol (folikuly, endometrium, estradiol)', optional: true, group: 'Organizace' },
-        { id: 'cyk-ch-prace', text: 'Zorientovaný kalendář — ranní kontroly a možný termín odběru', group: 'Organizace' },
+        { id: 'cyk-ch-prace', text: 'Zorientovaný kalendář. Ranní kontroly a možný termín odběru', group: 'Organizace' },
         { id: 'cyk-ch-kalhoty', text: 'Volnější kalhoty nebo sukně na druhý týden stimulace', hint: 'Nafouknuté břicho v úzkém pase je zbytečné utrpení.', group: 'Vy' },
         { id: 'cyk-ch-podpora', text: 'Jeden člověk, kterému jste řekla, že cyklus začíná', hint: 'Nemusí to být rodina. Stačí jeden.', group: 'Vy' },
         { id: 'cyk-ch-jidlo', text: 'Zásoba jednoduchého jídla na dny, kdy nebudete mít sílu vařit', optional: true, group: 'Vy' },
@@ -825,10 +825,10 @@ Poslední rada: **kupte si dvě jehly navíc.** Pero se dá upustit, jehla se d�
       kind: 'video',
       title: 'Video: ruka na břiše, jehla, výdech',
       excerpt:
-        'Sedm minut, ve kterých uvidíte celý postup zblízka a beze spěchu — od mytí rukou po nádobu na ostrý odpad.',
+        'Sedm minut, ve kterých uvidíte celý postup zblízka a beze spěchu. Od mytí rukou po nádobu na ostrý odpad.',
       body: `## Co ve videu uvidíte
 
-Video je natočené z pohledu první osoby, tedy tak, jak to uvidíte vy sama, když se podíváte dolů na vlastní břicho. Žádné animace, žádné modelky s dokonalým bříškem — reálné ruce, reálný stůl v kuchyni.
+Video je natočené z pohledu první osoby, tedy tak, jak to uvidíte vy sama, když se podíváte dolů na vlastní břicho. Žádné animace, žádné modelky s dokonalým bříškem. Reálné ruce, reálný stůl v kuchyni.
 
 **Minuta 0–1: příprava plochy.** Mytí rukou, prostření čisté utěrky, vyskládání pomůcek zleva doprava v pořadí, ve kterém je budete potřebovat. Uvidíte, proč se pořadí vyplatí dodržet.
 
@@ -881,11 +881,11 @@ Budík obvykle brzy, protože odběry se plánují na dopoledne. Co platí skoro
 - **Sprcha, žádné krémy na břicho.**
 - **Volné oblečení**, ve kterém pojedete zpátky s nafouknutým břichem.
 
-Partner nebo doprovod **musí být domluvený předem** — po anestezii nesmíte řídit ani jet sama.
+Partner nebo doprovod **musí být domluvený předem**: po anestezii nesmíte řídit ani jet sama.
 
 ## Příjezd na kliniku
 
-Obvykle vás čeká administrativa: kontrola totožnosti, podpis informovaného souhlasu, doplnění dotazníku pro anesteziologa. **Souhlas si přečtěte, i když se vám nechce** — je v něm napsané, co se stane s vajíčky a embryi, a tohle je poslední chvíle na otázky.
+Obvykle vás čeká administrativa: kontrola totožnosti, podpis informovaného souhlasu, doplnění dotazníku pro anesteziologa. **Souhlas si přečtěte, i když se vám nechce**: je v něm napsané, co se stane s vajíčky a embryi, a tohle je poslední chvíle na otázky.
 
 Pak se převléknete do jednorázového prádla, dostanete náramek s identifikací a čekáte. Čekání může být dlouhé, sály jedou v pořadí.
 
@@ -893,9 +893,9 @@ Pokud partner odevzdává vzorek, dělá se to obvykle ve stejnou dobu v odděle
 
 ## Na sále
 
-1. **Zavedení kanyly** do žíly na ruce — jediný vpich, který ten den ucítíte při vědomí.
+1. **Zavedení kanyly** do žíly na ruce. Jediný vpich, který ten den ucítíte při vědomí.
 2. **Napojení monitorů** na tep, tlak a okysličení.
-3. **Kontrola identity a plánu** — uslyšíte, jak tým nahlas ověřuje vaše jméno a rodné číslo. Tohle se dělá schválně a víckrát.
+3. **Kontrola identity a plánu**: uslyšíte, jak tým nahlas ověřuje vaše jméno a rodné číslo. Tohle se dělá schválně a víckrát.
 4. **Podání anestezie.** Usnete během několika desítek vteřin.
 5. **Samotný odběr** trvá obvykle 10 až 20 minut. Lékař pod ultrazvukovou kontrolou zavede tenkou jehlu přes poševní stěnu do vaječníku a postupně odsaje tekutinu z jednotlivých folikulů. Žádný řez, žádné stehy.
 6. **Předání embryologovi.** Zkumavky putují okénkem přímo do laboratoře, která je hned vedle sálu. Embryolog pod mikroskopem vyhledá vajíčka v odsáté tekutině.
@@ -904,7 +904,7 @@ Pokud partner odevzdává vzorek, dělá se to obvykle ve stejnou dobu v odděle
 
 Probudíte se na dospávacím pokoji, obvykle do několika minut po skončení. Co je běžné:
 
-- **zimnice a třes** — reakce na anestezii, přejde,
+- **zimnice a třes**: reakce na anestezii, přejde,
 - **pocit tlaku a křeče** jako při silnější menstruaci,
 - **nevolnost** u části žen,
 - **slabé krvácení nebo špinění** z pochvy,
@@ -916,11 +916,11 @@ Sestra vám nabídne pití a něco malého k jídlu. Zůstáváte pod dohledem o
 
 Před propuštěním vám embryolog nebo lékař řekne **počet získaných vajíček**. Někdy zazní i počet zralých, častěji až druhý den při telefonátu.
 
-Připravte se dopředu na to, že **to číslo bude jiné, než jste čekala.** Skoro vždycky je. Bývá nižší než počet folikulů — je to normální a bylo to popsané už v článku o velikosti folikulů. Nekomentujte to hned, nezpracujete to na dospávacím pokoji.
+Připravte se dopředu na to, že **to číslo bude jiné, než jste čekala.** Skoro vždycky je. Bývá nižší než počet folikulů. Je to normální a bylo to popsané už v článku o velikosti folikulů. Nekomentujte to hned, nezpracujete to na dospávacím pokoji.
 
 ## Cesta domů a zbytek dne
 
-Doprovod, klid, tekutiny, volné oblečení. **Zbytek dne nic neplánujte.** Ne úklid, ne e-maily, ne návštěvy. Ležení celý den ale není nutné — krátká chůze po bytě je lepší než nehybnost.
+Doprovod, klid, tekutiny, volné oblečení. **Zbytek dne nic neplánujte.** Ne úklid, ne e-maily, ne návštěvy. Ležení celý den ale není nutné. Krátká chůze po bytě je lepší než nehybnost.
 
 Dostanete pokyny k **podpoře luteální fáze** (obvykle progesteron) a informaci, kdy vám bude embryologie volat.
 
@@ -932,8 +932,8 @@ Po propuštění volejte, pokud se objeví:
 - **krvácení silnější než běžná menstruace** nebo krvácení, které se zhoršuje,
 - **teplota nad 38 °C**,
 - **závrať, mdloba, bušení srdce**,
-- **prudké nafouknutí břicha, dušnost, zvracení nebo výrazně méně moči** — varovné příznaky OHSS,
-- **bolest v rameni** — může být příznakem dráždění bránice tekutinou v břiše.
+- **prudké nafouknutí břicha, dušnost, zvracení nebo výrazně méně moči**: varovné příznaky OHSS,
+- **bolest v rameni**: může být příznakem dráždění bránice tekutinou v břiše.
 
 > Tento popis je obecný. Průběh se u jednotlivých pracovišť liší a závazné jsou vždy pokyny vaší kliniky a vašeho lékaře.`,
       minutes: 8,
@@ -944,7 +944,7 @@ Po propuštění volejte, pokud se objeví:
       hero: 'champagne',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-10-24',
       boost: 1,
     },
@@ -956,13 +956,13 @@ Po propuštění volejte, pokud se objeví:
         'Bát se uspání je normální. Tady je, jak to u odběru vajíček obvykle vypadá a na co se zeptat anesteziologa.',
       body: `## Jaké možnosti existují
 
-U odběru vajíček se nejčastěji používá **krátkodobá nitrožilní anestezie** — někdy se jí říká analgosedace. Znamená to, že dostanete do žíly kombinaci léků, po kterých usnete, nic necítíte a nic si nepamatujete. Nedýchá se za vás trubicí, dýcháte sama, jen máte kyslík.
+U odběru vajíček se nejčastěji používá **krátkodobá nitrožilní anestezie**: někdy se jí říká analgosedace. Znamená to, že dostanete do žíly kombinaci léků, po kterých usnete, nic necítíte a nic si nepamatujete. Nedýchá se za vás trubicí, dýcháte sama, jen máte kyslík.
 
 Méně často se používá:
 
-- **Celková anestezie** s zajištěním dýchacích cest — spíš ve zvláštních situacích.
+- **Celková anestezie** s zajištěním dýchacích cest, spíš ve zvláštních situacích.
 - **Lokální znecitlivění** samotné poševní stěny, případně s mírným tlumením. Používá se, když je odběr velmi krátký nebo když anestezie není vhodná.
-- **Spinální anestezie** — vzácněji.
+- **Spinální anestezie**: vzácněji.
 
 **Výběr metody je rozhodnutí anesteziologa** podle vašeho zdravotního stavu, počtu folikulů a zvyklostí pracoviště.
 
@@ -982,13 +982,13 @@ Pokud jste někdy měla po anestezii silnou nevolnost, řekněte to nahlas. Dá 
 
 ## Lačnění není formalita
 
-Pravidlo o nejedení a nepití má jediný důvod: **při usínání se vypíná reflex, který brání vdechnutí obsahu žaludku.** Vdechnutí žaludečního obsahu je vzácná, ale vážná komplikace. Proto se výkon při porušení lačnění odkládá — a je to správně.
+Pravidlo o nejedení a nepití má jediný důvod: **při usínání se vypíná reflex, který brání vdechnutí obsahu žaludku.** Vdechnutí žaludečního obsahu je vzácná, ale vážná komplikace. Proto se výkon při porušení lačnění odkládá. A je to správně.
 
 Přesné časy vám dá klinika. Obvykle několik hodin bez jídla a kratší interval bez tekutin.
 
 ## Jak to probíhá
 
-Anesteziolog vám zavede kanylu, připojí monitory a řekne, že teď to začne působit. Většina žen popisuje, že cítily chlad v ruce, chtěly něco říct — a probudily se.
+Anesteziolog vám zavede kanylu, připojí monitory a řekne, že teď to začne působit. Většina žen popisuje, že cítily chlad v ruce, chtěly něco říct. A probudily se.
 
 **Během výkonu je u vás celou dobu anesteziolog**, který sleduje tep, tlak, dýchání a hloubku spánku. Odběr je krátký, takže i dávka léků je malá.
 
@@ -1000,12 +1000,12 @@ Co je běžné a přejde:
 - **sucho v ústech a škrábání v krku**,
 - **nevolnost**, u části žen zvracení,
 - **plačtivost nebo naopak euforie**,
-- **rozostřené vnímání času** — hodina vám může připadat jako pět minut.
+- **rozostřené vnímání času**: hodina vám může připadat jako pět minut.
 
 Co platí zbytek dne:
 
 - **Neřídit auto** a neobsluhovat nic nebezpečného minimálně 24 hodin.
-- **Nepodepisovat nic důležitého** — právně i prakticky špatný nápad.
+- **Nepodepisovat nic důležitého**: právně i prakticky špatný nápad.
 - **Nezůstávat prvních několik hodin sama**, pokud to jde.
 - **Nepít alkohol.**
 
@@ -1021,14 +1021,14 @@ Co platí zbytek dne:
 
 Strach ze ztráty kontroly je jeden z nejčastějších a mluví o něm málokdo. Pomáhá:
 
-- **říct to nahlas anesteziologovi** — je zvyklý a obvykle to výrazně změní způsob, jakým s vámi mluví,
-- **mít u sebe do poslední chvíle svou věc** — ponožky, gumičku do vlasů, cokoli vlastního,
+- **říct to nahlas anesteziologovi**: je zvyklý a obvykle to výrazně změní způsob, jakým s vámi mluví,
+- **mít u sebe do poslední chvíle svou věc**: ponožky, gumičku do vlasů, cokoli vlastního,
 - **dýchat pomalu do čtyř a ven do šesti**, když už ležíte na sále,
 - **vědět, že je to krátké.** Tohle není operace na tři hodiny.
 
 ## Kdy volat lékaře po propuštění
 
-Volejte při dušnosti, bolesti na hrudi, opakovaném zvracení, které vám brání pít, teplotě nad 38 °C, silné bolesti břicha nebo pokud se objeví vyrážka a otok obličeje — to může být pozdní alergická reakce.
+Volejte při dušnosti, bolesti na hrudi, opakovaném zvracení, které vám brání pít, teplotě nad 38 °C, silné bolesti břicha nebo pokud se objeví vyrážka a otok obličeje. To může být pozdní alergická reakce.
 
 > Text popisuje obecný postup. Konkrétní typ anestezie, přípravu i pokyny určuje anesteziolog a lékař vaší kliniky.`,
       minutes: 6,
@@ -1039,7 +1039,7 @@ Volejte při dušnosti, bolesti na hrudi, opakovaném zvracení, které vám br�
       hero: 'pearl',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['Česká společnost anesteziologie, resuscitace a intenzivní medicíny ČLS JEP — obecné zásady', 'ESHRE — doporučené postupy'],
+      sources: ['Česká společnost anesteziologie, resuscitace a intenzivní medicíny ČLS JEP (obecné zásady', 'ESHRE) doporučené postupy'],
       publishedOn: '2025-10-28',
       boost: 0.7,
     },
@@ -1101,7 +1101,7 @@ Ráno v den odběru budete nervózní, nevyspalá a hladová. Rozhodování o to
         'Břicho jako v šestém měsíci, tupá bolest a zácpa. Tady je, co je normální a co s tím dělat.',
       body: `## Proč se cítíte jako po nárazu
 
-Vaječníky, které normálně měří pár centimetrů, jsou po stimulaci výrazně zvětšené a při odběru byly propíchnuté několikrát — jednou za každý folikul. Tekutina z odsátých folikulů se částečně vstřebává, částečně dráždí pobřišnici. K tomu doznívá anestezie a začíná podpora progesteronem, která sama o sobě zpomaluje střeva.
+Vaječníky, které normálně měří pár centimetrů, jsou po stimulaci výrazně zvětšené a při odběru byly propíchnuté několikrát. Jednou za každý folikul. Tekutina z odsátých folikulů se částečně vstřebává, částečně dráždí pobřišnici. K tomu doznívá anestezie a začíná podpora progesteronem, která sama o sobě zpomaluje střeva.
 
 Výsledek: **nafouklé, těžké břicho, tupá bolest, zácpa a únava.** Není to komplikace, je to očekávaný stav.
 
@@ -1118,11 +1118,11 @@ Většině žen se výrazně uleví **do dvou až čtyř dní**. Nadmutí a citl
 
 ## Pitný režim, který pomáhá
 
-Samotná voda ve větším množství nemusí stačit — při přesunech tekutiny v těle se hodí nápoje, které obsahují i minerály a bílkoviny.
+Samotná voda ve větším množství nemusí stačit. Při přesunech tekutiny v těle se hodí nápoje, které obsahují i minerály a bílkoviny.
 
 - **Pijte pravidelně**, po menších dávkách, průběžně přes den. Cíl si ověřte na klinice, obvykle jde o zvýšený příjem oproti běžnému dni.
 - **Kombinujte** vodu s minerální vodou, iontovým nápojem nebo vývarem.
-- **Přidejte bílkoviny** ve stravě — jsou to bílkoviny v krvi, které pomáhají udržet tekutinu v cévách.
+- **Přidejte bílkoviny** ve stravě. Jsou to bílkoviny v krvi, které pomáhají udržet tekutinu v cévách.
 - **Sledujte, kolik močíte.** Je to nejlepší jednoduchý ukazatel, že jste dobře zavodněná.
 - **Vážte se ráno** a zapisujte. Prudký přírůstek je varovný signál.
 
@@ -1132,7 +1132,7 @@ Samotná voda ve větším množství nemusí stačit — při přesunech tekuti
 
 Co pomáhá i bez léků:
 
-- **Teplo na podbřišek** — nahřívací polštářek, ne horký. Zeptejte se předem, jestli je u vás vhodné.
+- **Teplo na podbřišek**: nahřívací polštářek, ne horký. Zeptejte se předem, jestli je u vás vhodné.
 - **Poloha na boku s pokrčenýma nohama.**
 - **Volné oblečení bez gumy v pase.**
 - **Pomalá chůze po bytě** několikrát denně. Zlepší střevní pohyb a snižuje riziko trombózy.
@@ -1144,20 +1144,20 @@ Kombinace anestezie, progesteronu a nehybnosti dokáže střeva zastavit spolehl
 - rozpustná vláknina (ovesné vločky, švestky, lněné semínko namočené ve vodě),
 - dostatek tekutin,
 - pohyb,
-- žádné tlačení na stolici — zvýšený nitrobřišní tlak není v téhle fázi vhodný,
+- žádné tlačení na stolici. Zvýšený nitrobřišní tlak není v téhle fázi vhodný,
 - pokud potřebujete něco navíc, **zeptejte se lékaře, který přípravek je pro vás vhodný.**
 
 ## Čemu se vyhnout
 
-- **Pohlavní styk** — do doby, kterou určí klinika. Vaječníky jsou zvětšené a citlivé.
-- **Sport, běh, skákání, zvedání těžkého** — riziko torze vaječníku.
+- **Pohlavní styk**: do doby, kterou určí klinika. Vaječníky jsou zvětšené a citlivé.
+- **Sport, běh, skákání, zvedání těžkého**: riziko torze vaječníku.
 - **Horká koupel, sauna, vířivka.**
 - **Alkohol.**
-- **Tampony** — používejte vložky.
+- **Tampony**: používejte vložky.
 
 ## Psychická stránka, o které se mluví míň
 
-Den po odběru je zvláštní. Fyzicky se cítíte nejhůř, adrenalin opadl a zároveň nastupuje čekání na telefonát z embryologie. Spousta žen popisuje **náhlý propad nálady druhý den** — je to kombinace doznívající anestezie, hormonálního zvratu po odebrání folikulů a psychického dojezdu.
+Den po odběru je zvláštní. Fyzicky se cítíte nejhůř, adrenalin opadl a zároveň nastupuje čekání na telefonát z embryologie. Spousta žen popisuje **náhlý propad nálady druhý den**: je to kombinace doznívající anestezie, hormonálního zvratu po odebrání folikulů a psychického dojezdu.
 
 Není to znamení, že něco nedopadlo. Je to fyziologie a obvykle to za pár dní odezní.
 
@@ -1183,7 +1183,7 @@ Volejte na kliniku nebo na pohotovost, pokud se objeví:
       hero: 'linen',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-11-05',
       boost: 0.95,
     },
@@ -1195,11 +1195,11 @@ Volejte na kliniku nebo na pohotovost, pokud se objeví:
         'Dvanáct minut na noc, kdy je všechno rozhodnuté a vy nemůžete dělat vůbec nic.',
       body: `## O čem to je
 
-Tahle nahrávka je určená na jednu konkrétní noc: tu mezi triggerem a odběrem. Je to nejpodivnější noc celého cyklu. Deset dní jste každý den něco dělala — píchala, měřila, jezdila na kontroly, zapisovala čísla. A teď nemůžete udělat vůbec nic. Vajíčka dozrávají bez vás.
+Tahle nahrávka je určená na jednu konkrétní noc: tu mezi triggerem a odběrem. Je to nejpodivnější noc celého cyklu. Deset dní jste každý den něco dělala. Píchala, měřila, jezdila na kontroly, zapisovala čísla. A teď nemůžete udělat vůbec nic. Vajíčka dozrávají bez vás.
 
 Nahrávka nezačíná dechovým cvičením. Začíná větou, že je v pořádku ležet a nespat.
 
-**První část (asi 3 minuty)** je o tom, jak vypnout počítání. Ne tak, že si zakážete myslet — to nefunguje —, ale tak, že si dovolíte jednou nahlas projít, co všechno jste udělala. Celý seznam. Až po ten poslední vpich ve 21:45.
+**První část (asi 3 minuty)** je o tom, jak vypnout počítání. Ne tak, že si zakážete myslet. To nefunguje –, ale tak, že si dovolíte jednou nahlas projít, co všechno jste udělala. Celý seznam. Až po ten poslední vpich ve 21:45.
 
 **Druhá část (asi 4 minuty)** je klidné, pomalé dýchání s prodlouženým výdechem. Nádech na čtyři, výdech na šest. Prodloužený výdech je jediná věc, kterou umíte vědomě ovlivnit nervový systém, a funguje i tehdy, když tomu nevěříte.
 
@@ -1250,12 +1250,12 @@ Praktický střed, který funguje většině žen:
 - **Personální oddělení:** stačí, když máte potvrzení o návštěvě lékaře.
 - **Kolegové:** nic, pokud sama nechcete. Jedna spřátelená kolegyně, která ví, bývá k nezaplacení.
 
-Zvažte, jestli chcete říct, že jde o IVF. Výhoda je pochopení. Nevýhoda jsou otázky ve výtahu za tři týdny — „a tak co, vyšlo to?".
+Zvažte, jestli chcete říct, že jde o IVF. Výhoda je pochopení. Nevýhoda jsou otázky ve výtahu za tři týdny. „a tak co, vyšlo to?".
 
 ## Jak si to zorganizovat
 
 1. **Ranní bloky.** Naplánujte si první schůzku dne nejdřív na 10:00 po celou dobu stimulace. Termín odběru předem neznáte, ale kontroly ano.
-2. **Držte si dva volné dny v kalendáři** kolem předpokládaného odběru — přesunout schůzku je snazší než ji tvořit na poslední chvíli.
+2. **Držte si dva volné dny v kalendáři** kolem předpokládaného odběru. Přesunout schůzku je snazší než ji tvořit na poslední chvíli.
 3. **Nezvedejte v tomhle období nové velké projekty**, pokud to jde. Ne proto, že je nezvládnete, ale proto, že vaše kapacita na nečekané je teď menší.
 4. **Připravte si na den odběru zástup.** Nebudete odpovídat na e-maily a nechcete to řešit z dospávacího pokoje.
 5. **Ranní kontroly berte jako pevný bod**, ne jako flexibilní položku. Nedají se přesunout na odpoledne.
@@ -1263,13 +1263,13 @@ Zvažte, jestli chcete říct, že jde o IVF. Výhoda je pochopení. Nevýhoda j
 ## Fyzická stránka v kanceláři
 
 - **Volné oblečení** od pátého dne stimulace. Vážně.
-- **Láhev s vodou na stole** a pravidelné vstávání — dlouhé sezení při vyšším estradiolu není ideální.
+- **Láhev s vodou na stole** a pravidelné vstávání. Dlouhé sezení při vyšším estradiolu není ideální.
 - **Něco k jídlu v šuplíku.** Hormonální výkyvy plus vynechané obědy dělají divy s náladou.
 - **Aplikace injekce v práci** je řešitelná, když píchate v pevný čas, který padne do pracovní doby: čistá místnost, umyté ruce, chladicí taška. Zeptejte se na klinice, jestli lze čas mírně posunout.
 
 ## Nemocenská a volno
 
-V Česku vám ošetřující lékař může vystavit **pracovní neschopnost**, pokud to váš stav vyžaduje — typicky kolem odběru nebo při komplikacích. Nárok na volno kvůli kontrolám řešíte obvykle jako **návštěvu lékaře s potvrzením**.
+V Česku vám ošetřující lékař může vystavit **pracovní neschopnost**, pokud to váš stav vyžaduje. Typicky kolem odběru nebo při komplikacích. Nárok na volno kvůli kontrolám řešíte obvykle jako **návštěvu lékaře s potvrzením**.
 
 Konkrétní podmínky se liší podle zaměstnavatele a vaší smlouvy. Zeptejte se předem, ne až v den, kdy to potřebujete.
 
@@ -1284,7 +1284,7 @@ Snížená koncentrace během stimulace je běžná a nemá s vaší schopností
 
 ## Věta na závěr
 
-Práce vám během stimulace může být oporou — struktura dne pomáhá. Může být ale i přítěží, když se každá porada mění v hodinu, kdy nemyslíte na nic jiného. Obojí je legitimní. Rozhodujte se podle toho, co vám pomáhá dnes, ne podle toho, co jste zvládala loni.
+Práce vám během stimulace může být oporou. Struktura dne pomáhá. Může být ale i přítěží, když se každá porada mění v hodinu, kdy nemyslíte na nic jiného. Obojí je legitimní. Rozhodujte se podle toho, co vám pomáhá dnes, ne podle toho, co jste zvládala loni.
 
 > Text je obecný a nenahrazuje právní ani lékařskou konzultaci. O pracovní neschopnosti rozhoduje vždy váš ošetřující lékař.`,
       minutes: 6,
@@ -1304,7 +1304,7 @@ Práce vám během stimulace může být oporou — struktura dne pomáhá. Mů�
         'Tři zkratky, tři různé způsoby, jak spermie potká vajíčko. Tady je, čím se liší a proč vám vybrali zrovna tenhle.',
       body: `## Co se děje v laboratoři pár hodin po odběru
 
-Odsátá tekutina z folikulů jde rovnou k embryologovi, který v ní pod mikroskopem vyhledá vajíčka. Ta se očistí a **posoudí se jejich zralost** — použít lze pouze zralá vajíčka, která dokončila zrání po triggeru. Nezralých bývá menšina a je to očekávané.
+Odsátá tekutina z folikulů jde rovnou k embryologovi, který v ní pod mikroskopem vyhledá vajíčka. Ta se očistí a **posoudí se jejich zralost**: použít lze pouze zralá vajíčka, která dokončila zrání po triggeru. Nezralých bývá menšina a je to očekávané.
 
 Souběžně se zpracovává vzorek spermií: promyje se, oddělí se pohyblivé spermie od zbytku ejakulátu a připraví se koncentrát pro oplození.
 
@@ -1312,7 +1312,7 @@ Pak přijde na řadu metoda.
 
 ## Klasické IVF
 
-Vajíčko a určité množství připravených spermií se dají dohromady do misky s kultivačním médiem a **spermie si cestu najde sama.** Je to bližší přirozenému procesu — spermie musí projít obalem vajíčka vlastní silou.
+Vajíčko a určité množství připravených spermií se dají dohromady do misky s kultivačním médiem a **spermie si cestu najde sama.** Je to bližší přirozenému procesu. Spermie musí projít obalem vajíčka vlastní silou.
 
 Používá se, když je vzorek spermií v dobrých parametrech a není důvod zasahovat.
 
@@ -1325,21 +1325,21 @@ Používá se, když je vzorek spermií v dobrých parametrech a není důvod za
 
 Kdy se používá:
 
-- **Mužský faktor** — nízký počet, snížená pohyblivost nebo morfologie spermií.
+- **Mužský faktor**: nízký počet, snížená pohyblivost nebo morfologie spermií.
 - **Spermie získané chirurgicky** z varlete či nadvarlete.
 - **Předchozí selhání oplození** klasickým IVF.
 - **Malý počet vajíček**, kde se nechce riskovat.
 - **Před genetickým testováním embryí (PGT)**, aby se vyloučila kontaminace cizí DNA.
 - Někdy při použití **rozmražených vajíček**.
 
-ICSI obchází bariéru obalu vajíčka. **Neřeší kvalitu vajíčka ani genetiku spermie** a nezaručuje oplození — to je věc, kterou stojí za to vědět předem.
+ICSI obchází bariéru obalu vajíčka. **Neřeší kvalitu vajíčka ani genetiku spermie** a nezaručuje oplození. To je věc, kterou stojí za to vědět předem.
 
 ## PICSI a další způsoby výběru spermie
 
 Když se dělá ICSI, musí embryolog jednu spermii vybrat. Metody, které mu s výběrem pomáhají:
 
-- **PICSI** — vzorek se položí na plochu s kyselinou hyaluronovou, tedy látkou, která se přirozeně nachází v obalu vajíčka. **Zralé spermie se na ni navážou**, nezralé ne. Embryolog pak vybírá z těch navázaných.
-- **IMSI** — výběr spermie při velmi vysokém zvětšení, které umožní posoudit detaily tvaru hlavičky.
+- **PICSI**: vzorek se položí na plochu s kyselinou hyaluronovou, tedy látkou, která se přirozeně nachází v obalu vajíčka. **Zralé spermie se na ni navážou**, nezralé ne. Embryolog pak vybírá z těch navázaných.
+- **IMSI**: výběr spermie při velmi vysokém zvětšení, které umožní posoudit detaily tvaru hlavičky.
 
 Tyhle metody se používají cíleně, typicky při **opakovaném selhání, vyšší fragmentaci DNA spermií nebo horší morfologii**. Nejsou to univerzální vylepšení pro každého a rozhodnutí patří embryologovi a lékaři.
 
@@ -1351,7 +1351,7 @@ Ne všechna. Ani při ICSI. Část vajíček se neoplodní, část se oplodní *
 
 ## Když se neoplodní nic
 
-Vzácná, ale existující situace. Nazývá se **totální selhání oplození**. Není to nic, co byste způsobila. Následuje rozbor: kvalita vajíček, parametry vzorku, použitá metoda. Pro další cyklus se obvykle mění strategie — například se přejde z IVF na ICSI, přidá se jiný způsob výběru spermie nebo se řeší aktivace vajíčka.
+Vzácná, ale existující situace. Nazývá se **totální selhání oplození**. Není to nic, co byste způsobila. Následuje rozbor: kvalita vajíček, parametry vzorku, použitá metoda. Pro další cyklus se obvykle mění strategie, například se přejde z IVF na ICSI, přidá se jiný způsob výběru spermie nebo se řeší aktivace vajíčka.
 
 Je to jedna z nejtěžších zpráv, jaké se v embryologii sdělují, a je naprosto v pořádku si na ni vyžádat samostatnou konzultaci, ne jen větu do telefonu.
 
@@ -1373,7 +1373,7 @@ Je to jedna z nejtěžších zpráv, jaké se v embryologii sdělují, a je napr
       hero: 'sky',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy pro laboratoře asistované reprodukce', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2025-11-18',
       boost: 0.95,
     },
@@ -1385,7 +1385,7 @@ Je to jedna z nejtěžších zpráv, jaké se v embryologii sdělují, a je napr
         'Klinika nabídne metodu s třípísmennou zkratkou a příplatkem. Tady je, co znamená a kdy dává smysl.',
       body: `## Proč se o tomhle vůbec mluví
 
-Kvalita spermií se dlouho hodnotila hlavně podle tří parametrů: počet, pohyblivost, tvar. Postupně se ukázalo, že tenhle popis nestačí — spermie může vypadat i plavat výborně a přitom mít **poškozenou genetickou informaci**. Odtud vzešly metody, které se snaží spermie třídit podle jiných vlastností než podle vzhledu.
+Kvalita spermií se dlouho hodnotila hlavně podle tří parametrů: počet, pohyblivost, tvar. Postupně se ukázalo, že tenhle popis nestačí. Spermie může vypadat i plavat výborně a přitom mít **poškozenou genetickou informaci**. Odtud vzešly metody, které se snaží spermie třídit podle jiných vlastností než podle vzhledu.
 
 Setkáte se s nimi obvykle ve dvou situacích: při opakovaném neúspěchu nebo když vzorek partnera vykazuje odchylky.
 
@@ -1399,7 +1399,7 @@ Co fragmentaci zvyšuje:
 - **Kouření, alkohol, obezita**
 - **Varikokéla** (rozšířené žíly v šourku)
 - **Infekce a záněty**
-- **Horko** — sauna, vyhřívané sedačky, notebook na klíně
+- **Horko**: sauna, vyhřívané sedačky, notebook na klíně
 - **Delší abstinence** před odběrem, paradoxně
 
 Část těchto faktorů se dá ovlivnit, a to během zhruba **tří měsíců**, což je doba tvorby spermií. Rozhodnutí, jestli vyšetření vůbec dělat, patří andrologovi nebo reprodukčnímu lékaři.
@@ -1419,7 +1419,7 @@ Kdy se zvažuje:
 
 ## PICSI a IMSI ve zkratce
 
-- **PICSI** vybírá spermie podle schopnosti navázat se na kyselinu hyaluronovou — tedy podle zralosti.
+- **PICSI** vybírá spermie podle schopnosti navázat se na kyselinu hyaluronovou, tedy podle zralosti.
 - **IMSI** vybírá spermie podle detailního tvaru při velmi vysokém zvětšení.
 
 Obojí prodlužuje práci embryologa a obojí má své indikace. Ani jedno není záruka.
@@ -1460,7 +1460,7 @@ Udělala jste dost. Rozhodujte se podle indikace, ne podle viny.
       hero: 'dusk',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce'],
+      sources: ['ESHRE: doporučené postupy pro laboratoře asistované reprodukce'],
       publishedOn: '2025-11-22',
     },
     {
@@ -1474,17 +1474,17 @@ Udělala jste dost. Rozhodujte se podle indikace, ne podle viny.
 První telefonát přichází typicky **den po odběru** a nese dvě čísla:
 
 1. **Kolik vajíček bylo zralých.**
-2. **Kolik se jich normálně oplodnilo** — tedy kolik z nich má ráno po oplození dvě prvojádra.
+2. **Kolik se jich normálně oplodnilo**: tedy kolik z nich má ráno po oplození dvě prvojádra.
 
 Další telefonáty pak přicházejí podle zvyklostí pracoviště: někde denně, jinde až v den, kdy se rozhoduje o transferu nebo zamrazení. **Zeptejte se předem, jaký je jejich systém**, ať nečekáte na telefon, který ten den nepřijde.
 
 ## Proč je to tak těžké
 
-Protože v tom telefonátu se poprvé objeví reálná čísla. Do té chvíle bylo všechno potenciál — folikuly, naděje, plán. Teď se z toho stane počet.
+Protože v tom telefonátu se poprvé objeví reálná čísla. Do té chvíle bylo všechno potenciál. Folikuly, naděje, plán. Teď se z toho stane počet.
 
 A skoro vždycky je to číslo menší, než jste čekala. To není proto, že by se něco pokazilo. Je to proto, že **na každém stupni se něco ztrácí**: z folikulů vajíčka, z vajíček zralá, ze zralých oplozená, z oplozených ta, která se dělí dál. Když víte, že to tak je, ubere to telefonátu polovinu jeho síly.
 
-## Připravte se předem — konkrétně
+## Připravte se předem: konkrétně
 
 - **Mějte po ruce papír a tužku.** Ne telefon, na kterém právě mluvíte.
 - **Napište si tři otázky dopředu.** V šoku si nevzpomenete.
@@ -1550,56 +1550,56 @@ V inkubátoru, který drží stabilní teplotu kolem tělesné, přesně nastave
 
 Laboratoř je tichá, tmavá a extrémně stabilní. To je celé její kouzlo: **nedělat nic zbytečně a nerušit.**
 
-## Den 0 — den odběru
+## Den 0: den odběru
 
 Vajíčka se vyhledají v odsáté tekutině, posoudí se jejich zralost a připraví se ke oplození. Podle metody se buď spojí se spermiemi (IVF), nebo se do nich spermie vpraví (ICSI). Pak se vrátí do inkubátoru.
 
-## Den 1 — kontrola oplození
+## Den 1: kontrola oplození
 
-Zhruba 16 až 18 hodin po oplození embryolog kontroluje, jestli se objevila **dvě prvojádra** — jedno z vajíčka, jedno ze spermie. To je znak normálního oplození.
+Zhruba 16 až 18 hodin po oplození embryolog kontroluje, jestli se objevila **dvě prvojádra**: jedno z vajíčka, jedno ze spermie. To je znak normálního oplození.
 
 Co může nastat:
 
-- **Dvě prvojádra** — normální oplození, embryo pokračuje.
-- **Žádné prvojádro** — vajíčko se neoplodnilo.
-- **Jedno nebo tři a víc** — abnormální oplození, tato embrya se dál nepoužívají.
+- **Dvě prvojádra**: normální oplození, embryo pokračuje.
+- **Žádné prvojádro**: vajíčko se neoplodnilo.
+- **Jedno nebo tři a víc**: abnormální oplození, tato embrya se dál nepoužívají.
 
 Tohle je to číslo, které se dozvíte v prvním telefonátu.
 
-## Den 2 — první dělení
+## Den 2: první dělení
 
-Embryo by mělo mít zhruba **dvě až čtyři buňky** (blastomery). Hodnotí se počet buněk, jejich stejnoměrnost a podíl fragmentace — drobných úlomků buněčné hmoty, kterých má být co nejméně.
+Embryo by mělo mít zhruba **dvě až čtyři buňky** (blastomery). Hodnotí se počet buněk, jejich stejnoměrnost a podíl fragmentace. Drobných úlomků buněčné hmoty, kterých má být co nejméně.
 
-## Den 3 — osm buněk a velký přerod
+## Den 3: osm buněk a velký přerod
 
 Embryo má obvykle kolem **šesti až osmi buněk**. V tuhle dobu se odehrává zásadní věc: **embryo přepíná na vlastní genom.** Do té chvíle běželo na zásobách a informacích z vajíčka. Teď musí začít pracovat samo.
 
-Právě tady se řada embryí zastaví. Není to náhoda a není to nic, co byste ovlivnila — je to okamžik, kdy se projeví genetická výbava embrya.
+Právě tady se řada embryí zastaví. Není to náhoda a není to nic, co byste ovlivnila. Je to okamžik, kdy se projeví genetická výbava embrya.
 
 Na některých pracovištích se **transfer dělá třetí den**, zvlášť když je embryí málo a nemá smysl je držet déle v laboratoři.
 
-## Den 4 — morula
+## Den 4: morula
 
-Buňky se přestanou počítat, protože se k sobě těsně přimknou a hranice mezi nimi zmizí. Vznikne kompaktní kulička — **morula**. Vypadá to jako krok zpět, ale je to nutná fáze.
+Buňky se přestanou počítat, protože se k sobě těsně přimknou a hranice mezi nimi zmizí. Vznikne kompaktní kulička. **morula**. Vypadá to jako krok zpět, ale je to nutná fáze.
 
 Čtvrtý den se obvykle netelefonuje, protože morula se hodnotí obtížně a informace by nic nepřinesla.
 
-## Den 5 — blastocysta
+## Den 5: blastocysta
 
 Uvnitř moruly vznikne dutina vyplněná tekutinou a buňky se poprvé rozdělí na dvě různé skupiny:
 
-- **Vnitřní buněčná masa** — z ní vznikne plod.
-- **Trofektoderm** — vnější vrstva, ze které vznikne placenta.
+- **Vnitřní buněčná masa**: z ní vznikne plod.
+- **Trofektoderm**: vnější vrstva, ze které vznikne placenta.
 
 Tomuhle stádiu se říká **blastocysta** a je to nejčastější okamžik pro transfer nebo zamrazení. Pokud se dělá genetické testování, odebírá se v tuhle dobu několik buněk z vnější vrstvy.
 
-## Den 6 (někdy 7) — opozdilci
+## Den 6 (někdy 7): opozdilci
 
-Část embryí dojde do stádia blastocysty o den nebo dva později. **Pomalejší neznamená nepoužitelné** — z blastocyst šestého dne se rodí děti. Obvykle se zamrazují k pozdějšímu použití.
+Část embryí dojde do stádia blastocysty o den nebo dva později. **Pomalejší neznamená nepoužitelné**: z blastocyst šestého dne se rodí děti. Obvykle se zamrazují k pozdějšímu použití.
 
 ## Proč jich na konci zbude tak málo
 
-Protože kultivace je **selekce**. Embryo, které se zastaví ve čtvrtý den, by se s velkou pravděpodobností nezahnízdilo ani v děloze. Laboratoř tuhle selekci neprovádí navíc — jen ji zviditelní.
+Protože kultivace je **selekce**. Embryo, které se zastaví ve čtvrtý den, by se s velkou pravděpodobností nezahnízdilo ani v děloze. Laboratoř tuhle selekci neprovádí navíc, jen ji zviditelní.
 
 Zní to krutě a zároveň to znamená, že embryo, které dojde do pátého dne, prošlo skutečnou zkouškou.
 
@@ -1609,7 +1609,7 @@ Prakticky nic, co by vývoj ovlivnilo, a to je nejtěžší část. Co pomáhá:
 
 - **Vědět, který den co znamená** (proto tenhle text).
 - **Nepočítat dopředu.** Číslo z dne tři nepředpovídá číslo z dne pět.
-- **Držet svůj vlastní režim** — spánek, jídlo, pohyb, podpora progesteronem podle pokynů.
+- **Držet svůj vlastní režim**: spánek, jídlo, pohyb, podpora progesteronem podle pokynů.
 - **Nechodit na diskusní fóra ve tři ráno.** Cizí čísla vám nepomůžou.
 
 > Popis je obecný a zjednodušený. Časování i způsob hodnocení se mezi pracovišti liší. Konkrétní informace o vašich embryích vám sdělí pouze embryolog vaší kliniky.`,
@@ -1621,7 +1621,7 @@ Prakticky nic, co by vývoj ovlivnilo, a to je nejtěžší část. Co pomáhá:
       hero: 'pearl',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce'],
+      sources: ['ESHRE: doporučené postupy pro laboratoře asistované reprodukce'],
       publishedOn: '2025-12-01',
       boost: 1,
     },
@@ -1633,7 +1633,7 @@ Prakticky nic, co by vývoj ovlivnilo, a to je nejtěžší část. Co pomáhá:
         'Zápis typu 4AA vypadá jako známka z chemie. Tady je, co jednotlivé části znamenají a co neznamenají.',
       body: `## Proč se embrya vůbec známkují
 
-Když je embryí víc, embryolog musí vybrat to, které přenese jako první. Hodnocení je **nástroj pro pořadí**, ne rozsudek nad embryem. Vzniklo z pozorování — z toho, jak vypadala embrya, po kterých následovalo těhotenství.
+Když je embryí víc, embryolog musí vybrat to, které přenese jako první. Hodnocení je **nástroj pro pořadí**, ne rozsudek nad embryem. Vzniklo z pozorování. Z toho, jak vypadala embrya, po kterých následovalo těhotenství.
 
 Platí u něj dvě věci současně: **je to nejlepší, co máme bez zásahu do embrya** a zároveň **je to jen vzhled.** Embryo s krásným hodnocením se nemusí uhnízdit a embryo s horším ano.
 
@@ -1643,23 +1643,23 @@ U embryí ve stádiu dělení se posuzují tři věci:
 
 1. **Počet buněk vzhledem ke dni.** Třetí den se obvykle očekává zhruba šest až osm buněk.
 2. **Stejnoměrnost buněk.** Ideálně podobně velké.
-3. **Fragmentace** — podíl drobných úlomků buněčné hmoty. Čím méně, tím lépe.
+3. **Fragmentace**: podíl drobných úlomků buněčné hmoty. Čím méně, tím lépe.
 
 Zápis pak vypadá například jako „8 buněk, stejnoměrné, fragmentace pod 10 %".
 
-## Hodnocení blastocysty — princip Gardnerovy škály
+## Hodnocení blastocysty: princip Gardnerovy škály
 
 U blastocysty se používá kombinace **čísla a dvou písmen**, například 4AA nebo 3BC. Nejrozšířenější systém popsal Gardner a jeho obměny používá většina laboratoří.
 
 **Číslo (obvykle 1–6) popisuje stupeň expanze**, tedy jak je blastocysta rozvinutá:
 
-- nižší čísla — dutina se teprve tvoří,
-- střední čísla — blastocysta je plně rozvinutá,
-- vyšší čísla — blastocysta se začíná „líhnout" ze svého obalu.
+- nižší čísla. Dutina se teprve tvoří,
+- střední čísla. Blastocysta je plně rozvinutá,
+- vyšší čísla. Blastocysta se začíná „líhnout" ze svého obalu.
 
-**První písmeno hodnotí vnitřní buněčnou masu** — skupinu buněk, ze které vznikne plod. A je nejlepší, C nejslabší.
+**První písmeno hodnotí vnitřní buněčnou masu**: skupinu buněk, ze které vznikne plod. A je nejlepší, C nejslabší.
 
-**Druhé písmeno hodnotí trofektoderm** — vnější vrstvu, ze které vznikne placenta. Opět A až C.
+**Druhé písmeno hodnotí trofektoderm**: vnější vrstvu, ze které vznikne placenta. Opět A až C.
 
 Takže 4AA znamená plně rozvinutou blastocystu s dobře vypadající vnitřní masou i vnější vrstvou. **Neznamená to zaručené těhotenství.**
 
@@ -1676,11 +1676,11 @@ Tohle je nejdůležitější odstavec celého textu.
 
 Když vám embryolog řekne písmena, zeptejte se na jedinou opravdu užitečnou věc: **„Které embryo přenášíte jako první a proč zrovna tohle?"** Odpověď vám poví víc než celá abeceda.
 
-A pak si tu známku odložte. Známe spoustu žen, které si písmena opakovaly dva týdny jako mantru — v jednu chvíli jako důvod k naději, ve druhé jako důvod k zoufalství. Ta samá dvě písmena.
+A pak si tu známku odložte. Známe spoustu žen, které si písmena opakovaly dva týdny jako mantru. V jednu chvíli jako důvod k naději, ve druhé jako důvod k zoufalství. Ta samá dvě písmena.
 
 ## Co když jsou všechna embrya „horší"
 
-Za prvé, horší hodnocení není synonymum pro nepoužitelné. Za druhé, když jsou hodnocení nižší napříč celou skupinou, je to informace pro lékaře do dalšího cyklu — může se měnit protokol, metoda oplození, laboratorní postup.
+Za prvé, horší hodnocení není synonymum pro nepoužitelné. Za druhé, když jsou hodnocení nižší napříč celou skupinou, je to informace pro lékaře do dalšího cyklu. Může se měnit protokol, metoda oplození, laboratorní postup.
 
 Za třetí a hlavně: **hodnocení není hodnocení vás.** Není to známka za to, jak dobře jste to zvládla. Není nic, co byste udělala jinak.
 
@@ -1701,7 +1701,7 @@ Za třetí a hlavně: **hodnocení není hodnocení vás.** Není to známka za 
       hero: 'sage',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — konsenzuální doporučení k hodnocení embryí', 'ESHRE — doporučené postupy pro laboratoře asistované reprodukce'],
+      sources: ['ESHRE (konsenzuální doporučení k hodnocení embryí', 'ESHRE) doporučené postupy pro laboratoře asistované reprodukce'],
       publishedOn: '2025-12-05',
       boost: 0.85,
     },
@@ -1715,8 +1715,8 @@ Za třetí a hlavně: **hodnocení není hodnocení vás.** Není to známka za 
 
 Stádium vývoje embrya, kterého se dosahuje obvykle **pátý den po oplození**. Z kompaktní kuličky vzniká struktura s dutinou naplněnou tekutinou a poprvé se buňky rozdělí do dvou různých osudů:
 
-- **Vnitřní buněčná masa** — malá skupina buněk na jednom pólu. Vznikne z ní plod.
-- **Trofektoderm** — vnější vrstva obalující dutinu. Vznikne z něj placenta a plodové obaly.
+- **Vnitřní buněčná masa**: malá skupina buněk na jednom pólu. Vznikne z ní plod.
+- **Trofektoderm**: vnější vrstva obalující dutinu. Vznikne z něj placenta a plodové obaly.
 
 Do téhle chvíle byly všechny buňky rovnocenné. Tohle je první specializace v celém životě organismu.
 
@@ -1724,20 +1724,20 @@ Do téhle chvíle byly všechny buňky rovnocenné. Tohle je první specializace
 
 Kultivace do pátého dne má dva praktické důvody:
 
-1. **Selekce.** Embrya, která se zastaví mezi třetím a pátým dnem, by se s velkou pravděpodobností nezahnízdila. Když je embryí víc, kultivace ukáže, které z nich mají skutečný potenciál — místo aby se to zjišťovalo v děloze.
+1. **Selekce.** Embrya, která se zastaví mezi třetím a pátým dnem, by se s velkou pravděpodobností nezahnízdila. Když je embryí víc, kultivace ukáže, které z nich mají skutečný potenciál. Místo aby se to zjišťovalo v děloze.
 2. **Synchronizace.** V přirozeném cyklu embryo do dělohy sestoupí právě ve stádiu blastocysty, zhruba pátý den. Transfer blastocysty tedy lépe odpovídá tomu, na co je děložní sliznice připravená.
 
 ## Proč to někdy nechtějí
 
 Prodloužená kultivace nese riziko, že **v laboratoři se zastaví embryo, které by se v děloze vyvíjelo dál.** Děloha je pro embryo lepší prostředí než jakýkoli inkubátor.
 
-Proto se u malého počtu embryí často volí **transfer třetí den** — nemá smysl provádět selekci mezi dvěma embryi, když se stejně přenese to lepší z nich.
+Proto se u malého počtu embryí často volí **transfer třetí den**: nemá smysl provádět selekci mezi dvěma embryi, když se stejně přenese to lepší z nich.
 
 Rozhodnutí, jestli kultivovat do pátého dne, patří embryologovi a lékaři a řídí se počtem a kvalitou embryí. **Není to volba mezi lepším a horším postupem, je to volba podle situace.**
 
 ## Co se v blastocystě děje dál
 
-Blastocysta roste, dutina se zvětšuje a tlačí na obal (zona pellucida). Nakonec se embryo z obalu **vylíhne** — tomu se říká hatching — a teprve pak se může přichytit k děložní sliznici.
+Blastocysta roste, dutina se zvětšuje a tlačí na obal (zona pellucida). Nakonec se embryo z obalu **vylíhne** (tomu se říká hatching) a teprve pak se může přichytit k děložní sliznici.
 
 Celý tenhle proces v přirozeném cyklu probíhá v děloze zhruba mezi pátým a sedmým dnem po oplození.
 
@@ -1759,7 +1759,7 @@ Co následuje: **konzultace s lékařem**, rozbor cyklu a rozhodnutí o změně 
 
 1. Kolik embryí se zastavilo a v který den?
 2. Vidíte v tom nějaký vzorec, který by ukazoval na příčinu?
-3. Co byste v dalším cyklu změnili — protokol, metodu oplození, laboratorní postup?
+3. Co byste v dalším cyklu změnili. Protokol, metodu oplození, laboratorní postup?
 4. Má smysl doplnit nějaké vyšetření u mě nebo u partnera?
 5. Jak dlouho doporučujete počkat?
 
@@ -1772,7 +1772,7 @@ Co následuje: **konzultace s lékařem**, rozbor cyklu a rozhodnutí o změně 
       hero: 'champagne',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce'],
+      sources: ['ESHRE: doporučené postupy pro laboratoře asistované reprodukce'],
       publishedOn: '2025-12-10',
       boost: 0.9,
     },
@@ -1786,7 +1786,7 @@ Co následuje: **konzultace s lékařem**, rozbor cyklu a rozhodnutí o změně 
 
 Ze tří důvodů, které spolu nesouvisejí:
 
-1. **Zbylá embrya po transferu.** Když je embryí víc, přenese se obvykle jedno a zbytek se uchová pro další pokusy — bez nutnosti opakovat celou stimulaci.
+1. **Zbylá embrya po transferu.** Když je embryí víc, přenese se obvykle jedno a zbytek se uchová pro další pokusy. Bez nutnosti opakovat celou stimulaci.
 2. **Odložení transferu z medicínských důvodů.** Například při riziku OHSS, při předčasném vzestupu progesteronu nebo když je potřeba připravit dělohu.
 3. **Genetické testování.** Výsledky PGT nejsou hned, takže embrya mezitím čekají zamrazená.
 
@@ -1794,19 +1794,19 @@ Ze tří důvodů, které spolu nesouvisejí:
 
 Moderní metoda **ultrarychlého zmrazení**. Embryo se nejdřív prosytí ochrannými látkami, které nahradí část vody v buňkách, a pak se během zlomku vteřiny ochladí na teplotu tekutého dusíku, tedy zhruba minus 196 °C.
 
-Podstata je v rychlosti: **při pomalém mrazení vznikají ledové krystaly, které buňku poškodí.** Při vitrifikaci se voda nestihne uspořádat do krystalů a ztuhne do sklovité podoby. Odtud i název — vitrum je latinsky sklo.
+Podstata je v rychlosti: **při pomalém mrazení vznikají ledové krystaly, které buňku poškodí.** Při vitrifikaci se voda nestihne uspořádat do krystalů a ztuhne do sklovité podoby. Odtud i název. Vitrum je latinsky sklo.
 
 Při této teplotě se zastaví veškeré biologické děje. Embryo se nestárne, nedělí, nemění.
 
 ## Jak dlouho embryo vydrží
 
-Prakticky velmi dlouho — čas při teplotě tekutého dusíku pro embryo neběží. **Omezení je právní a organizační, ne biologické.** V Česku se uchovávání řídí zákonem a smlouvou s klinikou, která má stanovenou dobu, poplatky a postup pro prodloužení.
+Prakticky velmi dlouho. Čas při teplotě tekutého dusíku pro embryo neběží. **Omezení je právní a organizační, ne biologické.** V Česku se uchovávání řídí zákonem a smlouvou s klinikou, která má stanovenou dobu, poplatky a postup pro prodloužení.
 
 **Tohle si pohlídejte.** Klinika vám bude posílat výzvy k prodloužení a k úhradě skladovacího poplatku. Změna adresy, e-mailu nebo příjmení je věc, kterou musíte nahlásit vy.
 
 ## Rozmrazování
 
-Probíhá opačným postupem, také velmi rychle, s postupným odstraňováním ochranných látek. Přežití embrya po rozmrazení je u dnešních postupů vysoké, ale **není stoprocentní** — část embryí rozmražení nepřežije nebo se poškodí. Konkrétní čísla svého pracoviště si vyžádejte na klinice.
+Probíhá opačným postupem, také velmi rychle, s postupným odstraňováním ochranných látek. Přežití embrya po rozmrazení je u dnešních postupů vysoké, ale **není stoprocentní**: část embryí rozmražení nepřežije nebo se poškodí. Konkrétní čísla svého pracoviště si vyžádejte na klinice.
 
 Po rozmražení se embryo obvykle nechá krátce v inkubátoru a sleduje se, jestli se dutina blastocysty znovu rozepne. To je znak, že embryo je vitální.
 
@@ -1825,17 +1825,17 @@ Které řešení je lepší u vás, závisí na vaší situaci a rozhoduje léka
 Při podpisu souhlasů se rozhoduje o věcech, které se špatně řeší zpětně:
 
 - **Kdo s embryi může nakládat** a co se stane při rozchodu nebo úmrtí jednoho z partnerů.
-- **Co se stane s embryi, která už nechcete použít** — zákon a smlouva definují možnosti.
+- **Co se stane s embryi, která už nechcete použít**: zákon a smlouva definují možnosti.
 - **Doba uchování** a jak se prodlužuje.
 - **Poplatky za skladování** a co se stane, když se neuhradí.
 
-Přečtěte si to spolu s partnerem, ne cestou z ordinace. A ptejte se, když něčemu nerozumíte — je to normální, texty jsou psané právníky.
+Přečtěte si to spolu s partnerem, ne cestou z ordinace. A ptejte se, když něčemu nerozumíte. Je to normální, texty jsou psané právníky.
 
 ## Emoční stránka, o které se mluví ještě míň
 
 Mít zamrazená embrya je zvláštní pocit. Je to úleva („máme rezervu") i tíha („co s nimi, až rodinu uzavřeme"). Spousta žen popisuje, že o nich přemýšlí i po letech, když už mají děti.
 
-Není potřeba to hned vyřešit. Jen vězte, že ten pocit je běžný a že o něm můžete mluvit — s partnerem, s psychologem se zkušeností s reprodukční medicínou, nebo s ženami, které to mají stejně.
+Není potřeba to hned vyřešit. Jen vězte, že ten pocit je běžný a že o něm můžete mluvit. S partnerem, s psychologem se zkušeností s reprodukční medicínou, nebo s ženami, které to mají stejně.
 
 ## Otázky, které se vyplatí položit
 
@@ -1855,7 +1855,7 @@ Není potřeba to hned vyřešit. Jen vězte, že ten pocit je běžný a že o 
       hero: 'sky',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy pro laboratoře asistované reprodukce', 'Zákon o specifických zdravotních službách — obecná úprava asistované reprodukce v ČR'],
+      sources: ['ESHRE (doporučené postupy pro laboratoře asistované reprodukce', 'Zákon o specifických zdravotních službách) obecná úprava asistované reprodukce v ČR'],
       publishedOn: '2025-12-15',
       boost: 0.7,
     },
@@ -1867,7 +1867,7 @@ Není potřeba to hned vyřešit. Jen vězte, že ten pocit je běžný a že o 
         'Zní to jako záruka. Není to záruka. Tady je, co test skutečně zjišťuje a komu dává smysl.',
       body: `## Co PGT-A je
 
-**Preimplantační genetické testování na aneuploidie.** Zjišťuje, jestli má embryo správný počet chromozomů. Odchylka v počtu — aneuploidie — je nejčastější příčinou toho, že se embryo neuhnízdí nebo že těhotenství skončí ztrátou.
+**Preimplantační genetické testování na aneuploidie.** Zjišťuje, jestli má embryo správný počet chromozomů. Odchylka v počtu (aneuploidie) je nejčastější příčinou toho, že se embryo neuhnízdí nebo že těhotenství skončí ztrátou.
 
 Provádí se tak, že se z **blastocysty odebere několik buněk z vnější vrstvy** (z trofektodermu, tedy z budoucí placenty, ne z budoucího plodu). Embryo se pak zamrazí a čeká na výsledek, který obvykle trvá několik týdnů.
 
@@ -1880,9 +1880,9 @@ Tohle je část, kterou v propagačních materiálech nenajdete:
 - **Nezaručuje zdravé dítě.** Zůstává standardní prenatální péče a screening v těhotenství.
 - **Nezvyšuje počet vašich dobrých embryí.** Jen pomáhá seřadit ta, která máte.
 
-## Mozaicismus — komplikace, o které se mluví málo
+## Mozaicismus: komplikace, o které se mluví málo
 
-Výsledek nemusí být jen „normální / abnormální". Část embryí vykazuje **mozaiku** — směs buněk s normálním a abnormálním počtem chromozomů. Vzniká to proto, že se testuje jen vzorek buněk vnější vrstvy a ten nemusí odpovídat zbytku embrya.
+Výsledek nemusí být jen „normální / abnormální". Část embryí vykazuje **mozaiku**: směs buněk s normálním a abnormálním počtem chromozomů. Vzniká to proto, že se testuje jen vzorek buněk vnější vrstvy a ten nemusí odpovídat zbytku embrya.
 
 Praktický důsledek: **mozaikové embryo není automaticky nepoužitelné.** Rozhodnutí o jeho použití je individuální, vyžaduje genetickou konzultaci a je to jedno z nejtěžších rozhodnutí, jaká v celém procesu padají.
 
@@ -1896,7 +1896,7 @@ Podle indikace, kterou určuje lékař a genetik. Nejčastěji se diskutuje u:
 - **známé chromozomální přestavby** u jednoho z partnerů,
 - **předchozího těhotenství s chromozomální odchylkou**.
 
-Naopak u mladších žen s malým počtem embryí může testování přinést víc rizika než užitku — biopsie je zásah a při malém počtu embryí se snadno stane, že po testu nezbyde nic k přenosu.
+Naopak u mladších žen s malým počtem embryí může testování přinést víc rizika než užitku. Biopsie je zásah a při malém počtu embryí se snadno stane, že po testu nezbyde nic k přenosu.
 
 ## Co byste měla vážit
 
@@ -1932,7 +1932,7 @@ Když jediný důvod je pocit, že „musíte udělat všechno". To není indika
       hero: 'dusk',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy k preimplantačnímu genetickému testování', 'Společnost lékařské genetiky a genomiky ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy k preimplantačnímu genetickému testování', 'Společnost lékařské genetiky a genomiky ČLS JEP'],
       publishedOn: '2025-12-20',
       boost: 0.8,
     },
@@ -1944,7 +1944,7 @@ Když jediný důvod je pocit, že „musíte udělat všechno". To není indika
         'Zpráva, na kterou vás nikdo nepřipraví. Tady je, co se stalo, co jste nezpůsobila a co má smysl udělat dál.',
       body: `## Nejdřív to podstatné
 
-**Nezpůsobila jste to.** Ne nedostatkem odpočinku, ne stresem v práci, ne tím, že jste den po odběru brečela nebo vypila kávu. Zastavení vývoje embrya je téměř vždy dané jeho vlastní genetickou výbavou — informací, která do něj vstoupila v okamžiku oplození.
+**Nezpůsobila jste to.** Ne nedostatkem odpočinku, ne stresem v práci, ne tím, že jste den po odběru brečela nebo vypila kávu. Zastavení vývoje embrya je téměř vždy dané jeho vlastní genetickou výbavou. Informací, která do něj vstoupila v okamžiku oplození.
 
 Tuhle větu si přečtěte ještě jednou. Za pár dní se vám vrátí otázka „co jsem měla udělat jinak" a je dobré mít po ruce odpověď.
 
@@ -1952,13 +1952,13 @@ Tuhle větu si přečtěte ještě jednou. Za pár dní se vám vrátí otázka 
 
 Existuje několik různých scénářů, které se v běžné řeči slévají do jednoho:
 
-- **Nezískala se žádná vajíčka** (prázdný odběr) — vzácné, ale existující.
+- **Nezískala se žádná vajíčka** (prázdný odběr). Vzácné, ale existující.
 - **Vajíčka byla nezralá.**
-- **Vajíčka se neoplodnila** — totální selhání oplození.
+- **Vajíčka se neoplodnila**: totální selhání oplození.
 - **Embrya se zastavila v prvních dnech.**
 - **Do blastocysty nedošlo žádné embryo.**
 
-Každý z těchhle scénářů má jinou příčinu a jiné řešení. Proto je zásadní vědět, který nastal u vás — a proto si vyžádejte konzultaci, ne jen telefonát.
+Každý z těchhle scénářů má jinou příčinu a jiné řešení. Proto je zásadní vědět, který nastal u vás. A proto si vyžádejte konzultaci, ne jen telefonát.
 
 ## Co má smysl zjistit
 
@@ -1976,7 +1976,7 @@ Pokud odpověď zní jen „máte smůlu, zkusíme to znovu stejně", máte prá
 
 ## Co se v dalším cyklu běžně mění
 
-Podle toho, kde se vývoj zastavil, přicházejí v úvahu různé úpravy — vždy je navrhuje lékař:
+Podle toho, kde se vývoj zastavil, přicházejí v úvahu různé úpravy. Vždy je navrhuje lékař:
 
 - **jiný protokol** nebo jiné dávkování,
 - **jiný typ triggeru** nebo jeho načasování,
@@ -2002,7 +2002,7 @@ Co bývá užitečné:
 
 ## Partnerovi
 
-Muži po téhle zprávě často přepínají do režimu „řešíme dál" — hledají další kliniku, další metodu, další termín. Je to jejich způsob, jak se vyrovnat s bezmocí. Není lepší ani horší než pláč. Problém nastává, když se ty dva režimy potkají ve stejné místnosti.
+Muži po téhle zprávě často přepínají do režimu „řešíme dál". Hledají další kliniku, další metodu, další termín. Je to jejich způsob, jak se vyrovnat s bezmocí. Není lepší ani horší než pláč. Problém nastává, když se ty dva režimy potkají ve stejné místnosti.
 
 Řekněte si nahlas, co teď potřebujete. Doslova: „Potřebuju, abys mě teď neřešil, jen se mnou seděl." Nebo naopak: „Potřebuju plán, jinak se zblázním."
 
@@ -2047,11 +2047,11 @@ Zákaz nefunguje. Co funguje:
 
 Bez struktury se dny slijí v jednu dlouhou úzkost. Nemusí to být nic velkého:
 
-1. **Ráno pevný bod** — snídaně u okna, deset minut ven, vždy stejně.
+1. **Ráno pevný bod**: snídaně u okna, deset minut ven, vždy stejně.
 2. **Dopoledne jedna konkrétní věc**, kterou dokončíte. Ne úklid celého bytu; jedna zásuvka.
-3. **Poledne pohyb** — pomalá procházka. Ne sport, vaječníky jsou pořád zvětšené.
+3. **Poledne pohyb**: pomalá procházka. Ne sport, vaječníky jsou pořád zvětšené.
 4. **Odpoledne kontakt s člověkem.** Jedním. Klidně na patnáct minut.
-5. **Večer něco, co drží pozornost** — seriál, který znáte, rukodělná práce, vaření podle receptu.
+5. **Večer něco, co drží pozornost**: seriál, který znáte, rukodělná práce, vaření podle receptu.
 
 Zní to banálně. Právě proto to funguje: banální věci nevyžadují rozhodování.
 
@@ -2108,10 +2108,10 @@ Tohle období nezvládáte špatně. Nikdo ho nezvládá dobře. Není to zkouš
       kind: 'quiz',
       title: 'Kvíz: rozumíte svému cyklu?',
       excerpt:
-        'Osm otázek, po kterých budete na konzultaci vědět, na co se ptát — a co si nemusíte brát osobně.',
+        'Osm otázek, po kterých budete na konzultaci vědět, na co se ptát. A co si nemusíte brát osobně.',
       body: `## K čemu tenhle kvíz je
 
-Není to zkouška. Je to způsob, jak si projít pojmy, které kolem vás během cyklu budou lítat, a zjistit, kde máte díru. Díra v porozumění není ostuda — je to jen seznam otázek na příští konzultaci.
+Není to zkouška. Je to způsob, jak si projít pojmy, které kolem vás během cyklu budou lítat, a zjistit, kde máte díru. Díra v porozumění není ostuda. Je to jen seznam otázek na příští konzultaci.
 
 Každá odpověď má vysvětlení. Přečtěte si ho i tehdy, když jste odpověděla správně: často je v něm ta část, kterou nikdo neříká nahlas.
 
@@ -2139,7 +2139,7 @@ Otázky, ve kterých jste tápala, si napište. Vezměte si papír na konzultaci
           ],
           correct: 1,
           explain:
-            'Ultrazvuk vidí folikul, ne vajíčko samotné. Proto se počet odebraných vajíček skoro nikdy nerovná počtu folikulů — některé mohou být prázdné nebo obsahovat nezralé vajíčko.',
+            'Ultrazvuk vidí folikul, ne vajíčko samotné. Proto se počet odebraných vajíček skoro nikdy nerovná počtu folikulů. Některé mohou být prázdné nebo obsahovat nezralé vajíčko.',
         },
         {
           q: 'Proč se u triggeru tak přísně hlídá hodina aplikace?',
@@ -2151,7 +2151,7 @@ Otázky, ve kterých jste tápala, si napište. Vezměte si papír na konzultaci
           ],
           correct: 1,
           explain:
-            'Odběr příliš brzy znamená nezralá vajíčka, příliš pozdě znamená prázdný odběr. Pokud se s časem spletete, volejte kliniku okamžitě — existují postupy, jak to řešit.',
+            'Odběr příliš brzy znamená nezralá vajíčka, příliš pozdě znamená prázdný odběr. Pokud se s časem spletete, volejte kliniku okamžitě. Existují postupy, jak to řešit.',
         },
         {
           q: 'Který z těchto příznaků po odběru vyžaduje okamžitý telefonát na kliniku?',
@@ -2223,7 +2223,7 @@ Otázky, ve kterých jste tápala, si napište. Vezměte si papír na konzultaci
           ],
           correct: 0,
           explain:
-            'Odložení transferu chrání vaše zdraví i vaši šanci. Není to komplikace ani horší varianta — u části žen je mražený transfer volbou první volby.',
+            'Odložení transferu chrání vaše zdraví i vaši šanci. Není to komplikace ani horší varianta. U části žen je mražený transfer volbou první volby.',
         },
       ],
       boost: 0.6,
@@ -2236,7 +2236,7 @@ Otázky, ve kterých jste tápala, si napište. Vezměte si papír na konzultaci
         'Papíry, peníze, kalendář a jeden rozhovor s partnerem. Po startu stimulace už na to nebude prostor.',
       body: `## Proč to řešit teď
 
-Ve chvíli, kdy začnete píchat, se váš svět zúží na kontroly, čísla a čekání. Všechno, co jde vyřídit předem, vyřiďte předem — ne proto, že by to jinak nešlo, ale proto, že vaše kapacita na administrativu bude v příštích třech týdnech minimální.
+Ve chvíli, kdy začnete píchat, se váš svět zúží na kontroly, čísla a čekání. Všechno, co jde vyřídit předem, vyřiďte předem, ne proto, že by to jinak nešlo, ale proto, že vaše kapacita na administrativu bude v příštích třech týdnech minimální.
 
 ## Čtyři oblasti
 
@@ -2246,7 +2246,7 @@ Ve chvíli, kdy začnete píchat, se váš svět zúží na kontroly, čísla a 
 
 **Kalendář.** Ranní kontroly, den odběru, pravděpodobný den transferu. I když termíny nejsou přesné, hrubý odhad se dá udělat.
 
-**Vy dva.** Jeden konkrétní rozhovor předem — o tom, kdo volá klinice, komu to řeknete, co uděláte, když to nevyjde. Není to černá magie, je to plán.
+**Vy dva.** Jeden konkrétní rozhovor předem. O tom, kdo volá klinice, komu to řeknete, co uděláte, když to nevyjde. Není to černá magie, je to plán.
 
 > Seznam je obecný. Konkrétní požadavky na vyšetření, souhlasy a platby vám sdělí vaše klinika.`,
       minutes: 4,
@@ -2304,7 +2304,7 @@ Neurčité „řekni si, co potřebuješ" nefunguje, protože v tom stavu nevít
 5. **Píchač.** Spousta párů to tak dělá a spoustě mužů to konečně dá pocit, že něco dělají.
 6. **Ochranná zeď.** Odpovídá rodině a přátelům, odklání otázky, kryje vás.
 
-Vyberte si spolu **tři a napište je na papír.** Ne všechny — tři.
+Vyberte si spolu **tři a napište je na papír.** Ne všechny. Tři.
 
 ## Co partnerovi řekněte přímo
 
@@ -2323,7 +2323,7 @@ Neřešená věc, o které se ve dvojici mluví minimálně. Realita: **odevzdat
 
 Co pomáhá:
 
-- Vědět dopředu, že **existuje záložní plán** — zamražený vzorek předem, případně jiné řešení, které klinika nabídne.
+- Vědět dopředu, že **existuje záložní plán**: zamražený vzorek předem, případně jiné řešení, které klinika nabídne.
 - **Nedělat z toho vtip** ani ten den, ani potom.
 - Domluvit se předem, jestli chce být doprovázený, nebo raději sám.
 
@@ -2335,7 +2335,7 @@ Během stimulace se hádáte víc. Hormony, nevyspání, peníze, strach. Doporu
 
 ## Když on nechce mluvit vůbec
 
-Část mužů zvládá zátěž mlčením a činností. Není to lhostejnost, i když to tak vypadá. Zkuste místo „musíme si promluvit" nabídnout **činnost, u které se mluví snáz** — procházka, cesta autem, mytí nádobí vedle sebe.
+Část mužů zvládá zátěž mlčením a činností. Není to lhostejnost, i když to tak vypadá. Zkuste místo „musíme si promluvit" nabídnout **činnost, u které se mluví snáz**: procházka, cesta autem, mytí nádobí vedle sebe.
 
 Pokud ale mlčení trvá týdny a vy se cítíte sama, řekněte to nahlas a zvažte pár sezení u odborníka. Léčba neplodnosti je jedna z nejtěžších zkoušek, jaké může vztah potkat, a hledat pomoc není známka slabosti vztahu.
 
@@ -2369,26 +2369,26 @@ Co strava a pohyb během stimulace ovlivnit můžou: **jak se cítíte, jak sná
 
 ## Co má oporu a smysl
 
-**Bílkoviny.** Zvýšený příjem bílkovin se běžně doporučuje během stimulace a po odběru, protože bílkoviny v krvi pomáhají udržet tekutinu tam, kde má být. Prakticky: v každém jídle nějaký zdroj — vejce, ryba, maso, luštěniny, tvaroh, jogurt.
+**Bílkoviny.** Zvýšený příjem bílkovin se běžně doporučuje během stimulace a po odběru, protože bílkoviny v krvi pomáhají udržet tekutinu tam, kde má být. Prakticky: v každém jídle nějaký zdroj. Vejce, ryba, maso, luštěniny, tvaroh, jogurt.
 
-**Tekutiny.** Pravidelně, průběžně, ne najednou. Kombinujte vodu s minerální vodou nebo vývarem. Sledujte, kolik močíte — je to nejjednodušší kontrola.
+**Tekutiny.** Pravidelně, průběžně, ne najednou. Kombinujte vodu s minerální vodou nebo vývarem. Sledujte, kolik močíte. Je to nejjednodušší kontrola.
 
 **Vláknina.** Progesteron a nehybnost zpomalují střeva spolehlivě. Ovesné vločky, zelenina, švestky, lněné semínko namočené ve vodě.
 
-**Pravidelnost jídla.** Vynechané jídlo plus hormonální výkyv je recept na odpolední kolaps. Jezte spíš častěji a menší porce — nadmuté břicho velké porce nesnese.
+**Pravidelnost jídla.** Vynechané jídlo plus hormonální výkyv je recept na odpolední kolaps. Jezte spíš častěji a menší porce. Nadmuté břicho velké porce nesnese.
 
-**Kyselina listová a doporučené doplňky.** Užívejte to, co vám předepsal lékař. Nic nepřidávejte na vlastní pěst — některé doplňky mohou interagovat s léčbou.
+**Kyselina listová a doporučené doplňky.** Užívejte to, co vám předepsal lékař. Nic nepřidávejte na vlastní pěst. Některé doplňky mohou interagovat s léčbou.
 
 ## Co omezit
 
-- **Alkohol** — během cyklu vynechte.
-- **Kouření** — pokud kouříte, tohle je nejsilnější věc, kterou můžete pro léčbu udělat, i když je pozdě na zázraky.
+- **Alkohol**: během cyklu vynechte.
+- **Kouření**: pokud kouříte, tohle je nejsilnější věc, kterou můžete pro léčbu udělat, i když je pozdě na zázraky.
 - **Nadměrná kofein.** Umírněné množství se obvykle nezakazuje; zeptejte se na klinice, jaké množství považují za přijatelné.
 - **Extrémní diety, hladovky a detoxy.** Během stimulace je to poslední, co vaše tělo potřebuje.
 
 ## Pohyb: pravidla se během stimulace mění
 
-Tohle je důležitější, než většina žen tuší. **Vaječníky během stimulace výrazně zvětšují objem** — z několika centimetrů mohou narůst násobně. Zvětšený vaječník se může zkroutit kolem své osy (torze), což je akutní stav vyžadující okamžitou pomoc.
+Tohle je důležitější, než většina žen tuší. **Vaječníky během stimulace výrazně zvětšují objem**: z několika centimetrů mohou narůst násobně. Zvětšený vaječník se může zkroutit kolem své osy (torze), což je akutní stav vyžadující okamžitou pomoc.
 
 Proto od zhruba poloviny stimulace až do doby, kterou určí klinika:
 
@@ -2400,7 +2400,7 @@ Pokud jste zvyklá cvičit denně, je to nepříjemná změna. Berte to jako do�
 
 ## Kdy volat lékaře
 
-Volejte okamžitě při **náhlé prudké jednostranné bolesti břicha**, zvlášť když je doprovázená zvracením nebo mdlobou — může jít o torzi vaječníku. Dále při rychlém nafouknutí, dušnosti, teplotě nad 38 °C nebo výrazném snížení množství moči.
+Volejte okamžitě při **náhlé prudké jednostranné bolesti břicha**, zvlášť když je doprovázená zvracením nebo mdlobou. Může jít o torzi vaječníku. Dále při rychlém nafouknutí, dušnosti, teplotě nad 38 °C nebo výrazném snížení množství moči.
 
 ## O čem se nemluví: tlak na dokonalost
 
@@ -2417,7 +2417,7 @@ Nebyla. Nebude. Jezte rozumně, pijte, hýbejte se opatrně, berte to, co vám p
       hero: 'sage',
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
-      sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+      sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
       publishedOn: '2026-02-10',
       boost: 0.6,
     },
@@ -2429,7 +2429,7 @@ Nebyla. Nebude. Jezte rozumně, pijte, hýbejte se opatrně, berte to, co vám p
         'Během deseti dnů vám hladina estradiolu vyroste na násobky běžného cyklu. Vaše hlava to pozná.',
       body: `## Co se s vámi děje
 
-Během stimulace roste hladina estradiolu úměrně počtu a velikosti folikulů. Za deset dnů se dostane výrazně výš, než kam se kdy dostane v přirozeném cyklu. **Estradiol ovlivňuje nervový systém** — spánek, chuť k jídlu, emoční reaktivitu, schopnost soustředit se.
+Během stimulace roste hladina estradiolu úměrně počtu a velikosti folikulů. Za deset dnů se dostane výrazně výš, než kam se kdy dostane v přirozeném cyklu. **Estradiol ovlivňuje nervový systém**: spánek, chuť k jídlu, emoční reaktivitu, schopnost soustředit se.
 
 K tomu přidejte:
 
@@ -2437,7 +2437,7 @@ K tomu přidejte:
 - **strach z výsledku**, který nemůžete ovlivnit,
 - **fyzickou nepohodu** z nafouknutého břicha,
 - **peníze**, které v tom jsou,
-- a případně **osobní historii** — předchozí neúspěchy, ztráty, roky snažení.
+- a případně **osobní historii**: předchozí neúspěchy, ztráty, roky snažení.
 
 Není divu, že se rozbrečíte u reklamy na pojištění. Divné by bylo, kdyby ne.
 
@@ -2465,7 +2465,7 @@ Tohle typicky ustupuje během několika dnů až dvou týdnů po skončení stim
 
 **Dech s prodlouženým výdechem.** Nádech na čtyři, výdech na šest, deset kol. Jediná věc, kterou vědomě ovlivníte nervový systém během třiceti vteřin.
 
-**Pohyb v mírné formě.** Chůze venku, ideálně ráno. Nic prudkého — vaječníky jsou zvětšené.
+**Pohyb v mírné formě.** Chůze venku, ideálně ráno. Nic prudkého. Vaječníky jsou zvětšené.
 
 ## Co si nedělejte
 
@@ -2481,7 +2481,7 @@ Ozvěte se lékaři nebo vyhledejte psychologickou pomoc, pokud:
 - **nejste schopná fungovat** v běžném dni,
 - **nejíte** nebo naopak nezvládáte jídlo udržet,
 - **cítíte beznaděj**, která nepolevuje ani na chvíli,
-- máte **myšlenky na sebepoškození nebo na to, že by bylo lepší nebýt** — v tomhle případě vyhledejte pomoc neprodleně, například u své kliniky, praktického lékaře nebo na krizové lince.
+- máte **myšlenky na sebepoškození nebo na to, že by bylo lepší nebýt**: v tomhle případě vyhledejte pomoc neprodleně, například u své kliniky, praktického lékaře nebo na krizové lince.
 
 Máte-li v anamnéze depresi nebo úzkostnou poruchu, řekněte to svému reprodukčnímu týmu předem. Není to informace navíc, je to důležitá součást vaší péče.
 
@@ -2511,15 +2511,15 @@ Nikdo vám za tenhle cyklus nedá známku z vyrovnanosti. Cílem není projít t
 
 Většina žen si laboratoř představuje jako bílou místnost s obřími mikroskopy a týmem, který se dívá na jejich embrya nepřetržitě. Skutečnost je jiná a je uklidňující: laboratoř je **tmavá, tichá a její hlavní pravidlo zní nerušit**.
 
-V epizodě mluvíme o tom, jak vypadá běžný den v embryologické laboratoři — od chvíle, kdy okénkem přijdou první zkumavky z odběrového sálu, po večerní kontrolu inkubátorů.
+V epizodě mluvíme o tom, jak vypadá běžný den v embryologické laboratoři. Od chvíle, kdy okénkem přijdou první zkumavky z odběrového sálu, po večerní kontrolu inkubátorů.
 
 **Část první: ráno.** Vyhledávání vajíček v odsáté tekutině, posouzení zralosti, příprava vzorku spermií. Proč se identita pacientky kontroluje při každém jednotlivém kroku a proč je to vždy dvakrát.
 
 **Část druhá: proč se embrya nesledují pořád.** Vysvětlení, proč každé vyndání misky z inkubátoru znamená změnu teploty a složení plynů, a proč se tedy hodnocení dělá v přesně daných časech, ne kdykoli.
 
-**Část třetí: telefonáty.** Jak se sdělují čísla. Proč embryolog neříká procenta úspěšnosti v den po odběru — ne proto, že by je tajil, ale proto, že v ten okamžik neexistují. Co naopak říct umí a na co se ho ptát.
+**Část třetí: telefonáty.** Jak se sdělují čísla. Proč embryolog neříká procenta úspěšnosti v den po odběru, ne proto, že by je tajil, ale proto, že v ten okamžik neexistují. Co naopak říct umí a na co se ho ptát.
 
-**Část čtvrtá: co embryologa v téhle práci nejvíc drží.** A co ho nejvíc bolí — nejčastěji věta „takže jsem to zkazila", kterou od pacientek slyší pravidelně a která nikdy nebyla pravda.
+**Část čtvrtá: co embryologa v téhle práci nejvíc drží.** A co ho nejvíc bolí. Nejčastěji věta „takže jsem to zkazila", kterou od pacientek slyší pravidelně a která nikdy nebyla pravda.
 
 ## Věta, která z epizody nejvíc zůstane
 
@@ -2527,7 +2527,7 @@ V epizodě mluvíme o tom, jak vypadá běžný den v embryologické laboratoři
 
 ## Pro koho to je
 
-Pro každou, kdo je teď mezi odběrem a transferem a nedokáže si představit, kde její embrya vlastně jsou. Pomůže to i partnerům — je to jediná část procesu, která je technická a dá se pochopit bez emocí.
+Pro každou, kdo je teď mezi odběrem a transferem a nedokáže si představit, kde její embrya vlastně jsou. Pomůže to i partnerům. Je to jediná část procesu, která je technická a dá se pochopit bez emocí.
 
 > Obsah je informativní a obecný. Konkrétní informace o vašich embryích vám může poskytnout pouze embryolog vaší kliniky.`,
       minutes: 28,
@@ -2575,11 +2575,11 @@ Transfer, dva týdny, negativní test. Druhé embryo zmražené, čekalo.
 
 Trvalo mi čtyři měsíce, než jsem byla schopná řešit další krok. Nešlo o peníze ani o čas. Šlo o to, že jsem si pořád přehrávala, co jsem mohla udělat líp. Jestli jsem měla míň pracovat. Jestli ta káva desátý den. Jestli jsem se měla víc uvolnit, jak mi radila kolegyně.
 
-Na kontrolní konzultaci jsem se poprvé zeptala normálně: **co byste u mě příště udělali jinak?** Doktor mi vysvětlil, co se změní v protokolu a proč. Ne obecně — u mě. Ten rozhovor trval dvacet minut a udělal se mnou víc než čtyři měsíce googlení.
+Na kontrolní konzultaci jsem se poprvé zeptala normálně: **co byste u mě příště udělali jinak?** Doktor mi vysvětlil, co se změní v protokolu a proč. Ne obecně. U mě. Ten rozhovor trval dvacet minut a udělal se mnou víc než čtyři měsíce googlení.
 
 ## Druhá stimulace
 
-Vypadala jinak. Ne v číslech — folikulů bylo dokonce míň, jedenáct. Jiná byla já.
+Vypadala jinak. Ne v číslech. Folikulů bylo dokonce míň, jedenáct. Jiná byla já.
 
 Excel jsem si nechala, protože mi dával pocit řádu. Ale přestala jsem do něj psát predikce. Nechala jsem tam jen fakta.
 
@@ -2622,7 +2622,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['ivf_prep'],
       dayRange: [0, 7],
       headline: 'Papíry vyřídit teď, dokud máte klidnou hlavu',
-      body: 'Souhlasy, platnost vyšetření, recepty a dostupnost léků v lékárně — všechno tohle se vyřizuje mnohem hůř ve chvíli, kdy už píchate a jezdíte na kontroly. Vyhraďte si na to jednu hodinu a mějte to za sebou. Informovaný souhlas si přečtěte celý, včetně části o nakládání s embryi.',
+      body: 'Souhlasy, platnost vyšetření, recepty a dostupnost léků v lékárně. Všechno tohle se vyřizuje mnohem hůř ve chvíli, kdy už píchate a jezdíte na kontroly. Vyhraďte si na to jednu hodinu a mějte to za sebou. Informovaný souhlas si přečtěte celý, včetně části o nakládání s embryi.',
       whatsHappening: [
         'Některá vyšetření mají omezenou platnost a před startem se musí obnovit',
         'Část léků se v lékárně objednává a nejsou skladem hned',
@@ -2630,7 +2630,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       ],
       task: 'Zavolejte do lékárny a ověřte, že mají všechny vaše léky skladem nebo je stihnou objednat.',
       reflection: 'Je něco v podepsaných dokumentech, čemu jsem nerozuměla a přešla to?',
-      tip: 'Uložte si telefon na kliniku i pro mimopracovní dobu — do mobilu i na papír k lednici.',
+      tip: 'Uložte si telefon na kliniku i pro mimopracovní dobu. Do mobilu i na papír k lednici.',
     },
     {
       id: 'cyk-dc-prep-rozhovor',
@@ -2682,14 +2682,14 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['stimulation'],
       day: 0,
       headline: 'První injekce. Nejhorší je čekání na ni',
-      body: 'Dneska poprvé otevřete krabičku a uděláte to, co jste si sto let představovala. Jehla je velmi tenká a krátká, bolí to méně než odběr krve — problém není bolest, ale to, že si to musíte udělat sama. Udělejte to podle pevného postupu, ne podle nálady.',
+      body: 'Dneska poprvé otevřete krabičku a uděláte to, co jste si sto let představovala. Jehla je velmi tenká a krátká, bolí to méně než odběr krve. Problém není bolest, ale to, že si to musíte udělat sama. Udělejte to podle pevného postupu, ne podle nálady.',
       whatsHappening: [
         'Ve vaječnících je probuzená skupina folikulů, které stimulace udrží ve hře',
-        'Dnes ještě nic nepocítíte — účinek se projeví za několik dnů',
+        'Dnes ještě nic nepocítíte. Účinek se projeví za několik dnů',
         'Vaše tělo si zvyká na hormon, který normálně tvoří samo, jen v menším množství',
       ],
       task: 'Připravte si všechno na stůl už teď, hodinu před aplikací. Vybalte, přečtěte, položte.',
-      reflection: 'Čeho se na tom nejvíc bojím — bolesti, nebo toho, co ta injekce znamená?',
+      reflection: 'Čeho se na tom nejvíc bojím. Bolesti, nebo toho, co ta injekce znamená?',
       tip: 'Nechte lék pár minut mimo lednici. Studený roztok pálí víc a dělá víc modřin.',
       callDoctorIf: [
         'Objeví se vyrážka po těle, otok rtů či obličeje nebo dušnost',
@@ -2702,7 +2702,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['stimulation'],
       day: 1,
       headline: 'Druhý den. Rutina začíná dnes',
-      body: 'První injekce byla událost, ta druhá je začátek rutiny — a rutina je přesně to, co vás příštích deset dní udrží. Zapište si čas aplikace a místo vpichu, i když si myslíte, že si to zapamatujete. Za čtyři dny už to vědět nebudete.',
+      body: 'První injekce byla událost, ta druhá je začátek rutiny. A rutina je přesně to, co vás příštích deset dní udrží. Zapište si čas aplikace a místo vpichu, i když si myslíte, že si to zapamatujete. Za čtyři dny už to vědět nebudete.',
       whatsHappening: [
         'Folikuly začínají reagovat, ale zatím nic nevidíte ani necítíte',
         'Případná modřina po prvním vpichu je běžná a účinek léku nesnižuje',
@@ -2736,14 +2736,14 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['stimulation'],
       day: 3,
       headline: 'Modřiny přicházejí. Netřete je',
-      body: 'Kolem třetího a čtvrtého dne se objevují první barevné skvrny na břiše. Vznikají tím, že jehla cestou minula tuk a trefila drobnou cévku — nemá to vliv na účinek léku. Nejčastější příčinou není samotný vpich, ale tření místa po vytažení jehly.',
+      body: 'Kolem třetího a čtvrtého dne se objevují první barevné skvrny na břiše. Vznikají tím, že jehla cestou minula tuk a trefila drobnou cévku. Nemá to vliv na účinek léku. Nejčastější příčinou není samotný vpich, ale tření místa po vytažení jehly.',
       whatsHappening: [
         'Prvních 24 hodin po vpichu pomáhá chlad, potom naopak vlažné teplo',
         'Modřiny obvykle mizí do dvou až tří týdnů po poslední injekci',
         'Pálení při aplikaci nejčastěji způsobí studený roztok nebo neoschlá dezinfekce',
       ],
       task: 'Po dnešním vpichu přitiskněte suchý čtvereček na deset vteřin a nesahejte na místo.',
-      reflection: 'Vadí mi, jak moje břicho vypadá — a komu to vlastně vysvětluju?',
+      reflection: 'Vadí mi, jak moje břicho vypadá. A komu to vlastně vysvětluju?',
       tip: 'Zeptejte se v lékárně na mast na modřiny, kterou můžete použít mimo čerstvé místo vpichu.',
       callDoctorIf: [
         'V místě vpichu vznikne bolestivý horký bulek, který se zvětšuje',
@@ -2760,7 +2760,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       whatsHappening: [
         'Folikuly by v tuhle dobu měly být zhruba v polovině cesty k cílové velikosti',
         'Souběžně se obvykle nabírá krev na estradiol',
-        'Podle výsledku se může změnit dávka — je to běžná úprava, ne komplikace',
+        'Podle výsledku se může změnit dávka. Je to běžná úprava, ne komplikace',
       ],
       task: 'Napište si na papír dvě otázky pro lékaře: kolik folikulů a jak velkých dnes vidíte.',
       reflection: 'Co udělám, pokud dnešní číslo bude nižší, než jsem doufala?',
@@ -2792,7 +2792,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       headline: 'Břicho začíná dávat vědět',
       body: 'Zhruba od poloviny stimulace cítí většina žen tlak v podbřišku, nadmutí a těžkost. Vaječníky, které normálně měří pár centimetrů, jsou teď výrazně větší a plné rostoucích folikulů. Od téhle chvíle platí: žádný běh, skákání ani zvedání těžkého.',
       whatsHappening: [
-        'Zvětšený vaječník se může zkroutit kolem své osy — proto omezení pohybu',
+        'Zvětšený vaječník se může zkroutit kolem své osy, proto omezení pohybu',
         'Nadmutí a plynatost jsou očekávané, ne varovné',
         'Kalhoty s gumou v pase přestávají být dobrý nápad',
       ],
@@ -2810,7 +2810,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['stimulation'],
       day: 7,
       headline: 'Hlava jede naplno a soustředit se nejde',
-      body: 'Estradiol je teď výrazně výš než kdykoli v přirozeném cyklu a váš nervový systém to pozná. Zhoršená koncentrace, plačtivost a podrážděnost vůči nejbližším jsou v téhle fázi typické. Není to slabost a není to vaše selhání — je to léčba.',
+      body: 'Estradiol je teď výrazně výš než kdykoli v přirozeném cyklu a váš nervový systém to pozná. Zhoršená koncentrace, plačtivost a podrážděnost vůči nejbližším jsou v téhle fázi typické. Není to slabost a není to vaše selhání. Je to léčba.',
       whatsHappening: [
         'Folikuly rostou a s nimi i hladina estradiolu',
         'Přerušovaný spánek a probouzení nad ránem jsou běžné',
@@ -2821,7 +2821,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       tip: 'Nádech na čtyři, výdech na šest, deset kol. Prodloužený výdech je jediná zkratka k nervovému systému, kterou máte pořád u sebe.',
       callDoctorIf: [
         'Několik nocí po sobě téměř nespíte a nejste schopná fungovat',
-        'Cítíte beznaděj, která nepolevuje, nebo myšlenky, že by bylo lepší nebýt — vyhledejte pomoc neprodleně',
+        'Cítíte beznaděj, která nepolevuje, nebo myšlenky, že by bylo lepší nebýt. Vyhledejte pomoc neprodleně',
       ],
     },
     {
@@ -2829,7 +2829,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['stimulation'],
       day: 8,
       headline: 'Čísla dnes možná dávají smysl poprvé',
-      body: 'Kolem osmého dne bývá kontrola, na které už je vidět tvar celé skupiny — kolik folikulů roste pohromadě a jestli se některý nevytrhl dopředu. Lékař se nedívá jen na dnešní číslo, ale hlavně na rozdíl proti minulé kontrole. Rovnoměrný růst je lepší zpráva než jedno velké číslo.',
+      body: 'Kolem osmého dne bývá kontrola, na které už je vidět tvar celé skupiny. Kolik folikulů roste pohromadě a jestli se některý nevytrhl dopředu. Lékař se nedívá jen na dnešní číslo, ale hlavně na rozdíl proti minulé kontrole. Rovnoměrný růst je lepší zpráva než jedno velké číslo.',
       whatsHappening: [
         'Folikuly rostou zhruba o jeden až dva milimetry denně',
         'Pásmo kolem 16 až 22 mm je to, ve kterém se nejčastěji nacházejí zralá vajíčka',
@@ -2848,7 +2848,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['stimulation'],
       day: 9,
       headline: 'Konec je blízko a to je zvláštní pocit',
-      body: 'V téhle fázi bývají kontroly častější, někdy denně, a termín odběru se začíná rýsovat. Zároveň jste fyzicky nejnaložnější — břicho těžké, únava velká, hlava plná. Zjednodušte si dny na minimum a odsuňte všechno, co nemusí být.',
+      body: 'V téhle fázi bývají kontroly častější, někdy denně, a termín odběru se začíná rýsovat. Zároveň jste fyzicky nejnaložnější. Břicho těžké, únava velká, hlava plná. Zjednodušte si dny na minimum a odsuňte všechno, co nemusí být.',
       whatsHappening: [
         'Vaječníky jsou nyní výrazně zvětšené a citlivé na pohyb',
         'Termín odběru se upřesňuje podle velikosti největších folikulů',
@@ -2868,7 +2868,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['stimulation'],
       day: 10,
       headline: 'Trigger: jediná injekce, u které se počítají minuty',
-      body: 'Dokončovací injekce dokončí zrání vajíček a uvolní je ze stěny folikulu. Odběr se plánuje zhruba 34 až 38 hodin po ní, těsně před tím, než by folikuly praskly samy — proto se čas říká na minuty a proto se nesmí posunout. Pokud vám ho ještě neřekli, dozvíte se ho v následujících dnech.',
+      body: 'Dokončovací injekce dokončí zrání vajíček a uvolní je ze stěny folikulu. Odběr se plánuje zhruba 34 až 38 hodin po ní, těsně před tím, než by folikuly praskly samy, proto se čas říká na minuty a proto se nesmí posunout. Pokud vám ho ještě neřekli, dozvíte se ho v následujících dnech.',
       whatsHappening: [
         'Čas triggeru je zpětně odpočítaný od hodiny, na kterou máte přijít na sál',
         'Po triggeru se obvykle už nepíchá stimulace, pokud lékař neřekne jinak',
@@ -2878,7 +2878,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       reflection: 'Kdo kromě mě zná přesný čas té injekce?',
       tip: 'Zapište si přesnou minutu, kdy jste píchla. Ráno se na to ptají.',
       callDoctorIf: [
-        'Trigger jste aplikovala jindy, než bylo určeno, nebo si nejste jistá, jestli vůbec — volejte okamžitě, i v noci',
+        'Trigger jste aplikovala jindy, než bylo určeno, nebo si nejste jistá, jestli vůbec. Volejte okamžitě, i v noci',
         'Prudká jednostranná bolest břicha se zvracením',
         'Dušnost nebo rychlé nafouknutí břicha',
       ],
@@ -2908,7 +2908,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['stimulation'],
       day: 12,
       headline: 'Ráno odjezdu. Zbývá jen dojet',
-      body: 'Bez líčení, bez laku na nehty, bez šperků a bez čoček — barva na nehtech brání měření okysličení krve a šperky se na sál nesmí. Lačnění je bezpečnostní podmínka anestezie, ne formalita. Doprovod už má být domluvený, protože po anestezii nesmíte řídit.',
+      body: 'Bez líčení, bez laku na nehty, bez šperků a bez čoček. Barva na nehtech brání měření okysličení krve a šperky se na sál nesmí. Lačnění je bezpečnostní podmínka anestezie, ne formalita. Doprovod už má být domluvený, protože po anestezii nesmíte řídit.',
       whatsHappening: [
         'Na klinice vás čeká administrativa, převlečení a čekání podle pořadí sálů',
         'Zavedení kanyly je jediný vpich, který ucítíte při vědomí',
@@ -2918,8 +2918,8 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       reflection: 'Co bych dnes potřebovala slyšet od člověka, který jede se mnou?',
       tip: 'Vezměte si vlastní ponožky. Na sále bývá chladno a po anestezii přichází zimnice.',
       callDoctorIf: [
-        'Ráno máte horečku, silnou bolest břicha nebo krvácení — zavolejte na kliniku ještě před odjezdem',
-        'Porušila jste lačnění — nutně to ohlaste, výkon se může odložit',
+        'Ráno máte horečku, silnou bolest břicha nebo krvácení. Zavolejte na kliniku ještě před odjezdem',
+        'Porušila jste lačnění. Nutně to ohlaste, výkon se může odložit',
       ],
     },
     {
@@ -2927,14 +2927,14 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['retrieval'],
       day: 0,
       headline: 'Máte to za sebou. Dnešek už jen přežijte',
-      body: 'Probuzení po krátké anestezii přináší zimnici, křeče jako při silnější menstruaci a často i pláč, který nemá jasný důvod — anestezie a hormony dělají svoje. Číslo odebraných vajíček uslyšíte dnes nebo zítra a bude jiné, než jste čekala. Skoro vždycky je.',
+      body: 'Probuzení po krátké anestezii přináší zimnici, křeče jako při silnější menstruaci a často i pláč, který nemá jasný důvod. Anestezie a hormony dělají svoje. Číslo odebraných vajíček uslyšíte dnes nebo zítra a bude jiné, než jste čekala. Skoro vždycky je.',
       whatsHappening: [
         'Slabé krvácení nebo špinění je po odběru běžné',
         'Nadmutí, tlak a zácpa se v příštích dnech ještě zvýrazní',
         'Řídit auto ani rozhodovat o důležitých věcech dnes nemůžete',
       ],
       task: 'Vypijte průběžně větší množství tekutin a přidejte něco s bílkovinou. Pak lehněte.',
-      reflection: 'Co potřebuju od dnešního večera — ticho, nebo někoho vedle sebe?',
+      reflection: 'Co potřebuju od dnešního večera. Ticho, nebo někoho vedle sebe?',
       tip: 'Neužívejte léky proti bolesti podle vlastního uvážení. Zeptejte se, co si smíte vzít, a zapište si to.',
       callDoctorIf: [
         'Silná bolest břicha, kterou neztlumí doporučené analgetikum',
@@ -2948,14 +2948,14 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['retrieval'],
       day: 1,
       headline: 'Dnes se cítíte hůř než včera. Je to normální',
-      body: 'Den po odběru bývá fyzicky nejtěžší: břicho nafouklé, střeva zastavená kombinací anestezie a progesteronu, nálada dole. Zároveň dnes obvykle přichází první telefonát z embryologie. Mějte u sebe papír a tři napsané otázky — v šoku si nevzpomenete na žádnou.',
+      body: 'Den po odběru bývá fyzicky nejtěžší: břicho nafouklé, střeva zastavená kombinací anestezie a progesteronu, nálada dole. Zároveň dnes obvykle přichází první telefonát z embryologie. Mějte u sebe papír a tři napsané otázky. V šoku si nevzpomenete na žádnou.',
       whatsHappening: [
         'Sledujte se: vážení ráno, obvod břicha, kolikrát močíte',
         'Pomalá chůze po bytě je lepší než celodenní ležení',
         'Náhlý propad nálady druhý den je fyziologický, ne předzvěst výsledku',
       ],
       task: 'Napište si na papír tři otázky pro embryologa a nechte ho u telefonu.',
-      reflection: 'Jaké číslo jsem si v hlavě určila jako „dost" — a odkud se vzalo?',
+      reflection: 'Jaké číslo jsem si v hlavě určila jako „dost". A odkud se vzalo?',
       tip: 'Zvyšte příjem bílkovin a pijte i nápoje s minerály, nejen čistou vodu.',
       callDoctorIf: [
         'Přírůstek hmotnosti přes kilogram za den nebo rychle rostoucí obvod břicha',
@@ -2971,7 +2971,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       headline: 'Tělo se pomalu vrací, hlava zatím ne',
       body: 'Druhý den po odběru už bývá tlak v podbřišku snesitelnější, ale nadmutí a zácpa přetrvávají. Pozor: riziko OHSS trvá dál a časná forma se objevuje typicky tři až sedm dní po odběru. Denní vážení a měření obvodu břicha nejsou přehnaná opatrnost, ale nejlepší domácí kontrola, kterou máte.',
       whatsHappening: [
-        'Vaječníky jsou pořád zvětšené — bez sportu, bez zvedání těžkého, bez pohlavního styku',
+        'Vaječníky jsou pořád zvětšené. Bez sportu, bez zvedání těžkého, bez pohlavního styku',
         'Zácpa se řeší vlákninou, tekutinami a pohybem, ne tlačením',
         'Podpora progesteronem podle pokynů kliniky pokračuje',
       ],
@@ -2990,7 +2990,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['fertilization'],
       day: 0,
       headline: 'Dnes se vaše vajíčka potkávají se spermiemi',
-      body: 'Embryolog vyhledal vajíčka v odsáté tekutině, posoudil jejich zralost a podle zvolené metody je buď spojil se spermiemi, nebo do nich spermii vpravil mikropipetou. Použít lze pouze zralá vajíčka — nezralá se počítají dopředu a nejsou chyba. Zbytek dneška je čekání a to je vaše jediná role.',
+      body: 'Embryolog vyhledal vajíčka v odsáté tekutině, posoudil jejich zralost a podle zvolené metody je buď spojil se spermiemi, nebo do nich spermii vpravil mikropipetou. Použít lze pouze zralá vajíčka. Nezralá se počítají dopředu a nejsou chyba. Zbytek dneška je čekání a to je vaše jediná role.',
       whatsHappening: [
         'Klasické IVF nechá spermii najít cestu samu, ICSI ji vpraví dovnitř',
         'ICSI se volí například u mužského faktoru nebo před genetickým testováním',
@@ -3009,14 +3009,14 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['fertilization'],
       day: 1,
       headline: 'Dvě prvojádra: první skutečné číslo',
-      body: 'Zhruba 16 až 18 hodin po oplození embryolog kontroluje, jestli se ve vajíčku objevila dvě prvojádra — jedno z vajíčka, jedno ze spermie. To je znak normálního oplození. Embrya s jiným počtem prvojader se dál nekultivují a je to očekávaná součást procesu, ne selhání.',
+      body: 'Zhruba 16 až 18 hodin po oplození embryolog kontroluje, jestli se ve vajíčku objevila dvě prvojádra. Jedno z vajíčka, jedno ze spermie. To je znak normálního oplození. Embrya s jiným počtem prvojader se dál nekultivují a je to očekávaná součást procesu, ne selhání.',
       whatsHappening: [
         'Neoplodní se všechna vajíčka, ani při ICSI',
         'Číslo z dnešního dne nepředpovídá číslo pátého dne',
         'Zapisujte si přesně, co vám řekli, včetně slov, kterým jste nerozuměla',
       ],
       task: 'Po telefonátu si zapište doslova, co zaznělo. Interpretaci si nechte na později.',
-      reflection: 'Komu chci to číslo říct — a komu ne?',
+      reflection: 'Komu chci to číslo říct. A komu ne?',
       tip: 'Nekomentujte to hned. Dejte si hodinu, než na to zareagujete i sama před sebou.',
       callDoctorIf: [
         'Prudká bolest břicha, mdloba nebo opakované zvracení',
@@ -3028,14 +3028,14 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['embryo_culture'],
       day: 1,
       headline: 'Den 1: spojení dvou informací',
-      body: 'Ve vašich vajíčkách se dnes ráno hodnotila přítomnost dvou prvojader — okamžik, kdy se genetická informace z vajíčka a ze spermie poprvé setkala. Embrya, která tuhle kontrolu prošla, jdou zpátky do inkubátoru a dalších pár dní se o nich rozhoduje bez vás. Vaše tělo mezitím doznívá po odběru a to je jediná věc, kterou dnes můžete ovlivnit.',
+      body: 'Ve vašich vajíčkách se dnes ráno hodnotila přítomnost dvou prvojader. Okamžik, kdy se genetická informace z vajíčka a ze spermie poprvé setkala. Embrya, která tuhle kontrolu prošla, jdou zpátky do inkubátoru a dalších pár dní se o nich rozhoduje bez vás. Vaše tělo mezitím doznívá po odběru a to je jediná věc, kterou dnes můžete ovlivnit.',
       whatsHappening: [
         'Embrya leží v kapkách média v inkubátoru se stabilní teplotou a složením plynů',
         'Identita vzorku se kontroluje při každém kroku, obvykle dvěma lidmi nebo elektronicky',
-        'Laboratoř otevírá inkubátor co nejméně — každé otevření mění podmínky',
+        'Laboratoř otevírá inkubátor co nejméně. Každé otevření mění podmínky',
       ],
       task: 'Zapište si do kalendáře, kdy klinika plánuje další telefonát a co v něm uslyšíte.',
-      reflection: 'Co mi dnes pomůže víc — vědět víc, nebo vědět míň?',
+      reflection: 'Co mi dnes pomůže víc. Vědět víc, nebo vědět míň?',
       tip: 'Vyhraďte si na hledání informací dvacet minut denně a ne večer. Zbytek dne to odkládáte.',
       callDoctorIf: [
         'Silná bolest břicha, teplota nad 38 °C nebo krvácení silnější než menstruace',
@@ -3047,13 +3047,13 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['embryo_culture'],
       day: 2,
       headline: 'Den 2: první dělení',
-      body: 'Embrya, která se normálně oplodnila, by dnes měla mít zhruba dvě až čtyři buňky. Embryolog sleduje jejich počet, stejnoměrnost a podíl fragmentace — drobných úlomků buněčné hmoty, kterých má být co nejméně. Většina pracovišť dnes nevolá, protože informace z druhého dne by nezměnila plán.',
+      body: 'Embrya, která se normálně oplodnila, by dnes měla mít zhruba dvě až čtyři buňky. Embryolog sleduje jejich počet, stejnoměrnost a podíl fragmentace. Drobných úlomků buněčné hmoty, kterých má být co nejméně. Většina pracovišť dnes nevolá, protože informace z druhého dne by nezměnila plán.',
       whatsHappening: [
         'Embryo zatím běží na zásobách a informacích z vajíčka',
         'Rozdíly mezi embryi v rychlosti dělení jsou v této fázi běžné',
         'Vaše nadmutí a zácpa dnes typicky vrcholí nebo pomalu ustupují',
       ],
-      task: 'Naplánujte si na dnešek jednu konkrétní dokončitelnou věc. Ne úklid bytu — jednu zásuvku.',
+      task: 'Naplánujte si na dnešek jednu konkrétní dokončitelnou věc. Ne úklid bytu. Jednu zásuvku.',
       reflection: 'Kterou myšlenku si dnes přehrávám nejčastěji a je vůbec moje?',
       tip: 'Chůze po bytě několikrát denně pomáhá střevům i snižuje riziko trombózy.',
       callDoctorIf: [
@@ -3066,10 +3066,10 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['embryo_culture'],
       day: 3,
       headline: 'Den 3: embryo přepíná na vlastní genom',
-      body: 'Dnes má embryo obvykle kolem šesti až osmi buněk a odehrává se v něm zásadní věc — přestává běžet na zásobách z vajíčka a začíná pracovat podle vlastní genetické informace. Právě tady se část embryí zastaví. Není to nic, co byste ovlivnila, a není to nic, co byste udělala špatně.',
+      body: 'Dnes má embryo obvykle kolem šesti až osmi buněk a odehrává se v něm zásadní věc. Přestává běžet na zásobách z vajíčka a začíná pracovat podle vlastní genetické informace. Právě tady se část embryí zastaví. Není to nic, co byste ovlivnila, a není to nic, co byste udělala špatně.',
       whatsHappening: [
         'Na některých pracovištích se právě třetí den provádí transfer, hlavně když je embryí málo',
-        'U malého počtu embryí nemá selekce v laboratoři smysl — děloha je lepší prostředí než inkubátor',
+        'U malého počtu embryí nemá selekce v laboratoři smysl. Děloha je lepší prostředí než inkubátor',
         'Dnes často přichází telefonát s informací o dalším plánu',
       ],
       task: 'Zeptejte se dnes přímo: plánujete transfer třetí, nebo pátý den, a podle čeho se rozhodnete?',
@@ -3085,7 +3085,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['embryo_culture'],
       day: 4,
       headline: 'Den 4: morula, den bez zpráv',
-      body: 'Buňky se dnes přestanou počítat, protože se k sobě těsně přimknou a hranice mezi nimi zmizí — vznikne kompaktní kulička zvaná morula. Vypadá to jako krok zpět a je to nutná fáze před vznikem blastocysty. Čtvrtý den se obvykle netelefonuje, takže ticho dnes nic neznamená.',
+      body: 'Buňky se dnes přestanou počítat, protože se k sobě těsně přimknou a hranice mezi nimi zmizí. Vznikne kompaktní kulička zvaná morula. Vypadá to jako krok zpět a je to nutná fáze před vznikem blastocysty. Čtvrtý den se obvykle netelefonuje, takže ticho dnes nic neznamená.',
       whatsHappening: [
         'Morula se hodnotí obtížně, proto z ní většina laboratoří nedělá závěry',
         'Zítřek je den, kdy se ukáže, kolik embryí došlo do stádia blastocysty',
@@ -3106,7 +3106,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       headline: 'Den 5: blastocysta a první rozdělení osudů',
       body: 'Uvnitř moruly vznikla dutina a buňky se poprvé rozdělily do dvou skupin: z vnitřní buněčné masy vznikne plod, z vnější vrstvy placenta. Tomuhle stádiu se říká blastocysta a je to nejčastější okamžik pro transfer nebo zamrazení. Dnes obvykle uslyšíte, kolik embryí došlo až sem.',
       whatsHappening: [
-        'Hodnocení typu 4AA popisuje vzhled, ne genetiku — je to nástroj pro pořadí, ne předpověď',
+        'Hodnocení typu 4AA popisuje vzhled, ne genetiku. Je to nástroj pro pořadí, ne předpověď',
         'Pokud se dělá genetické testování, odebírá se právě teď několik buněk z vnější vrstvy',
         'Část embryí dojde do blastocysty až šestý den a to není horší varianta',
       ],
@@ -3123,13 +3123,13 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       phases: ['embryo_culture'],
       day: 6,
       headline: 'Den 6: opozdilci nejsou horší',
-      body: 'Část blastocyst dosáhne svého stádia až dnes, výjimečně sedmý den, a obvykle se zamrazí k pozdějšímu použití. Z blastocyst šestého dne se rodí děti — pomalejší start nepředpovídá pomalejší dítě. Dnes se také uzavírá bilance celého cyklu a s ní přichází buď úleva, nebo velmi těžká zpráva.',
+      body: 'Část blastocyst dosáhne svého stádia až dnes, výjimečně sedmý den, a obvykle se zamrazí k pozdějšímu použití. Z blastocyst šestého dne se rodí děti. Pomalejší start nepředpovídá pomalejší dítě. Dnes se také uzavírá bilance celého cyklu a s ní přichází buď úleva, nebo velmi těžká zpráva.',
       whatsHappening: [
         'Zamrazení probíhá vitrifikací, tedy ultrarychlým zmrazením bez tvorby ledových krystalů',
         'Při teplotě tekutého dusíku se veškeré děje v embryu zastaví',
         'Pokud do blastocysty nedošlo nic, máte právo na samostatnou konzultaci, ne jen na větu do telefonu',
       ],
-      task: 'Napište si pět otázek na kontrolní konzultaci — hlavně tu klíčovou: co byste u nás příště udělali jinak?',
+      task: 'Napište si pět otázek na kontrolní konzultaci, hlavně tu klíčovou: co byste u nás příště udělali jinak?',
       reflection: 'Co si o dnešním výsledku říkám a co z toho je opravdu o mně?',
       tip: 'Nerozhodujte o dalším cyklu tenhle týden. Rozhodnutí z prvních dnů jsou rozhodnutí ze zoufalství.',
       callDoctorIf: [
@@ -3148,7 +3148,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
     },
     {
       id: 'cyk-enc-cisla',
-      text: 'Vaše čísla nejsou vaše známka. Jsou to údaje o tom, jak vaše tělo reaguje na dávku — nic víc.',
+      text: 'Vaše čísla nejsou vaše známka. Jsou to údaje o tom, jak vaše tělo reaguje na dávku. Nic víc.',
       author: 'Gabi',
       tone: 'practical',
     },
@@ -3159,7 +3159,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
     },
     {
       id: 'cyk-enc-nekontrolovatelne',
-      text: 'Vaše práce skončila triggerem. To, co se děje teď, není vaše zodpovědnost — a to je zároveň to nejtěžší.',
+      text: 'Vaše práce skončila triggerem. To, co se děje teď, není vaše zodpovědnost. A to je zároveň to nejtěžší.',
       author: 'Gabi',
       tone: 'intense',
     },
@@ -3219,7 +3219,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
       term: 'Trigger',
       aliases: ['dokončovací injekce', 'spouštěcí injekce'],
       short: 'Injekce, která dokončí zrání vajíček a uvolní je ze stěny folikulu.',
-      long: 'Aplikuje se v přesně určenou hodinu, protože odběr se plánuje zhruba 34 až 38 hodin po ní — těsně před tím, než by folikuly praskly samy. Existuje několik typů; agonistický trigger výrazně snižuje riziko těžkého OHSS a lze ho použít pouze v antagonistickém protokolu. Pokud si nejste jistá časem aplikace, volejte kliniku okamžitě.',
+      long: 'Aplikuje se v přesně určenou hodinu, protože odběr se plánuje zhruba 34 až 38 hodin po ní. Těsně před tím, než by folikuly praskly samy. Existuje několik typů; agonistický trigger výrazně snižuje riziko těžkého OHSS a lze ho použít pouze v antagonistickém protokolu. Pokud si nejste jistá časem aplikace, volejte kliniku okamžitě.',
       topics: ['stimulace', 'leky', 'hormony'],
     },
     {
@@ -3256,7 +3256,7 @@ Nikdo mě nesoudil. To jsem si dělala sama.
     },
     {
       term: 'Torze vaječníku',
-      short: 'Zkroucení zvětšeného vaječníku kolem vlastní osy — akutní stav.',
+      short: 'Zkroucení zvětšeného vaječníku kolem vlastní osy. Akutní stav.',
       long: 'Riziko je vyšší během stimulace a krátce po odběru, kdy jsou vaječníky výrazně zvětšené. Proto se v tomto období nedoporučuje běh, skákání, zvedání těžkého ani prudké změny polohy. Náhlá prudká jednostranná bolest břicha, zvlášť se zvracením nebo mdlobou, vyžaduje okamžité vyhledání lékařské pomoci.',
       topics: ['stimulace', 'pohyb'],
     },

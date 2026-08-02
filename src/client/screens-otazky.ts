@@ -24,7 +24,7 @@ import { actionCard, sectionHead, segmented, statTrio } from './viz'
  * Otázky pro lékaře.
  *
  * V ordinaci je osm minut a hlava prázdná. Doma pak naskočí všechno, na co se
- * chtěla zeptat — a je pozdě. Tahle obrazovka existuje proto, aby se otázka
+ * chtěla zeptat. A je pozdě. Tahle obrazovka existuje proto, aby se otázka
  * zapsala ve chvíli, kdy vznikne, a v ordinaci se dala přečíst z telefonu.
  *
  * Tři části pod přepínačem: Čeká (co se má zeptat), Vyřešeno (co už zaznělo
@@ -32,23 +32,23 @@ import { actionCard, sectionHead, segmented, statTrio } from './viz'
  *
  * Aplikace na otázky neodpovídá, odpovědi nehodnotí a nic z nich nevyvozuje.
  * Jsou to poznámky uživatelky. Návrhy otázek dole vznikají deterministicky
- * z jejích vlastních zápisů (`buildSummary` z visit-summary.ts) — nejsou to
+ * z jejích vlastních zápisů (`buildSummary` z visit-summary.ts). Nejsou to
  * rady a nenahrazují lékaře.
  *
  * ---------------------------------------------------------------- AKCE ------
- * `q-add`     arg prázdný  — přidat otázku z formuláře nahoře (viz POLE)
- *             arg = text   — přidat rovnou navrženou otázku (tlačítka
+ * `q-add`     arg prázdný . Přidat otázku z formuláře nahoře (viz POLE)
+ *             arg = text  . Přidat rovnou navrženou otázku (tlačítka
  *                            „Přidat“ v sekci Návrhy z vašich dat).
  *                            Priorita `stredni`, kategorie `Jiné`,
  *                            `forDate` = null, status `ceka`.
- * `q-answer`  arg = id otázky — uložit odpověď z pole `q-ans-{id}`
- * `q-status`  arg = `{id}:{stav}` — přepnout stav; stav je `ceka`,
+ * `q-answer`  arg = id otázky. Uložit odpověď z pole `q-ans-{id}`
+ * `q-status`  arg = `{id}:{stav}`. Přepnout stav; stav je `ceka`,
  *                            `vyreseno` nebo `archiv`
- * `q-del`     arg = id otázky — smazat otázku (nevratné, potvrzení na main.ts)
- * `q-copy`    arg = ISO datum kontroly, nebo `vse` — zkopírovat seznam otázek
+ * `q-del`     arg = id otázky. Smazat otázku (nevratné, potvrzení na main.ts)
+ * `q-copy`    arg = ISO datum kontroly, nebo `vse`. Zkopírovat seznam otázek
  *                            jako text; text sestaví `otazkyCopyText(arg)`
- * `acc`       arg = id otázky — rozbalit/sbalit kartu otázky
- * `otazky-sec` arg = id dílku — přepínač v hlavičce (Čeká / Vyřešeno / Archiv)
+ * `acc`       arg = id otázky. Rozbalit/sbalit kartu otázky
+ * `otazky-sec` arg = id dílku. Přepínač v hlavičce (Čeká / Vyřešeno / Archiv)
  *
  * -------------------------------------------------------------- ROUTOVÁNÍ ---
  * Doporučené zapojení v `screenFor` a v `action`:
@@ -60,15 +60,15 @@ import { actionCard, sectionHead, segmented, statTrio } from './viz'
  *       go(`otazky/${argValue}`)
  *       return
  *
- * Druhý parametr je `view.accordion` — otevřená je vždycky nejvýš jedna karta.
+ * Druhý parametr je `view.accordion`. Otevřená je vždycky nejvýš jedna karta.
  *
  * --------------------------------------------------------------- POLE -------
  * Formulář nahoře (dílek „Čeká“):
- *   textarea  `q-text`   — znění otázky; prázdné = nic se nepřidává
- *   radio     name `q-prio` — `vysoka` | `stredni` | `nizka`, výchozí `stredni`
- *   radio     name `q-cat`  — jedna z KATEGORIÍ níž, výchozí `Jiné`
- *   select    `q-for`    — ISO datum kontroly, prázdná hodnota = bez termínu
- *   textarea  `q-ans-{id}` — odpověď lékaře u rozbalené otázky
+ *   textarea  `q-text`  . Znění otázky; prázdné = nic se nepřidává
+ *   radio     name `q-prio`. `vysoka` | `stredni` | `nizka`, výchozí `stredni`
+ *   radio     name `q-cat` . Jedna z KATEGORIÍ níž, výchozí `Jiné`
+ *   select    `q-for`   , ISO datum kontroly, prázdná hodnota = bez termínu
+ *   textarea  `q-ans-{id}`. Odpověď lékaře u rozbalené otázky
  *
  * Chipy jsou nativní radia se `<label>`, takže nepotřebují vlastní akci ani
  * stav v main.ts. Vyzvednutí při `q-add`:
@@ -79,7 +79,7 @@ import { actionCard, sectionHead, segmented, statTrio } from './viz'
  * Nová otázka vzniká vždycky ve stavu `ceka` a s `createdOn = viewDate()`.
  *
  * ---------------------------------------------------------------- CSS -------
- * Jediná nová třída je `.chipset` — chipy postavené na radiu místo tlačítka.
+ * Jediná nová třída je `.chipset`. Chipy postavené na radiu místo tlačítka.
  * Vypadá stejně jako `.chips button`, jen si stav drží prohlížeč:
  *
  *   .chipset { display: flex; gap: .45rem; flex-wrap: wrap; }
@@ -104,19 +104,19 @@ import { actionCard, sectionHead, segmented, statTrio } from './viz'
  * Nejdelší období, ze kterého se skládají návrhy otázek.
  *
  * Když poslední kontrola proběhla před rokem, není důvod tahat do ordinace
- * data ze zimy — a `buildSummary` ani `adherence()` nemají projíždět rok dat
+ * data ze zimy. A `buildSummary` ani `adherence()` nemají projíždět rok dat
  * kvůli pěti větám.
  */
 const MAX_WINDOW_DAYS = 60
 
-/** „a, b a c“ — česká výčtová spojka, ne čárka na konci. */
+/** „a, b a c“. Česká výčtová spojka, ne čárka na konci. */
 function joinCz(items: string[]): string {
   if (items.length === 0) return ''
   if (items.length === 1) return items[0]
   return `${items.slice(0, -1).join(', ')} a ${items[items.length - 1]}`
 }
 
-/** Název příznaku — z katalogu, nebo z vlastních, které si uživatelka přidala. */
+/** Název příznaku. Z katalogu, nebo z vlastních, které si uživatelka přidala. */
 function symptomLabel(id: string): string {
   return SYMPTOM_BY_ID[id]?.label ?? S.d.customSymptoms.find((x) => x.id === id)?.label ?? id
 }
@@ -141,7 +141,7 @@ export function isOtazkySection(s: string): s is OtazkySection {
   return OTAZKY_SECTIONS.some((x) => x.id === s)
 }
 
-/** Kategorie otázek. Osm stačí — víc už se v ordinaci nedá projít. */
+/** Kategorie otázek. Osm stačí. Víc už se v ordinaci nedá projít. */
 const CATEGORIES = [
   'Protokol',
   'Léky',
@@ -165,7 +165,7 @@ const PRIO_LABEL: Record<QuestionPriority, string> = {
   nizka: 'Nízká',
 }
 
-/** Pořadí pro řazení. Vysoká nahoru — na ni musí zbýt čas. */
+/** Pořadí pro řazení. Vysoká nahoru. Na ni musí zbýt čas. */
 const PRIO_RANK: Record<QuestionPriority, number> = { vysoka: 0, stredni: 1, nizka: 2 }
 
 const STATUS_LABEL: Record<QuestionStatus, string> = {
@@ -200,7 +200,7 @@ function sortWaiting(rows: QuestionRow[]): QuestionRow[] {
   )
 }
 
-/** Uzavřené: nejnovější nahoře — hledá se v nich zpětně. */
+/** Uzavřené: nejnovější nahoře. Hledá se v nich zpětně. */
 function sortDone(rows: QuestionRow[]): QuestionRow[] {
   return [...rows].sort((a, b) => b.createdOn.localeCompare(a.createdOn) || a.text.localeCompare(b.text, 'cs'))
 }
@@ -234,7 +234,7 @@ function visitSoon(): { onDate: string; title: string; kind: string } | null {
 /**
  * Otázky, se kterými se dá jít na konkrétní kontrolu.
  *
- * Kromě otázek navázaných na to datum sem patří i ty bez termínu — jsou
+ * Kromě otázek navázaných na to datum sem patří i ty bez termínu. Jsou
  * obecné a zeptat se na ně jde kdykoli. Otázky patřící k jinému termínu ne.
  */
 function questionsForVisit(date: string): QuestionRow[] {
@@ -252,7 +252,7 @@ function whenLabel(date: string): string {
 // ------------------------------------------------------------ text k tisku ---
 
 /**
- * Seznam otázek jako čistý text — pro schránku i pro tisk.
+ * Seznam otázek jako čistý text. Pro schránku i pro tisk.
  *
  * Volá se z main.ts při akci `q-copy` se stejným argumentem, jaký nese
  * tlačítko: ISO datum kontroly, nebo `vse` pro všechny čekající.
@@ -311,7 +311,7 @@ function addForm(): string {
     '<option value="">Bez termínu</option>',
     ...visits.map(
       (v) =>
-        `<option value="${esc(v.onDate)}">${esc(formatCzechDateShort(v.onDate))} — ${esc(v.title)}</option>`,
+        `<option value="${esc(v.onDate)}">${esc(formatCzechDateShort(v.onDate))}, ${esc(v.title)}</option>`,
     ),
   ].join('')
 
@@ -342,7 +342,7 @@ function addForm(): string {
       ${
         visits.length === 0
           ? `<p class="faint" style="font-size:.75rem;margin-top:.4rem">
-              Zatím nemáte v kalendáři žádnou nadcházející kontrolu. Otázka počká bez termínu —
+              Zatím nemáte v kalendáři žádnou nadcházející kontrolu. Otázka počká bez termínu,
               nebo si termín <button class="btn btn-ghost btn-sm" data-go="kalendar" style="padding:0;font-size:.75rem">přidejte do kalendáře</button>.
             </p>`
           : ''
@@ -376,7 +376,7 @@ function questionCard(q: QuestionRow, open: boolean): string {
   const body = `<div class="accbody">
     <p class="label" style="margin-top:.2rem">Co na to lékař</p>
     <textarea class="field" id="q-ans-${esc(q.id)}" rows="3"
-      placeholder="Zapište, co vám lékař řekl — klidně jen heslovitě.">${esc(q.answer)}</textarea>
+      placeholder="Zapište, co vám lékař řekl, klidně jen heslovitě.">${esc(q.answer)}</textarea>
 
     <div class="row wrap" style="gap:.5rem;margin-top:.9rem">
       <button class="btn btn-primary btn-sm" data-act="q-answer" data-arg="${esc(q.id)}">Uložit odpověď</button>
@@ -439,7 +439,7 @@ function visitCard(): string {
       <p class="soft" style="margin-top:.5rem;font-size:.9375rem;line-height:1.6">
         ${
           rows.length
-            ? 'Zkopírujte si je — pak je můžete přečíst z telefonu nebo poslat, komu chcete.'
+            ? 'Zkopírujte si je. Pak je můžete přečíst z telefonu nebo poslat, komu chcete.'
             : 'Co vás napadne do té doby, zapište do formuláře nahoře. I jedna věta je lepší než spoléhat na hlavu v ordinaci.'
         }
       </p>
@@ -465,7 +465,7 @@ function visitCard(): string {
 /**
  * Otázky, které plynou z toho, co má uživatelka zapsané.
  *
- * Skládá je `buildSummary` — deterministicky, z uložených dat, bez jakéhokoli
+ * Skládá je `buildSummary`. Deterministicky, z uložených dat, bez jakéhokoli
  * odesílání. Nejsou to rady ani doporučení: jsou to věty, které se dají
  * v ordinaci přečíst nahlas. Co z nich je k něčemu, rozhoduje uživatelka.
  */
@@ -474,7 +474,7 @@ function visitSummary(): { summary: VisitSummary; from: string; to: string } {
   const cycle = currentCycle()
 
   // Období: od poslední proběhlé návštěvy, jinak tři týdny zpátky. Delší okno
-  // by do návrhů zatáhlo věci, které už dávno padly — proto je i strop.
+  // by do návrhů zatáhlo věci, které už dávno padly, proto je i strop.
   // Bez něj by po roce bez kontroly souhrn projížděl rok dat.
   const floor = addDays(today, -MAX_WINDOW_DAYS + 1)
   const past = allEvents().filter((e) => e.onDate <= today && VISIT_KINDS.has(e.kind))
@@ -509,7 +509,7 @@ function visitSummary(): { summary: VisitSummary; from: string; to: string } {
 /**
  * Příznaky, u kterých symptoms.ts říká „volejte hned“.
  *
- * Schválně to není návrh otázky na příští kontrolu — odložit dušnost nebo
+ * Schválně to není návrh otázky na příští kontrolu. Odložit dušnost nebo
  * silné krvácení o týden je přesně to, čemu ta varování mají zabránit.
  * Stojí proto nahoře, nad formulářem, a vedou k telefonu, ne k seznamu.
  */
@@ -517,12 +517,12 @@ function urgentBlock(summary: VisitSummary): string {
   if (summary.urgentSymptoms.length === 0) return ''
   return `<div class="symwarn rise">
     <strong style="color:var(--fg)">Tohle nepatří na příští kontrolu:</strong>
-    zapsala jste ${esc(joinCz(summary.urgentSymptoms))}. Pokud to trvá, zavolejte na kliniku teď —
-    nečekejte na termín.
+    zapsala jste ${esc(joinCz(summary.urgentSymptoms))}. Pokud to trvá, zavolejte na kliniku teď.
+    Nečekejte na termín.
   </div>`
 }
 
-/** Návrhy otázek. Co už v seznamu je, se znovu nenabízí — ani ve vyřešených. */
+/** Návrhy otázek. Co už v seznamu je, se znovu nenabízí, ani ve vyřešených. */
 /**
  * Zásobník otázek podle fáze.
  *
@@ -540,7 +540,7 @@ function bank(): string {
   return `<section class="surface pad rise">
     ${sectionHead('Na co se ženy ptají')}
     <p class="faint" style="font-size:.8125rem;margin-top:-.3rem;line-height:1.55">
-      Hotové otázky k odkliknutí. Nejsou to rady, co si máte přát — jsou to věty,
+      Hotové otázky k odkliknutí. Nejsou to rady, co si máte přát. Jsou to věty,
       které se v ordinaci hodí říct nahlas. Nahoře je to, co patří k vaší fázi.
     </p>
     ${groups
@@ -573,7 +573,7 @@ function suggestions(summary: VisitSummary, from: string, to: string): string {
     ${sectionHead('Návrhy z vašich dat')}
     <p class="faint" style="font-size:.8125rem;margin-top:-.3rem;line-height:1.55">
       Sestavené z toho, co máte zapsané za ${esc(lastDaysPhrase(daysBetween(from, to) + 1))}.
-      Nejsou to rady — jen věty, které se hodí říct nahlas.
+      Nejsou to rady, jen věty, které se hodí říct nahlas.
     </p>
     <ul class="linelist" style="margin-top:.9rem">
       ${fresh
@@ -591,7 +591,7 @@ function suggestions(summary: VisitSummary, from: string, to: string): string {
 }
 
 /**
- * Přehled pro kontrolu — celý souhrn, ne jen otázky z něj.
+ * Přehled pro kontrolu. Celý souhrn, ne jen otázky z něj.
  *
  * Vzniká deterministicky z uložených dat, nikam se neodesílá a nic nevykládá.
  * Poslední věta souhrnu je disclaimer; bez téhle sekce by se k uživatelce
@@ -633,7 +633,7 @@ function paneCeka(openId: string | null, sum: VisitSummary, from: string, to: st
       </div>`
     : empty(
         'Zatím tu žádná otázka není',
-        'V ordinaci vypadne z hlavy všechno, co jste si chtěla říct — a doma to zase naskočí. Proto se otázky zapisují průběžně: co vás napadne teď, přečtete tam z telefonu.',
+        'V ordinaci vypadne z hlavy všechno, co jste si chtěla říct. A doma to zase naskočí. Proto se otázky zapisují průběžně: co vás napadne teď, přečtete tam z telefonu.',
         '<button class="btn btn-primary" data-act="q-focus">Napsat první otázku</button>',
         '?',
       )
@@ -646,7 +646,7 @@ function paneVyreseno(openId: string | null): string {
   if (rows.length === 0) {
     return empty(
       'Nic vyřešeného zatím není',
-      'Jakmile u otázky zapíšete, co vám lékař odpověděl, a označíte ji za vyřešenou, přesune se sem. Zůstane i s odpovědí — za tři měsíce se hodí vědět, co přesně zaznělo.',
+      'Jakmile u otázky zapíšete, co vám lékař odpověděl, a označíte ji za vyřešenou, přesune se sem. Zůstane i s odpovědí. Za tři měsíce se hodí vědět, co přesně zaznělo.',
       '<button class="btn btn-primary" data-go="otazky/ceka">Otevřít čekající otázky</button>',
       '✓',
     )
@@ -657,7 +657,7 @@ function paneVyreseno(openId: string | null): string {
     ${actionCard({
       icon: '?',
       title: 'Napsat novou otázku',
-      body: 'Formulář najdete v záložce Čeká — co vás napadne teď, tam počká do ordinace',
+      body: 'Formulář najdete v záložce Čeká. Co vás napadne teď, tam počká do ordinace',
       go: 'otazky/ceka',
     })}
     ${sectionHead(`Vyřešeno · ${plural(rows.length, 'otázka', 'otázky', 'otázek')}`)}
@@ -677,7 +677,7 @@ function paneArchiv(openId: string | null): string {
   if (rows.length === 0) {
     return empty(
       'Archiv je prázdný',
-      'Sem patří otázky, které už nejsou aktuální, ale mazat se nemají — třeba proto, že se k nim po dalším cyklu vrátíte. Přesunete je tlačítkem přímo v otázce.',
+      'Sem patří otázky, které už nejsou aktuální, ale mazat se nemají, třeba proto, že se k nim po dalším cyklu vrátíte. Přesunete je tlačítkem přímo v otázce.',
       '<button class="btn btn-primary" data-go="otazky/ceka">Otevřít čekající otázky</button>',
       '▤',
     )
@@ -687,7 +687,7 @@ function paneArchiv(openId: string | null): string {
     ${actionCard({
       icon: '?',
       title: 'Napsat novou otázku',
-      body: 'Formulář najdete v záložce Čeká — co vás napadne teď, tam počká do ordinace',
+      body: 'Formulář najdete v záložce Čeká. Co vás napadne teď, tam počká do ordinace',
       go: 'otazky/ceka',
     })}
     ${sectionHead(`Archiv · ${plural(rows.length, 'otázka', 'otázky', 'otázek')}`)}
@@ -731,7 +731,7 @@ export function screenOtazky(section: OtazkySection, openId: string | null): str
         : paneCeka(openId, sum.summary, sum.from, sum.to)
 
   const footer = note(
-    'Otázky ani odpovědi aplikace nijak nevyhodnocuje — jsou to vaše poznámky. Cokoli zdravotního patří vašemu lékaři a tenhle seznam ho nenahrazuje.',
+    'Otázky ani odpovědi aplikace nijak nevyhodnocuje. Jsou to vaše poznámky. Cokoli zdravotního patří vašemu lékaři a tenhle seznam ho nenahrazuje.',
   )
 
   return header + trio + pane + footer

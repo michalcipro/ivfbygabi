@@ -8,7 +8,7 @@ import { chart, seriesKey } from './viz'
 /**
  * Vývoj.
  *
- * Papír neumí ukázat, jak se věci hýbou v čase — tohle je hlavní důvod,
+ * Papír neumí ukázat, jak se věci hýbou v čase. Tohle je hlavní důvod,
  * proč je z diáře aplikace. Grafy nikdy nehodnotí; jen ukazují.
  */
 
@@ -53,7 +53,7 @@ function patternBlock(): string {
     return `<section class="surface pad">
       <p class="eyebrow">Co si aplikace všímá</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.7">
-        Až budete mít zapsaných aspoň deset dní, aplikace si začne všímat vzorců —
+        Až budete mít zapsaných aspoň deset dní, aplikace si začne všímat vzorců,
         třeba jestli jsou pro vás horší dny zákroků, nebo ty před nimi. Podle toho
         pak nabídne pomoc dřív.
       </p>
@@ -100,7 +100,7 @@ function labBlock(): string {
   const labs = S.d.labs
   if (labs.length === 0) return ''
 
-  // Nejsledovanější parametr — ten, kterého je nejvíc.
+  // Nejsledovanější parametr. Ten, kterého je nejvíc.
   const byKey = new Map<string, typeof labs>()
   for (const l of labs) byKey.set(l.paramKey, [...(byKey.get(l.paramKey) ?? []), l])
   const best = [...byKey.entries()].sort((a, b) => b[1].length - a[1].length)[0]
@@ -180,7 +180,7 @@ export function screenVyvoj(): string {
     `<header class="head rise">
       <p class="eyebrow">${esc(state.phase.name)} · ${esc(plural(rows.length, 'zapsaný den', 'zapsané dny', 'zapsaných dní'))}</p>
       <h1 class="display">Jak vám to jde</h1>
-      <p class="lede">Grafy nic nehodnotí. Jen ukazují, jak se věci hýbou — to je jediné, co papír neuměl.</p>
+      <p class="lede">Grafy nic nehodnotí. Jen ukazují, jak se věci hýbou. To je jediné, co papír neuměl.</p>
     </header>`,
     nuzkyBlock(),
     patternBlock(),

@@ -4,8 +4,8 @@ import type { PhotoRef } from './cycle'
 /**
  * Embryo jako samostatný záznam.
  *
- * Do téhle verze aplikace se vývoj embryí zapisoval jako počty po dnech —
- * kolik jich třetí den bylo, kolik jich došlo do blastocysty. To stačí na
+ * Do téhle verze aplikace se vývoj embryí zapisoval jako počty po dnech.
+ * Kolik jich třetí den bylo, kolik jich došlo do blastocysty. To stačí na
  * statistiku a nestačí na nic jiného. Žena, která má tři zamražená embrya,
  * se ptá jinak: **které z nich** se přenášelo, které přežilo rozmrazení,
  * které se testovalo a jak dopadlo. Na to musí být karta.
@@ -16,7 +16,7 @@ import type { PhotoRef } from './cycle'
  * horší. Proto tu není jedno pole „stadium“, ale záznam po dnech: co
  * embryolog hlásil první den, co třetí, co pátý.
  *
- * Čistý doménový modul — žádný prohlížeč, žádné HTML.
+ * Čistý doménový modul. Žádný prohlížeč, žádné HTML.
  */
 
 export type EmbryoStage = '' | 'zygota' | 'rihovani' | 'morula' | 'blastocysta' | 'zastaveno'
@@ -96,7 +96,7 @@ export interface EmbryoDay {
   /** 1 až 7. */
   day: number
   stage: EmbryoStage
-  /** Hodnocení, jak ho řekl embryolog — „8B“, „4AA“. */
+  /** Hodnocení, jak ho řekl embryolog. „8B“, „4AA“. */
   grade: string
   note: string
 }
@@ -104,7 +104,7 @@ export interface EmbryoDay {
 export interface Embryo {
   id: string
   cycleId: string
-  /** Pořadové číslo v rámci cyklu — „Embryo #2“. */
+  /** Pořadové číslo v rámci cyklu. „Embryo #2“. */
   number: number
   /** Vlastní název. Prázdné = použije se pořadí. */
   label: string
@@ -163,7 +163,7 @@ export function reachedDay(e: Embryo): number | null {
 /**
  * Došlo embryo do stádia blastocysty?
  *
- * Rozhoduje zapsané stadium, ne den — blastocysta šestého dne je blastocysta
+ * Rozhoduje zapsané stadium, ne den. Blastocysta šestého dne je blastocysta
  * stejně jako ta pátého.
  */
 export function isBlastocyst(e: Embryo): boolean {
@@ -194,7 +194,7 @@ export function embryoSummary(e: Embryo): string {
  *
  * Vrací mapu den → kolik embryí se toho dne ještě vyvíjelo. Embryo se počítá
  * do dne, ke kterému má zápis a stadium není „zastaveno“. Tohle je jediné
- * místo, kde se z karet dělá statistika — čísla se nikde nezadávají dvakrát.
+ * místo, kde se z karet dělá statistika. Čísla se nikde nezadávají dvakrát.
  */
 export function countsByDay(embryos: Embryo[]): Record<number, number> {
   const out: Record<number, number> = {}

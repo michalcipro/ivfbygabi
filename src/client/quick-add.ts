@@ -5,7 +5,7 @@ import { esc } from './ui'
  *
  * Plovoucí tlačítko, které je vidět na každé obrazovce. Zadání zní: každé
  * přidání nejvýš na dvě klepnutí. První otevře seznam, druhé už otevře
- * konkrétní formulář — proto tady nejsou žádné mezikroky a každá položka
+ * konkrétní formulář, proto tady nejsou žádné mezikroky a každá položka
  * vede rovnou na místo, kde se vyplňuje.
  *
  * Akce: `quick` (otevřít/zavřít), `quick-close`.
@@ -17,7 +17,7 @@ export interface QuickItem {
   hint: string
   /** Kam to vede. Když je místo toho `act`, spustí se rovnou akce. */
   route?: string
-  /** Akce místo přechodu — pro věci, které vznikají jedním klepnutím. */
+  /** Akce místo přechodu. Pro věci, které vznikají jedním klepnutím. */
   act?: string
 }
 

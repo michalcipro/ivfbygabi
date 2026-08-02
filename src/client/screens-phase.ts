@@ -8,7 +8,7 @@ import { journey, profile, S } from './store'
 import { contentCard, empty, esc, md, note, plural, sectionTitle } from './ui'
 
 /**
- * Moje fáze — páteř aplikace.
+ * Moje fáze. Páteř aplikace.
  *
  * Každá fáze má stejných osm oddílů, takže uživatelka po přechodu do další
  * fáze nemusí hledat nic nového. Zobrazuje se vždy jen jeden oddíl, aby to
@@ -40,7 +40,7 @@ const EVIDENCE_COLOR: Record<Supplement['evidence'], string> = {
   'podle hodnot': 'var(--taupe-deep)',
 }
 
-/** Obsah knihovny pro fázi, rozdělený podle druhu — ne jedna hromada. */
+/** Obsah knihovny pro fázi, rozdělený podle druhu, ne jedna hromada. */
 function contentGroups(phase: PhaseId): { title: string; hint: string; items: ContentItem[] }[] {
   const all = CATALOG.filter((c) => c.phases.includes(phase))
   const by = (...kinds: string[]) => all.filter((c) => kinds.includes(c.kind))
@@ -71,7 +71,7 @@ function blocks(list: { title: string; body: string }[]): string {
   </div>`
 }
 
-/** Diagnózy uživatelky jako rozklikávací štítky — nikdy jen nálepka. */
+/** Diagnózy uživatelky jako rozklikávací štítky. Nikdy jen nálepka. */
 function diagnosisChips(): string {
   const mods = profile().modifiers.filter((m) => DIAGNOSIS_INFO[m])
   if (mods.length === 0) {
@@ -82,7 +82,7 @@ function diagnosisChips(): string {
     </div>`
   }
   return `<div class="surface pad">
-    <p class="eyebrow">Vaše situace — klikněte pro vysvětlení</p>
+    <p class="eyebrow">Vaše situace. Klikněte pro vysvětlení</p>
     <div class="chips" style="margin-top:.9rem">
       ${mods.map((m) => `<button data-go="diagnoza/${esc(m)}">${esc(MODIFIER_LABELS[m])} <span class="faint" style="margin-left:.3rem">?</span></button>`).join('')}
     </div>
@@ -168,7 +168,7 @@ function sectionBody(
             </section>`
           : '',
 
-        here ? '' : note('Tohle není vaše aktuální fáze. Prohlížíte si ji dopředu — obsah na domovské stránce se řídí tím, kde jste teď.'),
+        here ? '' : note('Tohle není vaše aktuální fáze. Prohlížíte si ji dopředu. Obsah na domovské stránce se řídí tím, kde jste teď.'),
       ].join('')
     }
 
@@ -199,7 +199,7 @@ function sectionBody(
     // ---------------------------------------------------------------- tělo --
     case 'telo':
       return [
-        `<p class="lede soft">Jak se v téhle fázi hýbat — a co naopak vynechat.</p>`,
+        `<p class="lede soft">Jak se v téhle fázi hýbat. A co naopak vynechat.</p>`,
         blocks(guide.body),
         note('Tohle jsou obecná doporučení. Když vám lékař řekl něco jiného, platí to, co řekl on.'),
       ].join('')
@@ -210,7 +210,7 @@ function sectionBody(
         return empty('Žádné doplňky', 'V téhle fázi se doplňky neřeší.')
       }
       return [
-        `<p class="lede soft">U každého je napsané, proč se o něm mluví a jak silný důvod za ním stojí. <strong>Nikde tu není dávkování</strong> — to patří vašemu lékaři.</p>`,
+        `<p class="lede soft">U každého je napsané, proč se o něm mluví a jak silný důvod za ním stojí. <strong>Nikde tu není dávkování</strong>. To patří vašemu lékaři.</p>`,
         `<div class="stack" style="gap:.85rem">
           ${guide.supplements
             .map(
@@ -226,7 +226,7 @@ function sectionBody(
             .join('')}
         </div>`,
         note(
-          'Doplňky nejsou lék a nenahrazují léčbu. Některé se s léky míjejí nebo je ovlivňují — **vždycky řekněte lékaři, co berete**, včetně bylinek a čajů.',
+          'Doplňky nejsou lék a nenahrazují léčbu. Některé se s léky míjejí nebo je ovlivňují. **vždycky řekněte lékaři, co berete**, včetně bylinek a čajů.',
         ),
       ].join('')
     }
@@ -245,7 +245,7 @@ function sectionBody(
     // -------------------------------------------------------------- k lékaři --
     case 'lekar':
       return [
-        `<p class="lede soft">Otázky, které se v téhle fázi vyplatí položit. Odškrtávejte si je — zůstane to uložené.</p>`,
+        `<p class="lede soft">Otázky, které se v téhle fázi vyplatí položit. Odškrtávejte si je. Zůstane to uložené.</p>`,
         `<section class="surface pad">
           ${sectionTitle('Otázky pro lékaře', 'Vezměte si je s sebou')}
           ${guide.askDoctor
@@ -258,7 +258,7 @@ function sectionBody(
             })
             .join('')}
         </section>`,
-        note('Zapisujte si odpovědi hned v ordinaci. Po třetím termínu se to slévá — a to, co jste slyšela, se pak těžko dohledává.'),
+        note('Zapisujte si odpovědi hned v ordinaci. Po třetím termínu se to slévá. A to, co jste slyšela, se pak těžko dohledává.'),
       ].join('')
 
     // ----------------------------------------------------------- slovníček --
@@ -340,7 +340,7 @@ export function screenDiagnoza(id: string): string {
   ].join('')
 }
 
-/** Přehled všech diagnóz — dostupný i pro ty, které uživatelka nemá. */
+/** Přehled všech diagnóz. Dostupný i pro ty, které uživatelka nemá. */
 export function screenDiagnozy(): string {
   const mine = new Set(profile().modifiers)
   const ids = Object.keys(DIAGNOSIS_INFO) as ModifierId[]

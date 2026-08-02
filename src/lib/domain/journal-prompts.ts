@@ -7,7 +7,7 @@ import { seedFrom } from './dates'
  *
  * Deník nemá být prázdné okno, do kterého se nikomu nechce psát. Každý den
  * dostane uživatelka jednu konkrétní otázku, která sedí na fázi a den, ve
- * kterém je — a která ji někam posune, místo aby jen zaznamenala náladu.
+ * kterém je. A která ji někam posune, místo aby jen zaznamenala náladu.
  *
  * Otázky jsou vědomě formulované tak, aby:
  *  - nepředpokládaly dobrý ani špatný výsledek,
@@ -23,7 +23,7 @@ export interface JournalPrompt {
   /** Den ve fázi, kdy se hodí nejvíc. */
   dayRange?: [number, number]
   text: string
-  /** Proč se ptáme — ukazuje se pod otázkou drobným písmem. */
+  /** Proč se ptáme. Ukazuje se pod otázkou drobným písmem. */
   why: string
   kind: 'uvedomeni' | 'motivace' | 'hodnoceni' | 'hlava' | 'vztah'
 }
@@ -40,7 +40,7 @@ export const JOURNAL_PROMPTS: JournalPrompt[] = [
   // --- obecné, pro každou fázi ---------------------------------------------
   {
     id: 'p-dnes-tezke',
-    text: 'Co bylo dnes nejtěžší — a co konkrétně vám na tom vadilo nejvíc?',
+    text: 'Co bylo dnes nejtěžší. A co konkrétně vám na tom vadilo nejvíc?',
     why: 'Pojmenovat, co přesně bolí, je první krok k tomu, aby to přestalo být beztvará tíha.',
     kind: 'uvedomeni',
   },
@@ -53,7 +53,7 @@ export const JOURNAL_PROMPTS: JournalPrompt[] = [
   {
     id: 'p-telo-rika',
     text: 'Co vám dnes říkalo tělo? Kde jste cítila napětí?',
-    why: 'Úzkost se často ohlásí v těle dřív než v myšlenkách — v čelisti, ramenou, břiše.',
+    why: 'Úzkost se často ohlásí v těle dřív než v myšlenkách. V čelisti, ramenou, břiše.',
     kind: 'hlava',
   },
   {
@@ -76,7 +76,7 @@ export const JOURNAL_PROMPTS: JournalPrompt[] = [
   },
   {
     id: 'p-komu-rict',
-    text: 'Je něco, co byste dnes potřebovala někomu říct — a neřekla jste to?',
+    text: 'Je něco, co byste dnes potřebovala někomu říct. A neřekla jste to?',
     why: 'Nevyřčené věci se hromadí a pak vybuchnou u něčeho nesouvisejícího.',
     kind: 'vztah',
   },
@@ -88,7 +88,7 @@ export const JOURNAL_PROMPTS: JournalPrompt[] = [
   },
   {
     id: 'p-co-potrebuju',
-    text: 'Co byste teď nejvíc potřebovala — a je způsob, jak si to dát?',
+    text: 'Co byste teď nejvíc potřebovala. A je způsob, jak si to dát?',
     why: 'Ženy v léčbě obvykle vědí, co potřebuje jejich tělo pro léčbu, a netuší, co potřebují ony.',
     kind: 'uvedomeni',
   },
@@ -140,7 +140,7 @@ export const JOURNAL_PROMPTS: JournalPrompt[] = [
   {
     id: 'p-dg-tempo',
     groups: ['diagnosis'],
-    text: 'Máte pocit, že to jde moc pomalu? Co konkrétně by šlo urychlit — a co ne?',
+    text: 'Máte pocit, že to jde moc pomalu? Co konkrétně by šlo urychlit. A co ne?',
     why: 'Netrpělivost při vyšetřování je normální. Rozdělit ji na ovlivnitelné a neovlivnitelné pomáhá.',
     kind: 'hlava',
   },
@@ -156,7 +156,7 @@ export const JOURNAL_PROMPTS: JournalPrompt[] = [
   {
     id: 'p-lecba-cisla',
     groups: ['treatment'],
-    text: 'Kolik času dnes zabraly myšlenky na čísla — folikuly, hodnoty, dny?',
+    text: 'Kolik času dnes zabraly myšlenky na čísla. Folikuly, hodnoty, dny?',
     why: 'Když se cesta scvrkne na čísla, je dobré si toho aspoň všimnout.',
     kind: 'hlava',
   },
@@ -195,7 +195,7 @@ export const JOURNAL_PROMPTS: JournalPrompt[] = [
   {
     id: 'p-cekani-priznaky',
     groups: ['waiting'],
-    text: 'Kolikrát jste dnes rozebírala příznaky? Bez výčitek — jen odhad.',
+    text: 'Kolikrát jste dnes rozebírala příznaky? Bez výčitek, jen odhad.',
     why: 'Všímat si toho zvyku je první krok k tomu, aby vás tolik nevyčerpával.',
     kind: 'hlava',
   },
@@ -249,8 +249,8 @@ export const JOURNAL_PROMPTS: JournalPrompt[] = [
 ]
 
 /**
- * Otázka na daný den. Pro stejný den vyjde vždycky stejná, mezi dny se mění —
- * stejné pravidlo jako u zbytku aplikace.
+ * Otázka na daný den. Pro stejný den vyjde vždycky stejná, mezi dny se mění.
+ * Stejné pravidlo jako u zbytku aplikace.
  */
 export function promptFor(phase: PhaseId, dayInPhase: number, date: string): JournalPrompt {
   const group = PHASES[phase].group
@@ -265,7 +265,7 @@ export function promptFor(phase: PhaseId, dayInPhase: number, date: string): Jou
   const targeted = JOURNAL_PROMPTS.filter((p) => (p.phases || p.groups) && fits(p))
   const general = JOURNAL_PROMPTS.filter((p) => !p.phases && !p.groups)
 
-  // Dvě třetiny dní cílená otázka, zbytek obecná — aby se cílené neomílaly.
+  // Dvě třetiny dní cílená otázka, zbytek obecná, aby se cílené neomílaly.
   const seed = seedFrom(date, phase, dayInPhase)
   const pool = targeted.length > 0 && seed % 3 !== 0 ? targeted : general
   return pool[seed % pool.length] ?? general[0]

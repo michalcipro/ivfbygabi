@@ -23,11 +23,11 @@ import { accordion, bellyMap, dial, segmented, SHOT_ZONES } from './viz'
 /**
  * Zápis.
  *
- * Rozdělený přepínačem na tři části — jak mi je, tělo, vpich. Vzor pro tohle
+ * Rozdělený přepínačem na tři části. Jak mi je, tělo, vpich. Vzor pro tohle
  * dělení je převzatý z referenční aplikace: každá záložka nese dvě až tři
  * části, takže se pět záložek chová jako dvanáct obrazovek bez zanořování.
  *
- * Papírové diáře umírají na to, že do nich píšete a nic se nestane — tady
+ * Papírové diáře umírají na to, že do nich píšete a nic se nestane. Tady
  * každý zápis okamžitě pohne vnitřním prstencem.
  */
 
@@ -90,7 +90,7 @@ function paneNalada(): string {
     `<section class="surface pad rise">
       <p class="eyebrow">Co se dnes povedlo</p>
       <p class="faint" style="font-size:.8125rem;margin-top:.3rem">
-        Hlava si pamatuje hlavně selhání. Tohle je záměrné vyvážení — a v neděli se z toho stane věta týdne.
+        Hlava si pamatuje hlavně selhání. Tohle je záměrné vyvážení. A v neděli se z toho stane věta týdne.
       </p>
       <input class="field" id="z-win" placeholder="Třeba: píchla jsem si sama." value="${esc(row?.win ?? '')}" style="margin-top:.7rem">
 
@@ -107,7 +107,7 @@ function paneNalada(): string {
 
 // ----------------------------------------------------------------- tělo ---
 
-/** Název příznaku — z katalogu, nebo z vlastních, které si uživatelka přidala. */
+/** Název příznaku. Z katalogu, nebo z vlastních, které si uživatelka přidala. */
 function symptomLabel(id: string): string {
   return SYMPTOM_BY_ID[id]?.label ?? S.d.customSymptoms.find((x) => x.id === id)?.label ?? id
 }
@@ -116,7 +116,7 @@ function symptomLabel(id: string): string {
  * Intenzita zaškrtnutých příznaků.
  *
  * Zaškrtnutí samo o sobě říká jen „bylo to“. Rozdíl mezi dvojkou a devítkou
- * je přitom to jediné, co v ordinaci opravdu zazní — proto je stupnice hned
+ * je přitom to jediné, co v ordinaci opravdu zazní, proto je stupnice hned
  * u seznamu a ne schovaná v detailu. Nezadaná intenzita zůstává nezadaná;
  * nic se nedosazuje.
  */
@@ -134,7 +134,7 @@ function intensityCard(date: string, chosen: string[]): string {
       const scale = Array.from({ length: 11 }, (_, n) => {
         const on = v === n
         return `<button type="button" data-act="sym-int" data-arg="${esc(id)}:${n}"
-          aria-pressed="${on}" aria-label="${esc(symptomLabel(id))} — intenzita ${n} z 10"
+          aria-pressed="${on}" aria-label="${esc(symptomLabel(id))}. Intenzita ${n} z 10"
           style="${on && tone ? `background:var(${tone})` : ''}">${n}</button>`
       }).join('')
 
@@ -153,7 +153,7 @@ function intensityCard(date: string, chosen: string[]): string {
   return `<section class="surface pad rise">
     <p class="eyebrow">Jak silné to dnes bylo</p>
     <p class="faint" style="font-size:.8125rem;margin-top:.3rem;line-height:1.55">
-      Nula znamená „nic“, deset „nesnesitelné“. Nemusíte vyplnit nic — bez čísla se
+      Nula znamená „nic“, deset „nesnesitelné“. Nemusíte vyplnit nic. Bez čísla se
       příznak počítá dál, jen se z něj nedělá průměr.
     </p>
     ${rows}
@@ -185,7 +185,7 @@ function paneTelo(openGroup: string | null): string {
       <p class="eyebrow">Jak se ozývá tělo</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
         Rozdělené podle toho, odkud potíž jde. „Bolest v místě vpichu“ a „píchání ve vaječnících“
-        nejsou totéž — a když se to zapíše zvlášť, dá se s tím pak něco dělat.
+        nejsou totéž. A když se to zapíše zvlášť, dá se s tím pak něco dělat.
       </p>
     </section>`,
 
@@ -222,7 +222,7 @@ function paneVpich(): string {
       <p class="eyebrow">Zatím není co píchat</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.7">
         Mapa vpichů se hodí ve stimulaci a při podpoře luteální fáze. Až budete mít
-        léky, objeví se tady sama — nebo si je můžete přidat rovnou.
+        léky, objeví se tady sama, nebo si je můžete přidat rovnou.
       </p>
       <button class="btn" data-go="leky/protokol" style="margin-top:1.1rem">Přidat léky</button>
     </section>`
@@ -232,8 +232,8 @@ function paneVpich(): string {
     `<section class="surface pad rise">
       <p class="eyebrow">Kam jste si dnes píchla</p>
       <p class="faint" style="font-size:.8125rem;margin-top:.3rem">
-        Klepněte do místa. Čísla ukazují, před kolika dny jste tam byla naposledy —
-        deset dní do stejného místa bolí a dělá boule.
+        Klepněte do místa. Čísla ukazují, před kolika dny jste tam byla naposledy.
+        Deset dní do stejného místa bolí a dělá boule.
       </p>
       ${bellyMap(used, picked)}
       ${

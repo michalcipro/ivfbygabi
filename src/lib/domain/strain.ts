@@ -8,11 +8,11 @@ import { daysBetween } from './dates'
  * Aplikace nehodnotí uživatelku. Hodnotí ten den.
  *
  * Devátý den stimulace s odběrem nazítří je objektivně náročnější než třetí
- * den — a to se dá spočítat z protokolu, bez jediného jejího zápisu a bez
+ * den. A to se dá spočítat z protokolu, bez jediného jejího zápisu a bez
  * jakéhokoli soudu o ní. Tomu říkáme `demand`: co dnešek žádá.
  *
  * Proti tomu stojí `reserve`: co na to má. To už je čistě z jejího zápisu.
- * Nízká rezerva není selhání, je to informace — aplikace podle ní ubere.
+ * Nízká rezerva není selhání, je to informace. Aplikace podle ní ubere.
  *
  * Rozdíl mezi nimi jsou nůžky a řídí celou aplikaci.
  *
@@ -66,7 +66,7 @@ export interface DayReading {
   /** demand − reserve. Kladné = nůžky otevřené. */
   gap: number | null
   state: ScissorState
-  /** Z čeho se to složilo. Ukazuje se uživatelce — nic není černá skříňka. */
+  /** Z čeho se to složilo. Ukazuje se uživatelce. Nic není černá skříňka. */
   demandParts: Part[]
   reserveParts: Part[]
   /** Jedna věta, proč je dnešek takový, jaký je. */
@@ -107,7 +107,7 @@ function eventLoad(events: DayEvent[], date: IsoDate): Part[] {
     const w = EVENT_WEIGHT[e.kind] ?? 1
     const d = daysBetween(date, e.onDate)
     if (d === 0) today = Math.max(today, w)
-    // Den před zákrokem bývá subjektivně těžší než zákrok sám — proto se
+    // Den před zákrokem bývá subjektivně těžší než zákrok sám, proto se
     // zítřek započítává, jen o něco slabší.
     else if (d === 1) tomorrow = Math.max(tomorrow, w * 0.8)
   }
@@ -117,15 +117,15 @@ function eventLoad(events: DayEvent[], date: IsoDate): Part[] {
 }
 
 /**
- * Přirážka za konkrétní den ve fázi. Křivka náročnosti není plochá —
- * konec stimulace a druhý týden čekání jsou prokazatelně nejhorší.
+ * Přirážka za konkrétní den ve fázi. Křivka náročnosti není plochá.
+ * Konec stimulace a druhý týden čekání jsou prokazatelně nejhorší.
  */
 function phaseDayLoad(state: JourneyState): Part[] {
   const parts: Part[] = []
   const d = state.dayInPhase
 
   if (state.phase.id === 'stimulation' && d >= 6) {
-    parts.push({ label: 'Konec stimulace — tělo je na hraně', points: d >= 9 ? 2 : 1 })
+    parts.push({ label: 'Konec stimulace. Tělo je na hraně', points: d >= 9 ? 2 : 1 })
   }
   if (state.group === 'waiting') {
     const dpt = state.daysPastTransfer
@@ -203,7 +203,7 @@ function adviceFor(s: ScissorState, state: JourneyState): string {
     case 'nezapsano':
       return 'Zapište si dnešek a uvidíte druhou půlku prstence. Trvá to dvacet vteřin.'
     case 'siroke':
-      return 'Dnes neplánujte nic navíc. Vybrali jsme vám kratší obsah a dýchání — a klidně to nechte být i to.'
+      return 'Dnes neplánujte nic navíc. Vybrali jsme vám kratší obsah a dýchání. A klidně to nechte být i to.'
     case 'otevrene':
       return 'Dnes ubereme. Kratší čtení, žádné úkoly navíc. Co se nestihne, počká.'
     case 'rovnovaha':
@@ -218,7 +218,7 @@ function headlineFor(demand: number, state: JourneyState, parts: Part[]): string
   if (demand >= 8) return `Jeden z nejnáročnějších dní. ${top ? top.label + '.' : ''}`.trim()
   if (demand >= 6) return `Náročnější den. ${top ? top.label + '.' : ''}`.trim()
   if (demand >= 4) return `Běžný den ve fázi ${state.phase.name.toLowerCase()}.`
-  return 'Klidný den. Nic velkého se dnes neděje — a to je taky v pořádku.'
+  return 'Klidný den. Nic velkého se dnes neděje. A to je taky v pořádku.'
 }
 
 export function readDay(input: StrainInput): DayReading {
@@ -243,7 +243,7 @@ export function readDay(input: StrainInput): DayReading {
 
 export interface Pattern {
   text: string
-  /** Kolik dní vzorec staví — pod 10 se nezobrazuje. */
+  /** Kolik dní vzorec staví. Pod 10 se nezobrazuje. */
   sample: number
 }
 
@@ -252,7 +252,7 @@ export interface Pattern {
  *
  * Zatím jediný vzorec, který má dost dat a dá se z něj něco udělat:
  * jestli se nůžky rozevírají spíš den PŘED událostí, nebo v den události.
- * U hodně žen je horší ten předchozí večer — a to je akce, kterou umíme
+ * U hodně žen je horší ten předchozí večer. A to je akce, kterou umíme
  * nabídnout.
  */
 export function findPattern(

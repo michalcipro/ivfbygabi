@@ -11,7 +11,7 @@ import { patch, S, newProfile, type Draft } from './store'
  * Onboarding.
  *
  * Pět kroků, každý s jednou otázkou. Ptáme se jen na to, co opravdu mění,
- * co uživatelka uvidí — datum a situaci. Všechno ostatní se dá doplnit
+ * co uživatelka uvidí. Datum a situaci. Všechno ostatní se dá doplnit
  * později v nastavení a aplikace funguje i bez toho.
  *
  * Pořadí voleb je záměrné: IVF cyklus je nahoře, protože kvůli němu sem
@@ -31,8 +31,8 @@ export interface RouteDef {
   id: string
   group: 'before' | 'cycle' | 'waiting' | 'result' | 'further'
   /**
-   * Hlavní volba se nabízí hned. Ostatní jsou pod „Potřebuji jinou fázi“ —
-   * deset dlaždic se přečte, třiadvacet ne, ale ani jedna z nich nesmí
+   * Hlavní volba se nabízí hned. Ostatní jsou pod „Potřebuji jinou fázi“.
+   * Deset dlaždic se přečte, třiadvacet ne, ale ani jedna z nich nesmí
    * zmizet: žena, která je přesně mezi odběrem a oplodněním, se musí trefit.
    */
   primary: boolean
@@ -47,7 +47,7 @@ export interface RouteDef {
   /** Nabídka „rychlých“ posunů ve dnech, aby se nemuselo klikat v kalendáři. */
   quick: number[]
   mods: ModifierId[]
-  /** Situace, která z volby plyne sama — přidá se bez ptaní. */
+  /** Situace, která z volby plyne sama. Přidá se bez ptaní. */
   implied?: ModifierId[]
 }
 
@@ -250,7 +250,7 @@ export const ROUTES: RouteDef[] = [
     icon: '🤍',
     group: 'waiting',
     label: 'Jsem po transferu',
-    hint: 'Čekání na výsledek — nejtěžší dny z celé léčby',
+    hint: 'Čekání na výsledek. Nejtěžší dny z celé léčby',
     phase: 'two_week_wait',
     field: 'transferOn',
     dateLabel: 'Kdy byl transfer?',
@@ -352,7 +352,7 @@ export const ROUTES: RouteDef[] = [
     icon: '🕊️',
     group: 'result',
     label: 'Zažila jsem ztrátu',
-    hint: 'Těhotenství skončilo — potřebuji čas',
+    hint: 'Těhotenství skončilo. Potřebuji čas',
     phase: 'loss_miscarriage',
     field: 'lossOn',
     dateLabel: 'Kdy se to stalo?',
@@ -451,7 +451,7 @@ export function profileFromDraft(dr: Draft): Profile {
   p.anonymousInCommunity = dr.anon
 
   // Diagnózy z druhého kroku se promítnou i do modifikátorů, které řídí
-  // cílení obsahu. „Zatím nevím“ a „žádná diagnóza“ se do nich nepromítá —
+  // cílení obsahu. „Zatím nevím“ a „žádná diagnóza“ se do nich nepromítá.
   // nejsou to diagnózy, jsou to odpovědi.
   p.diagnoses = (dr.diagnoses ?? []).filter((d) => d !== 'nevim' && d !== 'zadna')
   const mods = new Set<ModifierId>([
@@ -507,8 +507,8 @@ function stepWelcome(): string {
  * Kde právě jste.
  *
  * Deset dlaždic, které pokrývají skoro každou ženu, a pod nimi odkaz na
- * jemnější dělení. Tohle není otázka „kterou sekci chcete otevřít“ —
- * je to jediná otázka, ze které se poskládá celý zbytek aplikace.
+ * jemnější dělení. Tohle není otázka „kterou sekci chcete otevřít“.
+ * Je to jediná otázka, ze které se poskládá celý zbytek aplikace.
  *
  * Nikdo se tím nezamyká: fáze jde kdykoli změnit a nic se přitom nesmaže.
  */
@@ -567,7 +567,7 @@ function stepWhere(): string {
   <div class="ob-body">
     <p class="eyebrow">Vítejte na své IVF cestě</p>
     <h1 class="display" style="margin-top:.7rem">Kde právě jste?</h1>
-    <p class="lede">Podle toho poskládáme celou aplikaci — dnešek, obsah, checklisty i kalendář. Až se posunete, změníte to jedním klikem a nic se přitom nesmaže.</p>
+    <p class="lede">Podle toho poskládáme celou aplikaci. Dnešek, obsah, checklisty i kalendář. Až se posunete, změníte to jedním klikem a nic se přitom nesmaže.</p>
     ${phasePicker(dr.route, 'ob-route', S.d.obMore === true)}
     ${preview}
   </div>
@@ -634,7 +634,7 @@ function stepWhat(): string {
   <div class="ob-body">
     <p class="eyebrow">Krok 4 ze 5</p>
     <h1 class="display" style="margin-top:.7rem">Co se vás týká?</h1>
-    <p class="lede">Vyberte, co platí. Podle toho se mění obsah uvnitř fáze — po císaři se šestinedělí čte jinak než po přirozeném porodu.</p>
+    <p class="lede">Vyberte, co platí. Podle toho se mění obsah uvnitř fáze. Po císaři se šestinedělí čte jinak než po přirozeném porodu.</p>
 
     ${
       mods.length
@@ -667,7 +667,7 @@ function stepWhat(): string {
  * Co už o své cestě víte.
  *
  * Diagnóza není podmínka. Většina žen ji na začátku nezná a „zatím nevím“
- * je legitimní odpověď — proto je v seznamu první a nic se za ni neschovává.
+ * je legitimní odpověď, proto je v seznamu první a nic se za ni neschovává.
  * Výběr jen personalizuje obsah; aplikace z něj neodvozuje léčbu.
  */
 function stepDiagnosis(): string {
@@ -694,7 +694,7 @@ function stepDiagnosis(): string {
   <div class="ob-body">
     <p class="eyebrow">Krok 3 ze 5</p>
     <h1 class="display" style="margin-top:.7rem">Co už o své cestě víte?</h1>
-    <p class="lede">Vyberte, co se vás týká — může toho být víc. Kombinovaný faktor je v IVF spíš pravidlo než výjimka.</p>
+    <p class="lede">Vyberte, co se vás týká. Může toho být víc. Kombinovaný faktor je v IVF spíš pravidlo než výjimka.</p>
 
     <div class="chips" style="margin-top:1.75rem">
       <button data-act="ob-dg" data-arg="nevim" aria-pressed="${vybrane.includes('nevim')}">Zatím nevím</button>
@@ -745,7 +745,7 @@ function stepWho(): string {
   )}`
 }
 
-/** Fáze bez kotevního data nemají krok „kdy“ — přeskakuje se v akcích. */
+/** Fáze bez kotevního data nemají krok „kdy“. Přeskakuje se v akcích. */
 export function stepHasDate(): boolean {
   return Boolean(routeById(draft().route)?.field)
 }

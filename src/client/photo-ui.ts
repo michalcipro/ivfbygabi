@@ -3,7 +3,7 @@ import { photosPersist, photoUrl } from './photos'
 import { esc } from './ui'
 
 /**
- * Fotky u záznamu — jeden díl pro celou aplikaci.
+ * Fotky u záznamu. Jeden díl pro celou aplikaci.
  *
  * Papír z kliniky je pořád hlavní nosič informace o léčbě: protokol na A4,
  * zpráva z embryologie, výtisk z ultrazvuku, proužek testu. Vyfotit ho je
@@ -23,7 +23,7 @@ import { esc } from './ui'
  *
  * Rozklíčovat scope umí `photosOf()` a `withPhotos()` ve `store.ts`. Přidat
  * další místo tedy znamená doplnit jednu větev tam a zavolat `photoStrip()`
- * na obrazovce — nikde jinde se nic měnit nemusí.
+ * na obrazovce. Nikde jinde se nic měnit nemusí.
  *
  * ------------------------------------------------------------------ AKCE ----
  * `photo-add`  arg = scope
@@ -31,7 +31,7 @@ import { esc } from './ui'
  * `photo-zoom` arg = idFotky
  *
  * ------------------------------------------------------------------- CSS ----
- * `.photos`, `.photo`, `.photo-open`, `.photo-del`, `.photolay` — v app.css.
+ * `.photos`, `.photo`, `.photo-open`, `.photo-del`, `.photolay`. V app.css.
  */
 export function photoStrip(scope: string, photos: PhotoRef[], text: string): string {
   const tiles = photos
@@ -59,7 +59,7 @@ export function photoStrip(scope: string, photos: PhotoRef[], text: string): str
     <p class="faint" style="font-size:.75rem;margin-top:.35rem;line-height:1.45">${esc(
       photosPersist()
         ? 'Fotka zůstává ve vašem zařízení a nikam se neodesílá. Před uložením se zmenší, ať se jich vejde víc.'
-        : 'Tenhle prohlížeč fotky trvale uložit neumí — bývá to privátním režimem. Zůstanou jen do zavření záložky.',
+        : 'Tenhle prohlížeč fotky trvale uložit neumí. Bývá to privátním režimem. Zůstanou jen do zavření záložky.',
     )}</p>
   </div>`
 }

@@ -20,17 +20,17 @@ import { isBlastocyst, reachedDay, type Embryo } from './embryo'
  * po kryotransferu, odběr hCG za šest dní.
  *
  * Tohle je srdce aplikace. Všechno ostatní jsou formuláře, do kterých se
- * jde jen tehdy, když je co doplnit — tahle karta se čte každý den.
+ * jde jen tehdy, když je co doplnit. Tahle karta se čte každý den.
  *
  * ----------------------------------------------------------------- KROKY ---
  * Karta ukazuje jen kroky, které v daném druhu cyklu existují, a jen ty,
- * ke kterým je co říct. Prázdný krok se nekreslí: „Odběr — nezapsáno“
+ * ke kterým je co říct. Prázdný krok se nekreslí: „Odběr. Nezapsáno“
  * nikomu nic neřekne a jen ředí to, co zapsané je.
  *
  * ------------------------------------------------------------- TRANSFERY ---
  * Cyklus není totéž co transfer. Jeden odběr vydá na několik transferů
  * a karta to musí ukázat jako jednu větev, ne jako tři cykly. Transfery
- * mají proto vlastní řádek každý — s pořadím, druhem a výsledkem.
+ * mají proto vlastní řádek každý. S pořadím, druhem a výsledkem.
  *
  * Čistý doménový modul.
  */
@@ -40,7 +40,7 @@ export type StepState = 'hotovo' | 'probiha' | 'ceka' | 'neproběhlo'
 export interface CardStep {
   key: string
   label: string
-  /** Hodnota vpravo — „12 vajíček“, „15. 9.“. Prázdné = jen stav. */
+  /** Hodnota vpravo. „12 vajíček“, „15. 9.“. Prázdné = jen stav. */
   value: string
   state: StepState
   date: IsoDate | null
@@ -83,7 +83,7 @@ function shortDate(iso: IsoDate): string {
  * Sestaví kartu cyklu k zadanému dni.
  *
  * `embryos` jsou embrya, která k cyklu patří. Když je uživatelka nevede,
- * použije se počet z laboratorních čísel — karta má fungovat i pro ženu,
+ * použije se počet z laboratorních čísel. Karta má fungovat i pro ženu,
  * která si karty embryí vyplňovat nechce.
  */
 export function buildCard(c: CycleRow, embryos: Embryo[], today: IsoDate): JourneyCard {
@@ -204,7 +204,7 @@ export function buildCard(c: CycleRow, embryos: Embryo[], today: IsoDate): Journ
 export interface FunnelStep {
   label: string
   count: number
-  /** Doplněk pod číslem — „5. den“, „z toho zralých“. */
+  /** Doplněk pod číslem. „5. den“, „z toho zralých“. */
   note: string
   /** Tvar do jednořádkového shrnutí: „4 embrya 3. den“. */
   short: string
@@ -214,7 +214,7 @@ export interface FunnelStep {
  * Co se stalo s mými vajíčky.
  *
  * Cesta od folikulu k embryu má několik filtrů a čísla mezi nimi klesají.
- * Když se ukážou vedle sebe, je vidět, že to klesání je normální — a ne
+ * Když se ukážou vedle sebe, je vidět, že to klesání je normální. A ne
  * že se něco pokazilo. Kroky, které uživatelka nezapsala, se vynechají;
  * dopočítávat je by znamenalo vymýšlet si.
  */
@@ -233,8 +233,8 @@ export function buildFunnel(c: CycleRow, embryos: Embryo[]): FunnelStep[] {
    * Dny kultivace.
    *
    * Přednost mají ručně zapsaná čísla, protože je klinika hlásí za celou
-   * sadu. Karty embryí bývají neúplné — žena si vede jen ta embrya, o která
-   * jí jde — a kdyby se míchaly s ručními počty, trychtýř by uprostřed
+   * sadu. Karty embryí bývají neúplné. Žena si vede jen ta embrya, o která
+   * jí jde. A kdyby se míchaly s ručními počty, trychtýř by uprostřed
    * spadl na jedničku a vypadal by jako katastrofa, která se nestala.
    *
    * Z karet se počítá jen tehdy, když ruční číslo chybí. A pak se počítá
@@ -270,8 +270,8 @@ export function buildFunnel(c: CycleRow, embryos: Embryo[]): FunnelStep[] {
   return out
 }
 
-/** Do kolikátého dne se embryo dostalo — pro tabulku embryí. */
+/** Do kolikátého dne se embryo dostalo. Pro tabulku embryí. */
 export function embryoDayLabel(e: Embryo): string {
   const d = reachedDay(e)
-  return d === null ? '—' : `D${d}`
+  return d === null ? '–' : `D${d}`
 }

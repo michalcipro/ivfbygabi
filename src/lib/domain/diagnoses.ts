@@ -7,7 +7,7 @@ import type { ModifierId } from './profile'
  * rozkliknout. Každý modifikátor tady má: co to je, co to znamená pro cestu
  * a na co se zeptat lékaře.
  *
- * Nikde není prognóza pro konkrétní ženu ani čísla úspěšnosti — obojí závisí
+ * Nikde není prognóza pro konkrétní ženu ani čísla úspěšnosti. Obojí závisí
  * na kontextu, který aplikace nemá.
  */
 
@@ -24,7 +24,7 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
   pcos: {
     what: 'Syndrom polycystických ovarií. Hormonální porucha, při které se ve vaječnících hromadí nedozrálé folikuly a ovulace bývá nepravidelná nebo chybí.',
     meaning:
-      'Nejčastější příčina poruch ovulace — a zároveň dobře léčitelná. Ve stimulaci bývá odpověď silná, takže se hlídá riziko OHSS. Často se řeší i citlivost na inzulin a váha.',
+      'Nejčastější příčina poruch ovulace. A zároveň dobře léčitelná. Ve stimulaci bývá odpověď silná, takže se hlídá riziko OHSS. Často se řeší i citlivost na inzulin a váha.',
     ask: [
       'Ovuluji vůbec, a poznáme to podle čeho?',
       'Mám vyšetřenou citlivost na inzulin?',
@@ -32,7 +32,7 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
     ],
   },
   endometriosis: {
-    what: 'Endometrióza. Tkáň podobná děložní sliznici roste mimo dělohu — na vaječnících, pobřišnici nebo jinde v pánvi.',
+    what: 'Endometrióza. Tkáň podobná děložní sliznici roste mimo dělohu. Na vaječnících, pobřišnici nebo jinde v pánvi.',
     meaning:
       'Může způsobovat bolestivou menstruaci, srůsty a snižovat ovariální rezervu. Léčba se plánuje individuálně; někdy se operuje před IVF, jindy se operace odkládá, protože sama může rezervu snížit.',
     ask: [
@@ -48,7 +48,7 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
     ask: ['Jak to ovlivňuje uhnízdění?', 'Doporučujete přípravu před transferem?'],
   },
   low_amh: {
-    what: 'Nízké AMH. Hormon, který orientačně vypovídá o ovariální rezervě — zhruba o tom, kolik vajíček ve vaječnících zbývá.',
+    what: 'Nízké AMH. Hormon, který orientačně vypovídá o ovariální rezervě. Zhruba o tom, kolik vajíček ve vaječnících zbývá.',
     meaning:
       'Neříká nic o kvalitě vajíček ani o tom, jestli otěhotníte. Ovlivňuje hlavně to, kolik vajíček se dá čekat po stimulaci, a tím i volbu protokolu. Nízké AMH neznamená, že je pozdě.',
     ask: [
@@ -60,7 +60,7 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
   male_factor: {
     what: 'Mužský faktor. Odchylka v počtu, pohyblivosti nebo tvaru spermií, případně v jejich DNA.',
     meaning:
-      'Podílí se zhruba na polovině případů neplodnosti. Řada příčin je ovlivnitelná — od životního stylu po urologickou léčbu. U výraznějších nálezů se používá ICSI.',
+      'Podílí se zhruba na polovině případů neplodnosti. Řada příčin je ovlivnitelná. Od životního stylu po urologickou léčbu. U výraznějších nálezů se používá ICSI.',
     ask: [
       'Má smysl vyšetření u urologa nebo androloga?',
       'Doporučujete vyšetření fragmentace DNA spermií?',
@@ -70,7 +70,7 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
   tubal_factor: {
     what: 'Neprůchodné nebo poškozené vejcovody. Vajíčko se nemůže potkat se spermií přirozenou cestou.',
     meaning:
-      'IVF tuhle překážku obchází, protože oplodnění probíhá v laboratoři. Pokud je vejcovod naplněný tekutinou (hydrosalpinx), doporučuje se ho před transferem řešit — zhoršuje uhnízdění.',
+      'IVF tuhle překážku obchází, protože oplodnění probíhá v laboratoři. Pokud je vejcovod naplněný tekutinou (hydrosalpinx), doporučuje se ho před transferem řešit. Zhoršuje uhnízdění.',
     ask: ['Je některý vejcovod naplněný tekutinou?', 'Má se před IVF operovat?'],
   },
   thyroid: {
@@ -106,7 +106,7 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
   unexplained: {
     what: 'Nevysvětlená neplodnost. Kompletní vyšetření nenašlo příčinu.',
     meaning:
-      'Neznamená, že příčina není — jen ji dnešními metodami nevidíme. Psychicky je to jedna z nejtěžších diagnóz, protože není co opravit. Postupuje se od jednodušších metod ke složitějším.',
+      'Neznamená, že příčina není, jen ji dnešními metodami nevidíme. Psychicky je to jedna z nejtěžších diagnóz, protože není co opravit. Postupuje se od jednodušších metod ke složitějším.',
     ask: [
       'Která vyšetření jsme ještě neudělali?',
       'Jaký postup u nevysvětlené neplodnosti doporučujete?',
@@ -116,7 +116,7 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
   donor_egg: {
     what: 'Darovaná vajíčka. Vajíčka od anonymní dárkyně, oplodněná spermiemi partnera nebo dárce.',
     meaning:
-      'Volí se hlavně při vyčerpané ovariální rezervě, po opakovaných neúspěších nebo z genetických důvodů. Kromě medicíny to znamená i vlastní proces smiřování s tím, že dítě nebude geneticky vaše — a je normální, že chvíli trvá.',
+      'Volí se hlavně při vyčerpané ovariální rezervě, po opakovaných neúspěších nebo z genetických důvodů. Kromě medicíny to znamená i vlastní proces smiřování s tím, že dítě nebude geneticky vaše. A je normální, že chvíli trvá.',
     ask: [
       'Jak probíhá výběr dárkyně a co o ní budeme vědět?',
       'Jak dlouho se čeká?',
@@ -126,7 +126,7 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
   donor_sperm: {
     what: 'Darované spermie od anonymního dárce.',
     meaning:
-      'Používá se při závažném mužském faktoru, u genetických rizik, u žen bez partnera nebo u stejnopohlavních párů. Rozhodnutí má i vztahovou a etickou rovinu — konzultace s psychologem bývá k dispozici.',
+      'Používá se při závažném mužském faktoru, u genetických rizik, u žen bez partnera nebo u stejnopohlavních párů. Rozhodnutí má i vztahovou a etickou rovinu. Konzultace s psychologem bývá k dispozici.',
     ask: ['Jak se dárce vybírá?', 'Jaké jsou u nás právní podmínky?', 'Jak to jednou vysvětlíme dítěti?'],
   },
   donor_embryo: {
@@ -138,11 +138,11 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
   icsi: {
     what: 'ICSI. Vpravení jedné spermie přímo do vajíčka mikropipetou.',
     meaning:
-      'Standardní metoda u mužského faktoru a po předchozím selhání oplodnění. U párů bez mužského faktoru přínos oproti klasickému IVF prokázaný není — má smysl se zeptat, proč je navržena.',
+      'Standardní metoda u mužského faktoru a po předchozím selhání oplodnění. U párů bez mužského faktoru přínos oproti klasickému IVF prokázaný není. Má smysl se zeptat, proč je navržena.',
     ask: ['Proč u nás ICSI a ne klasické IVF?', 'Je to hrazené, nebo se doplácí?'],
   },
   pgt: {
-    what: 'PGT. Genetické vyšetření embrya před transferem — nejčastěji PGT-A na počet chromozomů.',
+    what: 'PGT. Genetické vyšetření embrya před transferem. Nejčastěji PGT-A na počet chromozomů.',
     meaning:
       'Má jasný smysl u známé genetické zátěže. U ostatních párů je přínos předmětem sporu a znamená to biopsii embrya a odklad transferu. Cena bývá vysoká a obvykle není hrazená.',
     ask: [
@@ -154,13 +154,13 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
   frozen_transfer: {
     what: 'Kryoembryotransfer (KET). Transfer dříve zmraženého embrya.',
     meaning:
-      'Šetrnější než čerstvý cyklus — tělo není po stimulaci. Používá se běžně a moderní zmrazování (vitrifikace) embrya nepoškozuje. Cyklus se připravuje buď přirozeně, nebo hormonálně.',
+      'Šetrnější než čerstvý cyklus. Tělo není po stimulaci. Používá se běžně a moderní zmrazování (vitrifikace) embrya nepoškozuje. Cyklus se připravuje buď přirozeně, nebo hormonálně.',
     ask: ['Připravíme cyklus přirozeně, nebo hormonálně?', 'Kolik embryí máme zmražených?'],
   },
   surrogacy: {
     what: 'Náhradní mateřství. Těhotenství donosí jiná žena.',
     meaning:
-      'Volí se, když těhotenství není možné nebo by bylo nebezpečné. V Česku není samostatně upraveno zákonem, což přináší právní nejistotu — právní konzultace je nutná, ne doporučená.',
+      'Volí se, když těhotenství není možné nebo by bylo nebezpečné. V Česku není samostatně upraveno zákonem, což přináší právní nejistotu. Právní konzultace je nutná, ne doporučená.',
     ask: ['Jaká je právní situace u nás?', 'Co obnáší osvojení po porodu?', 'Na koho se obrátit právně?'],
   },
   twins: {
@@ -172,7 +172,7 @@ export const DIAGNOSIS_INFO: Record<ModifierId, DiagnosisInfo> = {
 after_loss: {
     what: 'Těhotenství nebo snažení po ztrátě.',
     meaning:
-      'Mění to prožívání každého dalšího pokusu — radost přichází opatrněji a strach dřív. Je to normální reakce, ne komplikace.',
+      'Mění to prožívání každého dalšího pokusu. Radost přichází opatrněji a strach dřív. Je to normální reakce, ne komplikace.',
     ask: ['Můžeme příští těhotenství potvrdit dřív?', 'Má smysl vyšetření po ztrátě?'],
   },
   repeated_failure: {
@@ -184,7 +184,7 @@ after_loss: {
   single_mother: {
     what: 'Cesta k dítěti bez partnera.',
     meaning:
-      'V Česku má léčba pro ženy bez partnera svá právní omezení — vyplatí se je znát dřív, než začnete plánovat. Praktická i psychická příprava je jiná, ne menší.',
+      'V Česku má léčba pro ženy bez partnera svá právní omezení. Vyplatí se je znát dřív, než začnete plánovat. Praktická i psychická příprava je jiná, ne menší.',
     ask: ['Jaké jsou u nás právní podmínky?', 'Co to znamená pro úhradu?', 'Jaká je běžná cesta?'],
   },
   same_sex_couple: {
@@ -215,7 +215,7 @@ export function diagnosisInfo(id: ModifierId): DiagnosisInfo | null {
  * zapsat, je víc a jsou jemnější. Kde se dvojice potkává, je uvedený `modifier`
  * a obsah se pak cílí sám.
  *
- * Diagnóz může být zapsaných víc naráz — kombinovaný faktor je v IVF pravidlo,
+ * Diagnóz může být zapsaných víc naráz. Kombinovaný faktor je v IVF pravidlo,
  * ne výjimka. Aplikace ze zapsané diagnózy **nic neodvozuje o léčbě**; slouží
  * k tomu, aby se ženě ukazoval obsah, který se jí týká.
  */
@@ -250,7 +250,7 @@ export const DIAGNOSES: DiagnosisDef[] = [
   // --- děloha a vejcovody
   { id: 'tubal', label: 'Neprůchodné vejcovody', group: 'Děloha a vejcovody', modifier: 'tubal_factor', note: 'Vejcovody neumožňují setkání vajíčka a spermie.' },
   { id: 'tubal_damage', label: 'Poškozené vejcovody', group: 'Děloha a vejcovody', modifier: 'tubal_factor', note: 'Po zánětu, operaci nebo mimoděložním těhotenství.' },
-  { id: 'tubes_removed', label: 'Odstraněné vejcovody', group: 'Děloha a vejcovody', modifier: 'tubal_factor', note: 'Po operaci — cesta k otěhotnění vede přes IVF.' },
+  { id: 'tubes_removed', label: 'Odstraněné vejcovody', group: 'Děloha a vejcovody', modifier: 'tubal_factor', note: 'Po operaci. Cesta k otěhotnění vede přes IVF.' },
   { id: 'hydrosalpinx', label: 'Hydrosalpinx', group: 'Děloha a vejcovody', modifier: 'tubal_factor', note: 'Vejcovod naplněný tekutinou.' },
   { id: 'adenomyosis', label: 'Adenomyóza', group: 'Děloha a vejcovody', modifier: 'adenomyosis', note: 'Sliznice prorůstá do svaloviny dělohy.' },
   { id: 'uterus_anatomy', label: 'Anatomická odchylka dělohy', group: 'Děloha a vejcovody', note: 'Přepážka, dvojrohá děloha, srůsty a podobně.' },
@@ -271,7 +271,7 @@ export const DIAGNOSES: DiagnosisDef[] = [
 
   // --- další
   { id: 'unexplained', label: 'Nevysvětlená neplodnost', group: 'Další důvody', modifier: 'unexplained', note: 'Vyšetření nenašla příčinu. Je to diagnóza, ne chyba.' },
-  { id: 'age', label: 'Věk', group: 'Další důvody', note: 'Sám o sobě není nemoc — mění ale, kolik je času.' },
+  { id: 'age', label: 'Věk', group: 'Další důvody', note: 'Sám o sobě není nemoc. Mění ale, kolik je času.' },
   { id: 'combined', label: 'Kombinovaný faktor', group: 'Další důvody', note: 'Sešlo se víc důvodů naráz. V IVF spíš pravidlo než výjimka.' },
   { id: 'thyroid', label: 'Porucha štítné žlázy', group: 'Další důvody', modifier: 'thyroid', note: 'Ovlivňuje cyklus i těhotenství, obvykle se dá upravit.' },
   { id: 'insulin', label: 'Inzulinová rezistence', group: 'Další důvody', note: 'Často jde ruku v ruce s PCOS.' },
@@ -281,7 +281,7 @@ export const DIAGNOSES: DiagnosisDef[] = [
   { id: 'oncology', label: 'Onkologická léčba', group: 'Další důvody', note: 'Plodnost se zajišťuje před zahájením léčby.' },
   { id: 'single', label: 'Bez partnera', group: 'Další důvody', modifier: 'single_mother', note: 'Cesta s darovanými spermiemi.' },
   { id: 'same_sex', label: 'Stejnopohlavní pár', group: 'Další důvody', modifier: 'same_sex_couple', note: 'Cesta s darovanými spermiemi.' },
-  { id: 'other', label: 'Jiný důvod', group: 'Další důvody', note: 'Co se do seznamu nevešlo — dopište si ho vlastními slovy.' },
+  { id: 'other', label: 'Jiný důvod', group: 'Další důvody', note: 'Co se do seznamu nevešlo. Dopište si ho vlastními slovy.' },
 ]
 
 const DIAGNOSIS_BY_ID = new Map(DIAGNOSES.map((d) => [d.id, d]))
@@ -297,8 +297,8 @@ export function diagnosisLabel(id: string): string {
 /**
  * Modifikátory, které z vybraných diagnóz plynou.
  *
- * Slouží jen k cílení obsahu. Diagnóza bez napojení se prostě nepromítne —
- * to je lepší než vymýšlet vazbu, která nedává smysl.
+ * Slouží jen k cílení obsahu. Diagnóza bez napojení se prostě nepromítne.
+ * To je lepší než vymýšlet vazbu, která nedává smysl.
  */
 export function modifiersFromDiagnoses(ids: string[]): ModifierId[] {
   const out = new Set<ModifierId>()

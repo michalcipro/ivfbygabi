@@ -2,7 +2,7 @@ import type { IsoDate } from './profile'
 
 /**
  * Práce s daty bez časových pásem. Celá platforma počítá ve dnech
- * kalendáře, ne v milisekundách — „5. den po transferu“ musí sedět
+ * kalendáře, ne v milisekundách. „5. den po transferu“ musí sedět
  * bez ohledu na to, jestli je uživatelka v Praze nebo na dovolené.
  */
 
@@ -113,7 +113,7 @@ export function czYears(n: number): string {
   return `${n} let`
 }
 
-/** „1 rok a 2 měsíce“, „6 týdnů“, „12 dní“ — pro věk dítěte. */
+/** „1 rok a 2 měsíce“, „6 týdnů“, „12 dní“. Pro věk dítěte. */
 export function humanAge(days: number): string {
   if (days < 0) return 'ještě nenarozené'
   if (days < 14) return czDays(days)
@@ -128,7 +128,7 @@ export function humanAge(days: number): string {
 }
 
 /**
- * Gestační stáří: „24+3“ (24 týdnů a 3 dny) — jak to říkají na klinice.
+ * Gestační stáří: „24+3“ (24 týdnů a 3 dny). Jak to říkají na klinice.
  */
 export function gestationLabel(days: number): string {
   const w = Math.floor(days / 7)
@@ -136,7 +136,7 @@ export function gestationLabel(days: number): string {
   return `${w}+${d}`
 }
 
-/** Deterministický „náhodný“ generátor — stejný den = stejný obsah. */
+/** Deterministický „náhodný“ generátor. Stejný den = stejný obsah. */
 export function seedFrom(...parts: (string | number)[]): number {
   const s = parts.join('|')
   let h = 2166136261
@@ -147,7 +147,7 @@ export function seedFrom(...parts: (string | number)[]): number {
   return h >>> 0
 }
 
-/** Mulberry32 — malý, rychlý, deterministický PRNG. */
+/** Mulberry32. Malý, rychlý, deterministický PRNG. */
 export function rngFrom(seed: number): () => number {
   let a = seed >>> 0
   return function next() {

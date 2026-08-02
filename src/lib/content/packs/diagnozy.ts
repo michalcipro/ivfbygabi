@@ -31,7 +31,7 @@ const items: ContentItem[] = [
 
 Syndrom polycystických ovarií je hormonální a metabolický stav, ne nemoc jednoho orgánu. Projevuje se kombinací tří věcí: nepravidelnou nebo chybějící ovulací, známkami vyšší aktivity mužských hormonů (akné, nadměrné ochlupení, vypadávání vlasů, nebo jen zvýšené hodnoty v krvi) a typickým obrazem vaječníků na ultrazvuku, kde je velké množství drobných nedozrálých folikulů.
 
-K určení diagnózy obvykle stačí, když jsou splněná dvě kritéria ze tří — a to až poté, co lékař vyloučí jiné stavy s podobnými projevy. Přesná kritéria i jejich výklad se mezi pracovišti mohou lišit.
+K určení diagnózy obvykle stačí, když jsou splněná dvě kritéria ze tří. A to až poté, co lékař vyloučí jiné stavy s podobnými projevy. Přesná kritéria i jejich výklad se mezi pracovišti mohou lišit.
 
 Název je matoucí. Nejde o cysty v běžném smyslu slova a nic se v nich nehromadí. Jde o folikuly, které se rozeběhly, ale žádný z nich nedozrál a nepraskl.
 
@@ -45,7 +45,7 @@ Co PCOS **neznamená**: že jste neplodná. Řada žen s PCOS otěhotní spontá
 
 U PCOS bývá často vyšší hodnota AMH a vyšší počet antrálních folikulů. To vypadá jako dobrá zpráva o zásobě vajíček, ale nevypovídá to o jejich kvalitě a nesmí se to číst jako záruka úspěchu. Zároveň to znamená, že vaječníky mohou na stimulaci reagovat velmi silně, a to má praktické důsledky.
 
-S PCOS se často pojí inzulinová rezistence a vyšší hmotnost. Neplatí to pro každou — část žen s PCOS má normální hmotnost i normální metabolismus.
+S PCOS se často pojí inzulinová rezistence a vyšší hmotnost. Neplatí to pro každou. Část žen s PCOS má normální hmotnost i normální metabolismus.
 
 ## Jak se to vyšetřuje
 
@@ -59,13 +59,13 @@ Vyšetření obvykle kombinuje několik vrstev a jeho rozsah záleží na indivi
 
 ## Jak to může souviset s IVF cestou
 
-Před IVF se u PCOS často zkouší jednodušší cesty — úprava životního stylu, indukce ovulace tabletami, případně inseminace. IVF přichází, když tyhle kroky nevedou k cíli nebo když je v páru ještě jiný faktor.
+Před IVF se u PCOS často zkouší jednodušší cesty. Úprava životního stylu, indukce ovulace tabletami, případně inseminace. IVF přichází, když tyhle kroky nevedou k cíli nebo když je v páru ještě jiný faktor.
 
 Při stimulaci je u PCOS zásadní téma **riziko hyperstimulačního syndromu (OHSS)**. Vaječníky s velkou zásobou folikulů reagují snadno a někdy až příliš. Kliniky s tím počítají: mohou volit nižší dávky, protokol s antagonistou, jiný způsob spuštění dozrání vajíček nebo přístup, kdy se v daném cyklu netransferuje a všechna embrya se zamrazí. O konkrétním postupu rozhoduje váš lékař.
 
 Vysoký počet odebraných vajíček neznamená automaticky vysoký počet zralých vajíček ani embryí. Mezi počtem folikulů, počtem zralých vajíček a počtem embryí, která se sledují od 1. do 6. dne vývoje, je vždy propad. U PCOS bývá tento rozdíl někdy výraznější.
 
-Jeden IVF cyklus u vás může vyústit ve víc transferů — čerstvý přenos i následné kryotransfery ze stejné zásoby embryí. Právě u PCOS, kde se často volí odložený transfer, to bývá pravidlo, ne výjimka.
+Jeden IVF cyklus u vás může vyústit ve víc transferů. Čerstvý přenos i následné kryotransfery ze stejné zásoby embryí. Právě u PCOS, kde se často volí odložený transfer, to bývá pravidlo, ne výjimka.
 
 ## Na co se zeptat lékaře
 
@@ -94,7 +94,7 @@ Jeden IVF cyklus u vás může vyústit ve víc transferů — čerstvý přenos
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Endometrióza je stav, kdy se tkáň podobná děložní sliznici nachází mimo dutinu děložní — na pobřišnici, na vaječnících, mezi dělohou a konečníkem, méně často jinde. Tato tkáň reaguje na hormonální změny cyklu, dráždí okolí a může vyvolávat zánětlivou reakci, srůsty a jizvení.
+Endometrióza je stav, kdy se tkáň podobná děložní sliznici nachází mimo dutinu děložní. Na pobřišnici, na vaječnících, mezi dělohou a konečníkem, méně často jinde. Tato tkáň reaguje na hormonální změny cyklu, dráždí okolí a může vyvolávat zánětlivou reakci, srůsty a jizvení.
 
 Formy se hodně liší. Povrchová ložiska na pobřišnici, cysty na vaječníku naplněné starou krví (endometriomy) a hluboká infiltrující endometrióza zasahující do stěny orgánů jsou tři velmi odlišné situace, i když nesou stejný název.
 
@@ -118,19 +118,19 @@ Zároveň platí, že endometrióza neplodnost nezaručuje. Část žen s endome
 - **Podrobná anamnéza bolesti.** Kdy bolí, jak dlouho, jestli bolí i mimo menstruaci, při styku, při stolici, při močení. Tohle je diagnosticky cennější, než se čeká.
 - **Gynekologické vyšetření a ultrazvuk.** Zkušené pracoviště dnes zachytí ultrazvukem endometriomy i řadu známek hluboké endometriózy. Povrchová ložiska ultrazvukem vidět nejsou.
 - **Magnetická rezonance.** Může být zvažována u podezření na hlubokou formu, hlavně před plánováním operace.
-- **Laparoskopie.** Přímý pohled do dutiny břišní. Dřív první krok, dnes se indikuje uváženě — hlavně tam, kde je zároveň léčebný záměr.
+- **Laparoskopie.** Přímý pohled do dutiny břišní. Dřív první krok, dnes se indikuje uváženě, hlavně tam, kde je zároveň léčebný záměr.
 
 Neexistuje krevní test, který by endometriózu spolehlivě potvrdil nebo vyloučil. Pokud vám někdo takový test nabízí jako jistotu, ptejte se dál.
 
 ## Jak to může souviset s IVF cestou
 
-IVF u endometriózy obchází část problému — vajíčko se odebírá přímo z folikulu a oplození probíhá v laboratoři, takže vejcovody a prostředí v pánvi z rovnice odpadají. To je hlavní důvod, proč se k IVF u této diagnózy přistupuje.
+IVF u endometriózy obchází část problému. Vajíčko se odebírá přímo z folikulu a oplození probíhá v laboratoři, takže vejcovody a prostředí v pánvi z rovnice odpadají. To je hlavní důvod, proč se k IVF u této diagnózy přistupuje.
 
 Praktické body, které se často řeší:
 
 - **Odběr vajíček** může být při srůstech technicky náročnější. Vaše klinika s tím počítá a plánuje podle konkrétního nálezu.
 - **Reakce na stimulaci** může být nižší, hlavně po předchozích operacích vaječníků.
-- **Předléčba** hormonální supresí před transferem může být u některých žen zvažována. Postupy se mezi pracovišti liší a přínos není u všech situací stejně doložený — proberte to se svou klinikou.
+- **Předléčba** hormonální supresí před transferem může být u některých žen zvažována. Postupy se mezi pracovišti liší a přínos není u všech situací stejně doložený. Proberte to se svou klinikou.
 - **Operace před IVF** není automatickým krokem. Někdy pomůže, jindy stojí kus ovariální rezervy. Rozhodnutí je vždy individuální.
 - Jeden IVF cyklus může vést k víc transferům. Zamrazená embrya ze stejného odběru se přenášejí v dalších cyklech, což u endometriózy dává prostor sliznici i vaječníkům odpočinout.
 
@@ -162,9 +162,9 @@ Praktické body, které se často řeší:
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Adenomyóza je stav, kdy tkáň podobná děložní sliznici proniká do svalové stěny dělohy. Svalovina na to reaguje — ztlušťuje se, hůř se stahuje a děloha bývá celkově větší a citlivější.
+Adenomyóza je stav, kdy tkáň podobná děložní sliznici proniká do svalové stěny dělohy. Svalovina na to reaguje. Ztlušťuje se, hůř se stahuje a děloha bývá celkově větší a citlivější.
 
-Existuje ve dvou hrubých podobách: **difuzní**, kdy je postižená větší část stěny, a **ložisková**, kdy je změna ohraničená a na ultrazvuku může připomínat myom. Rozlišení není akademické — má vliv na to, co se dá řešit a jak.
+Existuje ve dvou hrubých podobách: **difuzní**, kdy je postižená větší část stěny, a **ložisková**, kdy je změna ohraničená a na ultrazvuku může připomínat myom. Rozlišení není akademické. Má vliv na to, co se dá řešit a jak.
 
 Typické projevy jsou silná a bolestivá menstruace, tlak v podbřišku, někdy špinění před menstruací. U části žen ale adenomyóza výrazné příznaky nedělá a najde se náhodou.
 
@@ -178,7 +178,7 @@ Souvislost je pravděpodobná, ale ne tak přímočará, jak by se chtělo. Zva�
 - odlišný pohyb děložní svaloviny během cyklu,
 - lokální zánětlivé prostředí, které může ovlivňovat vnímavost sliznice.
 
-Studie naznačují, že rozsáhlejší adenomyóza může být spojena s nižší pravděpodobností zahnízdění a vyšším rizikem těhotenské ztráty. Data ale nejsou jednotná a řada prací má omezenou výpovědní hodnotu. Nedá se z toho udělat věta „s adenomyózou to nejde" — protože to jít může, a jde.
+Studie naznačují, že rozsáhlejší adenomyóza může být spojena s nižší pravděpodobností zahnízdění a vyšším rizikem těhotenské ztráty. Data ale nejsou jednotná a řada prací má omezenou výpovědní hodnotu. Nedá se z toho udělat věta „s adenomyózou to nejde", protože to jít může, a jde.
 
 ## Jak se to vyšetřuje
 
@@ -198,7 +198,7 @@ Co se v praxi řeší:
 - **Hormonální předléčba** před transferem může být u výraznějších nálezů zvažována. Přínos není u všech situací stejně doložený a postupy se mezi pracovišti liší.
 - **Chirurgické řešení** je u difuzní formy obtížné a u ženy plánující těhotenství se zvažuje velmi opatrně, protože zasahuje do stěny dělohy.
 - **Průběh těhotenství.** U adenomyózy se popisuje vyšší riziko některých komplikací. Sledování v těhotenství proto patří do rukou gynekologa, který o nálezu ví.
-- Jeden IVF cyklus u vás může znamenat víc transferů. Když první nevyjde, není to důkaz, že za to může adenomyóza — a stejně tak to není důvod na ni zapomenout.
+- Jeden IVF cyklus u vás může znamenat víc transferů. Když první nevyjde, není to důkaz, že za to může adenomyóza. A stejně tak to není důvod na ni zapomenout.
 
 ## Na co se zeptat lékaře
 
@@ -227,13 +227,13 @@ Co se v praxi řeší:
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Myom je nezhoubný útvar, který vyrůstá ze svaloviny dělohy. Je to jeden z nejčastějších nálezů v gynekologii — velká část žen ho někdy během života má, často aniž by o tom věděla.
+Myom je nezhoubný útvar, který vyrůstá ze svaloviny dělohy. Je to jeden z nejčastějších nálezů v gynekologii. Velká část žen ho někdy během života má, často aniž by o tom věděla.
 
 Myomy se dělí podle uložení a právě tohle rozdělení je klíčové:
 
-- **Submukózní** — vyklenují se do dutiny děložní. Nejmenší, ale z hlediska plodnosti nejvýznamnější.
-- **Intramurální** — uložené ve stěně. Význam závisí na velikosti a na tom, jestli deformují dutinu.
-- **Subserózní** — rostou navenek, do dutiny břišní. Na dutinu děložní obvykle nemají vliv.
+- **Submukózní**: vyklenují se do dutiny děložní. Nejmenší, ale z hlediska plodnosti nejvýznamnější.
+- **Intramurální**: uložené ve stěně. Význam závisí na velikosti a na tom, jestli deformují dutinu.
+- **Subserózní**: rostou navenek, do dutiny břišní. Na dutinu děložní obvykle nemají vliv.
 
 Velikost sama o sobě není hlavní údaj. Drobný submukózní myom může mít větší dopad než velký subserózní.
 
@@ -241,7 +241,7 @@ Velikost sama o sobě není hlavní údaj. Drobný submukózní myom může mít
 
 Myom, který deformuje dutinu děložní, může narušovat prostředí pro zahnízdění embrya a bývá spojován s vyšším rizikem těhotenské ztráty. U tohohle typu je souvislost nejlépe doložená.
 
-U myomů, které dutinu nedeformují, je situace nejednoznačná. Větší nálezy mohou hrát roli, u menších to doložené není. Nedá se tedy říct, že každý myom brání otěhotnění — u velké části žen s myomem těhotenství proběhne bez potíží.
+U myomů, které dutinu nedeformují, je situace nejednoznačná. Větší nálezy mohou hrát roli, u menších to doložené není. Nedá se tedy říct, že každý myom brání otěhotnění. U velké části žen s myomem těhotenství proběhne bez potíží.
 
 Vedle vlivu na zahnízdění se řeší i praktické věci: silné krvácení a chudokrevnost, tlakové potíže nebo bolest.
 
@@ -261,7 +261,7 @@ Před IVF se obvykle řeší jediná otázka: má se myom odstranit dřív, než
 Co do rozhodování vstupuje:
 
 - **Submukózní myom** se před transferem obvykle odstraňuje hysteroskopicky. Zákrok je poměrně šetrný a nezasahuje do stěny dělohy zvenčí.
-- **Intramurální myom** deformující dutinu se posuzuje individuálně. Operace přes břicho znamená jizvu ve stěně dělohy a několikaměsíční odklad těhotenství — to se musí vážit proti očekávanému přínosu.
+- **Intramurální myom** deformující dutinu se posuzuje individuálně. Operace přes břicho znamená jizvu ve stěně dělohy a několikaměsíční odklad těhotenství. To se musí vážit proti očekávanému přínosu.
 - **Subserózní myom** se před IVF obvykle neřeší, pokud nedělá jiné potíže.
 - Po operaci stěny dělohy se stanovuje odstup, kdy se smí zkoušet znovu, a v těhotenství se pak bere ohled na jizvu.
 - Odběr vajíček může být při velkých myomech technicky náročnější a klinika s tím dopředu počítá.
@@ -298,7 +298,7 @@ Polyp děložní sliznice je výrůstek, který vyrůstá ze sliznice do dutiny 
 
 Někdy nedělá vůbec nic a najde se náhodou při ultrazvuku. Jindy se projeví špiněním mezi menstruacemi, špiněním po styku nebo silnějším krvácením.
 
-Polypy jsou častější s přibývajícím věkem a při stavech spojených s vyšší hladinou estrogenů. Vzácně se v polypu najde přednádorová nebo nádorová změna — proto se odebraná tkáň vždy posílá na histologické vyšetření.
+Polypy jsou častější s přibývajícím věkem a při stavech spojených s vyšší hladinou estrogenů. Vzácně se v polypu najde přednádorová nebo nádorová změna, proto se odebraná tkáň vždy posílá na histologické vyšetření.
 
 Polyp není totéž co myom, i když se na ultrazvuku občas plete. Myom vyrůstá ze svaloviny dělohy, polyp ze sliznice. Liší se stavbou, chováním i tím, jak se odstraňují.
 
@@ -315,20 +315,20 @@ Není to ale automatické pravidlo pro každou ženu a každý nález. O tom, je
 ## Jak se to vyšetřuje
 
 - **Ultrazvuk pochvou**, ideálně v první polovině cyklu, kdy je sliznice tenká a polyp je proti ní lépe vidět.
-- **Sonohysterografie** — ultrazvuk s tekutinou v dutině, která polyp zvýrazní.
-- **Hysteroskopie** — přímý pohled do dutiny. Nejspolehlivější metoda a zároveň způsob, jak polyp odstranit.
+- **Sonohysterografie**: ultrazvuk s tekutinou v dutině, která polyp zvýrazní.
+- **Hysteroskopie**: přímý pohled do dutiny. Nejspolehlivější metoda a zároveň způsob, jak polyp odstranit.
 - **Histologie** odebrané tkáně, která potvrdí povahu nálezu.
 
 Polyp popsaný jen na ultrazvuku není vždy polyp. Může jít o zbytek sliznice, sraženinu nebo submukózní myom. Proto se nález před zákrokem obvykle ověřuje.
 
 ## Jak to může souviset s IVF cestou
 
-Odstranění polypu je krátký zákrok, obvykle hysteroskopický, často v krátké anestezii a s návratem domů týž den. Po výkonu se běžně čeká jeden až několik cyklů, než se přenese embryo — přesný odstup určí vaše klinika.
+Odstranění polypu je krátký zákrok, obvykle hysteroskopický, často v krátké anestezii a s návratem domů týž den. Po výkonu se běžně čeká jeden až několik cyklů, než se přenese embryo. Přesný odstup určí vaše klinika.
 
 Praktické souvislosti:
 
 - Polyp objevený **před stimulací** se obvykle řeší dřív, než se cyklus rozjede.
-- Polyp objevený **během stimulace** může vést k rozhodnutí embrya zamrazit a transfer odložit. Není to ztráta cyklu — embrya zůstávají a jeden cyklus může vyústit ve víc transferů.
+- Polyp objevený **během stimulace** může vést k rozhodnutí embrya zamrazit a transfer odložit. Není to ztráta cyklu. Embrya zůstávají a jeden cyklus může vyústit ve víc transferů.
 - Polypy se mohou vracet. Pokud vám před dalším kryotransferem lékař navrhne kontrolní ultrazvuk, má to důvod.
 - Po zákroku je krátce běžné slabé špinění a mírné křeče.
 
@@ -359,7 +359,7 @@ Praktické souvislosti:
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Ovulace je uvolnění zralého vajíčka z folikulu. Aby proběhla, musí spolu ladit mozek (hypotalamus a hypofýza) a vaječník. Porucha ovulace znamená, že tenhle řetězec někde vázne — vajíčko nedozraje, neuvolní se, nebo se to děje jen občas a nepředvídatelně.
+Ovulace je uvolnění zralého vajíčka z folikulu. Aby proběhla, musí spolu ladit mozek (hypotalamus a hypofýza) a vaječník. Porucha ovulace znamená, že tenhle řetězec někde vázne. Vajíčko nedozraje, neuvolní se, nebo se to děje jen občas a nepředvídatelně.
 
 Příčiny se obvykle třídí do několika skupin:
 
@@ -381,13 +381,13 @@ Dobrá zpráva: poruchy ovulace patří mezi příčiny neplodnosti, které se �
 ## Jak se to vyšetřuje
 
 - **Záznam cyklu.** Délka, pravidelnost, charakter krvácení. Několik měsíců záznamu má velkou cenu.
-- **Progesteron** v druhé polovině cyklu — pomáhá posoudit, jestli ovulace proběhla. Načasování odběru určí lékař podle délky vašeho cyklu.
-- **Hormony na začátku cyklu** — FSH, LH, estradiol, AMH.
+- **Progesteron** v druhé polovině cyklu. Pomáhá posoudit, jestli ovulace proběhla. Načasování odběru určí lékař podle délky vašeho cyklu.
+- **Hormony na začátku cyklu**: FSH, LH, estradiol, AMH.
 - **Prolaktin, TSH a hormony štítné žlázy**, případně androgeny a další vyšetření podle podezření.
 - **Ultrazvukové sledování růstu folikulu** v průběhu cyklu.
 - **Zhodnocení hmotnosti, stravování a zátěže.** U poruchy na úrovni mozku je tohle často jádro problému, ne doplněk.
 
-Domácí ovulační testy měří vzestup LH. Ukážou, že se tělo k ovulaci chystá — nepotvrdí, že proběhla. U PCOS mohou být navíc opakovaně pozitivní bez ovulace.
+Domácí ovulační testy měří vzestup LH. Ukážou, že se tělo k ovulaci chystá. Nepotvrdí, že proběhla. U PCOS mohou být navíc opakovaně pozitivní bez ovulace.
 
 ## Jak to může souviset s IVF cestou
 
@@ -395,7 +395,7 @@ Poruchy ovulace se často řeší dřív, než se vůbec mluví o IVF. Podle př
 
 K IVF se přechází, když tyhle kroky nevedou k cíli, když je přítomný ještě další faktor nebo když čas hraje roli.
 
-Při IVF se ovulace neřeší časováním pohlavního styku, ale řízenou stimulací s kontrolou dozrání a odběrem vajíček. Právě proto IVF u některých poruch ovulace problém obchází. Neznamená to, že příčinu není potřeba znát — ovlivňuje volbu protokolu i celkovou péči o vaše zdraví.
+Při IVF se ovulace neřeší časováním pohlavního styku, ale řízenou stimulací s kontrolou dozrání a odběrem vajíček. Právě proto IVF u některých poruch ovulace problém obchází. Neznamená to, že příčinu není potřeba znát. Ovlivňuje volbu protokolu i celkovou péči o vaše zdraví.
 
 ## Na co se zeptat lékaře
 
@@ -424,12 +424,12 @@ Při IVF se ovulace neřeší časováním pohlavního styku, ale řízenou stim
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Ovariální rezerva je zásoba folikulů, které ve vaječnících zbývají. Rodíme se s určitým počtem a ten se celý život snižuje — nedá se doplnit ani obnovit. Snížená ovariální rezerva znamená, že je tato zásoba menší, než by odpovídalo věku.
+Ovariální rezerva je zásoba folikulů, které ve vaječnících zbývají. Rodíme se s určitým počtem a ten se celý život snižuje. Nedá se doplnit ani obnovit. Snížená ovariální rezerva znamená, že je tato zásoba menší, než by odpovídalo věku.
 
 Nejčastěji se posuzuje dvěma ukazateli:
 
 - **AMH** (antimülleriánský hormon) z krve. Odráží počet drobných folikulů, které jsou ve hře.
-- **AFC** — počet antrálních folikulů spočítaný ultrazvukem na začátku cyklu.
+- **AFC**: počet antrálních folikulů spočítaný ultrazvukem na začátku cyklu.
 
 Někdy se doplňuje FSH a estradiol z počátku cyklu.
 
@@ -443,13 +443,13 @@ Tady je potřeba být přesná, protože kolem AMH koluje spousta nesmyslů.
 
 **Co AMH neříká:** jakou máte šanci otěhotnět tento měsíc. Nízké AMH u ženy, která má pravidelnou ovulaci, neznamená, že nemůže otěhotnět přirozeně. Vysoké AMH zase nezaručuje kvalitní vajíčka.
 
-Kvalitu vajíček určuje především věk, ne hodnota AMH. Třicetiletá žena s nízkým AMH má obvykle vajíčka kvality odpovídající třiceti letům — jen jich je méně.
+Kvalitu vajíček určuje především věk, ne hodnota AMH. Třicetiletá žena s nízkým AMH má obvykle vajíčka kvality odpovídající třiceti letům, jen jich je méně.
 
 Nízké AMH ale bývá důvodem k tomu neodkládat. Ne kvůli panice, ale proto, že zásoba se nezvětšuje.
 
 ## Jak se to vyšetřuje
 
-- **AMH z krve.** Dá se odebrat kdykoli v cyklu. Laboratoře používají různé metody a různé jednotky — porovnávejte jen hodnoty ze stejné laboratoře a vždy s uvedenou jednotkou.
+- **AMH z krve.** Dá se odebrat kdykoli v cyklu. Laboratoře používají různé metody a různé jednotky. Porovnávejte jen hodnoty ze stejné laboratoře a vždy s uvedenou jednotkou.
 - **AFC ultrazvukem** na začátku cyklu. Závisí na zkušenosti vyšetřujícího a na kvalitě přístroje.
 - **FSH a estradiol** 2. až 5. den cyklu.
 - **Vyloučení jiných příčin** podle situace, například vyšetření štítné žlázy nebo genetické vyšetření tam, kde je nález nízký v mladém věku.
@@ -460,11 +460,11 @@ Jedna hodnota není příběh. Hormonální antikoncepce, některé stavy a labo
 
 Snížená rezerva mění taktiku, ne cíl.
 
-- **Protokol stimulace** se volí tak, aby se z dostupných folikulů získalo co nejvíc zralých vajíček. Vyšší dávky nad určitou mez už výtěžek nezvyšují — tělo nemá z čeho brát.
+- **Protokol stimulace** se volí tak, aby se z dostupných folikulů získalo co nejvíc zralých vajíček. Vyšší dávky nad určitou mez už výtěžek nezvyšují. Tělo nemá z čeho brát.
 - **Počet odebraných vajíček** bývá nižší a s tím i počet embryí. Embrya se sledují od 1. do 6. dne vývoje a propad mezi jednotlivými dny je běžný u každé ženy, tady je ale citelnější, protože se počítá z menšího základu.
 - **Víc odběrů** může být zvažováno s cílem shromáždit embrya postupně. Zda to má ve vaší situaci smysl, posoudí lékař.
 - **Zrušení cyklu** před odběrem je při slabé reakci možnost, se kterou je lepší počítat dopředu, než ji zažít jako šok.
-- **PGT** u malého počtu embryí není automaticky vhodné — může se stát, že k transferu nezbude nic. Rozhodnutí je individuální.
+- **PGT** u malého počtu embryí není automaticky vhodné. Může se stát, že k transferu nezbude nic. Rozhodnutí je individuální.
 - **Darovaná vajíčka** jsou téma, které se u výrazně snížené rezervy může otevřít. Otevřít ho neznamená rozhodnout o něm.
 - Jeden cyklus může přinést víc transferů, pokud se podaří zamrazit víc embryí ze stejného odběru.
 
@@ -496,20 +496,20 @@ Snížená rezerva mění taktiku, ne cíl.
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Předčasná ovariální insuficience je stav, kdy vaječníky přestávají fungovat před 40. rokem věku. Projevuje se vynecháváním nebo úplným vymizením menstruace a laboratorně vysokým FSH při nízkém estradiolu — obvykle se hodnoty ověřují opakovaným odběrem s odstupem několika týdnů.
+Předčasná ovariální insuficience je stav, kdy vaječníky přestávají fungovat před 40. rokem věku. Projevuje se vynecháváním nebo úplným vymizením menstruace a laboratorně vysokým FSH při nízkém estradiolu. Obvykle se hodnoty ověřují opakovaným odběrem s odstupem několika týdnů.
 
 Označení „předčasná menopauza" je zavádějící. U části žen činnost vaječníků kolísá a může se občas obnovit, včetně ojedinělé ovulace. Proto se dnes používá slovo insuficience, tedy nedostatečnost, ne selhání.
 
 Příčin je několik a u velké části žen se žádná nenajde:
 
-- **genetické** — například odchylky pohlavních chromozomů nebo předmutace genu FMR1,
-- **autoimunitní** — vaječníky jsou napadeny vlastním imunitním systémem, často spolu s jiným autoimunitním onemocněním,
-- **po léčbě** — chemoterapie, ozařování, opakované operace vaječníků,
+- **genetické**: například odchylky pohlavních chromozomů nebo předmutace genu FMR1,
+- **autoimunitní**: vaječníky jsou napadeny vlastním imunitním systémem, často spolu s jiným autoimunitním onemocněním,
+- **po léčbě**: chemoterapie, ozařování, opakované operace vaječníků,
 - **neobjasněné**.
 
 ## Jak to může souviset s plodností
 
-Zásoba folikulů je vyčerpaná nebo výrazně omezená a nedá se obnovit. Pravděpodobnost spontánního otěhotnění je nízká, ale u části žen s POI těhotenství nastane — právě proto, že činnost vaječníků může kolísat. To také znamená, že POI se nesmí zaměňovat za antikoncepci.
+Zásoba folikulů je vyčerpaná nebo výrazně omezená a nedá se obnovit. Pravděpodobnost spontánního otěhotnění je nízká, ale u části žen s POI těhotenství nastane, právě proto, že činnost vaječníků může kolísat. To také znamená, že POI se nesmí zaměňovat za antikoncepci.
 
 POI se ale netýká jen plodnosti. Nízké hladiny estrogenů mají dopad na kosti, cévy, spánek, náladu, sexualitu i kvalitu života. Proto je součástí péče obvykle hormonální substituce až do věku, kdy by přišla přirozená menopauza. O jejím nasazení a formě rozhoduje lékař.
 
@@ -519,7 +519,7 @@ Tohle je diagnóza, která je psychicky mimořádně těžká. Přijde často br
 
 - **FSH a estradiol** opakovaně, s odstupem, obvykle v kombinaci s posouzením menstruačního vzorce.
 - **AMH** a **počet antrálních folikulů** ultrazvukem.
-- **Karyotyp** — vyšetření chromozomů.
+- **Karyotyp**: vyšetření chromozomů.
 - **Vyšetření předmutace FMR1**, které má význam i pro širší rodinu.
 - **Autoimunitní vyšetření**, typicky štítné žlázy a nadledvin.
 - **Vyšetření kostní denzity** a metabolické parametry, protože jde o dlouhodobé zdraví.
@@ -542,7 +542,7 @@ Praktické body:
 ## Na co se zeptat lékaře
 
 - Na základě jakých odběrů a jak opakovaně jste diagnózu stanovili?
-- Jakou příčinu jste hledali a co jste vyšetřili — karyotyp, FMR1, autoimunitu?
+- Jakou příčinu jste hledali a co jste vyšetřili. Karyotyp, FMR1, autoimunitu?
 - Znamená ten nález něco pro moje příbuzné, například pro sestru?
 - Má v mé situaci smysl pokus o stimulaci vlastních vaječníků? S jakým očekáváním?
 - Potřebuji hormonální substituci a jakou formu doporučujete?
@@ -567,7 +567,7 @@ Praktické body:
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Štítná žláza tvoří hormony, které řídí rychlost látkové výměny v celém těle. Její činnost ovládá hormon TSH z hypofýzy — a právě TSH je hodnota, kterou uvidíte na většině laboratorních zpráv.
+Štítná žláza tvoří hormony, které řídí rychlost látkové výměny v celém těle. Její činnost ovládá hormon TSH z hypofýzy. A právě TSH je hodnota, kterou uvidíte na většině laboratorních zpráv.
 
 Základní situace jsou dvě:
 
@@ -582,16 +582,16 @@ Hormony štítné žlázy zasahují do řízení menstruačního cyklu. Neléče
 
 V těhotenství jsou nároky na štítnou žlázu vyšší, hlavně v prvním trimestru, kdy je plod plně odkázán na mateřské hormony. Proto se před plánovaným těhotenstvím a před IVF funkce ověřuje a v těhotenství se opakovaně kontroluje.
 
-U zvýšených protilátek anti-TPO se popisuje vyšší riziko těhotenské ztráty. Zda a komu v takové situaci nasazovat léčbu, když je funkce zatím normální, je předmětem odborné diskuse a data nejsou jednoznačná. Rozhodnutí patří lékaři, který zná celý váš obraz — nedá se z toho udělat pravidlo pro každou ženu.
+U zvýšených protilátek anti-TPO se popisuje vyšší riziko těhotenské ztráty. Zda a komu v takové situaci nasazovat léčbu, když je funkce zatím normální, je předmětem odborné diskuse a data nejsou jednoznačná. Rozhodnutí patří lékaři, který zná celý váš obraz. Nedá se z toho udělat pravidlo pro každou ženu.
 
 ## Jak se to vyšetřuje
 
-- **TSH** — základní ukazatel. Cílové rozmezí při plánování těhotenství a v těhotenství bývá užší než běžná laboratorní norma. Konkrétní cíl určí lékař.
+- **TSH**: základní ukazatel. Cílové rozmezí při plánování těhotenství a v těhotenství bývá užší než běžná laboratorní norma. Konkrétní cíl určí lékař.
 - **Volný T4**, případně volný T3 podle situace.
 - **Protilátky anti-TPO**, případně anti-Tg.
 - **Ultrazvuk štítné žlázy** při podezření na strukturální změny nebo uzly.
 
-Odběr se obvykle dělá ráno. Pokud už léky na štítnou žlázu užíváte, ptejte se, kdy je před odběrem vzít — načasování ovlivňuje výsledek.
+Odběr se obvykle dělá ráno. Pokud už léky na štítnou žlázu užíváte, ptejte se, kdy je před odběrem vzít. Načasování ovlivňuje výsledek.
 
 Jednu zvýšenou hodnotu TSH je obvykle namístě ověřit. Stres, akutní nemoc i některé léky s výsledkem hýbou.
 
@@ -601,8 +601,8 @@ Vyšetření štítné žlázy patří ke standardní přípravě před IVF na v
 
 Co se v praxi řeší:
 
-- **Úprava dávky** léků a kontrolní odběr s odstupem, obvykle po několika týdnech — hormony se ustalují pomalu.
-- **Zvýšená potřeba v těhotenství.** Po pozitivním výsledku hCG se dávka často upravuje a kontroly se zhušťují. Domluvte si dopředu, kdo to bude hlídat — reprodukční klinika, endokrinolog, nebo gynekolog.
+- **Úprava dávky** léků a kontrolní odběr s odstupem, obvykle po několika týdnech. Hormony se ustalují pomalu.
+- **Zvýšená potřeba v těhotenství.** Po pozitivním výsledku hCG se dávka často upravuje a kontroly se zhušťují. Domluvte si dopředu, kdo to bude hlídat. Reprodukční klinika, endokrinolog, nebo gynekolog.
 - **Stimulace a estradiol.** Vysoké hladiny estrogenů během stimulace mohou ovlivňovat nároky na štítnou žlázu. Proto kontrola po stimulaci není zbytečné píchání navíc.
 - **Jód.** Doplňky s jódem berte jen po domluvě s lékařem. U některých stavů štítné žlázy nejsou vhodné.
 
@@ -612,7 +612,7 @@ Co se v praxi řeší:
 - Mám vyšetřené protilátky anti-TPO a co znamená jejich výsledek?
 - Potřebuji léčbu, nebo jen sledování? Podle čeho se rozhodujete?
 - Kdy mám lék užívat a jak dlouho před odběrem?
-- Kdy budete kontrolovat hodnoty znovu — před stimulací, po ní, po pozitivním hCG?
+- Kdy budete kontrolovat hodnoty znovu. Před stimulací, po ní, po pozitivním hCG?
 - Kdo bude moji štítnou žlázu vést v těhotenství?
 - Můžu užívat doplňky s jódem nebo selenem, nebo je to u mě nevhodné?
 
@@ -633,19 +633,19 @@ Co se v praxi řeší:
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Inzulin je hormon, který dostává cukr z krve do buněk. Při inzulinové rezistenci na něj buňky reagují hůř, takže slinivka ho musí tvořit víc, aby dosáhla stejného účinku. Hladina cukru v krvi přitom může být ještě dlouho v pořádku — tělo si to prostě kupuje za vyšší hladinu inzulinu.
+Inzulin je hormon, který dostává cukr z krve do buněk. Při inzulinové rezistenci na něj buňky reagují hůř, takže slinivka ho musí tvořit víc, aby dosáhla stejného účinku. Hladina cukru v krvi přitom může být ještě dlouho v pořádku. Tělo si to prostě kupuje za vyšší hladinu inzulinu.
 
 Není to nemoc v úzkém slova smyslu, spíš metabolický stav. Může být přechodný, může být trvalý a může se s ním pojit vyšší riziko cukrovky 2. typu.
 
-Souvisí s hmotností, s podílem břišního tuku, s pohybem, se spánkem a s genetickou dispozicí. Neplatí ale, že by se týkala jen žen s nadváhou — potkat se s ní dá i při normální hmotnosti.
+Souvisí s hmotností, s podílem břišního tuku, s pohybem, se spánkem a s genetickou dispozicí. Neplatí ale, že by se týkala jen žen s nadváhou. Potkat se s ní dá i při normální hmotnosti.
 
 Často se objevuje spolu s PCOS. Nejsou to synonyma a jedno se nedá odvodit z druhého.
 
 ## Jak to může souviset s plodností
 
-Vyšší hladina inzulinu může zasahovat do hormonální rovnováhy ve vaječnících. Podporuje tvorbu androgenů a snižuje bílkovinu SHBG, která androgeny váže — výsledkem může být větší volná androgenní aktivita a narušené dozrávání folikulů. To se projeví nepravidelnou nebo chybějící ovulací.
+Vyšší hladina inzulinu může zasahovat do hormonální rovnováhy ve vaječnících. Podporuje tvorbu androgenů a snižuje bílkovinu SHBG, která androgeny váže. Výsledkem může být větší volná androgenní aktivita a narušené dozrávání folikulů. To se projeví nepravidelnou nebo chybějící ovulací.
 
-Doložené je, že u žen s PCOS a nadváhou může snížení hmotnosti a úprava životního stylu vést k obnovení pravidelnějších cyklů. To je jedna z mála oblastí v léčbě neplodnosti, kde má vlastní úsilí měřitelný dopad — a je fér dodat, že je to úsilí dlouhodobé a náročné, ne třítýdenní dieta.
+Doložené je, že u žen s PCOS a nadváhou může snížení hmotnosti a úprava životního stylu vést k obnovení pravidelnějších cyklů. To je jedna z mála oblastí v léčbě neplodnosti, kde má vlastní úsilí měřitelný dopad. A je fér dodat, že je to úsilí dlouhodobé a náročné, ne třítýdenní dieta.
 
 Naopak není doložené, že by se každý problém s plodností dal vysvětlit inzulinovou rezistencí nebo že by její léčba sama o sobě zvyšovala pravděpodobnost otěhotnění u každé ženy. Vždy záleží na individuální situaci.
 
@@ -654,7 +654,7 @@ Naopak není doložené, že by se každý problém s plodností dal vysvětlit 
 - **Glykémie nalačno** a **glykovaný hemoglobin**.
 - **Zátěžový test s glukózou (oGTT)**, často s měřením inzulinu v několika časech.
 - **Inzulin nalačno** a výpočtové indexy z něj odvozené. Jejich výpovědní hodnota je omezená a samostatně se nepoužívají.
-- **Lipidy**, jaterní testy, krevní tlak, obvod pasu — protože se hodnotí celkový metabolický obraz.
+- **Lipidy**, jaterní testy, krevní tlak, obvod pasu, protože se hodnotí celkový metabolický obraz.
 - U žen s podezřením na PCOS se přidávají hormonální odběry.
 
 Test na inzulinovou rezistenci nabízený mimo lékařskou péči a interpretovaný bez kontextu je k ničemu. Hodnoty dávají smysl jen jako celek a jen v rukou lékaře.
@@ -669,7 +669,7 @@ Co se v praxi zvažuje:
 - **Léky ovlivňující citlivost na inzulin** mohou být u některých žen zvažovány. Jejich přínos pro výsledky IVF není u všech situací stejně doložený a rozhodnutí patří lékaři.
 - **Doplňky stravy** v této oblasti mají velmi různou úroveň důkazů a řada tvrzení v reklamě není podložená. Než něco začnete brát, proberte to se svou klinikou.
 - **Průběh těhotenství.** Při inzulinové rezistenci bývá vyšší riziko těhotenské cukrovky. Sledování v těhotenství se tomu přizpůsobuje.
-- Odklad cyklu kvůli metabolické přípravě je někdy rozumný, jindy ne — u ženy s klesající ovariální rezervou má čas svou cenu. Tenhle rozpor si zaslouží otevřený rozhovor s lékařem.
+- Odklad cyklu kvůli metabolické přípravě je někdy rozumný, jindy ne. U ženy s klesající ovariální rezervou má čas svou cenu. Tenhle rozpor si zaslouží otevřený rozhovor s lékařem.
 
 ## Na co se zeptat lékaře
 
@@ -718,8 +718,8 @@ Tohle je jedna z mála oblastí, kde jsou důkazy relativně přesvědčivé: u 
 ## Jak se to vyšetřuje
 
 - **Ultrazvuk pochvou.** Často stačí. Viditelný hydrosalpinx je právě ten nález, který má z hlediska IVF největší váhu.
-- **HSG** — rentgenové vyšetření průchodnosti vejcovodů s kontrastní látkou.
-- **HyFoSy** — ultrazvukové vyšetření průchodnosti s pěnovým kontrastem, bez rentgenového záření.
+- **HSG**: rentgenové vyšetření průchodnosti vejcovodů s kontrastní látkou.
+- **HyFoSy**: ultrazvukové vyšetření průchodnosti s pěnovým kontrastem, bez rentgenového záření.
 - **Laparoskopie.** Přímý pohled do dutiny břišní. Zároveň umožňuje ošetření.
 - **Vyšetření na chlamydie**, protože prodělaná infekce je častou příčinou.
 
@@ -729,7 +729,7 @@ IVF obchází vejcovody u odběru vajíček i u oplození, ale hydrosalpinx zasa
 
 Možnosti, o kterých se rozhoduje individuálně:
 
-- **Odstranění vejcovodu (salpingektomie)** laparoskopicky. Nejčastější řešení. Odstranění vejcovodu samo o sobě neznamená zásah do vaječníku, ale výkon v jeho blízkosti může u některých žen ovlivnit prokrvení — proberte to se svou klinikou.
+- **Odstranění vejcovodu (salpingektomie)** laparoskopicky. Nejčastější řešení. Odstranění vejcovodu samo o sobě neznamená zásah do vaječníku, ale výkon v jeho blízkosti může u některých žen ovlivnit prokrvení. Proberte to se svou klinikou.
 - **Přerušení vejcovodu** u jeho ústí do dělohy, pokud odstranění není technicky vhodné.
 - **Uzavření vejcovodu ze strany dutiny děložní** je metoda, která může být zvažována ve vybraných situacích.
 
@@ -767,7 +767,7 @@ Praktické dopady:
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Tubární faktor je souhrnné označení pro situace, kdy vejcovody nemohou plnit svou roli. Vejcovod není trubka, kterou něco propadne — je to aktivní orgán s jemnými řasinkami, který zachytává vajíčko, umožňuje setkání se spermií a transportuje oplozené vajíčko do dělohy.
+Tubární faktor je souhrnné označení pro situace, kdy vejcovody nemohou plnit svou roli. Vejcovod není trubka, kterou něco propadne. Je to aktivní orgán s jemnými řasinkami, který zachytává vajíčko, umožňuje setkání se spermií a transportuje oplozené vajíčko do dělohy.
 
 Poškození může být:
 
@@ -782,16 +782,16 @@ Nejčastější příčiny jsou prodělaný zánět v pánvi (často po chlamydi
 
 Pokud jsou oba vejcovody neprůchodné, přirozené otěhotnění možné není. Pokud je průchodný jeden, možné je, ale příležitostí je méně.
 
-Zvláštní pozor si zaslouží vejcovod, který je průchodný, ale poškozený. Vnitřní výstelka s řasinkami je citlivá a nemusí se po zánětu obnovit. Takový vejcovod nese **vyšší riziko mimoděložního těhotenství** — a to je situace, která je zdravotně vážná.
+Zvláštní pozor si zaslouží vejcovod, který je průchodný, ale poškozený. Vnitřní výstelka s řasinkami je citlivá a nemusí se po zánětu obnovit. Takový vejcovod nese **vyšší riziko mimoděložního těhotenství**: a to je situace, která je zdravotně vážná.
 
 Průchodnost tedy není totéž co funkčnost. Žádné dostupné vyšetření nedokáže funkci vejcovodu spolehlivě změřit; posuzuje se nepřímo.
 
 ## Jak se to vyšetřuje
 
-- **HSG** — rentgen s kontrastní látkou zavedenou do dělohy. Ukáže tvar dutiny i průchodnost. Krátce nepříjemné, obvykle po antibiotické přípravě nebo krytí.
-- **HyFoSy** — ultrazvukové vyšetření s pěnovým kontrastem. Bez rentgenového záření, dobře dostupné.
+- **HSG**: rentgen s kontrastní látkou zavedenou do dělohy. Ukáže tvar dutiny i průchodnost. Krátce nepříjemné, obvykle po antibiotické přípravě nebo krytí.
+- **HyFoSy**: ultrazvukové vyšetření s pěnovým kontrastem. Bez rentgenového záření, dobře dostupné.
 - **Laparoskopie s ověřením průchodnosti barvivem.** Nejpřesnější, ale invazivní. Indikuje se hlavně tam, kde se počítá i s ošetřením nálezu.
-- **Ultrazvuk** — zachytí hydrosalpinx, běžnou neprůchodnost neukáže.
+- **Ultrazvuk**: zachytí hydrosalpinx, běžnou neprůchodnost neukáže.
 - **Vyšetření na chlamydie** u vás i u partnera.
 
 ## Jak to může souviset s IVF cestou
@@ -832,14 +832,14 @@ Co se přesto řeší:
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Mužský faktor znamená, že se na obtížích s otěhotněním podílí kvalita nebo množství spermií. Podle dostupných dat se mužská strana podílí zhruba u poloviny párů — buď samostatně, nebo spolu s faktorem na ženské straně.
+Mužský faktor znamená, že se na obtížích s otěhotněním podílí kvalita nebo množství spermií. Podle dostupných dat se mužská strana podílí zhruba u poloviny párů. Buď samostatně, nebo spolu s faktorem na ženské straně.
 
 Nejde o jednu diagnózu, ale o skupinu nálezů:
 
 - **snížený počet spermií** v ejakulátu,
 - **snížená pohyblivost**,
 - **odchylky tvaru**,
-- **žádné spermie v ejakulátu (azoospermie)** — což ale neznamená, že se spermie netvoří vůbec,
+- **žádné spermie v ejakulátu (azoospermie)**: což ale neznamená, že se spermie netvoří vůbec,
 - **zvýšená fragmentace DNA** spermií.
 
 Příčiny bývají různé: varikokéla, prodělané infekce, hormonální poruchy, genetické příčiny, stavy po operacích nebo po onkologické léčbě, některé léky, kouření, přehřívání varlat, obezita. U části mužů se příčina nenajde.
@@ -848,7 +848,7 @@ Důležitý technický fakt: tvorba spermií trvá zhruba tři měsíce. Cokoli,
 
 ## Jak to může souviset s plodností
 
-Menší počet nebo horší pohyblivost snižuje pravděpodobnost, že spermie dorazí a pronikne k vajíčku. To ale neznamená automatickou neplodnost — spousta mužů s hraničním nálezem počne přirozeně.
+Menší počet nebo horší pohyblivost snižuje pravděpodobnost, že spermie dorazí a pronikne k vajíčku. To ale neznamená automatickou neplodnost. Spousta mužů s hraničním nálezem počne přirozeně.
 
 Naopak výborný spermiogram nezaručuje nic. Hodnotí se v něm to, co se dá spočítat a změřit, nikoli schopnost konkrétní spermie vytvořit životaschopné embryo.
 
@@ -858,10 +858,10 @@ A ještě jedna věc, která se často přehlíží: pro muže bývá tahle diag
 
 ## Jak se to vyšetřuje
 
-- **Spermiogram.** Základ. Hodnotí objem, počet, pohyblivost, tvar a další parametry. Provádí se po doporučené době pohlavní abstinence, kterou určí laboratoř. Jeden výsledek nestačí — hodnoty přirozeně kolísají, proto se obvykle opakuje s odstupem.
+- **Spermiogram.** Základ. Hodnotí objem, počet, pohyblivost, tvar a další parametry. Provádí se po doporučené době pohlavní abstinence, kterou určí laboratoř. Jeden výsledek nestačí. Hodnoty přirozeně kolísají, proto se obvykle opakuje s odstupem.
 - **Vyšetření u androloga nebo urologa** včetně fyzikálního vyšetření a ultrazvuku šourku.
-- **Hormonální vyšetření** — FSH, LH, testosteron, prolaktin podle situace.
-- **Genetické vyšetření** — karyotyp a mikrodelece chromozomu Y — může být zvažováno při velmi nízkém počtu spermií nebo při azoospermii.
+- **Hormonální vyšetření**: FSH, LH, testosteron, prolaktin podle situace.
+- **Genetické vyšetření** (karyotyp a mikrodelece chromozomu Y) může být zvažováno při velmi nízkém počtu spermií nebo při azoospermii.
 - **Mikrobiologické vyšetření** při podezření na infekci.
 - **Test fragmentace DNA** ve vybraných situacích.
 
@@ -872,7 +872,7 @@ Zpráva plná zkratek nemá cenu bez výkladu. Trvejte na tom, aby vám ji někd
 Volba metody v laboratoři se odvíjí právě od nálezu.
 
 - **Klasické IVF**, kde se vajíčko a spermie nechají potkat v misce, se používá při dostatečném počtu pohyblivých spermií.
-- **ICSI**, kdy embryolog vpraví jednu vybranou spermii přímo do vajíčka, se používá při výraznějším mužském faktoru. U párů bez mužského faktoru není doloženo, že by ICSI samo o sobě zlepšovalo výsledky — proto se nepoužívá plošně.
+- **ICSI**, kdy embryolog vpraví jednu vybranou spermii přímo do vajíčka, se používá při výraznějším mužském faktoru. U párů bez mužského faktoru není doloženo, že by ICSI samo o sobě zlepšovalo výsledky, proto se nepoužívá plošně.
 - **Chirurgické získání spermií z varlete nebo nadvarlete** může být zvažováno u azoospermie. Zda a jakou metodou, určí urolog.
 - **Zamrazení vzorku předem** je praktické opatření pro případ, že se v den odběru vajíček vzorek nepodaří získat. Ptejte se na to dřív než ráno v den odběru.
 - Embrya se sledují od 1. do 6. dne vývoje. Vliv mužského faktoru se někdy projeví až v pozdějších dnech kultivace.
@@ -912,7 +912,7 @@ Je poměrně častá i u mužů bez jakýchkoli potíží s plodností. U mužů
 
 Projevy bývají mírné nebo žádné. Někdy tahavý pocit v šourku, který se zhoršuje během dne, po delším stání nebo po zátěži. Hmatný nález se popisuje jako „pytel žížal", což je nepříjemné přirovnání, ale výstižné.
 
-Varikokéla se stupňuje podle toho, jak je nápadná — od nálezu patrného jen na ultrazvuku po nález viditelný pouhým okem.
+Varikokéla se stupňuje podle toho, jak je nápadná. Od nálezu patrného jen na ultrazvuku po nález viditelný pouhým okem.
 
 ## Jak to může souviset s plodností
 
@@ -976,18 +976,18 @@ Genetická informace je uložená ve 46 chromozomech, které tvoří 23 párů. 
 
 Nejčastější typy, o kterých se v reprodukční medicíně mluví:
 
-- **Vyvážená chromozomová přestavba.** Část jednoho chromozomu je přemístěná na jiný, ale genetického materiálu není víc ani míň. Nositel je obvykle zcela zdravý a o přestavbě neví — projeví se až při tvorbě vajíček nebo spermií, kdy se materiál rozděluje nerovnoměrně.
+- **Vyvážená chromozomová přestavba.** Část jednoho chromozomu je přemístěná na jiný, ale genetického materiálu není víc ani míň. Nositel je obvykle zcela zdravý a o přestavbě neví. Projeví se až při tvorbě vajíček nebo spermií, kdy se materiál rozděluje nerovnoměrně.
 - **Robertsonova translokace.** Zvláštní typ spojení dvou chromozomů, u kterého platí totéž.
 - **Odchylky pohlavních chromozomů**, například Turnerův syndrom u žen nebo Klinefelterův syndrom u mužů.
 - **Mikrodelece chromozomu Y** u mužů, spojené s poruchou tvorby spermií.
-- **Monogenní onemocnění** — cystická fibróza, spinální svalová atrofie a další, kde jsou oba rodiče často zdraví přenašeči.
+- **Monogenní onemocnění**: cystická fibróza, spinální svalová atrofie a další, kde jsou oba rodiče často zdraví přenašeči.
 - **Předmutace genu FMR1**, která u žen souvisí s předčasným selháváním vaječníků.
 
 ## Jak to může souviset s plodností
 
-Většina odchylek se neprojeví tím, že by k početí nedošlo, ale tím, že se **embryo nezahnízdí nebo se těhotenství zastaví**. Významná část časných těhotenských ztrát souvisí s náhodnou chromozomovou odchylkou embrya — to platí i u zdravých párů bez jakékoli zátěže a s věkem ženy podíl těchto odchylek roste.
+Většina odchylek se neprojeví tím, že by k početí nedošlo, ale tím, že se **embryo nezahnízdí nebo se těhotenství zastaví**. Významná část časných těhotenských ztrát souvisí s náhodnou chromozomovou odchylkou embrya. To platí i u zdravých párů bez jakékoli zátěže a s věkem ženy podíl těchto odchylek roste.
 
-U nositele vyvážené přestavby je situace jiná: vzniká vyšší podíl embryí s nevyváženou genetickou výbavou. Neznamená to, že zdravé dítě není možné — znamená to, že cesta k němu může být delší a provázená ztrátami.
+U nositele vyvážené přestavby je situace jiná: vzniká vyšší podíl embryí s nevyváženou genetickou výbavou. Neznamená to, že zdravé dítě není možné. Znamená to, že cesta k němu může být delší a provázená ztrátami.
 
 Odchylky se také mohou projevit poruchou tvorby vajíček nebo spermií, například u mikrodelecí chromozomu Y nebo u odchylek pohlavních chromozomů.
 
@@ -1003,10 +1003,10 @@ Sdělení výsledku genetického vyšetření patří do rukou genetika, ne do e
 
 ## Jak to může souviset s IVF cestou
 
-- **PGT** je vyšetření embryí před přenosem. Existuje v několika podobách podle toho, co se hledá — počet chromozomů, konkrétní strukturní přestavba, nebo konkrétní dědičné onemocnění.
+- **PGT** je vyšetření embryí před přenosem. Existuje v několika podobách podle toho, co se hledá. Počet chromozomů, konkrétní strukturní přestavba, nebo konkrétní dědičné onemocnění.
 - Vzorek buněk se odebírá z embrya v určité fázi vývoje. Embrya se sledují od 1. do 6. dne a k vyšetření se dostanou jen ta, která dojdou dost daleko. Někdy se stane, že k vyšetření není co poslat.
 - **PGT není vhodné pro každou ženu a pro každý pár.** U nositelů přestaveb a u některých dědičných onemocnění je jeho role jasná. Jako plošné vyšetření u všech párů zůstává předmětem odborné diskuse a data o přínosu nejsou jednotná. Rozhodnutí patří vám společně s lékařem a genetikem.
-- Výsledky mohou být i **nejednoznačné** — u části embryí vyjde smíšený nález. Zeptejte se dopředu, jak s takovým výsledkem vaše pracoviště nakládá.
+- Výsledky mohou být i **nejednoznačné**: u části embryí vyjde smíšený nález. Zeptejte se dopředu, jak s takovým výsledkem vaše pracoviště nakládá.
 - Cyklus s PGT téměř vždy znamená zamrazení embryí a odložený kryotransfer, protože na výsledek se čeká. Z jednoho cyklu tak může vzniknout víc transferů.
 - **Darovaná vajíčka nebo spermie** jsou možnost, která se u některých genetických situací může otevřít.
 
@@ -1038,7 +1038,7 @@ Sdělení výsledku genetického vyšetření patří do rukou genetika, ne do e
     reviewedBy: REVIEWED,
     body: `## Co to je
 
-Opakovanými těhotenskými ztrátami se obvykle rozumí dvě nebo víc ztrát těhotenství. Přesná definice se mezi odbornými společnostmi liší — někde se počítají jen ztráty potvrzené ultrazvukem, jinde i biochemická těhotenství. Rozdíl není akademický: rozhoduje o tom, kdy se začne vyšetřovat.
+Opakovanými těhotenskými ztrátami se obvykle rozumí dvě nebo víc ztrát těhotenství. Přesná definice se mezi odbornými společnostmi liší. Někde se počítají jen ztráty potvrzené ultrazvukem, jinde i biochemická těhotenství. Rozdíl není akademický: rozhoduje o tom, kdy se začne vyšetřovat.
 
 Praktické pravidlo, které stojí za to znát: pokud máte za sebou dvě ztráty, máte důvod žádat o vyšetření. Nemusíte čekat na třetí.
 
@@ -1051,8 +1051,8 @@ Významná část časných ztrát souvisí s **náhodnou chromozomovou odchylko
 Další skupiny příčin, které se hledají:
 
 - **Chromozomová přestavba** u jednoho z partnerů.
-- **Anatomické odchylky dělohy** — přepážka v děloze, submukózní myom, polyp, srůsty v dutině.
-- **Antifosfolipidový syndrom** — autoimunitní stav s doloženou souvislostí s těhotenskými ztrátami a s existující léčbou.
+- **Anatomické odchylky dělohy**: přepážka v děloze, submukózní myom, polyp, srůsty v dutině.
+- **Antifosfolipidový syndrom**: autoimunitní stav s doloženou souvislostí s těhotenskými ztrátami a s existující léčbou.
 - **Poruchy štítné žlázy** a některé metabolické stavy.
 - **Nedostatečně kompenzovaná cukrovka** nebo jiné celkové onemocnění.
 
@@ -1064,7 +1064,7 @@ Rozsah určí lékař, obvykle zahrnuje:
 
 - **Karyotyp obou partnerů.**
 - **Genetické vyšetření tkáně z proběhlé ztráty**, pokud byla tkáň odeslána. Má často největší výpovědní hodnotu a stojí za to se na možnost odeslání zeptat dopředu.
-- **Zobrazení dutiny děložní** — ultrazvuk, sonohysterografie nebo hysteroskopie.
+- **Zobrazení dutiny děložní**: ultrazvuk, sonohysterografie nebo hysteroskopie.
 - **Antifosfolipidové protilátky**, obvykle opakovaně s odstupem podle doporučených postupů.
 - **Vyšetření štítné žlázy** a glykémie.
 - **Vyšetření trombofilie** může být zvažováno ve vybraných situacích. Jeho význam u opakovaných ztrát je předmětem odborné diskuse a plošné vyšetřování všech žen se běžně nedoporučuje.
@@ -1075,10 +1075,10 @@ Kolem opakovaných ztrát se pohybuje řada nabídek testů a léčebných postu
 
 Opakované ztráty se mohou týkat žen, které otěhotní přirozeně, i žen po IVF.
 
-- **PGT** může být zvažováno tam, kde se opakovaně prokázala chromozomová odchylka embrya nebo kde je u páru přestavba. Neplatí, že by PGT bylo řešením pro každou ženu s opakovanými ztrátami — data o přínosu v této indikaci nejsou jednotná.
+- **PGT** může být zvažováno tam, kde se opakovaně prokázala chromozomová odchylka embrya nebo kde je u páru přestavba. Neplatí, že by PGT bylo řešením pro každou ženu s opakovanými ztrátami. Data o přínosu v této indikaci nejsou jednotná.
 - **Chirurgická úprava dutiny děložní** má smysl tam, kde je nález, který se dá řešit.
 - **Léčba antifosfolipidového syndromu** patří k postupům s doloženým podkladem. Řídí se odborným doporučením, ne přáním.
-- Jeden IVF cyklus může přinést víc embryí a tedy víc transferů. Neúspěšný transfer po ztrátě není důkaz, že to nepůjde, ani důvod k opuštění plánu — je to informace, kterou má lékař zohlednit.
+- Jeden IVF cyklus může přinést víc embryí a tedy víc transferů. Neúspěšný transfer po ztrátě není důkaz, že to nepůjde, ani důvod k opuštění plánu. Je to informace, kterou má lékař zohlednit.
 - **Sledování po pozitivním výsledku hCG** bývá u žen po opakovaných ztrátách intenzivnější. Domluvte si dopředu, kdo a jak často vás bude kontrolovat.
 
 ## Na co se zeptat lékaře
@@ -1114,8 +1114,8 @@ Imunitní systém hraje v těhotenství podivuhodnou roli: musí tolerovat embry
 Pod hlavičkou „imunologie v reprodukci" se ale skrývají velmi různé věci:
 
 - **Autoimunitní onemocnění s doloženou souvislostí**, především antifosfolipidový syndrom, dále autoimunitní onemocnění štítné žlázy, celiakie, systémová onemocnění pojiva.
-- **Vyšetření, jejichž význam je předmětem odborné diskuse** — například hodnocení NK buněk v krvi nebo ve sliznici, cytokinové profily, shoda HLA mezi partnery, různé „imunologické panely".
-- **Léčebné postupy s omezenou důkazní oporou** — nitrožilní imunoglobuliny, tukové emulze, kortikoidy v této indikaci, léky ovlivňující imunitní signalizaci.
+- **Vyšetření, jejichž význam je předmětem odborné diskuse**: například hodnocení NK buněk v krvi nebo ve sliznici, cytokinové profily, shoda HLA mezi partnery, různé „imunologické panely".
+- **Léčebné postupy s omezenou důkazní oporou**: nitrožilní imunoglobuliny, tukové emulze, kortikoidy v této indikaci, léky ovlivňující imunitní signalizaci.
 
 ## Je potřeba to říct rovnou
 
@@ -1127,7 +1127,7 @@ Z toho plyne několik věcí:
 - Neúspěšný transfer nebo ztráta má nejčastěji jiné vysvětlení, typicky chromozomovou odchylku embrya nebo náhodu. Imunologie by neměla být první hypotéza.
 - Nabídka drahého vyšetření nebo léčby, která se prezentuje jako poslední naděje, si zaslouží druhý názor.
 
-To neznamená, že imunologie je nesmysl. Znamená to, že se dá poctivě oddělit to, co má oporu, od toho, co ji zatím nemá. Antifosfolipidový syndrom je příkladem první skupiny — je definovaný, dá se vyšetřit podle jasných kritérií a léčba má doložený podklad.
+To neznamená, že imunologie je nesmysl. Znamená to, že se dá poctivě oddělit to, co má oporu, od toho, co ji zatím nemá. Antifosfolipidový syndrom je příkladem první skupiny. Je definovaný, dá se vyšetřit podle jasných kritérií a léčba má doložený podklad.
 
 ## Jak to může souviset s plodností
 
@@ -1137,7 +1137,7 @@ U **autoimunitního onemocnění štítné žlázy** se popisuje vyšší riziko
 
 U ostatních zmíněných parametrů, včetně NK buněk, je vztah k výsledkům léčby nejasný. NK buňky v krvi navíc nejsou totéž co buňky ve sliznici dělohy a hodnoty z krve se běžně nepřenášejí na dění v děloze.
 
-Neléčené aktivní systémové onemocnění je samostatné téma — tam je souvislost s průběhem těhotenství jasná a péče patří příslušnému specialistovi.
+Neléčené aktivní systémové onemocnění je samostatné téma. Tam je souvislost s průběhem těhotenství jasná a péče patří příslušnému specialistovi.
 
 ## Jak se to vyšetřuje
 
@@ -1160,7 +1160,7 @@ Co bývá nabízeno mimo standardní panel a co si zaslouží otázku, co z výs
 - **Doložené diagnózy se léčí podle odborných doporučení.** U antifosfolipidového syndromu má léčba své místo a řídí se pravidly, ne dohadem.
 - **Experimentální postupy** patří ideálně do klinických studií, ne do běžné praxe za přímou platbu. Pokud vám je někdo nabízí, ptejte se na důkazy, na rizika a na cenu.
 - **Kortikoidy a další léky ovlivňující imunitu** nejsou neškodné. Mají nežádoucí účinky a jejich plošné podávání v této indikaci není podložené.
-- **Pořadí hypotéz.** Než se sáhne po imunologii, měla by být vyšetřená dutina děložní, prověřená kvalita embryí, zkontrolovaná štítná žláza a probraná příprava sliznice. Jeden cyklus může přinést víc transferů — informace z několika přenosů dají lékaři jasnější obraz než jeden.
+- **Pořadí hypotéz.** Než se sáhne po imunologii, měla by být vyšetřená dutina děložní, prověřená kvalita embryí, zkontrolovaná štítná žláza a probraná příprava sliznice. Jeden cyklus může přinést víc transferů. Informace z několika přenosů dají lékaři jasnější obraz než jeden.
 - **Druhý názor** je legitimní krok, ne urážka vašeho lékaře. U nabídek s vysokou cenou a slabou důkazní oporou je namístě vždycky.
 
 ## Na co se zeptat lékaře

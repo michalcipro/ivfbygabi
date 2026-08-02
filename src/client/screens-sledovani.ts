@@ -11,7 +11,7 @@ import { screenTyden } from './screens-tyden'
  *
  * Tři části pod jedním přepínačem: vývoj v čase, naměřené hodnoty a týdenní
  * ohlédnutí. Dělení vychází z reference (Track = Symptoms / Health Data),
- * jen k tomu přidáváme to, co reference nemá vůbec — grafy.
+ * jen k tomu přidáváme to, co reference nemá vůbec. Grafy.
  */
 
 export const SLED_SECTIONS = [
@@ -33,8 +33,8 @@ const DAYS = 14
 /**
  * Vývoj v čase.
  *
- * Exportuje se, protože stejný obsah nese i dílek „Vývoj“ v Mojí léčbě —
- * od chvíle, co se Sledování přestalo vejít do spodní lišty. Je to jedno
+ * Exportuje se, protože stejný obsah nese i dílek „Vývoj“ v Mojí léčbě.
+ * Od chvíle, co se Sledování přestalo vejít do spodní lišty. Je to jedno
  * vykreslení na dvou místech, ne dvě kopie.
  */
 export function paneVyvoj(): string {
@@ -105,7 +105,7 @@ export function paneVyvoj(): string {
       : `<section class="surface pad rise">
           <p class="eyebrow">Co si aplikace všímá</p>
           <p class="soft" style="margin-top:.5rem;line-height:1.7">
-            Až budete mít zapsaných aspoň deset dní, aplikace si začne všímat vzorců —
+            Až budete mít zapsaných aspoň deset dní, aplikace si začne všímat vzorců,
             třeba jestli jsou pro vás horší dny zákroků, nebo ty před nimi.
           </p>
         </section>`,
@@ -115,7 +115,7 @@ export function paneVyvoj(): string {
   ].join('')
 }
 
-/** Pás posledních dnů — rychlý pohled zpátky bez grafu. */
+/** Pás posledních dnů. Rychlý pohled zpátky bez grafu. */
 function dayHistory(): string {
   const to = viewDate()
   const cells = []

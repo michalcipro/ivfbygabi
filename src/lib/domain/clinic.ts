@@ -3,7 +3,7 @@
  *
  * Číslo na kliniku se hledá ve chvíli, kdy se ho hledat nedá: v šest ráno,
  * s bolestí břicha, když si žena nemůže vzpomenout, jestli má volat sestře
- * nebo na recepci. Proto tady není jen název — je tu telefon jako odkaz,
+ * nebo na recepci. Proto tady není jen název. Je tu telefon jako odkaz,
  * který se dá zmáčknout, a kolonka na to, co má člověk dělat mimo ordinační
  * hodiny.
  *
@@ -13,7 +13,7 @@
  */
 
 export interface ClinicContact {
-  /** Role — „lékař“, „embryolog“, „sestra“, „recepce“. */
+  /** Role. „lékař“, „embryolog“, „sestra“, „recepce“. */
   role: string
   name: string
   phone: string
@@ -32,7 +32,7 @@ export interface Clinic {
   web: string
   /** Ordinační hodiny vlastními slovy. */
   hours: string
-  /** Co klinika řekla, že se má dělat — vlastními slovy uživatelky. */
+  /** Co klinika řekla, že se má dělat. Vlastními slovy uživatelky. */
   instructions: string
   note: string
   contacts: ClinicContact[]
@@ -76,7 +76,7 @@ export function hasClinic(c: Clinic): boolean {
  * Telefon do podoby, kterou přijme `tel:`.
  *
  * Mezery a pomlčky v `href` některé telefony neustojí, ale na obrazovce
- * se číslo musí zobrazit tak, jak ho uživatelka napsala — jinak si ho
+ * se číslo musí zobrazit tak, jak ho uživatelka napsala, jinak si ho
  * nepřečte.
  */
 export function telHref(phone: string): string {

@@ -1,16 +1,16 @@
 /* ==========================================================================
-   Bloomia — prohlížečová verze aplikace.
+   Bloomia. Prohlížečová verze aplikace.
    Tokeny jsou 1:1 ze src/app/globals.css. Tohle není prezentace o aplikaci,
    je to aplikace.
    ========================================================================== */
 
 :root {
-  /* Bloomia — Lis.
+  /* Bloomia, Lis.
      Sešit s lisovanými květinami. Studeně šeříkový papír, na něm lístky,
      a barvy usušených okvětních plátků. Krémový papír by z toho udělal
      svatební oznámení, proto je chladný.
 
-     Ozdobné barvy (růže, levandule, sláma, list) jsou schválně měkké — na
+     Ozdobné barvy (růže, levandule, sláma, list) jsou schválně měkké. Na
      ploškách, okrajích lístků a razítkách. Na data jsou moc bledé, proto má
      graf vlastní, hlubší sadu (--s1…--s4 níž). */
   --slip: #fbfafc;
@@ -50,7 +50,7 @@
   --fg-soft: #6f6579;
   --fg-faint: #948ba0;
 
-  /* Datová paleta — stejné čtyři odstíny jako ozdobné, ale prohloubené tak,
+  /* Datová paleta. Stejné čtyři odstíny jako ozdobné, ale prohloubené tak,
      aby unesly graf. Prošly všemi pěti kontrolami validátoru v obou režimech
      včetně simulace protanopie a deuteranopie.
      s1 = co dnešek žádá, s2 = co na to máte, s3 = úzkost, s4 = naděje. */
@@ -62,7 +62,7 @@
   --display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
   --sans: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 
-  /* Lístek, ne dlaždice. Papír se neohýbá do velkých oblouků — proto malé
+  /* Lístek, ne dlaždice. Papír se neohýbá do velkých oblouků, proto malé
      poloměry. Kulaté zůstávají jen prvky, které mají být na klepnutí:
      tlačítka, chipy, dávky. */
   --r-xs: 3px;
@@ -83,7 +83,7 @@
   color-scheme: light;
 }
 
-/* Noc v Lisu: švestkově černá, ne neutrální — drží to pohromadě s papírem. */
+/* Noc v Lisu: švestkově černá, ne neutrální. Drží to pohromadě s papírem. */
 @media (prefers-color-scheme: dark) {
   :root {
     --slip: #1e1926;
@@ -280,7 +280,7 @@ button { font: inherit; color: inherit; }
 }
 @media (min-width: 1024px) { .sidebar { display: flex; } }
 
-/* Značka je vložený prvek se znakem, ne holý <b> — název fáze proto musí
+/* Značka je vložený prvek se znakem, ne holý <b>. Název fáze proto musí
    mít vlastní třídu, jinak by zdědil verzálky i řádek od wordmarku. */
 .brand { padding: 0 0.75rem 1.5rem; display: flex; flex-direction: column; align-items: flex-start; gap: .3rem; }
 .brand-phase { font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-faint); }
@@ -316,7 +316,7 @@ button { font: inherit; color: inherit; }
 }
 .page-narrow { max-width: 46rem; }
 
-/* Lišta „zpátky“ — na každé obrazovce, která není hlavní záložka. */
+/* Lišta „zpátky“. Na každé obrazovce, která není hlavní záložka. */
 .backbar {
   position: sticky; top: 0; z-index: 30;
   display: flex; align-items: center; gap: 0.5rem;
@@ -469,7 +469,7 @@ button { font: inherit; color: inherit; }
 }
 .player video { background: #000; }
 
-/* Položka seznamu uvnitř formuláře — jeden transfer, jeden test.
+/* Položka seznamu uvnitř formuláře. Jeden transfer, jeden test.
    Musí být vidět, kde jedna končí a druhá začíná: v cyklu jich bývá pět. */
 .subcard {
   margin-top: 1.1rem; padding: 1.05rem 1.1rem;
@@ -478,7 +478,7 @@ button { font: inherit; color: inherit; }
 }
 
 /* Blok s fotkami. Uvnitř řádku seznamu musí umět stát na celou šířku.
-   Tlačítko se smí zalomit — jinak by jeho nezalomitelná šířka roztlačila
+   Tlačítko se smí zalomit, jinak by jeho nezalomitelná šířka roztlačila
    celý řádek a na úzkém telefonu by stránka jela do stran. */
 .photobox { margin-top: 1rem; min-width: 0; }
 .photobox .btn { white-space: normal; max-width: 100%; }
@@ -530,7 +530,7 @@ button { font: inherit; color: inherit; }
 .track li i { font-style: normal; font-size: 0.6875rem; color: var(--fg-faint); }
 .track li.done i { color: var(--s1); }
 
-/* Pás cesty — kde jsem, co bylo, co přijde. */
+/* Pás cesty, kde jsem, co bylo, co přijde. */
 .journey {
   display: flex; align-items: stretch; gap: 0.5rem; width: 100%;
   background: none; border: 0; padding: 0; cursor: pointer; text-align: left;
@@ -546,7 +546,7 @@ button { font: inherit; color: inherit; }
 .journey .step .what { display: block; margin-top: 0.3rem; font-size: 0.875rem; line-height: 1.35; overflow: hidden; text-overflow: ellipsis; }
 .journey:hover .step { border-color: var(--sand); }
 
-/* Pás IVF cyklu — stimulace → odběr → transfer → výsledek. */
+/* Pás IVF cyklu. Stimulace → odběr → transfer → výsledek. */
 .cycle { display: flex; gap: 0.4rem; margin-top: 1rem; }
 .cycle .leg { flex: 1; display: block; min-width: 0; }
 .cycle .bar { display: block; height: 4px; border-radius: 99px; background: var(--line); overflow: hidden; }
@@ -584,7 +584,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 
 .chips { display: flex; gap: 0.45rem; flex-wrap: wrap; }
 
-/* Podnavigace uvnitř fáze — jeden oddíl na obrazovku, ne nekonečná stránka. */
+/* Podnavigace uvnitř fáze. Jeden oddíl na obrazovku, ne nekonečná stránka. */
 .subnav {
   position: sticky; top: 0; z-index: 20;
   flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
@@ -595,7 +595,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .subnav::-webkit-scrollbar { display: none; }
 .subnav button { flex: 0 0 auto; }
 
-/* Souhrn nahoře — vidět na první pohled, rozklikávací do podrobností. */
+/* Souhrn nahoře. Vidět na první pohled, rozklikávací do podrobností. */
 .summary {
   border: 1px solid var(--line); background: var(--card);
   border-radius: var(--r-lg); padding: 1rem 1.15rem;
@@ -690,7 +690,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .prose ul > li::before { content: ''; position: absolute; left: -1rem; top: 0.72em; width: 5px; height: 5px; border-radius: 99px; background: var(--sand); }
 .prose blockquote { border-left: 2px solid var(--champagne); padding-left: 1.25rem; margin-left: 0; font-family: var(--display); font-size: 1.35rem; line-height: 1.5; color: var(--fg); }
 /* Srovnávací tabulky mají na telefonu čtyři i pět sloupců. Rolují uvnitř
-   sebe, stránka pod nimi ne — a stín u pravého okraje dává vědět, že tam
+   sebe, stránka pod nimi ne. A stín u pravého okraje dává vědět, že tam
    ještě něco je. Bez něj poslední sloupec nikdo nenajde. */
 .prose .tablewrap {
   overflow-x: auto;
@@ -813,14 +813,14 @@ textarea.field { resize: vertical; line-height: 1.6; }
 }
 
 /* ==========================================================================
-   Nůžky dne — datové prvky.
+   Nůžky dne. Datové prvky.
    Prstenec, číselníky, mapa vpichů a grafy. Čísla nosí tabulkové číslice,
    aby se ve sloupcích nekývala.
    ========================================================================== */
 
 /* Renesanční antikvy sázejí minuskové číslice: 3, 5, 7 a 9 klesají pod účaří a výšky
    se liší od „1“ po „6“ skoro o polovinu. V běžném textu je to krásné,
-   u čísla, které je samo obsahem, je to vada — padá do popisku pod sebou
+   u čísla, které je samo obsahem, je to vada. Padá do popisku pod sebou
    a hodnoty vypadají různě velké. Proto verzálkové číslice. */
 .num, .statv, .bignum, .triocell b, .daycell b {
   font-variant-numeric: lining-nums tabular-nums;
@@ -830,7 +830,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .ringwrap { display: flex; flex-direction: column; align-items: center; }
 .bigring { position: relative; width: 218px; height: 218px; max-width: 100%; }
 .bigring svg { display: block; width: 100%; height: auto; }
-/* Číslo a popisek stojí pod květem — uvnitř by je plátky rozbily.
+/* Číslo a popisek stojí pod květem. Uvnitř by je plátky rozbily.
    Odsazení musí počítat s tím, že při line-height pod 1 přetéká horní
    část číslice ven z řádku: bez rezervy do ní spodní plátek zajede. */
 .bignum, .ringlabel { text-align: center; }
@@ -838,7 +838,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
   font-family: var(--display); font-size: 4.4rem; line-height: 1; color: var(--fg);
   margin: 1.1rem 0 0;
 }
-/* „/10" v garamondu vypadá jako „IO" — jednička má patkový tvar blízký I. */
+/* „/10" v garamondu vypadá jako „IO". Jednička má patkový tvar blízký I. */
 .bignum small {
   font-family: var(--sans); font-size: .9375rem; color: var(--fg-faint);
   letter-spacing: .02em; margin-left: .12rem;
@@ -867,7 +867,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 
 /* --- číselník ----------------------------------------------------------- */
 .dialwrap { margin-top: .5rem; }
-/* Na širokém displeji by se terče roztáhly do obřích obdélníků — číselník
+/* Na širokém displeji by se terče roztáhly do obřích obdélníků. Číselník
    je ovládací prvek pod palec, ne banner. */
 .dial { display: flex; gap: .4rem; max-width: 24rem; }
 .dial button {
@@ -962,7 +962,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 /* ==========================================================================
    Elitní vrstva.
    Rozdíl mezi „hezkou aplikací" a přístrojem je v tom, že přístroj nekreslí
-   rámečky — odděluje světlem. Plochy se liší hodnotou a nahoře mají tenký
+   rámečky. Odděluje světlem. Plochy se liší hodnotou a nahoře mají tenký
    přesvit, jako by na ně shora dopadalo světlo. Čáry zůstávají jen jako
    vlásečnice tam, kde by jinak dvě plochy splynuly.
    ========================================================================== */
@@ -994,7 +994,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
      obojí, takže záře nikdy nevyteče z karty a pás zůstane na obloucích. */
   --ring: min(244px, 76%);
 }
-/* Světlo za květem. Měkký nádech pod plátky, ne prstenec — kruhový pás
+/* Světlo za květem. Měkký nádech pod plátky, ne prstenec. Kruhový pás
    by z květu udělal terč. */
 .ringwrap::before {
   content: ''; position: absolute; left: 50%;
@@ -1085,7 +1085,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .sidebar { background: linear-gradient(180deg, var(--sheen) 0%, transparent 18%), var(--page); }
 
 /* --- nástup obrazovky --------------------------------------------------- */
-/* Sekce se skládají po sobě, ne najednou. Šest kroků stačí — dál už to
+/* Sekce se skládají po sobě, ne najednou. Šest kroků stačí. Dál už to
    jenom zdržuje. */
 .rise { animation: rise 0.62s cubic-bezier(.16, 1, .3, 1) both; }
 .page > .rise:nth-of-type(1) { animation-delay: 0ms; }
@@ -1100,7 +1100,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
   .rise, .page > .rise { animation: none !important; }
 }
 
-/* Světlý odznak měl napevno tmavě hnědý text — na tmavé ploše z toho byla
+/* Světlý odznak měl napevno tmavě hnědý text. Na tmavé ploše z toho byla
    bledá pilulka s nečitelným písmem. Tint se odvozuje od datové zlaté
    a text nosí barvu popředí, takže funguje v obou motivech. */
 .badge-soft {
@@ -1120,7 +1120,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
   position: absolute; left: 100%; bottom: .55rem; margin-left: .14rem;
   font-family: var(--sans); font-size: 1.05rem; font-weight: 400;
   color: var(--fg-faint); letter-spacing: .02em; opacity: .8;
-  /* „z 6" se bez tohohle láme na dva řádky — box vedle číslice je úzký. */
+  /* „z 6" se bez tohohle láme na dva řádky. Box vedle číslice je úzký. */
   white-space: nowrap;
 }
 
@@ -1135,16 +1135,16 @@ textarea.field { resize: vertical; line-height: 1.6; }
 
 /* ==========================================================================
    Strukturální prvky.
-   Rozvržení a chování vychází z reference — způsob, jak dělit obrazovku
+   Rozvržení a chování vychází z reference. Způsob, jak dělit obrazovku
    přepínačem, jak nabízet akci kartou a jak vysvětlovat řádky rozcestníku.
    Barvy, poloměry a písmo zůstávají naše.
    ========================================================================== */
 
 /* --- přepínač nahoře ----------------------------------------------------- */
-/* Na širokém displeji by se dílky roztáhly přes celou stránku — přepínač
+/* Na širokém displeji by se dílky roztáhly přes celou stránku. Přepínač
    je ovládací prvek, ne banner. Stejné pravidlo jako u číselníků. */
 /* Pět dílků se na 390px do řádku nevejde. Dřív se popisky ořezávaly
-   („Časová …“), což je horší než rolování — název dílku musí být čitelný
+   („Časová …“), což je horší než rolování. Název dílku musí být čitelný
    celý, jinak uživatelka neví, kam kliká. */
 .segmented {
   display: flex; gap: .25rem; padding: .25rem; margin-top: 1.25rem; max-width: 32rem;
@@ -1290,7 +1290,7 @@ button.daycell:hover { border-color: var(--sand); }
 }
 
 /* ==========================================================================
-   Bloomia — značka a atmosféra.
+   Bloomia. Značka a atmosféra.
    ========================================================================== */
 
 .bloom { display: block; flex: none; overflow: visible; }
@@ -1308,7 +1308,7 @@ button.daycell:hover { border-color: var(--sand); }
 @media (prefers-reduced-motion: reduce) { .bloom path { animation: none !important; } }
 
 /* Atmosféra: dvě velmi tiché záře, teplá nahoře a listová vlevo dole.
-   Nesmí to být vidět jako skvrna — jen aby plocha nebyla mrtvá. */
+   Nesmí to být vidět jako skvrna, jen aby plocha nebyla mrtvá. */
 body::before {
   content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
   background:
@@ -1316,7 +1316,7 @@ body::before {
     radial-gradient(56rem 44rem at -10% 108%, color-mix(in oklab, var(--sage-deep) 14%, transparent), transparent 60%);
 }
 
-/* Uvítací panel — jméno se znakem, který se rozevře po okvětních lístcích. */
+/* Uvítací panel. Jméno se znakem, který se rozevře po okvětních lístcích. */
 .ob-hero { color: #f2f8f4; }
 .ob-brand { display: inline-flex; align-items: center; gap: .6rem; position: relative; z-index: 1; }
 .ob-brand b {
@@ -1326,7 +1326,7 @@ body::before {
 .ob-hero .display { color: #f7fbf9; }
 
 /* ==========================================================================
-   IVF Journey — časová osa, karta cyklu, rychlé přidání.
+   IVF Journey. Časová osa, karta cyklu, rychlé přidání.
    ========================================================================== */
 
 /* --- rychlé přidání ------------------------------------------------------ */
@@ -1405,7 +1405,7 @@ body::before {
    přilepený o stupeň nakřivo, s barevným okrajem podle toho, o co jde.
    Naklonění se střídá po dvou, aby to vypadalo lepené rukou, ne generované. */
 .tl { display: flex; flex-direction: column; gap: .5rem; margin-top: .8rem; }
-/* Lístky patří na papír, ne na bílou kartu — na ní by zmizely. Karta,
+/* Lístky patří na papír, ne na bílou kartu. Na ní by zmizely. Karta,
    která nese osu, se proto sama stáhne do papíru. */
 .surface:has(> .tl) { background: var(--page); border-color: transparent; box-shadow: none; }
 .tlday { margin: 1.3rem 0 .2rem; }
@@ -1508,7 +1508,7 @@ button.tlitem:hover b { color: var(--s1); }
 
 
 /* --- srovnávací tabulky na telefonu --------------------------------------
-   Pět sloupců se na 390px nevejde ani při rolování — buňky zbydou tak úzké,
+   Pět sloupců se na 390px nevejde ani při rolování. Buňky zbydou tak úzké,
    že se každá věta láme po slovech. Pod 640px se proto řádek rozloží
    na kartičku a název sloupce se přesune před hodnotu. */
 @media (max-width: 640px) {
@@ -1526,14 +1526,14 @@ button.tlitem:hover b { color: var(--s1); }
     display: block; font-size: .625rem; letter-spacing: .1em; text-transform: uppercase;
     color: var(--fg-faint); font-weight: 600; margin-bottom: .15rem;
   }
-  /* První buňka je název položky — je to nadpis kartičky, ne údaj. */
+  /* První buňka je název položky. Je to nadpis kartičky, ne údaj. */
   .prose tr td:first-child { font-weight: 600; font-size: 1rem; }
   .prose tr td:first-child::before { content: none; }
 }
 
 
 /* --- prázdný puntík v legendě -------------------------------------------
-   „Není na vás" se nevyplňuje ani v legendě — dutý kroužek to řekne dřív
+   „Není na vás" se nevyplňuje ani v legendě. Dutý kroužek to řekne dřív
    než text vedle něj. */
 .serieskey i.hollow { background: none !important; border: 2px solid currentColor; }
 
@@ -1571,7 +1571,7 @@ button.tlitem:hover b { color: var(--s1); }
 .ivfstep-probiha .val { color: var(--fg); font-weight: 500; }
 .ivfstep-neproběhlo .name, .ivfstep-neproběhlo .val { color: var(--fg-faint); text-decoration: line-through; }
 
-/* Dnešek pod kroky — jediné místo karty, které se mění každý den. */
+/* Dnešek pod kroky. Jediné místo karty, které se mění každý den. */
 .ivfnow {
   margin-top: 1.2rem; padding-top: 1.1rem;
   border-top: 1px solid var(--line);
@@ -1609,7 +1609,7 @@ button.tlitem:hover b { color: var(--s1); }
 .datatable td.num { font-variant-numeric: tabular-nums; }
 .datatable tbody tr:last-child td { border-bottom: 0; }
 
-/* Tlačítko, které má vypadat jako odkaz — uvnitř tabulky nic jiného nesedí. */
+/* Tlačítko, které má vypadat jako odkaz. Uvnitř tabulky nic jiného nesedí. */
 .linkish {
   background: none; border: 0; padding: 0; cursor: pointer;
   font: inherit; color: var(--fg); font-weight: 500;
@@ -1619,7 +1619,7 @@ button.tlitem:hover b { color: var(--s1); }
 
 
 /* Přepínač fáze v hlavičce. Fáze se v léčbě mění a musí být vidět, že
-   se změnit dá — jinak si žena myslí, že ji aplikace zamkla. */
+   se změnit dá, jinak si žena myslí, že ji aplikace zamkla. */
 .phasechip {
   display: flex; flex-wrap: wrap; gap: .5rem .8rem; align-items: baseline;
   margin-top: 1rem; padding: .6rem .9rem;

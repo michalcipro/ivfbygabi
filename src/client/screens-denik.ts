@@ -45,7 +45,7 @@ function subnav(section: DenikSection): string {
   </div>`
 }
 
-/** Co se dnes děje kolem — aby zápis nevisel ve vzduchoprázdnu. */
+/** Co se dnes děje kolem, aby zápis nevisel ve vzduchoprázdnu. */
 function context(): string {
   const state = journey()
   const date = viewDate()
@@ -139,7 +139,7 @@ function sectionDnes(): string {
 
     `<section class="surface pad">
       <p class="eyebrow">Co se dnes povedlo</p>
-      <p class="faint" style="margin-top:.4rem;font-size:.8125rem;line-height:1.55">I úplně malá věc. Hlava si v zátěži pamatuje hlavně to, co nevyšlo — tohle je vědomé vyvážení.</p>
+      <p class="faint" style="margin-top:.4rem;font-size:.8125rem;line-height:1.55">I úplně malá věc. Hlava si v zátěži pamatuje hlavně to, co nevyšlo. Tohle je vědomé vyvážení.</p>
       <input class="field" id="j-win" placeholder="Například: došla jsem na procházku, i když se mi nechtělo" value="${esc(row?.win ?? '')}" autocomplete="off" style="margin-top:.75rem">
     </section>`,
 
@@ -184,7 +184,7 @@ function sectionCviceni(): string {
   const done = exerciseLog()
 
   return [
-    `<p class="lede soft">Techniky, které se dají udělat teď hned. Nejsou to články o tom, jak by to šlo — jsou to kroky, které tu odklikáte.</p>`,
+    `<p class="lede soft">Techniky, které se dají udělat teď hned. Nejsou to články o tom, jak by to šlo. Jsou to kroky, které tu odklikáte.</p>`,
 
     `<div class="stack" style="gap:.75rem">
       ${list
@@ -224,7 +224,7 @@ function sectionCviceni(): string {
       : '',
 
     note(
-      'Tyhle techniky vycházejí z postupů běžných v kognitivně-behaviorální terapii a všímavosti. **Nejsou léčba a nenahrazují odbornou pomoc** — jsou to nástroje na konkrétní těžkou chvíli.',
+      'Tyhle techniky vycházejí z postupů běžných v kognitivně-behaviorální terapii a všímavosti. **Nejsou léčba a nenahrazují odbornou pomoc**: jsou to nástroje na konkrétní těžkou chvíli.',
     ),
   ].join('')
 }
@@ -238,7 +238,7 @@ function sectionVyvoj(): string {
   if (recent.length < 2) {
     return empty(
       'Zatím není co kreslit',
-      'Až budou zápisy aspoň dva, uvidíte tady, jak se nálada, úzkost a naděje vyvíjejí v čase. Bývá to překvapivé — v hlavě to vypadá jako rovná čára dolů.',
+      'Až budou zápisy aspoň dva, uvidíte tady, jak se nálada, úzkost a naděje vyvíjejí v čase. Bývá to překvapivé. V hlavě to vypadá jako rovná čára dolů.',
       '<button class="btn" data-go="denik/dnes">Zapsat dnešek</button>',
       '◉',
     )
@@ -251,7 +251,7 @@ function sectionVyvoj(): string {
   const prevWeek = rows.slice(-14, -7)
   const delta = prevWeek.length >= 3 ? Math.round((avg('mood', week) - avg('mood', prevWeek)) * 10) / 10 : null
 
-  // Nejtěžší a nejlepší den — z jejích vlastních dat, ne z obecné poučky.
+  // Nejtěžší a nejlepší den. Z jejích vlastních dat, ne z obecné poučky.
   const worst = recent.reduce((a, r) => (r.mood < a.mood ? r : a), recent[0])
   const best = recent.reduce((a, r) => (r.mood > a.mood ? r : a), recent[0])
 
@@ -293,7 +293,7 @@ function sectionVyvoj(): string {
             : `<p class="display" style="font-size:2rem;margin-top:.5rem">${delta > 0 ? '+' : ''}${delta}</p>
                <p class="soft" style="margin-top:.5rem;line-height:1.6;font-size:.9375rem">${
                  delta > 0.3
-                   ? 'Nálada se zvedá. Stojí za to se podívat, co se změnilo — a dělat toho víc.'
+                   ? 'Nálada se zvedá. Stojí za to se podívat, co se změnilo. A dělat toho víc.'
                    : delta < -0.3
                      ? 'Nálada klesá. Nemusí to nic znamenat, ale všímat si toho má smysl.'
                      : 'Zhruba stejně jako minulý týden.'
@@ -305,8 +305,8 @@ function sectionVyvoj(): string {
     `<section class="surface pad">
       <p class="eyebrow">Z vašich vlastních dat</p>
       <ul class="bullets" style="margin-top:.8rem">
-        <li>Nejtěžší den byl ${esc(formatCzechDate(worst.date, { weekday: true }))} — nálada ${worst.mood}/5.</li>
-        <li>Nejlepší den byl ${esc(formatCzechDate(best.date, { weekday: true }))} — nálada ${best.mood}/5.</li>
+        <li>Nejtěžší den byl ${esc(formatCzechDate(worst.date, { weekday: true }))}. Nálada ${worst.mood}/5.</li>
+        <li>Nejlepší den byl ${esc(formatCzechDate(best.date, { weekday: true }))}. Nálada ${best.mood}/5.</li>
         <li>Zapsáno celkem ${esc(plural(rows.length, 'den', 'dny', 'dní'))}.</li>
       </ul>
       <p class="faint" style="margin-top:.9rem;font-size:.8125rem;line-height:1.55">Tohle nejsou obecné poučky, ale vaše čísla. Když se podíváte, co se ten nejlepší den dělo, obvykle se něco najde.</p>
@@ -328,7 +328,7 @@ function sectionVyvoj(): string {
     moodConcern()
       ? `<section class="surface pad" style="border-color:var(--blush)">
           <p class="eyebrow" style="color:var(--blush-deep)">Všimli jsme si</p>
-          <p style="margin-top:.6rem;line-height:1.7">Poslední zápisy jsou dlouhodobě nízko. Není to diagnóza — je to jen upozornění, že tohle bývá moment, kdy pomůže někdo zvenčí.</p>
+          <p style="margin-top:.6rem;line-height:1.7">Poslední zápisy jsou dlouhodobě nízko. Není to diagnóza. Je to jen upozornění, že tohle bývá moment, kdy pomůže někdo zvenčí.</p>
           <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">Ozvěte se svému gynekologovi nebo praktickému lékaři. Psycholog se zaměřením na reprodukci je běžná součást péče. Kdykoliv a zdarma je tu také <strong>Linka první psychické pomoci 116 123</strong>.</p>
         </section>`
       : '',
@@ -379,7 +379,7 @@ function sectionOhlednuti(): string {
           </dl>
         </div>
         <div>${ring(rows.length ? Math.min(1, journalStreak(date) / 7) : 0, 84)}
-          <p class="faint" style="font-size:.75rem;margin-top:.5rem">Zápisy v řadě — cíl je týden. Ne kvůli sbírání, ale proto, že teprve na týdnu je vidět vývoj.</p>
+          <p class="faint" style="font-size:.75rem;margin-top:.5rem">Zápisy v řadě. Cíl je týden. Ne kvůli sbírání, ale proto, že teprve na týdnu je vidět vývoj.</p>
         </div>
       </div>
     </section>`,
@@ -411,7 +411,7 @@ function sectionOhlednuti(): string {
       <p class="faint" style="margin-top:.4rem;font-size:.8125rem;line-height:1.55">Tři otázky, které se vyplatí projít jednou týdně. Uloží se jako běžný zápis.</p>
       ${[
         ['w1', 'Co bylo tenhle týden nejtěžší a jak jsem to zvládla?'],
-        ['w2', 'Co mi pomohlo — a udělám to znovu?'],
+        ['w2', 'Co mi pomohlo. A udělám to znovu?'],
         ['w3', 'Co chci příští týden dělat jinak? Jednu konkrétní věc.'],
       ]
         .map(
@@ -426,7 +426,7 @@ function sectionOhlednuti(): string {
 
     `<section class="surface pad">
       <p class="eyebrow">Vzpomínka na později</p>
-      <p class="soft" style="margin-top:.5rem;line-height:1.7;font-size:.9375rem">Něco, co dnes prožíváte, si za rok nevybavíte. Můžete si to uložit do kroniky — tam se z toho jednou dá udělat kniha.</p>
+      <p class="soft" style="margin-top:.5rem;line-height:1.7;font-size:.9375rem">Něco, co dnes prožíváte, si za rok nevybavíte. Můžete si to uložit do kroniky. Tam se z toho jednou dá udělat kniha.</p>
       <div class="row wrap" style="gap:.5rem;margin-top:1rem">
         <button class="btn btn-sm" data-go="pribeh">Přidat do kroniky</button>
         <button class="btn btn-sm" data-go="faze/${esc(state.phase.id)}/hlava">Práce s hlavou ve vaší fázi</button>
@@ -442,7 +442,7 @@ export function screenDenik(section: DenikSection): string {
   const avg = moodAverage(7)
 
   const header = `<header class="head rise">
-    <p class="eyebrow">Soukromé — nikdo jiný to nevidí</p>
+    <p class="eyebrow">Soukromé. Nikdo jiný to nevidí</p>
     <h1 class="display">Deník</h1>
     <p class="lede">${esc(formatCzechDate(viewDate(), { weekday: true }))} · ${esc(state.dayLabel)}${
       avg !== null ? ` · nálada za týden ${avg}/5` : ''
@@ -547,7 +547,7 @@ export function screenCviceni(id: string): string {
           </div>
         </section>`
       : '',
-    note('Cvičení jsou nástroj na těžkou chvíli, **ne léčba**. Když potíže trvají, patří to k odborníkovi — Linka první psychické pomoci 116 123 funguje nepřetržitě a zdarma.'),
+    note('Cvičení jsou nástroj na těžkou chvíli, **ne léčba**. Když potíže trvají, patří to k odborníkovi, Linka první psychické pomoci 116 123 funguje nepřetržitě a zdarma.'),
   ].join('')
 }
 

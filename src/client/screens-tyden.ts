@@ -15,7 +15,7 @@ import { chart, statTile } from './viz'
 /**
  * Týden.
  *
- * Nedělní ohlédnutí. Není to hodnocení — je to shrnutí, které si žena může
+ * Nedělní ohlédnutí. Není to hodnocení. Je to shrnutí, které si žena může
  * uložit nebo poslat partnerovi. A na konci je jediné místo v aplikaci, kde
  * se něco dá poslat ven: přehled BEZ deníku.
  */
@@ -40,7 +40,7 @@ function weekRows(to: string): WeekRow[] {
 /**
  * Popisek pod dlaždicí dne.
  *
- * Záporné nůžky nejsou „mínus dva body“ — znamenají, že rezerva den
+ * Záporné nůžky nejsou „mínus dva body“. Znamenají, že rezerva den
  * přesáhla. Říká se to slovy, ne znaménkem.
  */
 function gapNote(gap: number | null): string {
@@ -50,7 +50,7 @@ function gapNote(gap: number | null): string {
   return `rezerva ${plural(-gap, 'bod', 'body', 'bodů')} navíc`
 }
 
-/** Věta týdne — nejsilnější „povedlo se“ z posledních sedmi dní. */
+/** Věta týdne. Nejsilnější „povedlo se“ z posledních sedmi dní. */
 function sentenceOfWeek(to: string): { text: string; date: string } | null {
   const from = addDays(to, -6)
   const rows = journalList().filter((r) => r.date >= from && r.date <= to && r.win.trim())
@@ -75,7 +75,7 @@ export function screenTyden(embedded = false): string {
 
   const written = rows.filter((r) => journalFor(r.date)).length
   const withGap = rows.filter((r) => r.gap !== null)
-  // Nejtěžší a nejlehčí den má smysl rozlišovat, až když jsou aspoň dva —
+  // Nejtěžší a nejlehčí den má smysl rozlišovat, až když jsou aspoň dva.
   // jinak by to byl dvakrát tentýž den ve dvou dlaždicích.
   const ranked = withGap.length >= 2 ? [...withGap].sort((a, b) => b.gap! - a.gap!) : []
   const hardest = ranked[0] ?? null
@@ -138,12 +138,12 @@ export function screenTyden(embedded = false): string {
         'Náročnost dnů a rezervy v tomhle týdnu',
       )}
       <div class="stats">
-        ${statTile('Nejtěžší den', hardest ? hardest.dow : '—', gapNote(hardest?.gap ?? null), 'var(--s1)')}
-        ${statTile('Nejlehčí den', easiest ? easiest.dow : '—', gapNote(easiest?.gap ?? null), 'var(--s2)')}
+        ${statTile('Nejtěžší den', hardest ? hardest.dow : '–', gapNote(hardest?.gap ?? null), 'var(--s1)')}
+        ${statTile('Nejlehčí den', easiest ? easiest.dow : '–', gapNote(easiest?.gap ?? null), 'var(--s2)')}
         ${statTile('Zapsaných dní', `${written}/7`, streak > 1 ? `nepřerušeně ${czDays(streak)}` : undefined)}
         ${statTile(
           'Průměrná naděje',
-          hope === null ? '—' : String(hope).replace('.', ','),
+          hope === null ? '–' : String(hope).replace('.', ','),
           hopePrev === null ? undefined : `minulý týden ${String(hopePrev).replace('.', ',')}`,
           'var(--s4)',
         )}
@@ -189,7 +189,7 @@ export function screenTyden(embedded = false): string {
       <p class="eyebrow">Pro partnera</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.7">
         Můžete mu poslat shrnutí týdne <strong>bez toho, co jste psala do deníku</strong>.
-        Uvidí jen, co se dělo a co přijde — ne vaše věty, ani nálady po dnech.
+        Uvidí jen, co se dělo a co přijde, ne vaše věty, ani nálady po dnech.
       </p>
       <button class="btn" data-act="week-share" style="margin-top:1.1rem">Připravit přehled pro partnera</button>
       <p class="faint" style="margin-top:.7rem;font-size:.8125rem">
@@ -213,11 +213,11 @@ export function weekShareText(): string {
   const lines = [
     `Týden ${formatCzechDateShort(from)} – ${formatCzechDate(to)}`,
     ``,
-    `Kde jsme: ${state.phase.name} — ${state.dayLabel.replace(/^Dnes (je|jste) /, '')}`,
+    `Kde jsme: ${state.phase.name}, ${state.dayLabel.replace(/^Dnes (je|jste) /, '')}`,
     hardest ? `Nejnáročnější den byl ${hardest.dow.toLowerCase()}.` : '',
     ``,
     ahead.length ? 'Co přijde:' : 'V nejbližších dnech nic naplánovaného není.',
-    ...ahead.map((e) => `· ${e.title} — ${formatCzechDate(e.onDate)}`),
+    ...ahead.map((e) => `· ${e.title}, ${formatCzechDate(e.onDate)}`),
     ``,
     `Posláno z aplikace IVF diář. Deníkové zápisy tu záměrně nejsou.`,
   ]

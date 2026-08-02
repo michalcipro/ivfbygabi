@@ -16,13 +16,13 @@ import { SYMPTOM_BY_ID } from './symptoms'
  *
  * Mezi dvěma kontrolami se nasbírá víc, než si člověk v ordinaci vybaví.
  * Lékař má osm minut, žena má v hlavě tři týdny. Tenhle modul z toho, co má
- * zapsané, složí přehled, který se dá na klinice přečíst nahlas — a k němu
+ * zapsané, složí přehled, který se dá na klinice přečíst nahlas. A k němu
  * otázky, které z těch dat plynou.
  *
  * TOHLE NENÍ JAZYKOVÝ MODEL.
  * Aplikace běží jako jediný statický HTML soubor: bez serveru, bez API klíče,
- * bez připojení kamkoli. Souhrn se skládá deterministicky z uložených dat —
- * ze stejného vstupu vždycky vypadne stejný text. Žádné volání LLM, žádné
+ * bez připojení kamkoli. Souhrn se skládá deterministicky z uložených dat.
+ * Ze stejného vstupu vždycky vypadne stejný text. Žádné volání LLM, žádné
  * `Date.now()`, žádná náhoda. Kdyby sem někdy někdo chtěl přidat generování
  * textu modelem, znamená to odeslat léčebná data ven a to je proti slibu,
  * na kterém celá aplikace stojí.
@@ -31,7 +31,7 @@ import { SYMPTOM_BY_ID } from './symptoms'
  * „v normě“ ani „vypadá to slibně“. Popisuje se, co je zapsané, a to je
  * všechno. Výklad čísel patří lékaři a souhrn to i sám říká.
  *
- * Čistý doménový modul — žádný prohlížeč, žádné HTML, žádné akce, žádné
+ * Čistý doménový modul. Žádný prohlížeč, žádné HTML, žádné akce, žádné
  * `localStorage`. Tvary vstupů jsou schválně strukturální (jen pole, která
  * se opravdu čtou), aby doména nezávisela na klientském úložišti; řádky
  * ze store se do nich vejdou beze změny.
@@ -41,7 +41,7 @@ import { SYMPTOM_BY_ID } from './symptoms'
  *   MedRow, UltrasoundRow, SymptomLog, LabResult, EventLite (strukturální tvary)
  *   buildSummary(input)
  *
- * Žádné nové CSS třídy — modul vrací text, ne HTML.
+ * Žádné nové CSS třídy. Modul vrací text, ne HTML.
  */
 
 // ------------------------------------------------------ strukturální tvary ---
@@ -53,7 +53,7 @@ export interface MedRow {
   dose: string
   startOn: IsoDate | null
   endOn: IsoDate | null
-  /** Historie změn dávkování — ve stimulaci se dávka mění běžně. */
+  /** Historie změn dávkování. Ve stimulaci se dávka mění běžně. */
   history: { on: IsoDate; dose: string; why: string }[]
 }
 
@@ -80,7 +80,7 @@ export interface LabResult {
   value: number
   unit: string
   onDate: IsoDate
-  /** Název pro člověka — „Estradiol“, ne „e2“. */
+  /** Název pro člověka. „Estradiol“, ne „e2“. */
   name: string
 }
 
@@ -104,7 +104,7 @@ export interface VisitSummary {
   /** Jedna věta na začátek. */
   lede: string
   sections: SummarySection[]
-  /** Otázky, které stojí za to položit — odvozené z toho, co se dělo. */
+  /** Otázky, které stojí za to položit. Odvozené z toho, co se dělo. */
   suggestedQuestions: string[]
   /**
    * Zapsané příznaky, u kterých symptoms.ts říká „volejte hned“. Nejsou to
@@ -124,7 +124,7 @@ export interface SummaryInput {
   symptomLogs: SymptomLog[]
   symptomLabel: (id: string) => string
   events: EventLite[]
-  /** Dodržování léčby. Podíl 0–1 i procenta 0–100 — viz `adherencePercent`. */
+  /** Dodržování léčby. Podíl 0–1 i procenta 0–100. Viz `adherencePercent`. */
   adherencePct: number | null
 }
 
@@ -134,10 +134,10 @@ export interface SummaryInput {
  * Věta, kterou souhrn vždycky končí.
  *
  * Není to formalita. Papír vytištěný z aplikace vypadá jako lékařská zpráva
- * a nesmí se s ní splést — ani v ordinaci, ani doma ve tři ráno.
+ * a nesmí se s ní splést, ani v ordinaci, ani doma ve tři ráno.
  */
 const DISCLAIMER =
-  'Tohle je přehled toho, co máte zapsané. Není to lékařské hodnocení ani výklad výsledků — ty patří vašemu lékaři.'
+  'Tohle je přehled toho, co máte zapsané. Není to lékařské hodnocení ani výklad výsledků. Ty patří vašemu lékaři.'
 
 /** Kolik položek se do jedné sekce vejde, aby se dala přečíst nahlas. */
 const MAX_LINES = 12
@@ -150,11 +150,11 @@ function round(n: number, decimals: number): number {
 
 /**
  * Číslo česky: desetinná čárka, koncové nuly pryč. Tisíce se oddělují pevnou
- * mezerou až od pěti číslic — estradiol umí být 12 400 a bez mezery se to
+ * mezerou až od pěti číslic. Estradiol umí být 12 400 a bez mezery se to
  * čte špatně.
  */
 function czNumber(n: number, decimals = 3): string {
-  if (!Number.isFinite(n)) return '—'
+  if (!Number.isFinite(n)) return '–'
   const fixed = round(n, decimals).toFixed(decimals)
   const dot = fixed.indexOf('.')
   const rawInt = dot === -1 ? fixed : fixed.slice(0, dot)
@@ -165,7 +165,7 @@ function czNumber(n: number, decimals = 3): string {
   return frac ? `${sign}${grouped},${frac}` : `${sign}${grouped}`
 }
 
-/** Skloňování s číslem — stejné chování jako `plural()` v UI. */
+/** Skloňování s číslem. Stejné chování jako `plural()` v UI. */
 function pl(n: number, one: string, few: string, many: string): string {
   const a = Math.abs(n)
   return `${n} ${a === 1 ? one : a >= 2 && a <= 4 ? few : many}`
@@ -179,7 +179,7 @@ function day(iso: string): string {
   return formatCzechDateShort(iso)
 }
 
-/** „dnes“, „zítra“, „za 4 dny“ — jak se to říká, ne kolikáté je. */
+/** „dnes“, „zítra“, „za 4 dny“. Jak se to říká, ne kolikáté je. */
 function inDaysLabel(n: number): string {
   if (n <= 0) return 'dnes'
   if (n === 1) return 'zítra'
@@ -210,7 +210,7 @@ function biggestFollicle(u: UltrasoundRow): number | null {
  * Malé písmeno jen na prvním znaku.
  *
  * Popisek stavu cyklu se lepí doprostřed věty. Celé `toLowerCase()` by
- * z „hCG“ udělalo „hcg“ — zkratky musí zůstat, jak jsou.
+ * z „hCG“ udělalo „hcg“. Zkratky musí zůstat, jak jsou.
  */
 function lowerFirst(s: string): string {
   return s ? s[0].toLocaleLowerCase('cs') + s.slice(1) : s
@@ -227,8 +227,8 @@ function joinCz(items: string[]): string {
  * Dodržování na procenta 0–100.
  *
  * Přijímá obě podoby, které v aplikaci existují: podíl 0–1 (tak ho vrací
- * `adherence()` ve statistikách) i rovnou procenta. Rozhoduje hodnota —
- * cokoli do jedničky včetně je podíl. Jednička je tedy 100 %, ne jedno
+ * `adherence()` ve statistikách) i rovnou procenta. Rozhoduje hodnota.
+ * Cokoli do jedničky včetně je podíl. Jednička je tedy 100 %, ne jedno
  * procento. Je to jediná dvojznačnost a je zvolená schválně takhle: napsat
  * ženě „0,9 %“ tam, kde odškrtla skoro všechno, by bylo horší než opačná
  * chyba, která reálně nenastává.
@@ -247,7 +247,7 @@ function pushSection(into: SummarySection[], title: string, lines: string[]): vo
 // ------------------------------------------------------------ co se změnilo ---
 
 /**
- * Změny v lécích — nová dávka, nový lék, ukončený lék.
+ * Změny v lécích. Nová dávka, nový lék, ukončený lék.
  *
  * Řadí se podle data, protože v ordinaci se to vypráví chronologicky.
  * Důvod změny se přebírá doslova tak, jak si ho uživatelka zapsala.
@@ -264,7 +264,7 @@ function medLines(meds: MedRow[], from: string, to: string): string[] {
       rows.push({
         on: h.on,
         order: 1,
-        text: `${day(h.on)} — ${name}: ${dose ? `nová dávka ${dose}` : 'změna dávkování'}${paren(h.why)}`,
+        text: `${day(h.on)}, ${name}: ${dose ? `nová dávka ${dose}` : 'změna dávkování'}${paren(h.why)}`,
       })
     }
 
@@ -273,12 +273,12 @@ function medLines(meds: MedRow[], from: string, to: string): string[] {
       rows.push({
         on: m.startOn,
         order: 0,
-        text: `${day(m.startOn)} — nasazeno: ${name}${dose ? `, ${dose}` : ''}`,
+        text: `${day(m.startOn)}. Nasazeno: ${name}${dose ? `, ${dose}` : ''}`,
       })
     }
 
     if (m.endOn && isInRange(m.endOn, from, to)) {
-      rows.push({ on: m.endOn, order: 2, text: `${day(m.endOn)} — ukončeno: ${name}` })
+      rows.push({ on: m.endOn, order: 2, text: `${day(m.endOn)}. Ukončeno: ${name}` })
     }
   }
 
@@ -292,7 +292,7 @@ function medLines(meds: MedRow[], from: string, to: string): string[] {
 /**
  * Laboratorní hodnoty za období, seskupené po parametru.
  *
- * Když parametr přišel víckrát, řetězí se šipkou za sebou — je to popis
+ * Když parametr přišel víckrát, řetězí se šipkou za sebou. Je to popis
  * pořadí zápisů, ne tvrzení o tom, jestli je to dobře. Interpretaci
  * souhrn nedělá a dělat nesmí.
  */
@@ -336,13 +336,13 @@ function ultrasoundLine(u: UltrasoundRow): string {
 
   const body = parts.length ? parts.join(', ') : 'zapsán bez čísel'
   const note = u.note.trim()
-  return `${day(u.date)} — ${body}${note ? `; poznámka: ${note}` : ''}`
+  return `${day(u.date)}, ${body}${note ? `; poznámka: ${note}` : ''}`
 }
 
 /**
  * Ultrazvuky za období a jak se čísla mezi prvním a posledním posunula.
  *
- * Věta o vývoji je popis dvou zapsaných hodnot, nic víc — neříká, jestli
+ * Věta o vývoji je popis dvou zapsaných hodnot, nic víc. Neříká, jestli
  * je ten posun očekávaný, dostatečný nebo rychlý.
  */
 function ultrasoundLines(scans: UltrasoundRow[]): string[] {
@@ -417,8 +417,8 @@ function symptomLines(logs: SymptomLog[], tally: SymptomTally[]): string[] {
     .slice(0, 5)
     .map((t) =>
       t.avgIntensity === null
-        ? `${t.label} — ${t.count}×, intenzita nezapsaná`
-        : `${t.label} — ${t.count}×, průměrná intenzita ${czNumber(t.avgIntensity, 1)} z 10`,
+        ? `${t.label}, ${t.count}×, intenzita nezapsaná`
+        : `${t.label}, ${t.count}×, průměrná intenzita ${czNumber(t.avgIntensity, 1)} z 10`,
     )
 
   return [head, ...top]
@@ -448,7 +448,7 @@ function buildQuestions(
   const c = input.cycle
 
   // Varovné příznaky tady schválně nejsou. Odložit dušnost nebo silné
-  // krvácení na příští kontrolu je přesně to, co symptoms.ts zakazuje —
+  // krvácení na příští kontrolu je přesně to, co symptoms.ts zakazuje.
   // vracejí se zvlášť v `urgentSymptoms` a obrazovka je ukáže jako výstrahu.
 
   // Trigger se píchá na minutu přesně. Chybějící hodina je nejdražší
@@ -469,7 +469,7 @@ function buildQuestions(
 
   if (ctx.follicleGrowth) {
     // „Změřených“, ne „folikulů“. Vyšší počet může znamenat i to, že lékař
-    // tentokrát naměřil víc — což je výklad, který aplikaci nepřísluší.
+    // tentokrát naměřil víc, což je výklad, který aplikaci nepřísluší.
     out.push(
       'Od prvního ultrazvuku v tomhle období se počet změřených folikulů zvýšil. Kdy vám podle toho vychází odběr?',
     )
@@ -507,7 +507,7 @@ function buildQuestions(
 /**
  * Složí souhrn od poslední návštěvy.
  *
- * Sekce vznikají jen tam, kde jsou data — prázdná sekce s pomlčkami nikomu
+ * Sekce vznikají jen tam, kde jsou data. Prázdná sekce s pomlčkami nikomu
  * nepomůže. Když není zapsané vůbec nic, vrátí se místo přehledu věta, která
  * říká, čím začít, ať obrazovka nekončí prázdnem.
  */
@@ -555,7 +555,7 @@ export function buildSummary(input: SummaryInput): VisitSummary {
     const key = `${e.onDate}|${e.title}`
     if (seen.has(key)) continue
     seen.add(key)
-    pastLines.push(`${day(e.onDate)} — ${e.title.trim() || e.kind}`)
+    pastLines.push(`${day(e.onDate)}, ${e.title.trim() || e.kind}`)
   }
   pushSection(sections, 'Co bylo v kalendáři', pastLines)
 
@@ -563,20 +563,20 @@ export function buildSummary(input: SummaryInput): VisitSummary {
   const ahead: string[] = []
   if (input.cycle) {
     for (const n of nextUp(input.cycle, to)) {
-      ahead.push(`${day(n.date)} — ${n.label} (${inDaysLabel(n.inDays)})`)
+      ahead.push(`${day(n.date)}, ${n.label} (${inDaysLabel(n.inDays)})`)
     }
     // Odhad je orientační a je tak i popsaný. Přesný termín dává klinika.
     if (!betaDate(input.cycle)) {
       const est = estimatedBeta(input.cycle, to)
       if (est && est >= to) {
         ahead.push(
-          `Odběr hCG zatím nemá zapsané datum. Podle data transferu by orientačně vycházela na ${day(est)} — přesný termín potvrďte na klinice.`,
+          `Odběr hCG zatím nemá zapsané datum. Podle data transferu by orientačně vycházela na ${day(est)}. Přesný termín potvrďte na klinice.`,
         )
       }
     }
   }
   for (const e of events.filter((e) => e.onDate > to).sort((a, b) => a.onDate.localeCompare(b.onDate)).slice(0, 3)) {
-    ahead.push(`${day(e.onDate)} — ${e.title.trim() || e.kind} (${inDaysLabel(daysBetween(to, e.onDate))})`)
+    ahead.push(`${day(e.onDate)}, ${e.title.trim() || e.kind} (${inDaysLabel(daysBetween(to, e.onDate))})`)
   }
   pushSection(sections, 'Co přijde', ahead)
 
@@ -585,7 +585,7 @@ export function buildSummary(input: SummaryInput): VisitSummary {
   if (pct !== null) {
     pushSection(sections, 'Užívání léků', [
       `Za období máte odškrtnuto ${pct} % zapsaných dávek.`,
-      'Neodškrtnutá dávka nemusí znamenat vynechaný lék — často se jen zapomene odškrtnout.',
+      'Neodškrtnutá dávka nemusí znamenat vynechaný lék. Často se jen zapomene odškrtnout.',
     ])
   }
 
@@ -595,7 +595,7 @@ export function buildSummary(input: SummaryInput): VisitSummary {
       title: 'Zatím bez zápisů',
       lines: [
         'Za tohle období nemáte zapsané nic, z čeho by se dal souhrn složit.',
-        'Stačí málo: zapsat léky, ultrazvuk nebo pár příznaků — a před další kontrolou už tu bude přehled, se kterým se dá do ordinace jít.',
+        'Stačí málo: zapsat léky, ultrazvuk nebo pár příznaků. A před další kontrolou už tu bude přehled, se kterým se dá do ordinace jít.',
       ],
     })
   }
@@ -609,7 +609,7 @@ export function buildSummary(input: SummaryInput): VisitSummary {
   const where = input.cycle
     ? `${cycleTitle(input.cycle)}${input.status ? `, ${lowerFirst(input.status.headline.trim())}` : ''}`
     : ''
-  const lede = `Přehled zapsaných údajů od ${formatCzechDate(from)} do ${formatCzechDate(to)}, ${czDays(span)}${where ? ` — ${where}` : ''}.`
+  const lede = `Přehled zapsaných údajů od ${formatCzechDate(from)} do ${formatCzechDate(to)}, ${czDays(span)}${where ? `, ${where}` : ''}.`
 
   // --- otázky ---
   const flagged = [...new Set(logs.filter((l) => SYMPTOM_BY_ID[l.symptomId]?.warn).map((l) => l.symptomId))]

@@ -13,8 +13,8 @@ const REVIEWED = 'Odborně garantováno lékařem reprodukční medicíny.'
 const PUBLISHED = '2026-08-02'
 
 const SOURCES = [
-  'ESHRE — stanoviska k doplňkovým metodám v asistované reprodukci',
-  'HFEA — hodnocení doplňkových metod (add-ons)',
+  'ESHRE: stanoviska k doplňkovým metodám v asistované reprodukci',
+  'HFEA. Hodnocení doplňkových metod (add-ons)',
   'Cochrane Database of Systematic Reviews',
 ]
 
@@ -24,7 +24,7 @@ const items: ContentItem[] = [
     kind: 'article',
     title: 'Jak přemýšlet o doplňkových metodách',
     excerpt:
-      'Většina „add-onů“ se připlácí a u většiny z nich jsou důkazy slabé. To neznamená, že jste hloupá, když o nich uvažujete — jen že se vyplatí jedna konkrétní otázka.',
+      'Většina „add-onů“ se připlácí a u většiny z nich jsou důkazy slabé. To neznamená, že jste hloupá, když o nich uvažujete, jen že se vyplatí jedna konkrétní otázka.',
     minutes: 8,
     phases: ['ivf_prep', 'embryo_culture', 'transfer'],
     topics: ['klinika', 'finance', 'embryologie', 'transfer'],
@@ -45,7 +45,7 @@ Mají tři společné rysy:
 - **Nabízejí se navrch k léčbě, která by proběhla i bez nich.**
 - **U většiny z nich jsou důkazy o vlivu na porod živého dítěte omezené, rozporuplné, nebo prostě chybí.**
 
-Ten třetí bod je nepříjemný a v tomhle balíku ho nebudeme obcházet. U každé metody najdete sekci „Co o tom víme“, kde je napsané, jak silná data za ní stojí — a kde jsou slabá, je to řečeno rovnou.
+Ten třetí bod je nepříjemný a v tomhle balíku ho nebudeme obcházet. U každé metody najdete sekci „Co o tom víme“, kde je napsané, jak silná data za ní stojí. A kde jsou slabá, je to řečeno rovnou.
 
 ## Naděje není chyba v úsudku
 
@@ -63,7 +63,7 @@ Když vám metodu nabídnou, nejlepší otázka nezní „funguje to?“. Zní:
 
 Ta otázka je tak dobrá, protože rozlišuje dvě úplně jiné situace.
 
-**První:** metoda míří na konkrétní nález ve vaší dokumentaci — tenkou sliznici, opakovaně neúspěšné transfery kvalitních embryí, konkrétní parametr. Pak má odpověď obsah a dá se o ní mluvit.
+**První:** metoda míří na konkrétní nález ve vaší dokumentaci. Tenkou sliznici, opakovaně neúspěšné transfery kvalitních embryí, konkrétní parametr. Pak má odpověď obsah a dá se o ní mluvit.
 
 **Druhá:** metoda se nabízí plošně všem, protože „to nemůže uškodit“. To je legitimní obchodní model, ale není to léčba vaší situace.
 
@@ -82,7 +82,7 @@ Dobrým vodítkem je i to, jak o metodě mluví odborné společnosti. Pokud je 
 
 Doplňkové metody se často účtují za každé použití. To má jeden důsledek, který zaskočí spoustu párů:
 
-**Jeden IVF cyklus může obsahovat víc transferů** — čerstvý přenos a po něm další kryotransfery ze stejné zásoby embryí. Metoda, která se pojí s transferem, se pak může účtovat opakovaně, u každého z nich. Než souhlasíte, zeptejte se, jestli je cena za jeden transfer, nebo za celý cyklus se všemi přenosy.
+**Jeden IVF cyklus může obsahovat víc transferů**: čerstvý přenos a po něm další kryotransfery ze stejné zásoby embryí. Metoda, která se pojí s transferem, se pak může účtovat opakovaně, u každého z nich. Než souhlasíte, zeptejte se, jestli je cena za jeden transfer, nebo za celý cyklus se všemi přenosy.
 
 Praktické zásady:
 
@@ -101,18 +101,18 @@ Pomáhá si dopředu, v klidu a mimo kliniku, odpovědět na tři věci:
 
 ## Co tenhle balík není
 
-Není to doporučení, co si vzít a co odmítnout. Aplikace nediagnostikuje, neurčuje léčbu a neslibuje výsledek. O tom, co má ve vaší konkrétní situaci smysl, rozhoduje váš lékař společně s vámi — s vaší dokumentací na stole.
+Není to doporučení, co si vzít a co odmítnout. Aplikace nediagnostikuje, neurčuje léčbu a neslibuje výsledek. O tom, co má ve vaší konkrétní situaci smysl, rozhoduje váš lékař společně s vámi. S vaší dokumentací na stole.
 
 Tenhle balík má jediný cíl: abyste do té rozmluvy šla připravená a odešla z ní s odpověďmi, ne s pocitem, že jste se nestihla zeptat.
 
-> Texty mají informativní charakter a nenahrazují konzultaci s lékařem. Postupy i názvy metod se mezi pracovišti liší — vždy platí to, co vám řekne vaše klinika.`,
+> Texty mají informativní charakter a nenahrazují konzultaci s lékařem. Postupy i názvy metod se mezi pracovišti liší. Vždy platí to, co vám řekne vaše klinika.`,
   },
   {
     id: 'pdm-embryoglue',
     kind: 'article',
     title: 'EmbryoGlue: médium s hyaluronanem při transferu',
     excerpt:
-      'Médium bohaté na hyaluronan, do kterého se embryo před přenosem vloží. Patří k doplňkům s o něco příznivějšími daty — a i tak platí, že jistotu nedává.',
+      'Médium bohaté na hyaluronan, do kterého se embryo před přenosem vloží. Patří k doplňkům s o něco příznivějšími daty. A i tak platí, že jistotu nedává.',
     minutes: 7,
     phases: ['transfer', 'embryo_culture'],
     topics: ['transfer', 'embryologie', 'klinika', 'finance'],
@@ -146,12 +146,12 @@ Nic z toho neznamená, že je metoda vhodná pro každou ženu. Zda má ve vaš�
 
 ## Co o tom víme
 
-Tohle je jeden z mála doplňků, u kterého jsou data o něco příznivější než u zbytku skupiny — a i tak je potřeba je číst opatrně.
+Tohle je jeden z mála doplňků, u kterého jsou data o něco příznivější než u zbytku skupiny. A i tak je potřeba je číst opatrně.
 
 - Přehledové práce shrnující randomizované studie **naznačují možný přínos** médií obohacených hyaluronanem pro klinické těhotenství a porod živého dítěte.
 - Kvalita důkazů bývá v těchto přehledech hodnocena jako **střední až nízká**. Studie se liší nastavením, sledovanými skupinami i tím, co přesně se porovnávalo.
 - Část studií je starší a probíhala v době, kdy se transferovalo víc embryí najednou. Přenositelnost na dnešní praxi s přenosem jednoho embrya je proto omezená.
-- Objevuje se i signál k **vyššímu podílu vícečetných těhotenství** v souvislosti s používáním těchto médií, což je při přenosu více embryí podstatné — vícečetné těhotenství je rizikovější pro matku i pro děti.
+- Objevuje se i signál k **vyššímu podílu vícečetných těhotenství** v souvislosti s používáním těchto médií, což je při přenosu více embryí podstatné. Vícečetné těhotenství je rizikovější pro matku i pro děti.
 
 Souhrnně: možný přínos je naznačen, ale nejde o jistotu a rozhodně to neznamená, že u vás konkrétně metoda šanci zvýší. Ani tato metoda výsledek nezaručuje.
 
@@ -160,15 +160,15 @@ Souhrnně: možný přínos je naznačen, ale nejde o jistotu a rozhodně to nez
 - **Nepřekoná to, co je v embryu.** Pokud embryo nemá vývojový potenciál, prostředí při přenosu na tom nic nezmění.
 - **Neřeší děložní faktor.** Na sliznici, srůsty, polyp nebo záněty nemá vliv.
 - **Chybí porovnání jednotlivých přípravků.** Médií s hyaluronanem je na trhu víc a nejsou navzájem srovnaná.
-- **Účtování za transfer.** Jeden IVF cyklus může obsahovat víc přenosů — čerstvý a následné kryotransfery ze stejné zásoby embryí. Cena se pak může objevit u každého z nich.
+- **Účtování za transfer.** Jeden IVF cyklus může obsahovat víc přenosů. Čerstvý a následné kryotransfery ze stejné zásoby embryí. Cena se pak může objevit u každého z nich.
 - Bezpečnostní obavy zatím popsané nejsou, ale dlouhodobá data o dětech narozených po použití těchto médií jsou omezená.
 
 ## Na co se zeptat kliniky
 
 1. Používáte médium s hyaluronanem u všech transferů, nebo jen u vybraných?
-2. **Proč ho navrhujete konkrétně u mě — co v mé dokumentaci vás k tomu vede?**
+2. **Proč ho navrhujete konkrétně u mě. Co v mé dokumentaci vás k tomu vede?**
 3. Kolik to stojí a je cena za jeden transfer, nebo za všechny přenosy z tohoto cyklu?
-4. Co se stane, když ho odmítnu — změní se něco jiného v postupu?
+4. Co se stane, když ho odmítnu. Změní se něco jiného v postupu?
 5. Jaké výsledky s ním máte u žen v podobné situaci a jak je sledujete?
 6. Jsou u vás v ceně základního cyklu i jiná média, nebo je hyaluronan jediná placená varianta?
 7. Existuje v mém případě něco, co byste doporučili přednostně před tímhle?
@@ -180,7 +180,7 @@ Souhrnně: možný přínos je naznačen, ale nejde o jistotu a rozhodně to nez
     kind: 'article',
     title: 'Asistovaný hatching: narušení obalu embrya',
     excerpt:
-      'Laserem nebo chemicky se ztenčí obal embrya, aby se z něj snáz uvolnilo. Zní to logicky — data o přínosu pro porod živého dítěte jsou ale nepřesvědčivá.',
+      'Laserem nebo chemicky se ztenčí obal embrya, aby se z něj snáz uvolnilo. Zní to logicky. Data o přínosu pro porod živého dítěte jsou ale nepřesvědčivá.',
     minutes: 7,
     phases: ['embryo_culture', 'transfer'],
     topics: ['embryologie', 'transfer', 'klinika', 'finance'],
@@ -192,7 +192,7 @@ Souhrnně: možný přínos je naznačen, ale nejde o jistotu a rozhodně to nez
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Embryo je od začátku obalené průhlednou vrstvou, které se říká **zona pellucida**. Před uhnízděním se embryo z tohoto obalu musí dostat ven — tomu se říká hatching, tedy „vylíhnutí“.
+Embryo je od začátku obalené průhlednou vrstvou, které se říká **zona pellucida**. Před uhnízděním se embryo z tohoto obalu musí dostat ven. Tomu se říká hatching, tedy „vylíhnutí“.
 
 Asistovaný hatching je zásah, při kterém embryolog obal před transferem ztenčí nebo v něm udělá otvor. Předpoklad zní, že embryo pak bude mít snazší cestu ven. Předpoklad je to rozumný; otázka je, jestli se promítne do počtu narozených dětí.
 
@@ -200,9 +200,9 @@ Asistovaný hatching je zásah, při kterém embryolog obal před transferem zte
 
 Provádí se v laboratoři, obvykle krátce před přenosem nebo před zamrazením či po rozmrazení embrya. Používají se tři přístupy:
 
-- **laserem** — dnes nejčastější, přesný a rychlý,
-- **mechanicky** — jemnou jehlou,
-- **chemicky** — roztokem, který obal naruší.
+- **laserem**: dnes nejčastější, přesný a rychlý,
+- **mechanicky**: jemnou jehlou,
+- **chemicky**: roztokem, který obal naruší.
 
 Pro vás se opět nemění nic. Zákrok probíhá mimo vás, netrvá déle a nevyžaduje žádnou přípravu.
 
@@ -244,7 +244,7 @@ Odborné společnosti proto tuto metodu obvykle nedoporučují jako rutinní sou
 1. Jakou techniku hatchingu používáte a proč právě ji?
 2. **Co konkrétně u mě nebo u mých embryí vás vede k tomu ho navrhnout?**
 3. Provádíte ho u všech rozmrazených embryí automaticky, nebo se rozhoduje individuálně?
-4. Kolik to stojí — je cena za embryo, za transfer, nebo za cyklus?
+4. Kolik to stojí. Je cena za embryo, za transfer, nebo za cyklus?
 5. Jaké je u vás riziko poškození embrya při tomto zákroku a jak často se stane?
 6. Pokud ho odmítnu, změní to něco v dalším postupu?
 7. Je v mé situaci něco, co byste doporučili spíš než tohle?
@@ -256,7 +256,7 @@ Odborné společnosti proto tuto metodu obvykle nedoporučují jako rutinní sou
     kind: 'article',
     title: 'Sanakin a autologní cytokiny do dělohy',
     excerpt:
-      'Z vlastní krve se připraví roztok bohatý na určité cytokiny a zavede se do dělohy. Nabízí se hlavně po opakovaných neúspěších — dat je ale velmi málo.',
+      'Z vlastní krve se připraví roztok bohatý na určité cytokiny a zavede se do dělohy. Nabízí se hlavně po opakovaných neúspěších. Dat je ale velmi málo.',
     minutes: 7,
     phases: ['ivf_prep', 'transfer'],
     topics: ['transfer', 'klinika', 'finance', 'embryologie'],
@@ -268,7 +268,7 @@ Odborné společnosti proto tuto metodu obvykle nedoporučují jako rutinní sou
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Sanakin je název postupu, při kterém se z **vaší vlastní krve** připraví roztok obohacený o určité bílkoviny imunitního systému — cytokiny, mimo jiné látku, která tlumí působení interleukinu 1. Odtud označení autologní, tedy vlastní.
+Sanakin je název postupu, při kterém se z **vaší vlastní krve** připraví roztok obohacený o určité bílkoviny imunitního systému. Cytokiny, mimo jiné látku, která tlumí působení interleukinu 1. Odtud označení autologní, tedy vlastní.
 
 Krev se odebere, zpracuje se za zvláštních podmínek a získaná tekutina se pak aplikuje do dutiny děložní, případně jinou cestou podle protokolu pracoviště.
 
@@ -304,7 +304,7 @@ Tady je potřeba být přímočará: **kvalitních dat je velmi málo.**
 - Není sjednocený způsob přípravy ani dávkování, takže výsledky z různých pracovišť nejsou dobře porovnatelné.
 - Odborné společnosti tento typ imunomodulace obvykle **neřadí mezi rutinně doporučované postupy** a spíš ho zmiňují jako oblast výzkumu.
 
-To neznamená, že je to nesmysl. Znamená to, že v tuto chvíli nikdo neumí seriózně říct, o kolik a komu to pomáhá — a že si to pravděpodobně budete platit sama.
+To neznamená, že je to nesmysl. Znamená to, že v tuto chvíli nikdo neumí seriózně říct, o kolik a komu to pomáhá. A že si to pravděpodobně budete platit sama.
 
 ## Omezení a nejistoty
 
@@ -312,18 +312,18 @@ To neznamená, že je to nesmysl. Znamená to, že v tuto chvíli nikdo neumí s
 - **Vlastní krev neznamená nulové riziko.** Riziko je nízké, ale výkon není bez rizika a příprava vzorku musí probíhat za přísných podmínek.
 - Náklady bývají vyšší a **postup se často opakuje**, což celkovou částku znásobí.
 - Není jasné, jak dlouho případný efekt trvá ani zda se má opakovat u dalších transferů v témže cyklu.
-- **Nenahrazuje hledání jiných příčin** opakovaných neúspěchů — anatomických, genetických, hormonálních.
+- **Nenahrazuje hledání jiných příčin** opakovaných neúspěchů. Anatomických, genetických, hormonálních.
 
 Pokud po výkonu dostanete horečku nad 38 °C, silné krvácení nebo prudkou bolest v podbřišku, **kontaktujte svou kliniku**. Při náhlé silné bolesti se zhoršujícím se stavem **vyhledejte akutní lékařskou pomoc**.
 
 ## Na co se zeptat kliniky
 
 1. Jaká data konkrétně vás vedou k tomu, že to nabízíte?
-2. **Proč to navrhujete zrovna u mě — jaký nález nebo jaká úvaha za tím stojí?**
+2. **Proč to navrhujete zrovna u mě. Jaký nález nebo jaká úvaha za tím stojí?**
 3. Kolikrát se aplikace opakuje a kolik stojí celý postup včetně odběrů a zpracování?
 4. Jaká jsou rizika samotného zavedení do dělohy a jak často je u vás řešíte?
 5. Je to u vás součást studie, nebo běžně nabízený placený výkon?
-6. Co budeme dělat, když ani s tímhle transfer nevyjde — je připravený další krok?
+6. Co budeme dělat, když ani s tímhle transfer nevyjde. Je připravený další krok?
 7. Existuje jiné vyšetření, které by u mě mělo přednost, než se pustíme do tohohle?
 
 > Text má informativní charakter a nenahrazuje konzultaci s lékařem. O tom, co má ve vaší situaci smysl, rozhoduje vaše klinika společně s vámi.`,
@@ -347,7 +347,7 @@ Pokud po výkonu dostanete horečku nad 38 °C, silné krvácení nebo prudkou b
 
 PRP je zkratka pro plazmu bohatou na krevní destičky (platelet-rich plasma). Připravuje se z **vaší vlastní krve**: vzorek se odstředí tak, aby vznikla tekutina s několikanásobně vyšší koncentrací destiček než v běžné krvi.
 
-Destičky obsahují růstové faktory. Předpokládá se, že by mohly podpořit prokrvení a obnovu děložní sliznice. V jiných oborech, například v ortopedii, se PRP používá delší dobu — což ale samo o sobě neříká nic o tom, jak se chová v děloze.
+Destičky obsahují růstové faktory. Předpokládá se, že by mohly podpořit prokrvení a obnovu děložní sliznice. V jiných oborech, například v ortopedii, se PRP používá delší dobu, což ale samo o sobě neříká nic o tom, jak se chová v děloze.
 
 ## Jak se metoda používá
 
@@ -371,7 +371,7 @@ Nejde o metodu vhodnou pro každou ženu a rozhodně ne o rutinní součást př
 ## Co o tom víme
 
 - Většina publikovaných prací je **malá, často bez kontrolní skupiny**, a pochází z jednotlivých pracovišť.
-- Řada studií sleduje hlavně **tloušťku sliznice**, ne počet narozených dětí. Silnější sliznice na ultrazvuku je zástupný ukazatel — sama o sobě neznamená těhotenství.
+- Řada studií sleduje hlavně **tloušťku sliznice**, ne počet narozených dětí. Silnější sliznice na ultrazvuku je zástupný ukazatel. Sama o sobě neznamená těhotenství.
 - Randomizované studie existují, ale jsou nepočetné a různě kvalitní. **Spolehlivý důkaz o vlivu na porod živého dítěte zatím chybí.**
 - Neexistuje sjednocený způsob přípravy PRP. Koncentrace destiček, objem i počet aplikací se liší, takže výsledky se špatně srovnávají.
 - Odborné společnosti tuto metodu obvykle řadí mezi **experimentální nebo výzkumné** postupy.
@@ -383,7 +383,7 @@ Nelze tedy tvrdit, že PRP do dělohy zvyšuje šanci na těhotenství. Data pro
 - **Zavedení katétru do dělohy** nese malé riziko infekce, krvácení a křečí.
 - Příprava z vlastní krve snižuje riziko přenosu infekce, ale **nedělá z výkonu bezrizikový zákrok**.
 - **Nevíme, jak dlouho případný efekt trvá** a zda se má opakovat před každým dalším transferem.
-- U tenké sliznice je řada dalších možných příčin — srůsty, chronický zánět, anatomická odchylka. PRP je neřeší a jejich hledání nenahrazuje.
+- U tenké sliznice je řada dalších možných příčin. Srůsty, chronický zánět, anatomická odchylka. PRP je neřeší a jejich hledání nenahrazuje.
 - Náklady bývají značné a při opakování rostou. Jeden IVF cyklus může obsahovat víc transferů, a pokud se PRP váže na přípravu každého z nich, částka se násobí.
 
 Při horečce nad 38 °C, silném krvácení nebo prudké bolesti po výkonu **kontaktujte svou kliniku**. Při rychle se zhoršujícím stavu **vyhledejte akutní lékařskou pomoc**.
@@ -391,7 +391,7 @@ Při horečce nad 38 °C, silném krvácení nebo prudké bolesti po výkonu **k
 ## Na co se zeptat kliniky
 
 1. Jaký problém má PRP v mém případě řešit a jak poznáme, že zabralo?
-2. **Proč právě u mě — co v mých nálezech vede k téhle nabídce?**
+2. **Proč právě u mě. Co v mých nálezech vede k téhle nabídce?**
 3. Kolik aplikací plánujete a kolik stojí jedna, včetně odběru a přípravy?
 4. Bude se opakovat před každým dalším transferem?
 5. Jak PRP připravujete a jakou koncentraci destiček používáte?
@@ -405,7 +405,7 @@ Při horečce nad 38 °C, silném krvácení nebo prudké bolesti po výkonu **k
     kind: 'article',
     title: 'PRP do vaječníků: pokus o oživení ovariální rezervy',
     excerpt:
-      'Zahuštěná plazma se aplikuje přímo do vaječníku. Nabízí se u nízké rezervy a předčasného selhání — data jsou zatím na úrovni prvních pozorování.',
+      'Zahuštěná plazma se aplikuje přímo do vaječníku. Nabízí se u nízké rezervy a předčasného selhání. Data jsou zatím na úrovni prvních pozorování.',
     minutes: 7,
     phases: ['ivf_prep'],
     topics: ['klinika', 'finance', 'embryologie'],
@@ -417,7 +417,7 @@ Při horečce nad 38 °C, silném krvácení nebo prudké bolesti po výkonu **k
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Stejný princip jako u PRP do dělohy — koncentrát destiček z vlastní krve — jen s jiným cílem. Plazma se aplikuje **přímo do tkáně vaječníku**.
+Stejný princip jako u PRP do dělohy (koncentrát destiček z vlastní krve) jen s jiným cílem. Plazma se aplikuje **přímo do tkáně vaječníku**.
 
 Úvaha zní, že růstové faktory z destiček by mohly ovlivnit prostředí ve vaječníku a podpořit aktivitu folikulů, které tam ještě jsou. Zdůrazněme jedno: nejde o vytváření nových vajíček. Případný efekt by se mohl týkat jen toho, co ve vaječníku zůstalo.
 
@@ -428,7 +428,7 @@ Stejný princip jako u PRP do dělohy — koncentrát destiček z vlastní krve 
 3. Odstup několika týdnů, během kterých se sledují hormonální hodnoty a případně počet antrálních folikulů.
 4. Podle výsledku se plánuje stimulace, nebo se aplikace opakuje.
 
-Jde tedy o skutečný zákrok, ne o kapku v katétru — a s tím souvisí i rizika.
+Jde tedy o skutečný zákrok, ne o kapku v katétru. A s tím souvisí i rizika.
 
 ## Pro koho může být zvažována
 
@@ -447,7 +447,7 @@ Toto je oblast, kde je odstup mezi tím, co se slibuje, a tím, co je doloženo,
 - Publikované práce jsou převážně **kazuistiky, malé série případů a nekontrolované studie**.
 - Popsané změny hormonálních hodnot nebo počtu folikulů **nejsou totéž co narozené dítě**. U nízké rezervy navíc hodnoty přirozeně kolísají mezi cykly, takže bez kontrolní skupiny nelze rozlišit efekt zákroku od běžné variability.
 - **Randomizovaných studií je velmi málo** a nestačí k závěru o vlivu na porod živého dítěte.
-- Neexistuje sjednocený protokol — objem, koncentrace, místo vpichu ani počet opakování.
+- Neexistuje sjednocený protokol. Objem, koncentrace, místo vpichu ani počet opakování.
 - Odborné společnosti tento postup obvykle označují za **experimentální a patřící do výzkumu**.
 
 Nelze tedy říct, že PRP do vaječníků zvyšuje šanci na těhotenství. Zatím to nikdo neukázal.
@@ -456,7 +456,7 @@ Nelze tedy říct, že PRP do vaječníků zvyšuje šanci na těhotenství. Zat
 
 - **Je to invazivní zákrok** s riziky punkce: krvácení, infekce, poranění okolních struktur, rizika anestezie.
 - **Případ od případu se liší, co se vlastně slibuje.** Někde se mluví o zlepšení hodnot, jinde o šanci na vlastní vajíčka. To nejsou stejné věci.
-- **Naděje má u téhle metody vysokou cenu** — finanční i časovou. Čas je přitom u nízké rezervy sám o sobě faktorem.
+- **Naděje má u téhle metody vysokou cenu**: finanční i časovou. Čas je přitom u nízké rezervy sám o sobě faktorem.
 - Chybí dlouhodobá data o bezpečnosti pro vaječník i pro případné potomky.
 
 Po zákroku platí stejná pravidla jako po punkci: při silné bolesti břicha, horečce nad 38 °C, závrati, mdlobě nebo rychle rostoucím obvodu břicha **kontaktujte svou kliniku**. Při náhlé prudké bolesti a zhoršování stavu **vyhledejte akutní lékařskou pomoc**.
@@ -467,7 +467,7 @@ Po zákroku platí stejná pravidla jako po punkci: při silné bolesti břicha,
 2. **Proč to navrhujete zrovna u mě a co byste mi nabídli, kdyby tahle metoda neexistovala?**
 3. Kolik stojí jeden zákrok a počítáte s opakováním?
 4. Jaká jsou rizika punkce vaječníku u mě a kolik těchto zákroků jste už provedli?
-5. Jaké výsledky máte u žen s podobnými hodnotami — a kolik z nich mělo transfer?
+5. Jaké výsledky máte u žen s podobnými hodnotami. A kolik z nich mělo transfer?
 6. Kolik času tím ztratím, když to nevyjde, a co bude dalším krokem?
 7. Kdy je podle vás namístě mluvit o darovaných vajíčkách?
 
@@ -478,7 +478,7 @@ Po zákroku platí stejná pravidla jako po punkci: při silné bolesti břicha,
     kind: 'article',
     title: 'Scratching endometria: co ukázaly velké studie',
     excerpt:
-      'Kdysi jeden z nejnadějnějších doplňků. Velké randomizované studie ale přínos nepotvrdily — a to je informace, kterou stojí za to znát.',
+      'Kdysi jeden z nejnadějnějších doplňků. Velké randomizované studie ale přínos nepotvrdily. A to je informace, kterou stojí za to znát.',
     minutes: 7,
     phases: ['ivf_prep', 'transfer'],
     topics: ['transfer', 'klinika', 'finance'],
@@ -514,12 +514,12 @@ Vzhledem k tomu, co víme dnes, se rozsah použití spíš zužuje a řada praco
 
 ## Co o tom víme
 
-Tohle je jeden z mála doplňků, kde nemáme jen mlhu, ale skutečnou odpověď — a ta je střízlivá.
+Tohle je jeden z mála doplňků, kde nemáme jen mlhu, ale skutečnou odpověď. A ta je střízlivá.
 
 - Rané, převážně malé studie naznačovaly zajímavý přínos. To vysvětluje, proč se metoda tak rozšířila.
 - **Velká mezinárodní randomizovaná studie s více než tisícem žen přínos nepotvrdila.** Podíl narozených dětí byl ve skupině se scratchingem i bez něj srovnatelný.
 - Následné souhrnné přehledy tento závěr spíš potvrzují: **přesvědčivý důkaz o zlepšení výsledku chybí**.
-- Je to dobrý příklad toho, jak se z nadějného signálu v malých studiích může po pořádném ověření stát nula. Není to selhání — tak se medicína posouvá.
+- Je to dobrý příklad toho, jak se z nadějného signálu v malých studiích může po pořádném ověření stát nula. Není to selhání. Tak se medicína posouvá.
 
 ## Omezení a nejistoty
 
@@ -568,7 +568,7 @@ Do stejné rodiny patří i testy zaměřené na mikrobiom dělohy nebo na chron
 ## Jak se metoda používá
 
 1. Absolvujete **zkušební cyklus** s přípravou sliznice úplně stejnou, jaká se pak použije při skutečném transferu.
-2. V určený den se odebere malý vzorek sliznice tenkou kanylou. Výkon je ambulantní, krátký a bývá nepříjemný — křeč podobná silnější menstruační bolesti.
+2. V určený den se odebere malý vzorek sliznice tenkou kanylou. Výkon je ambulantní, krátký a bývá nepříjemný. Křeč podobná silnější menstruační bolesti.
 3. Vzorek se odešle do laboratoře, výsledek trvá obvykle několik týdnů.
 4. Pokud test popíše posun, transfer v dalším cyklu se načasuje podle něj (tzv. personalizovaný transfer).
 
@@ -587,7 +587,7 @@ Není to vyšetření vhodné pro každou ženu a plošné použití před prvn�
 
 - **Randomizované studie plošný přínos neprokázaly.** Ve studiích, kde se ženy náhodně rozdělily na transfer podle testu a transfer podle běžného načasování, se výsledky významně nelišily; v některých analýzách vyšla skupina s testem dokonce hůř.
 - Většina příznivých zpráv pochází z **pozorovacích studií bez kontrolní skupiny**, kde nelze odlišit efekt testu od prostého faktu, že žena podstoupila další transfer.
-- **Opakovatelnost výsledku** není stoprocentní — u části žen vyjde test v různých cyklech odlišně, což zpochybňuje představu neměnného osobního okna.
+- **Opakovatelnost výsledku** není stoprocentní. U části žen vyjde test v různých cyklech odlišně, což zpochybňuje představu neměnného osobního okna.
 - U žen s opakovanými neúspěchy zůstává otázka otevřená. Někteří odborníci test v této skupině zvažují, ale **doložený přínos zatím chybí** i tady.
 - Testy mikrobiomu a chronického zánětu jsou samostatná kapitola; ani u nich není zatím doloženo, že by jejich plošné použití zlepšovalo výsledky.
 
@@ -604,10 +604,10 @@ Při horečce, silném krvácení nebo prudké bolesti po odběru **kontaktujte 
 ## Na co se zeptat kliniky
 
 1. Jaké randomizované studie k tomuhle testu znáte a jak je ve své praxi zohledňujete?
-2. **Proč ho navrhujete zrovna u mě — co konkrétního má vysvětlit?**
+2. **Proč ho navrhujete zrovna u mě. Co konkrétního má vysvětlit?**
 3. Kolik stojí samotný test a kolik celý zkušební cyklus, který k němu patří?
 4. O kolik se odloží můj další transfer?
-5. Co uděláme, když výsledek vyjde jako receptivní — změní se něco?
+5. Co uděláme, když výsledek vyjde jako receptivní. Změní se něco?
 6. Testujete zároveň i chronický zánět sliznice nebo mikrobiom, a proč?
 7. Existuje v mé situaci vyšetření, které má přednost před tímhle?
 
@@ -634,7 +634,7 @@ Pod hlavičkou imunomodulace se v reprodukční medicíně skrývá několik rů
 
 Nejčastěji se setkáte s:
 
-- **Intralipidem** — nitrožilní infuzí tukové emulze, která se původně používá ve výživě pacientů,
+- **Intralipidem**: nitrožilní infuzí tukové emulze, která se původně používá ve výživě pacientů,
 - **kortikoidy** v nízkých dávkách,
 - **nitrožilními imunoglobuliny**,
 - **léky tlumícími zánětlivé působky**,
@@ -662,7 +662,7 @@ Ani jedno z toho neznamená, že je imunomodulace pro danou ženu vhodná. Odchy
 
 ## Co o tom víme
 
-Tady je odpověď jednoznačnější, než by se čekalo — a nepříjemná.
+Tady je odpověď jednoznačnější, než by se čekalo. A nepříjemná.
 
 - **Odborné společnosti tyto postupy obecně nedoporučují mimo výzkum.** Uvádějí, že důkazy o přínosu jsou nedostatečné.
 - U **intralipidu** existují převážně malé studie s protichůdnými výsledky. Spolehlivý důkaz o vlivu na porod živého dítěte chybí.
@@ -670,7 +670,7 @@ Tady je odpověď jednoznačnější, než by se čekalo — a nepříjemná.
 - U **kortikoidů** nebyl plošný přínos doložen; jejich užívání v těhotenství není bez rizik.
 - Řada **imunologických testů**, na jejichž základě se léčba nasazuje, není v této indikaci standardizovaná a jejich výpovědní hodnota je sporná.
 
-Nelze tedy tvrdit, že tyto postupy zvyšují šanci na těhotenství. Zároveň nejde říct, že by u všech žen byly zbytečné — jen to zatím nikdo neumí spolehlivě rozlišit.
+Nelze tedy tvrdit, že tyto postupy zvyšují šanci na těhotenství. Zároveň nejde říct, že by u všech žen byly zbytečné, jen to zatím nikdo neumí spolehlivě rozlišit.
 
 ## Omezení a nejistoty
 
@@ -691,7 +691,7 @@ Pokud se během infuze nebo po ní objeví dušnost, otok obličeje či jazyka, 
 6. Jak dlouho by léčba pokračovala, kdybych otěhotněla?
 7. Vyloučili jsme už jiné vysvětlení mých opakovaných neúspěchů?
 
-> Text má informativní charakter a nenahrazuje konzultaci s lékařem. Léky se nikdy nenasazují ani nevysazují podle článku — o tom rozhoduje výhradně váš lékař.`,
+> Text má informativní charakter a nenahrazuje konzultaci s lékařem. Léky se nikdy nenasazují ani nevysazují podle článku. O tom rozhoduje výhradně váš lékař.`,
   },
   {
     id: 'pdm-embryogen-blastgen-gmcsf',
@@ -710,7 +710,7 @@ Pokud se během infuze nebo po ní objeví dušnost, otok obličeje či jazyka, 
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-EmbryoGen a BlastGen jsou obchodní názvy kultivačních médií obohacených o **GM-CSF** — růstový faktor, který se přirozeně vyskytuje v ženském pohlavním ústrojí a podílí se na komunikaci mezi sliznicí a embryem.
+EmbryoGen a BlastGen jsou obchodní názvy kultivačních médií obohacených o **GM-CSF**: růstový faktor, který se přirozeně vyskytuje v ženském pohlavním ústrojí a podílí se na komunikaci mezi sliznicí a embryem.
 
 EmbryoGen se používá v prvních dnech vývoje, BlastGen v pozdější fázi kultivace a při transferu. Úvaha zní, že přidání této látky přiblíží laboratorní prostředí přirozenému.
 
@@ -718,7 +718,7 @@ EmbryoGen se používá v prvních dnech vývoje, BlastGen v pozdější fázi k
 
 Rozhodnutí padne v laboratoři před zahájením kultivace. Embrya se pěstují v obohaceném médiu místo standardního, případně se do něj přenesou v pozdější fázi.
 
-Embryolog embrya sleduje **po celou dobu vývoje, od prvního do šestého dne** — obohacené médium na tomto sledování nic nemění.
+Embryolog embrya sleduje **po celou dobu vývoje, od prvního do šestého dne**: obohacené médium na tomto sledování nic nemění.
 
 Pro vás se nemění nic: žádný zákrok navíc, žádné léky, žádná další návštěva. Rozdíl je opět jen v laboratoři a v ceně.
 
@@ -735,7 +735,7 @@ Není to metoda vhodná pro každou ženu a rozhodně nejde o standard, který b
 ## Co o tom víme
 
 - **Velká randomizovaná studie neprokázala celkový přínos** pro podíl narozených dětí ve srovnání se standardním médiem.
-- Zaznamenaný náznak možného přínosu u podskupiny žen s opakovanými potraty pochází z analýzy podskupin. **Takové nálezy jsou nespolehlivé** a je potřeba je potvrdit samostatnou studií — což se zatím nestalo.
+- Zaznamenaný náznak možného přínosu u podskupiny žen s opakovanými potraty pochází z analýzy podskupin. **Takové nálezy jsou nespolehlivé** a je potřeba je potvrdit samostatnou studií, což se zatím nestalo.
 - Následné souhrnné přehledy hodnotí důkazy jako **nedostatečné pro doporučení do běžné praxe**.
 - Neexistuje spolehlivé srovnání různých obohacených médií mezi sebou.
 
@@ -744,7 +744,7 @@ Nelze tedy říct, že by tato média zvyšovala šanci na těhotenství.
 ## Omezení a nejistoty
 
 - **Bezpečnostní obavy nejsou popsány**, ale dlouhodobá data o dětech narozených po kultivaci v těchto médiích jsou omezená.
-- **Kvalita embrya vzniká jinde** — v kvalitě vajíčka a spermie. Médium tohle nepřepíše.
+- **Kvalita embrya vzniká jinde**: v kvalitě vajíčka a spermie. Médium tohle nepřepíše.
 - **Rozhodnutí padá brzy**, často ještě před odběrem vajíček, takže se rozhodujete bez informace o tom, kolik embryí vlastně budete mít.
 - Cena se obvykle účtuje za cyklus kultivace a nemusí být vratná, i když se nakonec nekultivuje nic.
 
@@ -765,7 +765,7 @@ Nelze tedy říct, že by tato média zvyšovala šanci na těhotenství.
     kind: 'article',
     title: 'Time-lapse monitoring embryí (EmbryoScope)',
     excerpt:
-      'Inkubátor s kamerou, který embrya nepřetržitě fotí. Krásná technologie s reálnými přednostmi — důkaz, že vede k většímu počtu dětí, ale chybí.',
+      'Inkubátor s kamerou, který embrya nepřetržitě fotí. Krásná technologie s reálnými přednostmi. Důkaz, že vede k většímu počtu dětí, ale chybí.',
     minutes: 8,
     phases: ['embryo_culture', 'ivf_prep'],
     topics: ['embryologie', 'klinika', 'finance'],
@@ -791,11 +791,11 @@ Dvě věci, které to přináší:
 
 Embrya se po oplození vloží do time-lapse inkubátoru a zůstávají v něm po celou kultivaci. Snímky se pořizují v krátkých intervalech, obvykle po několika minutách.
 
-Embryolog pak vývoj hodnotí ze záznamu — **den po dni, od prvního do šestého dne vývoje**. Nejde tedy jen o to, jestli vznikla blastocysta; sleduje se celá cesta, včetně toho, jak a kdy se embryo dělilo v prvních dnech.
+Embryolog pak vývoj hodnotí ze záznamu. **den po dni, od prvního do šestého dne vývoje**. Nejde tedy jen o to, jestli vznikla blastocysta; sleduje se celá cesta, včetně toho, jak a kdy se embryo dělilo v prvních dnech.
 
 Některá pracoviště k tomu používají hodnoticí algoritmy, které z časových údajů počítají skóre.
 
-Řada klinik dnes na video dokáže dát i vám. Pro spoustu žen je to nejsilnější věc z celého cyklu — mít v telefonu, jak se dělily buňky, které jsou teď v děloze.
+Řada klinik dnes na video dokáže dát i vám. Pro spoustu žen je to nejsilnější věc z celého cyklu. Mít v telefonu, jak se dělily buňky, které jsou teď v děloze.
 
 ## Pro koho může být zvažována
 
@@ -824,11 +824,11 @@ Je potřeba rozlišit dvě věci, které se často slévají dohromady.
 - **Když máte jedno embryo, není z čeho vybírat.** Přínos výběru se pak scvrkne na nulu, i když stabilita prostředí zůstává.
 - **Víc informací může znamenat víc obav.** Věty typu „dělilo se nerovnoměrně“ se dají těžko zasadit do souvislostí a některým ženám berou spánek.
 - Připlácí se obvykle za cyklus kultivace.
-- Video z kultivace je krásné a stojí za to si o něj říct — ale je to vzpomínka, ne předpověď.
+- Video z kultivace je krásné a stojí za to si o něj říct, ale je to vzpomínka, ne předpověď.
 
 ## Na co se zeptat kliniky
 
-1. Je u vás time-lapse součástí ceny, nebo se připlácí — a kolik?
+1. Je u vás time-lapse součástí ceny, nebo se připlácí. A kolik?
 2. **Proč ho doporučujete zrovna u mě a co konkrétně od něj v mém případě čekáte?**
 3. Používáte hodnoticí algoritmus, nebo záznam hodnotí embryolog?
 4. Jak se rozhodujete o výběru embrya, když mám embryí jen pár?
@@ -855,9 +855,9 @@ Je potřeba rozlišit dvě věci, které se často slévají dohromady.
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Seminální plazma je tekutá část ejakulátu — to, co zbude, když se oddělí spermie. Obsahuje řadu bílkovin a signálních látek.
+Seminální plazma je tekutá část ejakulátu. To, co zbude, když se oddělí spermie. Obsahuje řadu bílkovin a signálních látek.
 
-Při IVF se spermie od plazmy oddělují, takže se sliznice ženy s plazmou vůbec nesetká. Úvaha za touto metodou zní, že právě tenhle kontakt může u přirozeného početí připravovat imunitní prostředí na příchod embrya — a že by se dal doplnit uměle.
+Při IVF se spermie od plazmy oddělují, takže se sliznice ženy s plazmou vůbec nesetká. Úvaha za touto metodou zní, že právě tenhle kontakt může u přirozeného početí připravovat imunitní prostředí na příchod embrya. A že by se dal doplnit uměle.
 
 ## Jak se metoda používá
 
@@ -866,7 +866,7 @@ Při IVF se spermie od plazmy oddělují, takže se sliznice ženy s plazmou vů
 - Aplikuje se **do pochvy** nebo **do dutiny děložní** tenkým katétrem, podle protokolu pracoviště.
 - Načasování se liší: někde kolem odběru vajíček, jinde v den transferu.
 
-Výkon sám je krátký a obvykle bez větších obtíží. U aplikace do dělohy platí totéž co u jiných nitroděložních zákroků — může být nepříjemný jako stěr.
+Výkon sám je krátký a obvykle bez větších obtíží. U aplikace do dělohy platí totéž co u jiných nitroděložních zákroků. Může být nepříjemný jako stěr.
 
 ## Pro koho může být zvažována
 
@@ -881,7 +881,7 @@ Nepatří mezi rutinní součásti léčby a není vhodná pro každou ženu. V 
 
 - Randomizovaných studií je **málo a jsou malé**. Jejich závěry se rozcházejí.
 - Souhrnné přehledy uvádějí, že **důkazy nestačí k závěru o vlivu na porod živého dítěte**. Některé práce popisují náznak vyššího podílu klinických těhotenství, jiné žádný rozdíl.
-- **Chybí sjednocený protokol** — liší se místo aplikace, načasování i způsob zpracování vzorku.
+- **Chybí sjednocený protokol**: liší se místo aplikace, načasování i způsob zpracování vzorku.
 - Metoda je zajímavá biologicky, ale zůstává v rovině výzkumu.
 
 Nelze tedy říct, že by aplikace seminální plazmy zvyšovala šanci na těhotenství.
@@ -912,7 +912,7 @@ Při horečce nad 38 °C, silné bolesti v podbřišku nebo zapáchajícím výt
     kind: 'article',
     title: 'Prodloužená kultivace do stadia blastocysty',
     excerpt:
-      'Kultivace do pátého či šestého dne dá lepší podklad pro výběr embrya. Zároveň nese riziko, že do transferu nedojde — a to je poctivá druhá strana.',
+      'Kultivace do pátého či šestého dne dá lepší podklad pro výběr embrya. Zároveň nese riziko, že do transferu nedojde. A to je poctivá druhá strana.',
     minutes: 8,
     phases: ['embryo_culture', 'transfer', 'ivf_prep'],
     topics: ['embryologie', 'transfer', 'klinika', 'finance'],
@@ -927,16 +927,16 @@ Při horečce nad 38 °C, silné bolesti v podbřišku nebo zapáchajícím výt
 
 Prodloužená kultivace znamená, že embrya zůstávají v laboratoři až do **pátého nebo šestého dne** vývoje, tedy do stadia blastocysty, místo aby se přenesla nebo zamrazila ve druhém či třetím dni.
 
-Na řadě pracovišť je to dnes běžný postup a neúčtuje se zvlášť. Jinde se objevuje v ceníku jako samostatná položka. Proto patří do tohoto balíku — i když je z celé skupiny nejblíž běžné praxi.
+Na řadě pracovišť je to dnes běžný postup a neúčtuje se zvlášť. Jinde se objevuje v ceníku jako samostatná položka. Proto patří do tohoto balíku. I když je z celé skupiny nejblíž běžné praxi.
 
 Důležité pojmenování: embrya se v laboratoři sledují **od prvního do šestého dne vývoje**. Blastocysta je poslední kapitola tohoto příběhu, ne jeho jediná část. To, co se dělo v prvních dnech, embryolog vidí a bere v úvahu.
 
 ## Jak se metoda používá
 
-- **Den 1** — kontroluje se, zda došlo k oplození.
-- **Dny 2 a 3** — sleduje se dělení buněk, jejich počet a vzhled.
-- **Den 4** — embryo se zhutňuje do útvaru zvaného morula.
-- **Dny 5 a 6** — vzniká blastocysta s vnitřní buněčnou masou a obalovou vrstvou. Hodnotí se její stupeň a kvalita obou částí.
+- **Den 1**: kontroluje se, zda došlo k oplození.
+- **Dny 2 a 3**: sleduje se dělení buněk, jejich počet a vzhled.
+- **Den 4**: embryo se zhutňuje do útvaru zvaného morula.
+- **Dny 5 a 6**: vzniká blastocysta s vnitřní buněčnou masou a obalovou vrstvou. Hodnotí se její stupeň a kvalita obou částí.
 
 Podle výsledku se embryo přenese, zamrazí, nebo se kultivace ukončí. Pokud je v plánu genetické vyšetření, odebírají se buňky obvykle právě v tomto stadiu.
 
@@ -951,25 +951,25 @@ Naopak při **malém počtu embryí** může mít lékař dobrý důvod přenés
 ## Co o tom víme
 
 - Přenos ve stadiu blastocysty **může být spojen s vyšší pravděpodobností otěhotnění z jednoho čerstvého přenosu** ve srovnání s přenosem třetí den. To je z velké části tím, že se přenáší embryo, které už prošlo přirozeným výběrem v laboratoři.
-- **Když se ale spočítá výsledek za celý cyklus** — tedy včetně všech kryotransferů z téže zásoby embryí — rozdíl se do značné míry stírá. Tohle je klíčová věta celého článku.
+- **Když se ale spočítá výsledek za celý cyklus** (tedy včetně všech kryotransferů z téže zásoby embryí) rozdíl se do značné míry stírá. Tohle je klíčová věta celého článku.
 - Část embryí se do stadia blastocysty nedostane. **U některých žen tak k transferu v daném cyklu nedojde vůbec.** Riziko je vyšší tam, kde je embryí málo.
 - Diskutuje se o rozdílech v průběhu těhotenství a u novorozenců po přenosu blastocysty. Data jsou nejednotná a jejich význam se dál zkoumá.
 - Nejde tedy o metodu, která by sama o sobě zvyšovala šanci na dítě z celého cyklu. Je to jiný způsob, jak cyklus uspořádat.
 
 ## Omezení a nejistoty
 
-- **Jeden IVF cyklus může obsahovat víc transferů** — čerstvý přenos a po něm další kryotransfery ze stejné zásoby embryí. Porovnávat postupy podle jednoho přenosu proto klame.
+- **Jeden IVF cyklus může obsahovat víc transferů**: čerstvý přenos a po něm další kryotransfery ze stejné zásoby embryí. Porovnávat postupy podle jednoho přenosu proto klame.
 - **Zrušený transfer bolí.** Když se žádné embryo nedostane do pátého dne, je to jedna z nejtěžších zpráv celého cyklu. Stojí za to o téhle možnosti mluvit předem, ne až v ten den.
 - **Kvalita laboratoře je zásadní.** Prodloužená kultivace klade vyšší nároky na podmínky a zkušenost pracoviště.
 - **Hodnocení blastocysty není předpověď.** Písmena a čísla ve zprávě popisují vzhled, ne chromozomální výbavu ani jistotu uhnízdění.
-- Pokud se za ni připlácí, ptejte se, co přesně je v ceně — kultivace, zamrazení, skladování.
+- Pokud se za ni připlácí, ptejte se, co přesně je v ceně. Kultivace, zamrazení, skladování.
 
 ## Na co se zeptat kliniky
 
 1. Kultivujete u nás do pátého dne standardně, nebo se rozhodujeme individuálně?
-2. **Proč to doporučujete zrovna u mě — kolik mám embryí a co to znamená pro riziko, že transfer nebude?**
+2. **Proč to doporučujete zrovna u mě. Kolik mám embryí a co to znamená pro riziko, že transfer nebude?**
 3. Kdy padne definitivní rozhodnutí a kdo mi ho oznámí?
-4. Je prodloužená kultivace v ceně cyklu, nebo se připlácí — a co je v ceně zahrnuto?
+4. Je prodloužená kultivace v ceně cyklu, nebo se připlácí. A co je v ceně zahrnuto?
 5. Jaký podíl embryí se u vás dostane do stadia blastocysty?
 6. Co se stane s embryi, která se do blastocysty nedostanou?
 7. Kolik transferů mohu z tohoto cyklu čekat, pokud budou embrya k zamrazení?

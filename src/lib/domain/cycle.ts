@@ -6,15 +6,15 @@ import { addDays, daysBetween, today as todayIso } from './dates'
  *
  * Jeden cyklus = jeden záznam, ve kterém je pohromadě všechno: klinika,
  * lékař, protokol, milníky, čísla z laboratoře a výsledek. Žena po třetím
- * cyklu se potřebuje podívat, co bylo minule jinak — a nesmí to hledat
+ * cyklu se potřebuje podívat, co bylo minule jinak. A nesmí to hledat
  * po pěti obrazovkách.
  *
  * Čistý modul bez závislosti na DB i na prohlížeči.
  *
  * ------------------------------------------------------------ TRANSFERY ---
  * Jeden cyklus může mít víc transferů. Po odběru se udělá čerstvý transfer,
- * zbylá embrya se zamrazí a v dalších měsících se z nich dělají kryotransfery —
- * a pořád je to stejná zásoba ze stejného odběru. Proto tu není jedno datum
+ * zbylá embrya se zamrazí a v dalších měsících se z nich dělají kryotransfery.
+ * A pořád je to stejná zásoba ze stejného odběru. Proto tu není jedno datum
  * transferu, ale seznam. Stejně tak testování hCG: doma se testuje víc dní
  * po sobě a každý proužek je vlastní záznam.
  *
@@ -30,7 +30,7 @@ import { addDays, daysBetween, today as todayIso } from './dates'
  * IVF cesta není binární „vyšlo / nevyšlo“. Cyklus může skončit tím, že
  * nezbylo embryo k transferu, že se transfer zrušil, biochemickým nebo
  * mimoděložním těhotenstvím. Každá z těch větví je vlastní výsledek
- * a v aplikaci má vlastní cestu — kdyby se schovaly pod „negativní“,
+ * a v aplikaci má vlastní cestu, kdyby se schovaly pod „negativní“,
  * ženě by aplikace tvrdila, že se nic nestalo.
  */
 export type CycleOutcome =
@@ -67,7 +67,7 @@ export const KIND_LABEL: Record<CycleKind, string> = {
 }
 
 /**
- * Odkaz na fotku. Samotný obrázek leží mimo — v prohlížeči v IndexedDB,
+ * Odkaz na fotku. Samotný obrázek leží mimo. V prohlížeči v IndexedDB,
  * protože zpráva z embryologie vyfocená mobilem je násobně větší než
  * všechno ostatní dohromady a do localStorage se nevejde.
  */
@@ -138,23 +138,23 @@ export interface CycleTransfer {
   id: string
   kind: TransferKind
   date: IsoDate | null
-  /** Která embrya se přenesla — id z `Embryo`. Může být prázdné. */
+  /** Která embrya se přenesla. Id z `Embryo`. Může být prázdné. */
   embryoIds: string[]
   /** Kolik embryí bylo vloženo. */
   embryos: number | null
-  /** Den kultivace přeneseného embrya — obvykle 3 až 6. */
+  /** Den kultivace přeneseného embrya. Obvykle 3 až 6. */
   embryoDay: number | null
-  /** Hodnocení embrya tak, jak ho řekla embryologie — „4AA“. */
+  /** Hodnocení embrya tak, jak ho řekla embryologie. „4AA“. */
   grade: string
   /** Jak se připravovala sliznice. */
   prep: PrepKind
   /** Výška sliznice v den transferu, v mm. */
   endometrium: number | null
-  /** Léky a podpora luteální fáze — vlastními slovy. */
+  /** Léky a podpora luteální fáze. Vlastními slovy. */
   meds: string
-  /** Doplňkové metody u tohohle transferu — id z `METHODS`. */
+  /** Doplňkové metody u tohohle transferu. Id z `METHODS`. */
   support: string[]
-  /** Zrušený transfer je taky výsledek — a má vlastní důvod. */
+  /** Zrušený transfer je taky výsledek. A má vlastní důvod. */
   cancelled: boolean
   cancelReason: string
   outcome: TransferOutcome
@@ -192,12 +192,12 @@ export const HCG_KIND_LABEL: Record<HcgKind, string> = {
   krev: 'Odběr krve (hCG)',
 }
 
-/** Jak proužek vypadal. U odběru krve se nepoužívá — tam mluví číslo. */
+/** Jak proužek vypadal. U odběru krve se nepoužívá. Tam mluví číslo. */
 export type HcgLook = '' | 'negativni' | 'stin' | 'slaba' | 'jasna'
 
 export const HCG_LOOK_LABEL: Record<HcgLook, string> = {
   '': 'Nezapsáno',
-  negativni: 'Jedna čárka — negativní',
+  negativni: 'Jedna čárka. Negativní',
   stin: 'Stín, nejsem si jistá',
   slaba: 'Slabá druhá čárka',
   jasna: 'Jasná druhá čárka',
@@ -226,7 +226,7 @@ export interface MethodDef {
   id: string
   label: string
   group: string
-  /** Jedna věta, co to je. Ne co to umí — o tom rozhoduje klinika. */
+  /** Jedna věta, co to je. Ne co to umí. O tom rozhoduje klinika. */
   note: string
 }
 
@@ -242,7 +242,7 @@ export const METHODS: MethodDef[] = [
   { id: 'icsi', label: 'ICSI', group: 'Oplození a spermie', note: 'Spermie se vpraví přímo do vajíčka.' },
   { id: 'picsi', label: 'PICSI', group: 'Oplození a spermie', note: 'Spermie se vybírá podle vazby na kyselinu hyaluronovou.' },
   { id: 'imsi', label: 'IMSI', group: 'Oplození a spermie', note: 'Výběr spermie při velmi vysokém zvětšení.' },
-  { id: 'macs', label: 'MACS', group: 'Oplození a spermie', note: 'Magnetická separace — odfiltrují se poškozené spermie.' },
+  { id: 'macs', label: 'MACS', group: 'Oplození a spermie', note: 'Magnetická separace. Odfiltrují se poškozené spermie.' },
   { id: 'mikrofluidni', label: 'Mikrofluidní selekce spermií', group: 'Oplození a spermie', note: 'Spermie se vybírají průchodem mikrokanálky (ZyMōt a podobné).' },
   { id: 'tese', label: 'TESE / MESA / TESA', group: 'Oplození a spermie', note: 'Chirurgický odběr spermií z varlete nebo nadvarlete.' },
   { id: 'dnafrag', label: 'Test fragmentace DNA spermií', group: 'Oplození a spermie', note: 'Měří poškození genetické informace ve spermiích.' },
@@ -303,10 +303,10 @@ export interface CycleRow {
   clinic: string
   doctor: string
   protocol: string
-  /** Fotka protokolu z kliniky — papír, který se snadno ztratí. */
+  /** Fotka protokolu z kliniky. Papír, který se snadno ztratí. */
   protocolPhotos: PhotoRef[]
 
-  /** CD1 — první den cyklu. Od něj se počítá Cycle Day i řazení v historii. */
+  /** CD1. První den cyklu. Od něj se počítá Cycle Day i řazení v historii. */
   cd1On: IsoDate | null
   startedOn: IsoDate
   endedOn: IsoDate | null
@@ -314,7 +314,7 @@ export interface CycleRow {
   // --- milníky ------------------------------------------------------------
   stimStartOn: IsoDate | null
   triggerOn: IsoDate | null
-  /** Hodina triggeru. Tady se nesmí splést — proto zvlášť. */
+  /** Hodina triggeru. Tady se nesmí splést, proto zvlášť. */
   triggerAt: string
   retrievalOn: IsoDate | null
 
@@ -323,7 +323,7 @@ export interface CycleRow {
   mature: number | null
   /** Kolik vajíček šlo do oplodnění. */
   inseminated: number | null
-  /** Metoda oplodnění — volí ji klinika podle situace páru. */
+  /** Metoda oplodnění. Volí ji klinika podle situace páru. */
   fertMethod: FertMethod
   /** Normálně oplozená vajíčka (2PN), tedy první den kultivace. */
   fertilized: number | null
@@ -335,7 +335,7 @@ export interface CycleRow {
    * den počet těch, která právě ten den došla do stádia blastocysty. Proto
    * se dají `day5` a `day6` sečíst a nic se nezapočítá dvakrát.
    *
-   * Když má cyklus zapsaná jednotlivá embrya, jsou přesnější ona — tahle
+   * Když má cyklus zapsaná jednotlivá embrya, jsou přesnější ona. Tahle
    * čísla zůstávají pro ženy, které karty embryí vyplňovat nechtějí.
    */
   day2: number | null
@@ -347,7 +347,7 @@ export interface CycleRow {
   /** Fotky zprávy z embryologie. */
   labPhotos: PhotoRef[]
 
-  /** Zaškrtnuté doplňkové metody — id z `METHODS`. */
+  /** Zaškrtnuté doplňkové metody. Id z `METHODS`. */
   methods: string[]
   /** Metoda, která v seznamu není. */
   methodsNote: string
@@ -357,7 +357,7 @@ export interface CycleRow {
 
   outcome: CycleOutcome
   note: string
-  /** Fotky k výsledku — propouštěcí zpráva, závěr, cokoli. */
+  /** Fotky k výsledku. Propouštěcí zpráva, závěr, cokoli. */
   resultPhotos: PhotoRef[]
 }
 
@@ -406,7 +406,7 @@ export function cycleTitle(c: CycleRow): string {
 
 // --------------------------------------------------------- odvozená data ---
 
-/** Transfery v čase. Nedatované jdou nakonec — ještě se nestaly. */
+/** Transfery v čase. Nedatované jdou nakonec. Ještě se nestaly. */
 export function sortedTransfers(c: CycleRow): CycleTransfer[] {
   return [...c.transfers].sort((a, b) => {
     if (a.date && b.date) return a.date.localeCompare(b.date)
@@ -419,7 +419,7 @@ export function sortedTransfers(c: CycleRow): CycleTransfer[] {
 /**
  * Transfer, o který teď jde.
  *
- * Poslední, který proběhl — a dokud žádný neproběhl, ten nejbližší plánovaný.
+ * Poslední, který proběhl. A dokud žádný neproběhl, ten nejbližší plánovaný.
  * Po druhém transferu v cyklu se počítá od něj: ptát se „kolikátý den po
  * transferu“ a myslet tím ten, který byl před třemi měsíci, nedává smysl.
  */
@@ -442,7 +442,7 @@ export function lastTransferDate(c: CycleRow): IsoDate | null {
   return dated.length === 0 ? null : (dated[dated.length - 1].date as IsoDate)
 }
 
-/** Všechny odběry krve v čase. Domácí testy sem nepatří — beta je z krve. */
+/** Všechny odběry krve v čase. Domácí testy sem nepatří. Beta je z krve. */
 export function bloodTests(c: CycleRow): HcgTest[] {
   return c.hcgTests
     .filter((t) => t.kind === 'krev' && t.date)
@@ -455,7 +455,7 @@ export function bloodTests(c: CycleRow): HcgTest[] {
  * Po druhém transferu v cyklu je beta z toho prvního minulost. Kdyby se
  * vracela, hlavička by tvrdila „Odběr hCG“ ženě, která je čtyři dny po
  * kryotransferu a na odběr jde za týden. Když k současnému transferu ještě
- * žádný odběr hCG zapsaný není, vrací `null` — a stav se pozná z transferu.
+ * žádný odběr hCG zapsaný není, vrací `null`. A stav se pozná z transferu.
  */
 export function betaDate(c: CycleRow, today: IsoDate = todayIso()): IsoDate | null {
   const bloods = bloodTests(c)
@@ -477,7 +477,7 @@ export function embryosTransferred(c: CycleRow): number | null {
  * Kolik embryí došlo do stádia blastocysty.
  *
  * Součet pátého a šestého dne. Embryo, které blastuje pátý den, se šestý
- * den už znovu nehlásí — proto se sčítat smí.
+ * den už znovu nehlásí, proto se sčítat smí.
  */
 export function blastocystsOf(c: CycleRow): number | null {
   const vals = [c.day5, c.day6].filter((v): v is number => v !== null && v >= 0)
@@ -514,7 +514,7 @@ export type CycleStage =
 
 export interface CycleStatus {
   stage: CycleStage
-  /** Krátký popisek do hlavičky — „7. den stimulace“, „Trigger dnes“. */
+  /** Krátký popisek do hlavičky. „7. den stimulace“, „Trigger dnes“. */
   headline: string
   /** Doplňující věta. */
   detail: string
@@ -552,7 +552,7 @@ function czDaysShort(n: number): string {
 /**
  * Přečte stav cyklu k zadanému dni.
  *
- * Pořadí podmínek jde odzadu — od nejpozdějšího milníku k nejranějšímu.
+ * Pořadí podmínek jde odzadu. Od nejpozdějšího milníku k nejranějšímu.
  * Kdyby to šlo odpředu, cyklus by po transferu pořád hlásil stimulaci.
  */
 export function readCycle(c: CycleRow, today: IsoDate = todayIso()): CycleStatus {
@@ -580,7 +580,7 @@ export function readCycle(c: CycleRow, today: IsoDate = todayIso()): CycleStatus
   }
 
   if (dpt !== null && dpt >= 0) {
-    // Kolikátý transfer v pořadí to je. U druhého a dalšího to musí být vidět —
+    // Kolikátý transfer v pořadí to je. U druhého a dalšího to musí být vidět.
     // „Transfer +5“ by po třech kryotransferech neřeklo, o který jde.
     const order = sortedTransfers(c).findIndex((t) => t.id === cur?.id) + 1
     const many = c.transfers.length > 1
@@ -652,7 +652,7 @@ export function readCycle(c: CycleRow, today: IsoDate = todayIso()): CycleStatus
 }
 
 export interface Milestone {
-  /** Druh milníku — podle něj se vybírá ikona. Opakuje se. */
+  /** Druh milníku. Podle něj se vybírá ikona. Opakuje se. */
   key: string
   /** Jedinečné v rámci cyklu. Transferů může být víc. */
   id: string
@@ -662,14 +662,14 @@ export interface Milestone {
   detail: string
 }
 
-/** Milníky cyklu seřazené v čase — používá je timeline i kalendář. */
+/** Milníky cyklu seřazené v čase. Používá je timeline i kalendář. */
 export function cycleMilestones(c: CycleRow): Milestone[] {
   const raw: Milestone[] = []
   const put = (key: string, id: string, label: string, date: IsoDate | null, detail = ''): void => {
     if (date) raw.push({ key, id, label, date, detail })
   }
 
-  put('cd1', 'cd1', 'CD1 — první den cyklu', c.cd1On)
+  put('cd1', 'cd1', 'CD1. První den cyklu', c.cd1On)
   put('stim', 'stim', 'Začátek stimulace', c.stimStartOn)
   put('trigger', 'trigger', c.triggerAt ? `Trigger ve ${c.triggerAt}` : 'Trigger', c.triggerOn)
   put('odber', 'odber', 'Odběr vajíček', c.retrievalOn)
@@ -677,7 +677,7 @@ export function cycleMilestones(c: CycleRow): Milestone[] {
   const transfers = sortedTransfers(c)
   transfers.forEach((t, i) => {
     const order = transfers.length > 1 ? `${i + 1}. transfer` : 'Transfer'
-    const label = t.kind === 'kryo' ? `${order} — kryo` : order
+    const label = t.kind === 'kryo' ? `${order}. Kryo` : order
     const detail = [
       t.embryos !== null ? `${t.embryos} ${t.embryos === 1 ? 'embryo' : t.embryos < 5 ? 'embrya' : 'embryí'}` : '',
       t.embryoDay !== null ? `${t.embryoDay}. den kultivace` : '',
@@ -693,7 +693,7 @@ export function cycleMilestones(c: CycleRow): Milestone[] {
     put(
       'beta',
       `beta-${t.id}`,
-      bloods.length > 1 ? `Odběr hCG — ${i + 1}.` : 'Odběr hCG',
+      bloods.length > 1 ? `Odběr hCG, ${i + 1}.` : 'Odběr hCG',
       t.date,
       t.value !== null ? `${t.value} IU/l` : '',
     )
@@ -716,7 +716,7 @@ export function nextUp(c: CycleRow, today: IsoDate = todayIso()): NextUp[] {
 
 /**
  * Odhad data odběru hCG, když ho uživatelka nezadala.
- * Blastocysta 10 dní po transferu, třetí den 12 — orientačně.
+ * Blastocysta 10 dní po transferu, třetí den 12. Orientačně.
  */
 export function estimatedBeta(c: CycleRow, today: IsoDate = todayIso()): IsoDate | null {
   const known = betaDate(c, today)

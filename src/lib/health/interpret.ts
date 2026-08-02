@@ -2,7 +2,7 @@ import { LAB_BY_KEY, positionInRange } from './lab-params'
 import { daysBetween } from '../domain/dates'
 
 /**
- * Čtení řady hodnot v čase — bez diagnózy.
+ * Čtení řady hodnot v čase. Bez diagnózy.
  *
  * Popisuje jen to, co se dá spočítat: kterým směrem se hodnota pohnula,
  * o kolik, kde leží vůči orientačnímu rozmezí laboratoře a jaký je
@@ -30,7 +30,7 @@ export interface SeriesReading {
   /** 0–1 pozice v orientačním rozmezí, pokud rozmezí známe. */
   position: number | null
   positionText: string | null
-  /** Zdvojovací čas v hodinách — jen tam, kde je to smysluplné (hCG). */
+  /** Zdvojovací čas v hodinách, jen tam, kde je to smysluplné (hCG). */
   doublingHours: number | null
   doublingText: string | null
 }
@@ -121,8 +121,8 @@ export const TREND_LABEL: Record<Trend, string> = {
 }
 
 /**
- * Věta, která musí zaznít u každé interpretace. Je záměrně jedna a stejná —
+ * Věta, která musí zaznít u každé interpretace. Je záměrně jedna a stejná,
  * aby si ji uživatelka spojila s tím, že aplikace nehodnotí.
  */
 export const NO_DIAGNOSIS =
-  'Aplikace hodnoty nehodnotí. Orientační rozmezí se liší podle laboratoře, dne cyklu, věku i diagnózy — co konkrétní číslo znamená pro vás, řekne jedině váš lékař.'
+  'Aplikace hodnoty nehodnotí. Orientační rozmezí se liší podle laboratoře, dne cyklu, věku i diagnózy. Co konkrétní číslo znamená pro vás, řekne jedině váš lékař.'

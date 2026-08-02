@@ -42,25 +42,25 @@ import { accordion, statTile, statTrio } from './viz'
  *
  * Karta cyklu a formulář na jedné obrazovce. Nahoře je vidět, kde cyklus je
  * a co z jeho čísel vychází, dole se to všechno dá přepsat. Rozbalovací sekce
- * drží formulář krátký — sbalená sekce v hlavičce shrne, co v ní je zapsané,
+ * drží formulář krátký. Sbalená sekce v hlavičce shrne, co v ní je zapsané,
  * takže i zavřená obrazovka je čitelná.
  *
  * Aplikace nic nediagnostikuje. Čísla, která se tu počítají, jsou pouhé podíly
- * toho, co si uživatelka zapsala — nic neznamenají, nic nepředpovídají a výklad
+ * toho, co si uživatelka zapsala. Nic neznamenají, nic nepředpovídají a výklad
  * patří jejímu lékaři. Odhad termínu odběru hCG je orientační, přesný dává klinika.
  *
  * ---------------------------------------------------------------- AKCE ------
- * `cycle-save`   arg = id cyklu              — uložit formulář
- * `cycle-del`    arg = id cyklu              — smazat cyklus; potvrzení je na main.ts
- * `acc`          arg = id sekce              — rozbalit/sbalit sekci
- * `cyc-tr-add`   arg = id cyklu              — přidat transfer
- * `cyc-tr-del`   arg = „cyklus|transfer“     — smazat transfer
- * `cyc-hcg-add`  arg = „cyklus|domaci|krev“  — přidat test hCG
- * `cyc-hcg-del`  arg = „cyklus|test“         — smazat test
- * `cyc-method`   arg = „cyklus|metoda“       — zaškrtnout/odškrtnout metodu
- * `photo-add`    arg = scope fotek           — nahrát fotku (viz photo-ui.ts)
- * `photo-rm`     arg = „scope|fotka“         — smazat fotku
- * `photo-zoom`   arg = id fotky              — zvětšit přes celou obrazovku
+ * `cycle-save`   arg = id cyklu             . Uložit formulář
+ * `cycle-del`    arg = id cyklu             . Smazat cyklus; potvrzení je na main.ts
+ * `acc`          arg = id sekce             . Rozbalit/sbalit sekci
+ * `cyc-tr-add`   arg = id cyklu             . Přidat transfer
+ * `cyc-tr-del`   arg = „cyklus|transfer“    . Smazat transfer
+ * `cyc-hcg-add`  arg = „cyklus|domaci|krev“ . Přidat test hCG
+ * `cyc-hcg-del`  arg = „cyklus|test“        . Smazat test
+ * `cyc-method`   arg = „cyklus|metoda“      . Zaškrtnout/odškrtnout metodu
+ * `photo-add`    arg = scope fotek          . Nahrát fotku (viz photo-ui.ts)
+ * `photo-rm`     arg = „scope|fotka“        . Smazat fotku
+ * `photo-zoom`   arg = id fotky             . Zvětšit přes celou obrazovku
  *
  * Sekce pro `acc`: `cyklus-zaklad`, `cyklus-milniky`, `cyklus-laborator`,
  * `cyklus-metody`, `cyklus-transfery`, `cyklus-vysledek`.
@@ -72,7 +72,7 @@ import { accordion, statTile, statTrio } from './viz'
  * DŮLEŽITÉ PRO ULOŽENÍ:
  *  – Prázdný řetězec u data i čísla znamená `null`, ne nulu. „0 vajíček“ je
  *    tvrdá věta a nesmí zaznít omylem místo „nevíme“.
- *  – `startedOn` se plní ze stejného pole jako `cd1On` — začátek cyklu je
+ *  – `startedOn` se plní ze stejného pole jako `cd1On`. Začátek cyklu je
  *    jeden údaj a dvě kolonky pro totéž jen matou. Když přijde prázdné,
  *    zůstává původní, protože `startedOn` je povinné.
  *  – Sbalená sekce si své hodnoty drží ve skrytých polích se stejnými id,
@@ -85,12 +85,12 @@ import { accordion, statTile, statTrio } from './viz'
 
 // --------------------------------------------------------------- pomocníci ---
 
-/** Prázdná hodnota. Pomlčka, ne nula — nevíme není totéž co nic. */
-const DASH = '—'
+/** Prázdná hodnota. Pomlčka, ne nula. Nevíme není totéž co nic. */
+const DASH = '–'
 
 /**
  * Zapsané číslo, nebo `null`. NaN a záporná čísla se zahazují stejně jako
- * v `numbersFor()` — obrazovka nesmí ukazovat jiný údaj, než ze kterého
+ * v `numbersFor()`. Obrazovka nesmí ukazovat jiný údaj, než ze kterého
  * se počítá.
  */
 function usable(v: number | null): number | null {
@@ -114,7 +114,7 @@ function pct(v: number | null): string {
   return v === null ? DASH : `${Math.round(v * 100)} %`
 }
 
-/** „dnes“, „zítra“, „za 3 dny“ — jak se to říká. */
+/** „dnes“, „zítra“, „za 3 dny“. Jak se to říká. */
 function inDaysLabel(n: number): string {
   if (n <= 0) return 'dnes'
   if (n === 1) return 'zítra'
@@ -133,7 +133,7 @@ function join(parts: (string | false | null | undefined)[], sep = ' · '): strin
  *
  * Ze stejné mapy se plní viditelná i skrytá pole, takže se nemůže stát, že by
  * sbalená sekce držela něco jiného než rozbalená. Seznamy (transfery, testy)
- * mají klíč složený z id položky — proto se mapa počítá z cyklu, ne staticky.
+ * mají klíč složený z id položky, proto se mapa počítá z cyklu, ne staticky.
  */
 function formValues(c: CycleRow): Record<string, string> {
   const v: Record<string, string> = {
@@ -220,7 +220,7 @@ function sectionKeys(c: CycleRow): Record<string, string[]> {
     'cyklus-embrya': [],
     'cyklus-metody': ['methodsNote'],
     'cyklus-transfery': trKeys,
-    // Výsledek každého transferu se vyplňuje tady, ne u transferu samotného —
+    // Výsledek každého transferu se vyplňuje tady, ne u transferu samotného.
     // zapisuje se o týdny později a patří k tomu, jak cyklus dopadl.
     'cyklus-vysledek': [
       ...c.transfers.map((t) => `tr.${t.id}.outcome`),
@@ -260,7 +260,7 @@ function timeField(key: string, text: string, value: string, help?: string): str
     ${hint(help)}</div>`
 }
 
-/** Počet. Textové pole s číselnou klávesnicí — prázdné znamená nezadáno. */
+/** Počet. Textové pole s číselnou klávesnicí. Prázdné znamená nezadáno. */
 function numField(key: string, text: string, value: string, help?: string): string {
   return `<div>${label(key, text)}
     <input class="field num" id="cyc-${key}" value="${esc(value)}" inputmode="numeric"
@@ -294,7 +294,7 @@ function areaField(key: string, text: string, value: string, placeholder = ''): 
  *
  * Bez toho by uložení přečetlo prázdno a přepsalo by tím, co uživatelka
  * v zavřené sekci má. Formulář se ukládá celý naráz, takže v DOM musí být
- * celý — jen ho není vidět.
+ * celý, jen ho není vidět.
  */
 function keepValues(keys: string[], values: Record<string, string>): string {
   return keys
@@ -308,7 +308,7 @@ function keepValues(keys: string[], values: Record<string, string>): string {
 function milestonesFilled(c: CycleRow): number {
   const scalar = [c.cd1On, c.stimStartOn, c.triggerOn, c.retrievalOn].filter(Boolean).length
   const transfer = c.transfers.some((t) => t.date) ? 1 : 0
-  // Počítá se, jestli je beta vůbec zapsaná — ne ta, která patří k dnešku.
+  // Počítá se, jestli je beta vůbec zapsaná, ne ta, která patří k dnešku.
   const beta = c.hcgTests.some((t) => t.kind === 'krev' && t.date) ? 1 : 0
   return scalar + transfer + beta
 }
@@ -326,12 +326,12 @@ function labHint(c: CycleRow): string {
     ],
     ', ',
   )
-  return parts || 'Zatím bez čísel — přepíšete je ze zprávy z embryologie'
+  return parts || 'Zatím bez čísel. Přepíšete je ze zprávy z embryologie'
 }
 
 function embryoHint(c: CycleRow): string {
   const list = embryosOf(c.id)
-  if (list.length === 0) return 'Karta pro každé embryo — vývoj po dnech, genetika, osud'
+  if (list.length === 0) return 'Karta pro každé embryo. Vývoj po dnech, genetika, osud'
   const kryo = list.filter((e) => e.fate === 'kryo').length
   return join([
     plural(list.length, 'embryo', 'embrya', 'embryí'),
@@ -340,7 +340,7 @@ function embryoHint(c: CycleRow): string {
 }
 
 function transfersHint(c: CycleRow): string {
-  if (c.transfers.length === 0) return 'Zatím žádný transfer — v jednom cyklu jich může být víc'
+  if (c.transfers.length === 0) return 'Zatím žádný transfer. V jednom cyklu jich může být víc'
   const total = embryosTransferred(c)
   return join([
     plural(c.transfers.length, 'transfer', 'transfery', 'transferů'),
@@ -364,7 +364,7 @@ function trio(c: CycleRow, st: CycleStatus): string {
   const cells: { icon: string; value: string | number; label: string }[] = []
 
   if (st.stage === 'hotovo') {
-    // U uzavřeného cyklu už den cyklu nikoho nezajímá — zůstávají čísla.
+    // U uzavřeného cyklu už den cyklu nikoho nezajímá. Zůstávají čísla.
     cells.push(
       { icon: '◍', value: numText(c.eggs), label: 'Vajíčka' },
       { icon: '❖', value: numText(blastocystsOf(c)), label: 'Blastocysty' },
@@ -374,7 +374,7 @@ function trio(c: CycleRow, st: CycleStatus): string {
   }
 
   // Od nejnovějšího kroku k nejstaršímu. Ženě čtyři dny po kryotransferu
-  // neříká „59. den stimulace“ nic — stimulace skončila před dvěma měsíci.
+  // neříká „59. den stimulace“ nic. Stimulace skončila před dvěma měsíci.
   const afterTransfer = st.daysPastTransfer !== null && st.daysPastTransfer >= 0
   const afterRetrieval = st.daysPastRetrieval !== null && st.daysPastRetrieval >= 0
 
@@ -430,7 +430,7 @@ function statusCard(c: CycleRow, st: CycleStatus): string {
 /**
  * Co teď stojí za pozornost.
  *
- * Připomínky se skládají jen z dat cyklu — léky, zápisy a kalendář mají vlastní
+ * Připomínky se skládají jen z dat cyklu. Léky, zápisy a kalendář mají vlastní
  * obrazovky a tady by jen šuměly. Proto se do vstupu posílá prázdno a příznaky
  * i deník se tváří jako hotové: chceme jen pravidla, která mluví o cyklu.
  */
@@ -457,7 +457,7 @@ function nudgeCard(c: CycleRow, st: CycleStatus): string {
       ${rows.map((n) => `<li>${esc(n.text)}</li>`).join('')}
     </ul>
     <p class="faint" style="margin-top:.8rem;font-size:.75rem">
-      Vychází jen z toho, co je v cyklu zapsané. Nic zdravotního — termíny a dávkování potvrzuje klinika.
+      Vychází jen z toho, co je v cyklu zapsané. Nic zdravotního. Termíny a dávkování potvrzuje klinika.
     </p>
   </section>`
 }
@@ -481,7 +481,7 @@ function derivedCard(c: CycleRow): string {
     <div class="stats">
       ${statTile('Délka stimulace', n.stimDays === null ? DASH : czDays(n.stimDays), 'od prvního dne stimulace do triggeru')}
       ${statTile('Podíl oplozených', pct(n.fertilizationRate), basis || 'doplňte čísla z embryologie')}
-      ${statTile('Podíl blastocyst', pct(n.blastRate), 'z oplozených — 5. a 6. den dohromady')}
+      ${statTile('Podíl blastocyst', pct(n.blastRate), 'z oplozených, 5. a 6. den dohromady')}
       ${statTile(
         'Termín odběru hCG',
         beta ? formatCzechDateShort(beta) : DASH,
@@ -490,13 +490,13 @@ function derivedCard(c: CycleRow): string {
     </div>
     ${note(
       known
-        ? 'Čísla jsou jenom součet toho, co máte zapsané. Neříkají, jestli je to hodně nebo málo — to patří vašemu lékaři.'
-        : 'Termín odběru hCG odhadujeme z data posledního transferu — u blastocysty 10 dní po transferu, u embrya z 3. dne 12 dní. Je orientační, přesný termín vám dá klinika. Ostatní čísla jsou součet toho, co máte zapsané — nehodnotí, jestli je to hodně nebo málo.',
+        ? 'Čísla jsou jenom součet toho, co máte zapsané. Neříkají, jestli je to hodně nebo málo. To patří vašemu lékaři.'
+        : 'Termín odběru hCG odhadujeme z data posledního transferu. U blastocysty 10 dní po transferu, u embrya z 3. dne 12 dní. Je orientační, přesný termín vám dá klinika. Ostatní čísla jsou součet toho, co máte zapsané. Nehodnotí, jestli je to hodně nebo málo.',
     )}
   </section>`
 }
 
-/** Nejbližší milníky. Prázdné se nekreslí — nemá co říct. */
+/** Nejbližší milníky. Prázdné se nekreslí. Nemá co říct. */
 function nextCard(c: CycleRow): string {
   const rows = nextUp(c, viewDate()).slice(0, 4)
   if (rows.length === 0) return ''
@@ -599,7 +599,7 @@ function hcgBlock(c: CycleRow, t: HcgTest, v: Record<string, string>): string {
       (x, i) =>
         [
           x.id,
-          `${c.transfers.length > 1 ? `${i + 1}. transfer` : 'Transfer'}${x.date ? ` — ${formatCzechDateShort(x.date)}` : ''}`,
+          `${c.transfers.length > 1 ? `${i + 1}. transfer` : 'Transfer'}${x.date ? `, ${formatCzechDateShort(x.date)}` : ''}`,
         ] as [string, string],
     ),
   ]
@@ -696,13 +696,13 @@ function methodsBlock(c: CycleRow, v: Record<string, string>): string {
         ? `<div style="margin-top:1.3rem">
              <p class="label">Co jste zaškrtla</p>
              <ul class="bullets" style="margin-top:.5rem">
-               ${chosen.map((m) => `<li><strong style="color:var(--fg);font-weight:500">${esc(m.label)}</strong> — ${esc(m.note)}</li>`).join('')}
+               ${chosen.map((m) => `<li><strong style="color:var(--fg);font-weight:500">${esc(m.label)}</strong>, ${esc(m.note)}</li>`).join('')}
              </ul>
            </div>`
         : ''
     }
     ${note(
-      'Seznam je jen pro váš záznam. Aplikace nehodnotí, jestli má která metoda smysl — o tom rozhoduje váš tým na klinice.',
+      'Seznam je jen pro váš záznam. Aplikace nehodnotí, jestli má která metoda smysl. O tom rozhoduje váš tým na klinice.',
     )}`
 }
 
@@ -714,7 +714,7 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
   return {
     'cyklus-zaklad': `
       <div class="two">
-        ${textField('name', 'Název cyklu', v.name, `${c.number}. cyklus`, 'Prázdné pole je v pořádku — pak se cyklus jmenuje podle pořadí.')}
+        ${textField('name', 'Název cyklu', v.name, `${c.number}. cyklus`, 'Prázdné pole je v pořádku. Pak se cyklus jmenuje podle pořadí.')}
         ${selectField('kind', 'Druh cyklu', Object.entries(KIND_LABEL) as [string, string][], v.kind)}
       </div>
       <div class="two" style="margin-top:1.1rem">
@@ -732,13 +732,13 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
         ${dateField('stimStartOn', 'Začátek stimulace', v.stimStartOn)}
       </div>
       <div class="two" style="margin-top:1.1rem">
-        ${dateField('triggerOn', 'Trigger — datum', v.triggerOn)}
-        ${timeField('triggerAt', 'Trigger — hodina', v.triggerAt, 'Hodinu určuje klinika. Zapište ji přesně tak, jak ji máte od nich.')}
+        ${dateField('triggerOn', 'Trigger. Datum', v.triggerOn)}
+        ${timeField('triggerAt', 'Trigger. Hodina', v.triggerAt, 'Hodinu určuje klinika. Zapište ji přesně tak, jak ji máte od nich.')}
       </div>
       <div style="margin-top:1.1rem">
         ${dateField('retrievalOn', 'Odběr vajíček', v.retrievalOn)}
       </div>
-      ${note('Transfery a testy hCG mají vlastní sekce — v jednom cyklu jich bývá víc než jeden. Co nevíte, nechte prázdné.')}`,
+      ${note('Transfery a testy hCG mají vlastní sekce. V jednom cyklu jich bývá víc než jeden. Co nevíte, nechte prázdné.')}`,
 
     'cyklus-laborator': `
       <div class="two">
@@ -750,7 +750,7 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
         ${selectField('fertMethod', 'Metoda oplodnění', Object.entries(FERT_LABEL) as [string, string][], v.fertMethod, 'Volí ji klinika podle situace páru.')}
       </div>
       <div style="margin-top:1.1rem">
-        ${numField('fertilized', 'Oplozená (2PN) — 1. den', v.fertilized, 'Kolik vajíček se normálně oplodnilo.')}
+        ${numField('fertilized', 'Oplozená (2PN), 1. den', v.fertilized, 'Kolik vajíček se normálně oplodnilo.')}
       </div>
 
       <p class="label" style="margin-top:1.5rem">Vývoj embryí po dnech</p>
@@ -758,24 +758,24 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
         Embryologie hlásí vývoj po dnech, ne jedním číslem. Druhý až čtvrtý den zapisujte,
         kolik embryí se ještě vyvíjí; pátý a šestý den kolik jich právě ten den došlo
         do stádia blastocysty. Když vedete karty jednotlivých embryí v sekci Embrya,
-        jsou přesnější ony — tyhle počty jsou pro rychlý zápis.
+        jsou přesnější ony. Tyhle počty jsou pro rychlý zápis.
       </p>
       <div class="two" style="margin-top:.9rem">
-        ${numField('day2', '2. den — rýhování', v.day2)}
-        ${numField('day3', '3. den — vyvíjí se', v.day3)}
+        ${numField('day2', '2. den. Rýhování', v.day2)}
+        ${numField('day3', '3. den. Vyvíjí se', v.day3)}
       </div>
       <div class="two" style="margin-top:1.1rem">
-        ${numField('day4', '4. den — morula', v.day4)}
-        ${numField('day5', '5. den — blastocysty', v.day5)}
+        ${numField('day4', '4. den. Morula', v.day4)}
+        ${numField('day5', '5. den. Blastocysty', v.day5)}
       </div>
       <div style="margin-top:1.1rem">
-        ${numField('day6', '6. den — blastocysty', v.day6, 'Z blastocyst šestého dne se rodí děti stejně jako z pátého.')}
+        ${numField('day6', '6. den. Blastocysty', v.day6, 'Z blastocyst šestého dne se rodí děti stejně jako z pátého.')}
       </div>
       <div style="margin-top:1.1rem">
         ${numField('frozen', 'Zamražená embrya', v.frozen)}
       </div>
       ${photoStrip(`cyc:${c.id}:laborator`, c.labPhotos, 'Fotka zprávy z embryologie')}
-      ${note('Čísla opisujte ze zprávy z embryologie. **Prázdné pole není nula** — dokud číslo nemáte, nechte ho prázdné.')}`,
+      ${note('Čísla opisujte ze zprávy z embryologie. **Prázdné pole není nula**: dokud číslo nemáte, nechte ho prázdné.')}`,
 
     'cyklus-embrya': embryoList(c.id, openEmbryo),
 
@@ -784,14 +784,14 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
     'cyklus-transfery': `
       <p class="soft" style="line-height:1.65;font-size:.9375rem">
         Jeden cyklus může mít transferů víc. Po odběru se udělá čerstvý transfer, zbylá
-        embrya se zamrazí a v dalších měsících se z nich dělají kryotransfery — pořád
+        embrya se zamrazí a v dalších měsících se z nich dělají kryotransfery. Pořád
         ze stejné zásoby a pořád v tomhle cyklu.
       </p>
       ${transfers.map((t, i) => transferBlock(c, t, i, v)).join('')}
       ${
         transfers.length === 0
           ? `<p class="faint" style="margin-top:1.1rem;font-size:.8125rem;line-height:1.55">
-               Zatím tu žádný transfer není. Přidejte ho, až budete mít termín — nemusí být hotový.
+               Zatím tu žádný transfer není. Přidejte ho, až budete mít termín. Nemusí být hotový.
              </p>`
           : ''
       }
@@ -799,7 +799,7 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
               data-arg="${esc(c.id)}" style="margin-top:1.2rem">
         ${transfers.length === 0 ? 'Přidat transfer' : 'Přidat další transfer'}
       </button>
-      ${note('Výsledek každého transferu se zapisuje v sekci Výsledek — přichází o týdny později.')}`,
+      ${note('Výsledek každého transferu se zapisuje v sekci Výsledek. Přichází o týdny později.')}`,
 
     'cyklus-vysledek': `
       ${
@@ -825,8 +825,8 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
 
       <p class="label" style="margin-top:1.6rem">Testování hCG</p>
       <p class="faint" style="font-size:.8125rem;margin-top:.35rem;line-height:1.55">
-        Doma se testuje víc dní po sobě a každý proužek je vlastní záznam. Vyfoťte ho —
-        za tři dny už si nikdo nevzpomene, jak byla čárka silná.
+        Doma se testuje víc dní po sobě a každý proužek je vlastní záznam. Vyfoťte ho.
+        Za tři dny už si nikdo nevzpomene, jak byla čárka silná.
       </p>
       <div style="margin-top:.9rem">${hcgOverview(c)}</div>
       ${c.hcgTests.map((t) => hcgBlock(c, t, v)).join('')}
@@ -836,14 +836,14 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
         <button type="button" class="btn btn-ghost btn-sm" data-act="cyc-hcg-add"
                 data-arg="${esc(`${c.id}|krev`)}">Přidat odběr krve</button>
       </div>
-      ${note('Aplikace hodnoty nevykládá. Slabá čárka ani konkrétní číslo hCG samy o sobě nic neuzavírají — to patří vaší klinice.')}
+      ${note('Aplikace hodnoty nevykládá. Slabá čárka ani konkrétní číslo hCG samy o sobě nic neuzavírají. To patří vaší klinice.')}
 
       <div class="two" style="margin-top:1.6rem">
         ${selectField('outcome', 'Jak cyklus dopadl', Object.entries(OUTCOME_LABEL) as [string, string][], v.outcome, 'Dokud je vybráno „Probíhá“, bere aplikace cyklus jako běžící.')}
         ${dateField('endedOn', 'Datum uzavření', v.endedOn)}
       </div>
       <div style="margin-top:1.1rem">
-        ${areaField('note', 'Poznámka k cyklu', v.note, 'Co si chcete pamatovat do příště — co fungovalo, co bylo jinak, na co se zeptat.')}
+        ${areaField('note', 'Poznámka k cyklu', v.note, 'Co si chcete pamatovat do příště. Co fungovalo, co bylo jinak, na co se zeptat.')}
       </div>
       ${photoStrip(`cyc:${c.id}:vysledek`, c.resultPhotos, 'Fotky zpráv a výsledků')}`,
   }
@@ -882,7 +882,7 @@ function form(c: CycleRow, open: string | null | undefined, openEmbryo: string |
     },
   ]
 
-  // Bez předaného stavu jsou sekce otevřené — formulář musí být použitelný
+  // Bez předaného stavu jsou sekce otevřené. Formulář musí být použitelný
   // i tehdy, když obrazovka stav harmonik nedostane.
   const isOpen = (id: string): boolean => open === undefined || open === id
 
@@ -901,7 +901,7 @@ function form(c: CycleRow, open: string | null | undefined, openEmbryo: string |
  * Detail a úprava jednoho cyklu.
  *
  * `open` je id rozbalené sekce (`view.accordion`). Když se nepředá, jsou
- * rozbalené všechny — viz komentář v hlavičce souboru.
+ * rozbalené všechny. Viz komentář v hlavičce souboru.
  */
 export function screenCyklus(id: string, open?: string | null, openEmbryo?: string | null): string {
   const c = cycleById(id)
@@ -952,7 +952,7 @@ export function screenCyklus(id: string, open?: string | null, openEmbryo?: stri
     `<section class="surface pad rise">
       <p class="eyebrow">Smazání cyklu</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
-        Smazání je <strong style="color:var(--fg);font-weight:500">nevratné</strong> — zmizí s ním milníky,
+        Smazání je <strong style="color:var(--fg);font-weight:500">nevratné</strong>. Zmizí s ním milníky,
         čísla z laboratoře, transfery, testy i nahrané fotky. Zápisy v deníku, léky, ultrazvuky a výsledky
         z odběrů zůstávají, jen už nebudou u žádného cyklu.
       </p>

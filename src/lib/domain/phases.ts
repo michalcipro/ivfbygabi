@@ -1,13 +1,13 @@
 /**
  * Cesta uživatelky.
  *
- * Aplikace pokrývá cestu od prvního rozhodnutí mít dítě po pozitivní hCG —
- * a všechny odbočky, které po cestě přijdou, včetně ztrát. Fáze je uzel
+ * Aplikace pokrývá cestu od prvního rozhodnutí mít dítě po pozitivní hCG.
+ * A všechny odbočky, které po cestě přijdou, včetně ztrát. Fáze je uzel
  * v této cestě. Modifikátory (dárcovství, PGT, kryotransfer…) fázi nemění,
  * ale mění obsah, který se v ní zobrazuje.
  *
  * ROZSAH KONČÍ U POZITIVNÍHO TESTU. Průběh těhotenství, porod a péče
- * o dítě jsou samostatná etapa a patří do samostatné aplikace — kdyby se
+ * o dítě jsou samostatná etapa a patří do samostatné aplikace, kdyby se
  * sem přilepily, byla by tahle z poloviny o něčem jiném a přestala by být
  * dobrá v tom, kvůli čemu vzniká. `beta_positive` je proto koncová fáze
  * a předává ženu do péče jejího gynekologa.
@@ -43,7 +43,7 @@ export const PHASE_IDS = [
 
 export type PhaseId = (typeof PHASE_IDS)[number]
 
-/** Skupiny fází — používají se pro navigaci v průvodci a pro barvu prostředí. */
+/** Skupiny fází. Používají se pro navigaci v průvodci a pro barvu prostředí. */
 export const PHASE_GROUPS = [
   'planning',
   'diagnosis',
@@ -69,11 +69,11 @@ export interface PhaseDefinition {
   anchor: AnchorKey | null
   /** Předpona pro popisek dne, např. „Dnes jste 5. den po transferu.“ */
   dayLabel?: (day: number) => string
-  /** Typická délka fáze ve dnech — jen pro odhad postupu, ne pro lékařská tvrzení. */
+  /** Typická délka fáze ve dnech, jen pro odhad postupu, ne pro lékařská tvrzení. */
   typicalDays: number | null
   /** Fáze, do kterých se běžně přechází. Slouží k nabídce „co dál“. */
   next: PhaseId[]
-  /** Emoční tón — ovlivňuje výběr povzbuzení a meditací. */
+  /** Emoční tón. Ovlivňuje výběr povzbuzení a meditací. */
   tone: 'hopeful' | 'intense' | 'tender' | 'grieving' | 'practical' | 'joyful'
   /** Zobrazit v onboardingu jako volitelný vstupní bod? */
   selectableAtOnboarding: boolean
@@ -99,7 +99,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     name: 'Přemýšlíme o dítěti',
     title: 'Přemýšlíme o dítěti',
     description:
-      'Období, kdy se rozhodnutí teprve rodí. Není co dohánět — je čas se ptát, zjišťovat a připravovat se v klidu.',
+      'Období, kdy se rozhodnutí teprve rodí. Není co dohánět. Je čas se ptát, zjišťovat a připravovat se v klidu.',
     anchor: null,
     typicalDays: null,
     next: ['preparing_body', 'trying_naturally'],
@@ -140,7 +140,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     name: 'Diagnostika',
     title: 'Diagnostika neplodnosti',
     description:
-      'Vyšetření, zkratky, čekání na výsledky. Vysvětlíme každé z nich lidsky — abyste věděla, co se děje a proč.',
+      'Vyšetření, zkratky, čekání na výsledky. Vysvětlíme každé z nich lidsky. Abyste věděla, co se děje a proč.',
     anchor: 'diagnosticsStartedOn',
     dayLabel: (d) => `${d}. den od zahájení vyšetření`,
     typicalDays: G(90),
@@ -167,7 +167,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     name: 'Příprava na IVF',
     title: 'Příprava na IVF',
     description:
-      'Než začne stimulace. Papíry, vyšetření, léky, otázky na kliniku a hlavně — nastavení očekávání.',
+      'Než začne stimulace. Papíry, vyšetření, léky, otázky na kliniku a hlavně. Nastavení očekávání.',
     anchor: null,
     typicalDays: G(30),
     next: ['stimulation'],
@@ -180,7 +180,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     name: 'Stimulace',
     title: 'Stimulace vaječníků',
     description:
-      'Injekce, ultrazvuky, folikuly, hormony. Nejintenzivnější týden a půl celého cyklu — den po dni s vámi.',
+      'Injekce, ultrazvuky, folikuly, hormony. Nejintenzivnější týden a půl celého cyklu. Den po dni s vámi.',
     anchor: 'stimulationStartOn',
     dayLabel: (d) => `${d + 1}. den stimulace`,
     typicalDays: G(11),

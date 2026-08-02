@@ -8,7 +8,7 @@ import { daysBetween } from './dates'
  * PROČ TAHLE METRIKA:
  *
  * Nejčastější pocit v léčbě není strach ani smutek. Je to dojem, že se nic
- * neděje — pořád stejná injekce, pořád stejná kontrola, pořád stejné čekání.
+ * neděje. Pořád stejná injekce, pořád stejná kontrola, pořád stejné čekání.
  * Léčba se v tom opakování rozmaže a žena po půl roce upřímně neví, jestli
  * se posunula.
  *
@@ -19,14 +19,14 @@ import { daysBetween } from './dates'
  *   47 injekcí. 12 kontrol. 214 dní na cestě.
  *
  * Ta čísla si nikdo nepamatuje a nikdo je neřekne nahlas. Jsou to přitom
- * jediné doložitelné uznání, které v IVF existuje — důkaz, že to, co jí
+ * jediné doložitelné uznání, které v IVF existuje. Důkaz, že to, co jí
  * připadá jako stojatá voda, byl výkon.
  *
  * DVA OKRUHY, DVĚ RŮZNÉ VĚCI:
  *
- * Vnější věnec jsou milníky cyklu. Vyplňují se skokem — den odběru se plátek
+ * Vnější věnec jsou milníky cyklu. Vyplňují se skokem. Den odběru se plátek
  * rozsvítí a pak čtrnáct dní nic. Vnitřní kruh je čas: jak daleko cyklus je.
- * Ten se hýbe každý den. Právě proto tu jsou oba — ve dvoutýdenním čekání,
+ * Ten se hýbe každý den. Právě proto tu jsou oba. Ve dvoutýdenním čekání,
  * kdy se žádný milník nepřidá, je vidět aspoň to, že se den ke dni posouvá.
  *
  * HRANICE: nic z toho není zdravotní údaj. Metrika nehodnotí tělo, nepočítá
@@ -50,7 +50,7 @@ export interface TrackStep {
 /**
  * Které milníky u daného druhu cyklu vůbec dávají smysl.
  *
- * Kryotransfer nemá odběr a monitorovaný cyklus nemá stimulaci — kdyby se
+ * Kryotransfer nemá odběr a monitorovaný cyklus nemá stimulaci, kdyby se
  * jim ty plátky kreslily, věnec by hlásil výpadek tam, kde žádný není.
  */
 const TRACK: Record<CycleKind, StepKey[]> = {
@@ -60,7 +60,7 @@ const TRACK: Record<CycleKind, StepKey[]> = {
   monitorovany: ['cd1', 'trigger', 'beta', 'konec'],
 }
 
-/** Bez cyklu se kreslí běžná dráha IVF — je to nejčastější případ. */
+/** Bez cyklu se kreslí běžná dráha IVF. Je to nejčastější případ. */
 const DEFAULT_TRACK = TRACK.ivf
 
 /**
@@ -71,7 +71,7 @@ const DEFAULT_TRACK = TRACK.ivf
 function stepLabel(key: StepKey, kind: CycleKind): string {
   switch (key) {
     case 'cd1':
-      return 'CD1 — první den'
+      return 'CD1. První den'
     case 'stim':
       return kind === 'fet' ? 'Příprava sliznice' : 'Začátek stimulace'
     case 'trigger':
@@ -97,7 +97,7 @@ export interface CycleFacts {
   dates: Partial<Record<StepKey, IsoDate | null>>
   /** Postup cyklem 0–1 z `readCycle`. */
   progress: number | null
-  /** Krátký popisek stavu do štítku — „7. den stimulace“. */
+  /** Krátký popisek stavu do štítku. „7. den stimulace“. */
   stageHeadline: string | null
 }
 
@@ -117,7 +117,7 @@ export interface EnduranceInput {
   doses: InjectionMark[]
   /** Zapsané vpichy z mapy břicha. */
   shots: InjectionMark[]
-  /** Termíny z kalendáře — projdou jen ty, které opravdu byly. */
+  /** Termíny z kalendáře. Projdou jen ty, které opravdu byly. */
   visits: { onDate: IsoDate; kind: string }[]
   /** Odkdy je uživatelka na cestě. */
   startedOn: IsoDate | null
@@ -125,7 +125,7 @@ export interface EnduranceInput {
 
 // --------------------------------------------------------------- pomocníci ---
 
-/** Číslo je součástí výrazu — „1 injekce“, „3 injekce“, „47 injekcí“. */
+/** Číslo je součástí výrazu. „1 injekce“, „3 injekce“, „47 injekcí“. */
 function cz(n: number, one: string, few: string, many: string): string {
   return `${n} ${n === 1 ? one : n >= 2 && n <= 4 ? few : many}`
 }
@@ -135,7 +135,7 @@ function cz(n: number, one: string, few: string, many: string): string {
  *
  * Předložka se vokalizuje podle toho, jak číslo zní vyslovené, ne jak se
  * píše: ze dvou, ze tří, ze čtyř, z pěti, ze šesti, ze sedmi, z osmi.
- * Číslice to zakryje, ale čtenářka si ji v hlavě přečte slovem — a „5 z 7“
+ * Číslice to zakryje, ale čtenářka si ji v hlavě přečte slovem. A „5 z 7“
  * o to zakopne. Tohle je jediné místo, kde se to rozhoduje.
  */
 export function zNum(n: number): string {
@@ -147,7 +147,7 @@ export function zNum(n: number): string {
  *
  * Jedno píchnutí se v aplikaci dá zapsat dvakrát: odškrtnutím dávky v Lécích
  * a zapsáním místa vpichu v Zápisu. Sečíst obojí by ženě nadsadilo číslo,
- * které má být důkazem — a nadsazený důkaz není důkaz. Proto se záznamy
+ * které má být důkazem. A nadsazený důkaz není důkaz. Proto se záznamy
  * sjednocují přes dvojici den + lék.
  */
 export function countInjections(doses: InjectionMark[], shots: InjectionMark[]): number {
@@ -179,7 +179,7 @@ export function countCheckups(
  * Co stojí ve velkém čísle.
  *
  * Nula tam být nesmí. „0 ze 7 milníků za vámi“ je první věta, kterou by
- * nová uživatelka na hlavní obrazovce viděla — a metrika, která má být
+ * nová uživatelka na hlavní obrazovce viděla. A metrika, která má být
  * uznáním, by začala tím, že nemá co uznat. Než založí cyklus, počítají se
  * proto dny na cestě: ty už za sebou má, často roky, a nikdo je nesečetl.
  */
@@ -205,7 +205,7 @@ export interface Endurance {
   checkups: number
   /** Dní na cestě včetně dneška. */
   days: number | null
-  /** Tučná věta pod květem — samé součty. */
+  /** Tučná věta pod květem. Samé součty. */
   headline: string
   /** Věta za ní. Vysvětluje vnitřní kruh. */
   detail: string
@@ -249,7 +249,7 @@ export function readEndurance(input: EnduranceInput): Endurance {
     checkups,
     days,
     // Dny se do věty nepíšou dvakrát. Když už jsou ve velkém čísle, zbyde
-    // věta na to ostatní — a když nezbyde nic, radši se nemluví.
+    // věta na to ostatní. A když nezbyde nic, radši se nemluví.
     headline: sumSentence(injections, checkups, big.caption.endsWith('na cestě') ? null : days),
     detail: ringSentence(cycle, input.cycleTotal),
     pill: cycle?.stageHeadline?.trim() || (input.cycleTotal > 0 ? 'Mezi cykly' : 'Před prvním cyklem'),
@@ -267,7 +267,7 @@ function sumSentence(injections: number, checkups: number, days: number | null):
   if (injections > 0) parts.push(cz(injections, 'injekce', 'injekce', 'injekcí'))
   if (checkups > 0) parts.push(cz(checkups, 'kontrola', 'kontroly', 'kontrol'))
   if (days !== null) parts.push(`${cz(days, 'den', 'dny', 'dní')} na cestě`)
-  if (parts.length === 0) return 'Zatím tu není co sčítat — a to je taky výsledek.'
+  if (parts.length === 0) return 'Zatím tu není co sčítat. A to je taky výsledek.'
   return `${parts.join('. ')}.`
 }
 

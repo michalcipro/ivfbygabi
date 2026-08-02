@@ -6,7 +6,7 @@ import type { CalendarEvent } from '../shared/records'
 /**
  * Události, které se doplní samy.
  *
- * Pravidlo: vždycky jen to, co bezpečně plyne z dat profilu — nic, co by
+ * Pravidlo: vždycky jen to, co bezpečně plyne z dat profilu. Nic, co by
  * uživatelku mohlo zmást falešným termínem. Kde jde o odhad, je to napsané
  * v poznámce.
  *
@@ -35,7 +35,7 @@ export function autoEventsFor(profile: Profile, state: JourneyState): AutoEvent[
       onDate: addDays(profile.transferOn, embryoDay === 3 ? 12 : 10),
       atTime: null,
       location: profile.clinicName,
-      note: 'Přesný termín vám určí klinika — tohle je jen orientační odhad.',
+      note: 'Přesný termín vám určí klinika. Tohle je jen orientační odhad.',
     })
   }
 

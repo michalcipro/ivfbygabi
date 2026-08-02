@@ -17,7 +17,7 @@ import { empty, esc, note, plural, tile } from './ui'
 import { actionCard, chart, hubRow, sectionHead, segmented, seriesKey, statTrio } from './viz'
 
 /**
- * Zdravotní data — měření, ultrazvuk, laboratoř.
+ * Zdravotní data. Měření, ultrazvuk, laboratoř.
  *
  * Tři sekce pod jedním přepínačem. Všechny tři dělají to samé: berou čísla,
  * která uživatelka dostala od kliniky nebo si je naměřila doma, a ukládají je
@@ -26,7 +26,7 @@ import { actionCard, chart, hubRow, sectionHead, segmented, seriesKey, statTrio 
  * CO TENHLE SOUBOR NIKDY NEDĚLÁ: nehodnotí. Nikde nezazní „v normě“, „málo“,
  * „vysoké“ ani „vypadá to dobře“. Bazální teplota se nevyhodnocuje na ovulaci,
  * folikuly se nepočítají na šanci, tlak se neporovnává s tabulkou. Orientační
- * rozmezí se liší podle laboratoře, dne cyklu, věku i diagnózy — proto je
+ * rozmezí se liší podle laboratoře, dne cyklu, věku i diagnózy, proto je
  * `NO_DIAGNOSIS` na konci každé sekce a proto tu žádné rozmezí nekreslíme.
  *
  * ---------------------------------------------------------------- AKCE ---
@@ -39,7 +39,7 @@ import { actionCard, chart, hubRow, sectionHead, segmented, seriesKey, statTrio 
  *              Čte pole (druh je v id, formuláře stojí vedle sebe na jedné stránce):
  *                hz-<druh>-date   datum (type=date, předvyplněné viewDate())
  *                hz-<druh>-at     čas (type=time, může být prázdný)
- *                hz-<druh>-val    hodnota — u tlaku systolický tlak
+ *                hz-<druh>-val    hodnota. U tlaku systolický tlak
  *                hz-<druh>-val2   jen 'tlak': diastolický tlak
  *                hz-<druh>-note   poznámka
  *              Čísla se píší česky, tedy s čárkou: `Number(v.replace(',', '.'))`.
@@ -51,7 +51,7 @@ import { actionCard, chart, hubRow, sectionHead, segmented, seriesKey, statTrio 
  *   hz-del     arg = id řádku v `S.d.health`
  *
  *   us-add     Čte pole us-date, us-left, us-right, us-endo, us-note.
- *              Velikosti folikulů přijdou jako text „18, 16, 14“ — rozpad:
+ *              Velikosti folikulů přijdou jako text „18, 16, 14“. Rozpad:
  *                text.split(/[^0-9.,]+/).map(s => Number(s.replace(',', '.')))
  *                    .filter(n => Number.isFinite(n) && n > 0)
  *              Ukládá do `S.d.ultrasounds` jako UltrasoundRow: { id: uid('uz'),
@@ -61,10 +61,10 @@ import { actionCard, chart, hubRow, sectionHead, segmented, seriesKey, statTrio 
  *
  *   us-del     arg = id řádku v `S.d.ultrasounds`
  *
- * Laboratoř vlastní akce nemá — vede na obrazovku `zdravi`, která už zadávání
+ * Laboratoř vlastní akce nemá. Vede na obrazovku `zdravi`, která už zadávání
  * i grafy umí, a na `dokumenty` pro vytažení hodnot ze zprávy.
  *
- * Navíc se exportuje `measureTitle(kind)` — český název druhu měření, ať má
+ * Navíc se exportuje `measureTitle(kind)`. Český název druhu měření, ať má
  * main.ts co napsat do hlášky po uložení („Bazální teplota uložena“).
  *
  * ----------------------------------------------------------------- CSS ---
@@ -91,7 +91,7 @@ export function isZdravSection(s: string): s is ZdravSection {
 
 /** Číslo česky: desetinná čárka a žádné koncové nuly. */
 function czNum(value: number, decimals = 2): string {
-  if (!Number.isFinite(value)) return '—'
+  if (!Number.isFinite(value)) return '–'
   return value
     .toFixed(decimals)
     .replace(/(\.\d*?)0+$/, '$1')
@@ -115,7 +115,7 @@ function join(parts: (string | false | null | undefined)[], sep = ' · '): strin
 
 /**
  * Den cyklu, do kterého záznam spadá. Bere se cyklus, ke kterému je záznam
- * přivázaný, jinak ten právě běžící — a jen když má zadané CD1.
+ * přivázaný, jinak ten právě běžící. A jen když má zadané CD1.
  */
 function cycleDayOf(date: string, cycleId: string | null): number | null {
   // Fallback platí jen pro záznam bez vazby. Když je cyklus zapsaný, ale
@@ -130,14 +130,14 @@ function cycleDayOf(date: string, cycleId: string | null): number | null {
 /**
  * Druhy měření, které si žena bere domů.
  *
- * `procedura` z `HealthKind` tady schválně není — to není naměřená hodnota,
+ * `procedura` z `HealthKind` tady schválně není. To není naměřená hodnota,
  * ale zápis zákroku, a ten patří do kalendáře a na časovou osu.
  */
 interface MeasureSpec {
   kind: Exclude<HealthKind, 'procedura'>
   icon: string
   title: string
-  /** Jedna věta pod nadpisem — co se zapisuje a jak. */
+  /** Jedna věta pod nadpisem. Co se zapisuje a jak. */
   hint: string
   unit: string
   valueLabel: string
@@ -147,7 +147,7 @@ interface MeasureSpec {
   value2Placeholder?: string
   /** Krok svislé osy grafu. */
   step: number
-  /** Začíná osa na nule? U teploty, váhy a tlaku ne — nula je mimo měřítko. */
+  /** Začíná osa na nule? U teploty, váhy a tlaku ne. Nula je mimo měřítko. */
   zero: boolean
   /** Desetinná místa na ose a v bublině grafu. */
   decimals: number
@@ -228,7 +228,7 @@ const MEASURES: MeasureSpec[] = [
     kind: 'pitny',
     icon: '◇',
     title: 'Pitný režim',
-    hint: 'Kolik jste za den vypila, v mililitrech. Kolik pít vám řekne klinika — hlavně kolem odběru.',
+    hint: 'Kolik jste za den vypila, v mililitrech. Kolik pít vám řekne klinika, hlavně kolem odběru.',
     unit: 'ml',
     valueLabel: 'Za den (ml)',
     valuePlaceholder: 'např. 2000',
@@ -254,12 +254,12 @@ function rowsOf(kind: string): HealthRow[] {
 /** Hodnota jako věta. U tlaku dvě čísla lomítkem, jak se to říká. */
 function valueText(spec: MeasureSpec, r: HealthRow): string {
   if (spec.kind === 'tlak') {
-    if (r.value === null && r.value2 === null) return '—'
-    const top = r.value === null ? '—' : czNum(r.value)
-    const bottom = r.value2 === null ? '—' : czNum(r.value2)
+    if (r.value === null && r.value2 === null) return '–'
+    const top = r.value === null ? '–' : czNum(r.value)
+    const bottom = r.value2 === null ? '–' : czNum(r.value2)
     return `${top}/${bottom} ${spec.unit}`
   }
-  return r.value === null ? '—' : `${czNum(r.value)} ${spec.unit}`
+  return r.value === null ? '–' : `${czNum(r.value)} ${spec.unit}`
 }
 
 /**
@@ -316,7 +316,7 @@ function axisFor(values: number[], spec: MeasureSpec): { yMin: number; yMax: num
   return { yMin, yMax, ticks }
 }
 
-/** Graf druhu. Kreslí se až od dvou hodnot — jeden bod není vývoj. */
+/** Graf druhu. Kreslí se až od dvou hodnot. Jeden bod není vývoj. */
 function measureChart(spec: MeasureSpec, rows: HealthRow[]): string {
   const points = rows.filter((r) => r.value !== null || r.value2 !== null).slice(-30)
   if (points.length < 2) return ''
@@ -392,7 +392,7 @@ function measureCard(spec: MeasureSpec, primary = false): string {
     <p class="soft" style="margin-top:.45rem;font-size:.875rem;line-height:1.6">${esc(spec.hint)}</p>
     ${
       primary
-        ? `<p class="tipbox">Křivku vám tu aplikace nevyhodnocuje a nehledá v ní ovulaci — na to je potřeba znát celý kontext cyklu. Zápisy slouží vám a vašemu lékaři.</p>`
+        ? `<p class="tipbox">Křivku vám tu aplikace nevyhodnocuje a nehledá v ní ovulaci. Na to je potřeba znát celý kontext cyklu. Zápisy slouží vám a vašemu lékaři.</p>`
         : ''
     }
     ${measureForm(spec)}
@@ -411,14 +411,14 @@ function paneMereni(): string {
     all.length === 0
       ? empty(
           'Zatím žádné měření',
-          'Nejsledovanější bývá bazální teplota — formulář na ni najdete hned pod tímhle textem. Hodnoty z odběrů patří do Laboratoře, folikuly do Ultrazvuku.',
+          'Nejsledovanější bývá bazální teplota. Formulář na ni najdete hned pod tímhle textem. Hodnoty z odběrů patří do Laboratoře, folikuly do Ultrazvuku.',
           '<button class="btn btn-primary" data-act="hz-focus" data-arg="bbt">Zapsat první teplotu</button>',
           '◉',
         )
       : statTrio([
           { icon: '◉', value: all.length, label: 'zápisy celkem' },
           { icon: '◈', value: kinds.size, label: 'sledované druhy' },
-          { icon: '◷', value: last ? formatCzechDateShort(last.date) : '—', label: 'poslední zápis' },
+          { icon: '◷', value: last ? formatCzechDateShort(last.date) : '–', label: 'poslední zápis' },
         ])
 
   return [
@@ -429,7 +429,7 @@ function paneMereni(): string {
       ${sectionHead('Kam dál')}
       ${hubRow('zdravotni/ultrazvuk', '◍', 'Ultrazvuk', 'Folikuly a sliznice tak, jak vám je řekl lékař')}
       ${hubRow('zdravi', '◉', 'Laboratoř', 'Hormony a odběry s grafem i vysvětlením, co parametr v těle dělá')}
-      ${hubRow('zapis/telo', '◕', 'Jak se ozývá tělo', 'Příznaky s intenzitou — patří ke stejnému rozhovoru s lékařem')}
+      ${hubRow('zapis/telo', '◕', 'Jak se ozývá tělo', 'Příznaky s intenzitou. Patří ke stejnému rozhovoru s lékařem')}
     </section>`,
     note(NO_DIAGNOSIS),
   ].join('')
@@ -448,7 +448,7 @@ function ultrasoundForm(): string {
   return `<section class="surface pad rise">
     ${sectionHead('Nový ultrazvuk', { label: 'Uložit ultrazvuk', act: 'us-add' })}
     <p class="soft" style="margin-top:.45rem;font-size:.875rem;line-height:1.6">
-      Velikosti zapisujete tak, jak vám je při kontrole nadiktoval lékař — každý folikul zvlášť,
+      Velikosti zapisujete tak, jak vám je při kontrole nadiktoval lékař. Každý folikul zvlášť,
       oddělený čárkou. Nic se nedopočítává a nic se neopravuje.
     </p>
     <div class="two" style="margin-top:1.2rem">
@@ -465,7 +465,7 @@ function ultrasoundForm(): string {
     </div>
     <div class="formrow" style="margin-top:1rem">
       <label class="label" for="us-note">Poznámka</label>
-      <textarea class="field" id="us-note" rows="2" placeholder="Co vám lékař řekl — třeba kdy máte přijít na další kontrolu."></textarea>
+      <textarea class="field" id="us-note" rows="2" placeholder="Co vám lékař řekl, třeba kdy máte přijít na další kontrolu."></textarea>
     </div>
     <button class="btn btn-primary" data-act="us-add" style="margin-top:1.2rem">Uložit ultrazvuk</button>
   </section>`
@@ -495,7 +495,7 @@ function ultrasoundChart(scans: UltrasoundRow[]): string {
     ${seriesKey(series)}
     <p class="faint" style="margin-top:.9rem;font-size:.8125rem;line-height:1.55">
       Všechny tři řady sdílejí jednu osu: počet folikulů se čte jako kusy, zbytek v milimetrech.
-      Graf jen překresluje vaše zápisy — neříká, jestli je vývoj takový, jaký má být.
+      Graf jen překresluje vaše zápisy. Neříká, jestli je vývoj takový, jaký má být.
     </p>
   </section>`
 }
@@ -537,7 +537,7 @@ function ultrasoundList(scans: UltrasoundRow[]): string {
 
 function paneUltrazvuk(): string {
   const scans = [...S.d.ultrasounds].sort((a, b) => a.date.localeCompare(b.date))
-  // Graf potřebuje čas zleva doprava, seznam naopak nejnovější nahoře —
+  // Graf potřebuje čas zleva doprava, seznam naopak nejnovější nahoře.
   // stejně jako měření a jako časová osa.
   const newestFirst = [...scans].reverse()
   const last = scans[scans.length - 1]
@@ -550,7 +550,7 @@ function paneUltrazvuk(): string {
     scans.length === 0
       ? empty(
           'Zatím žádný ultrazvuk',
-          'Po kontrole zapište, co vám lékař řekl — velikosti folikulů a výšku sliznice. Formulář je hned pod tímhle textem a po druhém zápisu se objeví i graf vývoje.',
+          'Po kontrole zapište, co vám lékař řekl. Velikosti folikulů a výšku sliznice. Formulář je hned pod tímhle textem a po druhém zápisu se objeví i graf vývoje.',
           running
             ? `<button class="btn" data-go="cyklus/${esc(running.id)}">Otevřít cyklus</button>`
             : '<button class="btn" data-go="kalendar">Zapsat termín kontroly</button>',
@@ -558,10 +558,10 @@ function paneUltrazvuk(): string {
         )
       : statTrio([
           { icon: '◍', value: scans.length, label: 'kontroly celkem' },
-          { icon: '◉', value: lastNumbers ? lastNumbers.count : '—', label: 'folikuly naposled' },
+          { icon: '◉', value: lastNumbers ? lastNumbers.count : '–', label: 'folikuly naposled' },
           {
             icon: '◈',
-            value: last && last.endometrium !== null ? `${czNum(last.endometrium, 1)} mm` : '—',
+            value: last && last.endometrium !== null ? `${czNum(last.endometrium, 1)} mm` : '–',
             label: 'sliznice naposled',
           },
         ])
@@ -634,7 +634,7 @@ function paneLaborator(): string {
     return [
       empty(
         'Zatím žádné laboratorní hodnoty',
-        'Hormony a výsledky odběrů mají vlastní obrazovku — je v ní graf i vysvětlení, co který parametr v těle dělá.',
+        'Hormony a výsledky odběrů mají vlastní obrazovku. Je v ní graf i vysvětlení, co který parametr v těle dělá.',
         '<button class="btn btn-primary" data-go="zdravi">Přidat první hodnotu</button>',
         '◉',
       ),
@@ -647,7 +647,7 @@ function paneLaborator(): string {
     statTrio([
       { icon: '◉', value: list.length, label: 'sledované parametry' },
       { icon: '◈', value: total, label: 'zapsané hodnoty' },
-      { icon: '◷', value: last ? formatCzechDateShort(last.lastOn) : '—', label: 'poslední odběr' },
+      { icon: '◷', value: last ? formatCzechDateShort(last.lastOn) : '–', label: 'poslední odběr' },
     ]),
 
     `<section class="rise" style="margin-top:1.4rem">
@@ -686,7 +686,7 @@ function paneLaborator(): string {
 // ---------------------------------------------------------------- obrazovka ---
 
 const LEDE: Record<ZdravSection, string> = {
-  mereni: 'Co si měříte doma. Zůstává to ve vašem zařízení a aplikace to nehodnotí — jen ukazuje vývoj.',
+  mereni: 'Co si měříte doma. Zůstává to ve vašem zařízení a aplikace to nehodnotí, jen ukazuje vývoj.',
   ultrazvuk: 'Folikuly a sliznice tak, jak vám je při kontrole řekl lékař.',
   laborator: 'Přehled posledních hodnot z odběrů. Podrobnosti i grafy jsou v Laboratoři.',
 }
@@ -714,7 +714,7 @@ export function screenZdravotni(section: ZdravSection): string {
   return header + pane
 }
 
-/** Kam patří který druh měření — používá se v popiscích a v hlášce po uložení. */
+/** Kam patří který druh měření. Používá se v popiscích a v hlášce po uložení. */
 export function measureTitle(kind: string): string {
   return MEASURE_LABEL[kind] ?? 'Měření'
 }

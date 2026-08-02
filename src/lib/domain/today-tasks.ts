@@ -8,7 +8,7 @@ import { daysBetween } from './dates'
  * PROČ TAHLE METRIKA NAHRADILA ČÍSLO „dnešek žádá 5 z 10“:
  *
  * Staré číslo mělo dvě vady, které se nedaly opravit jeho vyladěním.
- * Nemělo jednotku — pětka z deseti čeho? — a půlka květu zůstávala mrtvá,
+ * Nemělo jednotku. Pětka z deseti čeho? a půlka květu zůstávala mrtvá,
  * dokud si žena nezapsala náladu. Uživatelka tak koukala na graf, který
  * jí říkal buď nic, nebo to, co sama věděla: že dnes píchá injekci a že
  * je unavená.
@@ -20,7 +20,7 @@ import { daysBetween } from './dates'
  *
  * DRUHÝ VĚNEC JE TO PODSTATNÉ. Nese věci, které dnes na ní nejsou:
  * kolik folikulů doroste, kolik vajíček bude zralých, jestli se embryo
- * uchytí. Ty plátky se nikdy nevyplní — a je to záměr, ne chyba. V IVF
+ * uchytí. Ty plátky se nikdy nevyplní. A je to záměr, ne chyba. V IVF
  * je nejvíc síly ztraceno na věcech, které žena neovlivní, a oddělit
  * jedno od druhého je přesně to, co s pacientkami dělá každý psycholog
  * v oboru. Aplikace to umí ukázat, protože ví, ve které fázi cyklu je.
@@ -32,7 +32,7 @@ import { daysBetween } from './dates'
 export type TaskKind = 'lek' | 'trigger' | 'kontrola' | 'zapis' | 'otazka'
 
 export interface DayTask {
-  /** Stabilní klíč — podle něj se pozná odškrtnutí. */
+  /** Stabilní klíč. Podle něj se pozná odškrtnutí. */
   id: string
   kind: TaskKind
   label: string
@@ -42,7 +42,7 @@ export interface DayTask {
   /** Kam klepnutí vede. */
   route: string
   /**
-   * Věc, u které na přesnosti opravdu záleží — trigger, hodina odběru.
+   * Věc, u které na přesnosti opravdu záleží. Trigger, hodina odběru.
    * Vykresluje se výrazněji a nikdy se neschová.
    */
   critical?: boolean
@@ -78,7 +78,7 @@ export interface TaskEvent {
 export interface TaskInput {
   today: IsoDate
   meds: TaskMed[]
-  /** Odškrtnuté dávky — klíč `med:{datum}:{id}`. */
+  /** Odškrtnuté dávky. Klíč `med:{datum}:{id}`. */
   checks: Record<string, boolean>
   events: TaskEvent[]
   /** Datum a hodina triggeru z běžícího cyklu. */
@@ -88,7 +88,7 @@ export interface TaskInput {
   hasJournalToday: boolean
   /** Kolik otázek pro lékaře čeká, když je do dvou dnů kontrola. */
   openQuestions: number
-  /** Fáze cyklu — určuje druhý věnec. */
+  /** Fáze cyklu. Určuje druhý věnec. */
   stage: CycleStage | null
 }
 
@@ -135,7 +135,7 @@ export function tasksFor(input: TaskInput): DayTask[] {
     out.push({
       id: `trigger:${today}`,
       kind: 'trigger',
-      label: input.triggerAt ? `Trigger ve ${input.triggerAt}` : 'Trigger — hodinu ověřte na klinice',
+      label: input.triggerAt ? `Trigger ve ${input.triggerAt}` : 'Trigger. Hodinu ověřte na klinice',
       at: input.triggerAt,
       done: Boolean(input.checks[`trigger:${today}`]),
       route: 'leky/dnes',
@@ -203,7 +203,7 @@ export function tasksFor(input: TaskInput): DayTask[] {
  * Věci, které dnes rozhoduje biologie nebo laboratoř.
  *
  * Formulace jsou schválně věcné, ne útěšné. „Nemůžete to ovlivnit“ zní
- * jinak než „na tom nezáleží“ — první je pravda, druhé by byla lež.
+ * jinak než „na tom nezáleží“. První je pravda, druhé by byla lež.
  */
 const NOT_YOURS: Record<CycleStage, NotYours[]> = {
   pred: [
@@ -243,7 +243,7 @@ const NOT_YOURS: Record<CycleStage, NotYours[]> = {
   ],
 }
 
-/** Když cyklus neběží, platí obecná dvojice — pořád je co oddělit. */
+/** Když cyklus neběží, platí obecná dvojice. Pořád je co oddělit. */
 const NOT_YOURS_DEFAULT: NotYours[] = [
   { label: 'Kdy na to tělo bude připravené', why: 'Načasování určuje cyklus, ne kalendář.' },
   { label: 'Co ukážou výsledky', why: 'Čekání na ně je součást, ne vaše chyba.' },
@@ -288,7 +288,7 @@ export function readToday(input: TaskInput): TodayBalance {
     detail = 'Všechno, co dnes bylo na vás, je odškrtnuté. Zbytek dneška není váš úkol.'
   } else if (done === 0) {
     headline = `Dnes je na vás ${czThings(total)}`
-    detail = 'Vypsané jsou celé — nic z toho není velké, když víte, co to je.'
+    detail = 'Vypsané jsou celé. Nic z toho není velké, když víte, co to je.'
   } else {
     headline = `Zbývá ${czThings(total - done)}`
     detail = `Z dnešních ${total} máte ${done} za sebou.`
@@ -297,7 +297,7 @@ export function readToday(input: TaskInput): TodayBalance {
   return { tasks, notYours, done, total, criticalOpen, headline, detail }
 }
 
-/** „jedna věc“, „tři věci“, „pět věcí“ — číslo je součástí výrazu. */
+/** „jedna věc“, „tři věci“, „pět věcí“. Číslo je součástí výrazu. */
 function czThings(n: number): string {
   if (n === 1) return 'jedna věc'
   if (n >= 2 && n <= 4) return `${n} věci`

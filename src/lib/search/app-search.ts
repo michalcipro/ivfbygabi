@@ -14,7 +14,7 @@ import { KIND_LABELS } from '../content/types'
  * Nehledá na internetu a nic si nevymýšlí. Prochází přesně to, co jsme do
  * aplikace nahráli: články, videa, příběhy, checklisty, pojmy ze slovníku,
  * rady a tipy z průvodců fázemi, doplňky, otázky pro lékaře a vysvětlení
- * diagnóz. Když se něco nenajde, znamená to, že to v aplikaci není — a to
+ * diagnóz. Když se něco nenajde, znamená to, že to v aplikaci není. A to
  * je poctivější odpověď než vymyšlená věta.
  */
 
@@ -28,7 +28,7 @@ export interface SearchHit {
   snippet: string
   /** Kam klik vede. */
   route: string
-  /** Odkud to je — ukazuje se jako kontext. */
+  /** Odkud to je. Ukazuje se jako kontext. */
   from: string
   phase: PhaseId | null
   score: number
@@ -68,7 +68,7 @@ const STOPWORDS = new Set([
 
 /**
  * Hrubý kmen slova. Čeština ohýbá všechno, takže „cvičení“ a „cvičit“ se
- * jinak nepotkají. Ořezání je záměrně jednoduché — přesnost hlídá to,
+ * jinak nepotkají. Ořezání je záměrně jednoduché. Přesnost hlídá to,
  * že musí sedět všechna slova dotazu.
  */
 function stemOf(w: string): string {
@@ -140,12 +140,12 @@ function buildIndex(): IndexEntry[] {
         searchText: guide.summary,
       })
 
-    for (const w of guide.whatAwaits) line('rada', 'Co vás čeká', 'prehled', `Co vás čeká — ${phaseName}`, w)
-    for (const p of guide.prepareFor) line('rada', 'Na co se připravit', 'prehled', `Příprava — ${phaseName}`, p)
-    for (const t of guide.track) line('rada', 'Co sledovat', 'prehled', `Co sledovat — ${phaseName}`, t)
+    for (const w of guide.whatAwaits) line('rada', 'Co vás čeká', 'prehled', `Co vás čeká, ${phaseName}`, w)
+    for (const p of guide.prepareFor) line('rada', 'Na co se připravit', 'prehled', `Příprava, ${phaseName}`, p)
+    for (const t of guide.track) line('rada', 'Co sledovat', 'prehled', `Co sledovat, ${phaseName}`, t)
     for (const m of guide.mind) line('rada', 'Hlava', 'hlava', m.title, m.body)
     for (const b of guide.body) line('rada', 'Tělo a pohyb', 'telo', b.title, b.body)
-    for (const p of guide.partner) line('rada', 'Pro partnera', 'partner', `Pro partnera — ${phaseName}`, p)
+    for (const p of guide.partner) line('rada', 'Pro partnera', 'partner', `Pro partnera, ${phaseName}`, p)
     for (const q of guide.askDoctor) line('otazka', 'Otázka pro lékaře', 'lekar', q, `Ptejte se ve fázi ${phaseName.toLowerCase()}.`)
     for (const s of guide.supplements) {
       add({
@@ -221,7 +221,7 @@ export function searchIndexSize(): number {
 }
 
 export interface SearchOptions {
-  /** Fáze uživatelky — obsah pro ni má přednost. */
+  /** Fáze uživatelky. Obsah pro ni má přednost. */
   phase?: PhaseId | null
   limitPerGroup?: number
 }
@@ -240,7 +240,7 @@ export function searchApp(query: string, opts: SearchOptions = {}): SearchHit[] 
   // Když v dotazu zbudou samá spojovací slova, hledá se celý řetězec.
   const needles = (words.length > 0 ? words : [q]).map((w) => ({ word: w, stem: stemOf(w) }))
 
-  // Kolik slov musí sedět. U krátkých dotazů všechna — jinak by „nesmysl xyz“
+  // Kolik slov musí sedět. U krátkých dotazů všechna, jinak by „nesmysl xyz“
   // vracelo hromadu článků jen proto, že jedno slovo někde náhodou padlo.
   const required = needles.length >= 4 ? needles.length - 1 : needles.length
 
@@ -291,7 +291,7 @@ export function searchApp(query: string, opts: SearchOptions = {}): SearchHit[] 
 }
 
 /**
- * Skupiny seřazené podle toho, jak dobrý mají nejlepší výsledek — ne podle
+ * Skupiny seřazené podle toho, jak dobrý mají nejlepší výsledek, ne podle
  * pevného pořadí. Když se hledá pojem, má být slovník nahoře.
  */
 export function groupHits(hits: SearchHit[]): { kind: HitKind; items: SearchHit[] }[] {
@@ -302,7 +302,7 @@ export function groupHits(hits: SearchHit[]): { kind: HitKind; items: SearchHit[
     .sort((a, b) => b.items[0].score - a.items[0].score)
 }
 
-/** Návrhy, co zkusit — sestavené z pojmů, které se k fázi opravdu vážou. */
+/** Návrhy, co zkusit. Sestavené z pojmů, které se k fázi opravdu vážou. */
 export function searchSuggestions(phase: PhaseId | null): string[] {
   const guide = ALL_GUIDES.find((g) => g.phase === phase)
   const fromGuide = guide ? guide.terms.slice(0, 4) : []

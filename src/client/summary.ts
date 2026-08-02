@@ -10,7 +10,7 @@ import { esc, plural } from './ui'
  *
  * Jedna lišta, ze které se dá na první pohled poznat, kde uživatelka je
  * a co se kolem ní děje. Každá dlaždice se dá rozkliknout a rozbalí se
- * pod ní podrobnosti — bez odchodu z obrazovky, na které právě je.
+ * pod ní podrobnosti. Bez odchodu z obrazovky, na které právě je.
  */
 
 export type SummaryId = 'faze' | 'tyden' | 'ceka' | 'nalada' | 'pripominky' | 'zapis'
@@ -19,7 +19,7 @@ interface Tile {
   id: SummaryId
   label: string
   value: string
-  /** Zvýrazněná dlaždice — něco vyžaduje pozornost. */
+  /** Zvýrazněná dlaždice. Něco vyžaduje pozornost. */
   alert?: boolean
 }
 
@@ -36,7 +36,7 @@ function shortDayLabel(label: string): string {
   return label.replace(/^Dnes (je|jste) /, '')
 }
 
-/** „Dnes“, „Zítra“, „Za 3 dny“ — popisek nad názvem nejbližší události. */
+/** „Dnes“, „Zítra“, „Za 3 dny“. Popisek nad názvem nejbližší události. */
 function whenLabel(inDays: number): string {
   return inDays === 0 ? 'Dnes' : inDays === 1 ? 'Zítra' : `Za ${czDays(inDays)}`
 }
@@ -57,11 +57,11 @@ function tiles(): Tile[] {
   const today = journalFor(date)
   const next = allEvents().find((e) => !eventState(e.id).done && e.onDate >= date)
 
-  // Den nepočítáme vlastní cestou — bereme popisek, který používá celá
+  // Den nepočítáme vlastní cestou. Bereme popisek, který používá celá
   // aplikace, jinak by se čísla rozcházela o jednotku.
   const dayValue = cd ? `${cd}. den cyklu` : shortDayLabel(state.dayLabel)
 
-  // Na dlaždici musí být vidět hlavně CO přijde — samotné „za 3 dny“
+  // Na dlaždici musí být vidět hlavně CO přijde. Samotné „za 3 dny“
   // uživatelce nic neřekne. Termín je popisek, název je hodnota.
   const when = next
     ? whenLabel(daysBetween(date, next.onDate))
@@ -150,7 +150,7 @@ function panelCeka(): string {
                })
                .join('')}
            </ul>`
-        : '<p class="soft" style="line-height:1.65">Nic naplánovaného. Termíny si přidáte v kalendáři — část jich vznikne sama z vašich dat.</p>'
+        : '<p class="soft" style="line-height:1.65">Nic naplánovaného. Termíny si přidáte v kalendáři. Část jich vznikne sama z vašich dat.</p>'
     }
     ${
       state.nextMilestone

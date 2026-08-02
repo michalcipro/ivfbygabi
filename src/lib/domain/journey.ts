@@ -21,8 +21,8 @@ import {
  * ve které fázi uživatelka je, kolikátý je to den, jaký je gestační týden,
  * kolik je miminku (a kolik korigovaně), co ji čeká a co má za sebou.
  *
- * Všechno ostatní v aplikaci — domovská stránka, doporučení, AI Gabi,
- * kalendář, komunita — čte z tohoto jednoho objektu.
+ * Všechno ostatní v aplikaci. Domovská stránka, doporučení, AI Gabi,
+ * kalendář, komunita. Čte z tohoto jednoho objektu.
  */
 
 export interface Milestone {
@@ -40,7 +40,7 @@ export interface JourneyState {
   phase: PhaseDefinition
   /** Kolikátý den ve fázi. Může být záporný (fáze ještě nezačala). */
   dayInPhase: number
-  /** Lidský popisek dne — „Dnes jste 5. den po transferu.“ */
+  /** Lidský popisek dne. „Dnes jste 5. den po transferu.“ */
   dayLabel: string
   /** Odkud se den počítá. `null` pokud fáze nemá kotvu. */
   anchorDate: IsoDate | null
@@ -50,10 +50,10 @@ export interface JourneyState {
   modifiers: ModifierId[]
   group: PhaseGroup
 
-  /** Dny po transferu (DPT) a dny po odběru (DPO) — pro obsah 2WW. */
+  /** Dny po transferu (DPT) a dny po odběru (DPO). Pro obsah 2WW. */
   daysPastTransfer: number | null
   daysPastRetrieval: number | null
-  /** Odhadovaný ekvivalent dní po ovulaci — sečteno s dnem kultivace embrya. */
+  /** Odhadovaný ekvivalent dní po ovulaci. Sečteno s dnem kultivace embrya. */
   daysPastOvulationEquivalent: number | null
 
   milestones: Milestone[]
@@ -72,7 +72,7 @@ function anchorValue(profile: Profile, phase: PhaseDefinition): IsoDate | null {
 
 /**
  * Automatická detekce fáze z dat profilu, pokud si uživatelka fázi nezvolila
- * (nebo zvolila fázi, ze které data ukazují, že už postoupila — např.
+ * (nebo zvolila fázi, ze které data ukazují, že už postoupila. Např.
  * „čekání na hCG“ + zadané pozitivní beta = přejdeme na rané těhotenství).
  */
 export function inferPhase(profile: Profile, today: IsoDate = todayIso()): PhaseId {
@@ -82,7 +82,7 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
   }
   const mods = new Set(profile.modifiers)
 
-  // Ztráta má přednost před těhotenskými daty — je to nejčerstvější událost.
+  // Ztráta má přednost před těhotenskými daty. Je to nejčerstvější událost.
   if (has('lossOn')) {
     const since = daysBetween(profile.lossOn!, today)
     if (since >= 0 && since <= 90) {
@@ -102,7 +102,7 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
     if (since >= 0 && since <= 28) return 'beta_positive'
   }
 
-  // IVF cyklus — od nejpozdější události zpět.
+  // IVF cyklus. Od nejpozdější události zpět.
   if (has('transferOn')) {
     const dpt = daysBetween(profile.transferOn!, today)
     if (dpt === 0) return 'transfer'
@@ -247,7 +247,7 @@ export function phaseAffinity(state: JourneyState, phases: readonly PhaseId[]): 
   const sameGroup = phases.some((p) => PHASES[p].group === state.phase.group)
   if (sameGroup) return 0.55
 
-  // Obsah z fáze, která nás teprve čeká, má nenulovou hodnotu — příprava.
+  // Obsah z fáze, která nás teprve čeká, má nenulovou hodnotu. Příprava.
   const isUpcoming = phases.some((p) => state.phase.next.includes(p))
   if (isUpcoming) return 0.4
 

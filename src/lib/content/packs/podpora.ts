@@ -10,12 +10,12 @@ import type { ContentPack } from '../types'
  *
  * PRAVIDLA, KTERÁ TENHLE BALÍK DRŽÍ:
  *
- *  1. U každé metody se říká, JAK SILNÝ důkaz za ní stojí — a když je slabý,
+ *  1. U každé metody se říká, JAK SILNÝ důkaz za ní stojí. A když je slabý,
  *     řekne se to rovnou, ne až v poslední větě.
  *  2. Žádné dávkování. Nikde. Ani u volně prodejných doplňků: interakce
  *     s protokolem a se štítnou žlázou určuje lékař, ne aplikace.
  *  3. Žádné sliby o výsledku. „Zvyšuje šanci“ tu nezazní o ničem, co to
- *     nemá doložené — a i tam se to říká jako „v datech se ukazuje“.
+ *     nemá doložené. A i tam se to říká jako „v datech se ukazuje“.
  *  4. Srovnávací tabulky mají vždycky sloupec, co metoda NEUMÍ. Bez něj
  *     je to reklama.
  *
@@ -48,7 +48,7 @@ export const pack: ContentPack = {
 
 V okamžiku, kdy začne léčba, se na vás sype rady ze všech stran. Část z nich stojí na desítkách randomizovaných studií. Část na jedné malé práci se čtyřiceti ženami. A část na ničem.
 
-Rozeznat to od sebe není nedůvěra k lidem, kteří to myslí dobře. Je to způsob, jak neutratit peníze a energii za věci, které nikam nevedou — a naopak neminout to, co má oporu.
+Rozeznat to od sebe není nedůvěra k lidem, kteří to myslí dobře. Je to způsob, jak neutratit peníze a energii za věci, které nikam nevedou. A naopak neminout to, co má oporu.
 
 ## Čtyři stupně, které v téhle aplikaci používáme
 
@@ -73,7 +73,7 @@ Když na něco takového narazíte, zpomalte:
 
 Neznamená to „velký rozdíl“. Znamená to jen, že rozdíl pravděpodobně nevznikl náhodou. Studie na deseti tisících lidí najde jako významný i rozdíl, který v praxi nikdo nepozná.
 
-Proto se ptejte na druhé číslo: **o kolik**. Rozdíl dvou procentních bodů je něco jiného než rozdíl patnácti — a obojí může být „statisticky významné“.
+Proto se ptejte na druhé číslo: **o kolik**. Rozdíl dvou procentních bodů je něco jiného než rozdíl patnácti. A obojí může být „statisticky významné“.
 
 ## Rozdíl mezi „souvisí“ a „způsobuje“
 
@@ -84,7 +84,7 @@ Tohle je nejčastější důvod, proč se novinové titulky rozcházejí s dopor
 ## Nejčastější otázky
 
 **Když má něco jen slabý důkaz, mám to vynechat?**
-Ne nutně. Slabý důkaz znamená, že to nemůžete čekat jako jistotu — ne že je to k ničemu. Rozhodujícím faktorem bývá cena, bezpečnost a to, jestli vám to nebere energii, kterou potřebujete jinde.
+Ne nutně. Slabý důkaz znamená, že to nemůžete čekat jako jistotu, ne že je to k ničemu. Rozhodujícím faktorem bývá cena, bezpečnost a to, jestli vám to nebere energii, kterou potřebujete jinde.
 
 **Proč mi jedna klinika doporučí něco a druhá to zamítne?**
 Protože v šedé zóně mezi „silný důkaz“ a „nedostatečný“ je hodně místa na odbornou úvahu. Legitimní otázka do ordinace zní: *„Podle čeho jste se rozhodli zrovna takhle?“*
@@ -110,14 +110,14 @@ Doporučené postupy zveřejňují ESHRE (evropská) a ASRM (americká) společn
       kind: 'article',
       title: 'Doplňky stravy při IVF: co má oporu v datech a co ne',
       excerpt:
-        'Deset nejčastěji doporučovaných doplňků vedle sebe — u každého, jak silný důkaz za ním stojí, komu se zvažuje a co neumí.',
+        'Deset nejčastěji doporučovaných doplňků vedle sebe. U každého, jak silný důkaz za ním stojí, komu se zvažuje a co neumí.',
       body: `## Než začnete cokoli kupovat
 
 Dvě věci platí bez výjimky.
 
 **Za prvé: dávkování tady nenajdete.** Ne proto, že bychom ho tajili, ale protože se odvíjí od vašich hodnot, diagnózy, štítné žlázy a od toho, co už berete. Sestavit ho může jen člověk, který to má před sebou.
 
-**Za druhé: doplněk není lék.** V Česku i v EU se doplňky stravy neschvalují jako léky. Nemusí prokazovat účinnost a kontrola složení je volnější. Obsah balení se proto může lišit od etikety — a to je důvod kupovat od výrobců, kteří dokládají laboratorní rozbory šarží.
+**Za druhé: doplněk není lék.** V Česku i v EU se doplňky stravy neschvalují jako léky. Nemusí prokazovat účinnost a kontrola složení je volnější. Obsah balení se proto může lišit od etikety. A to je důvod kupovat od výrobců, kteří dokládají laboratorní rozbory šarží.
 
 Jak se stupně důkazů čtou, vysvětluje samostatný článek o čtení evidence.
 
@@ -127,10 +127,10 @@ Jak se stupně důkazů čtou, vysvětluje samostatný článek o čtení eviden
 | --- | --- | --- | --- |
 | **Kyselina listová (folát)** | Silný | Plošně před početím i v prvním trimestru. Prevence rozštěpových vad. | Neovlivňuje kvalitu vajíček ani úspěšnost transferu. |
 | **Vitamin D** | Střední | Při prokázaném nedostatku, který je v ČR v zimě běžný. | Doplňovat naslepo bez odběru nemá oporu. |
-| **Jód** | Střední | Před početím a v těhotenství, funkce štítné žlázy plodu. | Nadbytek škodí stejně jako nedostatek — proto odběr. |
+| **Jód** | Střední | Před početím a v těhotenství, funkce štítné žlázy plodu. | Nadbytek škodí stejně jako nedostatek, proto odběr. |
 | **Omega-3 (DHA/EPA)** | Střední | Nižší příjem ryb; vývoj mozku plodu. | Data o vlivu na otěhotnění jsou slabá. |
 | **Koenzym Q10** | Slabý až střední | Nízká ovariální rezerva, vyšší věk. Zkoumá se vliv na energetiku vajíčka. | Nezvětší počet vajíček, který určuje rezerva. |
-| **Myo-inositol** | Střední (jen u PCOS) | PCOS a inzulinová rezistence — kvalita ovulace. | Mimo PCOS je přínos nejasný. |
+| **Myo-inositol** | Střední (jen u PCOS) | PCOS a inzulinová rezistence. Kvalita ovulace. | Mimo PCOS je přínos nejasný. |
 | **DHEA** | Slabý a sporný | Výhradně na předpis u nízké rezervy, pod kontrolou hladin. | Není volně prodejný doplněk. Má hormonální účinky. |
 | **Melatonin** | Slabý | Zkoumá se jako antioxidant ve folikulární tekutině. | Ovlivňuje spánkový rytmus, nepatří k samovolnému užívání. |
 | **N-acetylcystein** | Slabý | Zkoumá se u PCOS. | Nejde o standardní součást protokolu. |
@@ -149,7 +149,7 @@ Zatřetí: **víc není líp.** Vitaminy rozpustné v tucích (A, D, E, K) se v 
 1. *Mám si nechat změřit vitamin D a funkci štítné žlázy, než něco začnu brát?*
 2. *Zasahuje něco z toho, co beru, do mého protokolu?*
 3. *Je něco, co mám naopak vysadit?*
-4. *Od kdy do kdy to má smysl brát — do odběru, do transferu, do bety?*
+4. *Od kdy do kdy to má smysl brát. Do odběru, do transferu, do bety?*
 
 ## Nejčastější otázky
 
@@ -157,7 +157,7 @@ Zatřetí: **víc není líp.** Vitaminy rozpustné v tucích (A, D, E, K) se v 
 Většinou pokrývá folát a jód. Vitamin D v něm bývá v nižším množství, než jaké se doplňuje při prokázaném nedostatku. Zkontrolujte etiketu a ukažte ji lékaři.
 
 **Kdy začít?**
-U folátu se doporučuje nejméně měsíc před početím, ideálně dřív. U ostatního záleží na důvodu — a u věcí, které mají ovlivnit zrání vajíček, se mluví spíš o měsících než o dnech.
+U folátu se doporučuje nejméně měsíc před početím, ideálně dřív. U ostatního záleží na důvodu. A u věcí, které mají ovlivnit zrání vajíček, se mluví spíš o měsících než o dnech.
 
 **Vysadit doplňky v den odběru?**
 Řídí se to pokyny kliniky k zákroku, ne obecným pravidlem. Zeptejte se předem.
@@ -189,11 +189,11 @@ Doplněk doplňuje to, co chybí. Když nechybí nic, nemá co doplňovat.
         'Středomořská, protizánětlivá, nízkoglykemická a bezlepková. Čím se liší, komu která sedí a kde končí doložené a začíná móda.',
       body: `## Co strava umí a co ne
 
-Umí ovlivnit metabolické prostředí, ve kterém zrání vajíček probíhá — citlivost na inzulin, zánětlivé pozadí, zásobu mikroživin. To není málo.
+Umí ovlivnit metabolické prostředí, ve kterém zrání vajíček probíhá. Citlivost na inzulin, zánětlivé pozadí, zásobu mikroživin. To není málo.
 
 Neumí nahradit protokol, opravit uzavřené vejcovody ani změnit ovariální rezervu. Rezervu určuje počet folikulů, se kterými jste se narodila.
 
-Nejsilnější signál z výzkumu není o jednotlivé potravině. Je o **celkovém vzorci stravování** — a ten nejlépe prozkoumaný je středomořský.
+Nejsilnější signál z výzkumu není o jednotlivé potravině. Je o **celkovém vzorci stravování**: a ten nejlépe prozkoumaný je středomořský.
 
 ## Srovnání
 
@@ -212,7 +212,7 @@ Když se ty čtyři sloupce překryjí, zbude překvapivě jednoduchý průnik:
 - víc ryb, méně červeného a uzeného masa,
 - rostlinné tuky místo ztužených,
 - méně ultrazpracovaných potravin a slazených nápojů,
-- pravidelnost — vynechaná jídla a večerní dojídání zhoršují glykemii nejvíc.
+- pravidelnost. Vynechaná jídla a večerní dojídání zhoršují glykemii nejvíc.
 
 Tenhle průnik je to jediné, co má smysl začít dělat, dokud nemáte diagnózu, která žádá něco konkrétnějšího.
 
@@ -222,7 +222,7 @@ Tenhle průnik je to jediné, co má smysl začít dělat, dokud nemáte diagnó
 
 **Detoxy a půsty ve stimulaci.** Ve stimulaci tělo pracuje na plné obrátky a potřebuje energii a bílkoviny. Výrazné omezení jídla během stimulace nebo kolem odběru není vhodné.
 
-**Kofein a alkohol.** U alkoholu je doporučení jednoznačné — v době léčby a v těhotenství nepít. U kofeinu se doporučuje omezit, přesné množství si ověřte na klinice.
+**Kofein a alkohol.** U alkoholu je doporučení jednoznačné. V době léčby a v těhotenství nepít. U kofeinu se doporučuje omezit, přesné množství si ověřte na klinice.
 
 ## Nejčastější otázky
 
@@ -230,13 +230,13 @@ Tenhle průnik je to jediné, co má smysl začít dělat, dokud nemáte diagnó
 U výrazné nadváhy může úprava hmotnosti zlepšit odpověď na stimulaci a průběh těhotenství. Ale rychlé hubnutí těsně před cyklem nebo během něj vhodné není. Tohle patří naplánovat s lékařem s předstihem.
 
 **Musím jíst ananas a granátové jablko po transferu?**
-Nemusíte. Nic z toho nemá doložený vliv na uhnízdění. Když vám to dělá dobře, není důvod je nejíst — jen z toho nedělejte podmínku.
+Nemusíte. Nic z toho nemá doložený vliv na uhnízdění. Když vám to dělá dobře, není důvod je nejíst, jen z toho nedělejte podmínku.
 
 **Vegetariánství nebo veganství?**
 Jde to, ale je potřeba pohlídat B12, železo, jód, omega-3 a bílkoviny. U veganství je konzultace s výživovým poradcem prakticky nutná.
 
 **Kolik bílkovin?**
-Ve stimulaci se často doporučuje jejich zvýšený příjem, hlavně kvůli prevenci potíží při hyperstimulaci. Konkrétní množství vám dá klinika — souvisí s vaší hmotností a rizikem.
+Ve stimulaci se často doporučuje jejich zvýšený příjem, hlavně kvůli prevenci potíží při hyperstimulaci. Konkrétní množství vám dá klinika. Souvisí s vaší hmotností a rizikem.
 
 **Můžu pít bylinkové čaje?**
 Běžné ovocné ano. U bylinných směsí „na plodnost“ platí totéž co u bylinných doplňků: nejdřív se zeptat.
@@ -259,12 +259,12 @@ Běžné ovocné ano. U bylinných směsí „na plodnost“ platí totéž co u
       kind: 'article',
       title: 'Pohyb v cyklu: co ano, co ne a proč se to mění fázi od fáze',
       excerpt:
-        'Ve stimulaci platí jiná pravidla než po transferu. Tady je přehled aktivit podle fáze — včetně toho, proč se zrovna běh nedoporučuje.',
+        'Ve stimulaci platí jiná pravidla než po transferu. Tady je přehled aktivit podle fáze. Včetně toho, proč se zrovna běh nedoporučuje.',
       body: `## Proč se doporučení během jednoho cyklu obrátí
 
-Na začátku cyklu jsou vaječníky velikosti mandle. Na konci stimulace mohou být několikanásobně větší a nesou desítky folikulů. Zvětšený vaječník je pohyblivější a hůř zavěšený — a to je celý důvod, proč se ve druhé polovině stimulace vysazují skoky, prudké otáčky a doskoky.
+Na začátku cyklu jsou vaječníky velikosti mandle. Na konci stimulace mohou být několikanásobně větší a nesou desítky folikulů. Zvětšený vaječník je pohyblivější a hůř zavěšený. A to je celý důvod, proč se ve druhé polovině stimulace vysazují skoky, prudké otáčky a doskoky.
 
-Riziko, o které jde, se jmenuje **torze vaječníku** — otočení kolem vlastní osy s přerušením prokrvení. Je vzácné, ale je to náhlá příhoda a řeší se akutně.
+Riziko, o které jde, se jmenuje **torze vaječníku**: otočení kolem vlastní osy s přerušením prokrvení. Je vzácné, ale je to náhlá příhoda a řeší se akutně.
 
 ## Srovnání aktivit podle fáze
 
@@ -278,11 +278,11 @@ Riziko, o které jde, se jmenuje **torze vaječníku** — otočení kolem vlast
 | **Kolektivní a kontaktní sporty** | Ano | Ne | Ne | Ne |
 | **Sauna, horká vana** | Dle zvyklostí | Ne | Ne | Ne |
 
-Tabulka je orientační. **Pokyny vaší kliniky mají vždycky přednost** — liší se podle toho, jak vaječníky reagovaly a jaké máte riziko hyperstimulace.
+Tabulka je orientační. **Pokyny vaší kliniky mají vždycky přednost**: liší se podle toho, jak vaječníky reagovaly a jaké máte riziko hyperstimulace.
 
 ## Mýtus, který stojí za vyvrácení
 
-**Ležet po transferu.** Klid na lůžku po embryotransferu se dlouho doporučoval, ale data ho nepodpořila — a delší nehybnost naopak zvyšuje riziko trombózy. Doporučení dnes zní žít běžný, klidný režim, ne ležet.
+**Ležet po transferu.** Klid na lůžku po embryotransferu se dlouho doporučoval, ale data ho nepodpořila. A delší nehybnost naopak zvyšuje riziko trombózy. Doporučení dnes zní žít běžný, klidný režim, ne ležet.
 
 Neznamená to jít po transferu na kruhový trénink. Znamená to, že chodit, vařit a jít do práce je v pořádku, pokud vám klinika neřekla jinak.
 
@@ -307,12 +307,12 @@ Absence potíží neříká nic o velikosti vaječníků. Pravidla druhé polovi
 Po neúspěšném cyklu obvykle po odeznění obtíží a po menstruaci. Po pozitivním testu se řídíte doporučeními pro těhotenství. Konkrétní termín patří klinice.
 
 **Je sex zakázaný?**
-V druhé polovině stimulace a kolem odběru se obvykle nedoporučuje — ze stejného důvodu jako sport. Po transferu se doporučení klinik liší. Zeptejte se, ať nemusíte hádat.
+V druhé polovině stimulace a kolem odběru se obvykle nedoporučuje. Ze stejného důvodu jako sport. Po transferu se doporučení klinik liší. Zeptejte se, ať nemusíte hádat.
 
 **Pomůže pohyb prokrvení dělohy?**
 Chůze zlepšuje celkové prokrvení a spánek, a to samo o sobě stojí za to. Přímý vliv na uhnízdění doložený není.
 
-> Tyhle zásady nenahrazují pokyny vaší kliniky. Když se rozcházejí, platí to, co vám řekli tam — vaše čísla vidí oni.`,
+> Tyhle zásady nenahrazují pokyny vaší kliniky. Když se rozcházejí, platí to, co vám řekli tam. Vaše čísla vidí oni.`,
       minutes: 8,
       phases: [],
       topics: ['pohyb', 'stimulace', 'sebepece'],
@@ -346,14 +346,14 @@ Tenhle rozdíl je potřeba znát, než někam zaplatíte několik tisíc.
 | Přístup | Na co cílí | Důkaz | Co neumí |
 | --- | --- | --- | --- |
 | **Terapie pánevního dna** | Přetížení nebo oslabení svalů, bolest při sexu, potíže s močením. | Silný pro tyto obtíže. | Neprůchodné vejcovody ani kvalitu vajíček. |
-| **Práce s jizvou** | Jizva po císaři, laparoskopii, operaci endometriózy — pohyblivost tkáně a citlivost. | Střední pro pohyblivost a bolest. | Nezvrátí srůsty uvnitř dutiny břišní. |
+| **Práce s jizvou** | Jizva po císaři, laparoskopii, operaci endometriózy. Pohyblivost tkáně a citlivost. | Střední pro pohyblivost a bolest. | Nezvrátí srůsty uvnitř dutiny břišní. |
 | **Dechová a posturální terapie** | Bránice, nitrobřišní tlak, chronické napětí. | Střední pro bolest a napětí. | Přímý vliv na otěhotnění doložený není. |
 | **Viscerální / mobilizační techniky na „uvolnění vejcovodů“** | Slibuje zprůchodnění, zlepšení prokrvení. | Nedostatečný. | Neprůchodnost vejcovodů se posuzuje zobrazovacím vyšetřením a řeší jinak. |
 | **Lymfatická drenáž** | Otoky, pocit napětí. | Slabý, spíše symptomatická úleva. | Není léčbou hyperstimulace. Ta patří klinice. |
 
 ## Kdy fyzioterapii aktivně zvážit
 
-- Sex bolí — dlouhodobě, nebo teprve od začátku léčby.
+- Sex bolí. Dlouhodobě, nebo teprve od začátku léčby.
 - Máte za sebou císařský řez, laparoskopii nebo operaci endometriózy.
 - Bolí vás záda nebo pánev a zhoršuje se to během stimulace.
 - Po odběru se pánevní dno „nevrátilo“, cítíte tlak nebo únik moči.
@@ -361,7 +361,7 @@ Tenhle rozdíl je potřeba znát, než někam zaplatíte několik tisíc.
 
 ## Co se ve stimulaci mění
 
-Zvětšené vaječníky mění, co je bezpečné. Fyzioterapeut o vaší fázi cyklu musí vědět — hluboká práce v podbřišku ve druhé polovině stimulace nebo krátce po odběru není namístě.
+Zvětšené vaječníky mění, co je bezpečné. Fyzioterapeut o vaší fázi cyklu musí vědět. Hluboká práce v podbřišku ve druhé polovině stimulace nebo krátce po odběru není namístě.
 
 Věta, se kterou přijdete: *„Jsem ve stimulaci, jsem po odběru, jsem po transferu.“* Dobrý terapeut podle toho techniku upraví. Pokud na to nereaguje, je to signál.
 
@@ -385,7 +385,7 @@ Ideálně před cyklem, ne během něj. Před stimulací je prostor na intenzivn
 K otěhotnění přímo doloženo není. Ale když bolestivý sex nebo napětí zasahují do vašeho života a vztahu, je to důvod sám o sobě.
 
 **Můžu cvičit doma podle videa?**
-Na pánevní dno raději ne naslepo. Část žen ho má přetížené, ne oslabené — a posilování by u nich potíže zhoršilo. Vyšetření rozhodne, kterým směrem jít.
+Na pánevní dno raději ne naslepo. Část žen ho má přetížené, ne oslabené. A posilování by u nich potíže zhoršilo. Vyšetření rozhodne, kterým směrem jít.
 
 > Fyzioterapie je podpůrná péče. Nenahrazuje léčbu na klinice a sama o sobě neřeší příčinu neplodnosti.`,
       minutes: 9,
@@ -405,7 +405,7 @@ Na pánevní dno raději ne naslepo. Část žen ho má přetížené, ne oslabe
       kind: 'article',
       title: 'Akupunktura a další doplňkové metody: co říkají data',
       excerpt:
-        'Akupunktura, reflexologie, mind-body programy, homeopatie. Přehled bez nadšení i bez posměchu — co která metoda ukazuje a co ne.',
+        'Akupunktura, reflexologie, mind-body programy, homeopatie. Přehled bez nadšení i bez posměchu. Co která metoda ukazuje a co ne.',
       body: `## Proč je tahle oblast tak nepřehledná
 
 Doplňkové metody jsou tam, kde medicína nemá jistotu, a lidé mají obrovskou potřebu něco dělat. To je kombinace, ve které se dobře daří jak poctivé podpůrné péči, tak prodeji.
@@ -413,7 +413,7 @@ Doplňkové metody jsou tam, kde medicína nemá jistotu, a lidé mají obrovsko
 Rozlišujme dvě otázky, které se často slévají do jedné:
 
 1. **Zvyšuje ta metoda pravděpodobnost otěhotnění?**
-2. **Pomáhá zvládnout léčbu — úzkost, napětí, spánek?**
+2. **Pomáhá zvládnout léčbu. Úzkost, napětí, spánek?**
 
 U většiny metod je odpověď na první otázku „nedoloženo“ a na druhou „ano, u části žen“. To není totéž jako „nefunguje“.
 
@@ -421,11 +421,11 @@ U většiny metod je odpověď na první otázku „nedoloženo“ a na druhou �
 
 | Metoda | Co slibuje | Důkaz na otěhotnění | Důkaz na zvládání léčby | Poznámka |
 | --- | --- | --- | --- | --- |
-| **Akupunktura** | Prokrvení dělohy, uvolnění, lepší uhnízdění. | Nejednoznačný. Přehledy se rozcházejí, novější a kvalitnější studie rozdíl většinou nenacházejí. | Střední — úzkost a napětí. | Bezpečná u zkušeného terapeuta. Ne do podbřišku ve stimulaci bez domluvy. |
+| **Akupunktura** | Prokrvení dělohy, uvolnění, lepší uhnízdění. | Nejednoznačný. Přehledy se rozcházejí, novější a kvalitnější studie rozdíl většinou nenacházejí. | Střední. Úzkost a napětí. | Bezpečná u zkušeného terapeuta. Ne do podbřišku ve stimulaci bez domluvy. |
 | **Mind-body programy** (strukturované skupinové programy zvládání stresu) | Snížení stresu, lepší setrvání v léčbě. | Slabý až nedoložený. | Silnější než u ostatních metod v tabulce. | Nejlépe prozkoumaná položka v této tabulce. |
-| **Reflexologie** | Ovlivnění orgánů přes chodidla. | Nedostatečný. | Slabý — relaxace. | Příjemné. Očekávání držte nízko. |
+| **Reflexologie** | Ovlivnění orgánů přes chodidla. | Nedostatečný. | Slabý. Relaxace. | Příjemné. Očekávání držte nízko. |
 | **Homeopatie** | Podpora plodnosti. | Nedoložený. | Placebový efekt. | Odborné společnosti ji nedoporučují jako léčbu. |
-| **Bylinné směsi „na plodnost“** | Hormonální podpora. | Nedostatečný. | — | **Rizikové.** Mohou interagovat s protokolem. Vždy hlásit lékaři. |
+| **Bylinné směsi „na plodnost“** | Hormonální podpora. | Nedostatečný. |. | **Rizikové.** Mohou interagovat s protokolem. Vždy hlásit lékaři. |
 | **Masáž, sauna, wellness** | Uvolnění. | Nedoložený. | Reálná úleva. | Sauna a horké lázně ve stimulaci a v těhotenství ne. |
 
 ## Jak s tím naložit prakticky
@@ -436,7 +436,7 @@ U většiny metod je odpověď na první otázku „nedoloženo“ a na druhou �
 
 ## Věta, kterou stojí za to znát
 
-**Stres neúspěšnou léčbu nezpůsobuje.** Souvislost mezi mírou stresu a výsledkem cyklu se v datech opakovaně nepotvrdila. Léčba je stresující sama o sobě — a obviňovat se z toho, že jste nebyla dost klidná, nemá žádnou oporu.
+**Stres neúspěšnou léčbu nezpůsobuje.** Souvislost mezi mírou stresu a výsledkem cyklu se v datech opakovaně nepotvrdila. Léčba je stresující sama o sobě. A obviňovat se z toho, že jste nebyla dost klidná, nemá žádnou oporu.
 
 ## Nejčastější otázky
 
@@ -482,9 +482,9 @@ To není slabost. Je to popsaný jev, se kterým odborné společnosti počítaj
 | Směr | Na co cílí | Kdy sedí | Formát |
 | --- | --- | --- | --- |
 | **KBT** (kognitivně-behaviorální terapie) | Konkrétní úzkost, vtíravé myšlenky, nespavost, vyhýbavé chování. | Když víte, co vás drží, a chcete s tím pracovat prakticky. | Obvykle krátkodobá, se strukturou a úkoly. |
-| **ACT** (terapie přijetím a závazkem) | Život s nejistotou, kterou nejde odstranit. | Když nejde změnit situaci, jen svůj vztah k ní — což je v léčbě často. | Krátkodobá až střednědobá. |
+| **ACT** (terapie přijetím a závazkem) | Život s nejistotou, kterou nejde odstranit. | Když nejde změnit situaci, jen svůj vztah k ní, což je v léčbě často. | Krátkodobá až střednědobá. |
 | **Mindfulness programy** | Přemítání, tělesné napětí, spánek. | Jako doplněk, ne náhrada terapie u výraznějších obtíží. | Skupinově i samostatně. |
-| **EMDR** | Traumatická vzpomínka — ztráta, komplikovaný porod, náročný zákrok. | Když se vám konkrétní událost vrací a vyhýbáte se připomínkám. | Cílená, vede ji vyškolený terapeut. |
+| **EMDR** | Traumatická vzpomínka. Ztráta, komplikovaný porod, náročný zákrok. | Když se vám konkrétní událost vrací a vyhýbáte se připomínkám. | Cílená, vede ji vyškolený terapeut. |
 | **Párová terapie** | Rozdílné tempo truchlení, sex jako povinnost, mlčení o léčbě. | Když se to netýká jen vás, ale i toho mezi vámi. | Oba, společně. |
 | **Podpůrné skupiny** | Izolace, pocit, že to nikdo nechápe. | Kdykoli. Nenahrazuje terapii při výrazných obtížích. | Skupinově, často online. |
 | **Psychiatrická péče** | Deprese, úzkostná porucha, nespavost, kterou nejde zvládnout jinak. | Když obtíže zasahují do fungování. | Vč. možnosti medikace slučitelné s léčbou a těhotenstvím. |
@@ -493,7 +493,7 @@ To není slabost. Je to popsaný jev, se kterým odborné společnosti počítaj
 
 Tyhle body neznamenají, že je něco s vámi špatně. Znamenají, že je vhodná doba požádat o pomoc:
 
-- Většinu dní se cítíte skleslá, nebo vás netěší nic, co dřív ano — déle než dva týdny.
+- Většinu dní se cítíte skleslá, nebo vás netěší nic, co dřív ano. Déle než dva týdny.
 - Nemůžete spát nebo se budíte s úzkostí.
 - Nezvládáte běžné fungování, práci, vztahy.
 - Vyhýbáte se lidem s dětmi a izoluje vás to.
@@ -505,7 +505,7 @@ Tyhle body neznamenají, že je něco s vámi špatně. Znamenají, že je vhodn
 
 Neznamená, že si to „děláte psychikou“. Neznamená, že když se uklidníte, otěhotníte. Souvislost mezi stresem a výsledkem cyklu se v datech opakovaně nepotvrdila.
 
-Terapie je tu proto, aby léčba byla snesitelnější a abyste z ní vyšla celá — ne aby ji „odemkla“.
+Terapie je tu proto, aby léčba byla snesitelnější a abyste z ní vyšla celá, ne aby ji „odemkla“.
 
 ## Jak si vybrat
 
@@ -517,10 +517,10 @@ Terapie je tu proto, aby léčba byla snesitelnější a abyste z ní vyšla cel
 ## Nejčastější otázky
 
 **Hradí to pojišťovna?**
-Klinický psycholog na doporučení lékaře obvykle ano, s čekací dobou. Řada klinik má vlastního psychologa — zeptejte se, bývá to nejrychlejší cesta.
+Klinický psycholog na doporučení lékaře obvykle ano, s čekací dobou. Řada klinik má vlastního psychologa. Zeptejte se, bývá to nejrychlejší cesta.
 
 **Můžu brát antidepresiva, když se snažím otěhotnět?**
-Některá jsou s těhotenstvím slučitelná. Rozhodnutí patří psychiatrovi ve spolupráci s gynekologem — svévolné vysazení bývá rizikovější než pokračování.
+Některá jsou s těhotenstvím slučitelná. Rozhodnutí patří psychiatrovi ve spolupráci s gynekologem. Svévolné vysazení bývá rizikovější než pokračování.
 
 **Partner nechce jít.**
 Můžete jít sama, i když jde o vztah. Změna na jedné straně mění dynamiku obou.
@@ -528,7 +528,7 @@ Můžete jít sama, i když jde o vztah. Změna na jedné straně mění dynamik
 **Nemám na to sílu ani čas.**
 Pak začněte tím nejmenším: jednou konzultací. Ne kurzem, ne programem. Jedním hovorem.
 
-> Aplikace psychologickou péči nenahrazuje. Když se vám vede špatně, obraťte se na odborníka — a při myšlenkách na sebepoškození okamžitě na linku 116 123 nebo na 155.`,
+> Aplikace psychologickou péči nenahrazuje. Když se vám vede špatně, obraťte se na odborníka. A při myšlenkách na sebepoškození okamžitě na linku 116 123 nebo na 155.`,
       minutes: 10,
       phases: [],
       topics: ['psychika', 'sebepece', 'vztah'],
@@ -546,26 +546,26 @@ Pak začněte tím nejmenším: jednou konzultací. Ne kurzem, ne programem. Jed
       kind: 'article',
       title: 'Nejčastější otázky ke stimulaci',
       excerpt:
-        'Dvacet otázek, které na klinice zaznívají nejčastěji — a odpovědi, které se vejdou do času, který v ordinaci máte.',
+        'Dvacet otázek, které na klinice zaznívají nejčastěji. A odpovědi, které se vejdou do času, který v ordinaci máte.',
       body: `## O píchání
 
 **Bude to bolet?**
-Podkožní injekce se píchají velmi tenkou jehlou do podkoží břicha nebo stehna. Většina žen popisuje spíš tlak a pálení roztoku než bodnutí. Nejhorší bývá první dávka — kvůli obavám, ne kvůli bolesti.
+Podkožní injekce se píchají velmi tenkou jehlou do podkoží břicha nebo stehna. Většina žen popisuje spíš tlak a pálení roztoku než bodnutí. Nejhorší bývá první dávka, kvůli obavám, ne kvůli bolesti.
 
 **Co když se spletu v čase?**
-U běžných denních dávek nevadí posun o desítky minut. **Výjimka je trigger** — ten se píchá na minutu podle pokynů, protože podle něj je naplánovaný odběr. Při jakékoli nejistotě u triggeru volejte na kliniku, i večer.
+U běžných denních dávek nevadí posun o desítky minut. **Výjimka je trigger**: ten se píchá na minutu podle pokynů, protože podle něj je naplánovaný odběr. Při jakékoli nejistotě u triggeru volejte na kliniku, i večer.
 
 **Zapomněla jsem dávku.**
 Nepřidávejte ji svévolně k další. Zavolejte na kliniku a řekněte, kdy jste ji měla píchnout a kdy jste na to přišla.
 
 **Vyteklo mi trochu roztoku.**
-Malá kapka na kůži obvykle nevadí. Nepíchejte znovu bez konzultace — riskovala byste dvojitou dávku.
+Malá kapka na kůži obvykle nevadí. Nepíchejte znovu bez konzultace. Riskovala byste dvojitou dávku.
 
 **Kam píchat?**
 Podle pokynů a s obměnou míst. Opakované píchání do stejného místa dělá boule a bolí. Mapa vpichů v aplikaci vám ukáže, kde jste byla naposledy.
 
 **Můžu si píchat sama?**
-Většina žen ano a po pár dnech to jde rychleji než shánět pomoc. Když se vám třesou ruce, není to slabost — je to adrenalin.
+Většina žen ano a po pár dnech to jde rychleji než shánět pomoc. Když se vám třesou ruce, není to slabost. Je to adrenalin.
 
 ## O kontrolách
 
@@ -573,7 +573,7 @@ Většina žen ano a po pár dnech to jde rychleji než shánět pomoc. Když se
 Podle velikosti folikulů a hladin hormonů se rozhoduje o dávce a o termínu odběru. Bez kontrol by se dávkovalo naslepo.
 
 **Co znamená počet folikulů na ultrazvuku?**
-Kolik jich lékař ten den změřil v použitelné velikosti. Není to počet vajíček — část folikulů může být prázdná a část vajíček nemusí být zralá.
+Kolik jich lékař ten den změřil v použitelné velikosti. Není to počet vajíček. Část folikulů může být prázdná a část vajíček nemusí být zralá.
 
 **Jsou moje hodnoty dobré?**
 Na tuhle otázku aplikace neodpovídá a nemůže. Rozmezí se liší podle laboratoře, dne cyklu, věku i diagnózy. Zeptejte se přímo při kontrole.
@@ -584,7 +584,7 @@ Ano, máte na svou dokumentaci právo. Praktické je požádat o kopii hned po o
 ## O tom, co cítíte
 
 **Nafouklé břicho a tlak.**
-Ve druhé polovině stimulace časté — vaječníky rostou. Sledujte, jestli se to nezhoršuje rychle.
+Ve druhé polovině stimulace časté. Vaječníky rostou. Sledujte, jestli se to nezhoršuje rychle.
 
 **Návaly, plačtivost, podrážděnost.**
 Hormonální hladiny se mění řádově. Nálada tomu odpovídá a není to selhání charakteru.
@@ -616,7 +616,7 @@ Protože reagujete jinak, než se čekalo. Úprava dávky je běžná součást 
 Nejčastěji zhruba devět až dvanáct, ale rozptyl je velký a délka sama o sobě nic neprozrazuje.
 
 **Můžu pracovat?**
-Většina žen ano. Poslední dny stimulace a den odběru bývají náročnější — počítejte s tím dopředu.
+Většina žen ano. Poslední dny stimulace a den odběru bývají náročnější. Počítejte s tím dopředu.
 
 **Můžu řídit?**
 Po odběru ne, jde o zákrok v analgosedaci. Zajistěte si doprovod.
@@ -625,7 +625,7 @@ Po odběru ne, jde o zákrok v analgosedaci. Zajistěte si doprovod.
 Ne. V době léčby se doporučuje nepít.
 
 **Můžu kouřit?**
-Kouření zhoršuje reprodukční výsledky u obou partnerů. Ideální je přestat před cyklem — a pomoc s tím si vyžádat, ne to zkoušet vůlí.
+Kouření zhoršuje reprodukční výsledky u obou partnerů. Ideální je přestat před cyklem. A pomoc s tím si vyžádat, ne to zkoušet vůlí.
 
 > Odpovědi jsou obecné a nenahrazují pokyny vaší kliniky. Když se rozcházejí, platí to, co vám řekli tam.`,
       minutes: 11,
@@ -649,7 +649,7 @@ Kouření zhoršuje reprodukční výsledky u obou partnerů. Ideální je přes
       body: `## O tom, co smíte
 
 **Můžu normálně fungovat?**
-Ano. Klid na lůžku se po transferu už nedoporučuje — data ho nepodpořila a delší nehybnost zvyšuje riziko trombózy. Běžný klidný režim je to, co se doporučuje dnes.
+Ano. Klid na lůžku se po transferu už nedoporučuje. Data ho nepodpořila a delší nehybnost zvyšuje riziko trombózy. Běžný klidný režim je to, co se doporučuje dnes.
 
 **Můžu do práce?**
 Většinou ano. Výjimkou je těžká fyzická práce nebo práce s riziky, kde se domluvte s lékařem.
@@ -658,7 +658,7 @@ Většinou ano. Výjimkou je těžká fyzická práce nebo práce s riziky, kde 
 Chůze a jemné protahování ano. Běh, skoky, silový trénink a kontaktní sporty ne.
 
 **Sex?**
-Doporučení klinik se liší. Zeptejte se své — obecné pravidlo tu neplatí.
+Doporučení klinik se liší. Zeptejte se své. Obecné pravidlo tu neplatí.
 
 **Sauna, horká vana?**
 Ne.
@@ -672,7 +672,7 @@ Běžné věci ano, těžká břemena ne. Když si nejste jistá, zeptejte se ko
 Ne. Nepřítomnost příznaků neznamená nic. Velká část žen s pozitivním výsledkem v těch dnech necítila nic zvláštního.
 
 **Cítím píchání a tlak. Je to dobře?**
-Taky ne. Podpora progesteronem a doznívající stimulace dělají přesně ty příznaky, které se dají číst oběma směry. **V téhle fázi tělo prostě neposkytuje spolehlivý signál** — a to je ta nejtěžší část.
+Taky ne. Podpora progesteronem a doznívající stimulace dělají přesně ty příznaky, které se dají číst oběma směry. **V téhle fázi tělo prostě neposkytuje spolehlivý signál**: a to je ta nejtěžší část.
 
 **Mírné krvácení nebo špinění.**
 Může mít víc příčin, včetně podráždění po transferu nebo od vaginální podpory. Hlaste ho klinice, ale samo o sobě nic nerozhoduje.
@@ -685,8 +685,8 @@ Ozvěte se hned.
 **Můžu si udělat domácí test dřív?**
 Můžete a spousta žen to udělá. Vědět byste ale měla tohle:
 
-- **Falešně pozitivní** — pokud vám trigger obsahoval hCG, může být v těle ještě několik dní a test ho zachytí.
-- **Falešně negativní** — příliš brzy je hladina nízká i při úspěšném uhnízdění.
+- **Falešně pozitivní**: pokud vám trigger obsahoval hCG, může být v těle ještě několik dní a test ho zachytí.
+- **Falešně negativní**: příliš brzy je hladina nízká i při úspěšném uhnízdění.
 - **Výsledek nic nezmění.** Léčbu ani podporu podle domácího testu neupravujete.
 
 Odběr hCG na klinice je jediný výsledek, podle kterého se rozhoduje.
@@ -703,13 +703,13 @@ Protože důležitější než jedno číslo je jeho **vývoj v čase**. Dynamik
 Nejde a nemusí. Rada „nemyslete na to“ je nesplnitelná a jen k pocitu neúspěchu přidává další.
 
 **Co s tím tedy?**
-Funguje spíš vymezit tomu prostor než to zakazovat: dát si denně čas, kdy si to připustíte, a zbytek dne se k tomu vracet vědomě míň. Pomáhá mít v těch dnech naplánované konkrétní věci — prázdný den se zaplní přemítáním sám.
+Funguje spíš vymezit tomu prostor než to zakazovat: dát si denně čas, kdy si to připustíte, a zbytek dne se k tomu vracet vědomě míň. Pomáhá mít v těch dnech naplánované konkrétní věci. Prázdný den se zaplní přemítáním sám.
 
 **Můžu za to, když to nevyjde, svým stresem?**
 Ne. Souvislost mezi mírou stresu a výsledkem cyklu se v datech opakovaně nepotvrdila. Uhnízdění je biologický proces, který neřídíte vůlí.
 
 **Mám si připravit obě varianty?**
-Řadě žen pomůže mít dopředu promyšlené, co udělá v obou případech — komu zavolá, jestli si vezme volno. Ne proto, že by to přivolávalo neúspěch, ale proto, že v den výsledku se rozhoduje špatně.
+Řadě žen pomůže mít dopředu promyšlené, co udělá v obou případech. Komu zavolá, jestli si vezme volno. Ne proto, že by to přivolávalo neúspěch, ale proto, že v den výsledku se rozhoduje špatně.
 
 ## Praktické
 

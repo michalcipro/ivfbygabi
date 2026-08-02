@@ -156,7 +156,7 @@ export function searchGlossary(query: string): GlossaryTerm[] {
   )
 }
 
-/** Co přibylo za posledních 7 dní — pohání sekci „Nové tento týden“. */
+/** Co přibylo za posledních 7 dní. Pohání sekci „Nové tento týden“. */
 export function newThisWeek(today: string, limit = 12): ContentItem[] {
   const cutoff = Date.parse(today) - 7 * 86_400_000
   return CATALOG.filter((c) => Date.parse(c.publishedOn) >= cutoff)

@@ -8,8 +8,8 @@ import { actionCard, sectionHead, segmented, statTrio } from './viz'
 /**
  * Léky.
  *
- * Vlastní záložka, protože v léčbě jsou injekce nejčastější denní úkon —
- * schovávat je do rozcestníku by znamenalo klikat na ně každý den třikrát.
+ * Vlastní záložka, protože v léčbě jsou injekce nejčastější denní úkon.
+ * Schovávat je do rozcestníku by znamenalo klikat na ně každý den třikrát.
  * Dělení na „dnešní dávky“ a „protokol“ je převzaté z reference: co udělat
  * teď versus co je nastavené.
  */
@@ -29,7 +29,7 @@ export function isLekySection(s: string): s is LekySection {
  * Historie změn dávkování.
  *
  * Dávka se během stimulace mění běžně a na kontrole zazní otázka „a kdy
- * vám ji zvedli“. Bez zápisu si to nikdo nepamatuje. Aplikace nic nehodnotí —
+ * vám ji zvedli“. Bez zápisu si to nikdo nepamatuje. Aplikace nic nehodnotí,
  * jen ukáže, co se kdy změnilo a proč to klinika řekla.
  */
 function doseHistory(m: MedRow): string {
@@ -63,7 +63,7 @@ function paneDnes(): string {
     return [
       empty(
         'Na dnešek nejsou žádné dávky',
-        'Až si přidáte léky do protokolu, objeví se tady každý den samy — i s odškrtáváním.',
+        'Až si přidáte léky do protokolu, objeví se tady každý den samy. I s odškrtáváním.',
         '<button class="btn btn-primary" data-go="leky/protokol">Nastavit protokol</button>',
         '◍',
       ),

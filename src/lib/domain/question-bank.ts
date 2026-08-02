@@ -5,7 +5,7 @@ import type { PhaseId } from './phases'
  *
  * V ordinaci se zapomíná. Žena, která si tři týdny psala poznámky, sedí
  * dvanáct minut naproti lékaři a odejde s tím, že se nezeptala na to hlavní.
- * Tenhle seznam je proto **hotový k odkliknutí** — ne jako rada, co má
+ * Tenhle seznam je proto **hotový k odkliknutí**: ne jako rada, co má
  * chtít, ale jako připomínka, co se dá říct nahlas.
  *
  * Otázky nikdy nenaznačují správnou odpověď. „Proč jste zvolil tenhle
@@ -35,7 +35,7 @@ export const QUESTION_BANK: QuestionGroup[] = [
       'Kolik cyklů má u nás podle vás smysl zvažovat?',
       'Co všechno hradí pojišťovna a co se doplácí?',
       'Kdo bude náš ošetřující lékař a s kým budu mluvit, když se něco stane?',
-      'Jak se u vás dozvím výsledky — telefonem, v aplikaci, na kontrole?',
+      'Jak se u vás dozvím výsledky. Telefonem, v aplikaci, na kontrole?',
     ],
   },
   {
@@ -116,7 +116,7 @@ export const QUESTION_BANK: QuestionGroup[] = [
       'Jakou hodnotu hCG budete považovat za pozitivní?',
       'Kdy bude druhý odběr a co budete sledovat?',
       'Kdy bude první ultrazvuk a co na něm budete hledat?',
-      'Domácí testy — mám je vůbec dělat?',
+      'Domácí testy. Mám je vůbec dělat?',
     ],
   },
   {
@@ -130,7 +130,7 @@ export const QUESTION_BANK: QuestionGroup[] = [
       'Má smysl další kryotransfer, nebo nový cyklus?',
       'Co byste v dalším cyklu udělal jinak a proč?',
       'Doporučujete nějaká další vyšetření? Co konkrétně by změnila?',
-      'Kdy je podle vás na místě zvážit jiné řešení — dárcovství, nebo skončit?',
+      'Kdy je podle vás na místě zvážit jiné řešení. Dárcovství, nebo skončit?',
     ],
   },
   {
@@ -141,7 +141,7 @@ export const QUESTION_BANK: QuestionGroup[] = [
       'Co se stalo a víme, proč?',
       'Jak dlouho se budou sledovat hodnoty hCG?',
       'Jak dlouhá bude rekonvalescence a na co si mám dát pozor?',
-      'Kdy bych mohla znovu, kdybych chtěla — a kdy je to naopak brzo?',
+      'Kdy bych mohla znovu, kdybych chtěla. A kdy je to naopak brzo?',
       'Má smysl něco vyšetřit navíc, než půjdeme dál?',
       'Můžete mi doporučit psychologickou podporu?',
     ],

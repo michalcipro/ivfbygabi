@@ -66,8 +66,8 @@ export interface LabValue {
 
 export const METRICS = {
   weight: { label: 'Váha', unit: 'kg' },
-  bp_sys: { label: 'Tlak — systolický', unit: 'mmHg' },
-  bp_dia: { label: 'Tlak — diastolický', unit: 'mmHg' },
+  bp_sys: { label: 'Tlak. Systolický', unit: 'mmHg' },
+  bp_dia: { label: 'Tlak. Diastolický', unit: 'mmHg' },
   glucose: { label: 'Glykémie', unit: 'mmol/l' },
   baby_weight: { label: 'Váha miminka', unit: 'g' },
   baby_length: { label: 'Délka miminka', unit: 'cm' },

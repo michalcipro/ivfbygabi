@@ -6,7 +6,7 @@ import type { ContentItem, ContentPack, DailyCard } from '../types'
  * Dvě věci, které se ženě dějí bez ní a přitom o nich rozhoduje celý zbytek
  * cyklu: jakou metodou se její vajíčka oplodní a co se s embryi děje mezi
  * nultým a šestým dnem. Balík vysvětluje obojí bez doporučování konkrétní
- * metody a bez slibů — u metod se slabou důkazní oporou se to říká nahlas.
+ * metody a bez slibů. U metod se slabou důkazní oporou se to říká nahlas.
  */
 
 const REVIEW = 'Odborně garantováno lékařem reprodukční medicíny.'
@@ -18,7 +18,7 @@ const items: ContentItem[] = [
     kind: 'article',
     title: 'Klasické IVF: když si spermie musí cestu k vajíčku najít sama',
     excerpt:
-      'Nejstarší a nejméně invazivní způsob oplození v laboratoři — a stále metoda první volby všude, kde k tomu jsou podmínky.',
+      'Nejstarší a nejméně invazivní způsob oplození v laboratoři. A stále metoda první volby všude, kde k tomu jsou podmínky.',
     minutes: 7,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [0, 1],
@@ -27,7 +27,7 @@ const items: ContentItem[] = [
     hero: 'champagne',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+    sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
     publishedOn: '2026-08-02',
     boost: 0.8,
     body: `## Co se v laboratoři skutečně děje
@@ -51,19 +51,19 @@ Vždy jde o posouzení konkrétní situace. To, co platí pro jeden pár, neplat
 
 ## Co o klasickém IVF víme
 
-Tam, kde je vzorek v pořádku, nebývá klasické IVF podle dostupných dat horší než ICSI — ani v podílu oplozených vajíček, ani ve výsledku cyklu. Zároveň je to metoda, při které se do vajíčka nijak mechanicky nezasahuje.
+Tam, kde je vzorek v pořádku, nebývá klasické IVF podle dostupných dat horší než ICSI, ani v podílu oplozených vajíček, ani ve výsledku cyklu. Zároveň je to metoda, při které se do vajíčka nijak mechanicky nezasahuje.
 
 Bývá také levnější, protože nevyžaduje mikromanipulační techniku ani čas embryologa u každého jednotlivého vajíčka.
 
 ## Kde je jeho slabé místo
 
-Hlavním rizikem je **selhání oplození** — situace, kdy se druhý den ukáže, že se neoplodnilo žádné nebo skoro žádné vajíčko. Stává se to u malé části cyklů a předem se to nedá spolehlivě předpovědět, protože běžný spermiogram o schopnosti spermie proniknout do vajíčka mnoho neřekne.
+Hlavním rizikem je **selhání oplození**: situace, kdy se druhý den ukáže, že se neoplodnilo žádné nebo skoro žádné vajíčko. Stává se to u malé části cyklů a předem se to nedá spolehlivě předpovědět, protože běžný spermiogram o schopnosti spermie proniknout do vajíčka mnoho neřekne.
 
 Právě proto některá pracoviště u nejistých situací volí **rozdělení vajíček**: část se oplodní klasicky a část metodou ICSI. Získá se tím informace do dalšího cyklu, aniž by se riskovalo všechno najednou. Jestli to má ve vaší situaci smysl, je otázka na vaši kliniku.
 
 ## Když oplození selže
 
-Na některých pracovištích se v takové situaci zvažuje takzvané záchranné ICSI — provedení ICSI se zpožděním o několik hodin až den. Výsledky bývají horší než u ICSI provedeného včas, protože vajíčko mezitím stárne. Není to standardní postup na všech pracovištích a rozhodně to není nic, co byste si mohla vyžádat zpětně.
+Na některých pracovištích se v takové situaci zvažuje takzvané záchranné ICSI. Provedení ICSI se zpožděním o několik hodin až den. Výsledky bývají horší než u ICSI provedeného včas, protože vajíčko mezitím stárne. Není to standardní postup na všech pracovištích a rozhodně to není nic, co byste si mohla vyžádat zpětně.
 
 ## Co si nechte vysvětlit
 
@@ -74,16 +74,16 @@ Na některých pracovištích se v takové situaci zvažuje takzvané záchrann�
 
 ## Jedna praktická poznámka k nezralým vajíčkům
 
-U klasického IVF se vajíčka zbavují obalujících buněk až následující den. Znamená to, že v den odběru vám nikdo neřekne, kolik z nich bylo zralých — tuhle informaci obvykle dostanete až spolu s výsledkem oplození. U ICSI je to naopak, protože tam se vajíčka musí zbavit obalu hned.
+U klasického IVF se vajíčka zbavují obalujících buněk až následující den. Znamená to, že v den odběru vám nikdo neřekne, kolik z nich bylo zralých. Tuhle informaci obvykle dostanete až spolu s výsledkem oplození. U ICSI je to naopak, protože tam se vajíčka musí zbavit obalu hned.
 
-> Tento text popisuje obvyklou praxi. O tom, jaká metoda je vhodná ve vaší situaci, rozhoduje váš ošetřující lékař spolu s embryologem — proberte to se svou klinikou.`,
+> Tento text popisuje obvyklou praxi. O tom, jaká metoda je vhodná ve vaší situaci, rozhoduje váš ošetřující lékař spolu s embryologem. Proberte to se svou klinikou.`,
   },
   {
     id: 'opl-icsi',
     kind: 'article',
     title: 'ICSI: jedna spermie, jedna jehla, jedno vajíčko',
     excerpt:
-      'Nejrozšířenější metoda oplození v laboratoři — a zároveň metoda, která se často používá i tam, kde pro ni není důvod.',
+      'Nejrozšířenější metoda oplození v laboratoři. A zároveň metoda, která se často používá i tam, kde pro ni není důvod.',
     minutes: 8,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [0, 1],
@@ -92,12 +92,12 @@ U klasického IVF se vajíčka zbavují obalujících buněk až následující 
     hero: 'sky',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane — přehledy důkazů'],
+    sources: ['ESHRE (doporučené postupy', 'Cochrane) přehledy důkazů'],
     publishedOn: '2026-08-02',
     boost: 0.9,
     body: `## Co ICSI je
 
-ICSI znamená intracytoplazmatickou injekci spermie. Embryolog vybere pod mikroskopem jednu spermii, znehybní ji a velmi tenkou skleněnou jehlou ji vpraví přímo do nitra vajíčka. Krok, který při klasickém IVF spermie musí zvládnout sama — proniknout obaly vajíčka — se tím obejde.
+ICSI znamená intracytoplazmatickou injekci spermie. Embryolog vybere pod mikroskopem jednu spermii, znehybní ji a velmi tenkou skleněnou jehlou ji vpraví přímo do nitra vajíčka. Krok, který při klasickém IVF spermie musí zvládnout sama (proniknout obaly vajíčka) se tím obejde.
 
 ## Jak to vypadá krok za krokem
 
@@ -111,7 +111,7 @@ Celá procedura probíhá na vyhřívaném stolku, aby vajíčko nezažilo teplo
 
 ## Kdy se ICSI zvažuje
 
-- **mužský faktor** — snížený počet, pohyblivost nebo podíl normálních tvarů spermií,
+- **mužský faktor**: snížený počet, pohyblivost nebo podíl normálních tvarů spermií,
 - **spermie získané chirurgicky** z varlete nebo nadvarlete,
 - **předchozí selhání oplození** nebo velmi nízký podíl oplozených vajíček při klasickém IVF,
 - **rozmrazená vajíčka**, u kterých obal po zamrazení a rozmrazení mění vlastnosti,
@@ -126,7 +126,7 @@ Seznam není návod. Indikaci určuje klinika podle celého obrazu, ne podle jed
 
 **Neumí** zlepšit kvalitu vajíčka. Neumí opravit chromozomální výbavu spermie ani vajíčka. Neumí zajistit, že se embryo bude dál dělit.
 
-Tohle je nejčastější nedorozumění celého cyklu. Žena slyší, že „spermii vpravíme přímo dovnitř", a čeká, že se tím oplodní všechna vajíčka. Ani při ICSI se to nestane — část vajíček se neoplodní, protože oplození není jen mechanické vpravení buňky dovnitř, ale složitý biochemický děj, který musí vajíčko samo spustit.
+Tohle je nejčastější nedorozumění celého cyklu. Žena slyší, že „spermii vpravíme přímo dovnitř", a čeká, že se tím oplodní všechna vajíčka. Ani při ICSI se to nestane. Část vajíček se neoplodní, protože oplození není jen mechanické vpravení buňky dovnitř, ale složitý biochemický děj, který musí vajíčko samo spustit.
 
 ## Co víme o tom, jestli ICSI zvyšuje šanci
 
@@ -163,19 +163,19 @@ To neznamená, že je ICSI špatná metoda. Znamená to, že je to nástroj na k
     hero: 'taupe',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane — přehledy důkazů'],
+    sources: ['ESHRE (doporučené postupy', 'Cochrane) přehledy důkazů'],
     publishedOn: '2026-08-02',
     body: `## O co jde
 
-Při běžném ICSI vybírá embryolog spermii při zvětšení kolem dvou set až čtyř set násobku. Při IMSI se používá speciální optika, která umožní zvětšení řádově šest tisíc násobku a víc. Embryolog při něm vidí detaily hlavičky spermie, které jinak nejsou rozeznatelné — hlavně drobné dutinky (vakuoly).
+Při běžném ICSI vybírá embryolog spermii při zvětšení kolem dvou set až čtyř set násobku. Při IMSI se používá speciální optika, která umožní zvětšení řádově šest tisíc násobku a víc. Embryolog při něm vidí detaily hlavičky spermie, které jinak nejsou rozeznatelné, hlavně drobné dutinky (vakuoly).
 
 Předpoklad je, že spermie s hladkou hlavičkou bez vakuol nese méně poškozenou DNA a povede k lepšímu vývoji embrya.
 
 ## Jak se to dělá
 
-Vzorek se prohlíží v reálném čase, embryolog spermie třídí podle tvaru hlavičky a vybranou pak injikuje stejně jako při ICSI. Výběr trvá výrazně déle než u klasického ICSI — u obtížných vzorků i hodiny. Na řadě pracovišť jde o placený nadstandard.
+Vzorek se prohlíží v reálném čase, embryolog spermie třídí podle tvaru hlavičky a vybranou pak injikuje stejně jako při ICSI. Výběr trvá výrazně déle než u klasického ICSI. U obtížných vzorků i hodiny. Na řadě pracovišť jde o placený nadstandard.
 
-## Co o IMSI víme — a co ne
+## Co o IMSI víme: a co ne
 
 Tady je potřeba být přímý. **Dostupné souhrny studií nepotvrdily, že by IMSI proti standardnímu ICSI vedlo k vyššímu podílu narozených dětí.** Výsledky jednotlivých studií si odporují, řada z nich je malá a metodicky slabá, a jistota důkazů je hodnocena jako nízká.
 
@@ -188,7 +188,7 @@ Některá pracoviště ji zvažují u výrazně zhoršené morfologie spermií n
 ## Na co se ptát, když vám ji nabídnou
 
 1. Proč zrovna v naší situaci?
-2. Jaká data k tomu máte — z literatury i z vašeho pracoviště?
+2. Jaká data k tomu máte. Z literatury i z vašeho pracoviště?
 3. Kolik to stojí a co za ty peníze konkrétně dostaneme?
 4. Co se stane, když ji odmítneme?
 
@@ -196,7 +196,7 @@ Poslední otázka je nejdůležitější a je naprosto v pořádku ji položit.
 
 ## Jak o tom přemýšlet
 
-Metody s nejistým přínosem se nabízejí nejčastěji ženám po neúspěších — tedy ve chvíli, kdy je ochota zkusit cokoli největší. Je legitimní si nadstandard zaplatit s vědomím, že důkazy jsou slabé. Není v pořádku, aby vám ho někdo prodal jako jistotu.
+Metody s nejistým přínosem se nabízejí nejčastěji ženám po neúspěších, tedy ve chvíli, kdy je ochota zkusit cokoli největší. Je legitimní si nadstandard zaplatit s vědomím, že důkazy jsou slabé. Není v pořádku, aby vám ho někdo prodal jako jistotu.
 
 > Rozhodnutí o metodě patří vám a vaší klinice společně. Tento text vám má dát podklad k otázkám, ne odpověď místo lékaře.`,
   },
@@ -205,7 +205,7 @@ Metody s nejistým přínosem se nabízejí nejčastěji ženám po neúspěší
     kind: 'article',
     title: 'PICSI: výběr spermie podle vazby na kyselinu hyaluronovou',
     excerpt:
-      'Elegantní nápad postavený na tom, jak spermie funguje v těle — s výsledky, které zatím nepotvrdily vyšší šanci na narození dítěte.',
+      'Elegantní nápad postavený na tom, jak spermie funguje v těle. S výsledky, které zatím nepotvrdily vyšší šanci na narození dítěte.',
     minutes: 6,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [0, 0],
@@ -214,11 +214,11 @@ Metody s nejistým přínosem se nabízejí nejčastěji ženám po neúspěší
     hero: 'sage',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane — přehledy důkazů'],
+    sources: ['ESHRE (doporučené postupy', 'Cochrane) přehledy důkazů'],
     publishedOn: '2026-08-02',
     body: `## Odkud ten nápad pochází
 
-Vajíčko je v těle obklopené buňkami zalitými do kyseliny hyaluronové. Zralá spermie má na povrchu vazebná místa, kterými se na ni umí navázat — nezralá je nemá. V přírodě tedy funguje jakési síto: k vajíčku se dostane spíš spermie, která dozrála celým procesem.
+Vajíčko je v těle obklopené buňkami zalitými do kyseliny hyaluronové. Zralá spermie má na povrchu vazebná místa, kterými se na ni umí navázat. Nezralá je nemá. V přírodě tedy funguje jakési síto: k vajíčku se dostane spíš spermie, která dozrála celým procesem.
 
 PICSI se snaží tohle síto napodobit v laboratoři.
 
@@ -250,14 +250,14 @@ Zvažuje se u zvýšené fragmentace DNA spermií, po opakovaných neúspěšíc
 2. Jak často ji u podobných párů používáte?
 3. Co uděláme, když se žádná spermie neváže?
 
-> Text popisuje metodu obecně a nenahrazuje doporučení vašeho lékaře. Slabá důkazní opora neznamená, že je metoda škodlivá — znamená, že vám nikdo nemůže poctivě slíbit výsledek.`,
+> Text popisuje metodu obecně a nenahrazuje doporučení vašeho lékaře. Slabá důkazní opora neznamená, že je metoda škodlivá. Znamená, že vám nikdo nemůže poctivě slíbit výsledek.`,
   },
   {
     id: 'opl-macs',
     kind: 'article',
     title: 'MACS: magnetické oddělení poškozených spermií',
     excerpt:
-      'Metoda, která z ejakulátu odstraňuje spermie s příznaky zániku buňky — s daty, která zatím nestačí na to, aby se používala běžně.',
+      'Metoda, která z ejakulátu odstraňuje spermie s příznaky zániku buňky. S daty, která zatím nestačí na to, aby se používala běžně.',
     minutes: 6,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [0, 0],
@@ -266,11 +266,11 @@ Zvažuje se u zvýšené fragmentace DNA spermií, po opakovaných neúspěšíc
     hero: 'dusk',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane — přehledy důkazů'],
+    sources: ['ESHRE (doporučené postupy', 'Cochrane) přehledy důkazů'],
     publishedOn: '2026-08-02',
     body: `## Princip
 
-Buňka, která spustila proces vlastního zániku (apoptózu), vystaví na svém povrchu látku zvanou fosfatidylserin. Na tu se dá navázat bílkovina annexin V. A když se annexin V spojí s mikroskopickými magnetickými kuličkami, dá se celý vzorek protáhnout magnetickým polem — poškozené spermie se zachytí, ostatní projdou.
+Buňka, která spustila proces vlastního zániku (apoptózu), vystaví na svém povrchu látku zvanou fosfatidylserin. Na tu se dá navázat bílkovina annexin V. A když se annexin V spojí s mikroskopickými magnetickými kuličkami, dá se celý vzorek protáhnout magnetickým polem. Poškozené spermie se zachytí, ostatní projdou.
 
 Zkratka MACS znamená magneticky aktivovaná separace buněk.
 
@@ -280,7 +280,7 @@ Zkratka MACS znamená magneticky aktivovaná separace buněk.
 
 ## Co o MACS víme
 
-Studií je málo, jsou malé a metodicky nestejnorodé. **Jistota důkazů o vlivu na narození dítěte je nízká** a odborné společnosti řadí MACS mezi postupy, jejichž přínos není prokázaný. Některá pracoviště ji používají, jiná ne — a obojí je v souladu s tím, co dnes víme.
+Studií je málo, jsou malé a metodicky nestejnorodé. **Jistota důkazů o vlivu na narození dítěte je nízká** a odborné společnosti řadí MACS mezi postupy, jejichž přínos není prokázaný. Některá pracoviště ji používají, jiná ne. A obojí je v souladu s tím, co dnes víme.
 
 Je také dobré vědět, že **při separaci se část vzorku ztratí**. U výrazně zhoršených vzorků to může být problém sám o sobě.
 
@@ -293,16 +293,16 @@ Pokud vám MACS nabídnou, ptejte se na dvě věci:
 
 ## Co má obvykle větší váhu
 
-U mužského faktoru bývá v praxi užitečnější probrat vyšetřitelné a ovlivnitelné věci — varikokélu, infekce, léky, dobu pohlavní abstinence před odběrem, kouření, teplotní zátěž, obezitu, celkový zdravotní stav. Tohle nejsou zázračná řešení a ne u každého se něco najde, ale jde o cestu, která má oporu.
+U mužského faktoru bývá v praxi užitečnější probrat vyšetřitelné a ovlivnitelné věci. Varikokélu, infekce, léky, dobu pohlavní abstinence před odběrem, kouření, teplotní zátěž, obezitu, celkový zdravotní stav. Tohle nejsou zázračná řešení a ne u každého se něco najde, ale jde o cestu, která má oporu.
 
-> Metody s neprokázaným přínosem nejsou automaticky nesmysl — jsou to metody ve zkoumání. Rozhodnutí, jestli je ve vaší situaci zkusit, patří vám a vaší klinice.`,
+> Metody s neprokázaným přínosem nejsou automaticky nesmysl. Jsou to metody ve zkoumání. Rozhodnutí, jestli je ve vaší situaci zkusit, patří vám a vaší klinice.`,
   },
   {
     id: 'opl-mikrofluidni-selekce',
     kind: 'article',
     title: 'Mikrofluidní selekce spermií: čip místo odstředivky',
     excerpt:
-      'Nejnovější způsob přípravy vzorku, který se šetrně vyhýbá odstřeďování — a u kterého zatím chybí data o tom, jestli mění výsledek cyklu.',
+      'Nejnovější způsob přípravy vzorku, který se šetrně vyhýbá odstřeďování. A u kterého zatím chybí data o tom, jestli mění výsledek cyklu.',
     minutes: 6,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [0, 0],
@@ -311,11 +311,11 @@ U mužského faktoru bývá v praxi užitečnější probrat vyšetřitelné a o
     hero: 'pearl',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane — přehledy důkazů'],
+    sources: ['ESHRE (doporučené postupy', 'Cochrane) přehledy důkazů'],
     publishedOn: '2026-08-02',
     body: `## Jak se vzorek zpracovává běžně
 
-Klasická příprava spermií pracuje s odstřeďováním — vzorek se roztočí, aby se oddělily pohyblivé spermie od semenné plazmy a buněčné drti. Funguje to a používá se to desítky let. Nevýhodou je, že při odstřeďování vznikají takzvané reaktivní formy kyslíku, které mohou poškodit DNA spermií.
+Klasická příprava spermií pracuje s odstřeďováním. Vzorek se roztočí, aby se oddělily pohyblivé spermie od semenné plazmy a buněčné drti. Funguje to a používá se to desítky let. Nevýhodou je, že při odstřeďování vznikají takzvané reaktivní formy kyslíku, které mohou poškodit DNA spermií.
 
 ## Co dělá mikrofluidní čip
 
@@ -327,7 +327,7 @@ Postup trvá desítky minut a nevyžaduje složitou obsluhu.
 
 Tady je potřeba oddělit dvě věci.
 
-**Co se ukazuje:** vybrané spermie mívají v laboratorních ukazatelích lepší parametry — pohyblivost, celistvost DNA.
+**Co se ukazuje:** vybrané spermie mívají v laboratorních ukazatelích lepší parametry. Pohyblivost, celistvost DNA.
 
 **Co se zatím neukázalo:** že se tím zvýší podíl těhotenství nebo narozených dětí. **Studií je málo, jsou malé a jejich výsledky nejsou jednotné.** Jde o metodu, která se stále ověřuje, ne o prokázaný standard.
 
@@ -343,7 +343,7 @@ Zvažuje se u zvýšené fragmentace DNA spermií, po opakovaně nekvalitním v�
 2. Jaká je vaše zkušenost a co o tom říkají data?
 3. Jak se to promítne do ceny cyklu?
 
-> Nové neznamená lepší a staré neznamená překonané. U metody s omezenými daty je poctivá odpověď „nevíme to jistě" — a tu byste od kliniky měla dostat.`,
+> Nové neznamená lepší a staré neznamená překonané. U metody s omezenými daty je poctivá odpověď „nevíme to jistě". A tu byste od kliniky měla dostat.`,
   },
   {
     id: 'opl-aoa',
@@ -359,17 +359,17 @@ Zvažuje se u zvýšené fragmentace DNA spermií, po opakovaně nekvalitním v�
     hero: 'sand',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane — přehledy důkazů'],
+    sources: ['ESHRE (doporučené postupy', 'Cochrane) přehledy důkazů'],
     publishedOn: '2026-08-02',
     body: `## Co se má při oplození stát
 
-Vpravení spermie do vajíčka samo o sobě nestačí. Spermie do vajíčka vnáší bílkovinu, která v něm spustí sérii vln uvolňovaného vápníku. Právě tyhle vlny vajíčko „probudí" — dokončí své zrání, vytvoří prvojádra a nastartuje dělení.
+Vpravení spermie do vajíčka samo o sobě nestačí. Spermie do vajíčka vnáší bílkovinu, která v něm spustí sérii vln uvolňovaného vápníku. Právě tyhle vlny vajíčko „probudí". Dokončí své zrání, vytvoří prvojádra a nastartuje dělení.
 
 Když signál chybí nebo je slabý, vajíčko se neaktivuje. Vypadá to jako selhání oplození, přestože spermie je uvnitř.
 
 ## Co dělá AOA
 
-Umělá aktivace oocytu (zkratkou AOA) se snaží tuhle vápníkovou vlnu vyvolat uměle — nejčastěji krátkým vystavením vajíčka látce ze skupiny vápníkových ionoforů, obvykle krátce po ICSI. Existují i jiné postupy, ale tenhle je nejrozšířenější.
+Umělá aktivace oocytu (zkratkou AOA) se snaží tuhle vápníkovou vlnu vyvolat uměle. Nejčastěji krátkým vystavením vajíčka látce ze skupiny vápníkových ionoforů, obvykle krátce po ICSI. Existují i jiné postupy, ale tenhle je nejrozšířenější.
 
 ## V jakých situacích bývá zvažována
 
@@ -377,7 +377,7 @@ Jde o velmi úzkou skupinu:
 
 - **úplné nebo téměř úplné selhání oplození po ICSI** v předchozím cyklu, kdy bylo injikováno dostatečné množství zralých vajíček,
 - **podezření na poruchu aktivace vajíčka** ze strany spermie,
-- **globozoospermie** — vzácná vada, kdy spermie nemají akrozom,
+- **globozoospermie**: vzácná vada, kdy spermie nemají akrozom,
 - některé situace se spermiemi získanými chirurgicky, kde už oplození jednou selhalo.
 
 **Nejde o postup, který by se nabízel pro zlepšení výsledků u běžného cyklu.** Pokud vám ho někdo nabídne jako „vylepšení" bez toho, že by u vás oplození selhalo, ptejte se proč.
@@ -395,20 +395,20 @@ Z těchto důvodů se AOA řadí mezi postupy, které se používají cíleně a
 1. Na základě čeho u nás AOA zvažujete?
 2. Jaká je vaše zkušenost s touhle metodou a kolik cyklů takto ročně děláte?
 3. Co víme o bezpečnosti a co nevíme?
-4. Existuje v naší situaci jiná cesta — třeba jiný zdroj spermií nebo změna protokolu?
+4. Existuje v naší situaci jiná cesta, třeba jiný zdroj spermií nebo změna protokolu?
 
 ## Když oplození selhalo a je vám z toho zle
 
-Selhání oplození je jedna z nejkrutějších zpráv celého cyklu, protože přichází brzy a je úplná. Nic jste neudělala špatně a nedá se to vysvětlit tím, jak jste žila. Má smysl trvat na samostatné konzultaci, kde se probere, co se u vás ví, co se dá vyšetřit a jaké jsou možnosti pro příště — ne jen dvě věty do telefonu.
+Selhání oplození je jedna z nejkrutějších zpráv celého cyklu, protože přichází brzy a je úplná. Nic jste neudělala špatně a nedá se to vysvětlit tím, jak jste žila. Má smysl trvat na samostatné konzultaci, kde se probere, co se u vás ví, co se dá vyšetřit a jaké jsou možnosti pro příště, ne jen dvě věty do telefonu.
 
-> Tento text je informativní. O tom, jestli je AOA vhodná ve vaší konkrétní situaci, rozhoduje váš lékař spolu s embryologem — proberte to se svou klinikou.`,
+> Tento text je informativní. O tom, jestli je AOA vhodná ve vaší konkrétní situaci, rozhoduje váš lékař spolu s embryologem. Proberte to se svou klinikou.`,
   },
   {
     id: 'opl-ivf-nebo-icsi',
     kind: 'article',
     title: 'IVF, nebo ICSI: podle čeho se to rozhoduje',
     excerpt:
-      'Rozhodnutí nepadá podle toho, co zní modernější — projdeme, co klinika skutečně váží a na co se máte zeptat.',
+      'Rozhodnutí nepadá podle toho, co zní modernější. Projdeme, co klinika skutečně váží a na co se máte zeptat.',
     minutes: 8,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [0, 1],
@@ -417,14 +417,14 @@ Selhání oplození je jedna z nejkrutějších zpráv celého cyklu, protože p
     hero: 'linen',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane — přehledy důkazů'],
+    sources: ['ESHRE (doporučené postupy', 'Cochrane) přehledy důkazů'],
     publishedOn: '2026-08-02',
     boost: 0.85,
     body: `## Nejde o dva stupně kvality
 
 Ve většině hlav to funguje takhle: klasické IVF je základ a ICSI je „ta lepší verze". Není to tak. Jsou to dva různé nástroje na dvě různé situace.
 
-ICSI řeší jediný problém — že se spermie nedostane do vajíčka. Když tenhle problém nemáte, ICSI vám ho nevyřeší, protože není co řešit.
+ICSI řeší jediný problém. Že se spermie nedostane do vajíčka. Když tenhle problém nemáte, ICSI vám ho nevyřeší, protože není co řešit.
 
 ## Co klinika váží
 
@@ -446,7 +446,7 @@ U spermií získaných chirurgicky z varlete nebo nadvarlete se prakticky vždy 
 
 ### 5. Plán genetického testování
 
-Pokud se plánuje testování embryí, volí se běžně ICSI — brání se tím tomu, aby na obalu vajíčka ulpěly cizí spermie a jejich DNA zkreslila výsledek.
+Pokud se plánuje testování embryí, volí se běžně ICSI. Brání se tím tomu, aby na obalu vajíčka ulpěly cizí spermie a jejich DNA zkreslila výsledek.
 
 ### 6. Rozmrazená vajíčka
 
@@ -454,7 +454,7 @@ Obal vajíčka po zamrazení a rozmrazení mění vlastnosti, proto se u nich ob
 
 ## Rozdělení vajíček (split)
 
-Když je situace nejasná, dá se část vajíček oplodnit klasicky a část metodou ICSI. Získáte informaci pro příště a nesázíte všechno na jednu kartu. Není to vhodné vždycky — má to smysl hlavně tam, kde je vajíček dost.
+Když je situace nejasná, dá se část vajíček oplodnit klasicky a část metodou ICSI. Získáte informaci pro příště a nesázíte všechno na jednu kartu. Není to vhodné vždycky. Má to smysl hlavně tam, kde je vajíček dost.
 
 Zeptejte se, jestli o tom u vás uvažovali. I odpověď „ne, a tady je proč" je dobrá odpověď.
 
@@ -462,7 +462,7 @@ Zeptejte se, jestli o tom u vás uvažovali. I odpověď „ne, a tady je proč"
 
 Rozsáhlá data z posledních let ukazují, že **u párů bez mužského faktoru rutinní použití ICSI nevede k většímu podílu narozených dětí** než klasické IVF. Odborné společnosti proto nedoporučují používat ICSI plošně u všech pacientek.
 
-Přesto se to na řadě pracovišť na světě děje. Důvody bývají praktické — snaha vyhnout se selhání oplození, jednotná organizace laboratoře, někdy i ekonomika. Nemusí to být špatná praxe, ale máte právo vědět, do které kategorie patří vaše doporučení.
+Přesto se to na řadě pracovišť na světě děje. Důvody bývají praktické. Snaha vyhnout se selhání oplození, jednotná organizace laboratoře, někdy i ekonomika. Nemusí to být špatná praxe, ale máte právo vědět, do které kategorie patří vaše doporučení.
 
 ## Otázky, které stojí za to položit před cyklem
 
@@ -474,9 +474,9 @@ Přesto se to na řadě pracovišť na světě děje. Důvody bývají praktick�
 
 ## Jedna věc, kterou si zapamatujte
 
-Metoda oplození se týká jediného kroku — spojení vajíčka a spermie. Nemá vliv na to, kolik vajíček se odebralo, jaká byla jejich kvalita ani jak se embrya budou dělit dál. Většina toho, co v cyklu rozhoduje, se odehrává mimo tenhle jeden krok.
+Metoda oplození se týká jediného kroku. Spojení vajíčka a spermie. Nemá vliv na to, kolik vajíček se odebralo, jaká byla jejich kvalita ani jak se embrya budou dělit dál. Většina toho, co v cyklu rozhoduje, se odehrává mimo tenhle jeden krok.
 
-> Tento text nedoporučuje žádnou metodu. Volba patří vašemu ošetřujícímu lékaři a embryologovi, kteří znají vaši situaci — vy máte právo rozumět tomu, proč se rozhodli tak, jak se rozhodli.`,
+> Tento text nedoporučuje žádnou metodu. Volba patří vašemu ošetřujícímu lékaři a embryologovi, kteří znají vaši situaci. Vy máte právo rozumět tomu, proč se rozhodli tak, jak se rozhodli.`,
   },
 
   // ------------------------------------------------------- den po dni ---
@@ -485,7 +485,7 @@ Metoda oplození se týká jediného kroku — spojení vajíčka a spermie. Nem
     kind: 'article',
     title: 'Den 0: odběr a hodiny, kdy se vajíčko potká se spermií',
     excerpt:
-      'Den, ze kterého se dozvíte jen počet vajíček — a proč to číslo ještě zdaleka není počet embryí.',
+      'Den, ze kterého se dozvíte jen počet vajíček. A proč to číslo ještě zdaleka není počet embryí.',
     minutes: 7,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [0, 0],
@@ -494,12 +494,12 @@ Metoda oplození se týká jediného kroku — spojení vajíčka a spermie. Nem
     hero: 'champagne',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     boost: 0.9,
     body: `## Co se děje během několika minut po odběru
 
-Folikulární tekutina, kterou lékař odsál z vaječníku, putuje okénkem přímo do laboratoře. Embryolog ji pod mikroskopem prohlíží a hledá v ní komplexy kumulárních buněk s vajíčkem uvnitř. Vajíčko je pouhým okem neviditelné — to, co je vidět, je obláček buněk kolem něj.
+Folikulární tekutina, kterou lékař odsál z vaječníku, putuje okénkem přímo do laboratoře. Embryolog ji pod mikroskopem prohlíží a hledá v ní komplexy kumulárních buněk s vajíčkem uvnitř. Vajíčko je pouhým okem neviditelné. To, co je vidět, je obláček buněk kolem něj.
 
 Nalezená vajíčka se přenesou do kultivačního média a uloží do inkubátoru se stabilní teplotou, vlhkostí a složením plynů.
 
@@ -522,7 +522,7 @@ Nezralá vajíčka nejsou vada. Ve folikulech nikdy nedozrávají všechna stejn
 
 ## Oplození
 
-Podle metody se buď spermie přidají k vajíčkům do společné kapky, nebo se jednotlivě injikují. Pak se všechno vrátí do inkubátoru a laboratoř do rána nedělá nic — otevírání inkubátoru mění podmínky, a tak se dělá co nejméně. Některá pracoviště používají inkubátory s vestavěnou kamerou, které embryo snímají průběžně bez vyndávání.
+Podle metody se buď spermie přidají k vajíčkům do společné kapky, nebo se jednotlivě injikují. Pak se všechno vrátí do inkubátoru a laboratoř do rána nedělá nic. Otevírání inkubátoru mění podmínky, a tak se dělá co nejméně. Některá pracoviště používají inkubátory s vestavěnou kamerou, které embryo snímají průběžně bez vyndávání.
 
 ## Co obvykle uslyšíte dnes
 
@@ -534,7 +534,7 @@ Zapište si to přesně tak, jak to zaznělo. Po narkóze a v napětí se čísl
 
 **Znamená:** kolik vajíček máte k dispozici pro tenhle cyklus.
 
-**Neznamená:** kolik budete mít embryí. Mezi vajíčkem a embryem je několik kroků, ve kterých čísla klesají — a klesají u všech.
+**Neznamená:** kolik budete mít embryí. Mezi vajíčkem a embryem je několik kroků, ve kterých čísla klesají. A klesají u všech.
 
 Vysoký počet vajíček není zárukou dobrého výsledku a nízký počet neznamená, že cyklus je ztracený. Ženy s třemi vajíčky otěhotní a ženy s dvaceti ne. To není útěcha ani varování, je to prostě popis reality.
 
@@ -547,7 +547,7 @@ Po odběru bývá nepříjemné napětí v podbřišku, slabé špinění a úna
 - **silná bolest břicha**, která se zhoršuje,
 - **krvácení silnější než menstruace** nebo se sraženinami,
 - **horečka nad 38 °C**,
-- **rychle rostoucí obvod břicha, dušnost, výrazně snížené močení, prudký nárůst hmotnosti** — možné příznaky ovariálního hyperstimulačního syndromu.
+- **rychle rostoucí obvod břicha, dušnost, výrazně snížené močení, prudký nárůst hmotnosti**: možné příznaky ovariálního hyperstimulačního syndromu.
 
 Při dušnosti v klidu, bolesti na hrudi, mdlobě nebo prudké jednostranné bolesti břicha **vyhledejte akutní lékařskou pomoc**.
 
@@ -558,7 +558,7 @@ Při dušnosti v klidu, bolesti na hrudi, mdlobě nebo prudké jednostranné bol
     kind: 'article',
     title: 'Den 1: dvě prvojádra a první telefonát, který bolí',
     excerpt:
-      'Ráno po odběru se ukáže, kolik vajíček se oplodnilo — a proč to číslo skoro nikdy není takové, jaké jste čekala.',
+      'Ráno po odběru se ukáže, kolik vajíček se oplodnilo. A proč to číslo skoro nikdy není takové, jaké jste čekala.',
     minutes: 8,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [1, 1],
@@ -567,29 +567,29 @@ Při dušnosti v klidu, bolesti na hrudi, mdlobě nebo prudké jednostranné bol
     hero: 'sky',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     boost: 0.95,
     body: `## Co embryolog ráno kontroluje
 
-Zhruba šestnáct až osmnáct hodin po oplození se vajíčka prohlédnou pod mikroskopem. Hledá se jediná věc: **prvojádra** (odborně pronuklea). Jsou to dva světlé kroužky v cytoplazmě — jeden nese genetickou informaci z vajíčka, druhý ze spermie. Ještě nesplynuly, jen se k sobě přiblížily.
+Zhruba šestnáct až osmnáct hodin po oplození se vajíčka prohlédnou pod mikroskopem. Hledá se jediná věc: **prvojádra** (odborně pronuklea). Jsou to dva světlé kroužky v cytoplazmě. Jeden nese genetickou informaci z vajíčka, druhý ze spermie. Ještě nesplynuly, jen se k sobě přiblížily.
 
 Tenhle obrázek je jediný spolehlivý důkaz, že oplození proběhlo tak, jak má.
 
 ## Co znamenají zkratky ve zprávě
 
-- **2PN** — dvě prvojádra. Normální oplození. Tohle je to, co chcete slyšet.
-- **1PN** — jedno prvojádro. Nejednoznačný nález.
-- **3PN a víc** — víc než dvě prvojádra, obvykle proto, že do vajíčka pronikly dvě spermie nebo vajíčko nevyloučilo své druhé pólové tělísko. Takové embryo má nadbytečnou sadu chromozomů.
-- **0PN** — žádná prvojádra, oplození se neprokázalo.
+- **2PN**: dvě prvojádra. Normální oplození. Tohle je to, co chcete slyšet.
+- **1PN**: jedno prvojádro. Nejednoznačný nález.
+- **3PN a víc**: víc než dvě prvojádra, obvykle proto, že do vajíčka pronikly dvě spermie nebo vajíčko nevyloučilo své druhé pólové tělísko. Takové embryo má nadbytečnou sadu chromozomů.
+- **0PN**: žádná prvojádra, oplození se neprokázalo.
 
-Embrya s jiným počtem prvojader než dvěma se na většině pracovišť dál nepoužívají k transferu, protože nesou nesprávný počet chromozomů. Není to rozhodnutí proti vám — je to standardní postup.
+Embrya s jiným počtem prvojader než dvěma se na většině pracovišť dál nepoužívají k transferu, protože nesou nesprávný počet chromozomů. Není to rozhodnutí proti vám. Je to standardní postup.
 
 ## Kolik vajíček se obvykle oplodní
 
 Neoplodní se všechna. Ani při ICSI, kde je spermie doslova uvnitř. Podíl oplozených vajíček se liší cyklus od cyklu, ženu od ženy, a ovlivňuje ho kvalita vajíček i spermií, zralost vajíček a řada věcí, které se změřit nedají.
 
-Průměry, které kolují po internetu, vám o vašem cyklu neřeknou nic. Vaše klinika vám může říct, co je u ní obvyklé — a i to je jen orientace.
+Průměry, které kolují po internetu, vám o vašem cyklu neřeknou nic. Vaše klinika vám může říct, co je u ní obvyklé. A i to je jen orientace.
 
 ## Pozor na jmenovatele
 
@@ -601,7 +601,7 @@ Když vám řeknou „oplodnilo se pět z osmi", zeptejte se, z čeho se počít
 
 **Neznamená:** kolik budete mít embryí pátý den. Mezi dneškem a pátým dnem se čísla vždycky sníží. Krásné číslo dnes není příslib a skromné číslo dnes není rozsudek.
 
-Existují cykly, kde z osmi oplozených nedojde dál nic, a cykly, kde ze dvou vzniknou dvě blastocysty. Tohle není o tom, kolik toho máte, ale co s tím půjde dál — a to dnes nikdo neví.
+Existují cykly, kde z osmi oplozených nedojde dál nic, a cykly, kde ze dvou vzniknou dvě blastocysty. Tohle není o tom, kolik toho máte, ale co s tím půjde dál. A to dnes nikdo neví.
 
 ## Když se neoplodnilo nic
 
@@ -636,7 +636,7 @@ Při dušnosti v klidu, bolesti na hrudi nebo mdlobě **vyhledejte akutní léka
     kind: 'article',
     title: 'Den 2: dvě až čtyři buňky a den, kdy většinou nikdo nevolá',
     excerpt:
-      'Embryo se poprvé dělí a jede přitom výhradně na zásobách z vajíčka — proto se z druhého dne dá vyčíst tak málo.',
+      'Embryo se poprvé dělí a jede přitom výhradně na zásobách z vajíčka, proto se z druhého dne dá vyčíst tak málo.',
     minutes: 6,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [2, 2],
@@ -645,20 +645,20 @@ Při dušnosti v klidu, bolesti na hrudi nebo mdlobě **vyhledejte akutní léka
     hero: 'linen',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     body: `## Co se v embryu děje
 
-Prvojádra splynula a embryo se začalo dělit. Druhý den po odběru má obvykle **dvě až čtyři buňky** (embryologové jim říkají blastomery). Zajímavé je, že se přitom nezvětšuje — původní obsah vajíčka se jen rozděluje na menší části uvnitř téhož obalu.
+Prvojádra splynula a embryo se začalo dělit. Druhý den po odběru má obvykle **dvě až čtyři buňky** (embryologové jim říkají blastomery). Zajímavé je, že se přitom nezvětšuje. Původní obsah vajíčka se jen rozděluje na menší části uvnitř téhož obalu.
 
 Embryo v téhle fázi ještě nepracuje podle vlastní genetické informace. Jede na bílkovinách a molekulách, které mu do vínku dalo vajíčko během svého zrání ve folikulu. To je jeden z důvodů, proč se v reprodukční medicíně tolik mluví o kvalitě vajíčka.
 
 ## Co embryolog hodnotí
 
 - **počet buněk** vzhledem k času,
-- **stejnoměrnost buněk** — jestli jsou zhruba stejně velké,
-- **fragmentaci** — podíl drobných úlomků buněčné hmoty mezi buňkami; čím méně, tím lépe,
-- **vícejadernost** — jestli některá buňka nemá víc jader.
+- **stejnoměrnost buněk**: jestli jsou zhruba stejně velké,
+- **fragmentaci**: podíl drobných úlomků buněčné hmoty mezi buňkami; čím méně, tím lépe,
+- **vícejadernost**: jestli některá buňka nemá víc jader.
 
 Tohle jsou popisné znaky vzhledu. Žádný z nich neříká nic o chromozomech.
 
@@ -678,7 +678,7 @@ Většina pracovišť druhý den nehlásí nic, a je to logické: informace z dr
 
 Část oplozených vajíček se přestane dělit už teď. Nejčastější příčinou je chromozomální odchylka, která vznikla při zrání vajíčka nebo při prvních děleních. Není to důsledek toho, co jste dělala nebo nedělala, a laboratoř to nezpůsobila ani nemohla odvrátit.
 
-Čísla, která v následujících dnech klesají, jsou očekávaná součást procesu. Kdyby laboratoř kultivovala všechno až do konce, výsledek by to nezměnilo — jen by se to dozvěděla později.
+Čísla, která v následujících dnech klesají, jsou očekávaná součást procesu. Kdyby laboratoř kultivovala všechno až do konce, výsledek by to nezměnilo, jen by se to dozvěděla později.
 
 ## Co s tím dělá čekání
 
@@ -686,7 +686,7 @@ Druhý den bývá první opravdu prázdný den cyklu. Odběr je za vámi, telefo
 
 Co lidem obvykle pomáhá:
 
-1. Naplánovat si na den jednu konkrétní dokončitelnou věc. Ne úklid bytu — jednu zásuvku.
+1. Naplánovat si na den jednu konkrétní dokončitelnou věc. Ne úklid bytu. Jednu zásuvku.
 2. Vyhradit si na hledání informací dvacet minut a zbytek dne to odkládat.
 3. Jít na chvíli ven. Chůze pomáhá i tělu po stimulaci.
 4. Říct jednomu člověku, v jaké fázi jste. Nemusí nic dělat, stačí, že to ví.
@@ -705,7 +705,7 @@ Co lidem obvykle pomáhá:
     kind: 'article',
     title: 'Den 3: šest až osm buněk a chvíle, kdy embryo přebírá řízení',
     excerpt:
-      'Nejdramatičtější den kultivace, o kterém se nejmíň mluví — a den, kdy se na řadě klinik transferuje.',
+      'Nejdramatičtější den kultivace, o kterém se nejmíň mluví. A den, kdy se na řadě klinik transferuje.',
     minutes: 8,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [3, 3],
@@ -714,7 +714,7 @@ Co lidem obvykle pomáhá:
     hero: 'sage',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     boost: 0.85,
     body: `## Co se děje
@@ -735,12 +735,12 @@ To je celý důvod, proč mezi třetím a pátým dnem klesají čísla nejvíc.
 
 Obvykle kombinaci:
 
-- **počet buněk** — kolem osmi bývá popisováno jako odpovídající času, ale ani šest, ani deset nejsou automaticky problém,
+- **počet buněk**: kolem osmi bývá popisováno jako odpovídající času, ale ani šest, ani deset nejsou automaticky problém,
 - **stejnoměrnost buněk**,
 - **podíl fragmentace** v procentech,
 - někdy **vícejadernost** nebo poznámku o rychlosti dělení.
 
-Z toho vzniká hodnocení, kterému se říká cleavage grading. Podrobně je rozebrané v samostatném článku o hodnocení embryí — pro dnešek stačí vědět, že popisuje **vzhled**, ne osud.
+Z toho vzniká hodnocení, kterému se říká cleavage grading. Podrobně je rozebrané v samostatném článku o hodnocení embryí. Pro dnešek stačí vědět, že popisuje **vzhled**, ne osud.
 
 ## Třetí den jako den transferu
 
@@ -750,7 +750,7 @@ Transfer třetí den je běžná a plnohodnotná praxe, ne nouzové řešení. Z
 - pracoviště v dané situaci upřednostňuje děložní prostředí před inkubátorem,
 - to odpovídá zvyklostem kliniky nebo vaší anamnéze.
 
-Ani jedna z těch situací neznamená, že máte horší embrya. Znamená to, že se rozhodovalo podle konkrétní situace. **Proberte se svou klinikou, podle čeho se u vás rozhoduje mezi třetím a pátým dnem** — je to jedna z nejužitečnějších otázek celého cyklu.
+Ani jedna z těch situací neznamená, že máte horší embrya. Znamená to, že se rozhodovalo podle konkrétní situace. **Proberte se svou klinikou, podle čeho se u vás rozhoduje mezi třetím a pátým dnem**: je to jedna z nejužitečnějších otázek celého cyklu.
 
 Třetí den se také na některých pracovištích embrya zamrazují. I to je běžná praxe.
 
@@ -784,7 +784,7 @@ Praktické věci, které pomáhají:
     kind: 'article',
     title: 'Den 4: morula, den bez čísel a nejtišší den cyklu',
     excerpt:
-      'Buňky se dnes přestanou dát spočítat — a právě proto z většiny laboratoří čtvrtý den nikdo nevolá.',
+      'Buňky se dnes přestanou dát spočítat. A právě proto z většiny laboratoří čtvrtý den nikdo nevolá.',
     minutes: 6,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [4, 4],
@@ -793,11 +793,11 @@ Praktické věci, které pomáhají:
     hero: 'taupe',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     body: `## Co se v embryu děje
 
-Čtvrtý den se buňky embrya k sobě těsně přimknou. Vytvoří mezi sebou pevná spojení, jejich hranice se rozostří a z hromádky oddělených buněk vznikne kompaktní kulička. Tomuhle ději se říká **kompaktizace** a výsledku **morula** — podle latinského názvu pro moruši, kterou to připomíná.
+Čtvrtý den se buňky embrya k sobě těsně přimknou. Vytvoří mezi sebou pevná spojení, jejich hranice se rozostří a z hromádky oddělených buněk vznikne kompaktní kulička. Tomuhle ději se říká **kompaktizace** a výsledku **morula**: podle latinského názvu pro moruši, kterou to připomíná.
 
 Vypadá to jako krok zpět, protože embryo najednou vypadá jednodušeji než včera. Ve skutečnosti je to nezbytná příprava na další krok: buňky se musí spojit, aby mezi nimi mohla vzniknout dutina a aby se poprvé rozdělily na dvě různé skupiny.
 
@@ -809,15 +809,15 @@ Protože se z něj špatně hodnotí. Buňky se nedají spočítat, fragmentace 
 
 ## Co embryolog přesto sleduje
 
-Pokud pracoviště používá inkubátor s kamerou, má obraz průběžně a může si všímat, jestli kompaktizace probíhá a v jakém čase. Ale ani tahle informace se obvykle nesděluje samostatně — počká se do pátého dne, kdy bude jasnější.
+Pokud pracoviště používá inkubátor s kamerou, má obraz průběžně a může si všímat, jestli kompaktizace probíhá a v jakém čase. Ale ani tahle informace se obvykle nesděluje samostatně. Počká se do pátého dne, kdy bude jasnější.
 
 ## Transfer čtvrtý den
 
-Existuje a dělá se, i když méně často než třetí a pátý den. V některých situacích je to pro pracoviště nejvhodnější varianta a v žádném případě to není nouzové řešení. Pokud vám ho navrhnou, zeptejte se proč — odpověď vám o vašem cyklu řekne víc než jakékoli číslo.
+Existuje a dělá se, i když méně často než třetí a pátý den. V některých situacích je to pro pracoviště nejvhodnější varianta a v žádném případě to není nouzové řešení. Pokud vám ho navrhnou, zeptejte se proč. Odpověď vám o vašem cyklu řekne víc než jakékoli číslo.
 
 ## Proč se čísla mezi třetím a pátým dnem snižují
 
-Právě mezi třetím a pátým dnem odpadá největší část embryí. Většinou proto, že po přepnutí na vlastní genetickou informaci nedokážou pokračovat — nejčastěji kvůli chromozomální odchylce, která vznikla dávno před tím, než jste do cyklu vstoupila.
+Právě mezi třetím a pátým dnem odpadá největší část embryí. Většinou proto, že po přepnutí na vlastní genetickou informaci nedokážou pokračovat. Nejčastěji kvůli chromozomální odchylce, která vznikla dávno před tím, než jste do cyklu vstoupila.
 
 Kdyby se totéž dělo v těle, nevěděla byste o tom vůbec. V laboratoři to vidíte v číslech, a to je na kultivaci nejtěžší: dostáváte informace o dějích, které by se za normálních okolností odehrály v tichosti.
 
@@ -830,7 +830,7 @@ Co bývá k užitku:
 1. Naplánujte den tak, aby v něm nebyl prostor čekat u telefonu. Ven, mezi lidi, do práce, na procházku.
 2. Nepiště si dopředu scénáře pro zítřek. Ani ten dobrý, ani ten špatný.
 3. Pokud vás mlčení kliniky ničí, zavolejte a zeptejte se, kdy se ozvou. Není to obtěžování.
-4. Domluvte si s partnerem, jak zítřejší zprávu chcete přijmout — kdo bude u telefonu, komu ji řeknete a komu ne.
+4. Domluvte si s partnerem, jak zítřejší zprávu chcete přijmout. Kdo bude u telefonu, komu ji řeknete a komu ne.
 
 ## Kdy volat kliniku
 
@@ -854,15 +854,15 @@ Co bývá k užitku:
     hero: 'dawn',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     boost: 0.9,
     body: `## Co se stalo
 
-Uvnitř kompaktní moruly se začala hromadit tekutina a vytvořila dutinu. Tím vznikla **blastocysta** — první stadium, kdy se buňky embrya rozdělily na dvě různé skupiny s různým úkolem:
+Uvnitř kompaktní moruly se začala hromadit tekutina a vytvořila dutinu. Tím vznikla **blastocysta**: první stadium, kdy se buňky embrya rozdělily na dvě různé skupiny s různým úkolem:
 
-- **vnitřní buněčná masa** — shluk buněk u jedné stěny, ze kterého se vyvine plod,
-- **trofektoderm** — tenká vrstva buněk po obvodu, ze které vznikne placenta a obaly.
+- **vnitřní buněčná masa**: shluk buněk u jedné stěny, ze kterého se vyvine plod,
+- **trofektoderm**: tenká vrstva buněk po obvodu, ze které vznikne placenta a obaly.
 
 Je to poprvé, kdy se dá říct „tady bude dítě a tady bude placenta". Do téhle chvíle byly všechny buňky rovnocenné.
 
@@ -870,25 +870,25 @@ Je to poprvé, kdy se dá říct „tady bude dítě a tady bude placenta". Do t
 
 Nejčastěji hodnocení složené z čísla a dvou písmen, například 4AB:
 
-- **číslo 1 až 6** popisuje, jak je blastocysta rozepnutá — od malé dutiny až po embryo, které se začíná uvolňovat ze svého obalu,
+- **číslo 1 až 6** popisuje, jak je blastocysta rozepnutá. Od malé dutiny až po embryo, které se začíná uvolňovat ze svého obalu,
 - **první písmeno** hodnotí vnitřní buněčnou masu,
 - **druhé písmeno** hodnotí trofektoderm.
 
 Podrobněji je to rozebrané v samostatném článku o hodnocení embryí. Zásadní věta zní: **grading popisuje vzhled v jednom okamžiku, není to předpověď.**
 
-Někdy uslyšíte i to, že embryo pátý den ještě blastocysta není — je „časná blastocysta" nebo pořád morula. To neznamená konec. Znamená to, že se počká do šestého dne.
+Někdy uslyšíte i to, že embryo pátý den ještě blastocysta není. Je „časná blastocysta" nebo pořád morula. To neznamená konec. Znamená to, že se počká do šestého dne.
 
 ## Co se dnes obvykle rozhoduje
 
-- **transfer** — přenos jednoho embrya do dělohy,
-- **vitrifikace** — zamrazení embryí, která dosáhla potřebného stadia, k použití v dalších transferech,
+- **transfer**: přenos jednoho embrya do dělohy,
+- **vitrifikace**: zamrazení embryí, která dosáhla potřebného stadia, k použití v dalších transferech,
 - **odběr buněk pro genetické testování**, pokud je v plánu; odebírá se několik buněk z trofektodermu a embryo se zamrazí do doby, než přijde výsledek.
 
 Rozhodnutí o tom, které embryo se přenáší jako první, dělá klinika podle vzhledu, rychlosti vývoje a vaší situace. Je legitimní se zeptat: **proč zrovna tohle?**
 
 ## Jeden cyklus, víc transferů
 
-Tohle se často chápe špatně. Jeden odběr vajíček může vést k víc než jednomu transferu — k čerstvému přenosu a k dalším kryotransferům z embryí zamrazených ze stejné zásoby. Cyklus není rovná se jeden transfer.
+Tohle se často chápe špatně. Jeden odběr vajíček může vést k víc než jednomu transferu. K čerstvému přenosu a k dalším kryotransferům z embryí zamrazených ze stejné zásoby. Cyklus není rovná se jeden transfer.
 
 Proto je otázka „kolik nám zůstává zamrazených embryí" jedna z nejdůležitějších, které dnes položíte. Odpověď mění, jak celý cyklus vnímáte.
 
@@ -900,13 +900,13 @@ Proto je otázka „kolik nám zůstává zamrazených embryí" jedna z nejdůle
 
 ## Proč se čísla tak snížila
 
-Cesta od vajíček k blastocystám znamená pokles v každém kroku. Většinu z toho způsobí chromozomální odchylky, které vznikly při zrání vajíčka. Podíl embryí, která dojdou do blastocysty, se liší podle věku, ovariální rezervy a řady dalších okolností — a mezi cykly téže ženy se také mění.
+Cesta od vajíček k blastocystám znamená pokles v každém kroku. Většinu z toho způsobí chromozomální odchylky, které vznikly při zrání vajíčka. Podíl embryí, která dojdou do blastocysty, se liší podle věku, ovariální rezervy a řady dalších okolností. A mezi cykly téže ženy se také mění.
 
 Není to výsledek toho, jak jste žila během kultivace.
 
 ## Co s tím dělá čekání
 
-Pátý den bývá emočně nejnabitější den celé kultivace. Přijde konkrétní číslo, konkrétní písmena a konkrétní plán — nebo velmi těžká zpráva.
+Pátý den bývá emočně nejnabitější den celé kultivace. Přijde konkrétní číslo, konkrétní písmena a konkrétní plán, nebo velmi těžká zpráva.
 
 - Zapište si hodnocení přesně, ale nedělejte z něj mantru. Ta samá dvě písmena vám během čekání poslouží jako důvod k naději i k zoufalství.
 - Nesrovnávejte je s cizími čísly z diskusí. Stupnice ani praxe hodnocení nejsou mezi klinikami jednotné.
@@ -926,7 +926,7 @@ Pátý den bývá emočně nejnabitější den celé kultivace. Přijde konkrét
     kind: 'article',
     title: 'Den 6: pomalejší blastocysty nejsou horší blastocysty',
     excerpt:
-      'Část embryí dojde do cíle až šestý den — a z těchhle embryí se běžně rodí děti.',
+      'Část embryí dojde do cíle až šestý den. A z těchhle embryí se běžně rodí děti.',
     minutes: 7,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [6, 6],
@@ -935,14 +935,14 @@ Pátý den bývá emočně nejnabitější den celé kultivace. Přijde konkrét
     hero: 'blush',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     boost: 0.8,
     body: `## Co se šestý den děje
 
 Embrya, která pátý den ještě nebyla blastocystami, dostávají čas dohnat to. Část z nich se šestý den rozepne a stane se plnohodnotnou blastocystou. Na některých pracovištích se kultivuje ještě sedmý den.
 
-Rozdíl mezi pátým a šestým dnem není v tom, jaké embryo je, ale v tom, kdy dorazilo. Vývoj neběží u všech stejně rychle — ani ve zkumavce, ani v těle.
+Rozdíl mezi pátým a šestým dnem není v tom, jaké embryo je, ale v tom, kdy dorazilo. Vývoj neběží u všech stejně rychle, ani ve zkumavce, ani v těle.
 
 ## Co se se šestidenními blastocystami dělá
 
@@ -982,7 +982,7 @@ Co má smysl:
 
 ## Co s tím dělá čekání
 
-Šestý den má zvláštní podobu úlevy — ať dopadne jakkoli, aspoň už víte. Nejistota končí a začíná něco jiného: buď příprava na transfer, nebo přemýšlení, co dál.
+Šestý den má zvláštní podobu úlevy. Ať dopadne jakkoli, aspoň už víte. Nejistota končí a začíná něco jiného: buď příprava na transfer, nebo přemýšlení, co dál.
 
 Ať už dnešek přinesl cokoli, zapište si to. Za rok budete chtít vědět, co přesně padlo a jak jste se cítila.
 
@@ -1001,7 +1001,7 @@ Ať už dnešek přinesl cokoli, zapište si to. Za rok budete chtít vědět, c
     kind: 'article',
     title: 'Jak se čte hodnocení embrya: 8B, 4AA a co to o vašem embryu opravdu říká',
     excerpt:
-      'Rozebereme obě stupnice, které v Česku uslyšíte — a hlavně to, proč je grading popis vzhledu, ne předpověď.',
+      'Rozebereme obě stupnice, které v Česku uslyšíte. A hlavně to, proč je grading popis vzhledu, ne předpověď.',
     minutes: 10,
     phases: ['fertilization', 'embryo_culture'],
     dayRange: [3, 6],
@@ -1010,7 +1010,7 @@ Ať už dnešek přinesl cokoli, zapište si to. Za rok budete chtít vědět, c
     hero: 'pearl',
     author: 'Gabi',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+    sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
     publishedOn: '2026-08-02',
     boost: 0.9,
     body: `## K čemu hodnocení slouží
@@ -1029,9 +1029,9 @@ Ve stadiu rýhování se popisují tři věci:
 2. **Stejnoměrnost buněk.** Buňky zhruba stejné velikosti bývají popisovány jako příznivější než výrazně nestejné.
 3. **Fragmentace.** Podíl drobných úlomků buněčné hmoty mezi buňkami, obvykle v procentech nebo ve stupních. Čím méně, tím lépe.
 
-K tomu se někdy přidá poznámka o **vícejadernosti** — jestli některá buňka nemá víc jader.
+K tomu se někdy přidá poznámka o **vícejadernosti**: jestli některá buňka nemá víc jader.
 
-Z těchhle znaků vzniká celkové hodnocení. A tady pozor: **stupnice nejsou v Česku ani ve světě jednotné.** Jedno pracoviště používá stupně I až IV, jiné písmena A až D, další čísla 1 až 4 — a někde znamená jednička nejlepší, jinde nejhorší. Zápis „8B" tedy znamená něco jiného na různých pracovištích.
+Z těchhle znaků vzniká celkové hodnocení. A tady pozor: **stupnice nejsou v Česku ani ve světě jednotné.** Jedno pracoviště používá stupně I až IV, jiné písmena A až D, další čísla 1 až 4. A někde znamená jednička nejlepší, jinde nejhorší. Zápis „8B" tedy znamená něco jiného na různých pracovištích.
 
 **Z toho plyne jediná praktická rada: nesrovnávejte své hodnocení s cizím.** Diskuse na fórech, kde si ženy porovnávají písmenka, jsou zdrojem zbytečného utrpení, protože porovnávají neporovnatelné.
 
@@ -1041,12 +1041,12 @@ U blastocyst se používá zápis typu **4AA**, **3BB**, **5AB**. Skládá se ze
 
 ### Číslo 1 až 6: jak je blastocysta rozepnutá
 
-- **1** — dutina zabírá méně než polovinu objemu,
-- **2** — dutina zabírá zhruba polovinu a víc,
-- **3** — dutina vyplňuje embryo celé,
-- **4** — blastocysta je rozepnutá, obal se ztenčil,
-- **5** — embryo se začíná uvolňovat ze svého obalu,
-- **6** — embryo je z obalu venku.
+- **1**: dutina zabírá méně než polovinu objemu,
+- **2**: dutina zabírá zhruba polovinu a víc,
+- **3**: dutina vyplňuje embryo celé,
+- **4**: blastocysta je rozepnutá, obal se ztenčil,
+- **5**: embryo se začíná uvolňovat ze svého obalu,
+- **6**: embryo je z obalu venku.
 
 Vyšší číslo neznamená lepší embryo. Znamená pokročilejší fázi rozepnutí v okamžiku pohledu. Embryo hodnocené ráno a totéž embryo hodnocené odpoledne mohou mít jiné číslo.
 
@@ -1054,28 +1054,28 @@ Vyšší číslo neznamená lepší embryo. Znamená pokročilejší fázi rozep
 
 Skupina buněk, ze které se vyvine plod.
 
-- **A** — hodně buněk, těsně u sebe,
-- **B** — méně buněk, volněji uspořádaných,
-- **C** — velmi málo buněk.
+- **A**: hodně buněk, těsně u sebe,
+- **B**: méně buněk, volněji uspořádaných,
+- **C**: velmi málo buněk.
 
 ### Druhé písmeno: trofektoderm
 
 Vrstva buněk, ze které vznikne placenta a obaly.
 
-- **A** — mnoho buněk tvořících souvislou vrstvu,
-- **B** — méně buněk, volnější vrstva,
-- **C** — málo buněk, nesouvislá vrstva.
+- **A**: mnoho buněk tvořících souvislou vrstvu,
+- **B**: méně buněk, volnější vrstva,
+- **C**: málo buněk, nesouvislá vrstva.
 
 ## Co grading umí
 
-Ve velkých souborech embryí platí, že lépe hodnocené blastocysty vedou k otěhotnění častěji než hůře hodnocené. Proto se používá — dává laboratoři rozumné pořadí, ve kterém embrya přenášet.
+Ve velkých souborech embryí platí, že lépe hodnocené blastocysty vedou k otěhotnění častěji než hůře hodnocené. Proto se používá. Dává laboratoři rozumné pořadí, ve kterém embrya přenášet.
 
 ## Co grading neumí
 
 Tohle je ta část, kterou vám nikdo nestihne vysvětlit v telefonu:
 
 - **Nevidí chromozomy.** Embryo hodnocené 4AA může mít chromozomální odchylku a embryo hodnocené 3BB nemusí. Vzhled a genetika spolu souvisí jen volně.
-- **Neplatí pro jedno embryo.** Statistika popisuje skupiny. Vaše embryo je jedno a buď se uhnízdí, nebo ne — žádné procento se na něm neprojeví „částečně".
+- **Neplatí pro jedno embryo.** Statistika popisuje skupiny. Vaše embryo je jedno a buď se uhnízdí, nebo ne. Žádné procento se na něm neprojeví „částečně".
 - **Je subjektivní.** Dva embryologové mohou totéž embryo ohodnotit mírně jinak. Je to lidský odhad podle obrazu z mikroskopu.
 - **Je to jeden snímek v čase.** Embryo se vyvíjí dál a hodnocení platí k okamžiku, kdy se na něj embryolog díval.
 - **Neříká nic o dítěti.** Neexistuje souvislost mezi písmeny v hodnocení a tím, jaké to dítě bude. Z embryí s hodnocením B a C se rodí naprosto běžné děti.
@@ -1089,13 +1089,13 @@ Tohle je ta část, kterou vám nikdo nestihne vysvětlit v telefonu:
 
 ## Ještě jedna věc, která se plete
 
-Z jednoho odběru vajíček může vzejít víc transferů — čerstvý přenos a další kryotransfery z embryí zamrazených ze stejné zásoby. Hodnocení jednotlivých embryí proto nečtěte jako verdikt nad celým cyklem. Čtěte ho jako pořadník.
+Z jednoho odběru vajíček může vzejít víc transferů. Čerstvý přenos a další kryotransfery z embryí zamrazených ze stejné zásoby. Hodnocení jednotlivých embryí proto nečtěte jako verdikt nad celým cyklem. Čtěte ho jako pořadník.
 
 ## Časosběrné sledování
 
-Některá pracoviště používají inkubátory s vestavěnou kamerou, které embryo snímají průběžně. Dává to embryologovi podrobnější obraz o rychlosti dělení, aniž by musel embryo vyndávat. Jestli tahle technika zvyšuje pravděpodobnost narození dítěte, zatím není spolehlivě prokázané — data jsou nejednotná. Jako nástroj sledování má smysl, jako záruka nikoli.
+Některá pracoviště používají inkubátory s vestavěnou kamerou, které embryo snímají průběžně. Dává to embryologovi podrobnější obraz o rychlosti dělení, aniž by musel embryo vyndávat. Jestli tahle technika zvyšuje pravděpodobnost narození dítěte, zatím není spolehlivě prokázané. Data jsou nejednotná. Jako nástroj sledování má smysl, jako záruka nikoli.
 
-> Tenhle článek popisuje obvykle používané stupnice. Konkrétní systém i jeho výklad se mezi pracovišti liší — vždycky se ptejte, jak to čte vaše klinika.`,
+> Tenhle článek popisuje obvykle používané stupnice. Konkrétní systém i jeho výklad se mezi pracovišti liší. Vždycky se ptejte, jak to čte vaše klinika.`,
   },
 ]
 
@@ -1107,14 +1107,14 @@ const dailyCards: DailyCard[] = [
     phases: ['embryo_culture'],
     day: 0,
     headline: 'Dnes se vaše vajíčka potkala se spermiemi.',
-    body: 'Odběr máte za sebou a v laboratoři proběhlo oplození — buď klasicky ve společné kapce, nebo metodou ICSI. Teď jsou vajíčka v inkubátoru a do rána se nebude dít nic, o čem by se dalo referovat. Vaším jediným úkolem na dnešek je odpočívat.',
+    body: 'Odběr máte za sebou a v laboratoři proběhlo oplození. Buď klasicky ve společné kapce, nebo metodou ICSI. Teď jsou vajíčka v inkubátoru a do rána se nebude dít nic, o čem by se dalo referovat. Vaším jediným úkolem na dnešek je odpočívat.',
     whatsHappening: [
       'Vajíček bývá méně než folikulů na posledním ultrazvuku. To je běžné.',
       'Při ICSI se dnes hodnotí zralost vajíček, při klasickém IVF až zítra.',
-      'Laboratoř otevírá inkubátor co nejméně — každé otevření mění podmínky.',
+      'Laboratoř otevírá inkubátor co nejméně. Každé otevření mění podmínky.',
     ],
     task: 'Zapište si přesně, co vám dnes v laboratoři nebo na sále řekli. Po narkóze se čísla v hlavě rychle přesouvají.',
-    reflection: 'Co jsem si k dnešnímu číslu hned přidala sama — a je to opravdu tam?',
+    reflection: 'Co jsem si k dnešnímu číslu hned přidala sama. A je to opravdu tam?',
     tip: 'Počet vajíček není počet embryí. Mezi tím je několik kroků, ve kterých čísla klesají u všech.',
     callDoctorIf: [
       'Silná nebo narůstající bolest břicha.',
@@ -1128,14 +1128,14 @@ const dailyCards: DailyCard[] = [
     phases: ['embryo_culture'],
     day: 1,
     headline: 'Dnes se hledají dvě prvojádra.',
-    body: 'Zhruba šestnáct až osmnáct hodin po oplození embryolog kontroluje, jestli se ve vajíčku objevila dvě prvojádra — jedno z vajíčka, jedno ze spermie. To je jediný spolehlivý důkaz, že oplození proběhlo tak, jak má. Embrya s jiným počtem prvojader se dál nepoužívají a je to očekávaná součást procesu.',
+    body: 'Zhruba šestnáct až osmnáct hodin po oplození embryolog kontroluje, jestli se ve vajíčku objevila dvě prvojádra. Jedno z vajíčka, jedno ze spermie. To je jediný spolehlivý důkaz, že oplození proběhlo tak, jak má. Embrya s jiným počtem prvojader se dál nepoužívají a je to očekávaná součást procesu.',
     whatsHappening: [
       'Neoplodní se všechna vajíčka, ani při ICSI.',
-      'U ICSI se podíl počítá ze zralých vajíček, ne ze všech odebraných — zeptejte se, z čeho se počítá.',
+      'U ICSI se podíl počítá ze zralých vajíček, ne ze všech odebraných. Zeptejte se, z čeho se počítá.',
       'Dnešní číslo nepředpovídá číslo pátého dne.',
     ],
     task: 'Až budou volat, mějte po ruce papír. Zapište si čísla doslova, včetně slov, kterým jste nerozuměla.',
-    reflection: 'Komu chci dnešní číslo říct — a komu ne?',
+    reflection: 'Komu chci dnešní číslo říct. A komu ne?',
     tip: 'Nekomentujte to hned, ani sama před sebou. Dejte si hodinu, než si k číslu vyrobíte příběh.',
     callDoctorIf: [
       'Rychle rostoucí obvod břicha, prudký nárůst hmotnosti nebo dušnost.',
@@ -1150,11 +1150,11 @@ const dailyCards: DailyCard[] = [
     headline: 'Dvě až čtyři buňky. A ticho.',
     body: 'Embrya se poprvé dělí a zatím jedou výhradně na zásobách, které jim do vínku dalo vajíčko. Embryolog sleduje počet buněk, jejich stejnoměrnost a podíl fragmentace. Většina pracovišť dnes nevolá, protože informace z druhého dne by na plánu cyklu nic nezměnila.',
     whatsHappening: [
-      'Embryo se nezvětšuje — původní obsah vajíčka se jen dělí na menší části.',
+      'Embryo se nezvětšuje. Původní obsah vajíčka se jen dělí na menší části.',
       'Rozdíly v rychlosti dělení mezi embryi jsou v této fázi běžné.',
       'Ticho z laboratoře dnes není špatná zpráva. Je to jen den, ze kterého se nehlásí.',
     ],
-    task: 'Naplánujte si na dnešek jednu konkrétní dokončitelnou věc. Ne úklid bytu — jednu zásuvku.',
+    task: 'Naplánujte si na dnešek jednu konkrétní dokončitelnou věc. Ne úklid bytu. Jednu zásuvku.',
     reflection: 'Kterou myšlenku si dnes přehrávám nejčastěji a je vůbec moje?',
     tip: 'Vyhraďte si na hledání informací dvacet minut, a ne večer. Zbytek dne to odkládáte.',
     callDoctorIf: [
@@ -1168,13 +1168,13 @@ const dailyCards: DailyCard[] = [
     phases: ['embryo_culture'],
     day: 3,
     headline: 'Šest až osm buněk. Embryo přebírá řízení.',
-    body: 'Dnes se v embryu aktivuje jeho vlastní genetická informace — do téhle chvíle fungovalo na zásobách z vajíčka. Právě tady se část embryí zastaví, a je to nejčastěji kvůli chromozomální odchylce, která vznikla dávno předtím, než jste do cyklu vstoupila. Není to nic, co byste ovlivnila.',
+    body: 'Dnes se v embryu aktivuje jeho vlastní genetická informace. Do téhle chvíle fungovalo na zásobách z vajíčka. Právě tady se část embryí zastaví, a je to nejčastěji kvůli chromozomální odchylce, která vznikla dávno předtím, než jste do cyklu vstoupila. Není to nic, co byste ovlivnila.',
     whatsHappening: [
-      'Na některých pracovištích se transferuje nebo mrazí právě třetí den — je to plnohodnotná praxe, ne nouzové řešení.',
+      'Na některých pracovištích se transferuje nebo mrazí právě třetí den. Je to plnohodnotná praxe, ne nouzové řešení.',
       'Když je embryí málo, další selekce v laboratoři nemusí přinést novou informaci.',
       'Dnes často přichází telefonát s plánem dalšího postupu.',
     ],
-    task: 'Zeptejte se přímo: transferujete u nás třetí, nebo pátý den — a podle čeho se rozhodnete?',
+    task: 'Zeptejte se přímo: transferujete u nás třetí, nebo pátý den. A podle čeho se rozhodnete?',
     reflection: 'Odvozuji z dnešního počtu, jak to celé dopadne? A co když to opravdu nejde?',
     tip: 'Mezi třetím a pátým dnem se rozhoduje víc než mezi nultým a třetím. Dnešní číslo není předpověď.',
     callDoctorIf: [
@@ -1188,7 +1188,7 @@ const dailyCards: DailyCard[] = [
     phases: ['embryo_culture'],
     day: 4,
     headline: 'Morula. Den, kdy se buňky přestanou dát spočítat.',
-    body: 'Buňky se k sobě dnes těsně přimknou, jejich hranice se rozostří a vznikne kompaktní kulička zvaná morula. Vypadá to jako krok zpět a je to nutná příprava na vznik blastocysty. Čtvrtý den se z většiny laboratoří nehlásí nic — hodnotí se špatně a informace by nezměnila plán.',
+    body: 'Buňky se k sobě dnes těsně přimknou, jejich hranice se rozostří a vznikne kompaktní kulička zvaná morula. Vypadá to jako krok zpět a je to nutná příprava na vznik blastocysty. Čtvrtý den se z většiny laboratoří nehlásí nic. Hodnotí se špatně a informace by nezměnila plán.',
     whatsHappening: [
       'Kompaktizace je předpoklad toho, aby v embryu mohla vzniknout dutina.',
       'Transfer čtvrtý den existuje a dělá se, jen méně často než třetí a pátý.',
@@ -1208,13 +1208,13 @@ const dailyCards: DailyCard[] = [
     phases: ['embryo_culture'],
     day: 5,
     headline: 'Blastocysta: poprvé je vidět, kde bude dítě a kde placenta.',
-    body: 'Uvnitř embrya vznikla dutina a buňky se rozdělily do dvou skupin — z vnitřní buněčné masy se vyvine plod, z vnější vrstvy placenta a obaly. Dnes se často rozhoduje o transferu, o zamrazení nebo o odběru buněk k genetickému testování. Hodnocení typu 4AA popisuje vzhled, ne osud.',
+    body: 'Uvnitř embrya vznikla dutina a buňky se rozdělily do dvou skupin. Z vnitřní buněčné masy se vyvine plod, z vnější vrstvy placenta a obaly. Dnes se často rozhoduje o transferu, o zamrazení nebo o odběru buněk k genetickému testování. Hodnocení typu 4AA popisuje vzhled, ne osud.',
     whatsHappening: [
       'Část embryí dojde do blastocysty až šestý den. To není horší varianta.',
-      'Z jednoho odběru vajíček může vzejít víc transferů — čerstvý přenos i další kryotransfery ze stejné zásoby.',
+      'Z jednoho odběru vajíček může vzejít víc transferů. Čerstvý přenos i další kryotransfery ze stejné zásoby.',
       'Grading nevidí chromozomy a neplatí pro jedno konkrétní embryo, jen pro statistiku skupin.',
     ],
-    task: 'Zeptejte se: kolik embryí nám zůstává zamrazených a které přenášíte jako první — a proč zrovna tohle?',
+    task: 'Zeptejte se: kolik embryí nám zůstává zamrazených a které přenášíte jako první. A proč zrovna tohle?',
     reflection: 'Co pro mě dnešní hodnocení znamená a co jsem si k němu přidala sama?',
     tip: 'Nesrovnávejte svá písmena s cizími z diskusí. Stupnice ani praxe hodnocení nejsou mezi klinikami jednotné.',
     callDoctorIf: [
@@ -1228,14 +1228,14 @@ const dailyCards: DailyCard[] = [
     phases: ['embryo_culture'],
     day: 6,
     headline: 'Šestý den: kdo dobíhá, doběhne.',
-    body: 'Část embryí dosáhne stadia blastocysty až dnes a obvykle se zamrazuje k pozdějšímu kryotransferu. Pomalejší start nepředpovídá pomalejší dítě — z blastocyst šestého dne se běžně rodí zdravé děti. Dnešním telefonátem se u většiny žen kultivace uzavírá.',
+    body: 'Část embryí dosáhne stadia blastocysty až dnes a obvykle se zamrazuje k pozdějšímu kryotransferu. Pomalejší start nepředpovídá pomalejší dítě. Z blastocyst šestého dne se běžně rodí zdravé děti. Dnešním telefonátem se u většiny žen kultivace uzavírá.',
     whatsHappening: [
       'Zamrazuje se vitrifikací, tedy ultrarychlým zmrazením bez tvorby ledových krystalů.',
-      'Transfer i zamražení se dělá třetí, čtvrtý, pátý i šestý den — pozdější den není automaticky horší.',
+      'Transfer i zamražení se dělá třetí, čtvrtý, pátý i šestý den. Pozdější den není automaticky horší.',
       'Pokud nedošlo dál nic, máte právo na samostatnou konzultaci, ne na dvě věty do telefonu.',
     ],
     task: 'Zapište si dnešní bilanci: kolik embryí, v jakém stadiu, v jakém hodnocení a který den byla zamrazena.',
-    reflection: 'Co si o dnešním výsledku říkám — a co z toho je opravdu o mně?',
+    reflection: 'Co si o dnešním výsledku říkám. A co z toho je opravdu o mně?',
     tip: 'Nerozhodujte o dalším cyklu tenhle týden. Rozhodnutí z prvních dnů jsou rozhodnutí z vyčerpání.',
     callDoctorIf: [
       'Silná bolest břicha, horečka nad 38 °C, dušnost.',

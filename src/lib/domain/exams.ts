@@ -5,7 +5,7 @@ import type { PhotoRef } from './cycle'
  * Vyšetření, která mohou být na cestě relevantní.
  *
  * Nejde o povinný seznam a nikde se tak nesmí prezentovat. Vyšetřovací plán
- * skládá lékař podle anamnézy a každé ženě vyjde jinak — tenhle katalog je
+ * skládá lékař podle anamnézy a každé ženě vyjde jinak. Tenhle katalog je
  * proto **soupis pro orientaci a pro vlastní záznam**, ne checklist, který se
  * musí splnit. Aplikace z nezaškrtnutého vyšetření nic neodvozuje.
  *
@@ -40,7 +40,7 @@ export const EXAMS: ExamDef[] = [
   { id: 'prolaktin', name: 'Prolaktin', who: 'zena', group: 'Hormony', why: 'Zvýšená hodnota může ovlivnit ovulaci.' },
 
   // --- žena, ultrazvuk a děloha
-  { id: 'afc', name: 'AFC — počet antrálních folikulů', who: 'zena', group: 'Ultrazvuk a děloha', why: 'Počítá se na ultrazvuku na začátku cyklu.' },
+  { id: 'afc', name: 'AFC. Počet antrálních folikulů', who: 'zena', group: 'Ultrazvuk a děloha', why: 'Počítá se na ultrazvuku na začátku cyklu.' },
   { id: 'uz-panev', name: 'Ultrazvuk malé pánve', who: 'zena', group: 'Ultrazvuk a děloha', why: 'Prohlídka vaječníků a dělohy.' },
   { id: 'hsg', name: 'Průchodnost vejcovodů (HSG / HyFoSy)', who: 'zena', group: 'Ultrazvuk a děloha', why: 'Ověří, jestli jsou vejcovody průchodné.' },
   { id: 'hysteroskopie', name: 'Hysteroskopie', who: 'zena', group: 'Ultrazvuk a děloha', why: 'Prohlídka dutiny děložní kamerou.' },

@@ -190,6 +190,6 @@ test('umístění v rozmezí je normalizované', () => {
   assert.equal(positionInRange('fsh', 100), 1)
   assert.equal(positionInRange('fsh', -5), 0)
 
-  // hCG referenční rozmezí nemá — nesmíme předstírat, že ano.
+  // hCG referenční rozmezí nemá. Nesmíme předstírat, že ano.
   assert.equal(positionInRange('beta_hcg', 500), null)
 })

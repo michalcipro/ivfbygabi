@@ -3,7 +3,7 @@ import type { ContentPack, DailyCard } from '../types'
 /**
  * Karty pro fáze, které by jinak zůstaly bez denního obsahu.
  *
- * Domovská stránka bez karty spadne na obecný popis fáze — a slib „každý den
+ * Domovská stránka bez karty spadne na obecný popis fáze. A slib „každý den
  * něco nového“ v tu chvíli přestane platit. Tenhle balík zavírá poslední díry:
  * přemýšlení o dítěti, inseminaci, samotný den porodu a batolecí období.
  */
@@ -14,7 +14,7 @@ const thinking: DailyCard[] = [
     phases: ['thinking'],
     dayRange: [0, 3650],
     headline: 'Rozhodnutí mít dítě se nerodí za jeden večer.',
-    body: 'Období, kdy o dítěti přemýšlíte, není předstupeň ničeho — je to samostatná fáze. Nemusíte v ní mít jasno a nemusíte v ní nic dělat.',
+    body: 'Období, kdy o dítěti přemýšlíte, není předstupeň ničeho. Je to samostatná fáze. Nemusíte v ní mít jasno a nemusíte v ní nic dělat.',
     whatsHappening: [
       'Vajíčko, které se uvolní za tři měsíce, dozrává právě teď.',
       'Kyselinu listovou má smysl začít užívat dřív, než začnete zkoušet.',
@@ -28,13 +28,13 @@ const thinking: DailyCard[] = [
     phases: ['thinking', 'preparing_body'],
     dayRange: [0, 3650],
     headline: 'Připravuje se i muž, ne jen žena.',
-    body: 'Spermie dozrávají zhruba tři měsíce. Co partner dělá teď, se projeví až za čtvrt roku — a mužský faktor se podílí zhruba na polovině případů neplodnosti.',
+    body: 'Spermie dozrávají zhruba tři měsíce. Co partner dělá teď, se projeví až za čtvrt roku. A mužský faktor se podílí zhruba na polovině případů neplodnosti.',
     whatsHappening: [
       'Kouření, alkohol a přehřívání varlat ovlivňují spermiogram.',
       'Spermiogram se dá udělat kdykoliv, nemusí se čekat rok.',
       'Příprava obou partnerů dává větší smysl než příprava jednoho.',
     ],
-    task: 'Otevřete s partnerem téma přípravy. Ne jako výtku — jako společný plán.',
+    task: 'Otevřete s partnerem téma přípravy. Ne jako výtku, jako společný plán.',
     reflection: 'Berete to jako společnou věc, nebo to táhnete sama?',
   },
 ]

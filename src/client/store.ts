@@ -34,13 +34,13 @@ import { applyTopicAffinity, type WeightedAffinity } from '../lib/content/affini
  * Stav aplikace v prohlížeči.
  *
  * Všechno, co uživatelka napíše, zůstává v jejím zařízení (localStorage).
- * Nic se nikam neodesílá — v téhle verzi ani není kam. Je to zároveň
+ * Nic se nikam neodesílá. V téhle verzi ani není kam. Je to zároveň
  * nejsilnější naplnění slibu o soukromí: data o léčbě neopustí prohlížeč.
  */
 
 /**
  * Klíč v úložišti zůstává i po přejmenování na Bloomia. Kdyby se změnil,
- * každá uživatelka by přišla o celý svůj deník — a to je ta poslední věc,
+ * každá uživatelka by přišla o celý svůj deník. A to je ta poslední věc,
  * kterou smí rebranding udělat.
  */
 const KEY = 'ivf-by-gabi/v1'
@@ -55,7 +55,7 @@ export interface JournalRow {
   /** Odpověď na otázku dne. */
   promptId: string
   promptAnswer: string
-  /** Co se dnes povedlo — záměrně oddělené od poznámky. */
+  /** Co se dnes povedlo. Záměrně oddělené od poznámky. */
   win: string
   /** Jak se ozývalo tělo. Vstupuje do rezervy i do přehledu v čase. */
   symptoms: string[]
@@ -70,7 +70,7 @@ export interface JournalRow {
 export interface ShotRow {
   id: string
   date: IsoDate
-  /** Klíč zóny na břiše — viz SHOT_ZONES v ui.ts. */
+  /** Klíč zóny na břiše. Viz SHOT_ZONES v ui.ts. */
   zone: string
   med: string
 }
@@ -117,7 +117,7 @@ export interface MedRow {
   doctorNote: string
   instructions: string
   notify: boolean
-  /** Historie změn dávkování — u stimulace se dávka mění běžně. */
+  /** Historie změn dávkování. U stimulace se dávka mění běžně. */
   history: { on: IsoDate; dose: string; why: string }[]
   /** Ponecháno kvůli starým uloženým datům. Nové fotky jdou do `photos`. */
   photo: string
@@ -135,7 +135,7 @@ export interface SymptomLog {
   symptomId: string
   /**
    * 0–10, nebo `null`, když uživatelka jen zaškrtla příznak a intenzitu
-   * neurčila. Nula znamená „nic“ — to je odpověď, ne chybějící údaj, a
+   * neurčila. Nula znamená „nic“. To je odpověď, ne chybějící údaj, a
    * plést si to dvoje by pokřivilo každý průměr.
    */
   intensity: number | null
@@ -157,7 +157,7 @@ export interface HealthRow {
   at: string
   kind: HealthKind
   value: number | null
-  /** Druhá složka — diastola u tlaku. */
+  /** Druhá složka. Diastola u tlaku. */
   value2: number | null
   text: string
   note: string
@@ -234,7 +234,7 @@ export const DOC_KIND_LABEL: Record<DocKind, string> = {
 /**
  * Uložený dokument.
  *
- * Aplikace dokumenty **nečte a nevyhodnocuje** — jenom je uspořádá. Rozpoznávání
+ * Aplikace dokumenty **nečte a nevyhodnocuje**: jenom je uspořádá. Rozpoznávání
  * hodnot ze zprávy tu bylo a je pryč: špatně přečtené číslo ve zdravotním
  * záznamu je horší než žádné číslo. Hodnoty se zapisují ručně ve Zdraví,
  * dokument je vedle nich jako důkaz.
@@ -272,7 +272,7 @@ export interface StoryRow {
   title: string
   body: string
   icon: string
-  /** 1–5, nebo `null`. Jak jí u toho bylo — ne jak to dopadlo. */
+  /** 1–5, nebo `null`. Jak jí u toho bylo, ne jak to dopadlo. */
   mood: number | null
   photos: PhotoRef[]
 }
@@ -295,12 +295,12 @@ export interface ChatMsg {
   refs: string[]
 }
 
-/** Rozpracované odpovědi z onboardingu — přežijí i zavření prohlížeče. */
+/** Rozpracované odpovědi z onboardingu. Přežijí i zavření prohlížeče. */
 export interface Draft {
   route: string
   date: string
   skipDate: boolean
-  /** Gestační týden v době porodu — bez něj neumíme korigovaný věk. */
+  /** Gestační týden v době porodu. Bez něj neumíme korigovaný věk. */
   week: number | null
   mods: ModifierId[]
   /** Vybrané diagnózy z druhého kroku onboardingu. */
@@ -329,7 +329,7 @@ export interface Save {
   cycles: CycleRow[]
   /** Jednotlivá embrya napříč cykly. Vazba je přes `cycleId`. */
   embryos: Embryo[]
-  /** Zapsaná vyšetření — vzniknou, až do nich uživatelka něco napíše. */
+  /** Zapsaná vyšetření. Vzniknou, až do nich uživatelka něco napíše. */
   exams: ExamEntry[]
   /** Podpůrná péče mimo kliniku. */
   support: SupportEntry[]
@@ -340,7 +340,7 @@ export interface Save {
   ultrasounds: UltrasoundRow[]
   questions: QuestionRow[]
   notes: NoteRow[]
-  /** Oblíbené příznaky — nabízejí se první. */
+  /** Oblíbené příznaky. Nabízejí se první. */
   favSymptoms: string[]
   /** Vlastní příznaky, které si uživatelka přidala. */
   customSymptoms: { id: string; label: string; group: string }[]
@@ -350,17 +350,17 @@ export interface Save {
   exercises: ExerciseEntry[]
   /**
    * Stav událostí podle jejich id. Platí i pro automaticky odvozené události,
-   * které se nikde neukládají — jejich id je odvozené z data a názvu.
+   * které se nikde neukládají. Jejich id je odvozené z data a názvu.
    */
   eventState: Record<string, { done: boolean; note: string }>
   posts: PostRow[]
   /**
-   * Předplatné. V téhle verzi je to jen stav — žádná platba neprobíhá.
+   * Předplatné. V téhle verzi je to jen stav. Žádná platba neprobíhá.
    * Aplikace zůstává celá otevřená, i když je neaktivní: zamykat obsah
    * ženě uprostřed léčby by bylo horší než nevydělat.
    */
   subscription: { active: boolean; since: IsoDate | null }
-  /** Výchozí je tmavý — prstenec a grafy na něm svítí. Přepínatelné v nastavení. */
+  /** Výchozí je tmavý. Prstenec a grafy na něm svítí. Přepínatelné v nastavení. */
   theme: 'auto' | 'light' | 'dark'
   /** 0 = dnešek. Nenulové jen když si uživatelka vědomě přepne na jiný den. */
   dayOffset: number
@@ -405,7 +405,7 @@ function blank(): Save {
     eventState: {},
     posts: [],
     subscription: { active: false, since: null },
-    // Lis je papírový směr — světlý režim je ten hlavní. `auto` znamená
+    // Lis je papírový směr. Světlý režim je ten hlavní. `auto` znamená
     // „podle zařízení“; kdo si přepne ručně, tomu se volba nepřepisuje.
     theme: 'auto',
     dayOffset: 0,
@@ -424,7 +424,7 @@ export function load(): Save {
       if (parsed && parsed.v === 1) data = migrate({ ...blank(), ...parsed })
     }
   } catch {
-    // Poškozený nebo nedostupný localStorage nesmí aplikaci shodit —
+    // Poškozený nebo nedostupný localStorage nesmí aplikaci shodit.
     // horší varianta je prázdný začátek, ne bílá obrazovka.
     data = blank()
   }
@@ -439,7 +439,7 @@ export function load(): Save {
  */
 function migrate(d: Save): Save {
   // Starý lék měl jediný čas v `timeOfDay` a nic dalšího. Skládá se
-  // explicitně, ne rozprostřením — spread by u typovaného MedRow přepsal
+  // explicitně, ne rozprostřením. Spread by u typovaného MedRow přepsal
   // i pole, která ve starých datech vůbec nejsou.
   d.meds = d.meds.map((m) => {
     const old = m as Partial<MedRow> & { timeOfDay?: string }
@@ -474,7 +474,7 @@ function migrate(d: Save): Save {
 
   // Příznaky se dřív zaškrtávaly jen v deníku, bez intenzity a bez času.
   // Statistiky i časová osa čtou `symptomLogs`, takže by starší zápisy
-  // zmizely — proto se dotáhnou. Intenzita zůstává `null`: uživatelka ji
+  // zmizely, proto se dotáhnou. Intenzita zůstává `null`: uživatelka ji
   // tenkrát nezadala a dosazovat za ni číslo by bylo vymýšlení.
   const logged = new Set(d.symptomLogs.map((l) => `${l.date}|${l.symptomId}`))
   for (const [date, row] of Object.entries(d.journal)) {
@@ -510,7 +510,7 @@ const OUTCOME_TO_TRANSFER: Record<string, TransferOutcome> = {
 /**
  * Starý cyklus měl jeden transfer, jeden odběr hCG a jedno číslo „blastocysty“.
  *
- * Teď je transferů seznam — v jednom cyklu jich po odběru bývá víc — a vývoj
+ * Teď je transferů seznam (v jednom cyklu jich po odběru bývá víc) a vývoj
  * embryí se zapisuje po dnech. Zapsaná data se proto překlopí, ne zahodí:
  * datum transferu se stane prvním transferem v seznamu, datum odběru hCG prvním
  * odběrem krve a blastocysty pátým dnem kultivace. Pátý den je odhad, ale
@@ -576,7 +576,7 @@ function migrateCycle(c: CycleRow): CycleRow {
     labPhotos: old.labPhotos ?? [],
     methods: old.methods ?? [],
     methodsNote: old.methodsNote ?? '',
-    // Transfery ze starých dat nemusí mít nová pole — doplní se prázdná,
+    // Transfery ze starých dat nemusí mít nová pole. Doplní se prázdná,
     // ne vymyšlená.
     transfers: transfers.map((t) => ({ ...emptyTransfer(t.id, t.kind), ...t })),
     hcgTests,
@@ -737,7 +737,7 @@ export function saveExercise(exercise: string, fields: string[]): void {
   })
 }
 
-/** Sedmidenní průměr nálady — používá ho Partner mode i upozornění na pokles. */
+/** Sedmidenní průměr nálady. Používá ho Partner mode i upozornění na pokles. */
 export function moodAverage(days: number): number | null {
   const rows = journalList().slice(-days)
   if (rows.length === 0) return null
@@ -745,7 +745,7 @@ export function moodAverage(days: number): number | null {
 }
 
 /**
- * Dlouhodobý pokles nálady. Nediagnostikuje — jen si všimne a nabídne pomoc.
+ * Dlouhodobý pokles nálady. Nediagnostikuje, jen si všimne a nabídne pomoc.
  * Práh: aspoň 5 zápisů a průměr pod 2,2.
  */
 export function moodConcern(): boolean {
@@ -766,7 +766,7 @@ export interface CalItem {
 }
 
 /**
- * Všechny události — vlastní i odvozené z profilu — v jednom seznamu.
+ * Všechny události (vlastní i odvozené z profilu) v jednom seznamu.
  *
  * Bydlí ve store, protože z nich čte i motor nůžek. Kdyby to zůstalo
  * v obrazovce kalendáře, vznikl by kruh v importech.
@@ -828,7 +828,7 @@ function logFor(date: IsoDate): DayLog | null {
   return { mood: r.mood, anxiety: r.anxiety, hope: r.hope, energy: r.energy, symptoms: r.symptoms ?? [] }
 }
 
-/** Čtení dne — co dnešek žádá proti tomu, co na to má. */
+/** Čtení dne. Co dnešek žádá proti tomu, co na to má. */
 export function dayReading(date: IsoDate = viewDate()): DayReading {
   return readDay({
     state: resolveJourney(profile(), date),
@@ -839,7 +839,7 @@ export function dayReading(date: IsoDate = viewDate()): DayReading {
   })
 }
 
-/** Řada čtení pro graf — od nejstaršího po zadaný den. */
+/** Řada čtení pro graf. Od nejstaršího po zadaný den. */
 export function readingSeries(days: number, to: IsoDate = viewDate()) {
   const out: { date: IsoDate; demand: number; reserve: number | null; gap: number | null }[] = []
   for (let i = days - 1; i >= 0; i--) {
@@ -915,10 +915,10 @@ function cyclePhotoSlot(c: CycleRow, slot: string): PhotoRef[] | null {
 }
 
 /**
- * Fotky u libovolného záznamu — rozklíčování `scope` (viz `photo-ui.ts`).
+ * Fotky u libovolného záznamu. Rozklíčování `scope` (viz `photo-ui.ts`).
  *
  * Jedno místo pro celou aplikaci: přidat další místo, kam jde nahrát fotka,
- * znamená doplnit sem jednu větev. Vrací `null`, když scope na nic neukazuje —
+ * znamená doplnit sem jednu větev. Vrací `null`, když scope na nic neukazuje,
  * třeba když se záznam mezitím smazal.
  */
 function photoSlot(d: Save, scope: string): PhotoRef[] | null {
@@ -993,7 +993,7 @@ export function embryoById(id: string): Embryo | null {
   return data.embryos.find((e) => e.id === id) ?? null
 }
 
-/** Všechna embrya napříč cykly — pro databázi „Moje embrya“. */
+/** Všechna embrya napříč cykly. Pro databázi „Moje embrya“. */
 export function allEmbryos(): Embryo[] {
   return [...data.embryos].sort((a, b) => {
     const ca = data.cycles.find((c) => c.id === a.cycleId)?.number ?? 0
@@ -1021,7 +1021,7 @@ export function updateEmbryo(id: string, fn: (e: Embryo) => void): void {
 export function deleteEmbryo(id: string): void {
   patch((d) => {
     d.embryos = d.embryos.filter((e) => e.id !== id)
-    // Transfer, který na embryo odkazoval, o něj jen přijde — mazat celý
+    // Transfer, který na embryo odkazoval, o něj jen přijde. Mazat celý
     // transfer kvůli smazané kartě embrya by byla nečekaná ztráta.
     for (const c of d.cycles) {
       for (const t of c.transfers) t.embryoIds = t.embryoIds.filter((x) => x !== id)
@@ -1102,7 +1102,7 @@ export function deleteSupport(id: string): void {
  * Naměřené hodnoty seskupené podle parametru, v čase.
  *
  * Jednotlivá hodnota nic neříká; řada už ano. Řadí se od nejstarší, protože
- * takhle se vývoj čte. Parametry s jedinou hodnotou zůstávají — první měření
+ * takhle se vývoj čte. Parametry s jedinou hodnotou zůstávají. První měření
  * je taky informace, jen se z něj ještě nedá číst směr.
  */
 export function labSeries(): { key: string; name: string; unit: string; body: { onDate: IsoDate; value: number }[] }[] {
@@ -1135,7 +1135,7 @@ export function updateClinic(fn: (c: Clinic) => void): void {
 /**
  * Osobní karta cyklu, o který teď jde.
  *
- * `null`, když žádný cyklus není — na obrazovce pak stojí pozvánka
+ * `null`, když žádný cyklus není. Na obrazovce pak stojí pozvánka
  * k založení, ne prázdná kostra.
  */
 export function journeyCard(): JourneyCard | null {
@@ -1154,8 +1154,8 @@ export function funnel(cycleId: string): FunnelStep[] {
 /**
  * Uloží vybrané diagnózy a promítne je do modifikátorů.
  *
- * Modifikátory řídí, jaký obsah se ženě ukazuje. Ručně přidané zůstávají —
- * výběr diagnóz jen přidává, nikdy nemaže něco, co si uživatelka nastavila
+ * Modifikátory řídí, jaký obsah se ženě ukazuje. Ručně přidané zůstávají.
+ * Výběr diagnóz jen přidává, nikdy nemaže něco, co si uživatelka nastavila
  * jinde.
  */
 export function setDiagnoses(ids: string[]): void {
@@ -1177,7 +1177,7 @@ export function toggleDiagnosis(id: string): void {
 /**
  * Nový transfer v cyklu.
  *
- * První je čerstvý, každý další kryo — po odběru se přenáší z rozmražené
+ * První je čerstvý, každý další kryo. Po odběru se přenáší z rozmražené
  * zásoby. Uhodnutý druh se dá přepnout, ale ve většině případů sedí.
  */
 export function addTransfer(cycleId: string): void {
@@ -1190,7 +1190,7 @@ export function addTransfer(cycleId: string): void {
 export function removeTransfer(cycleId: string, transferId: string): void {
   updateCycle(cycleId, (c) => {
     c.transfers = c.transfers.filter((t) => t.id !== transferId)
-    // Test, který visel na smazaném transferu, zůstává — jen ztratí vazbu.
+    // Test, který visel na smazaném transferu, zůstává, jen ztratí vazbu.
     for (const t of c.hcgTests) if (t.transferId === transferId) t.transferId = ''
   })
 }
@@ -1261,7 +1261,7 @@ export function todayBalance(): TodayBalance {
  *
  * Sčítá se z toho, co v aplikaci opravdu je: milníky cyklu, odškrtnuté dávky
  * injekčních léků, zapsané vpichy, proběhlé termíny. Nic se nedopočítává
- * odhadem — číslo, které má být důkazem, si nesmí nic domýšlet.
+ * odhadem. Číslo, které má být důkazem, si nesmí nic domýšlet.
  */
 export function endurance(): Endurance {
   const date = viewDate()
@@ -1294,7 +1294,7 @@ export function endurance(): Endurance {
             stim: c.stimStartOn,
             trigger: c.triggerOn,
             odber: c.retrievalOn,
-            // Po druhém transferu v cyklu je milníkem ten, který už proběhl —
+            // Po druhém transferu v cyklu je milníkem ten, který už proběhl.
             // plátek se nesmí vyprázdnit jen proto, že je naplánovaný další.
             transfer: currentTransfer(c, date)?.date ?? null,
             beta: betaDate(c),
@@ -1315,7 +1315,7 @@ export function endurance(): Endurance {
 /**
  * Odkdy je uživatelka na cestě.
  *
- * Nejdřív se ptáme profilu — „od kdy to zkoušíte“ je často roky zpátky a
+ * Nejdřív se ptáme profilu. „od kdy to zkoušíte“ je často roky zpátky a
  * ta doba se počítá. Když v profilu nic není, bere se nejstarší stopa
  * v datech, ať se počítadlo nerozjede až dneškem.
  */

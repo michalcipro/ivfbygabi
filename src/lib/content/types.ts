@@ -44,7 +44,7 @@ export const KIND_ICONS: Record<ContentKind, string> = {
 
 /**
  * Vizuální identita položky. Místo fotobanky používáme pojmenované
- * přechody z palety značky — vypadá to draž a nerozbije se to.
+ * přechody z palety značky. Vypadá to draž a nerozbije se to.
  */
 export const HERO_TOKENS = [
   'champagne',
@@ -80,18 +80,18 @@ export interface ContentItem {
   topics: TopicId[]
   /** Obsah cílený na konkrétní situaci (císař, dvojčata, kojení…). */
   modifiers?: ModifierId[]
-  /** Obsah, který je pro danou situaci nevhodný — nikdy se nedoporučí. */
+  /** Obsah, který je pro danou situaci nevhodný. Nikdy se nedoporučí. */
   excludeModifiers?: ModifierId[]
 
   /** `essential` = základ fáze, `deep` = pro toho, kdo chce víc, `comfort` = úleva. */
   level: 'essential' | 'deep' | 'comfort'
   hero: HeroToken
   author?: string
-  /** Odborná garance — zobrazuje se u zdravotního obsahu. */
+  /** Odborná garance. Zobrazuje se u zdravotního obsahu. */
   reviewedBy?: string
   /** Zdroje, pokud jde o medicínský obsah. */
   sources?: string[]
-  /** Datum publikace — pohání „nové tento týden“. */
+  /** Datum publikace. Pohání „nové tento týden“. */
   publishedOn: string
   /** Zvýšení priority v doporučování (0–1). Ruční kurátorství. */
   boost?: number
@@ -106,7 +106,7 @@ export interface ContentItem {
   /**
    * Cesta k opravdovému souboru, až bude.
    *
-   * Meditace se dají přehrát bez souboru — prohlížeč je umí přečíst nahlas.
+   * Meditace se dají přehrát bez souboru. Prohlížeč je umí přečíst nahlas.
    * Video ne. Dokud tady nic není, obrazovka to řekne rovnou: video se
    * připravuje. Popisek „Video: …“ nad textem, který žádné video není, je
    * horší než přiznaná mezera.
@@ -131,7 +131,7 @@ export interface QuizQuestion {
 }
 
 /**
- * Denní karta — to, co uživatelka uvidí nahoře na domovské stránce.
+ * Denní karta. To, co uživatelka uvidí nahoře na domovské stránce.
  * Právě tyhle karty dělají z aplikace „něco, co žije s ní“.
  */
 export interface DailyCard {
@@ -144,11 +144,11 @@ export interface DailyCard {
   modifiers?: ModifierId[]
   excludeModifiers?: ModifierId[]
 
-  /** Nadpis dne — „Vaše embryo se právě zahnizďuje.“ */
+  /** Nadpis dne. „Vaše embryo se právě zahnizďuje.“ */
   headline: string
   /** 2–4 věty. Konkrétní, laskavé, bez vaty. */
   body: string
-  /** Co se dnes může dít — krátké odrážky. */
+  /** Co se dnes může dít. Krátké odrážky. */
   whatsHappening?: string[]
   /** Dnešní malý úkol. Musí být splnitelný do 10 minut. */
   task?: string
@@ -156,7 +156,7 @@ export interface DailyCard {
   reflection?: string
   /** Praktický tip. */
   tip?: string
-  /** Kdy volat lékaře — zobrazuje se výrazně, ale bez strašení. */
+  /** Kdy volat lékaře. Zobrazuje se výrazně, ale bez strašení. */
   callDoctorIf?: string[]
 }
 
@@ -169,7 +169,7 @@ export interface Encouragement {
   tone: 'hopeful' | 'intense' | 'tender' | 'grieving' | 'practical' | 'joyful'
 }
 
-/** Pojem ze slovníku — AI Gabi i články na něj odkazují. */
+/** Pojem ze slovníku, AI Gabi i články na něj odkazují. */
 export interface GlossaryTerm {
   term: string
   aliases?: string[]
@@ -183,7 +183,7 @@ export interface Product {
   id: string
   name: string
   category: string
-  /** Proč právě teď — tohle je celý smysl našeho marketplace. */
+  /** Proč právě teď. Tohle je celý smysl našeho marketplace. */
   whyNow: string
   /** Orientační cena v Kč. `null` nebo `0` = hrazeno / individuální. */
   priceFrom: number | null
@@ -198,7 +198,7 @@ export interface Product {
   hero: HeroToken
 }
 
-/** Laboratorní parametr — pro rozpoznávání zpráv a health dashboard. */
+/** Laboratorní parametr. Pro rozpoznávání zpráv a health dashboard. */
 export interface LabParameter {
   key: string
   name: string

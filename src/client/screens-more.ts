@@ -23,7 +23,7 @@ import { ROUTES } from './onboarding'
 
 /** Rozcestník a všechny obrazovky, které z něj vedou. */
 
-/** Lidský název kotevního data — pro vysvětlení, proč fáze vyšla takhle. */
+/** Lidský název kotevního data. Pro vysvětlení, proč fáze vyšla takhle. */
 const ANCHOR_LABELS: Record<string, string> = {
   tryingSince: 'začátku snažení',
   diagnosticsStartedOn: 'začátku vyšetření',
@@ -47,7 +47,7 @@ export function screenVice(): string {
   const items: [string, string, string, string][] = [
     ['cesta', '❖', 'Vaše cesta', `Všech ${PHASE_IDS.length} fází. Kde jste byla, kde jste a co přijde.`],
     ['knihovna', '❧', 'Knihovna', `${CONTENT_STATS.items} materiálů. Hledejte cokoliv.`],
-    ['checklisty', '✓', 'Checklisty', 'Ať na nic nezapomenete — a odškrtnuté zůstane odškrtnuté.'],
+    ['checklisty', '✓', 'Checklisty', 'Ať na nic nezapomenete. A odškrtnuté zůstane odškrtnuté.'],
     ['kalendar', '◈', 'Kalendář a léky', 'Termíny a léky. Část se doplní automaticky z vaší fáze.'],
     ['zdravi', '◉', 'Zdraví', 'Vaše hodnoty v čase. Graf ukazuje vývoj, ne diagnózu.'],
     ['dokumenty', '▤', 'Dokumenty', 'Vložte text lékařské zprávy a vytáhneme z něj hodnoty.'],
@@ -63,7 +63,7 @@ export function screenVice(): string {
     `<header class="head rise">
       <p class="eyebrow">${esc(p.displayName ? `${p.displayName} · ` : '')}${esc(PHASE_GROUP_META[state.group].name)}</p>
       <h1 class="display">Více</h1>
-      <p class="lede">${esc(state.dayLabel)}. Všechno ostatní, co aplikace umí — a u každé položky je napsané, k čemu je.</p>
+      <p class="lede">${esc(state.dayLabel)}. Všechno ostatní, co aplikace umí. A u každé položky je napsané, k čemu je.</p>
     </header>`,
     `<div class="tiles">${items.map(([r, i, t, b]) => `<button class="tile" data-go="${r}"><i>${i}</i><span style="min-width:0"><h4 class="display">${esc(t)}</h4><p>${esc(b)}</p></span><span class="go">›</span></button>`).join('')}</div>`,
     `<section class="center" style="border-top:1px solid var(--line);padding-top:2rem">
@@ -88,7 +88,7 @@ export function screenProfil(): string {
 
   const c = S.d.clinic
   const items: [string, string, string, string][] = [
-    ['mojediagnoza', '◈', 'Moje diagnóza', dg ? `${dg} označených důvodů` : 'Proč jdu na IVF — může jich být víc'],
+    ['mojediagnoza', '◈', 'Moje diagnóza', dg ? `${dg} označených důvodů` : 'Proč jdu na IVF. Může jich být víc'],
     ['klinika', '✚', 'Moje klinika', c.name.trim() || 'Kontakty, telefon i to, kam volat mimo ordinační hodiny'],
     ['vysetreni', '◉', 'Moje vyšetření', vys ? `${vys} zapsaných` : 'Co může být relevantní a co už mám za sebou'],
     ['podpora', '♡', 'Podpůrná péče', pod ? `${pod} právě využívám` : 'Co si k léčbě beru mimo kliniku'],
@@ -105,7 +105,7 @@ export function screenProfil(): string {
     `<header class="head rise">
       <p class="eyebrow">${esc(p.displayName ? `${p.displayName} · ` : '')}${esc(PHASE_GROUP_META[state.group].name)}</p>
       <h1 class="display">Profil</h1>
-      <p class="lede">${esc(state.dayLabel)}. Všechno, co je o vás — a co si aplikace pamatuje.</p>
+      <p class="lede">${esc(state.dayLabel)}. Všechno, co je o vás. A co si aplikace pamatuje.</p>
     </header>`,
 
     `<div class="tiles">${items
@@ -116,7 +116,7 @@ export function screenProfil(): string {
       .join('')}</div>`,
 
     note(
-      'Všechna vaše data zůstávají ve vašem zařízení. Nic se nikam neodesílá a aplikace je nikomu nesdílí — sdílet je s lékařem můžete jen vy.',
+      'Všechna vaše data zůstávají ve vašem zařízení. Nic se nikam neodesílá a aplikace je nikomu nesdílí. Sdílet je s lékařem můžete jen vy.',
     ),
   ].join('')
 }
@@ -132,7 +132,7 @@ export interface CalItem {
   auto: boolean
 }
 
-/** Všechny události — vlastní i odvozené z profilu — v jednom seznamu. */
+/** Všechny události (vlastní i odvozené z profilu) v jednom seznamu. */
 export function allEvents(): CalItem[] {
   const state = journey()
   const auto = autoEventsFor(profile(), state).map((e) => ({
@@ -257,7 +257,7 @@ export function screenKalendar(): string {
         </div>
       </div>
       <div class="formrow"><label class="label" for="ev-note">Poznámka</label>
-        <input class="field" id="ev-note" placeholder="Nepovinné — třeba čas nebo co si vzít" autocomplete="off"></div>
+        <input class="field" id="ev-note" placeholder="Nepovinné, třeba čas nebo co si vzít" autocomplete="off"></div>
       <button class="btn btn-primary" data-act="event-add" style="margin-top:1.25rem">Přidat do kalendáře</button>
     </section>`,
 
@@ -270,7 +270,7 @@ export function screenKalendar(): string {
     ),
 
     all.length === 0
-      ? empty('Zatím nic v kalendáři', 'Přidejte si termín, nebo doplňte data v nastavení — část událostí pak vznikne sama.')
+      ? empty('Zatím nic v kalendáři', 'Přidejte si termín, nebo doplňte data v nastavení. Část událostí pak vznikne sama.')
       : '',
 
     `<section class="surface pad">
@@ -288,7 +288,7 @@ export function screenKalendar(): string {
                   `<li><span>${esc(m.name)}</span>${m.timeOfDay ? `<span class="faint num" style="margin-left:auto;font-size:.75rem">${esc(m.timeOfDay)}</span>` : ''}<button class="btn btn-ghost btn-sm" data-act="med-del" data-arg="${esc(m.id)}">×</button></li>`,
               )
               .join('')}</ul>`
-          : '<p class="faint" style="margin-top:1rem;font-size:.8125rem">Zatím žádné. Dávkování si vždycky řiďte předpisem od lékaře — aplikace ho nenavrhuje.</p>'
+          : '<p class="faint" style="margin-top:1rem;font-size:.8125rem">Zatím žádné. Dávkování si vždycky řiďte předpisem od lékaře. Aplikace ho nenavrhuje.</p>'
       }
     </section>`,
   ].join('')
@@ -328,7 +328,7 @@ export function screenDokumenty(): string {
     head(
       'Moje dokumenty',
       'Dokumenty',
-      'Papíry z kliniky na jednom místě. Aplikace je neanalyzuje a nevykládá — jenom je uspořádá tak, abyste je našla, když je budete potřebovat.',
+      'Papíry z kliniky na jednom místě. Aplikace je neanalyzuje a nevykládá, jenom je uspořádá tak, abyste je našla, když je budete potřebovat.',
     ),
 
     `<section class="surface pad">
@@ -367,7 +367,7 @@ export function screenDokumenty(): string {
     docs.length === 0
       ? empty(
           'Zatím tu žádný dokument není',
-          'Většina zpráv přijde na papíře a doma se ztratí. Vyfoťte je hned na klinice — v čekárně před další konzultací je budete mít po ruce.',
+          'Většina zpráv přijde na papíře a doma se ztratí. Vyfoťte je hned na klinice. V čekárně před další konzultací je budete mít po ruce.',
           '',
           '▤',
         )
@@ -381,7 +381,7 @@ export function screenDokumenty(): string {
           .join(''),
 
     note(
-      'Aplikace dokumenty **nečte a nevyhodnocuje.** Hodnoty se zapisují ručně ve Zdraví, aby v záznamu nikdy nebylo špatně přečtené číslo. Dokumenty nikam neodcházejí — sdílet je s lékařem můžete jen vy.',
+      'Aplikace dokumenty **nečte a nevyhodnocuje.** Hodnoty se zapisují ručně ve Zdraví, aby v záznamu nikdy nebylo špatně přečtené číslo. Dokumenty nikam neodcházejí. Sdílet je s lékařem můžete jen vy.',
     ),
   ].join('')
 }
@@ -395,7 +395,7 @@ export function screenKomunita(): string {
   const me = communityName(p, state)
 
   return [
-    head(`Vystupujete jako ${me}`, 'Komunita', 'Skupiny se párují podle vašeho příběhu — fáze, měsíc transferu, diagnóza, klinika, věk. Ne podle náhody.'),
+    head(`Vystupujete jako ${me}`, 'Komunita', 'Skupiny se párují podle vašeho příběhu. Fáze, měsíc transferu, diagnóza, klinika, věk. Ne podle náhody.'),
 
     `<section>${sectionTitle('Vaše skupiny', `${plural(groups.length, 'skupina', 'skupiny', 'skupin')} podle vašeho profilu`)}
       <div class="tiles">
@@ -409,7 +409,7 @@ export function screenKomunita(): string {
     </section>`,
 
     note(
-      'Profil může být zcela anonymní — komunita nikdy nevidí skutečné jméno ani zdravotní údaje. Přepnout to jde v nastavení.',
+      'Profil může být zcela anonymní. Komunita nikdy nevidí skutečné jméno ani zdravotní údaje. Přepnout to jde v nastavení.',
     ),
   ].join('')
 }
@@ -491,8 +491,8 @@ const MOOD_LABEL: Record<number, string> = {
  * Milníky léčby na osu příběhu.
  *
  * Kronika, do které se musí všechno psát ručně, zůstane prázdná. Tohle
- * dotáhne to, co už žena zapsala jinde — začátek cyklu, odběr, každý
- * transfer i jeho výsledek — aby se cesta skládala sama.
+ * dotáhne to, co už žena zapsala jinde. Začátek cyklu, odběr, každý
+ * transfer i jeho výsledek, aby se cesta skládala sama.
  */
 function storyFromCycle(c: CycleRow): { onDate: string; title: string; body: string; icon: string; id: string }[] {
   const out: { onDate: string; title: string; body: string; icon: string; id: string }[] = []
@@ -508,7 +508,7 @@ function storyFromCycle(c: CycleRow): { onDate: string; title: string; body: str
     const nazev = list.length > 1 ? `${i + 1}. transfer` : 'Transfer'
     put(
       t.date,
-      t.cancelled ? `${nazev} — zrušen` : nazev,
+      t.cancelled ? `${nazev}. Zrušen` : nazev,
       t.cancelled ? t.cancelReason : TRANSFER_OUTCOME_LABEL[t.outcome],
       '❋',
     )
@@ -522,7 +522,7 @@ function storyFromCycle(c: CycleRow): { onDate: string; title: string; body: str
 export function screenPribeh(): string {
   const state = journey()
 
-  // Milníky z profilu i z léčby. Kronika se má skládat sama — žena, která
+  // Milníky z profilu i z léčby. Kronika se má skládat sama. Žena, která
   // si měsíc nic nezapsala, tu nesmí najít prázdno.
   const auto = [
     ...state.milestones.map((m) => ({ onDate: m.date, title: m.label, body: '', icon: m.icon, id: '' })),
@@ -537,7 +537,7 @@ export function screenPribeh(): string {
     head(
       'Moje kronika',
       'Můj příběh',
-      'Chronologie celé cesty — od prvního snažení po dnešek. Milníky léčby se doplňují samy, vzpomínky a fotky přidáváte vy. Jednou z toho může být kniha.',
+      'Chronologie celé cesty. Od prvního snažení po dnešek. Milníky léčby se doplňují samy, vzpomínky a fotky přidáváte vy. Jednou z toho může být kniha.',
     ),
 
     `<section class="surface pad">
@@ -583,7 +583,7 @@ export function screenPribeh(): string {
 
     `<section class="surface pad">
       <p class="eyebrow">Napsat dopis</p>
-      <p class="soft" style="margin-top:.5rem;font-size:.9375rem;line-height:1.6">Embryu, miminku, sobě, tomu, kdo tu nezůstal. Dopisy jsou soukromé — nikdo jiný je nevidí.</p>
+      <p class="soft" style="margin-top:.5rem;font-size:.9375rem;line-height:1.6">Embryu, miminku, sobě, tomu, kdo tu nezůstal. Dopisy jsou soukromé. Nikdo jiný je nevidí.</p>
       <div class="formrow" style="margin-top:1.1rem">
         <label class="label" for="lt-to">Komu</label>
         <select class="field" id="lt-to">${Object.entries(LETTER_TARGETS).map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join('')}</select>
@@ -694,7 +694,7 @@ export function screenPartner(): string {
       </div>
     </section>`,
 
-    note('Partner vidí fázi, průměrnou náladu a rady. **Nevidí deník, dopisy ani zdravotní hodnoty** — a nikdy je neuvidí.'),
+    note('Partner vidí fázi, průměrnou náladu a rady. **Nevidí deník, dopisy ani zdravotní hodnoty**: a nikdy je neuvidí.'),
 
     forPartner.length
       ? `<section>${sectionTitle('Ke čtení pro partnera', 'Z knihovny')}<div class="rail">${forPartner.map((i) => contentCard(i)).join('')}</div></section>`
@@ -739,7 +739,7 @@ export function screenNastaveni(): string {
       <div class="formrow" style="margin-top:1.1rem">
         <label class="label" for="set-phase">Fáze</label>
         <select class="field" id="set-phase" data-act="set-phase">
-          <option value="" ${p.declaredPhase === null ? 'selected' : ''}>— odvodit z dat —</option>
+          <option value="" ${p.declaredPhase === null ? 'selected' : ''}>– odvodit z dat –</option>
           ${PHASE_IDS.filter((id) => PHASES[id].selectableAtOnboarding)
             .map((id) => `<option value="${esc(id)}" ${p.declaredPhase === id ? 'selected' : ''}>${esc(PHASES[id].name)}</option>`)
             .join('')}
@@ -751,7 +751,7 @@ export function screenNastaveni(): string {
               <span style="color:var(--taupe)">◈</span>
               <span>Zadaná data mají přednost: počítáme vás jako <strong>${esc(state.phase.name)}</strong>${
                 state.anchorDate ? `, protože máte vyplněné datum ${esc(ANCHOR_LABELS[state.phase.anchor ?? ''] ?? 'události')} (${esc(formatCzechDate(state.anchorDate))})` : ''
-              }. Zvolená fáze se použije, až jí data nebudou odporovat — nebo datum níž smažte.</span>
+              }. Zvolená fáze se použije, až jí data nebudou odporovat, nebo datum níž smažte.</span>
             </div>`
           : ''
       }
@@ -763,7 +763,7 @@ export function screenNastaveni(): string {
             </div>`
           : ''
       }
-      <p class="faint" style="margin-top:.85rem;font-size:.8125rem;line-height:1.55">Fáze se odvozuje i sama z dat — když zadáte datum porodu, aplikace se posune, i kdybyste to tu nechala.</p>
+      <p class="faint" style="margin-top:.85rem;font-size:.8125rem;line-height:1.55">Fáze se odvozuje i sama z dat, když zadáte datum porodu, aplikace se posune, i kdybyste to tu nechala.</p>
     </section>`,
 
     `<section class="surface pad">
@@ -810,7 +810,7 @@ export function screenNastaveni(): string {
       </div>
       <div class="formrow">
         <label class="label" for="set-clinic">Klinika</label>
-        <input class="field" id="set-clinic" value="${esc(p.clinicName ?? '')}" placeholder="Nepovinné — přidá skupinu v komunitě" data-act="set-clinic" autocomplete="off">
+        <input class="field" id="set-clinic" value="${esc(p.clinicName ?? '')}" placeholder="Nepovinné. Přidá skupinu v komunitě" data-act="set-clinic" autocomplete="off">
       </div>
       <div style="margin-top:1.25rem">
         <button class="switch" data-act="set-anon" aria-pressed="${p.anonymousInCommunity}">
@@ -838,7 +838,7 @@ export function screenNastaveni(): string {
 
     `<section class="surface pad">
       <p class="eyebrow">Vaše data</p>
-      <p class="soft" style="margin-top:.6rem;font-size:.9375rem;line-height:1.65">Všechno, co jste zapsala — profil, deník, hodnoty, dopisy — je uložené jen v tomhle prohlížeči. Nikam se to neodesílá.</p>
+      <p class="soft" style="margin-top:.6rem;font-size:.9375rem;line-height:1.65">Všechno, co jste zapsala (profil, deník, hodnoty, dopisy) je uložené jen v tomhle prohlížeči. Nikam se to neodesílá.</p>
       <dl class="kv" style="margin-top:1rem">
         <dt>Zápisů v deníku</dt><dd class="num">${Object.keys(S.d.journal).length}</dd>
         <dt>Hodnot</dt><dd class="num">${S.d.labs.length}</dd>
@@ -861,19 +861,19 @@ export function screenClenstvi(): string {
   const od = S.d.subscription?.since ?? null
 
   const zahrnuto = [
-    'Celý odborný obsah — články, checklisty, slovník, „Co když…“',
+    'Celý odborný obsah. Články, checklisty, slovník, „Co když…“',
     'Moje IVF cykly: stimulace, odběr, embrya, transfery, výsledky',
     'Karta pro každé embryo a pro každý transfer, bez omezení počtu',
     'Deník, kalendář, připomínky a otázky pro lékaře',
     'Dokumenty a fotky z kliniky ve vašem zařízení',
-    'Podpora ve všech výsledcích — nejen v tom, který skončí pozitivně',
+    'Podpora ve všech výsledcích, nejen v tom, který skončí pozitivně',
   ]
 
   return [
     head(
       'Předplatné',
       '199 Kč měsíčně',
-      'Jedna cena za celou aplikaci. Neprodáváme jednotlivé články a neplatíte za „šťastný konec“ — obsah pro negativní hCG, zrušený transfer nebo ztrátu je v ceně stejně jako ten ostatní.',
+      'Jedna cena za celou aplikaci. Neprodáváme jednotlivé články a neplatíte za „šťastný konec“. Obsah pro negativní hCG, zrušený transfer nebo ztrátu je v ceně stejně jako ten ostatní.',
     ),
 
     `<section class="surface pad rise">
@@ -889,7 +889,7 @@ export function screenClenstvi(): string {
       </div>
       ${
         aktivni && od
-          ? `<p class="faint" style="margin-top:1rem;font-size:.8125rem">Aktivní od ${esc(formatCzechDate(od))}. Po zrušení vám data zůstanou — jsou ve vašem zařízení.</p>`
+          ? `<p class="faint" style="margin-top:1rem;font-size:.8125rem">Aktivní od ${esc(formatCzechDate(od))}. Po zrušení vám data zůstanou. Jsou ve vašem zařízení.</p>`
           : ''
       }
       <ul class="bullets" style="margin-top:1.3rem">${zahrnuto.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
@@ -900,7 +900,7 @@ export function screenClenstvi(): string {
       <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
         Kdyby se platilo za jednotlivé texty, aplikace by měla důvod psát jich co nejvíc
         a řadit dopředu ty, které se dobře prodávají. To by v léčbě dopadlo špatně.
-        Předplatné znamená, že se vyplatí psát to, co se vás právě týká — a nic víc.
+        Předplatné znamená, že se vyplatí psát to, co se vás právě týká. A nic víc.
       </p>
       <p class="soft" style="margin-top:.9rem;line-height:1.7;font-size:.9375rem">
         Nikdo si tu nekupuje lepší pozici a data se neprodávají. Z toho plyne i to,
@@ -909,7 +909,7 @@ export function screenClenstvi(): string {
     </section>`,
 
     note(
-      'V téhle verzi je aplikace otevřená a tlačítko jen přepíná stav — žádná platba neprobíhá a nikam se neposílají žádné údaje.',
+      'V téhle verzi je aplikace otevřená a tlačítko jen přepíná stav. Žádná platba neprobíhá a nikam se neposílají žádné údaje.',
     ),
   ].join('')
 }

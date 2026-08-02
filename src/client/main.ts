@@ -147,7 +147,7 @@ import {
 
 /**
  * Spodní lišta. Záznam je jádro aplikace, proto jsou první tři záložky
- * o něm — Dnes ukazuje, Zápis zaznamenává, Vývoj vrací zpátky. Informace
+ * o něm, Dnes ukazuje, Zápis zaznamenává, Vývoj vrací zpátky. Informace
  * jsou až čtvrté, protože se k nim člověk dostane hlavně přes dnešek.
  */
 const TABS = [
@@ -305,20 +305,20 @@ const PARENT: Record<string, string> = {
   vice: 'pruvodce',
 }
 
-/** Obrazovky, kde by souhrn rušil — čtení a soustředěná práce. */
-/** Kde by plovoucí tlačítko překáželo — při čtení a při vyplňování. */
+/** Obrazovky, kde by souhrn rušil. Čtení a soustředěná práce. */
+/** Kde by plovoucí tlačítko překáželo. Při čtení a při vyplňování. */
 const QUICK_HIDDEN = ['cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi', 'cyklus']
 
 const SUMMARY_HIDDEN = [
   'cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi',
   // Na těchhle obrazovkách je prstenec nebo graf sám o sobě souhrnem.
   'dnes', 'zapis', 'leky', 'sledovani', 'pruvodce', 'nuzky',
-  // Tyhle mají vlastní hlavičku se stavem cyklu — druhý souhrn nad ní
+  // Tyhle mají vlastní hlavičku se stavem cyklu. Druhý souhrn nad ní
   // by říkal totéž jinými slovy.
   'journey', 'cyklus', 'otazky', 'zdravotni',
 ]
 
-/** Stav, který nemá cenu ukládat — přežívá jen do zavření záložky. */
+/** Stav, který nemá cenu ukládat. Přežívá jen do zavření záložky. */
 const view = {
   query: '',
   kind: 'vse',
@@ -326,7 +326,7 @@ const view = {
   summary: null as SummaryId | null,
   /** Která skupina příznaků je rozbalená. */
   accordion: null as string | null,
-  /** Rozbalená karta embrya. Vlastní stav — harmonika sekcí je jiná věc. */
+  /** Rozbalená karta embrya. Vlastní stav. Harmonika sekcí je jiná věc. */
   embryo: null as string | null,
   /** Je otevřené rychlé přidání? */
   quick: false,
@@ -490,7 +490,7 @@ function navButton(n: { id: string; label: string; icon: string }, current: stri
 
 function backbar(route: string): string {
   const b = base(route)
-  // Cizí fáze se otevírá z Celé cesty — tam se uživatelka musí umět vrátit,
+  // Cizí fáze se otevírá z Celé cesty. Tam se uživatelka musí umět vrátit,
   // i když je „faze“ jinak záložka.
   const foreignPhase =
     b === 'faze' &&
@@ -558,7 +558,7 @@ function render(): void {
     ).join('')}
   </nav>`
 
-  // Grafy se staví až tady — hover se nedá pověsit na řetězec.
+  // Grafy se staví až tady. Hover se nedá pověsit na řetězec.
   hydrateCharts(app)
   window.scrollTo(0, scrollMemory.get(route) ?? 0)
 }
@@ -576,7 +576,7 @@ const val = (id: string): string => {
   return el ? el.value.trim() : ''
 }
 
-/** Číslo z pole. Prázdné pole je `null` — „nevíme“, ne nula. */
+/** Číslo z pole. Prázdné pole je `null`. „nevíme“, ne nula. */
 const numOrNull = (id: string): number | null => {
   const raw = val(id).replace(',', '.')
   if (!raw) return null
@@ -604,7 +604,7 @@ function focusField(id: string): void {
   ;(el as HTMLInputElement).focus?.()
 }
 
-/** Text do schránky. Nikam se nic neodesílá — vzniká to v prohlížeči. */
+/** Text do schránky. Nikam se nic neodesílá. Vzniká to v prohlížeči. */
 function copyText(text: string, ok: string): void {
   navigator.clipboard?.writeText(text).then(
     () => toast(ok),
@@ -615,7 +615,7 @@ function copyText(text: string, ok: string): void {
 /**
  * Zápis jedné nebo víc os dnešního dne.
  *
- * Číselníky se ukládají hned po klepnutí — kdyby to čekalo na tlačítko,
+ * Číselníky se ukládají hned po klepnutí, kdyby to čekalo na tlačítko,
  * půlka zápisů by se nikdy neuložila. Chybějící pole se doplní z toho,
  * co už je uložené, nebo prostředkem.
  */
@@ -649,7 +649,7 @@ function toast(text: string): void {
 }
 
 /**
- * Dýchání 4–6. Běží mimo překreslování — kdyby se stránka mezitím
+ * Dýchání 4–6. Běží mimo překreslování, kdyby se stránka mezitím
  * překreslila, časovač se zastaví, aby po sobě nezůstal viset.
  */
 let breathTimer: number | null = null
@@ -668,7 +668,7 @@ function stopBreathing(): void {
 /**
  * Přemalování přehrávače meditace.
  *
- * Předčítání běží mimo render — plné překreslení stránky každé čtyři vteřiny
+ * Předčítání běží mimo render. Plné překreslení stránky každé čtyři vteřiny
  * by při poslechu shodilo scroll i pozornost. Mění se proto jen ty tři prvky,
  * které se opravdu mění.
  */
@@ -681,7 +681,7 @@ function speechTick(): void {
   if (pos && st.id !== null) pos.textContent = `Úsek ${st.at + 1} z ${st.total}`
   if (voice && czechVoice()) {
     voice.textContent =
-      'Čte hlas vašeho zařízení, ne nahrané studio. Mezi větami se dělají pauzy — jsou součástí meditace.'
+      'Čte hlas vašeho zařízení, ne nahrané studio. Mezi větami se dělají pauzy. Jsou součástí meditace.'
   }
 }
 
@@ -798,10 +798,10 @@ function onboardingAction(act: string, argValue: string): boolean {
  *
  * Volá se nejen z tlačítka, ale i před rozbalením jiné sekce. Stránka se
  * překresluje celá, takže bez toho by rozepsané pole zmizelo ve chvíli, kdy
- * uživatelka otevře další sekci — a to je ztráta dat, ne jen nepohodlí.
+ * uživatelka otevře další sekci. A to je ztráta dat, ne jen nepohodlí.
  *
  * Prázdné pole znamená „nevím“, ne nulu. Jediná výjimka je `startedOn`,
- * které je povinné — tam se drží původní hodnota.
+ * které je povinné. Tam se drží původní hodnota.
  */
 function saveCycleForm(id: string): void {
   if (!document.getElementById('cyc-cd1On')) return
@@ -837,7 +837,7 @@ function saveCycleForm(id: string): void {
     row.frozen = numOrNull('cyc-frozen')
     row.methodsNote = val('cyc-methodsNote')
 
-    // Seznamy se čtou po položkách. Chybějící pole se přeskočí — kdyby
+    // Seznamy se čtou po položkách. Chybějící pole se přeskočí, kdyby
     // se přečetlo jako prázdné, uložení by smazalo, co uživatelka zapsala.
     for (const t of row.transfers) {
       const k = (field: string): string => `cyc-tr.${t.id}.${field}`
@@ -874,7 +874,7 @@ function saveCycleForm(id: string): void {
   })
 }
 
-/** Fotky, které v cyklu visí — všechny sloty dohromady. */
+/** Fotky, které v cyklu visí. Všechny sloty dohromady. */
 function cyclePhotoIds(id: string): string[] {
   const c = cycleById(id)
   if (!c) return []
@@ -891,7 +891,7 @@ function cyclePhotoIds(id: string): string[] {
  * Nahrání fotky k libovolnému záznamu.
  *
  * Výběr souboru i zmenšení jsou asynchronní, takže se nedají udělat uprostřed
- * synchronní akce. Rozepsaný formulář cyklu se proto uloží hned — než
+ * synchronní akce. Rozepsaný formulář cyklu se proto uloží hned, než
  * uživatelka vybere soubor, může uběhnout půl minuty a pole by se ztratila.
  */
 function attachPhoto(scope: string): void {
@@ -910,7 +910,7 @@ function attachPhoto(scope: string): void {
   })()
 }
 
-/** Zvětšení fotky přes celou obrazovku. Mimo render — je to jen náhled. */
+/** Zvětšení fotky přes celou obrazovku. Mimo render. Je to jen náhled. */
 function zoomPhoto(id: string): void {
   const url = photoUrl(id)
   if (!url) return
@@ -944,7 +944,7 @@ function zoomPhoto(id: string): void {
 /**
  * Uloží kartu embrya.
  *
- * Volá se z tlačítka i před každou akcí, která překreslí stránku — přidání
+ * Volá se z tlačítka i před každou akcí, která překreslí stránku. Přidání
  * dne kultivace nebo smazání by jinak zahodilo rozepsané kolonky.
  */
 function saveEmbryoForm(id: string): void {
@@ -975,7 +975,7 @@ function saveEmbryoForm(id: string): void {
 /**
  * Uloží formulář kliniky.
  *
- * Volá se i před přidáním kontaktu — překreslení by jinak zahodilo, co má
+ * Volá se i před přidáním kontaktu. Překreslení by jinak zahodilo, co má
  * uživatelka rozepsané v hlavních polích.
  */
 /**
@@ -983,7 +983,7 @@ function saveEmbryoForm(id: string): void {
  *
  * Musí být po ruce, ne schovaná v nastavení: v léčbě se fáze mění každých
  * pár týdnů a žena, která se právě dozvěděla negativní výsledek, nemá hledat,
- * kde se to přepíná. Nic se přitom nesmaže — mění se jen to, co aplikace
+ * kde se to přepíná. Nic se přitom nesmaže. Mění se jen to, co aplikace
  * ukazuje.
  */
 function screenZmenaFaze(): string {
@@ -995,7 +995,7 @@ function screenZmenaFaze(): string {
     head(
       'Moje fáze',
       'Změnila se vaše situace?',
-      'Vyberte, kde jste teď. Aplikace přepočítá dnešek, obsah i checklisty — ale nic z toho, co máte zapsané, nezmizí.',
+      'Vyberte, kde jste teď. Aplikace přepočítá dnešek, obsah i checklisty, ale nic z toho, co máte zapsané, nezmizí.',
     ),
     `<section class="surface pad rise">
       <p class="eyebrow">Teď máte nastaveno</p>
@@ -1004,7 +1004,7 @@ function screenZmenaFaze(): string {
     </section>`,
     `<div style="margin-top:1.4rem">${phasePicker(aktualni, 'faze-zmena', S.d.obMore === true)}</div>`,
     note(
-      'Cykly, embrya, transfery, deník ani dokumenty se změnou fáze nemažou. Vaše cesta se skládá dál — jen se posune to, co je nahoře.',
+      'Cykly, embrya, transfery, deník ani dokumenty se změnou fáze nemažou. Vaše cesta se skládá dál, jen se posune to, co je nahoře.',
     ),
   ].join('')
 }
@@ -1072,7 +1072,7 @@ function action(act: string, argValue: string): void {
     }
 
     // --- přepínače v záhlaví ---------------------------------------------
-    // Dílek jde do adresy, ne do stavu — tím funguje zpět i sdílení odkazu.
+    // Dílek jde do adresy, ne do stavu. Tím funguje zpět i sdílení odkazu.
     case 'zapis-sec':
       go(`zapis/${argValue}`)
       return
@@ -1083,7 +1083,7 @@ function action(act: string, argValue: string): void {
       go(`sledovani/${argValue}`)
       return
     case 'journey-sec':
-      // Přepnutí dílku ruší rozbalenou položku — id z Historie nemá na
+      // Přepnutí dílku ruší rozbalenou položku. Id z Historie nemá na
       // Časové ose význam a naopak.
       view.accordion = null
       go(`journey/${argValue}`)
@@ -1102,7 +1102,7 @@ function action(act: string, argValue: string): void {
       // Na detailu cyklu je harmonika součástí jednoho formuláře. Než se
       // překreslí, musí se rozepsaná pole uložit.
       if (base(currentRoute()) === 'cyklus') saveCycleForm(arg(currentRoute()))
-      // Totéž u karet embryí — otevřená karta je rozepsaný formulář.
+      // Totéž u karet embryí. Otevřená karta je rozepsaný formulář.
       if (view.embryo) saveEmbryoForm(view.embryo)
       view.accordion = view.accordion === argValue ? null : argValue
       break
@@ -1115,7 +1115,7 @@ function action(act: string, argValue: string): void {
 
     // --- zápis dne --------------------------------------------------------
     case 'dial': {
-      // arg je „mood:4“ — jedno klepnutí zapíše jednu osu a hned se to
+      // arg je „mood:4“. Jedno klepnutí zapíše jednu osu a hned se to
       // propíše do prstence.
       const [field, raw] = argValue.split(':')
       const n = Number(raw)
@@ -1142,7 +1142,7 @@ function action(act: string, argValue: string): void {
     }
     case 'shot': {
       // Píchá se to, co má uživatelka v lécích. Když nemá nic, aspoň se
-      // zapíše místo — o tom to celé je.
+      // zapíše místo. O tom to celé je.
       addShot(argValue, S.d.meds[0]?.name ?? 'Injekce')
       break
     }
@@ -1165,7 +1165,7 @@ function action(act: string, argValue: string): void {
       const text = weekShareText()
       navigator.clipboard?.writeText(text).then(
         () => toast('Přehled zkopírován. Nikam se nic neodeslalo.'),
-        () => toast('Kopírování se nepovedlo — text najdete v Týdnu.'),
+        () => toast('Kopírování se nepovedlo. Text najdete v Týdnu.'),
       )
       return
     }
@@ -1424,7 +1424,7 @@ function action(act: string, argValue: string): void {
           ? [...t.embryoIds, embryoId]
           : t.embryoIds.filter((x) => x !== embryoId)
       })
-      // Přiřazené embryo se přeneslo — osud se dopíše sám, ať ho uživatelka
+      // Přiřazené embryo se přeneslo. Osud se dopíše sám, ať ho uživatelka
       // nemusí zadávat na dvou místech. Odebrání se ale nevrací zpátky:
       // nevíme, co bylo předtím, a přepsat zápis by bylo horší než nechat ho.
       if (prirazeno) {
@@ -1505,7 +1505,7 @@ function action(act: string, argValue: string): void {
       const r = routeById(argValue)
       if (!r) return
       // Fáze se mění, data zůstávají. Kotevní datum se přepíše jen tehdy,
-      // když ho nová fáze potřebuje a uživatelka ho ještě nemá — jinak by
+      // když ho nová fáze potřebuje a uživatelka ho ještě nemá, jinak by
       // se přepsala historie, kterou si zapsala dřív.
       patch((d) => {
         if (!d.profile) return
@@ -1687,7 +1687,7 @@ function action(act: string, argValue: string): void {
       const value2 = kind === 'tlak' ? numOrNull(`hz-${kind}-val2`) : null
       // U tlaku stačí jedna ze dvou složek, jinde musí být hodnota.
       if (value === null && value2 === null) {
-        toast('Zapište prosím hodnotu — bez čísla není co uložit.')
+        toast('Zapište prosím hodnotu. Bez čísla není co uložit.')
         return
       }
       patch((d) => {
@@ -1899,7 +1899,7 @@ function action(act: string, argValue: string): void {
     case 'doc-add': {
       const title = val('doc-title').trim()
       if (!title) {
-        toast('Dokument potřebuje název — ať ho pak najdete.')
+        toast('Dokument potřebuje název. Ať ho pak najdete.')
         return
       }
       addDoc(title, (val('doc-kind') || 'zprava') as DocKind, dateOrNull('doc-date') ?? undefined, val('doc-note'))
@@ -2110,7 +2110,7 @@ document.addEventListener('click', (ev) => {
     // nad obrazovkou, na kterou právě odkázal.
     view.quick = false
     const route = target.dataset.go
-    // Otevření obsahu je signál pro doporučování — přesně jako v aplikaci.
+    // Otevření obsahu je signál pro doporučování. Přesně jako v aplikaci.
     if (route.startsWith('cist/')) {
       const item = contentById(route.slice(5))
       if (item) learn(item.id, 0.35)
@@ -2198,6 +2198,6 @@ if (!location.hash) location.hash = '#/dnes'
 render()
 
 // Fotky se načítají z IndexedDB, tedy asynchronně. První vykreslení na ně
-// nečeká — místo nich se krátce ukáže zástupný rámeček a jakmile doteče
+// nečeká. Místo nich se krátce ukáže zástupný rámeček a jakmile doteče
 // obsah, obrazovka se překreslí.
 void initPhotos().then(render)

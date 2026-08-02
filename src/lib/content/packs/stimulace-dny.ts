@@ -3,12 +3,12 @@ import type { ContentItem, ContentPack, DailyCard } from '../types'
 /**
  * Stimulační kalendář den po dni.
  *
- * Stimulace je nejhustší část celého cyklu — injekce, kontroly, čísla
+ * Stimulace je nejhustší část celého cyklu. Injekce, kontroly, čísla
  * a rozpis, který se v průběhu mění. Tenhle balík dává ke každému dni
  * jednu kartu a k ní čtyři články o praktických věcech, které se na
  * klinice řeknou jednou a rychle.
  *
- * Nikde tu nejsou konkrétní dávky ani časy aplikace — ty určuje výhradně
+ * Nikde tu nejsou konkrétní dávky ani časy aplikace. Ty určuje výhradně
  * klinika. A nikde se nehodnotí počet folikulů; z něj se výsledek cyklu
  * číst nedá.
  */
@@ -19,7 +19,7 @@ const items: ContentItem[] = [
     kind: 'article',
     title: 'Jak si připravit injekci',
     excerpt:
-      'Postup, u kterého se nespletete — od umytí rukou po odložení jehly. Bez dávek a bez časů, ty patří na papír od vaší kliniky.',
+      'Postup, u kterého se nespletete. Od umytí rukou po odložení jehly. Bez dávek a bez časů, ty patří na papír od vaší kliniky.',
     minutes: 7,
     phases: ['stimulation'],
     dayRange: [1, 4],
@@ -31,7 +31,7 @@ const items: ContentItem[] = [
     publishedOn: '2026-08-02',
     body: `## Rozpis určuje klinika, ne článek
 
-Jaký lék, jaká dávka, jakou formou a v jaký čas — tohle všechno určuje vaše klinika a máte to mít napsané. Tenhle text popisuje jen to, co je společné většině injekčních přípravků: jak si postavit postup, u kterého neuděláte chybu.
+Jaký lék, jaká dávka, jakou formou a v jaký čas. Tohle všechno určuje vaše klinika a máte to mít napsané. Tenhle text popisuje jen to, co je společné většině injekčních přípravků: jak si postavit postup, u kterého neuděláte chybu.
 
 **Žádné číslo, žádnou dávku ani čas si podle internetu neupravujte.** Pokud vám v rozpisu cokoli není jasné, zavolejte na kliniku dřív, než si aplikujete. Sestry tuhle otázku slyší denně a je to úplně běžný dotaz.
 
@@ -40,13 +40,13 @@ Jaký lék, jaká dávka, jakou formou a v jaký čas — tohle všechno určuje
 1. **Umyjte si ruce** a připravte si čistou rovnou plochu s dobrým světlem.
 2. **Vyskládejte si všechno dopředu:** lék, jehly, dezinfekci, čtvereček, pevnou nádobu na použité jehly a svůj rozpis.
 3. **Zkontrolujte název léku a datum použitelnosti.** V lednici bývá víc krabiček, které vypadají hodně podobně.
-4. **Ověřte si podmínky uchování** — jestli přípravek patří do chladu a jak dlouho před aplikací ho vyndat. Řada žen popisuje, že pokojově temperovaný roztok pálí méně. Řiďte se příbalovou informací a pokynem kliniky.
+4. **Ověřte si podmínky uchování**: jestli přípravek patří do chladu a jak dlouho před aplikací ho vyndat. Řada žen popisuje, že pokojově temperovaný roztok pálí méně. Řiďte se příbalovou informací a pokynem kliniky.
 
 ## Formy, se kterými se běžně setkáte
 
-- **Předplněné pero** — dávka se nastavuje otočným kolečkem podle rozpisu.
-- **Předplněná stříkačka** — dávka je daná, nic se nenastavuje.
-- **Prášek a rozpouštědlo** — obsah se před aplikací smíchá přesně podle návodu.
+- **Předplněné pero**: dávka se nastavuje otočným kolečkem podle rozpisu.
+- **Předplněná stříkačka**: dávka je daná, nic se nenastavuje.
+- **Prášek a rozpouštědlo**: obsah se před aplikací smíchá přesně podle návodu.
 
 Každá forma má jiný postup přípravy. Nechte si ho na klinice ukázat a při prvních aplikacích mějte návod otevřený vedle sebe. Není na tom nic trapného, i zdravotníci si návody čtou.
 
@@ -62,22 +62,22 @@ Každá forma má jiný postup přípravy. Nechte si ho na klinice ukázat a př
 
 ## Zapisujte si to
 
-Jednoduchý zápis — datum, čas, lék, strana — vás ochrání před nejčastější nejistotou celé stimulace: „píchla jsem si dneska už, nebo ne?“. Poznámka v telefonu stačí.
+Jednoduchý zápis (datum, čas, lék, strana) vás ochrání před nejčastější nejistotou celé stimulace: „píchla jsem si dneska už, nebo ne?“. Poznámka v telefonu stačí.
 
 ## Když se něco pokazí
 
 Nic z toho neřešte sama a nic z toho není důvod k panice:
 
-- **Vynechaná dávka** nebo dávka podaná výrazně mimo určený čas — zavolejte na kliniku a řekněte přesně, co se stalo.
-- **Vylitý nebo neúplně podaný obsah** — nedopichujte podle odhadu. Volejte.
-- **Špatný lék nebo špatné množství** — volejte hned, i večer.
-- **Kapka krve nebo malá modřina po vpichu** — běžné, není třeba nic řešit.
+- **Vynechaná dávka** nebo dávka podaná výrazně mimo určený čas. Zavolejte na kliniku a řekněte přesně, co se stalo.
+- **Vylitý nebo neúplně podaný obsah**: nedopichujte podle odhadu. Volejte.
+- **Špatný lék nebo špatné množství**: volejte hned, i večer.
+- **Kapka krve nebo malá modřina po vpichu**: běžné, není třeba nic řešit.
 
 ## Kdy volat
 
-- Vyrážka, otok rtů nebo obličeje, dušnost či závrať po aplikaci — **vyhledejte akutní lékařskou pomoc**.
+- Vyrážka, otok rtů nebo obličeje, dušnost či závrať po aplikaci. **vyhledejte akutní lékařskou pomoc**.
 - Horečka nad 38 °C.
-- Rozšiřující se zarudnutí, bolestivé ztvrdnutí nebo hnisání v místě vpichu — **kontaktujte svou kliniku**.
+- Rozšiřující se zarudnutí, bolestivé ztvrdnutí nebo hnisání v místě vpichu. **kontaktujte svou kliniku**.
 - Jakákoli pochybnost o tom, co a kolik jste si podala.
 
 > Tenhle text popisuje obecné zásady zacházení s injekčními přípravky. Nenahrazuje příbalovou informaci ani pokyny vaší kliniky. Konkrétní lék, dávku i čas aplikace určuje výhradně váš lékař.`,
@@ -99,12 +99,12 @@ Nic z toho neřešte sama a nic z toho není důvod k panice:
     publishedOn: '2026-08-02',
     body: `## Kam se píchá
 
-Většina léků používaných ke stimulaci se podává **podkožně** — do vrstvy pod kůží, ne do svalu. Nejčastěji se používá:
+Většina léků používaných ke stimulaci se podává **podkožně**: do vrstvy pod kůží, ne do svalu. Nejčastěji se používá:
 
 - **břicho**, obvykle v okolí pupku s odstupem několika centimetrů,
 - **přední a boční strana stehna**, praktická alternativa, když se břicho podráždí.
 
-Některé přípravky se podávají **do svalu**, typicky do horní zevní části hýždě nebo do stehna. Mají jinou techniku i jinou jehlu a často je aplikuje někdo druhý. **Které místo a která technika platí pro vás, určuje vaše klinika** — a je to jedna z věcí, na kterou má smysl se zeptat ještě před první aplikací.
+Některé přípravky se podávají **do svalu**, typicky do horní zevní části hýždě nebo do stehna. Mají jinou techniku i jinou jehlu a často je aplikuje někdo druhý. **Které místo a která technika platí pro vás, určuje vaše klinika**: a je to jedna z věcí, na kterou má smysl se zeptat ještě před první aplikací.
 
 ## Proč se místa střídají
 
@@ -134,7 +134,7 @@ Co ženám obvykle pomáhá:
 
 - **krátké chlazení** místa před vpichem i po něm, vždy přes látku, nikdy led přímo na kůži,
 - **mírný tlak** čtverečkem po vytažení jehly, bez tření a bez masírování,
-- **jistý, plynulý pohyb** — pomalé, opatrné zavádění jehly bolí většinou víc.
+- **jistý, plynulý pohyb**: pomalé, opatrné zavádění jehly bolí většinou víc.
 
 Rozsáhlejší modřina vypadá hrozivě a může být citlivá, na účinek léku ale vliv nemá.
 
@@ -151,7 +151,7 @@ Aplikace do svalu je nepříjemnější a hůř se dělá sama sobě. Pokud vám
 - Zarudnutí, které se šíří, teplá bolestivá bulka nebo hnisání v místě vpichu.
 - Horečka nad 38 °C.
 - Ztvrdnutí, které nemizí a znemožňuje další aplikaci.
-- Vyrážka nebo otok mimo místo vpichu, dušnost — **vyhledejte akutní lékařskou pomoc**.
+- Vyrážka nebo otok mimo místo vpichu, dušnost. **vyhledejte akutní lékařskou pomoc**.
 
 > Text popisuje obvyklou praxi. Konkrétní přípravek, místo i způsob aplikace určuje váš ošetřující lékař a jeho pokyn má vždycky přednost.`,
   },
@@ -160,7 +160,7 @@ Aplikace do svalu je nepříjemnější a hůř se dělá sama sobě. Pokud vám
     kind: 'article',
     title: 'Co se sleduje na kontrolním ultrazvuku',
     excerpt:
-      'Milimetry, počty a slova, kterým nikdo nevysvětlí. Co lékař na obrazovce měří — a co se z toho naopak vyčíst nedá.',
+      'Milimetry, počty a slova, kterým nikdo nevysvětlí. Co lékař na obrazovce měří. A co se z toho naopak vyčíst nedá.',
     minutes: 7,
     phases: ['stimulation'],
     dayRange: [3, 11],
@@ -172,7 +172,7 @@ Aplikace do svalu je nepříjemnější a hůř se dělá sama sobě. Pokud vám
     publishedOn: '2026-08-02',
     body: `## Jak kontrola probíhá
 
-Kontrolní vyšetření během stimulace se dělá **vaginálním ultrazvukem**. Trvá obvykle několik minut a nevyžaduje přípravu — na rozdíl od transferu se sem chodí spíš s prázdným močovým měchýřem. K ultrazvuku se často, ale ne vždy, přidává odběr krve.
+Kontrolní vyšetření během stimulace se dělá **vaginálním ultrazvukem**. Trvá obvykle několik minut a nevyžaduje přípravu. Na rozdíl od transferu se sem chodí spíš s prázdným močovým měchýřem. K ultrazvuku se často, ale ne vždy, přidává odběr krve.
 
 Kolik kontrol budete mít, se liší podle protokolu a podle toho, jak cyklus probíhá. Ke konci stimulace bývají hustší, někdy i obden nebo denně.
 
@@ -180,7 +180,7 @@ Kolik kontrol budete mít, se liší podle protokolu a podle toho, jak cyklus pr
 
 - **Počet folikulů** v každém vaječníku zvlášť.
 - **Velikost jednotlivých folikulů** v milimetrech.
-- **Tloušťku a vzhled děložní sliznice** — endometria.
+- **Tloušťku a vzhled děložní sliznice**: endometria.
 - **Přítomnost volné tekutiny** v malé pánvi.
 - Někdy i útvary, které tam byly už před stimulací, například cysty.
 
@@ -197,14 +197,14 @@ Tohle je nejdůležitější část článku, protože právě tady se ženy nej
 - **Jedno číslo z jedné kontroly nic neuzavírá.** Sleduje se vývoj mezi kontrolami, ne jeden snímek.
 - **Srovnávání s jinou ženou nedává smysl.** Jiný věk, jiná výchozí situace, jiný protokol, jiná odpověď.
 
-Z toho, co uslyšíte na kontrole, nelze číst úspěch ani neúspěch cyklu. Konkrétní výklad vašeho nálezu patří vašemu lékaři — proberte ho s ním přímo v ordinaci.
+Z toho, co uslyšíte na kontrole, nelze číst úspěch ani neúspěch cyklu. Konkrétní výklad vašeho nálezu patří vašemu lékaři. Proberte ho s ním přímo v ordinaci.
 
 ## O čem se podle kontroly rozhoduje
 
 - jestli pokračovat stejně, nebo **upravit dávku**,
 - jestli a kdy přidat lék, který má zabránit předčasné ovulaci,
 - kdy podat závěrečnou injekci a kdy naplánovat odběr vajíček,
-- ve zvláštních situacích i to, jestli se transfer odloží a embrya se zamrazí — jeden cyklus totiž může vést k víc než jednomu transferu.
+- ve zvláštních situacích i to, jestli se transfer odloží a embrya se zamrazí. Jeden cyklus totiž může vést k víc než jednomu transferu.
 
 ## Jak si z kontroly odnést víc
 
@@ -216,7 +216,7 @@ Z toho, co uslyšíte na kontrole, nelze číst úspěch ani neúspěch cyklu. K
 ## Kdy volat kliniku
 
 - Prudká, zejména jednostranná bolest v podbřišku.
-- Rychle rostoucí obvod břicha, dušnost nebo výrazně snížené močení — může jít o příznaky hyperstimulačního syndromu (OHSS).
+- Rychle rostoucí obvod břicha, dušnost nebo výrazně snížené močení. Může jít o příznaky hyperstimulačního syndromu (OHSS).
 - Horečka nad 38 °C.
 - Zvracení nebo průjem, kvůli kterým nemůžete udržet tekutiny.
 
@@ -227,7 +227,7 @@ Z toho, co uslyšíte na kontrole, nelze číst úspěch ani neúspěch cyklu. K
     kind: 'article',
     title: 'Když se dávka změní',
     excerpt:
-      'Telefonát z kliniky, nový rozpis a hlava plná otázek. Úprava dávky během stimulace je běžná — a tady je, co s ní prakticky udělat.',
+      'Telefonát z kliniky, nový rozpis a hlava plná otázek. Úprava dávky během stimulace je běžná. A tady je, co s ní prakticky udělat.',
     minutes: 6,
     phases: ['stimulation'],
     dayRange: [4, 12],
@@ -239,9 +239,9 @@ Z toho, co uslyšíte na kontrole, nelze číst úspěch ani neúspěch cyklu. K
     publishedOn: '2026-08-02',
     body: `## Změna dávky je součást vedení cyklu
 
-Jak vaječníky na léky zareagují, se dá předem odhadnout jen zhruba — podle věku, hormonálních hodnot, ultrazvukového nálezu a předchozích cyklů, pokud nějaké byly. Přesně se to ukáže až v průběhu. Proto se rozpis průběžně upravuje.
+Jak vaječníky na léky zareagují, se dá předem odhadnout jen zhruba. Podle věku, hormonálních hodnot, ultrazvukového nálezu a předchozích cyklů, pokud nějaké byly. Přesně se to ukáže až v průběhu. Proto se rozpis průběžně upravuje.
 
-**Úprava dávky během stimulace je běžná a není známkou chyby** — ani vaší, ani lékařovy. Není to ani hodnocení vašeho těla.
+**Úprava dávky během stimulace je běžná a není známkou chyby**: ani vaší, ani lékařovy. Není to ani hodnocení vašeho těla.
 
 ## Co všechno se může změnit
 
@@ -250,7 +250,7 @@ Jak vaječníky na léky zareagují, se dá předem odhadnout jen zhruba — pod
 - délka stimulace,
 - termíny kontrol,
 - načasování závěrečné injekce a odběru vajíček,
-- ve zvláštních situacích plán cyklu jako celek — například se embrya zamrazí a transfer se odloží na jiný cyklus.
+- ve zvláštních situacích plán cyklu jako celek, například se embrya zamrazí a transfer se odloží na jiný cyklus.
 
 ## Co znamená zvýšení a co snížení
 
@@ -265,7 +265,7 @@ Ani jedna z těch změn není známka toho, že něco selhalo, ani příslib, ž
 Telefonát bývá krátký a přijde ve chvíli, kdy jste v práci nebo v autobuse. Proto stojí za to mít jednoduchý postup:
 
 1. **Zopakujte pokyn nahlas zpátky.** Nedorozumění se odhalí v téhle vteřině, ne večer u lednice.
-2. **Zeptejte se, odkdy nový rozpis platí** — jestli od dnešní dávky, nebo až od zítřejší.
+2. **Zeptejte se, odkdy nový rozpis platí**: jestli od dnešní dávky, nebo až od zítřejší.
 3. **Zeptejte se, jestli se mění i ostatní léky**, nebo jen ten jeden.
 4. **Zeptejte se, kdy je další kontrola** a jestli se má něco hlásit dřív.
 5. **Zapište si to hned** a co nejdřív přepište celý rozpis načisto.
@@ -281,15 +281,15 @@ Telefonát bývá krátký a přijde ve chvíli, kdy jste v práci nebo v autobu
 
 ## Když se cyklus přeruší
 
-Někdy se stimulace ukončí dřív, než se dojde k odběru. Důvodem bývá odpověď, která se výrazně liší od očekávané — v obou směrech. Rozhodnutí dělá lékař podle konkrétního nálezu.
+Někdy se stimulace ukončí dřív, než se dojde k odběru. Důvodem bývá odpověď, která se výrazně liší od očekávané. V obou směrech. Rozhodnutí dělá lékař podle konkrétního nálezu.
 
-Je to jedno z nejtěžších sdělení celé léčby a nemá smysl ho zlehčovat. Co se dá udělat: zeptat se, co z toho plyne pro další postup, jestli se bude něco měnit v protokolu a kdy se dá pokračovat. Odpověď nemusí přijít hned — část otázek se dá probrat až na kontrole s odstupem.
+Je to jedno z nejtěžších sdělení celé léčby a nemá smysl ho zlehčovat. Co se dá udělat: zeptat se, co z toho plyne pro další postup, jestli se bude něco měnit v protokolu a kdy se dá pokračovat. Odpověď nemusí přijít hned. Část otázek se dá probrat až na kontrole s odstupem.
 
 ## Kdy volat kliniku
 
 - Nejste si jistá, co přesně máte teď užívat.
 - Vynechala jste dávku nebo jste si podala jiné množství, než mělo být.
-- Rychle rostoucí obvod břicha, dušnost, výrazně snížené močení — může jít o příznaky OHSS.
+- Rychle rostoucí obvod břicha, dušnost, výrazně snížené močení. Může jít o příznaky OHSS.
 - Prudká bolest v podbřišku nebo horečka nad 38 °C.
 
 > Text vysvětluje princip úprav stimulace obecně. Nestanovuje dávkování ani léčebný postup. Rozpis vždycky určuje váš ošetřující lékař.`,
@@ -302,7 +302,7 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 1,
     headline: 'Dnes se začíná. První injekce bývá nejtěžší z celé řady.',
-    body: 'Dnes si podle rozpisu od kliniky aplikujete první dávku. Ve vaječnících je právě teď skupina drobných folikulů, které by ve většině v běžném cyklu zanikly; léky jim mají dát šanci růst dál. Cítit z toho dnes nejspíš nebudete vůbec nic — a to je normální začátek, ne špatné znamení.',
+    body: 'Dnes si podle rozpisu od kliniky aplikujete první dávku. Ve vaječnících je právě teď skupina drobných folikulů, které by ve většině v běžném cyklu zanikly; léky jim mají dát šanci růst dál. Cítit z toho dnes nejspíš nebudete vůbec nic. A to je normální začátek, ne špatné znamení.',
     whatsHappening: [
       'Ve vaječnících je skupina drobných folikulů, které se v tomto cyklu nabídly k růstu.',
       'Hladiny hormonů z léků teprve začínají stoupat, tělo na ně reaguje s odstupem.',
@@ -310,9 +310,9 @@ const dailyCards: DailyCard[] = [
     ],
     task: 'Zapište si čas aplikace, který vám určila klinika, a nastavte si na něj v telefonu denní připomínku.',
     reflection: 'Co mi běželo hlavou, když jsem držela první injekci v ruce?',
-    tip: 'Vyhraďte lékům jedno stálé místo — jednu polici v lednici a jednu krabici mimo ni. Hledání ve spěchu je zdrojem chyb.',
+    tip: 'Vyhraďte lékům jedno stálé místo. Jednu polici v lednici a jednu krabici mimo ni. Hledání ve spěchu je zdrojem chyb.',
     callDoctorIf: [
-      'Vyrážka, otok obličeje nebo rtů, dušnost po aplikaci — vyhledejte akutní lékařskou pomoc.',
+      'Vyrážka, otok obličeje nebo rtů, dušnost po aplikaci. Vyhledejte akutní lékařskou pomoc.',
       'Podala jste si jiný lék nebo jiné množství, než mělo být podle rozpisu.',
       'Nejste si jistá, jestli se celá dávka opravdu podala.',
       'Horečka nad 38 °C.',
@@ -323,7 +323,7 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 2,
     headline: 'Druhý den: ruce si zvyknou dřív než hlava.',
-    body: 'Druhá aplikace bývá znatelně snazší než ta včerejší, i když se hlava pořád brání. V těle zatím probíhá tichá práce — folikuly na podnět reagují, ale změřitelné to ještě není. Klidně se můžete cítit úplně stejně jako minulý týden.',
+    body: 'Druhá aplikace bývá znatelně snazší než ta včerejší, i když se hlava pořád brání. V těle zatím probíhá tichá práce. Folikuly na podnět reagují, ale změřitelné to ještě není. Klidně se můžete cítit úplně stejně jako minulý týden.',
     whatsHappening: [
       'Folikuly ve vaječnících začínají růst, zatím měří jen několik milimetrů.',
       'Estradiol se pomalu zvedá, obvykle bez jakýchkoli příznaků.',
@@ -333,7 +333,7 @@ const dailyCards: DailyCard[] = [
     reflection: 'Co mi včera pomohlo dostat se přes první injekci? Dá se to zopakovat i dnes?',
     tip: 'Modřinám pomáhá krátké chlazení místa přes látku před vpichem a mírný tlak čtverečkem po něm. Místo netřete.',
     callDoctorIf: [
-      'Vyrážka, otok nebo dušnost po aplikaci — vyhledejte akutní lékařskou pomoc.',
+      'Vyrážka, otok nebo dušnost po aplikaci. Vyhledejte akutní lékařskou pomoc.',
       'Vynechala jste dávku nebo si nejste jistá, kolik jste si podala.',
       'Prudká bolest v podbřišku.',
       'Horečka nad 38 °C.',
@@ -344,14 +344,14 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 3,
     headline: 'Třetí den: rutina se rodí dřív, než jste čekala.',
-    body: 'Tři večery po sobě a z výjimečné události je obyčejný úkon. Vaječníky pracují na několika folikulech najednou, což je proti běžnému cyklu neobvyklá zátěž — zvenčí se to ale zatím většinou neprojevuje. Mírná únava nebo rozkolísaná nálada v prvních dnech nejsou nic mimořádného.',
+    body: 'Tři večery po sobě a z výjimečné události je obyčejný úkon. Vaječníky pracují na několika folikulech najednou, což je proti běžnému cyklu neobvyklá zátěž. Zvenčí se to ale zatím většinou neprojevuje. Mírná únava nebo rozkolísaná nálada v prvních dnech nejsou nic mimořádného.',
     whatsHappening: [
       'Roste víc folikulů současně, každý svým vlastním tempem.',
       'Estradiol stoupá; u části žen se objeví napětí v prsou nebo únava.',
       'Folikuly jsou zatím malé, měření by v tuhle chvíli mnoho neřeklo.',
     ],
     task: 'Napište si do poznámek v telefonu tři otázky, které chcete položit na nejbližší kontrole.',
-    reflection: 'Komu jsem zatím řekla, že jsem ve stimulaci — a komu ne? Vyhovuje mi to takhle?',
+    reflection: 'Komu jsem zatím řekla, že jsem ve stimulaci. A komu ne? Vyhovuje mi to takhle?',
     tip: 'Volnější oblečení, které netlačí v pase, se hodí už teď. Za pár dní ho oceníte podstatně víc.',
     callDoctorIf: [
       'Prudká bolest v podbřišku.',
@@ -386,15 +386,15 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 5,
     headline: 'Pátý den: čísla, která zatím nic neuzavírají.',
-    body: 'Pokud už jste byla na kontrole, slyšela jste počty a milimetry. V téhle části stimulace se z nich nedá nic uzavřít — folikuly rostou nerovnoměrně, menší mohou ty větší dohnat a některé se přidají později. Počet folikulů navíc není počtem vajíček; to se ukáže až při odběru.',
+    body: 'Pokud už jste byla na kontrole, slyšela jste počty a milimetry. V téhle části stimulace se z nich nedá nic uzavřít. Folikuly rostou nerovnoměrně, menší mohou ty větší dohnat a některé se přidají později. Počet folikulů navíc není počtem vajíček; to se ukáže až při odběru.',
     whatsHappening: [
       'Folikuly rostou různým tempem a rozdíly mezi nimi jsou běžné.',
       'Estradiol dál stoupá, u části žen se objeví nadýmání nebo napětí v prsou.',
       'Podle nálezu může klinika upravit dávku nebo přidat lék bránící předčasné ovulaci.',
     ],
-    task: 'Zapište si dnešní čísla z kontroly na jedno místo — do poznámek, do sešitu, kamkoli, kde je najdete i za týden.',
+    task: 'Zapište si dnešní čísla z kontroly na jedno místo. Do poznámek, do sešitu, kamkoli, kde je najdete i za týden.',
     reflection: 'Srovnávám se s někým? A co mi to srovnávání reálně dává?',
-    tip: 'Čísla z internetových diskusí nejsou vaše. Jiný věk, jiný protokol, jiná výchozí situace — porovnání nedává smysl.',
+    tip: 'Čísla z internetových diskusí nejsou vaše. Jiný věk, jiný protokol, jiná výchozí situace. Porovnání nedává smysl.',
     callDoctorIf: [
       'Prudká, zejména jednostranná bolest v podbřišku.',
       'Silné krvácení.',
@@ -407,17 +407,17 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 6,
     headline: 'Šestý den: břicho začíná dávat vědět.',
-    body: 'Vaječníky, které v běžném cyklu dovedou k cíli jeden folikul, jich teď nesou několik — a zvětšují se. Tlak, těžkost nebo pobolívání v podbřišku bývají v téhle části stimulace běžné. Od téhle chvíle je dobré znát příznaky, se kterými se volá na kliniku.',
+    body: 'Vaječníky, které v běžném cyklu dovedou k cíli jeden folikul, jich teď nesou několik. A zvětšují se. Tlak, těžkost nebo pobolívání v podbřišku bývají v téhle části stimulace běžné. Od téhle chvíle je dobré znát příznaky, se kterými se volá na kliniku.',
     whatsHappening: [
       'Vaječníky se zvětšují a jsou citlivější na náhlý pohyb.',
       'Estradiol stoupá výrazněji, kalhoty mohou začít být těsné.',
       'Spánek i nálada bývají rozkolísanější než na začátku.',
     ],
     task: 'Zjistěte si a uložte do telefonu číslo, na které se volá mimo ordinační hodiny a o víkendu.',
-    reflection: 'Co dnes moje tělo potřebuje víc — pohyb, nebo klid?',
+    reflection: 'Co dnes moje tělo potřebuje víc. Pohyb, nebo klid?',
     tip: 'Prudké otáčení, skoky a intenzivní cvičení teď vynechte. Zvětšené vaječníky snášejí náhlý pohyb hůř.',
     callDoctorIf: [
-      'Rychle rostoucí obvod břicha, rychlý přírůstek hmotnosti nebo dušnost — může jít o příznaky hyperstimulačního syndromu (OHSS).',
+      'Rychle rostoucí obvod břicha, rychlý přírůstek hmotnosti nebo dušnost. Může jít o příznaky hyperstimulačního syndromu (OHSS).',
       'Výrazně snížené množství moči.',
       'Prudká, narůstající bolest v podbřišku, zejména jednostranná.',
       'Zvracení, kvůli kterému neudržíte tekutiny, nebo horečka nad 38 °C.',
@@ -428,7 +428,7 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 7,
     headline: 'Sedmý den: půlka bývá za vámi.',
-    body: 'Stimulace trvá u většiny cyklů zhruba deset až čtrnáct dní, takže jste nejspíš někde v polovině — přesnou délku určí až vývoj folikulů. Sedmý den bývá tím, kdy dochází trpělivost, zatímco do cíle je pořád daleko. To není slabost, to je únava z režimu, ve kterém se nedá nic naplánovat.',
+    body: 'Stimulace trvá u většiny cyklů zhruba deset až čtrnáct dní, takže jste nejspíš někde v polovině. Přesnou délku určí až vývoj folikulů. Sedmý den bývá tím, kdy dochází trpělivost, zatímco do cíle je pořád daleko. To není slabost, to je únava z režimu, ve kterém se nedá nic naplánovat.',
     whatsHappening: [
       'Větší folikuly se blíží velikostem, podle kterých se rozhoduje o dalších krocích.',
       'Hladiny hormonů jsou vysoké; únava a plačtivost mají hormonální podíl.',
@@ -438,7 +438,7 @@ const dailyCards: DailyCard[] = [
     reflection: 'Co jsem za tenhle týden zvládla, i když jsem si na začátku myslela, že to nezvládnu?',
     tip: 'Zkuste si dopředu uvolnit ranní hodiny na kontroly. Shánění náhrady na poslední chvíli bere víc sil než samotné vyšetření.',
     callDoctorIf: [
-      'Rychlý nárůst obvodu břicha, rychlý přírůstek hmotnosti nebo dušnost — může jít o příznaky OHSS.',
+      'Rychlý nárůst obvodu břicha, rychlý přírůstek hmotnosti nebo dušnost. Může jít o příznaky OHSS.',
       'Výrazně snížené močení nebo silná žízeň.',
       'Prudká, zejména jednostranná bolest v podbřišku.',
       'Horečka nad 38 °C.',
@@ -453,13 +453,13 @@ const dailyCards: DailyCard[] = [
     whatsHappening: [
       'Folikuly rostou dál, rozdíly ve velikostech se mohou srovnávat i zvětšovat.',
       'Endometrium se zesiluje a měří se spolu s folikuly.',
-      'Zvětšené vaječníky mohou tlačit na okolí — časté močení není nic výjimečného.',
+      'Zvětšené vaječníky mohou tlačit na okolí. Časté močení není nic výjimečného.',
     ],
     task: 'Zapište si do kalendáře všechny už potvrzené termíny včetně času a místa.',
-    reflection: 'Co mi teď bere víc sil — samotná léčba, nebo organizace kolem ní?',
+    reflection: 'Co mi teď bere víc sil. Samotná léčba, nebo organizace kolem ní?',
     tip: 'Když se rozpis změní, přepište ho celý načisto na jeden papír a starý zahoďte. Dvě verze vedle sebe jsou nejčastější zdroj chyb.',
     callDoctorIf: [
-      'Rychle rostoucí břicho, rychlý přírůstek hmotnosti během několika dní nebo dušnost — může jít o příznaky OHSS.',
+      'Rychle rostoucí břicho, rychlý přírůstek hmotnosti během několika dní nebo dušnost. Může jít o příznaky OHSS.',
       'Výrazně snížené močení.',
       'Prudká bolest v podbřišku nebo silné nadýmání.',
       'Horečka nad 38 °C.',
@@ -470,7 +470,7 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 9,
     headline: 'Devátý den: čekání na jedno konkrétní datum.',
-    body: 'Termín odběru vajíček se v tuhle chvíli obvykle ještě nedá potvrdit — vychází z toho, jak folikuly vypadají na poslední kontrole. Nejistota v plánování patří k nejvyčerpávajícím částem stimulace, protože se nedá vyřešit vůlí ani přípravou. Co se udělat dá, je připravit se na obě varianty.',
+    body: 'Termín odběru vajíček se v tuhle chvíli obvykle ještě nedá potvrdit. Vychází z toho, jak folikuly vypadají na poslední kontrole. Nejistota v plánování patří k nejvyčerpávajícím částem stimulace, protože se nedá vyřešit vůlí ani přípravou. Co se udělat dá, je připravit se na obě varianty.',
     whatsHappening: [
       'O načasování rozhoduje velikost folikulů a hormonální hodnoty, ne kalendář.',
       'Vaječníky jsou zvětšené, tlak v podbřišku bývá výraznější.',
@@ -480,7 +480,7 @@ const dailyCards: DailyCard[] = [
     reflection: 'Co potřebuju mít zařízené, abych den odběru zvládla bez zbytečného shonu?',
     tip: 'Sbalte si tašku na odběr už teď: doklady, papíry od kliniky, ponožky, volné oblečení, vložky. Zabere to deset minut a máte to z hlavy.',
     callDoctorIf: [
-      'Rychle rostoucí obvod břicha, výrazný přírůstek hmotnosti nebo dušnost — může jít o příznaky OHSS.',
+      'Rychle rostoucí obvod břicha, výrazný přírůstek hmotnosti nebo dušnost. Může jít o příznaky OHSS.',
       'Výrazně snížené močení.',
       'Náhlá prudká bolest v podbřišku, případně s nevolností a zvracením.',
       'Horečka nad 38 °C.',
@@ -491,7 +491,7 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 10,
     headline: 'Desátý den: závěrečná injekce se plánuje na hodiny.',
-    body: 'Když folikuly dosáhnou velikostí, které klinika považuje za vhodné, přijde pokyn k závěrečné injekci — takzvanému triggeru. Aplikuje se v přesně určený čas, protože od něj se termín odběru počítá na hodiny. Je to jediná injekce celé stimulace, u které si nemůžete dovolit odchylku v čase.',
+    body: 'Když folikuly dosáhnou velikostí, které klinika považuje za vhodné, přijde pokyn k závěrečné injekci. Takzvanému triggeru. Aplikuje se v přesně určený čas, protože od něj se termín odběru počítá na hodiny. Je to jediná injekce celé stimulace, u které si nemůžete dovolit odchylku v čase.',
     whatsHappening: [
       'Trigger spouští závěrečné dozrání vajíček ve folikulech.',
       'Odběr se obvykle plánuje zhruba 34 až 36 hodin po něm, přesný čas určí klinika.',
@@ -501,8 +501,8 @@ const dailyCards: DailyCard[] = [
     reflection: 'Čeho se na odběru bojím konkrétně? Dá se s tou jednou věcí něco udělat?',
     tip: 'Nastavte si na trigger dvě připomínky, jednu půl hodiny předem. Tuhle injekci si nikdo nemůže dovolit posunout.',
     callDoctorIf: [
-      'Nestihla jste trigger v určený čas nebo si nejste jistá, že se podal celý — volejte ihned.',
-      'Rychle rostoucí břicho, dušnost nebo výrazně snížené močení — může jít o příznaky OHSS.',
+      'Nestihla jste trigger v určený čas nebo si nejste jistá, že se podal celý. Volejte ihned.',
+      'Rychle rostoucí břicho, dušnost nebo výrazně snížené močení. Může jít o příznaky OHSS.',
       'Prudká bolest v podbřišku.',
       'Horečka nad 38 °C.',
     ],
@@ -512,7 +512,7 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 11,
     headline: 'Jedenáctý den: tělo pracuje naplno a dává to najevo.',
-    body: 'U části žen je v tuhle chvíli stimulace u konce nebo těsně před ním, u jiných ještě pár dní pokračuje. Délku určuje růst folikulů, ne počet dní v kalendáři — a obojí je běžný průběh. Tlak a plnost v podbřišku bývají právě ke konci nejsilnější.',
+    body: 'U části žen je v tuhle chvíli stimulace u konce nebo těsně před ním, u jiných ještě pár dní pokračuje. Délku určuje růst folikulů, ne počet dní v kalendáři. A obojí je běžný průběh. Tlak a plnost v podbřišku bývají právě ke konci nejsilnější.',
     whatsHappening: [
       'Vaječníky jsou zvětšené a citlivé, tlak v podbřišku bývá výrazný.',
       'Hladiny hormonů jsou nejvyšší za celý dosavadní cyklus.',
@@ -522,8 +522,8 @@ const dailyCards: DailyCard[] = [
     reflection: 'Co jsem se za těch jedenáct dní dozvěděla sama o sobě?',
     tip: 'Volné kalhoty, žádný pas. Zvětšené vaječníky snášejí tlak hůř, než byste čekala.',
     callDoctorIf: [
-      'Rychlý nárůst obvodu břicha, dušnost nebo výrazně snížené močení — může jít o příznaky OHSS.',
-      'Prudká jednostranná bolest s nevolností a zvracením — může jít o torzi vaječníku, vyhledejte akutní lékařskou pomoc.',
+      'Rychlý nárůst obvodu břicha, dušnost nebo výrazně snížené močení. Může jít o příznaky OHSS.',
+      'Prudká jednostranná bolest s nevolností a zvracením. Může jít o torzi vaječníku, vyhledejte akutní lékařskou pomoc.',
       'Silné krvácení.',
       'Horečka nad 38 °C.',
     ],
@@ -533,17 +533,17 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 12,
     headline: 'Dvanáctý den: konec bývá blízko, ale nemusí být dnes.',
-    body: 'Dvanáctý den stimulace je stejně v pořádku jako devátý — protokoly i odpovědi se liší a samotná délka o ničem nevypovídá. Pokud vám klinika stimulaci prodloužila, znamená to, že sleduje růst folikulů dál. Nejtěžší na téhle části bývá, že si nemůžete říct „ještě dva dny a končím“.',
+    body: 'Dvanáctý den stimulace je stejně v pořádku jako devátý. Protokoly i odpovědi se liší a samotná délka o ničem nevypovídá. Pokud vám klinika stimulaci prodloužila, znamená to, že sleduje růst folikulů dál. Nejtěžší na téhle části bývá, že si nemůžete říct „ještě dva dny a končím“.',
     whatsHappening: [
       'Kontroly bývají denní nebo obdenní, aby se nepropásl vhodný okamžik.',
       'Vaječníky jsou zvětšené, únava a pocit plnosti přetrvávají.',
-      'Pokud jste už dostala trigger, další stimulační dávky se obvykle nepodávají — vždy podle pokynu kliniky.',
+      'Pokud jste už dostala trigger, další stimulační dávky se obvykle nepodávají. Vždy podle pokynu kliniky.',
     ],
     task: 'Ozvěte se jednomu člověku, který o vaší situaci ví. Nemusíte řešit léčbu, stačí obyčejný hovor o čemkoli jiném.',
     reflection: 'Co si o sobě říkám, když se něco protáhne? A je to spravedlivé?',
-    tip: 'Pijte během dne dost tekutin a nevynechávejte jídlo. Doporučení „hodně pít a jíst bílkoviny“ se ke konci stimulace opakuje často, přestože pro prevenci hyperstimulace nejsou důkazy silné — dehydratovaná a hladová se ale budete cítit hůř tak jako tak. Pokud u vás klinika řeší riziko OHSS, řiďte se jejím pokynem: množství i typ nápoje se tam určuje individuálně.',
+    tip: 'Pijte během dne dost tekutin a nevynechávejte jídlo. Doporučení „hodně pít a jíst bílkoviny“ se ke konci stimulace opakuje často, přestože pro prevenci hyperstimulace nejsou důkazy silné. Dehydratovaná a hladová se ale budete cítit hůř tak jako tak. Pokud u vás klinika řeší riziko OHSS, řiďte se jejím pokynem: množství i typ nápoje se tam určuje individuálně.',
     callDoctorIf: [
-      'Rychle rostoucí obvod břicha, rychlý přírůstek hmotnosti nebo dušnost — může jít o příznaky OHSS.',
+      'Rychle rostoucí obvod břicha, rychlý přírůstek hmotnosti nebo dušnost. Může jít o příznaky OHSS.',
       'Výrazně snížené močení.',
       'Prudká bolest v podbřišku.',
       'Horečka nad 38 °C.',
@@ -554,7 +554,7 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 13,
     headline: 'Třináctý den: delší stimulace není chyba.',
-    body: 'Některé cykly potřebují víc dní, jiné míň; rozhoduje o tom růst folikulů, který se předem odhadnout nedá. Pokud stimulace trvá déle, než jste čekala, je to informace o průběhu cyklu, ne o vás. Zeptejte se na kontrole rovnou, s čím klinika počítá — nejasnost bere víc sil než odpověď.',
+    body: 'Některé cykly potřebují víc dní, jiné míň; rozhoduje o tom růst folikulů, který se předem odhadnout nedá. Pokud stimulace trvá déle, než jste čekala, je to informace o průběhu cyklu, ne o vás. Zeptejte se na kontrole rovnou, s čím klinika počítá. Nejasnost bere víc sil než odpověď.',
     whatsHappening: [
       'Folikuly rostou u každé ženy jiným tempem, delší stimulace je běžná varianta.',
       'Vaječníky jsou zvětšené a zůstanou takové ještě nějakou dobu po odběru.',
@@ -564,7 +564,7 @@ const dailyCards: DailyCard[] = [
     reflection: 'Co bych potřebovala od svého lékaře slyšet, abych z téhle části vyšla klidnější?',
     tip: 'Řekněte v ordinaci nahlas, když něčemu nerozumíte. Věta „můžete mi to prosím zopakovat, chci si to zapsat“ funguje na většině pracovišť.',
     callDoctorIf: [
-      'Rychle rostoucí obvod břicha, výrazný přírůstek hmotnosti nebo dušnost — může jít o příznaky OHSS.',
+      'Rychle rostoucí obvod břicha, výrazný přírůstek hmotnosti nebo dušnost. Může jít o příznaky OHSS.',
       'Výrazně snížené močení nebo silná žízeň.',
       'Prudká, zejména jednostranná bolest v podbřišku.',
       'Horečka nad 38 °C.',
@@ -575,17 +575,17 @@ const dailyCards: DailyCard[] = [
     phases: ['stimulation'],
     day: 14,
     headline: 'Čtrnáctý den: konec téhle části cesty.',
-    body: 'Většina stimulací je v tuhle chvíli u konce — buď máte závěrečnou injekci za sebou, nebo se termín odběru domlouvá právě teď. Někdy se cyklus v této fázi z medicínských důvodů upraví nebo přeruší; rozhoduje o tom lékař podle konkrétního nálezu a není to vaše chyba. Ať se dnešek uzavře jakkoli, těch čtrnáct dní jste odchodila den po dni.',
+    body: 'Většina stimulací je v tuhle chvíli u konce. Buď máte závěrečnou injekci za sebou, nebo se termín odběru domlouvá právě teď. Někdy se cyklus v této fázi z medicínských důvodů upraví nebo přeruší; rozhoduje o tom lékař podle konkrétního nálezu a není to vaše chyba. Ať se dnešek uzavře jakkoli, těch čtrnáct dní jste odchodila den po dni.',
     whatsHappening: [
       'Po triggeru se ve folikulech dokončuje zrání vajíček.',
       'Vaječníky zůstanou zvětšené ještě několik dní až týdnů po odběru.',
       'Příznaky hyperstimulace se mohou objevit i po odběru, nejen během stimulace.',
     ],
     task: 'Projděte si pokyny na den odběru: čas příchodu, odkdy nejíst a nepít, kdo vás odveze domů.',
-    reflection: 'Co si z téhle části chci zapamatovat — a co naopak nechat za sebou?',
-    tip: 'Pamatujte, že jeden cyklus může vést k víc než jednomu transferu. Embrya, která se případně zamrazí, patří pořád k němu — „další pokus“ tedy nemusí znamenat další stimulaci.',
+    reflection: 'Co si z téhle části chci zapamatovat. A co naopak nechat za sebou?',
+    tip: 'Pamatujte, že jeden cyklus může vést k víc než jednomu transferu. Embrya, která se případně zamrazí, patří pořád k němu. „další pokus“ tedy nemusí znamenat další stimulaci.',
     callDoctorIf: [
-      'Rychle rostoucí obvod břicha, rychlý přírůstek hmotnosti nebo dušnost — může jít o příznaky OHSS.',
+      'Rychle rostoucí obvod břicha, rychlý přírůstek hmotnosti nebo dušnost. Může jít o příznaky OHSS.',
       'Výrazně snížené močení.',
       'Prudká bolest v podbřišku, nevolnost a zvracení.',
       'Horečka nad 38 °C.',

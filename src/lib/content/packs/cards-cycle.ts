@@ -5,7 +5,7 @@ import type { ContentPack, DailyCard } from '../types'
  *
  * Tohle je motor celé platformy. Karta se vybírá přesnou shodou na den,
  * takže uživatelka ve stimulaci nebo v čekání na hCG dostane každé ráno
- * text napsaný právě pro ten den — ne obecný článek o fázi.
+ * text napsaný právě pro ten den, ne obecný článek o fázi.
  *
  * Zdrojem popisu vývoje embrya je běžná embryologická praxe; časování se mezi
  * klinikami liší a nikde z toho nevyvozujeme, jak dopadne konkrétní cyklus.
@@ -19,14 +19,14 @@ const stimulation: DailyCard[] = [
     phases: ['stimulation'],
     day: 0,
     headline: 'První injekce. Nejtěžší je ta dnešní.',
-    body: 'Dnes začíná stimulace. Většina žen se první injekce bojí víc než všech ostatních dohromady — a po třetím dni ji píchá při telefonování. Ruce se můžou třást, to je v pořádku.',
+    body: 'Dnes začíná stimulace. Většina žen se první injekce bojí víc než všech ostatních dohromady. A po třetím dni ji píchá při telefonování. Ruce se můžou třást, to je v pořádku.',
     whatsHappening: [
       'Léky začínají povzbuzovat růst folikulů ve vaječnících.',
       'Zatím nic necítíte. To je normální, ne špatné znamení.',
       'Místo vpichu může být na chvíli začervenalé.',
     ],
     task: 'Připravte si na lednici jedno stálé místo jen pro léky. Ať je nemusíte každý večer hledat.',
-    reflection: 'Čeho se na dnešku bojíte nejvíc — jehly, nebo toho, co bude za dva týdny?',
+    reflection: 'Čeho se na dnešku bojíte nejvíc. Jehly, nebo toho, co bude za dva týdny?',
     tip: 'Injekci si dejte každý den ve stejnou dobu. Nastavte si budík se jménem, které vás nevyděsí uprostřed schůzky.',
   },
   {
@@ -38,10 +38,10 @@ const stimulation: DailyCard[] = [
     whatsHappening: [
       'Ve vaječnících začíná růst víc folikulů najednou než v přirozeném cyklu.',
       'Můžete se cítit mírně unavená.',
-      'Po vpichu se občas udělá modřina — nic to neznamená.',
+      'Po vpichu se občas udělá modřina. Nic to neznamená.',
     ],
     task: 'Vypijte dnes o jednu sklenici vody víc než včera.',
-    reflection: 'Komu jste zatím řekla, že do toho jdete? A komu ne — a proč?',
+    reflection: 'Komu jste zatím řekla, že do toho jdete? A komu ne. A proč?',
     tip: 'Modřinám pomůže střídat strany a před vpichem místo na chvíli zahřát dlaní.',
   },
   {
@@ -49,7 +49,7 @@ const stimulation: DailyCard[] = [
     phases: ['stimulation'],
     day: 2,
     headline: 'Třetí den. Rutina se rodí rychleji, než čekáte.',
-    body: 'Zvládla jste tři večery po sobě. To, co v pondělí vypadalo nemožně, je ve středu obyčejná věc — a přesně tak to většinou zůstane.',
+    body: 'Zvládla jste tři večery po sobě. To, co v pondělí vypadalo nemožně, je ve středu obyčejná věc. A přesně tak to většinou zůstane.',
     whatsHappening: [
       'Folikuly rostou, zatím měří jen pár milimetrů.',
       'Estradiol pomalu stoupá.',
@@ -67,7 +67,7 @@ const stimulation: DailyCard[] = [
     whatsHappening: [
       'Lékař změří počet a velikost folikulů.',
       'Často se zároveň odebírá krev na estradiol.',
-      'Dávka se může změnit — to není chyba, tak to má být.',
+      'Dávka se může změnit. To není chyba, tak to má být.',
     ],
     task: 'Na kontrolu si vezměte něco k pití a svačinu. Čekárny na klinikách bývají dlouhé.',
     reflection: 'Čeho se na zítřejším ultrazvuku bojíte a co byste nejradši slyšela?',
@@ -78,7 +78,7 @@ const stimulation: DailyCard[] = [
     phases: ['stimulation'],
     day: 4,
     headline: 'Čísla ještě nic neříkají.',
-    body: 'Jestli jste dnes byla na monitoringu, nejspíš jste slyšela počty a milimetry. Na tomhle místě cyklu se z nich nedá vyčíst skoro nic — folikuly rostou různým tempem a některé se ještě přidají.',
+    body: 'Jestli jste dnes byla na monitoringu, nejspíš jste slyšela počty a milimetry. Na tomhle místě cyklu se z nich nedá vyčíst skoro nic. Folikuly rostou různým tempem a některé se ještě přidají.',
     whatsHappening: [
       'Folikuly obvykle rostou zhruba o 1–2 mm denně.',
       'Menší folikuly mohou dohnat ty větší.',
@@ -86,21 +86,21 @@ const stimulation: DailyCard[] = [
     ],
     task: 'Odpusťte si dnes jednu věc, kterou byste normálně musela udělat.',
     reflection: 'Srovnáváte se s někým? S kým, a pomáhá vám to?',
-    tip: 'Nesrovnávejte svá čísla s ženami na internetu. Jiný protokol, jiný věk, jiná diagnóza — jiný výsledek.',
+    tip: 'Nesrovnávejte svá čísla s ženami na internetu. Jiný protokol, jiný věk, jiná diagnóza. Jiný výsledek.',
   },
   {
     id: 'ck-stim-5',
     phases: ['stimulation'],
     day: 5,
     headline: 'Vaječníky pracují naplno.',
-    body: 'Kolem šestého dne bývá cítit tlak nebo těžkost v podbřišku. Vaječníky, které normálně vypěstují jeden folikul, jich teď mají několik — a zvětšují se.',
+    body: 'Kolem šestého dne bývá cítit tlak nebo těžkost v podbřišku. Vaječníky, které normálně vypěstují jeden folikul, jich teď mají několik. A zvětšují se.',
     whatsHappening: [
       'Tlak nebo pobolívání v podbřišku je běžné.',
       'Kalhoty můžou být těsnější.',
       'Estradiol výrazně stoupá.',
     ],
     task: 'Vyměňte dnes cokoliv upnutého za něco volného. Vážně to pomůže.',
-    reflection: 'Jak se vám daří odpočívat — a co vám v tom brání?',
+    reflection: 'Jak se vám daří odpočívat. A co vám v tom brání?',
     tip: 'Prudké otáčení a skákání teď vynechte. Zvětšené vaječníky jsou citlivější na náhlý pohyb.',
     callDoctorIf: [
       'Bolest je náhlá, prudká a jednostranná.',
@@ -113,7 +113,7 @@ const stimulation: DailyCard[] = [
     phases: ['stimulation'],
     day: 6,
     headline: 'Sedmý den. Půlka je za vámi.',
-    body: 'Většina stimulací trvá zhruba deset až dvanáct dní. Jste tedy někde v polovině — a to je zároveň místo, kde bývá nejmíň sil a nejvíc netrpělivosti.',
+    body: 'Většina stimulací trvá zhruba deset až dvanáct dní. Jste tedy někde v polovině. A to je zároveň místo, kde bývá nejmíň sil a nejvíc netrpělivosti.',
     whatsHappening: [
       'Folikuly se blíží velikostem, které rozhodují o načasování odběru.',
       'Můžete být plačtivá nebo podrážděná. Je to hormony, ne vaše slabost.',
@@ -127,14 +127,14 @@ const stimulation: DailyCard[] = [
     phases: ['stimulation'],
     day: 7,
     headline: 'Blíží se rozhodování o termínu odběru.',
-    body: 'V téhle fázi se monitoringy zhušťují. Klinika hlídá, kdy je většina vedoucích folikulů dost velká — a podle toho určí čas dokončovací injekce.',
+    body: 'V téhle fázi se monitoringy zhušťují. Klinika hlídá, kdy je většina vedoucích folikulů dost velká. A podle toho určí čas dokončovací injekce.',
     whatsHappening: [
       'Kontroly můžou být teď obden nebo denně.',
       'Sliznice dělohy se zároveň připravuje.',
       'Nadýmání se může zhoršit.',
     ],
     task: 'Zařiďte si, aby vás den odběru někdo odvezl. Po anestezii nesmíte řídit.',
-    reflection: 'Kdo vás v den odběru doprovodí — a víte, že se na to můžete spolehnout?',
+    reflection: 'Kdo vás v den odběru doprovodí. A víte, že se na to můžete spolehnout?',
     tip: 'Domluvte si v práci volno s rezervou. Termín odběru se často upřesní až den dva předem.',
   },
   {
@@ -142,7 +142,7 @@ const stimulation: DailyCard[] = [
     phases: ['stimulation'],
     day: 8,
     headline: 'Načasování je teď důležitější než všechno ostatní.',
-    body: 'Dokončovací (trigger) injekce se píchá v přesně určenou hodinu, obvykle 34 až 36 hodin před odběrem. Tady se nedá improvizovat — vajíčka dozrávají podle hodin.',
+    body: 'Dokončovací (trigger) injekce se píchá v přesně určenou hodinu, obvykle 34 až 36 hodin před odběrem. Tady se nedá improvizovat. Vajíčka dozrávají podle hodin.',
     whatsHappening: [
       'Vedoucí folikuly se blíží cílové velikosti.',
       'Klinika vám sdělí přesný čas dokončovací injekce.',
@@ -176,7 +176,7 @@ const stimulation: DailyCard[] = [
     phases: ['stimulation'],
     day: 10,
     headline: 'Skoro tam.',
-    body: 'Většina protokolů se pohybuje kolem deseti až dvanácti dnů. Jestli vám klinika zatím nedala termín, není to špatné znamení — jen folikuly potřebují ještě den dva.',
+    body: 'Většina protokolů se pohybuje kolem deseti až dvanácti dnů. Jestli vám klinika zatím nedala termín, není to špatné znamení, jen folikuly potřebují ještě den dva.',
     whatsHappening: [
       'Delší stimulace neznamená horší výsledek.',
       'Poslední monitoring rozhodne o termínu.',
@@ -190,22 +190,22 @@ const stimulation: DailyCard[] = [
     phases: ['stimulation'],
     day: 11,
     headline: 'Dokončovací injekce mění všechno.',
-    body: 'Trigger spustí poslední dozrání vajíček. Od jeho podání běží hodiny — proto se odběr plánuje na minuty přesně.',
+    body: 'Trigger spustí poslední dozrání vajíček. Od jeho podání běží hodiny, proto se odběr plánuje na minuty přesně.',
     whatsHappening: [
       'Po triggeru se stimulační léky obvykle už nepíchají.',
-      'Před odběrem se nesmí jíst ani pít — čas vám určí klinika.',
+      'Před odběrem se nesmí jíst ani pít. Čas vám určí klinika.',
       'Můžete být nervózní a zároveň se ulevit, že to končí.',
     ],
-    task: 'Sundejte si šperky, nalakované nehty a nalíčení nechte na jindy — usnadníte to anesteziologovi.',
+    task: 'Sundejte si šperky, nalakované nehty a nalíčení nechte na jindy. Usnadníte to anesteziologovi.',
     reflection: 'Až si zítra lehnete na sál, co si budete chtít připomenout?',
-    tip: 'Naposledy si zkontrolujte čas příchodu na kliniku. Ne z paměti — z papíru nebo zprávy.',
+    tip: 'Naposledy si zkontrolujte čas příchodu na kliniku. Ne z paměti. Z papíru nebo zprávy.',
   },
   {
     id: 'ck-stim-12',
     phases: ['stimulation'],
     day: 12,
     headline: 'Poslední noc před odběrem.',
-    body: 'Zítra se to, co jste dva týdny živila injekcemi, konečně ukáže. Dnes už nemůžete udělat nic navíc — a to je svým způsobem úleva.',
+    body: 'Zítra se to, co jste dva týdny živila injekcemi, konečně ukáže. Dnes už nemůžete udělat nic navíc. A to je svým způsobem úleva.',
     whatsHappening: [
       'Od určené hodiny nejíst ani nepít.',
       'Spánek nejspíš nebude nejlepší. To zvládnete.',
@@ -224,7 +224,7 @@ const retrieval: DailyCard[] = [
     phases: ['retrieval'],
     day: 0,
     headline: 'Dnes je den odběru.',
-    body: 'Zákrok obvykle trvá kolem patnácti minut a probíhá v krátké anestezii. Většina žen je do několika hodin doma. Číslo, které dnes uslyšíte, je počet získaných vajíček — ne počet embryí.',
+    body: 'Zákrok obvykle trvá kolem patnácti minut a probíhá v krátké anestezii. Většina žen je do několika hodin doma. Číslo, které dnes uslyšíte, je počet získaných vajíček, ne počet embryí.',
     whatsHappening: [
       'Po probuzení můžete být rozlepená a rozklepaná. To přejde.',
       'Bývá slabé špinění a křeče podobné menstruačním.',
@@ -245,14 +245,14 @@ const retrieval: DailyCard[] = [
     phases: ['fertilization'],
     day: 1,
     headline: 'Dnes volá embryologie.',
-    body: 'Včera se vajíčka setkala se spermiemi. Dnes laboratoř zjistí, kolik z nich se oplodnilo. Číslo bývá nižší než počet odebraných vajíček — ne všechna jsou zralá a ne všechna se oplodní.',
+    body: 'Včera se vajíčka setkala se spermiemi. Dnes laboratoř zjistí, kolik z nich se oplodnilo. Číslo bývá nižší než počet odebraných vajíček, ne všechna jsou zralá a ne všechna se oplodní.',
     whatsHappening: [
       'Oplodnění se hodnotí podle přítomnosti dvou prvojader.',
       'Telefonát obvykle přijde dopoledne.',
       'Břicho může být pořád citlivé a nafouklé.',
     ],
     task: 'Než zavolají, napište si, co se chcete zeptat. Po telefonátu si to nevybavíte.',
-    reflection: 'Jak jste noc zvládla — a čeho jste se bála nejvíc?',
+    reflection: 'Jak jste noc zvládla. A čeho jste se bála nejvíc?',
     tip: 'Až budou volat, poproste je, ať vám čísla zopakují. Nikdo se nezlobí.',
     callDoctorIf: [
       'Obvod břicha rychle roste nebo jste přes noc výrazně přibrala.',
@@ -267,7 +267,7 @@ const retrieval: DailyCard[] = [
     headline: 'Embrya se začínají dělit.',
     body: 'Druhý den po odběru mívají embrya zhruba dvě až čtyři buňky. Laboratoř sleduje, jak pravidelně se dělí, ale zásadní rozhodnutí padají až později.',
     whatsHappening: [
-      'Ne všechna oplodněná vajíčka se dělí dál — to je běžné.',
+      'Ne všechna oplodněná vajíčka se dělí dál. To je běžné.',
       'Klinika vám nemusí volat každý den. Ticho neznamená špatnou zprávu.',
       'Vy mezitím jen odpočíváte.',
     ],
@@ -279,7 +279,7 @@ const retrieval: DailyCard[] = [
     phases: ['embryo_culture'],
     day: 3,
     headline: 'Třetí den. Osm buněk je ideál, ne podmínka.',
-    body: 'Kolem třetího dne mívá embryo šest až osm buněk. Některé kliniky přenášejí právě teď, jiné čekají do pátého dne — obojí je běžná praxe a záleží na vašem konkrétním případu.',
+    body: 'Kolem třetího dne mívá embryo šest až osm buněk. Některé kliniky přenášejí právě teď, jiné čekají do pátého dne. Obojí je běžná praxe a záleží na vašem konkrétním případu.',
     whatsHappening: [
       'Embryo přebírá řízení vlastního vývoje.',
       'Část embryí se v tuhle chvíli zastaví. Není to nic, co byste ovlivnila.',
@@ -293,21 +293,21 @@ const retrieval: DailyCard[] = [
     phases: ['embryo_culture'],
     day: 4,
     headline: 'Nejtišší den celého cyklu.',
-    body: 'Čtvrtý den se embryo mění v moruly — kompaktní shluk, ve kterém se buňky přestávají dát spočítat. Většina laboratoří proto čtvrtý den nehlásí nic. Ticho je normální.',
+    body: 'Čtvrtý den se embryo mění v moruly. Kompaktní shluk, ve kterém se buňky přestávají dát spočítat. Většina laboratoří proto čtvrtý den nehlásí nic. Ticho je normální.',
     whatsHappening: [
       'Buňky se spojují a připravují na další krok.',
       'Většina klinik dnes nevolá.',
       'Vy nemůžete udělat vůbec nic. To je zároveň úleva.',
     ],
     task: 'Jděte na půl hodiny ven bez telefonu.',
-    reflection: 'Co si dnes o sobě říkáte — a řekla byste to tak i kamarádce?',
+    reflection: 'Co si dnes o sobě říkáte. A řekla byste to tak i kamarádce?',
   },
   {
     id: 'ck-retr-5',
     phases: ['embryo_culture'],
     day: 5,
     headline: 'Blastocysta.',
-    body: 'Pátý den může embryo dosáhnout stadia blastocysty — má dutinu a dvě rozlišené skupiny buněk, ze kterých vznikne miminko a placenta. Některá embrya to zvládnou až šestý den, a to není horší.',
+    body: 'Pátý den může embryo dosáhnout stadia blastocysty. Má dutinu a dvě rozlišené skupiny buněk, ze kterých vznikne miminko a placenta. Některá embrya to zvládnou až šestý den, a to není horší.',
     whatsHappening: [
       'Hodnocení bývá kombinace čísla a dvou písmen (například 4AB).',
       'Písmena popisují vzhled, ne osud. I hůř hodnocená embrya se uhnízdí.',
@@ -321,7 +321,7 @@ const retrieval: DailyCard[] = [
     id: 'ck-retr-6',
     phases: ['embryo_culture'],
     day: 6,
-    headline: 'Šestý den — poslední, kdo dobíhá, doběhne.',
+    headline: 'Šestý den. Poslední, kdo dobíhá, doběhne.',
     body: 'Část embryí dosáhne stadia blastocysty až šestý den. Zpomalený vývoj neznamená, že embryo nemá šanci.',
     whatsHappening: [
       'Laboratoř dnes uzavírá kultivaci.',
@@ -365,11 +365,11 @@ const twoWeekWait: DailyCard[] = [
     whatsHappening: [
       'Embryo se zbavuje obalu (zona pellucida).',
       'Zatím není nijak spojené s vaším tělem.',
-      'Žádné příznaky teď nemůžou nic znamenat — je příliš brzo.',
+      'Žádné příznaky teď nemůžou nic znamenat. Je příliš brzo.',
     ],
     task: 'Naplánujte si na příštích deset dní tři konkrétní věci, na které se můžete těšit.',
-    reflection: 'Jak chcete tyhle dva týdny prožít — a co to znamená prakticky?',
-    tip: 'Ležení v posteli šance nezvyšuje. Běžný pohyb ano — pro vaši hlavu.',
+    reflection: 'Jak chcete tyhle dva týdny prožít. A co to znamená prakticky?',
+    tip: 'Ležení v posteli šance nezvyšuje. Běžný pohyb ano. Pro vaši hlavu.',
   },
   {
     id: 'ck-tww-2',
@@ -391,14 +391,14 @@ const twoWeekWait: DailyCard[] = [
     phases: ['two_week_wait'],
     day: 3,
     headline: 'Začíná přichycení.',
-    body: 'Třetí den se embryo začíná přichytávat ke sliznici. Je to první skutečný kontakt mezi ním a vámi — a probíhá naprosto potichu.',
+    body: 'Třetí den se embryo začíná přichytávat ke sliznici. Je to první skutečný kontakt mezi ním a vámi. A probíhá naprosto potichu.',
     whatsHappening: [
       'Embryo přilne k děložní sliznici.',
       'Nic z toho není cítit. Opravdu nic.',
       'Test by byl dnes negativní i při naprosto ideálním průběhu.',
     ],
     task: 'Schovejte si domácí testy někam, kam se nedá jen tak sáhnout.',
-    reflection: 'Čeho se bojíte víc — negativního testu, nebo dalšího čekání?',
+    reflection: 'Čeho se bojíte víc. Negativního testu, nebo dalšího čekání?',
   },
   {
     id: 'ck-tww-4',
@@ -409,7 +409,7 @@ const twoWeekWait: DailyCard[] = [
     whatsHappening: [
       'Buňky budoucí placenty pronikají do sliznice.',
       'Někdy se objeví slabé narůžovělé špinění. Může, ale nemusí.',
-      'Slabé píchání v podbřišku je běžné — a neznamená nic.',
+      'Slabé píchání v podbřišku je běžné. A neznamená nic.',
     ],
     task: 'Napište si jednu větu do deníku. Jen jednu.',
     reflection: 'Co byste chtěla, aby o dnešku věděl někdo za deset let?',
@@ -453,11 +453,11 @@ const twoWeekWait: DailyCard[] = [
     phases: ['two_week_wait'],
     day: 7,
     headline: 'Sedmý den. Půlka čekání je za vámi.',
-    body: 'Zvládla jste týden. Zbývá zhruba stejně dlouhá doba do odběru krve — a tahle druhá půlka bývá subjektivně delší.',
+    body: 'Zvládla jste týden. Zbývá zhruba stejně dlouhá doba do odběru krve. A tahle druhá půlka bývá subjektivně delší.',
     whatsHappening: [
       'Pokud se embryo uhnízdilo, hCG stoupá.',
       'Test doma by mohl vyjít slabě pozitivní, ale často ještě ne.',
-      'Únava a napětí v prsou nic nedokazují — obojí dělá i progesteron.',
+      'Únava a napětí v prsou nic nedokazují. Obojí dělá i progesteron.',
     ],
     task: 'Zapište si, jak jste na tom s náladou. Uvidíte v tom pak vlnu, ne jeden špatný den.',
     reflection: 'Kdyby se vás dnes někdo zeptal, jak to zvládáte, co byste opravdu odpověděla?',
@@ -467,7 +467,7 @@ const twoWeekWait: DailyCard[] = [
     phases: ['two_week_wait'],
     day: 8,
     headline: 'Osmý den. Testovat, nebo netestovat.',
-    body: 'Od tohohle dne může citlivější domácí test zachytit hCG — ale taky nemusí, i když je všechno v pořádku. Negativní test dnes nic neuzavírá.',
+    body: 'Od tohohle dne může citlivější domácí test zachytit hCG, ale taky nemusí, i když je všechno v pořádku. Negativní test dnes nic neuzavírá.',
     whatsHappening: [
       'hCG se při zdárném vývoji přibližně zdvojnásobuje každých 48 až 72 hodin.',
       'Zbytek dokončovací injekce už bývá z těla pryč, ale ne u každé.',
@@ -482,7 +482,7 @@ const twoWeekWait: DailyCard[] = [
     phases: ['two_week_wait'],
     day: 9,
     headline: 'Devátý den. Hlava pracuje víc než tělo.',
-    body: 'V týhle fázi většina žen popisuje, že se přistihují při analyzování každého pocitu. Je to naprosto pochopitelné — a zároveň to nic nezjistí.',
+    body: 'V týhle fázi většina žen popisuje, že se přistihují při analyzování každého pocitu. Je to naprosto pochopitelné. A zároveň to nic nezjistí.',
     whatsHappening: [
       'Při uhnízdění hCG dál stoupá.',
       'Příznaky raného těhotenství a příznaky před menstruací se nedají rozlišit.',
@@ -502,7 +502,7 @@ const twoWeekWait: DailyCard[] = [
       'Slabá čárka může znamenat brzké stadium, ne slabé těhotenství.',
       'Odběr krve se obvykle plánuje mezi 10. a 14. dnem.',
     ],
-    task: 'Ověřte si, kdy přesně máte jít na odběr — a kdy se dozvíte výsledek.',
+    task: 'Ověřte si, kdy přesně máte jít na odběr. A kdy se dozvíte výsledek.',
     reflection: 'Jak si chcete výsledek nechat sdělit? A kdo u toho má být?',
   },
   {
@@ -510,7 +510,7 @@ const twoWeekWait: DailyCard[] = [
     phases: ['two_week_wait'],
     day: 11,
     headline: 'Jedenáctý den. Blíží se konec čekání.',
-    body: 'Ať to dopadne jakkoliv, tahle část končí. Čekání je svým způsobem těžší než jistota — i než ta špatná.',
+    body: 'Ať to dopadne jakkoliv, tahle část končí. Čekání je svým způsobem těžší než jistota. I než ta špatná.',
     whatsHappening: [
       'hCG při zdárném vývoji dál stoupá.',
       'Progesteron se obvykle užívá dál až do výsledku.',
@@ -525,7 +525,7 @@ const twoWeekWait: DailyCard[] = [
     phases: ['two_week_wait'],
     day: 12,
     headline: 'Dvanáctý den. Skoro tam.',
-    body: 'Odběr krve bývá mezi desátým a čtrnáctým dnem. Číslo, které z něj vyjde, se nedá porovnávat s ničím cizím — rozptyl u zdravých těhotenství je obrovský.',
+    body: 'Odběr krve bývá mezi desátým a čtrnáctým dnem. Číslo, které z něj vyjde, se nedá porovnávat s ničím cizím. Rozptyl u zdravých těhotenství je obrovský.',
     whatsHappening: [
       'hCG se z krve stanoví během několika hodin.',
       'Často se odběr za dva dny opakuje kvůli dynamice.',
@@ -545,7 +545,7 @@ const twoWeekWait: DailyCard[] = [
       'Výsledek bývá tentýž den.',
       'Je normální mít strach i naději zároveň.',
     ],
-    task: 'Domluvte se s někým, komu zavoláte jako prvnímu — ať to dopadne jakkoliv.',
+    task: 'Domluvte se s někým, komu zavoláte jako prvnímu. Ať to dopadne jakkoliv.',
     reflection: 'Co si o těchhle čtrnácti dnech chcete zapamatovat?',
   },
   {
@@ -553,7 +553,7 @@ const twoWeekWait: DailyCard[] = [
     phases: ['two_week_wait'],
     day: 14,
     headline: 'Den odběru.',
-    body: 'Dnes se to dozvíte. Ať přijde jakékoliv číslo, budete potřebovat čas ho vstřebat — i to dobré.',
+    body: 'Dnes se to dozvíte. Ať přijde jakékoliv číslo, budete potřebovat čas ho vstřebat. I to dobré.',
     whatsHappening: [
       'hCG se stanoví z krve.',
       'Při pozitivním výsledku se odběr obvykle za 48 hodin opakuje.',
@@ -605,7 +605,7 @@ const betaPositive: DailyCard[] = [
     phases: ['beta_positive'],
     dayRange: [5, 12],
     headline: 'Čekání na první ultrazvuk.',
-    body: 'První ultrazvuk bývá kolem šestého až sedmého týdne. Do té doby zase čekáte — a tohle čekání je jiné než to předchozí, ale ne snazší.',
+    body: 'První ultrazvuk bývá kolem šestého až sedmého týdne. Do té doby zase čekáte. A tohle čekání je jiné než to předchozí, ale ne snazší.',
     whatsHappening: [
       'Hledá se gestační váček, později žloutkový váček a embryo.',
       'Srdeční akce bývá viditelná zhruba od 6. týdne.',
@@ -624,7 +624,7 @@ const betaPositive: DailyCard[] = [
     phases: ['beta_positive'],
     dayRange: [13, 30],
     headline: 'Těhotenství po IVF má vlastní pravidla.',
-    body: 'Vy víte přesně, který den vzniklo. Víte, kolik to stálo úsilí. A právě proto se hůř uvolňuje — to není vaše chyba, to je logika toho, čím jste prošla.',
+    body: 'Vy víte přesně, který den vzniklo. Víte, kolik to stálo úsilí. A právě proto se hůř uvolňuje. To není vaše chyba, to je logika toho, čím jste prošla.',
     whatsHappening: [
       'Podpora luteální fáze obvykle pokračuje několik týdnů.',
       'Nevolnosti a únava se mohou objevit kolem šestého týdne.',

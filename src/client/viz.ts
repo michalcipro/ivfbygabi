@@ -6,7 +6,7 @@ import { zNum, type Endurance } from '../lib/domain/endurance'
  * Datové prvky aplikace.
  *
  * Paleta je odvozená z obálky papírového diáře (akvarelová duha), ale
- * prohloubená — původní pastely měly moc vysokou světlost a moc nízkou
+ * prohloubená. Původní pastely měly moc vysokou světlost a moc nízkou
  * sytost, než aby unesly data. Výsledek prošel všemi šesti kontrolami
  * validátoru v tmavém i světlém režimu, včetně barvosleposti.
  *
@@ -15,7 +15,7 @@ import { zNum, type Endurance } from '../lib/domain/endurance'
  *   --s3 terakota  Úzkost
  *   --s4 švestková Naděje
  *
- * Grafy se nekreslí v šabloně, ale až při hydrataci — jinak by se nedal
+ * Grafy se nekreslí v šabloně, ale až při hydrataci, jinak by se nedal
  * pověsit hover, který je součástí dodávky, ne příplatek.
  */
 
@@ -27,7 +27,7 @@ import { zNum, type Endurance } from '../lib/domain/endurance'
  */
 export function scissorRing(r: DayReading): string {
   // Dva věnce plátků. Vnější je to, co dnešek žádá, vnitřní to, co na to máte
-  // — obojí se dá spočítat na plátky, takže rozdíl (nůžky) je vidět jako
+  //. Obojí se dá spočítat na plátky, takže rozdíl (nůžky) je vidět jako
   // rozdíl v šířce věnce, ne jako číslo, které si musíte odečíst.
   //
   // Číslo stojí pod květem, ne v něm: prostřední disk dost velký na číslici
@@ -72,7 +72,7 @@ export function scissorRing(r: DayReading): string {
     <div class="serieskey">
       <span><i style="background:var(--s1)"></i> Žádá dnešek <b class="num">${demand}</b></span>
       <span><i style="background:var(--s2)"></i> Máte na to <b class="num">${
-        reserve === null ? '—' : reserve
+        reserve === null ? '–' : reserve
       }</b></span>
     </div>
 
@@ -91,11 +91,11 @@ const RING_C = 2 * Math.PI * 34
  * Květ „co už jste unesla“.
  *
  * Vnější věnec: jeden plátek na milník cyklu, vyplněné jsou ty za ní.
- * Vnitřní kruh: čas — jak daleko cyklus je. Ten se na rozdíl od plátků
+ * Vnitřní kruh: čas. Jak daleko cyklus je. Ten se na rozdíl od plátků
  * hýbe každý den, a právě proto tu je.
  *
  * Věnec se nekreslí čárkovaně. Čárkovaný plátek v téhle aplikaci znamená
- * „nikdy se nevyplní“ a milník před ní se vyplní vždycky — buď proto, že
+ * „nikdy se nevyplní“ a milník před ní se vyplní vždycky. Buď proto, že
  * přijde, nebo proto, že cyklus skončí.
  */
 export function bloomEndurance(e: Endurance): string {
@@ -106,7 +106,7 @@ export function bloomEndurance(e: Endurance): string {
         fill="${c}" fill-opacity="${s.passed ? 0.55 : 0.08}"
         stroke="${c}" stroke-opacity="${s.passed ? 0.3 : 0.45}"
         transform="rotate(${Math.round(((i * 360) / Math.max(e.steps.length, 1)) * 10) / 10} 109 109)"><title>${esc(
-          `${s.label}${s.passed ? ' — za vámi' : ' — před vámi'}`,
+          `${s.label}${s.passed ? ' (za vámi' : ') před vámi'}`,
         )}</title></ellipse>`
     })
     .join('')
@@ -235,7 +235,7 @@ export const SHOT_ZONES: ShotZone[] = [
  * Mapa míst vpichu.
  *
  * `used` říká, před kolika dny se do zóny píchalo naposled. Aplikace navrhne
- * tu, kde je to nejdéle — deset dní do stejného místa bolí a dělá boule.
+ * tu, kde je to nejdéle. Deset dní do stejného místa bolí a dělá boule.
  */
 export function bellyMap(used: Record<string, number | null>, pickedToday: string | null): string {
   const free = SHOT_ZONES.filter((z) => used[z.key] === null)
@@ -275,7 +275,7 @@ export function bellyMap(used: Record<string, number | null>, pickedToday: strin
     ${
       pickedToday
         ? `Zapsáno: <b style="color:var(--fg)">${esc(SHOT_ZONES.find((z) => z.key === pickedToday)?.name ?? '')}</b>`
-        : `Dnes doporučujeme <b style="color:var(--fg)">${esc(oldest.name)}</b> — tam jste byla nejdéle.`
+        : `Dnes doporučujeme <b style="color:var(--fg)">${esc(oldest.name)}</b>. Tam jste byla nejdéle.`
     }
   </p>`
 }
@@ -302,7 +302,7 @@ export interface ChartSpec {
 
 /**
  * Zásuvka pro graf. Data putují jako JSON v atributu a SVG se sestaví až
- * v `hydrateCharts` — jinak by nešlo pověsit hover.
+ * v `hydrateCharts`, jinak by nešlo pověsit hover.
  */
 export function chart(spec: ChartSpec, label: string): string {
   return `<div class="chartbox" data-chart='${esc(JSON.stringify(spec))}' role="img" aria-label="${esc(label)}">
@@ -311,7 +311,7 @@ export function chart(spec: ChartSpec, label: string): string {
   </div>`
 }
 
-/** Legenda. U dvou a víc řad je vždycky — identita nesmí stát jen na barvě. */
+/** Legenda. U dvou a víc řad je vždycky. Identita nesmí stát jen na barvě. */
 export function seriesKey(series: { name: string; color: string }[]): string {
   if (series.length < 2) return ''
   return `<div class="serieskey left">
@@ -331,7 +331,7 @@ const mk = (n: string, a: Record<string, string | number>): SVGElement => {
  *
  * Kreslí se ve skutečných pixelech, ne v roztaženém viewBoxu. Roztažený
  * viewBox by zvětšil popisky os spolu s grafem a nerovnoměrným měřítkem
- * rozmázl tahy — vodorovné by byly tlustší než svislé.
+ * rozmázl tahy. Vodorovné by byly tlustší než svislé.
  */
 export function hydrateCharts(root: ParentNode): void {
   for (const box of root.querySelectorAll<HTMLElement>('.chartbox')) {
@@ -351,7 +351,7 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
   {
     const W = Math.max(220, Math.round(box.clientWidth))
     // Na širokém displeji by graf o pevné výšce byl tenký proužek. Roste
-    // s šířkou, ale jen do zhruba dvojnásobku — jinak by přerostl obrazovku.
+    // s šířkou, ale jen do zhruba dvojnásobku, jinak by přerostl obrazovku.
     const base = spec.height ?? 150
     const H = Math.round(Math.min(base * 1.8, Math.max(base, W * 0.3)))
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`)
@@ -382,7 +382,7 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
       lab.textContent = fmt(v)
       svg.appendChild(lab)
     }
-    // Krajní popisky se zarovnávají k okrajům plochy, ne na střed bodu —
+    // Krajní popisky se zarovnávají k okrajům plochy, ne na střed bodu.
     // vystředěné by přesahovaly graf a lezly na okraj karty.
     for (const i of n > 2 ? [0, Math.floor((n - 1) / 2), n - 1] : [0, n - 1]) {
       const anchor = i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle'
@@ -413,7 +413,7 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
     }
 
     const cross = svg.appendChild(mk('line', { y1: T, y2: B, stroke: 'var(--fg-faint)', 'stroke-width': 1, opacity: 0 }))
-    // Body se rodí na počátku plochy, ne na souřadnici 0 — jinak vyčnívají
+    // Body se rodí na počátku plochy, ne na souřadnici 0, jinak vyčnívají
     // z grafu, i když jsou průhledné.
     const dots = spec.series.map((s) =>
       svg.appendChild(mk('circle', { cx: L, cy: B, r: 4, fill: s.color, stroke: 'var(--card)', 'stroke-width': 2, opacity: 0 })),
@@ -444,7 +444,7 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
           .map(
             (s) =>
               `<span class="tiprow"><i style="background:${s.color}"></i>${esc(s.name)} <b>${
-                s.data[i] === null ? '—' : fmt(s.data[i]!) + (spec.unit ? ' ' + spec.unit : '')
+                s.data[i] === null ? '–' : fmt(s.data[i]!) + (spec.unit ? ' ' + spec.unit : '')
               }</b></span>`,
           )
           .join('')
@@ -480,7 +480,7 @@ export function statTile(label: string, value: string, sub?: string, color?: str
 // ------------------------------------------------- vzory převzaté ze vzoru ---
 /**
  * Následující prvky vychází ze způsobu, jakým je členěná referenční aplikace.
- * Přebíráme z ní chování a rozvržení, ne vzhled — barvy, poloměry i písmo
+ * Přebíráme z ní chování a rozvržení, ne vzhled. Barvy, poloměry i písmo
  * zůstávají naše.
  */
 
@@ -493,7 +493,7 @@ export interface SegmentItem {
  * Přepínač nahoře na obrazovce.
  *
  * Nejsilnější vzor z reference: každá záložka se dělí na dvě až tři části,
- * takže se pět záložek chová jako dvanáct obrazovek — bez zanořování.
+ * takže se pět záložek chová jako dvanáct obrazovek. Bez zanořování.
  */
 export function segmented(items: SegmentItem[], active: string, act: string): string {
   return `<div class="segmented" role="tablist">
@@ -507,7 +507,7 @@ export function segmented(items: SegmentItem[], active: string, act: string): st
   </div>`
 }
 
-/** Trojice čísel pod přepínačem — celkem, hotovo, zbývá. */
+/** Trojice čísel pod přepínačem. Celkem, hotovo, zbývá. */
 export function statTrio(cells: { icon: string; value: string | number; label: string }[]): string {
   return `<div class="trio">
     ${cells
@@ -571,7 +571,7 @@ export function hubRow(route: string, icon: string, title: string, why: string):
   </button>`
 }
 
-/** Vodorovný pás posledních dnů — rychlý pohled zpátky bez grafu. */
+/** Vodorovný pás posledních dnů. Rychlý pohled zpátky bez grafu. */
 export function dayStrip(
   days: { date: string; label: string; sub: string; counts: { icon: string; n: number }[] }[],
   act?: string,
@@ -590,7 +590,7 @@ export function dayStrip(
   </div>`
 }
 
-/** Rozbalovací skupina — používá se u taxonomie příznaků. */
+/** Rozbalovací skupina. Používá se u taxonomie příznaků. */
 export function accordion(id: string, name: string, hint: string, open: boolean, body: string): string {
   return `<div class="acc${open ? ' open' : ''}">
     <button class="acchead" data-act="acc" data-arg="${esc(id)}" aria-expanded="${open}">
@@ -614,7 +614,7 @@ export function toggleRow(key: string, title: string, body: string, on: boolean)
 /**
  * Kvetoucí znak.
  *
- * Šest okvětních lístků vyrůstá ze středu — čím dál od středu, tím
+ * Šest okvětních lístků vyrůstá ze středu. Čím dál od středu, tím
  * otevřenější. Kreslí se tahem, ne výplní, aby fungoval i v malé velikosti
  * a v obou motivech. Vnitřek nese barvu meruňky, obvod barvu listu:
  * květ proti listí, což je celý nápad Bloomie.

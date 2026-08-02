@@ -2,19 +2,19 @@
  * Varovné příznaky.
  *
  * Když uživatelka napíše do hledání něco, co může znamenat akutní stav,
- * musí odpověď začít větou „ozvěte se klinice“ — ne odkazem na článek.
+ * musí odpověď začít větou „ozvěte se klinice“, ne odkazem na článek.
  * Je to jediné místo v aplikaci, kde text předbíhá obsah.
  *
  * Pravidla jsou pevná a deterministická: regulární výraz a hotová věta.
  * Nic se nevyhodnocuje, nic se nedopočítává a nic se nikam neodesílá.
- * Aplikace tím nediagnostikuje — jenom říká, že tohle nepatří do aplikace,
+ * Aplikace tím nediagnostikuje, jenom říká, že tohle nepatří do aplikace,
  * ale do telefonu s klinikou.
  */
 export const RED_FLAGS: Array<{ pattern: RegExp; message: string }> = [
   {
     pattern: /siln[éeě].{0,12}krv[áa]cen|krv[áa]c[íi]m siln|prokrv[áa]c/i,
     message:
-      'Silné krvácení je důvod ozvat se lékaři hned — nečekejte na ranní ordinační hodiny. Pokud promáčíte vložku za hodinu nebo méně, jeďte na pohotovost.',
+      'Silné krvácení je důvod ozvat se lékaři hned. Nečekejte na ranní ordinační hodiny. Pokud promáčíte vložku za hodinu nebo méně, jeďte na pohotovost.',
   },
   {
     pattern: /ohss|nafoukl|břicho.{0,15}(tvrd|nafoukl)|přibrala.{0,12}kil|nem[oů]ž[ue].{0,10}d[ýy]chat/i,

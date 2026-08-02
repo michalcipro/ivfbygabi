@@ -4,7 +4,7 @@ import type { PhaseGroup } from '../lib/domain/phases'
  * Ukázkové příspěvky v komunitě.
  *
  * V ostré verzi je píšou skutečné uživatelky. Tady je potřebujeme proto,
- * aby komunita nebyla prázdná ještě dřív, než do ní někdo napíše — a jsou
+ * aby komunita nebyla prázdná ještě dřív, než do ní někdo napíše. A jsou
  * jako ukázkové označené, aby si je nikdo nespletl s reálnými lidmi.
  */
 
@@ -24,7 +24,7 @@ export const SEED_POSTS: Record<PhaseGroup, SeedPost[]> = {
       replies: [
         {
           author: 'Anonymně · Diagnostika',
-          body: 'Po roce. Zpětně bych šla dřív — samotné vyšetření nic nezkazí a spousta věcí se dá vyřešit rychle.',
+          body: 'Po roce. Zpětně bych šla dřív. Samotné vyšetření nic nezkazí a spousta věcí se dá vyřešit rychle.',
         },
       ],
     },
@@ -57,7 +57,7 @@ export const SEED_POSTS: Record<PhaseGroup, SeedPost[]> = {
       body: 'Šestý den po transferu a mám pocit, že se čas zastavil. Jak jste to zvládaly?',
       hearts: 31,
       replies: [
-        { author: 'Anonymně · Těhotenství', body: 'Plán na každý den — jedna věc dopoledne, jedna odpoledne. Bez toho bych se zbláznila.' },
+        { author: 'Anonymně · Těhotenství', body: 'Plán na každý den. Jedna věc dopoledne, jedna odpoledne. Bez toho bych se zbláznila.' },
         { author: 'Anonymně · Po transferu', body: 'Šestý byl u mě nejhorší. Sedmý už šel. Držím palce.' },
       ],
     },

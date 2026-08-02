@@ -2,7 +2,7 @@
  * Příznaky po tělesných systémech.
  *
  * Devět plochých štítků nestačilo. Žena ve stimulaci rozliší tlak v podbřišku
- * od píchání ve vaječnících a bolest v místě vpichu od modřiny — a když to
+ * od píchání ve vaječnících a bolest v místě vpichu od modřiny. A když to
  * aplikace neumí zapsat, zapíše se to jako „bolest" a informace se ztratí.
  *
  * Členění vychází z toho, co v IVF skutečně nastává, ne z obecného seznamu
@@ -12,7 +12,7 @@
  * Šestnáct skupin v pořadí, ve kterém se ukazují:
  * Hormony, Léky, Pánev, Bolest, Krvácení, Nadýmání, Prsa, Únava, Spánek,
  * Nálada, Úzkost, Trávení, Neurologie, Kůže, Váha, Energie.
- * Sedmnáctou skupinu „Vlastní" si doplní každá sama — viz groupsWithCustom().
+ * Sedmnáctou skupinu „Vlastní" si doplní každá sama. Viz groupsWithCustom().
  *
  * Id příznaků se NIKDY nemění. Uživatelka má pod nimi zapsané měsíce dat,
  * takže se příznaky mezi skupinami jen přesouvají, nepřejmenovávají.
@@ -21,7 +21,7 @@
  *
  * Čistý modul bez závislostí, aby stejná data platila na serveru i v klientovi.
  *
- * AKCE: žádné — modul nevrací HTML.
+ * AKCE: žádné. Modul nevrací HTML.
  * CSS: žádná nová třída. `intensityTone()` vrací jen název už existujícího
  * tokenu (--s2 / --s1 / --s3), volající si ho zabalí do var().
  */
@@ -32,7 +32,7 @@ export interface Symptom {
   /**
    * Příznak, který sám o sobě nic neznamená, ale v kombinaci s dalšími
    * v téhle skupině je důvod ozvat se klinice. Text se ukáže hned po
-   * zaškrtnutí. Neurčuje diagnózu — u hyperstimulace zazní její jméno jen
+   * zaškrtnutí. Neurčuje diagnózu. U hyperstimulace zazní její jméno jen
    * proto, aby žena věděla, co má na telefonu říct.
    */
   warn?: string
@@ -51,11 +51,11 @@ export const OHSS_WARNING =
   'Rychlý přírůstek váhy, tvrdé nafouklé břicho a hlavně dušnost po stimulaci mohou být příznaky hyperstimulace (OHSS). Není to důvod k panice, ale zavolejte na kliniku ještě dnes, nečekejte do rána.'
 
 /**
- * Krvácení. Nesmí říkat, co se děje — jen kdy zvednout telefon.
+ * Krvácení. Nesmí říkat, co se děje, jen kdy zvednout telefon.
  * Neexportuje se, ven se dostane přes warningsFor().
  */
 const BLEEDING_WARNING =
-  'Krvácení, které během hodiny prosákne vložku, nebo krvácení se sraženinami patří klinice hned. Mimo ordinační hodiny volejte na pohotovost — nečekejte do rána.'
+  'Krvácení, které během hodiny prosákne vložku, nebo krvácení se sraženinami patří klinice hned. Mimo ordinační hodiny volejte na pohotovost. Nečekejte do rána.'
 
 /** Bolest, u které se nečeká, jestli přejde. */
 const PAIN_WARNING =
@@ -69,7 +69,7 @@ export const SYMPTOM_GROUPS: SymptomGroup[] = [
   {
     id: 'hormonalni',
     name: 'Hormony',
-    hint: 'Stimulace, blokáda i podpora — co dělají hladiny',
+    hint: 'Stimulace, blokáda i podpora. Co dělají hladiny',
     items: [
       { id: 'navaly', label: 'návaly horka' },
       { id: 'noc-poceni', label: 'noční pocení' },
@@ -131,7 +131,7 @@ export const SYMPTOM_GROUPS: SymptomGroup[] = [
   {
     id: 'krvaceni',
     name: 'Krvácení',
-    hint: 'Špinění i krvácení — barva a síla',
+    hint: 'Špinění i krvácení. Barva a síla',
     items: [
       { id: 'spineni', label: 'špinění' },
       { id: 'spineni-hnede', label: 'hnědé špinění' },
@@ -316,7 +316,7 @@ export function warningsFor(ids: string[]): string[] {
 }
 
 /**
- * Hledání v celém seznamu — bez diakritiky a bez ohledu na velikost písmen.
+ * Hledání v celém seznamu. Bez diakritiky a bez ohledu na velikost písmen.
  *
  * Hledá se i v názvu a popisku skupiny: kdo napíše „úzkost“, čeká celou
  * skupinu Úzkost, ne prázdno jenom proto, že se tak nejmenuje žádný příznak.
@@ -356,7 +356,7 @@ export function intensityLabel(n: number): string {
 }
 
 /**
- * Barevný token pro intenzitu — název CSS proměnné bez var().
+ * Barevný token pro intenzitu. Název CSS proměnné bez var().
  * Nula je `null`: „nic“ nemá dostat barvu, jinak vypadá jako mírný příznak.
  */
 export function intensityTone(n: number): '--s2' | '--s1' | '--s3' | null {
@@ -372,7 +372,7 @@ export function intensityTone(n: number): '--s2' | '--s1' | '--s3' | null {
  *
  * Vlastní příznak se přidá do skupiny, kterou má zapsanou v `group`.
  * Když taková skupina neexistuje (nebo je pole prázdné), skončí ve skupině
- * „Vlastní" na konci. Ta se ukáže jen tehdy, když v ní něco je — prázdná
+ * „Vlastní" na konci. Ta se ukáže jen tehdy, když v ní něco je. Prázdná
  * harmonika je jen šum.
  */
 export function groupsWithCustom(
@@ -405,7 +405,7 @@ function clampIntensity(n: number): number {
 
 function normalize(s: string): string {
   // Pozor: rozsah kombinovaných diakritických znamének se zapisuje kódy,
-  // ne přímo — literál by se v souboru sám složil s předchozím písmenem.
+  // ne přímo. Literál by se v souboru sám složil s předchozím písmenem.
   return s
     .toLowerCase()
     .normalize('NFD')

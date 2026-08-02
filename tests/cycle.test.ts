@@ -38,7 +38,7 @@ function hcg(id: string, patch: Partial<HcgTest> = {}): HcgTest {
 
 // ------------------------------------------------------------- transfery ---
 
-test('nedatovaný transfer se řadí nakonec — ještě se nestal', () => {
+test('nedatovaný transfer se řadí nakonec. Ještě se nestal', () => {
   const c = cyc({
     transfers: [tr('b'), tr('a', { date: '2026-06-21' }), tr('c', { date: '2026-05-01' })],
   })
@@ -191,7 +191,7 @@ test('každý transfer je vlastní milník s vlastním id', () => {
   const transfers = m.filter((x) => x.key === 'transfer')
   assert.deepEqual(
     transfers.map((x) => x.label),
-    ['1. transfer', '2. transfer — kryo'],
+    ['1. transfer', '2. transfer. Kryo'],
   )
   assert.equal(transfers[0].detail, '1 embryo · 5. den kultivace · 4AA')
 

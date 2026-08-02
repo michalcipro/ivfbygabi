@@ -18,7 +18,7 @@ function encouragementFor(tone: string, date: string) {
   return pool[seedFrom(date, tone) % pool.length]
 }
 
-/** „Protože jste 6. den po transferu“ — důvod, který se ukazuje u doporučení. */
+/** „Protože jste 6. den po transferu“. Důvod, který se ukazuje u doporučení. */
 export function reasonFromDayLabel(dayLabel: string): string {
   return dayLabel.replace(/^Dnes (je|jste) /, 'Protože jste ').replace(/^Dnes /, 'Protože ')
 }
@@ -51,7 +51,7 @@ function journeyStrip(phaseId: PhaseId): string {
   </button>`
 }
 
-/** Pás IVF cyklu. Ukazuje se jen tam, kde dává smysl — v léčbě a v čekání. */
+/** Pás IVF cyklu. Ukazuje se jen tam, kde dává smysl. V léčbě a v čekání. */
 function cycleStrip(): string {
   const p = profile()
   const today = viewDate()
@@ -78,7 +78,7 @@ function cycleStrip(): string {
           const isNow = i === lastDoneIdx
           return `<span class="leg ${isNow ? 'now' : ''}">
             <span class="bar"><i style="width:${isDone ? 100 : 0}%"></i></span>
-            <span class="lab">${esc(l.label)}${l.date ? `<br>${esc(formatCzechDate(l.date))}` : '<br>—'}</span>
+            <span class="lab">${esc(l.label)}${l.date ? `<br>${esc(formatCzechDate(l.date))}` : '<br>–'}</span>
           </span>`
         })
         .join('')}
@@ -138,7 +138,7 @@ function remindersBlock(): string {
   </section>`
 }
 
-/** Vstup do průvodce fází — na domovské stránce musí být vidět, že existuje. */
+/** Vstup do průvodce fází. Na domovské stránce musí být vidět, že existuje. */
 function phaseCta(): string {
   const state = journey()
   const guide = guideFor(state.phase.id)
@@ -258,7 +258,7 @@ export function screenDnes(): string {
   const concern = moodConcern()
     ? `<div class="surface pad" style="border-color:var(--blush)">
         <p class="eyebrow" style="color:var(--blush-deep)">Všimli jsme si</p>
-        <p style="margin-top:.6rem;line-height:1.65">Poslední zápisy jsou dlouhodobě nízko. Není to diagnóza — jen upozornění, že tohle bývá moment, kdy pomůže někdo zvenčí.</p>
+        <p style="margin-top:.6rem;line-height:1.65">Poslední zápisy jsou dlouhodobě nízko. Není to diagnóza, jen upozornění, že tohle bývá moment, kdy pomůže někdo zvenčí.</p>
         <p class="soft" style="margin-top:.6rem;font-size:.9375rem;line-height:1.65">Ozvěte se svému gynekologovi nebo praktickému lékaři. Kdykoliv a zdarma je tu také <strong>Linka první psychické pomoci 116 123</strong>.</p>
       </div>`
     : ''
@@ -372,7 +372,7 @@ export function screenDnes(): string {
     .join('')
 }
 
-/** Události od dneška dál — vlastní i automaticky doplněné. */
+/** Události od dneška dál. Vlastní i automaticky doplněné. */
 export function upcomingEvents(from: string, limit: number) {
   return allEvents()
     .filter((e) => !eventState(e.id).done && e.onDate >= from)
@@ -394,7 +394,7 @@ export function screenObjevit(): string {
     head(
       'Obsah poskládaný na dnešek',
       'Objevit',
-      'Řady se skládají podle toho, kolikátý je den vaší cesty. U každé je napsáno, proč ji vidíte — a zítra budou jiné.',
+      'Řady se skládají podle toho, kolikátý je den vaší cesty. U každé je napsáno, proč ji vidíte. A zítra budou jiné.',
     ),
     rails.map(railBlock).join(''),
     `<section class="center" style="border-top:1px solid var(--line);padding-top:2rem">
@@ -437,7 +437,7 @@ export function screenCesta(): string {
     head(
       'Celá cesta, ne jeden cyklus',
       'Vaše cesta',
-      `${PHASE_IDS.length} fází od prvního rozhodnutí po batolecí období. Vaše aktuální fáze je zvýrazněná — a když se posunete, stačí ji přepnout.`,
+      `${PHASE_IDS.length} fází od prvního rozhodnutí po batolecí období. Vaše aktuální fáze je zvýrazněná. A když se posunete, stačí ji přepnout.`,
     ),
     `<div class="surface pad">
       <p class="eyebrow">Právě teď</p>
@@ -456,7 +456,7 @@ export function screenCesta(): string {
 
 /**
  * Transparentnost doporučování. Uživatelka má právo vidět, z čeho se
- * skládá to, co jí ukazujeme — a taky to smazat.
+ * skládá to, co jí ukazujeme. A taky to smazat.
  */
 export function screenProc(): string {
   const state = journey()
@@ -499,7 +499,7 @@ export function screenProc(): string {
               .join('')}</div>
              <p class="soft" style="margin-top:1rem;font-size:.875rem;line-height:1.6">Váhy rostou podle toho, co si otevíráte a ukládáte. Ovlivňují pořadí, nikdy ne bezpečnostní obsah.</p>
              <button class="btn btn-sm" data-act="forget" style="margin-top:1rem">Zapomenout, co jste se naučili</button>`
-          : '<p class="soft" style="margin-top:.9rem;line-height:1.65">Zatím nic. Jakmile si začnete otevírat obsah, začneme si všímat témat, která vás zajímají — a uvidíte je tady.</p>'
+          : '<p class="soft" style="margin-top:.9rem;line-height:1.65">Zatím nic. Jakmile si začnete otevírat obsah, začneme si všímat témat, která vás zajímají. A uvidíte je tady.</p>'
       }
     </div>`,
 
@@ -516,7 +516,7 @@ export function screenProc(): string {
     </section>`,
 
     note(
-      'Skóre položky = fáze × den ve fázi × časové okno × vaše situace × naučená témata × novost. Pořadí je v rámci jednoho dne stabilní — zavřít a otevřít aplikaci obsah nepřehází. Mezi dny se mění, protože do něj vstupuje i datum.',
+      'Skóre položky = fáze × den ve fázi × časové okno × vaše situace × naučená témata × novost. Pořadí je v rámci jednoho dne stabilní. Zavřít a otevřít aplikaci obsah nepřehází. Mezi dny se mění, protože do něj vstupuje i datum.',
     ),
   ].join('')
 }

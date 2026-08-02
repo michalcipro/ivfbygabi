@@ -4,7 +4,7 @@
  *   npm run app            → app/index.html
  *
  * Není to maketa ani export dat. Do stránky se sbalí skutečné doménové jádro,
- * skutečný doporučovací systém a celá knihovna obsahu — a v prohlížeči se pak
+ * skutečný doporučovací systém a celá knihovna obsahu. A v prohlížeči se pak
  * počítá živě, ze skutečného dnešního data a z profilu, který si uživatelka
  * vyplní v onboardingu. Proto se to dá otevřít i tam, kde neběží Node.
  */

@@ -1,7 +1,7 @@
 import type { PhaseGuide } from '../phase-guide'
 
 /**
- * Průvodci fázemi cesty za otěhotněním — od rozhodnutí po výsledek cyklu.
+ * Průvodci fázemi cesty za otěhotněním. Od rozhodnutí po výsledek cyklu.
  *
  * Pravidla, která platí pro každý text tady:
  *  - nikde není dávkování léku ani doplňku,
@@ -13,17 +13,17 @@ import type { PhaseGuide } from '../phase-guide'
 export const CONCEPTION_GUIDES: PhaseGuide[] = [
   {
     phase: 'thinking',
-    summary: 'Rozhodnutí se teprve rodí. Není co dohánět — je čas se ptát a zjišťovat.',
+    summary: 'Rozhodnutí se teprve rodí. Není co dohánět. Je čas se ptát a zjišťovat.',
     whatAwaits: [
       'Období, kdy si ujasňujete, jestli a kdy dítě chcete. Klidně několik měsíců.',
       'První praktické otázky: peníze, práce, bydlení, vztah.',
-      'Zjišťování, jak na tom jste zdravotně — bez tlaku, jen abyste věděla.',
+      'Zjišťování, jak na tom jste zdravotně. Bez tlaku, jen abyste věděla.',
     ],
     prepareFor: [
       'Preventivní prohlídka u gynekologa a u praktického lékaře. Ideálně dřív, než se začnete snažit.',
-      'Zjistit svou i partnerovu rodinnou anamnézu — dědičná onemocnění, potraty, vrozené vady.',
+      'Zjistit svou i partnerovu rodinnou anamnézu. Dědičná onemocnění, potraty, vrozené vady.',
       'Zkontrolovat očkování, hlavně proti zarděnkám a planým neštovicím. Po očkování se doporučuje s otěhotněním chvíli počkat, termín řekne lékař.',
-      'Podívat se, co berete za léky. Některé se před těhotenstvím mění — nikdy je nevysazujte sama.',
+      'Podívat se, co berete za léky. Některé se před těhotenstvím mění. Nikdy je nevysazujte sama.',
     ],
     mind: [
       {
@@ -38,7 +38,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     body: [
       {
         title: 'Pohyb, který má smysl budovat teď',
-        body: 'Nejlepší čas začít hýbat se je dřív, než se začnete snažit. Cíl není zhubnout — cíl je pravidelnost. Rychlá chůze, plavání nebo lehká silová zátěž třikrát týdně. Extrémní zátěž a velké váhové výkyvy naopak cyklus rozhodí.',
+        body: 'Nejlepší čas začít hýbat se je dřív, než se začnete snažit. Cíl není zhubnout. Cíl je pravidelnost. Rychlá chůze, plavání nebo lehká silová zátěž třikrát týdně. Extrémní zátěž a velké váhové výkyvy naopak cyklus rozhodí.',
       },
       {
         title: 'Kouření, alkohol a váha',
@@ -48,7 +48,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     supplements: [
       {
         name: 'Kyselina listová (folát)',
-        why: 'Snižuje riziko vrozených vad neurální trubice u miminka. Účinkuje v prvních týdnech těhotenství — tedy dřív, než o něm většina žen ví. Proto se začíná už při plánování.',
+        why: 'Snižuje riziko vrozených vad neurální trubice u miminka. Účinkuje v prvních týdnech těhotenství, tedy dřív, než o něm většina žen ví. Proto se začíná už při plánování.',
         evidence: 'standard',
         note: 'Dávku určuje lékař. U některých diagnóz a při užívání některých léků bývá vyšší.',
       },
@@ -62,7 +62,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
         name: 'Jód',
         why: 'Potřebný pro vývoj mozku miminka a pro funkci štítné žlázy.',
         evidence: 'standard',
-        note: 'Při onemocnění štítné žlázy vždycky konzultujte — u některých diagnóz se postupuje jinak.',
+        note: 'Při onemocnění štítné žlázy vždycky konzultujte. U některých diagnóz se postupuje jinak.',
       },
     ],
     partner: [
@@ -71,9 +71,9 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Nenechávejte plánování na ní. Termíny, otázky pro lékaře i finance jsou společná věc.',
     ],
     track: [
-      'Délka cyklu — od prvního dne menstruace do dne před další. Nejužitečnější údaj, který si můžete začít psát hned.',
+      'Délka cyklu. Od prvního dne menstruace do dne před další. Nejužitečnější údaj, který si můžete začít psát hned.',
       'Váha, pokud ji chcete měnit. Postupně, ne skokově.',
-      'Nálada a spánek — zjistíte, co vám dělá dobře, ještě než přijde stres z čekání.',
+      'Nálada a spánek. Zjistíte, co vám dělá dobře, ještě než přijde stres z čekání.',
     ],
     askDoctor: [
       'Mám něco, co bych měla vyřešit ještě před otěhotněním?',
@@ -86,10 +86,10 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'preparing_body',
-    summary: 'Připravujete tělo. Většina změn se projeví za dva až tři měsíce — vajíčko i spermie tak dlouho dozrávají.',
+    summary: 'Připravujete tělo. Většina změn se projeví za dva až tři měsíce. Vajíčko i spermie tak dlouho dozrávají.',
     whatAwaits: [
       'Dva až tři měsíce, než se změny životního stylu projeví na kvalitě vajíček a spermií.',
-      'Odběry, které si můžete nechat udělat i bez odeslání na kliniku — štítná žláza, vitamin D, krevní obraz.',
+      'Odběry, které si můžete nechat udělat i bez odeslání na kliniku. Štítná žláza, vitamin D, krevní obraz.',
       'Zvykání si na pravidelnost: spánek, jídlo, pohyb. Nudné, ale funguje to.',
     ],
     prepareFor: [
@@ -146,14 +146,14 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     ],
     partner: [
       'Spermiogram teď, ne až za rok. Trvá pár dní a změní to, co se bude řešit dál.',
-      'Tři měsíce bez sauny, bez notebooku na klíně a s omezením alkoholu se na výsledku pozná — spermie dozrávají zhruba 74 dní.',
+      'Tři měsíce bez sauny, bez notebooku na klíně a s omezením alkoholu se na výsledku pozná. Spermie dozrávají zhruba 74 dní.',
       'Zinek, selen a antioxidanty se u mužského faktoru diskutují. Data jsou smíšená, dávkování patří lékaři.',
     ],
     track: [
       'Délka a pravidelnost cyklu.',
       'Bazální teplota nebo LH testy, pokud chcete ovulaci potvrdit.',
       'Váha jednou týdně, ne denně.',
-      'Spánek — kolik hodin a jak kvalitní.',
+      'Spánek. Kolik hodin a jak kvalitní.',
     ],
     askDoctor: [
       'Jaké hodnoty mi má smysl změřit před snažením?',
@@ -166,7 +166,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'trying_naturally',
-    summary: 'Snažíte se přirozeně. Klíčová je znalost vlastního cyklu — ne počet pokusů.',
+    summary: 'Snažíte se přirozeně. Klíčová je znalost vlastního cyklu, ne počet pokusů.',
     whatAwaits: [
       'Měsíce, které mají svůj rytmus: naděje kolem ovulace, čekání, menstruace, znovu.',
       'Postupné zjišťování, kdy přesně ovulujete. U většiny žen to není 14. den.',
@@ -174,7 +174,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     ],
     prepareFor: [
       'Naučit se poznat plodné dny. Nejspolehlivější kombinace: LH testy plus sledování hlenu.',
-      'Vědět, že plodné okno je zhruba šest dní a končí dnem ovulace — po ovulaci už je pozdě.',
+      'Vědět, že plodné okno je zhruba šest dní a končí dnem ovulace. Po ovulaci už je pozdě.',
       'Připravit se na to, že „hned to vyjde“ je spíš výjimka. I u zdravého páru je šance v jednom cyklu kolem 20–25 %.',
     ],
     mind: [
@@ -184,17 +184,17 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         title: 'Dvoutýdenní čekání každý měsíc',
-        body: 'Druhá polovina cyklu je nejtěžší část. Symptomy po ovulaci a rané příznaky těhotenství jsou k nerozeznání — obojí dělá progesteron. Rozbor příznaků vám odpověď nedá, jen sebere klid.',
+        body: 'Druhá polovina cyklu je nejtěžší část. Symptomy po ovulaci a rané příznaky těhotenství jsou k nerozeznání. Obojí dělá progesteron. Rozbor příznaků vám odpověď nedá, jen sebere klid.',
       },
       {
         title: 'Když přijde menstruace',
-        body: 'Zklamání každý měsíc je únavné jinak než jednorázová rána. Dejte si na ten den dopředu něco konkrétního — ne „být silná“, ale třeba vycházku, film, člověka, kterému můžete zavolat.',
+        body: 'Zklamání každý měsíc je únavné jinak než jednorázová rána. Dejte si na ten den dopředu něco konkrétního, ne „být silná“, ale třeba vycházku, film, člověka, kterému můžete zavolat.',
       },
     ],
     body: [
       {
         title: 'Pohyb v plodném okně',
-        body: 'Není důvod cokoliv omezovat. Cvičte, jak jste zvyklá. Jediné, co stojí za pozornost, je extrémní objem tréninku — ten může ovulaci potlačit.',
+        body: 'Není důvod cokoliv omezovat. Cvičte, jak jste zvyklá. Jediné, co stojí za pozornost, je extrémní objem tréninku. Ten může ovulaci potlačit.',
       },
       {
         title: 'Teplo a spermie',
@@ -220,15 +220,15 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
     ],
     partner: [
-      'Plodné okno je společná věc — ať ho zná taky, aby se na tom nemusela domlouvat sama.',
+      'Plodné okno je společná věc. Ať ho zná taky, aby se na tom nemusela domlouvat sama.',
       'Den, kdy přijde menstruace, bývá pro ni nejhorší. Stačí, když si ho budete pamatovat a nezeptáte se „tak co, nic?“.',
       'Po půl roce až roce snažení jděte na spermiogram, i když se cítíte úplně v pořádku.',
     ],
     track: [
-      'První den menstruace — z toho se počítá délka cyklu.',
+      'První den menstruace. Z toho se počítá délka cyklu.',
       'LH testy a hlen v plodném okně.',
       'Bazální teplota, pokud chcete ovulaci potvrdit zpětně.',
-      'Nálada — po pár měsících uvidíte, jak moc s vámi cyklus houpe.',
+      'Nálada. Po pár měsících uvidíte, jak moc s vámi cyklus houpe.',
     ],
     askDoctor: [
       'Jak dlouho má smysl zkoušet to přirozeně v mém věku a s mým cyklem?',
@@ -240,11 +240,11 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'diagnostics',
-    summary: 'Hledáte příčinu. Cílem není verdikt, ale plán — a většina nálezů má řešení.',
+    summary: 'Hledáte příčinu. Cílem není verdikt, ale plán. A většina nálezů má řešení.',
     whatAwaits: [
       'Odběry hormonů v konkrétních dnech cyklu. Část se dělá 2.–4. den, část kolem 21. dne.',
       'Ultrazvuk s počítáním antrálních folikulů.',
-      'Vyšetření průchodnosti vejcovodů — HSG nebo HyFoSy. Trvá krátce, bývá nepříjemné, ne dlouho.',
+      'Vyšetření průchodnosti vejcovodů, HSG nebo HyFoSy. Trvá krátce, bývá nepříjemné, ne dlouho.',
       'Spermiogram u partnera, často opakovaný.',
       'Čekání na výsledky, které je většinou delší než vyšetření samo.',
     ],
@@ -252,7 +252,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Sepsat si historii cyklů, operací, těhotenství a ztrát. Na místě si to nevybavíte.',
       'Vzít s sebou všechny starší výsledky, i ty, které vám přijdou nedůležité.',
       'Napsat si otázky předem. V ordinaci na ně skoro každá zapomene.',
-      'Domluvit se, kdo z vás bude dělat zápisky — po třetím termínu se to slévá.',
+      'Domluvit se, kdo z vás bude dělat zápisky. Po třetím termínu se to slévá.',
     ],
     mind: [
       {
@@ -261,7 +261,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         title: 'Když se nenajde nic',
-        body: 'Nevysvětlená neplodnost je jedna z nejčastějších „diagnóz“ a paradoxně jedna z nejtěžších psychicky — nemáte co opravit. Neznamená to, že se nic neděje. Znamená to, že to dnešními vyšetřeními nevidíme.',
+        body: 'Nevysvětlená neplodnost je jedna z nejčastějších „diagnóz“ a paradoxně jedna z nejtěžších psychicky. Nemáte co opravit. Neznamená to, že se nic neděje. Znamená to, že to dnešními vyšetřeními nevidíme.',
       },
       {
         title: 'Vyšetřování bere víc energie, než čekáte',
@@ -271,7 +271,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     body: [
       {
         title: 'Cvičení během vyšetřování',
-        body: 'Nic neomezujte. Jen po zákrocích typu HSG nebo laparoskopie dodržte, co vám řeknou — obvykle pár dní bez zátěže a bez plavání.',
+        body: 'Nic neomezujte. Jen po zákrocích typu HSG nebo laparoskopie dodržte, co vám řeknou. Obvykle pár dní bez zátěže a bez plavání.',
       },
       {
         title: 'Den vyšetření vejcovodů',
@@ -286,7 +286,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         name: 'Vitamin D',
-        why: 'Právě teď se často měří — doplňuje se podle výsledku.',
+        why: 'Právě teď se často měří. Doplňuje se podle výsledku.',
         evidence: 'podle hodnot',
       },
       {
@@ -299,11 +299,11 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     partner: [
       'Spermiogram je součást vyšetření páru, ne laskavost. Bez něj je diagnostika neúplná.',
       'Jeďte s ní na vyšetření vejcovodů. Není to zákrok, po kterém se dobře řídí.',
-      'Když vyjde nález u vás, nemá cenu se omlouvat — má cenu se ptát, co se s tím dá dělat. U mužského faktoru je toho hodně.',
+      'Když vyjde nález u vás, nemá cenu se omlouvat. Má cenu se ptát, co se s tím dá dělat. U mužského faktoru je toho hodně.',
     ],
     track: [
       'Všechny naměřené hodnoty a datum odběru. Vývoj v čase je pro lékaře cennější než jedno číslo.',
-      'Den cyklu, ve kterém se odběr dělal — bez něj se hodnota interpretovat nedá.',
+      'Den cyklu, ve kterém se odběr dělal. Bez něj se hodnota interpretovat nedá.',
       'Termíny a co na nich zaznělo.',
     ],
     askDoctor: [
@@ -317,16 +317,16 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'iui',
-    summary: 'Inseminace — nejjednodušší asistovaná metoda. Zákrok trvá pár minut a bolí zhruba jako stěr.',
+    summary: 'Inseminace. Nejjednodušší asistovaná metoda. Zákrok trvá pár minut a bolí zhruba jako stěr.',
     whatAwaits: [
       'Sledování růstu folikulů ultrazvukem, někdy s mírnou stimulací tabletami nebo nízkými dávkami injekcí.',
-      'Trigger — injekce, která spustí ovulaci v naplánovaný čas.',
+      'Trigger. Injekce, která spustí ovulaci v naplánovaný čas.',
       'Odběr a zpracování spermatu v laboratoři v den výkonu.',
       'Samotné zavedení připravených spermií do dělohy tenkým katétrem. Několik minut, bez narkózy.',
       'Dvoutýdenní čekání a test.',
     ],
     prepareFor: [
-      'Zjistit dopředu, kolik cyklů inseminace má u vaší diagnózy smysl — obvykle se počítá se třemi až šesti, pak se přechází dál.',
+      'Zjistit dopředu, kolik cyklů inseminace má u vaší diagnózy smysl. Obvykle se počítá se třemi až šesti, pak se přechází dál.',
       'Naplánovat, kdo přiveze vzorek a kdy. Načasování je na hodiny.',
       'Vzít si po zákroku volnější půlden, i když to není nutné. Klid se hodí spíš hlavě než tělu.',
       'Vědět, že po výkonu můžete mít mírné křeče a slabé špinění. To je běžné.',
@@ -334,7 +334,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     mind: [
       {
         title: 'Mezistupeň, který nemusí být zklamání',
-        body: 'Inseminace je často vnímaná jako „ještě ne to pravé“. Přitom pro některé diagnózy je to přesně ta správná metoda a je výrazně šetrnější než IVF. Pokud vám ji lékař navrhl, má k tomu důvod — zeptejte se jaký.',
+        body: 'Inseminace je často vnímaná jako „ještě ne to pravé“. Přitom pro některé diagnózy je to přesně ta správná metoda a je výrazně šetrnější než IVF. Pokud vám ji lékař navrhl, má k tomu důvod. Zeptejte se jaký.',
       },
       {
         title: 'Čekání je stejné jako po transferu',
@@ -344,7 +344,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     body: [
       {
         title: 'Po zákroku',
-        body: 'Ležení není potřeba — spermie neodtečou. Běžný den zvládnete normálně. Vynechte jen intenzivní zátěž v den výkonu, spíš kvůli křečím než kvůli výsledku.',
+        body: 'Ležení není potřeba. Spermie neodtečou. Běžný den zvládnete normálně. Vynechte jen intenzivní zátěž v den výkonu, spíš kvůli křečím než kvůli výsledku.',
       },
       {
         title: 'Sex po inseminaci',
@@ -359,26 +359,26 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         name: 'Progesteron',
-        why: 'Není doplněk, ale lék — u části protokolů se po inseminaci nasazuje podpora luteální fáze.',
+        why: 'Není doplněk, ale lék. U části protokolů se po inseminaci nasazuje podpora luteální fáze.',
         evidence: 'standard',
         note: 'Bere se přesně podle předpisu. Sama nikdy nevysazujte ani neměňte.',
       },
     ],
     partner: [
-      'V den výkonu jde o načasování — domluvte se předem, kdy a kam vzorek odevzdáte, ať se to neřeší ráno.',
+      'V den výkonu jde o načasování. Domluvte se předem, kdy a kam vzorek odevzdáte, ať se to neřeší ráno.',
       'Před odběrem se obvykle doporučuje dva až pět dní abstinence. Přesně vám to řekne klinika.',
       'Zákrok je krátký, ale den je nabitý. Odvezte ji.',
     ],
     track: [
       'Den cyklu a velikost folikulů z každé kontroly.',
-      'Přesný čas triggeru — od něj se odvíjí termín výkonu.',
+      'Přesný čas triggeru. Od něj se odvíjí termín výkonu.',
       'Datum inseminace, aby šlo počítat, kolikátý den čekáte.',
     ],
     askDoctor: [
       'Proč u nás inseminace, a ne rovnou IVF?',
       'Kolik cyklů má u naší diagnózy smysl zkusit?',
       'Budu mít stimulaci, a pokud ano, jakou?',
-      'Jaká je u nás šance na jeden cyklus — a co ji ovlivňuje?',
+      'Jaká je u nás šance na jeden cyklus. A co ji ovlivňuje?',
     ],
     terms: ['IUI', 'Trigger', 'Folikulometrie', 'Luteální fáze', 'Podpora luteální fáze', 'Spermiogram'],
   },
@@ -390,13 +390,13 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Vstupní konzultace, kde se určí protokol podle vašich hodnot.',
       'Podpisy informovaných souhlasů. Je toho hodně a stojí za to je číst.',
       'Objednání léků a zaškolení, jak si píchat injekce.',
-      'Naplánování začátku podle cyklu — často se čeká na menstruaci.',
+      'Naplánování začátku podle cyklu. Často se čeká na menstruaci.',
       'Vyřízení úhrady: v Česku hradí pojišťovna určitý počet cyklů do daného věku, zbytek si platíte.',
     ],
     prepareFor: [
-      'Zjistit přesně, co je hrazené a co ne. Ptejte se i na doplňkové metody, které se doporučují zvlášť — u části z nich je přínos sporný.',
+      'Zjistit přesně, co je hrazené a co ne. Ptejte se i na doplňkové metody, které se doporučují zvlášť. U části z nich je přínos sporný.',
       'Vzít si dovolenou nebo domluvit flexibilitu na dny odběru a transferu. Termíny se hýbou podle toho, jak rostou folikuly.',
-      'Připravit místo doma na léky — část se skladuje v lednici.',
+      'Připravit místo doma na léky. Část se skladuje v lednici.',
       'Domluvit se s partnerem, kdo píchá injekce, kdyby to nešlo.',
     ],
     mind: [
@@ -439,16 +439,16 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
         name: 'Inositol',
         why: 'U PCOS se používá s cílem zlepšit odpověď na stimulaci.',
         evidence: 'diskutovaný',
-        note: 'Vždy řekněte klinice, co berete — některé doplňky se s protokolem míjejí.',
+        note: 'Vždy řekněte klinice, co berete. Některé doplňky se s protokolem míjejí.',
       },
     ],
     partner: [
       'Jděte na vstupní konzultaci s ní. Padne tam víc informací, než se dá zapamatovat.',
       'Naučte se píchat injekce, i když to zvládá sama. Jednou se to bude hodit.',
-      'Domluvte si, kdy je vaše místo v procesu — odběr spermatu v den punkce je jen jedna z věcí.',
+      'Domluvte si, kdy je vaše místo v procesu. Odběr spermatu v den punkce je jen jedna z věcí.',
     ],
     track: [
-      'První den menstruace — od něj se plánuje start.',
+      'První den menstruace. Od něj se plánuje start.',
       'Vstupní hodnoty (AMH, FSH, antrální folikuly), abyste je měla pohromadě.',
       'Seznam léků a kdy je začnete brát.',
     ],
@@ -464,17 +464,17 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'stimulation',
-    summary: 'Injekce každý den a kontroly každé dva až tři dny. Tělo pracuje na plné obrátky — a je to znát.',
+    summary: 'Injekce každý den a kontroly každé dva až tři dny. Tělo pracuje na plné obrátky. A je to znát.',
     whatAwaits: [
       'Denní injekce, obvykle večer ve stejnou dobu. Většina žen si je píchá sama do bříška.',
       'Ultrazvukové kontroly zhruba každé dva až tři dny, často brzy ráno.',
       'Dávky se v průběhu mění podle toho, jak folikuly rostou. Změna dávky není chyba, je to řízení.',
       'Nafouklé břicho, citlivá prsa, únava a výkyvy nálad. Ke konci stimulace nejvíc.',
-      'Trigger v přesně určený čas — obvykle 34–36 hodin před odběrem. Tady se nesmí splést hodina.',
+      'Trigger v přesně určený čas. Obvykle 34–36 hodin před odběrem. Tady se nesmí splést hodina.',
     ],
     prepareFor: [
       'Volnější kalhoty. Břicho se zvětší a je citlivé.',
-      'Ranní termíny na kontroly — domluvte si to v práci dopředu.',
+      'Ranní termíny na kontroly. Domluvte si to v práci dopředu.',
       'Chladicí polštářek a dezinfekci k injekcím, ať to máte na jednom místě.',
       'Vědět, že poslední dny bývají fyzicky nejtěžší z celého cyklu.',
     ],
@@ -485,7 +485,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         title: 'Nepočítejte folikuly jako body',
-        body: 'Čísla z každé kontroly svádějí k porovnávání — s minulým cyklem, s cizími ženami na fóru. Počet folikulů není známka. Rozhoduje, kolik z nich obsahuje zralé vajíčko, a to se ukáže až po odběru.',
+        body: 'Čísla z každé kontroly svádějí k porovnávání. S minulým cyklem, s cizími ženami na fóru. Počet folikulů není známka. Rozhoduje, kolik z nich obsahuje zralé vajíčko, a to se ukáže až po odběru.',
       },
       {
         title: 'Dýchání, které funguje ve dvě ráno',
@@ -495,7 +495,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     body: [
       {
         title: 'Jak cvičit ve stimulaci',
-        body: 'Zvolněte. Chůze, lehká jóga, protahování — ano. Běh, skákání, prudké otočky a těžké břemena — ne. Vaječníky jsou zvětšené a hrozí jejich zkroucení (torze), což je akutní stav.',
+        body: 'Zvolněte. Chůze, lehká jóga, protahování. Ano. Běh, skákání, prudké otočky a těžké břemena. Ne. Vaječníky jsou zvětšené a hrozí jejich zkroucení (torze), což je akutní stav.',
       },
       {
         title: 'Pití a sůl',
@@ -503,13 +503,13 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         title: 'Kdy okamžitě volat',
-        body: 'Prudká bolest břicha, rychle rostoucí obvod břicha, dušnost, výrazně méně moči, zvracení. Můžou to být příznaky OHSS nebo torze vaječníku — nečekejte na ranní ordinaci.',
+        body: 'Prudká bolest břicha, rychle rostoucí obvod břicha, dušnost, výrazně méně moči, zvracení. Můžou to být příznaky OHSS nebo torze vaječníku. Nečekejte na ranní ordinaci.',
       },
     ],
     supplements: [
       {
         name: 'Kyselina listová (folát)',
-        why: 'Působí v nejranějších týdnech těhotenství — tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
+        why: 'Působí v nejranějších týdnech těhotenství, tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
         evidence: 'standard',
       },
       {
@@ -526,10 +526,10 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Poslední dny bude nafouklá, unavená a podrážděná. Není to na vás.',
     ],
     track: [
-      'Počet a velikost folikulů z každé kontroly — z toho vznikne křivka růstu.',
+      'Počet a velikost folikulů z každé kontroly. Z toho vznikne křivka růstu.',
       'Estradiol, pokud vám ho měří.',
       'Obvod břicha, když máte riziko OHSS.',
-      'Nálada a bolest — uvidíte, jak stimulace probíhala, až se na to budete chtít podívat zpětně.',
+      'Nálada a bolest. Uvidíte, jak stimulace probíhala, až se na to budete chtít podívat zpětně.',
     ],
     askDoctor: [
       'Kolik folikulů roste a jak velké mají být před odběrem?',
@@ -545,7 +545,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     summary: 'Den odběru. Krátký zákrok v analgosedaci, po kterém jde většina žen domů do několika hodin.',
     whatAwaits: [
       'Příchod nalačno, obvykle brzy ráno. Nejíst a nepít podle pokynů kliniky.',
-      'Zákrok trvá zhruba 10–20 minut. Probíhá v analgosedaci — spíte a nic necítíte.',
+      'Zákrok trvá zhruba 10–20 minut. Probíhá v analgosedaci. Spíte a nic necítíte.',
       'Po probuzení odpočinek na lůžku, kontrola a informace, kolik vajíček se získalo.',
       'Odpoledne doma. Křeče a špinění jsou běžné.',
       'Následující den telefonát z embryologie s informací, kolik vajíček bylo zralých a kolik se oplodnilo.',
@@ -559,7 +559,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     mind: [
       {
         title: 'Číslo, které uslyšíte, není známka',
-        body: 'Kolik vajíček se získalo, řekne jen část příběhu. Důležité je, kolik jich bylo zralých a kolik se jich oplodní — a to se dozvíte až zítra. Nesrovnávejte se s nikým, kdo měl jiný protokol a jiné hodnoty.',
+        body: 'Kolik vajíček se získalo, řekne jen část příběhu. Důležité je, kolik jich bylo zralých a kolik se jich oplodní. A to se dozvíte až zítra. Nesrovnávejte se s nikým, kdo měl jiný protokol a jiné hodnoty.',
       },
       {
         title: 'Prázdno po zákroku',
@@ -569,7 +569,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     body: [
       {
         title: 'Následující dny',
-        body: 'Klid, ale ne strohé ležení — chůze po bytě je v pořádku. Bez sportu, bez zvedání těžkého, bez sexu, dokud vám klinika neřekne jinak. Vaječníky jsou pořád zvětšené.',
+        body: 'Klid, ale ne strohé ležení. Chůze po bytě je v pořádku. Bez sportu, bez zvedání těžkého, bez sexu, dokud vám klinika neřekne jinak. Vaječníky jsou pořád zvětšené.',
       },
       {
         title: 'Kdy volat lékaře',
@@ -579,7 +579,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     supplements: [
       {
         name: 'Kyselina listová (folát)',
-        why: 'Působí v nejranějších týdnech těhotenství — tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
+        why: 'Působí v nejranějších týdnech těhotenství, tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
         evidence: 'standard',
       },
       {
@@ -592,12 +592,12 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     partner: [
       'Váš vzorek se odebírá obvykle týž den ráno. Domluvte si čas předem.',
       'Odvezte ji a zůstaňte s ní. Po sedaci nesmí být sama a nesmí řídit.',
-      'Zprávu z embryologie berte oba — ať to nemusí druhému den co den tlumočit sama.',
+      'Zprávu z embryologie berte oba. Ať to nemusí druhému den co den tlumočit sama.',
     ],
     track: [
       'Počet získaných vajíček a kolik z nich bylo zralých.',
       'Bolest a krvácení v následujících dnech.',
-      'Obvod břicha a váha, pokud máte riziko OHSS — rychlý nárůst je varovný.',
+      'Obvod břicha a váha, pokud máte riziko OHSS. Rychlý nárůst je varovný.',
     ],
     askDoctor: [
       'Kolik vajíček se získalo a kolik jich bylo zralých?',
@@ -610,12 +610,12 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'fertilization',
-    summary: 'Den po odběru. V laboratoři se rozhoduje, kolik vajíček se oplodnilo — a vy u toho nemůžete nic ovlivnit.',
+    summary: 'Den po odběru. V laboratoři se rozhoduje, kolik vajíček se oplodnilo. A vy u toho nemůžete nic ovlivnit.',
     whatAwaits: [
       'Telefonát z embryologie, obvykle dopoledne.',
       'Informace, kolik vajíček bylo zralých a u kolika došlo k oplodnění.',
       'Vysvětlení, jestli se použilo klasické IVF nebo ICSI.',
-      'Termín dalšího hlášení — většinou třetí a pátý den.',
+      'Termín dalšího hlášení. Většinou třetí a pátý den.',
     ],
     prepareFor: [
       'Že čísla klesají. Ne každé získané vajíčko je zralé a ne každé zralé se oplodní. Je to očekávaný průběh, ne selhání.',
@@ -625,7 +625,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     mind: [
       {
         title: 'Bezmoc je tady na místě',
-        body: 'Tohle je fáze, kde opravdu nemůžete udělat nic. Žádná strava, žádný klid, žádná myšlenka to neovlivní. Paradoxně to bývá úleva — dovolte si to na pár dní pustit.',
+        body: 'Tohle je fáze, kde opravdu nemůžete udělat nic. Žádná strava, žádný klid, žádná myšlenka to neovlivní. Paradoxně to bývá úleva. Dovolte si to na pár dní pustit.',
       },
       {
         title: 'Nepřepočítávejte to dopředu',
@@ -641,7 +641,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     supplements: [
       {
         name: 'Kyselina listová (folát)',
-        why: 'Působí v nejranějších týdnech těhotenství — tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
+        why: 'Působí v nejranějších týdnech těhotenství, tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
         evidence: 'standard',
       },
       {
@@ -670,22 +670,22 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'embryo_culture',
-    summary: 'Embrya rostou v laboratoři. Každý den se jejich počet může zmenšit — a je to normální průběh, ne chyba.',
+    summary: 'Embrya rostou v laboratoři. Každý den se jejich počet může zmenšit. A je to normální průběh, ne chyba.',
     whatAwaits: [
       'Hlášení z embryologie, obvykle třetí a pátý den kultivace.',
       'Popis embryí podle počtu buněk a kvality, u blastocyst podle Gardnerovy klasifikace.',
       'Rozhodnutí, jestli se transfer udělá pátý den, nebo se embrya zmrazí.',
-      'Postupné ubývání embryí — do pátého dne se dostane jen část z nich.',
+      'Postupné ubývání embryí. Do pátého dne se dostane jen část z nich.',
     ],
     prepareFor: [
       'Že písmena a čísla u embryí (třeba 4AB) vypadají jako známkování, ale jsou to jen popisy vzhledu.',
-      'Že se plán může změnit ze dne na den — z čerstvého transferu na zmrazení a naopak.',
+      'Že se plán může změnit ze dne na den. Z čerstvého transferu na zmrazení a naopak.',
       'Že telefonát přijde ve chvíli, kdy zrovna nebudete moct mluvit. Domluvte si náhradní čas.',
     ],
     mind: [
       {
         title: 'Nejtěžší je pátý den',
-        body: 'Do pátého dne se dostane menší část embryí a čekání na tuhle zprávu bývá horší než čekání na test. Nemá smysl to zlehčovat — má smysl mít na ten den někoho po ruce.',
+        body: 'Do pátého dne se dostane menší část embryí a čekání na tuhle zprávu bývá horší než čekání na test. Nemá smysl to zlehčovat. Má smysl mít na ten den někoho po ruce.',
       },
       {
         title: 'Když zůstane jedno',
@@ -707,7 +707,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         name: 'Kyselina listová (folát)',
-        why: 'Působí v nejranějších týdnech těhotenství — tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
+        why: 'Působí v nejranějších týdnech těhotenství, tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
         evidence: 'standard',
       },
     ],
@@ -723,7 +723,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     askDoctor: [
       'Kolik embryí se vyvíjí a jak vypadají?',
       'Co znamená to označení kvality u mého embrya?',
-      'Budeme dělat transfer teď, nebo mrazit — a proč?',
+      'Budeme dělat transfer teď, nebo mrazit. A proč?',
       'Kolik embryí zbude na zmrazení?',
     ],
     terms: ['Blastocysta', 'Morula', 'Gardnerova klasifikace', 'Kultivace', 'Vitrifikace', 'Hatching', 'PGT-A'],
@@ -731,24 +731,24 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'transfer',
-    summary: 'Den transferu. Zákrok trvá pár minut, nebolí a nevyžaduje narkózu — a přesto je to den, na který se čekalo roky.',
+    summary: 'Den transferu. Zákrok trvá pár minut, nebolí a nevyžaduje narkózu. A přesto je to den, na který se čekalo roky.',
     whatAwaits: [
       'Příchod obvykle s plným močovým měchýřem, aby byla děloha na ultrazvuku lépe vidět.',
       'Zavedení embrya tenkým katétrem pod ultrazvukovou kontrolou. Několik minut, bez narkózy.',
       'Krátký odpočinek a odchod domů.',
-      'Pokračování v podpoře luteální fáze — obvykle progesteron.',
+      'Pokračování v podpoře luteální fáze. Obvykle progesteron.',
       'Začátek dvoutýdenního čekání.',
     ],
     prepareFor: [
       'Vzít si s sebou ponožky a něco na čtení. Čekání na sále bývá delší než samotný výkon.',
       'Vědět, že po transferu můžete normálně chodit, jet autem a jít domů. Embryo nevypadne.',
-      'Domluvit si, kdy bude odběr hCG — obvykle 9.–12. den po transferu blastocysty.',
+      'Domluvit si, kdy bude odběr hCG. Obvykle 9.–12. den po transferu blastocysty.',
       'Připravit se na to, že po transferu nastane zvláštní ticho: všechno je hotové a nezbývá než čekat.',
     ],
     mind: [
       {
         title: 'Ležení nepomáhá',
-        body: 'Studie opakovaně ukazují, že klid na lůžku po transferu výsledek nezlepšuje — spíš naopak. Běžný pohyb je v pořádku a psychicky je lepší mít co dělat.',
+        body: 'Studie opakovaně ukazují, že klid na lůžku po transferu výsledek nezlepšuje, spíš naopak. Běžný pohyb je v pořádku a psychicky je lepší mít co dělat.',
       },
       {
         title: 'Dopis, který nikdo neuvidí',
@@ -758,7 +758,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     body: [
       {
         title: 'Co ano a co ne',
-        body: 'Ano: chůze, běžná práce, řízení, sprchování. Ne: intenzivní sport, zvedání těžkého, sauna, horká koupel, plavání v bazénu. Sex podle doporučení vaší kliniky — pravidla se liší.',
+        body: 'Ano: chůze, běžná práce, řízení, sprchování. Ne: intenzivní sport, zvedání těžkého, sauna, horká koupel, plavání v bazénu. Sex podle doporučení vaší kliniky. Pravidla se liší.',
       },
       {
         title: 'Progesteron a jeho vedlejší účinky',
@@ -789,7 +789,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Zeptejte se jí, co by dnes večer chtěla dělat, a udělejte to.',
     ],
     track: [
-      'Datum transferu — od něj se počítá všechno další.',
+      'Datum transferu. Od něj se počítá všechno další.',
       'Který den kultivace embryo mělo (3. nebo 5.), kvůli přepočtu na termín testu.',
       'Léky a časy, ať se v podpoře nespletete.',
     ],
@@ -804,7 +804,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'two_week_wait',
-    summary: 'Dvoutýdenní čekání. Nejtěžší část celé léčby — a jediná, kde není co dělat.',
+    summary: 'Dvoutýdenní čekání. Nejtěžší část celé léčby. A jediná, kde není co dělat.',
     whatAwaits: [
       'Deset až čtrnáct dní do odběru hCG.',
       'Příznaky, které nic neznamenají: napětí v prsou, křeče, únava, nadýmání. Dělá je progesteron stejně jako těhotenství.',
@@ -815,17 +815,17 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     prepareFor: [
       'Domácí testy dřív než 9. den po transferu blastocysty umí obojí: falešnou naději (zbytkový trigger) i falešné zklamání (ještě málo hCG).',
       'Naplánovat si na těch čtrnáct dní konkrétní program. Prázdný kalendář je nejhorší.',
-      'Rozmyslet si, kdo se to dozví jako první a kdy — nebo že to zatím neřeknete nikomu.',
+      'Rozmyslet si, kdo se to dozví jako první a kdy, nebo že to zatím neřeknete nikomu.',
       'Vědět, kam volat, kdyby se objevilo silné krvácení nebo prudká bolest.',
     ],
     mind: [
       {
         title: 'Pravidlo jedné věci na den',
-        body: 'Naplánujte si na každý den jednu konkrétní věc dopoledne a jednu odpoledne. Nemusí být velká. Cílem není zabavit se — cílem je, aby den měl tvar a nerozpustil se v čekání.',
+        body: 'Naplánujte si na každý den jednu konkrétní věc dopoledne a jednu odpoledne. Nemusí být velká. Cílem není zabavit se. Cílem je, aby den měl tvar a nerozpustil se v čekání.',
       },
       {
         title: 'Přestaňte hledat příznaky',
-        body: 'Rozbor každého píchnutí je past: cokoliv ucítíte, ukazuje na obojí zároveň. Když už, zapište si to do deníku a zavřete ho — místo abyste to sedmkrát denně googlila.',
+        body: 'Rozbor každého píchnutí je past: cokoliv ucítíte, ukazuje na obojí zároveň. Když už, zapište si to do deníku a zavřete ho. Místo abyste to sedmkrát denně googlila.',
       },
       {
         title: 'Když se vám hroutí den',
@@ -855,23 +855,23 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
         name: 'Progesteron',
         why: 'Pokračuje bez přerušení až do pokynu lékaře.',
         evidence: 'standard',
-        note: 'Ani špinění není důvod vysadit. Naopak — volejte a ptejte se.',
+        note: 'Ani špinění není důvod vysadit. Naopak. Volejte a ptejte se.',
       },
       {
         name: 'Kyselina listová (folát)',
-        why: 'Působí v nejranějších týdnech těhotenství — tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
+        why: 'Působí v nejranějších týdnech těhotenství, tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
         evidence: 'standard',
       },
     ],
     partner: [
       'Neptejte se každý den „cítíš něco?“. Ona to sleduje dost i bez vás.',
-      'Naplánujte na tenhle týden něco, co se těší — víkend mimo domov, film, návštěva.',
+      'Naplánujte na tenhle týden něco, co se těší. Víkend mimo domov, film, návštěva.',
       'V den odběru si vezměte volno, nebo aspoň buďte na telefonu.',
       'Když přijde špatná zpráva, neopravujte ji hned na „zkusíme to znovu“. Nejdřív ji nechte být.',
     ],
     track: [
       'Který den po transferu právě je.',
-      'Nálada, úzkost, naděje — zpětně uvidíte, že to houpalo, i když to v tu chvíli vypadalo na rovnou čáru dolů.',
+      'Nálada, úzkost, naděje. Zpětně uvidíte, že to houpalo, i když to v tu chvíli vypadalo na rovnou čáru dolů.',
       'Špinění a bolest, kdyby se na to lékař ptal.',
       'Datum a výsledek hCG.',
     ],
@@ -887,15 +887,15 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
   {
     phase: 'beta_positive',
     summary:
-      'Test vyšel. Sleduje se, jestli hodnota roste tak, jak má, a čeká se na první ultrazvuk — pak vás centrum předá gynekologovi.',
+      'Test vyšel. Sleduje se, jestli hodnota roste tak, jak má, a čeká se na první ultrazvuk. Pak vás centrum předá gynekologovi.',
     whatAwaits: [
       'Opakovaný odběr hCG za dva až tři dny. Sleduje se zdvojovací čas, ne jedno číslo.',
-      'První ultrazvuk zhruba v 6.–7. týdnu — potvrzení, že těhotenství je v děloze a má srdeční akci.',
+      'První ultrazvuk zhruba v 6.–7. týdnu. Potvrzení, že těhotenství je v děloze a má srdeční akci.',
       'Pokračování v podpoře luteální fáze, často až do 10.–12. týdne.',
       'Období, kdy se radost mísí se strachem víc, než jste čekala.',
     ],
     prepareFor: [
-      'Že jedno číslo beta nic neříká — rozhoduje trend. Rozmezí normálních hodnot je velmi široké.',
+      'Že jedno číslo beta nic neříká. Rozhoduje trend. Rozmezí normálních hodnot je velmi široké.',
       'Že do prvního ultrazvuku je dlouho a nedá se to urychlit.',
       'Že příznaky přicházejí a odcházejí. Jejich zmizení na jeden den není signál.',
       'Rozmyslet si, komu to řeknete a kdy.',
@@ -903,11 +903,11 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     mind: [
       {
         title: 'Tady vaše cesta v téhle aplikaci končí',
-        body: 'Bloomia vás doprovází od rozhodnutí až sem — k pozitivnímu testu. Průběh těhotenství je jiná etapa s jinými otázkami a patří vašemu gynekologovi, ke kterému vás centrum v následujících týdnech předá. Deník, hodnoty i poznámky vám tu zůstávají: jsou vaše a hodí se na první návštěvě u nového lékaře. A kdyby se cesta znovu otočila, najdete tu i to.',
+        body: 'Bloomia vás doprovází od rozhodnutí až sem. K pozitivnímu testu. Průběh těhotenství je jiná etapa s jinými otázkami a patří vašemu gynekologovi, ke kterému vás centrum v následujících týdnech předá. Deník, hodnoty i poznámky vám tu zůstávají: jsou vaše a hodí se na první návštěvě u nového lékaře. A kdyby se cesta znovu otočila, najdete tu i to.',
       },
       {
         title: 'Radovat se neumíte a je to v pořádku',
-        body: 'Po dlouhé léčbě málokdo přepne do radosti. Většina žen popisuje opatrnost, nedůvěru a čekání na ránu. Není to nevděk ani špatné znamení — je to naučená obrana po letech zklamání.',
+        body: 'Po dlouhé léčbě málokdo přepne do radosti. Většina žen popisuje opatrnost, nedůvěru a čekání na ránu. Není to nevděk ani špatné znamení. Je to naučená obrana po letech zklamání.',
       },
       {
         title: 'Nekontrolujte to testy donekonečna',
@@ -932,7 +932,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         name: 'Jód',
-        why: 'Potřeba v těhotenství stoupá — jód je nutný pro vývoj mozku miminka a pro funkci štítné žlázy.',
+        why: 'Potřeba v těhotenství stoupá. Jód je nutný pro vývoj mozku miminka a pro funkci štítné žlázy.',
         evidence: 'standard',
         note: 'Při onemocnění štítné žlázy vždy podle lékaře.',
       },
@@ -954,7 +954,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Když má strach, nevyvracejte ho. Po tom, čím prošla, dává smysl.',
     ],
     track: [
-      'Hodnoty hCG s daty odběrů — z toho vznikne křivka růstu.',
+      'Hodnoty hCG s daty odběrů. Z toho vznikne křivka růstu.',
       'Datum prvního ultrazvuku.',
       'Léky, které pořád berete, a do kdy.',
     ],
@@ -969,12 +969,12 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
 
   {
     phase: 'waiting_next_attempt',
-    summary: 'Mezidobí. Čas na vyhodnocení, na tělo a na rozhodnutí, jak dál — ne ztracený měsíc.',
+    summary: 'Mezidobí. Čas na vyhodnocení, na tělo a na rozhodnutí, jak dál, ne ztracený měsíc.',
     whatAwaits: [
       'Kontrolní konzultace, kde se probere, co v cyklu proběhlo a co změnit.',
       'Návrat menstruace, obvykle do dvou týdnů po vysazení podpory.',
       'Rozhodnutí o dalším postupu: kryoembryotransfer, nová stimulace, doplňující vyšetření.',
-      'Období, kdy se vrací normální život — a je to divné.',
+      'Období, kdy se vrací normální život. A je to divné.',
     ],
     prepareFor: [
       'Sepsat si otázky na vyhodnocovací konzultaci. Tohle je jediný termín, kde se dá něco doopravdy změnit.',
@@ -989,7 +989,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         title: 'Kolik ještě',
-        body: 'Otázka, kterou si dřív nebo později položí každá. Pomáhá si předem stanovit hranici — počet cyklů, částku, časový horizont — a napsat si ji. Ne proto, že ji musíte dodržet, ale abyste se rozhodovala vy, ne setrvačnost.',
+        body: 'Otázka, kterou si dřív nebo později položí každá. Pomáhá si předem stanovit hranici (počet cyklů, částku, časový horizont) a napsat si ji. Ne proto, že ji musíte dodržet, ale abyste se rozhodovala vy, ne setrvačnost.',
       },
       {
         title: 'Kdy vyhledat odbornou pomoc',
@@ -999,7 +999,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     body: [
       {
         title: 'Vraťte se k pohybu',
-        body: 'Tohle je nejlepší období pro vytrvalost a sílu — ve stimulaci to zas půjde omezit. Tři až pět tréninků týdně, cokoliv, co vás baví.',
+        body: 'Tohle je nejlepší období pro vytrvalost a sílu. Ve stimulaci to zas půjde omezit. Tři až pět tréninků týdně, cokoliv, co vás baví.',
       },
       {
         title: 'Nechte tělo srovnat',
@@ -1009,7 +1009,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     supplements: [
       {
         name: 'Kyselina listová (folát)',
-        why: 'Bere se dál — další pokus může přijít dřív, než čekáte.',
+        why: 'Bere se dál. Další pokus může přijít dřív, než čekáte.',
         evidence: 'standard',
       },
       {
@@ -1019,19 +1019,19 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         name: 'Koenzym Q10',
-        why: 'Pokud se o něm bavíte, má se začínat několik měsíců před dalším cyklem — teď, ne až v něm.',
+        why: 'Pokud se o něm bavíte, má se začínat několik měsíců před dalším cyklem. Teď, ne až v něm.',
         evidence: 'diskutovaný',
       },
     ],
     partner: [
       'Nespěchejte s „zkusíme to znovu“. Nejdřív ať doběhne zklamání.',
       'Jděte na vyhodnocovací konzultaci spolu a mějte připravené otázky.',
-      'Řekněte nahlas, jak je na tom vaše hranice — finanční i psychická. Ona ji odhaduje a bojí se zeptat.',
+      'Řekněte nahlas, jak je na tom vaše hranice. Finanční i psychická. Ona ji odhaduje a bojí se zeptat.',
     ],
     track: [
       'Co v cyklu proběhlo: dávky, počty, kvalita embryí. Pro další konzultaci k nezaplacení.',
       'Návrat menstruace.',
-      'Nálada v čase — pomůže poznat, jestli se zvedáte, nebo ne.',
+      'Nálada v čase. Pomůže poznat, jestli se zvedáte, nebo ne.',
     ],
     askDoctor: [
       'Co podle vás v tomhle cyklu nefungovalo?',
@@ -1048,7 +1048,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     summary: 'Opakované neúspěchy. Tady se mění otázka: už ne „zkusíme to znovu“, ale „co uděláme jinak“.',
     whatAwaits: [
       'Podrobnější vyšetření, která se po prvním nebo druhém cyklu ještě nedělají.',
-      'Hysteroskopie — pohled do dutiny děložní na srůsty, polypy nebo přepážku.',
+      'Hysteroskopie. Pohled do dutiny děložní na srůsty, polypy nebo přepážku.',
       'Imunologické a genetické vyšetření obou partnerů, pokud je indikováno.',
       'Diskuze o PGT-A, o darovaných gametách nebo o změně kliniky.',
       'Rozhodování, které je čím dál těžší, protože už znáte cenu každé varianty.',
@@ -1057,7 +1057,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       'Vyžádat si kompletní dokumentaci ze všech cyklů. Máte na ni právo a pro druhý názor je nutná.',
       'Zvážit konzultaci na jiném pracovišti. Není to zrada, je to standardní postup u opakovaných neúspěchů.',
       'Ptát se u každé nabídnuté metody navíc, jaký pro ni existuje důkaz. V téhle fázi se nabízí nejvíc věcí s nejasným přínosem.',
-      'Rozmyslet si finanční a psychickou hranici — a napsat si ji.',
+      'Rozmyslet si finanční a psychickou hranici. A napsat si ji.',
     ],
     mind: [
       {
@@ -1070,7 +1070,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
       },
       {
         title: 'Když se pár rozchází v názoru',
-        body: 'Časté a bolestivé. Pomáhá párová konzultace u psychologa se zaměřením na reprodukci — ne proto, že je vztah v troskách, ale proto, že tohle je rozhodnutí, které se špatně dělá samo.',
+        body: 'Časté a bolestivé. Pomáhá párová konzultace u psychologa se zaměřením na reprodukci, ne proto, že je vztah v troskách, ale proto, že tohle je rozhodnutí, které se špatně dělá samo.',
       },
     ],
     body: [
@@ -1086,12 +1086,12 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     supplements: [
       {
         name: 'Kyselina listová (folát)',
-        why: 'Působí v nejranějších týdnech těhotenství — tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
+        why: 'Působí v nejranějších týdnech těhotenství, tedy dřív, než o něm budete vědět. Proto se bere průběžně, ne až po pozitivním testu.',
         evidence: 'standard',
       },
       {
         name: 'Vitamin D',
-        why: 'Podle hodnot — u opakovaných neúspěchů se často kontroluje.',
+        why: 'Podle hodnot. U opakovaných neúspěchů se často kontroluje.',
         evidence: 'podle hodnot',
       },
       {
@@ -1109,10 +1109,10 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     track: [
       'Přehled všech cyklů: protokol, dávky, počty vajíček, kvalita embryí, výsledek.',
       'Které vyšetření už proběhlo a s jakým nálezem.',
-      'Nálada dlouhodobě — tady má smysl si toho všímat víc než čísel.',
+      'Nálada dlouhodobě. Tady má smysl si toho všímat víc než čísel.',
     ],
     askDoctor: [
-      'Co konkrétně u nás selhává — kvalita embryí, implantace, nebo něco jiného?',
+      'Co konkrétně u nás selhává. Kvalita embryí, implantace, nebo něco jiného?',
       'Která vyšetření mají v naší situaci důkaz a která ne?',
       'Má smysl PGT-A, a proč právě u nás?',
       'Kdy je podle vás čas mluvit o darovaných gametách?',

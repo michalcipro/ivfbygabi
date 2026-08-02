@@ -3,7 +3,7 @@ import type { ContentPack, Encouragement } from '../types'
 /**
  * Povzbuzení dne.
  *
- * Vybírá se podle emočního tónu fáze, ve které uživatelka je — žena po ztrátě
+ * Vybírá se podle emočního tónu fáze, ve které uživatelka je. Žena po ztrátě
  * nesmí dostat text psaný pro někoho v těhotenství.
  *
  * Pravidlo, které tady platí bez výjimky: žádná toxická pozitivita.
@@ -55,7 +55,7 @@ const practical: Encouragement[] = [
   { id: 'enc-p3', text: 'Máte právo rozumět tomu, co se s vámi děje. Vždycky se ptejte.', tone: 'practical' },
   { id: 'enc-p4', text: 'Nikdo neví, jak se to má dělat správně. Ani ti, co vypadají, že to zvládají.', tone: 'practical' },
   { id: 'enc-p5', text: 'Říct si o pomoc není přiznání porážky. Je to organizační dovednost.', tone: 'practical' },
-  { id: 'enc-p6', text: 'Když si nejste jistá, jestli volat — zavolejte.', tone: 'practical' },
+  { id: 'enc-p6', text: 'Když si nejste jistá, jestli volat. Zavolejte.', tone: 'practical' },
 ]
 
 const joyful: Encouragement[] = [

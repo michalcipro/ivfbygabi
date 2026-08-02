@@ -10,7 +10,7 @@ import type { LabParameter } from '../content/types'
  *
  * Referenční rozmezí jsou ORIENTAČNÍ. Každá laboratoř má vlastní normy
  * a hodnota se vždy interpretuje v kontextu cyklu, věku a diagnózy.
- * Nikde v aplikaci se z toho nedělá závěr — jen kontext k rozhovoru s lékařem.
+ * Nikde v aplikaci se z toho nedělá závěr, jen kontext k rozhovoru s lékařem.
  */
 
 export const LAB_PARAMS: LabParameter[] = [
@@ -25,7 +25,7 @@ export const LAB_PARAMS: LabParameter[] = [
       note: 'Orientační rozmezí pro reprodukční věk. Hodnotí se vždy spolu s věkem a počtem antrálních folikulů.',
     },
     explain:
-      'Anti-Müllerian hormon vypovídá o ovariální rezervě — tedy zhruba o tom, kolik vajíček ve vaječnících ještě čeká. Neříká nic o kvalitě vajíček ani o tom, jestli otěhotníte. Používá se hlavně k odhadu, jak budete reagovat na stimulaci a jaký protokol zvolit.',
+      'Anti-Müllerian hormon vypovídá o ovariální rezervě, tedy zhruba o tom, kolik vajíček ve vaječnících ještě čeká. Neříká nic o kvalitě vajíček ani o tom, jestli otěhotníte. Používá se hlavně k odhadu, jak budete reagovat na stimulaci a jaký protokol zvolit.',
     topics: ['hormony', 'vysledky'],
     context: 'general',
     trend: 'falling',
@@ -41,7 +41,7 @@ export const LAB_PARAMS: LabParameter[] = [
       note: 'Měří se typicky 2.–4. den cyklu. Mimo toto okno má jiný význam.',
     },
     explain:
-      'Folikulostimulační hormon rozjíždí zrání folikulů. Vyšší hodnota na začátku cyklu může znamenat, že vaječníky potřebují víc pobízení. Vždy se čte spolu s estradiolem — vysoký estradiol může FSH falešně „stlačit“.',
+      'Folikulostimulační hormon rozjíždí zrání folikulů. Vyšší hodnota na začátku cyklu může znamenat, že vaječníky potřebují víc pobízení. Vždy se čte spolu s estradiolem. Vysoký estradiol může FSH falešně „stlačit“.',
     topics: ['hormony', 'vysledky'],
     context: 'cycle',
   },
@@ -62,10 +62,10 @@ export const LAB_PARAMS: LabParameter[] = [
     unit: 'pmol/l',
     patterns: ['estradiol', 'e2', 'oestradiol'],
     reference: {
-      note: 'Během stimulace fyziologicky prudce roste — zhruba odpovídá počtu zrajících folikulů.',
+      note: 'Během stimulace fyziologicky prudce roste. Zhruba odpovídá počtu zrajících folikulů.',
     },
     explain:
-      'Estradiol tvoří rostoucí folikuly. Během stimulace se sleduje jeho vzestup jako známka, že vaječníky reagují. Velmi rychlý nárůst může být jedním ze signálů rizika OHSS — proto se hlídá spolu s ultrazvukem.',
+      'Estradiol tvoří rostoucí folikuly. Během stimulace se sleduje jeho vzestup jako známka, že vaječníky reagují. Velmi rychlý nárůst může být jedním ze signálů rizika OHSS, proto se hlídá spolu s ultrazvukem.',
     topics: ['hormony', 'stimulace', 'vysledky'],
     context: 'cycle',
     trend: 'rising',
@@ -79,7 +79,7 @@ export const LAB_PARAMS: LabParameter[] = [
       note: 'Význam má jen ve vztahu k fázi cyklu a k tomu, jestli užíváte podporu luteální fáze.',
     },
     explain:
-      'Progesteron připravuje sliznici na uhnízdění a udržuje ji. Po transferu se často doplňuje léky, takže naměřená hodnota odráží i tuto podporu. Jedna izolovaná hodnota se špatně interpretuje — sledujte spíš vývoj.',
+      'Progesteron připravuje sliznici na uhnízdění a udržuje ji. Po transferu se často doplňuje léky, takže naměřená hodnota odráží i tuto podporu. Jedna izolovaná hodnota se špatně interpretuje. Sledujte spíš vývoj.',
     topics: ['hormony', 'transfer', 'cekani'],
     context: 'cycle',
   },
@@ -92,7 +92,7 @@ export const LAB_PARAMS: LabParameter[] = [
       note: 'V rané fázi se sleduje především zdvojení hodnoty zhruba za 48–72 hodin, ne absolutní číslo.',
     },
     explain:
-      'hCG tvoří vyvíjející se placenta. V prvních týdnech je důležitější dynamika než jedna hodnota — proto se odběr obvykle opakuje. Rozptyl mezi zdravými těhotenstvími je obrovský, srovnávat své číslo s cizím nedává smysl.',
+      'hCG tvoří vyvíjející se placenta. V prvních týdnech je důležitější dynamika než jedna hodnota, proto se odběr obvykle opakuje. Rozptyl mezi zdravými těhotenstvími je obrovský, srovnávat své číslo s cizím nedává smysl.',
     topics: ['cekani', 'vysledky', 'tehotenstvi'],
     context: 'cycle',
     trend: 'rising',
@@ -119,7 +119,7 @@ export const LAB_PARAMS: LabParameter[] = [
     patterns: ['ft4', 'volny t4', 'tyroxin'],
     reference: { low: 10, high: 22, note: 'Čte se spolu s TSH.' },
     explain:
-      'Volný tyroxin je hormon štítné žlázy. Doplňuje obraz, který dává TSH — teprve obě hodnoty dohromady říkají, jestli štítná žláza pracuje, jak má.',
+      'Volný tyroxin je hormon štítné žlázy. Doplňuje obraz, který dává TSH. Teprve obě hodnoty dohromady říkají, jestli štítná žláza pracuje, jak má.',
     topics: ['hormony', 'vysledky'],
     context: 'general',
   },
@@ -165,7 +165,7 @@ export const LAB_PARAMS: LabParameter[] = [
     patterns: ['koncentrace', 'pocet spermii', 'concentration'],
     reference: { low: 16, note: 'Orientační dolní referenční mez podle metodiky WHO.' },
     explain:
-      'Kolik spermií je v jednom mililitru ejakulátu. Jeden nález nestačí — hodnoty kolísají podle abstinence, nemoci i stresu, proto se vyšetření obvykle opakuje.',
+      'Kolik spermií je v jednom mililitru ejakulátu. Jeden nález nestačí. Hodnoty kolísají podle abstinence, nemoci i stresu, proto se vyšetření obvykle opakuje.',
     topics: ['vysledky'],
     context: 'male',
   },
@@ -187,7 +187,7 @@ export const LAB_PARAMS: LabParameter[] = [
     patterns: ['morfologie', 'normalni formy'],
     reference: { low: 4, note: 'Hodnotí se podle přísných (Krugerových) kritérií.' },
     explain:
-      'Podíl spermií s normálním tvarem. Nízké číslo zní hůř, než jak se často projeví — hodnotí se vždy spolu s koncentrací a pohyblivostí.',
+      'Podíl spermií s normálním tvarem. Nízké číslo zní hůř, než jak se často projeví. Hodnotí se vždy spolu s koncentrací a pohyblivostí.',
     topics: ['vysledky', 'embryologie'],
     context: 'male',
   },
@@ -198,7 +198,7 @@ export const LAB_PARAMS: LabParameter[] = [
     patterns: ['dfi', 'fragmentace dna'],
     reference: { high: 15, note: 'Vyšší podíl fragmentace se dává do souvislosti s kvalitou embryí.' },
     explain:
-      'Ukazuje, jak poškozená je genetická informace ve spermiích. Bývá ovlivnitelná životosprávou, léčbou varikokély nebo antioxidanty — konkrétní postup patří do rukou androloga.',
+      'Ukazuje, jak poškozená je genetická informace ve spermiích. Bývá ovlivnitelná životosprávou, léčbou varikokély nebo antioxidanty. Konkrétní postup patří do rukou androloga.',
     topics: ['vysledky', 'genetika'],
     context: 'male',
   },
@@ -209,7 +209,7 @@ export const LAB_PARAMS: LabParameter[] = [
     patterns: ['hemoglobin', 'hgb', 'hb'],
     reference: { low: 120, high: 160, note: 'V těhotenství fyziologicky mírně klesá.' },
     explain:
-      'Ukazuje, jestli nemáte chudokrevnost. V těhotenství a po porodu se sleduje pravidelně — nízká hodnota vysvětluje velkou část únavy.',
+      'Ukazuje, jestli nemáte chudokrevnost. V těhotenství a po porodu se sleduje pravidelně. Nízká hodnota vysvětluje velkou část únavy.',
     topics: ['vysledky', 'tehotenstvi'],
     context: 'general',
   },
@@ -238,7 +238,7 @@ export function findParamByText(text: string): LabParameter | null {
 
 
 /**
- * Kde hodnota leží v orientačním rozmezí laboratoře — 0 dole, 1 nahoře.
+ * Kde hodnota leží v orientačním rozmezí laboratoře, 0 dole, 1 nahoře.
  *
  * `null`, když parametr rozmezí nemá nebo je jednostranné. Slouží jen
  * k popisu polohy na ose, nikdy k hodnocení. Co konkrétní číslo znamená

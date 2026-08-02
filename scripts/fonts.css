@@ -1,15 +1,15 @@
-/* Bloomia — Lis.
+/* Bloomia: Lis.
    Fraunces na nadpisy, Figtree na text a ovládání. Vložené přímo do stránky,
    aby aplikace vypadala stejně i bez sítě.
 
    Fraunces má čtyři osy (opsz, wght, SOFT, WONK). Aplikace potřebuje jen váhu,
    takže zbylé tři jsou zafixované na optickou velikost 26, měkkost 12 a vypnutý
-   WONK — z 220 kB je díky tomu 54 kB.
+   WONK. Z 220 kB je díky tomu 54 kB.
 
    Druhý blok každé rodiny je zúžený na Latin Extended-A. Odtud berou háčky
    a kroužky čeština, slovenština i polština; zbytek latin-ext by byl balast.
 
-   Obě rodiny mají diakritiku nad písmenem a verzálkové číslice — ověřeno
+   Obě rodiny mají diakritiku nad písmenem a verzálkové číslice, ověřeno
    v prohlížeči. (Cormorant Garamond, který tu byl dřív, ani jedno nesplňoval.) */
 @font-face {
   font-family: 'Fraunces';

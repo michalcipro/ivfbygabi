@@ -6,7 +6,7 @@ import { KIND_ICONS, KIND_LABELS } from '../lib/content/types'
 /**
  * Obrazy ke článkům.
  *
- * Bloomia je lis — usušené květiny na chladně šeříkovém papíře. Gradienty
+ * Bloomia je lis. Usušené květiny na chladně šeříkovém papíře. Gradienty
  * proto vycházejí z okvětních plátků: růže, levandule, sláma a list, vždy
  * od nejsvětlejšího místa plátku k jeho okraji.
  */
@@ -38,7 +38,7 @@ export function esc(s: unknown): string {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ENTITIES[c])
 }
 
-/** Tučně a kurzívou — stejná podmnožina jako v aplikaci. */
+/** Tučně a kurzívou. Stejná podmnožina jako v aplikaci. */
 function inline(s: string): string {
   return esc(s)
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
@@ -47,7 +47,7 @@ function inline(s: string): string {
 
 /**
  * Velmi lehký markdown: ## ### - 1. > ** _ a tabulky.
- * Renderer je záměrně minimální — obsah
+ * Renderer je záměrně minimální. Obsah
  * píšeme my, takže si vystačíme s podmnožinou a nic cizího nesanitizujeme.
  */
 export function md(text: string): string {
@@ -77,7 +77,7 @@ export function md(text: string): string {
     const head = `<tr>${table.head.map((c) => `<th>${inline(c)}</th>`).join('')}</tr>`
     // Každá buňka si nese název svého sloupce. Na telefonu se tabulka
     // rozpadne na kartičky a `data-label` je jediné, z čeho se pak dá
-    // poznat, co to číslo znamená — hlavička už tam není.
+    // poznat, co to číslo znamená. Hlavička už tam není.
     const rows = table.rows
       .map(
         (r) =>
@@ -184,7 +184,7 @@ export function sectionTitle(title: string, sub?: string, action = ''): string {
 }
 
 /**
- * Karta obsahu. `why` je důvod, proč se právě teď ukazuje — bez něj se
+ * Karta obsahu. `why` je důvod, proč se právě teď ukazuje. Bez něj se
  * karta nikdy nezobrazuje v doporučení, protože uživatelka musí vědět,
  * proč na to má kliknout.
  */
@@ -258,7 +258,7 @@ export function checkRow(key: string, text: string, done: boolean, hint?: string
 /**
  * Graf jedné laboratorní hodnoty v čase.
  *
- * Kreslí i orientační rozmezí jako pruh na pozadí — ale záměrně bez barvy,
+ * Kreslí i orientační rozmezí jako pruh na pozadí, ale záměrně bez barvy,
  * která by naznačovala „dobře/špatně“. Je to kontext, ne hodnocení.
  */
 export function labChart(
@@ -306,7 +306,7 @@ export function labChart(
   </svg>`
 }
 
-/** Jednoduchý čárový graf. Bez knihovny — potřebujeme dva tvary a klid. */
+/** Jednoduchý čárový graf. Bez knihovny. Potřebujeme dva tvary a klid. */
 export function lineChart(
   series: { key: string; color: string; values: number[]; dashed?: boolean }[],
   opts: { min: number; max: number; fill?: string; label: string },

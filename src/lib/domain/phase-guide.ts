@@ -3,18 +3,18 @@ import type { PhaseId } from './phases'
 /**
  * Průvodce fází.
  *
- * Tohle je kostra, kterou má mít každá fáze cesty — ne volná hromada článků,
+ * Tohle je kostra, kterou má mít každá fáze cesty, ne volná hromada článků,
  * ale vždycky stejných devět věcí, aby uživatelka věděla, co kde hledat:
  *
  *   co mě čeká · na co se připravit · hlava · tělo a pohyb · doplňky ·
  *   partner · co sledovat · otázky pro lékaře · slovníček fáze
  *
  * Články, videa, příběhy a checklisty se k tomu dotahují z knihovny podle
- * fáze — tady je to, co se z knihovny vyčíst nedá.
+ * fáze. Tady je to, co se z knihovny vyčíst nedá.
  */
 
 /**
- * Doplněk stravy. Nikdy tu není dávkování — to patří lékaři a liší se podle
+ * Doplněk stravy. Nikdy tu není dávkování. To patří lékaři a liší se podle
  * hodnot, diagnózy a toho, co uživatelka bere dál. `evidence` říká poctivě,
  * jak silný ten důvod je; bez toho by to byl katalog slibů.
  */
@@ -40,18 +40,18 @@ export interface PhaseGuide {
   phase: PhaseId
   /** Jedna věta, co tahle fáze je. Ukazuje se hned pod nadpisem. */
   summary: string
-  /** Co vás čeká — chronologicky, konkrétně. */
+  /** Co vás čeká. Chronologicky, konkrétně. */
   whatAwaits: string[]
-  /** Na co se připravit — praktické věci, které se dají udělat dopředu. */
+  /** Na co se připravit. Praktické věci, které se dají udělat dopředu. */
   prepareFor: string[]
   /** Jak pracovat s hlavou. */
   mind: GuideBlock[]
-  /** Tělo a pohyb — co se hodí a co v téhle fázi ne. */
+  /** Tělo a pohyb. Co se hodí a co v téhle fázi ne. */
   body: GuideBlock[]
   supplements: Supplement[]
   /** Co může dělat partner. Konkrétní věty, ne „být oporou“. */
   partner: string[]
-  /** Co má smysl sledovat — z toho se pak kreslí grafy v Denníku a Zdraví. */
+  /** Co má smysl sledovat. Z toho se pak kreslí grafy v Denníku a Zdraví. */
   track: string[]
   /** Otázky, které se vyplatí položit lékaři. */
   askDoctor: string[]

@@ -3,7 +3,7 @@ import type { ContentItem, ContentPack } from '../types'
 /**
  * Inseminace (IUI).
  *
- * Fáze, která v knihovně dlouho chyběla — přitom je to pro spoustu párů
+ * Fáze, která v knihovně dlouho chyběla, přitom je to pro spoustu párů
  * první krok asistované reprodukce a často ten nejméně vysvětlený.
  */
 
@@ -48,7 +48,7 @@ Když má folikul správnou velikost, dostanete injekci, která spustí ovulaci 
 
 ### 3. Odběr a zpracování vzorku
 
-Partner odevzdá vzorek obvykle týž den ráno. V laboratoři se zpracuje — oddělí se pohyblivé spermie a odstraní se semenná plazma.
+Partner odevzdá vzorek obvykle týž den ráno. V laboratoři se zpracuje. Oddělí se pohyblivé spermie a odstraní se semenná plazma.
 
 ### 4. Samotný zákrok
 
@@ -56,11 +56,11 @@ Ležíte jako na běžném gynekologickém vyšetření. Lékař zavede tenký k
 
 ### 5. Po zákroku
 
-Chvíli poležíte a jdete domů. Ležení není potřeba — vzorek je v děloze a nemůže vytéct. Mírné křeče nebo slabé špinění během dne jsou běžné.
+Chvíli poležíte a jdete domů. Ležení není potřeba. Vzorek je v děloze a nemůže vytéct. Mírné křeče nebo slabé špinění během dne jsou běžné.
 
 ## Kolikrát to zkoušet
 
-Většina pracovišť počítá se třemi až šesti cykly. Pokud nevyjdou, přechází se obvykle k IVF. Je dobré vědět dopředu, kolik cyklů má u vaší diagnózy smysl — a zeptat se na to hned na začátku.
+Většina pracovišť počítá se třemi až šesti cykly. Pokud nevyjdou, přechází se obvykle k IVF. Je dobré vědět dopředu, kolik cyklů má u vaší diagnózy smysl. A zeptat se na to hned na začátku.
 
 ## Kdy volat lékaře
 
@@ -75,7 +75,7 @@ Většina pracovišť počítá se třemi až šesti cykly. Pokud nevyjdou, pře
     id: 'iui-vs-ivf',
     kind: 'article',
     title: 'Inseminace, nebo rovnou IVF?',
-    excerpt: 'Proč vám lékař navrhl jednodušší cestu — a kdy je naopak lepší ji přeskočit.',
+    excerpt: 'Proč vám lékař navrhl jednodušší cestu. A kdy je naopak lepší ji přeskočit.',
     minutes: 6,
     phases: ['iui', 'diagnostics', 'ivf_prep'],
     topics: ['klinika'],
@@ -84,7 +84,7 @@ Většina pracovišť počítá se třemi až šesti cykly. Pokud nevyjdou, pře
     publishedOn: '2026-07-20',
     body: `## Dvě různé metody, ne dva stupně kvality
 
-Inseminace bývá vnímaná jako „ještě ne to pravé“. Přitom to není slabší verze IVF — je to jiná metoda pro jiné situace.
+Inseminace bývá vnímaná jako „ještě ne to pravé“. Přitom to není slabší verze IVF. Je to jiná metoda pro jiné situace.
 
 | | Inseminace | IVF |
 |---|---|---|
@@ -112,13 +112,13 @@ Když jsou vejcovody průchodné, vzorek je po zpracování dostatečný a nejde
 - Kolik cyklů má v naší situaci smysl?
 - Kdy bychom měli přejít dál?
 
-> IVF poskytne informace, které inseminace dát nemůže — třeba jestli se vajíčka vůbec oplodní. Někdy je právě tohle důvod k přechodu, i když by inseminace formálně ještě byla možná.`,
+> IVF poskytne informace, které inseminace dát nemůže, třeba jestli se vajíčka vůbec oplodní. Někdy je právě tohle důvod k přechodu, i když by inseminace formálně ještě byla možná.`,
   },
   {
     id: 'iui-cekani',
     kind: 'article',
     title: 'Čekání po inseminaci: co znamenají příznaky (a proč nic)',
-    excerpt: 'Dva týdny, ve kterých se dá dělat jediné — přežít je. A pár věcí, které v tom pomáhají.',
+    excerpt: 'Dva týdny, ve kterých se dá dělat jediné. Přežít je. A pár věcí, které v tom pomáhají.',
     minutes: 5,
     phases: ['iui', 'two_week_wait'],
     topics: ['cekani', 'psychika'],
@@ -127,7 +127,7 @@ Když jsou vejcovody průchodné, vzorek je po zpracování dostatečný a nejde
     publishedOn: '2026-07-20',
     body: `## Proč se z příznaků nic nepozná
 
-Pokud berete progesteron, děláte si tělu druhou polovinu cyklu uměle. Napětí v prsou, únava, nadýmání a mírné křeče vyrábí právě progesteron — a vyrábí je stejně, ať těhotenství nastalo, nebo ne.
+Pokud berete progesteron, děláte si tělu druhou polovinu cyklu uměle. Napětí v prsou, únava, nadýmání a mírné křeče vyrábí právě progesteron. A vyrábí je stejně, ať těhotenství nastalo, nebo ne.
 
 Rané těhotenství a blížící se menstruace mají prakticky totožné příznaky. To není náhoda ani smůla; je to prostě tak.
 
@@ -140,7 +140,7 @@ Držte se termínu, který vám dala klinika.
 ## Co pomáhá
 
 - Jedna konkrétní věc dopoledne a jedna odpoledne. Prázdný den je nejhorší.
-- Pohyb — chůze, lehká jóga. Není důvod ležet.
+- Pohyb. Chůze, lehká jóga. Není důvod ležet.
 - Nádech na čtyři, výdech na šest, pět minut. Nudné a účinné.
 - Říct jednomu člověku, že čekáte. Nemusí nic dělat, stačí, že to ví.
 
@@ -161,7 +161,7 @@ Rozbor každého píchnutí, srovnávání s cizími příběhy na fórech a vě
     level: 'essential',
     hero: 'champagne',
     publishedOn: '2026-07-20',
-    body: `Zákrok sám je krátký. Většina komplikací v ten den vzniká z organizace, ne z medicíny — z nedomluveného času odevzdání vzorku nebo z toho, že nikdo neví, kdo kam jede.
+    body: `Zákrok sám je krátký. Většina komplikací v ten den vzniká z organizace, ne z medicíny. Z nedomluveného času odevzdání vzorku nebo z toho, že nikdo neví, kdo kam jede.
 
 Projděte si to den předem.`,
     checklist: [
@@ -215,12 +215,12 @@ Kdybych to měla někomu říct dopředu: neděste se toho zákroku. Bát se má
     hero: 'sage',
     publishedOn: '2026-07-20',
     mediaNote:
-      'Video ukazuje průběh zákroku bez explicitních záběrů — vysvětlení používá schéma. Uvidíte, kde budete ležet, co lékař dělá a co budete cítit.',
+      'Video ukazuje průběh zákroku bez explicitních záběrů. Vysvětlení používá schéma. Uvidíte, kde budete ležet, co lékař dělá a co budete cítit.',
     body: `## Co ve videu uvidíte
 
 - Jak vypadá místnost a kde budete ležet.
 - Co dělá laboratoř se vzorkem, než se vrátí na sál.
-- Jak vypadá katétr — je výrazně tenčí, než si většina žen představuje.
+- Jak vypadá katétr. Je výrazně tenčí, než si většina žen představuje.
 - Co budete cítit a jak dlouho.
 - Co se děje bezprostředně po zákroku.
 
@@ -228,7 +228,7 @@ Kdybych to měla někomu říct dopředu: neděste se toho zákroku. Bát se má
 
 **Bude to bolet?** Většina žen popisuje krátké zatlačení podobné stěru. Bolest, kterou by bylo potřeba tlumit, je výjimečná.
 
-**Může vzorek vytéct?** Ne. Spermie jsou zavedeny přímo do dělohy. To, co může odtéct, je zbytek roztoku — na výsledek to nemá vliv.
+**Může vzorek vytéct?** Ne. Spermie jsou zavedeny přímo do dělohy. To, co může odtéct, je zbytek roztoku. Na výsledek to nemá vliv.
 
 **Musím pak ležet?** Nemusíte. Krátký odpočinek na sále je zvyklost, ne podmínka.
 

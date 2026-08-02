@@ -11,7 +11,7 @@ import { MODIFIER_IDS, TOPIC_IDS } from '../src/lib/domain/profile'
 
 /**
  * Slib platformy zní: každý den něco nového. Když někde chybí denní karta,
- * uživatelka na tom místě uvidí obecný popis fáze — a slib přestane platit.
+ * uživatelka na tom místě uvidí obecný popis fáze. A slib přestane platit.
  * Tyhle testy hlídají, aby se to nestalo tiše.
  */
 
@@ -151,7 +151,7 @@ test('obsah neobsahuje toxickou pozitivitu', () => {
     /aspoň (víš|víte), že (můžeš|můžete) otěhotnět/i,
     /všechno se děje z nějakého důvodu/i,
   ]
-  // Tyhle věty se v obsahu objevit smějí — ale jen tam, kde se proti nim
+  // Tyhle věty se v obsahu objevit smějí, ale jen tam, kde se proti nim
   // vymezujeme (typicky v článcích „co vám lidé budou říkat a co s tím“).
   // Okno musí být dost široké, aby zachytilo rámující odstavec kolem citace.
   const framing =
@@ -161,7 +161,7 @@ test('obsah neobsahuje toxickou pozitivitu', () => {
       const match = text.match(pattern)
       if (!match) continue
       const around = text.slice(Math.max(0, match.index! - 400), match.index! + 400)
-      assert.ok(framing.test(around), `${id}: toxická pozitivita bez vymezení — „${match[0]}“`)
+      assert.ok(framing.test(around), `${id}: toxická pozitivita bez vymezení. „${match[0]}“`)
     }
   }
   for (const item of CATALOG) check(item.id, `${item.title} ${item.excerpt} ${item.body}`)
@@ -205,6 +205,6 @@ test('každý balík ve složce packs je zaregistrovaný v index.ts', async () =
   assert.deepEqual(
     missing,
     [],
-    `balíky existují, ale nejsou v registru — jejich obsah se nikde nezobrazí: ${missing.join(', ')}`,
+    `balíky existují, ale nejsou v registru. Jejich obsah se nikde nezobrazí: ${missing.join(', ')}`,
   )
 })

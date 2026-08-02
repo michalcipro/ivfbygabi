@@ -45,12 +45,12 @@ import { empty, esc, note, plural } from './ui'
 import { accordion, actionCard, sectionHead, segmented, statTile, statTrio } from './viz'
 
 /**
- * Moje léčba — hlavní obrazovka IVF cyklů.
+ * Moje léčba. Hlavní obrazovka IVF cyklů.
  *
  * Čtyři části pod jedním přepínačem. Přehled odpovídá na otázku „kde jsem
  * dnes a co mě čeká“, Časová osa na „co se dělo“, Historie na „jak dopadly
  * minulé cykly“ a Statistiky sčítají to, co je zapsané. Nic víc: obrazovka
- * čísla nevykládá, nehodnotí a nic nepředpovídá — od toho je lékař, a je to
+ * čísla nevykládá, nehodnotí a nic nepředpovídá. Od toho je lékař, a je to
  * u statistik i napsané.
  *
  * AKCE PRO main.ts (data-act):
@@ -65,14 +65,14 @@ import { accordion, actionCard, sectionHead, segmented, statTile, statTrio } fro
  *   event-done   arg = id události. Odškrtnutí dnešního úkolu (už existuje).
  *
  * POZOR na `openId`: obrazovka dostává jediný volný slot, a používá ho podle
- * sekce — v Historii je to id rozbaleného cyklu (akce `acc`), na Časové ose
+ * sekce. V Historii je to id rozbaleného cyklu (akce `acc`), na Časové ose
  * id zvoleného filtru (akce `tl-filter`). V main.ts tomu odpovídá jedno pole
  * `view.accordion`; obě akce do něj zapisují stejně a přepnutí sekce ho může
  * klidně vynulovat.
  *
  * NOVÉ CSS, které je potřeba doplnit do app.css:
  *
- *   // Položka osy jako tlačítko — vede na zdroj záznamu. Tvar i tečku
+ *   // Položka osy jako tlačítko. Vede na zdroj záznamu. Tvar i tečku
  *   // na lince dědí z .tlitem, tady se jen shazuje vzhled tlačítka.
  *   button.tlitem {
  *     display: block; width: 100%; text-align: left;
@@ -109,17 +109,17 @@ export const JOURNEY_SECTIONS = [
 /**
  * Rozcestník do databází cesty.
  *
- * Cyklus přestal být jedinou jednotkou — embrya a transfery mají vlastní
+ * Cyklus přestal být jedinou jednotkou. Embrya a transfery mají vlastní
  * karty a napříč cykly dávají smysl samy o sobě. Odsud se k nim dostane
  * i žena, která zrovna žádný cyklus otevřený nemá.
  */
 function journeyHubs(): string {
   return `<div class="tiles" style="margin:1.5rem 0">
     ${[
-      ['embrya', '❖', 'Moje embrya', 'Karta pro každé embryo — vývoj po dnech, genetika, osud.'],
+      ['embrya', '❖', 'Moje embrya', 'Karta pro každé embryo. Vývoj po dnech, genetika, osud.'],
       ['transfery', '❋', 'Moje transfery', 'Všechny transfery napříč cykly, od nejnovějšího.'],
       ['vysledky', '◉', 'Moje výsledky', 'Hodnoty a čísla z cyklů vedle sebe v čase.'],
-      ['historie', '✧', 'Moje IVF historie', 'Celá cesta v přehledu — co bylo v kterém cyklu.'],
+      ['historie', '✧', 'Moje IVF historie', 'Celá cesta v přehledu. Co bylo v kterém cyklu.'],
       ['kalendar', '◈', 'Kalendář', 'Termíny, kontroly a odběry. Část se doplní sama.'],
       ['zdravotni', '◉', 'Zdravotní data', 'Ultrazvuky, laboratoř, měření.'],
       ['dokumenty', '▤', 'Dokumenty', 'Papíry z kliniky na jednom místě.'],
@@ -141,14 +141,14 @@ export function isJourneySection(s: string): s is JourneySection {
 
 // --------------------------------------------------------------- pomocníci ---
 
-/** České číslo — desetinná čárka, ne tečka. */
+/** České číslo. Desetinná čárka, ne tečka. */
 function cz(n: number, dec = 0): string {
   return n.toLocaleString('cs-CZ', { minimumFractionDigits: dec, maximumFractionDigits: dec })
 }
 
 /**
  * Podíl 0–1 jako procenta. `null` zůstane `null`, ať se řádek dá vynechat.
- * Před značkou je pevná mezera — jinak se „87“ a „%“ rozejdou na dva řádky.
+ * Před značkou je pevná mezera, jinak se „87“ a „%“ rozejdou na dva řádky.
  */
 function pct(v: number | null): string | null {
   return v === null ? null : `${cz(v * 100)} %`
@@ -156,7 +156,7 @@ function pct(v: number | null): string | null {
 
 /**
  * Zapsané číslo, nebo `null`. Nula je platná odpověď a musí projít.
- * NaN a záporná čísla ne — `numbersFor()` je zahazuje jako „nezadáno“
+ * NaN a záporná čísla ne. `numbersFor()` je zahazuje jako „nezadáno“
  * a obrazovka nesmí tvrdit něco jiného než výpočet.
  */
 function usable(v: number | null): number | null {
@@ -191,7 +191,7 @@ function dayHeading(date: string, today: string): string {
 /**
  * Běží lék v tenhle den?
  *
- * Stejné pravidlo, jaké používá `adherence` v cycle-stats a připomínky —
+ * Stejné pravidlo, jaké používá `adherence` v cycle-stats a připomínky,
  * jen se sem nedá naimportovat, protože obě kopie jsou v doméně neveřejné.
  * Kdyby se rozešly, ukazoval by přehled jiný počet dávek než statistika.
  */
@@ -207,7 +207,7 @@ function doseKey(date: string, medId: string): string {
   return `med:${date}:${medId}`
 }
 
-/** Název příznaku — z katalogu, nebo z vlastních, které si uživatelka přidala. */
+/** Název příznaku. Z katalogu, nebo z vlastních, které si uživatelka přidala. */
 function symptomLabel(id: string): string {
   return (
     SYMPTOM_BY_ID[id]?.label ??
@@ -267,7 +267,7 @@ function cycleCard(c: CycleRow, st: CycleStatus, today: string): string {
   const betaHint = beta
     ? `<p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
         Odběr hCG vychází orientačně na ${esc(formatCzechDateShort(beta))}. Přesný termín
-        určuje klinika — můžete si ho doplnit do cyklu.
+        určuje klinika. Můžete si ho doplnit do cyklu.
       </p>`
     : ''
 
@@ -289,7 +289,7 @@ function cycleCard(c: CycleRow, st: CycleStatus, today: string): string {
   </section>`
 }
 
-/** Dnešní dávky — kolik z kolika. Odškrtává se v Lécích, tady se jen počítá. */
+/** Dnešní dávky. Kolik z kolika. Odškrtává se v Lécích, tady se jen počítá. */
 function medsBlock(today: string): string {
   const all = S.d.meds
   if (all.length === 0) {
@@ -337,7 +337,7 @@ function medsBlock(today: string): string {
   </div>`
 }
 
-/** Nejbližší kontrola z kalendáře — jedna, ta opravdu nejbližší. */
+/** Nejbližší kontrola z kalendáře. Jedna, ta opravdu nejbližší. */
 function nextVisitBlock(today: string): string {
   const next = allEvents()
     .filter((e) => e.onDate >= today && !eventState(e.id).done)
@@ -401,7 +401,7 @@ function questionsBlock(): string {
   </section>`
 }
 
-/** Dnešní úkoly — co je v kalendáři a není odškrtnuté. */
+/** Dnešní úkoly. Co je v kalendáři a není odškrtnuté. */
 function tasksBlock(today: string): string {
   const due = reminders(today).slice(0, 5)
   if (due.length === 0) {
@@ -419,7 +419,7 @@ function tasksBlock(today: string): string {
     <div class="stack" style="gap:.35rem;margin-top:.6rem">
       ${due
         .map((e) => {
-          // Ne „nestihnuté“. Připomínka je nabídka, ne výtka — a datum
+          // Ne „nestihnuté“. Připomínka je nabídka, ne výtka. A datum
           // uživatelce navíc řekne, jestli je to ze včerejška, nebo z minulého týdne.
           const when =
             e.onDate === today ? 'dnes' : e.onDate > today ? 'zítra' : `z ${formatCzechDateShort(e.onDate)}`
@@ -509,7 +509,7 @@ function paneOverview(): string {
     questionsBlock(),
     tasksBlock(today),
     note(
-      'Přehled skládá jen to, co máte zapsané. Aplikace nehodnotí výsledky, nevykládá čísla z odběrů a nedoporučuje dávkování — to patří vaší klinice a nenahrazuje ji.',
+      'Přehled skládá jen to, co máte zapsané. Aplikace nehodnotí výsledky, nevykládá čísla z odběrů a nedoporučuje dávkování. To patří vaší klinice a nenahrazuje ji.',
     ),
   ].join('')
 }
@@ -524,7 +524,7 @@ interface TlFilter {
 
 /**
  * Filtry osy. Čtrnáct druhů položek by dalo čtrnáct chipů, které nikdo
- * nepřečte — proto čtyři skupiny podle toho, co člověk hledá.
+ * nepřečte, proto čtyři skupiny podle toho, co člověk hledá.
  */
 const TL_FILTERS: TlFilter[] = [
   { id: 'vse', label: 'Vše', kinds: [] },
@@ -609,7 +609,7 @@ function paneTimeline(openId: string | null): string {
       chips +
       empty(
         'Osa je zatím prázdná',
-        'Jakmile zapíšete první milník, dávku, ultrazvuk nebo poznámku, poskládají se tu za sebou v čase — a v ordinaci nebudete listovat.',
+        'Jakmile zapíšete první milník, dávku, ultrazvuk nebo poznámku, poskládají se tu za sebou v čase. A v ordinaci nebudete listovat.',
         `<button class="btn btn-primary" data-act="quick">Rychle přidat záznam</button>`,
         '✧',
       )
@@ -649,7 +649,7 @@ function paneTimeline(openId: string | null): string {
         </p>`
       : '',
     note(
-      'Osa jen převypráví, co je zapsané — čísla ukazuje tak, jak přišla, a nevykládá je. Čtení výsledků patří vašemu lékaři.',
+      'Osa jen převypráví, co je zapsané. Čísla ukazuje tak, jak přišla, a nevykládá je. Čtení výsledků patří vašemu lékaři.',
     ),
   ].join('')
 }
@@ -659,7 +659,7 @@ function paneTimeline(openId: string | null): string {
 /**
  * Transfery jako řádky tabulky.
  *
- * V jednom cyklu jich může být víc — po čerstvém transferu následují
+ * V jednom cyklu jich může být víc. Po čerstvém transferu následují
  * kryotransfery ze stejné zásoby. Slít je do jednoho řádku by zahodilo
  * přesně tu informaci, kvůli které se do historie chodí.
  */
@@ -683,7 +683,7 @@ function transferRows(c: CycleRow): [string, string | null][] {
 function betaRows(c: CycleRow): [string, string | null][] {
   const list = bloodTests(c)
   return list.map((t, i) => [
-    list.length > 1 ? `Odběr hCG — ${i + 1}.` : 'Odběr hCG',
+    list.length > 1 ? `Odběr hCG, ${i + 1}.` : 'Odběr hCG',
     [
       t.date ? formatCzechDateShort(t.date) : null,
       t.value !== null ? `${t.value} IU/l` : null,
@@ -754,7 +754,7 @@ function historyBody(c: CycleRow): string {
     ${
       n.fertilizationRate !== null && usable(c.mature) === null
         ? `<p class="faint" style="margin-top:.7rem;font-size:.75rem;line-height:1.5">
-            Podíl oplozených je počítaný ze všech odebraných vajíček — zralá zapsaná nejsou.
+            Podíl oplozených je počítaný ze všech odebraných vajíček. Zralá zapsaná nejsou.
           </p>`
         : ''
     }
@@ -772,7 +772,7 @@ function paneHistory(openId: string | null): string {
   if (list.length === 0) {
     return empty(
       'Historie je zatím prázdná',
-      'Každý cyklus si tu drží svoje čísla — protokol, odběr, laboratoř i výsledek. Po druhém cyklu je to nejrychlejší způsob, jak si připomenout, co bylo minule jinak.',
+      'Každý cyklus si tu drží svoje čísla. Protokol, odběr, laboratoř i výsledek. Po druhém cyklu je to nejrychlejší způsob, jak si připomenout, co bylo minule jinak.',
       `<button class="btn btn-primary" data-act="cycle-new">Založit cyklus</button>`,
       '▤',
     )
@@ -797,7 +797,7 @@ function paneHistory(openId: string | null): string {
         .join('')}
     </div>`,
     note(
-      'Čísla jsou tak, jak jste je zapsala. Aplikace je nehodnotí a neřekne, který cyklus byl lepší — na to nemá měřítko.',
+      'Čísla jsou tak, jak jste je zapsala. Aplikace je nehodnotí a neřekne, který cyklus byl lepší. Na to nemá měřítko.',
     ),
   ].join('')
 }
@@ -826,12 +826,12 @@ function compareTable(list: CycleRow[]): string {
           .map(
             (n) => `<tr>
               <td class="sticky">${esc(n.title)}</td>
-              <td class="r num">${esc(n.stimDays !== null ? czDays(n.stimDays) : '—')}</td>
-              <td class="r num">${esc(numOrNull(n.eggs) ?? '—')}</td>
-              <td class="r num">${esc(numOrNull(n.mature) ?? '—')}</td>
-              <td class="r num">${esc(numOrNull(n.fertilized) ?? '—')}</td>
-              <td class="r num">${esc(numOrNull(n.blastocysts) ?? '—')}</td>
-              <td class="r num">${esc(numOrNull(n.frozen) ?? '—')}</td>
+              <td class="r num">${esc(n.stimDays !== null ? czDays(n.stimDays) : '–')}</td>
+              <td class="r num">${esc(numOrNull(n.eggs) ?? '–')}</td>
+              <td class="r num">${esc(numOrNull(n.mature) ?? '–')}</td>
+              <td class="r num">${esc(numOrNull(n.fertilized) ?? '–')}</td>
+              <td class="r num">${esc(numOrNull(n.blastocysts) ?? '–')}</td>
+              <td class="r num">${esc(numOrNull(n.frozen) ?? '–')}</td>
               <td>${esc(OUTCOME_LABEL[n.outcome])}</td>
             </tr>`,
           )
@@ -872,7 +872,7 @@ function symptomsBlock(): string {
     </ul>
     <p class="faint" style="margin-top:.9rem;font-size:.8125rem;line-height:1.55">
       Jenom počty a průměrná intenzita toho, co jste si zapsala. Aplikace z těch čísel
-      nic nevyvozuje a nic nepředpovídá — je to podklad pro rozhovor s lékařem.
+      nic nevyvozuje a nic nepředpovídá. Je to podklad pro rozhovor s lékařem.
     </p>
   </section>`
 }
@@ -917,7 +917,7 @@ function paneStats(): string {
   if (list.length === 0) {
     return empty(
       'Statistiky se počítají z cyklů',
-      'Až budete mít zapsaný aspoň jeden cyklus, sečtou se tady vajíčka, oplozená vajíčka, blastocysty i délka stimulace — a nebudete to muset hledat v papírech.',
+      'Až budete mít zapsaný aspoň jeden cyklus, sečtou se tady vajíčka, oplozená vajíčka, blastocysty i délka stimulace. A nebudete to muset hledat v papírech.',
       `<button class="btn btn-primary" data-act="cycle-new">Založit cyklus</button>`,
       '◫',
     )
@@ -932,8 +932,8 @@ function paneStats(): string {
     ${statTile('Oplozených celkem', cz(o.totalFertilized))}
     ${statTile('Blastocyst celkem', cz(o.totalBlastocysts))}
     ${statTile('Zamražených embryí', cz(o.totalFrozen))}
-    ${statTile('Průměrná stimulace', o.avgStimDays !== null ? czDays(o.avgStimDays) : '—')}
-    ${statTile('Průměrný podíl oplozených', pct(o.avgFertilizationRate) ?? '—')}
+    ${statTile('Průměrná stimulace', o.avgStimDays !== null ? czDays(o.avgStimDays) : '–')}
+    ${statTile('Průměrný podíl oplozených', pct(o.avgFertilizationRate) ?? '–')}
   </div>`
 
   const outcomes = `<section class="surface pad rise">
@@ -941,16 +941,16 @@ function paneStats(): string {
     ${statTrio([
       { icon: '❋', value: cz(o.transfers), label: 'Transfery' },
       { icon: '✶', value: cz(o.pregnancies), label: 'Těhotenství' },
-      { icon: '◫', value: pct(o.pregnancyPerTransfer) ?? '—', label: 'Těhotenství na transfer' },
+      { icon: '◫', value: pct(o.pregnancyPerTransfer) ?? '–', label: 'Těhotenství na transfer' },
     ])}
     <p class="soft" style="margin-top:1rem;line-height:1.65;font-size:.9375rem">
       <strong style="color:var(--fg);font-weight:500">Tohle je vaše vlastní historie, ne předpověď.</strong>
       Čísla popisují jen to, co se stalo ve vašich zapsaných cyklech. Neříkají nic o tom,
-      jak dopadne ten další — na to nemá aplikace data ani právo. Šance u dalšího pokusu
+      jak dopadne ten další. Na to nemá aplikace data ani právo. Šance u dalšího pokusu
       s vámi probere lékař.
     </p>
     <p class="faint" style="margin-top:.7rem;font-size:.8125rem;line-height:1.55">
-      Do těhotenství se počítá i cyklus, který skončil ztrátou — těhotenství tehdy
+      Do těhotenství se počítá i cyklus, který skončil ztrátou. Těhotenství tehdy
       nastalo, i když nepokračovalo.
     </p>
   </section>`
@@ -962,8 +962,8 @@ function paneStats(): string {
       <p class="eyebrow">Srovnání cyklů</p>
       ${compareTable(list)}
       <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
-        Pomlčka znamená nezapsáno, ne nulu. Aplikace neřekne, který cyklus byl lepší —
-        na to nemá měřítko.
+        Pomlčka znamená nezapsáno, ne nulu. Aplikace neřekne, který cyklus byl lepší.
+        Na to nemá měřítko.
       </p>
     </section>`,
     symptomsBlock(),
@@ -976,7 +976,7 @@ function paneStats(): string {
 
 // ----------------------------------------------------------------- skládá ---
 
-/** Popisek nad nadpisem — kde uživatelka je, ještě než začne číst. */
+/** Popisek nad nadpisem, kde uživatelka je, ještě než začne číst. */
 function eyebrowText(): string {
   const c = currentCycle()
   const st = c ? cycleStatus(c) : null
@@ -989,7 +989,7 @@ function eyebrowText(): string {
 const SECTION_LEDE: Record<JourneySection, string> = {
   prehled: 'Kde jste dnes a co vás čeká nejdřív.',
   osa: 'Co se v léčbě dělo, den po dni.',
-  vyvoj: 'Nálada, úzkost a naděje v čase — a jak se k tomu měl dnešek.',
+  vyvoj: 'Nálada, úzkost a naděje v čase. A jak se k tomu měl dnešek.',
   historie: 'Všechny vaše cykly i s čísly z laboratoře.',
   statistiky: 'Součty přes všechny cykly. Aplikace je nehodnotí.',
 }
@@ -1013,7 +1013,7 @@ export function screenJourney(section: JourneySection, openId: string | null): s
             ? paneStats()
             : paneOverview()
 
-  // Rozcestník vykresluje `paneOverview()` až pod osobní kartou — nahoře
+  // Rozcestník vykresluje `paneOverview()` až pod osobní kartou. Nahoře
   // musí být vidět, kde cyklus je, ne kam se dá odbočit.
   return header + pane
 }

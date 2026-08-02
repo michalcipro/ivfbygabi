@@ -16,22 +16,22 @@ import {
  * Statistiky přes cykly.
  *
  * Po třetím cyklu si žena nepamatuje, kolik vajíček bylo podruhé a jak dlouho
- * se tehdy stimulovalo. Tenhle modul jí to spočítá z toho, co má zapsané —
- * a nic víc. Žádná predikce, žádné šance, žádné „to vypadá dobře“.
+ * se tehdy stimulovalo. Tenhle modul jí to spočítá z toho, co má zapsané.
+ * A nic víc. Žádná predikce, žádné šance, žádné „to vypadá dobře“.
  * Sečíst zapsaná čísla je informace. Cokoli nad rámec součtu by byl odhad,
  * na který nemá aplikace právo ani data.
  *
  * Pravidlo, které drží celý soubor: chybějící údaj je `null`, ne nula.
  * Nula znamená „bylo nula vajíček“. To je tvrdá věta a nesmí zaznít omylem.
  *
- * Čistý doménový modul — žádný prohlížeč, žádné HTML, žádné akce.
+ * Čistý doménový modul. Žádný prohlížeč, žádné HTML, žádné akce.
  *
  * Exportuje:
  *   CycleNumbers, Overall, MedRow, SymptomLog (strukturální tvary)
  *   numbersFor(c), overall(cycles), adherence(meds, checks, from, to),
  *   topSymptoms(logs, labelOf, limit?), compare(a, b), doseKey(date, medId)
  *
- * Žádné nové CSS třídy — modul nevrací HTML.
+ * Žádné nové CSS třídy. Modul nevrací HTML.
  */
 
 // ------------------------------------------------------- strukturální tvary ---
@@ -57,8 +57,8 @@ export interface SymptomLog {
 
 // --------------------------------------------------------------- pomocníci ---
 
-/** Prázdná hodnota v tabulce. Pomlčka, ne nula — nevíme není totéž co nic. */
-const DASH = '—'
+/** Prázdná hodnota v tabulce. Pomlčka, ne nula. Nevíme není totéž co nic. */
+const DASH = '–'
 
 function round(n: number, decimals: number): number {
   const f = 10 ** decimals
@@ -67,7 +67,7 @@ function round(n: number, decimals: number): number {
 
 /**
  * Bezpečné přečtení zapsaného počtu. Nesmysly (NaN, nekonečno, záporná
- * čísla) bereme jako nezadané — radši ať chybí, než aby lhaly v součtu.
+ * čísla) bereme jako nezadané. Radši ať chybí, než aby lhaly v součtu.
  */
 function num(v: number | null | undefined): number | null {
   if (v === null || v === undefined) return null
@@ -77,7 +77,7 @@ function num(v: number | null | undefined): number | null {
 
 /**
  * Podíl dvou počtů jako 0–1. `null`, když chybí čitatel, jmenovatel,
- * nebo když je jmenovatel nula — dělit nulou nejde a „0 %“ by bylo tvrzení.
+ * nebo když je jmenovatel nula. Dělit nulou nejde a „0 %“ by bylo tvrzení.
  *
  * Podíl se neořezává na 1. Když je oplozených víc než zralých, je to
  * překlep v zápisu a uživatelka ho má vidět, ne aby ho statistika schovala.
@@ -112,7 +112,7 @@ export interface CycleNumbers {
   fertilized: number | null
   /** Kolik embryí se vyvíjelo třetí den kultivace. */
   day3: number | null
-  /** Součet pátého a šestého dne — kolik jich došlo do blastocysty. */
+  /** Součet pátého a šestého dne. Kolik jich došlo do blastocysty. */
   blastocysts: number | null
   frozen: number | null
   /** Kolik transferů cyklus měl. Kryotransfery z téže zásoby se počítají. */
@@ -129,7 +129,7 @@ export interface CycleNumbers {
 /**
  * Kolik dní se stimulovalo.
  *
- * Počítá se od prvního dne stimulace do triggeru včetně — trigger je
+ * Počítá se od prvního dne stimulace do triggeru včetně. Trigger je
  * poslední den, kdy se píchá. Když trigger zapsaný není, použije se den
  * odběru a ten se do stimulace nepočítá (v den odběru se už nepíchá).
  * Když data nedávají pořadí (odběr před stimulací), vrací `null`.
@@ -156,7 +156,7 @@ function hasTransfer(c: CycleRow): boolean {
 /**
  * Skončil cyklus těhotenstvím?
  *
- * Počítá se i výsledek „ztráta“ — těhotenství nastalo, jen neskončilo dobře.
+ * Počítá se i výsledek „ztráta“. Těhotenství nastalo, jen neskončilo dobře.
  * Kdyby se ztráta nepočítala, statistika by tvrdila, že se nic nestalo, a to
  * je vůči uživatelce nepřijatelné. V UI se proto tohle číslo nikdy nesmí
  * popsat jako „úspěch“, jen jako potvrzené těhotenství.
@@ -186,7 +186,7 @@ export function numbersFor(c: CycleRow): CycleNumbers {
     transfers: c.transfers.length,
     embryosTransferred: num(embryosTransferred(c)),
     // Zralá vajíčka jsou přesnější základ. Když je klinika neřekla,
-    // počítá se ze všech odebraných — a v UI se to má takhle i popsat.
+    // počítá se ze všech odebraných. A v UI se to má takhle i popsat.
     fertilizationRate: rate(fertilized, mature ?? eggs),
     blastRate: rate(blastocysts, fertilized),
     outcome: c.outcome,
@@ -214,7 +214,7 @@ export interface Overall {
 /**
  * Souhrn přes všechny cykly.
  *
- * Součty jsou čísla — sečíst nic dá nula a to je pravda. Průměry a podíly
+ * Součty jsou čísla. Sečíst nic dá nula a to je pravda. Průměry a podíly
  * jsou `null`, dokud není z čeho počítat.
  */
 export function overall(cycles: CycleRow[]): Overall {
@@ -238,7 +238,7 @@ export function overall(cycles: CycleRow[]): Overall {
     totalFrozen: sum((n) => n.frozen),
     avgEggs: avg(collected((n) => n.eggs), 1),
     avgStimDays: avg(collected((n) => n.stimDays), 1),
-    // Průměr z podílů jednotlivých cyklů, ne podíl součtů — zajímá nás,
+    // Průměr z podílů jednotlivých cyklů, ne podíl součtů. Zajímá nás,
     // jak dopadal cyklus, ne jak dopadlo celé odebrané množství dohromady.
     avgFertilizationRate: avg(collected((n) => n.fertilizationRate), 3),
     transfers,
@@ -252,7 +252,7 @@ export function overall(cycles: CycleRow[]): Overall {
 /**
  * Běžel lék v tenhle den?
  *
- * Bez `startOn` se lék počítá pro celé zadané období — nevíme, odkdy běží,
+ * Bez `startOn` se lék počítá pro celé zadané období. Nevíme, odkdy běží,
  * ale víme, že je v protokolu. Jednorázový lék bez data se nepočítá vůbec:
  * neexistuje den, ke kterému by se dal přiřadit, a započítat ho každý den
  * by dodržování uměle srazilo dolů.
@@ -268,10 +268,10 @@ function runsOn(m: MedRow, day: IsoDate): boolean {
 }
 
 /**
- * Dodržování léčby za období — kolik dávek bylo odškrtnuto.
+ * Dodržování léčby za období. Kolik dávek bylo odškrtnuto.
  *
  * Jedna dávka = jeden lék a jeden den, protože klíč odškrtnutí je
- * `med:{datum}:{id léku}` — víc časů denně sdílí jedno odškrtnutí.
+ * `med:{datum}:{id léku}`. Víc časů denně sdílí jedno odškrtnutí.
  *
  * `pct` je podíl 0–1, ne procenta. Formátování je na obrazovce.
  * A tohle číslo se nesmí nikde použít jako známka: neodškrtnutá dávka
@@ -307,7 +307,7 @@ export function adherence(
  * Nejčastější příznaky.
  *
  * Jen počty a průměrná intenzita toho, co si uživatelka sama zapsala.
- * Nic to neznamená, nic to nepředpovídá — je to podklad pro rozhovor
+ * Nic to neznamená, nic to nepředpovídá. Je to podklad pro rozhovor
  * s lékařem, ne náhrada za něj.
  */
 export function topSymptoms(
@@ -381,11 +381,11 @@ function cellMethods(c: CycleRow): string {
 }
 
 /**
- * Srovnání dvou cyklů — vrátí řádky pro tabulku.
+ * Srovnání dvou cyklů. Vrátí řádky pro tabulku.
  *
  * Čísla vedle sebe, nic víc. Statistika neřekne, který cyklus byl lepší:
  * na to nemá měřítko a uživatelka na to má lékaře. Řádky, kde není zapsané
- * ani na jedné straně nic, vypadnou — prázdná tabulka pomlček nikomu nepomůže.
+ * ani na jedné straně nic, vypadnou. Prázdná tabulka pomlček nikomu nepomůže.
  */
 export function compare(a: CycleRow, b: CycleRow): { label: string; a: string; b: string }[] {
   const na = numbersFor(a)
@@ -413,7 +413,7 @@ export function compare(a: CycleRow, b: CycleRow): { label: string; a: string; b
       b: cell(num(currentTransfer(b)?.embryoDay ?? null)),
     },
     // Nejčastější otázka mezi cykly zní „co bylo minule jinak“. Odpověď bývá
-    // právě tady — v tom, co se přidalo nebo ubralo.
+    // právě tady. V tom, co se přidalo nebo ubralo.
     { label: 'Doplňkové metody', a: cellMethods(a), b: cellMethods(b) },
     { label: 'Výsledek', a: OUTCOME_LABEL[a.outcome], b: OUTCOME_LABEL[b.outcome] },
   ]

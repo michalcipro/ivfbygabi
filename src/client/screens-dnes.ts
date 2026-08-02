@@ -28,15 +28,15 @@ import { bloomEndurance, chart, partsList, scissorRing, seriesKey, trackStrip } 
  * Dnes.
  *
  * Vstupní obrazovka celé aplikace. Nahoře jeden prstenec, pod ním jedna věta
- * proč, a pak jenom to, co se dnes doopravdy hodí. Nic k procházení —
- * na procházení je Průvodce.
+ * proč, a pak jenom to, co se dnes doopravdy hodí. Nic k procházení.
+ * Na procházení je Průvodce.
  */
 
 /**
  * Otázky pro lékaře na dashboardu.
  *
  * Když je před dveřmi kontrola, je to nejdůležitější tlačítko dne. Když
- * není, stačí počet — ale i tak musí být na očích: sepsané otázky, na které
+ * není, stačí počet, ale i tak musí být na očích: sepsané otázky, na které
  * si člověk v ordinaci nevzpomene, jsou k ničemu.
  */
 function questionsCard(): string {
@@ -50,7 +50,7 @@ function questionsCard(): string {
       <span class="display" style="display:block;font-size:1.05rem">Otázky na lékaře</span>
       <span class="soft" style="display:block;font-size:.875rem;line-height:1.5;margin-top:.2rem">${esc(
         open === 0
-          ? 'Zatím žádná zapsaná. Sepište je doma — v ordinaci je přečtete z telefonu.'
+          ? 'Zatím žádná zapsaná. Sepište je doma. V ordinaci je přečtete z telefonu.'
           : nejblizsi
             ? `${plural(open, 'nevyřešená otázka', 'nevyřešené otázky', 'nevyřešených otázek')} · nezapomeňte se zeptat na kontrole`
             : plural(open, 'nevyřešená otázka', 'nevyřešené otázky', 'nevyřešených otázek'),
@@ -64,7 +64,7 @@ function questionsCard(): string {
  * Věta, která přijde dřív než plán.
  *
  * Po negativním výsledku, po ztrátě nebo po zrušeném transferu je první
- * obrazovka dne to jediné, co žena uvidí — a nesmí na ní stát „další krok“.
+ * obrazovka dne to jediné, co žena uvidí. A nesmí na ní stát „další krok“.
  * Nejdřív uznání, teprve pak nabídka. Kdo chce pokračovat hned, klikne;
  * kdo nechce, nemusí nic.
  *
@@ -76,13 +76,13 @@ function softLanding(): string {
   const texty: Partial<Record<string, { title: string; body: string; go: string; label: string }>> = {
     waiting_next_attempt: {
       title: 'Mrzí mě, že to nevyšlo.',
-      body: 'Nemusíte dnes řešit další krok. Až budete připravená, můžeme projít, co se z transferu dá vyčíst a co ne — a na co se zeptat na konzultaci.',
+      body: 'Nemusíte dnes řešit další krok. Až budete připravená, můžeme projít, co se z transferu dá vyčíst a co ne. A na co se zeptat na konzultaci.',
       go: 'faze',
       label: 'Až budu chtít, projdeme to',
     },
     loss_biochemical: {
       title: 'Pozitivní test byl skutečný. Vaše ztráta je skutečná.',
-      body: 'Biochemické těhotenství okolí často zlehčuje. Vy jste ho zažila celé — od dvou čárek po číslo, které kleslo.',
+      body: 'Biochemické těhotenství okolí často zlehčuje. Vy jste ho zažila celé. Od dvou čárek po číslo, které kleslo.',
       go: 'faze',
       label: 'Co může následovat',
     },
@@ -106,7 +106,7 @@ function softLanding(): string {
     },
     repeated_failure: {
       title: 'Tolikátý pokus už není o naději, ale o vytrvalosti.',
-      body: 'Máte za sebou víc, než většina lidí kolem vás tuší. Před další konzultací se hodí přehled všech transferů — máte ho v Moje cesta.',
+      body: 'Máte za sebou víc, než většina lidí kolem vás tuší. Před další konzultací se hodí přehled všech transferů. Máte ho v Moje cesta.',
       go: 'transfery',
       label: 'Otevřít přehled transferů',
     },
@@ -134,7 +134,7 @@ function contentBudget(gap: number | null): number {
  * Jeden dnešní úkol.
  *
  * Odškrtávací věci jsou tlačítka, která opravdu odškrtávají. Zápis a otázky
- * odškrtnout nejdou — ty se dělají jinde, takže vedou tam. Tvářit se, že
+ * odškrtnout nejdou. Ty se dělají jinde, takže vedou tam. Tvářit se, že
  * i ony jsou zaškrtávátko, by znamenalo lhát o tom, co klepnutí udělá.
  */
 function taskRow(t: DayTask): string {
@@ -164,7 +164,7 @@ function taskRow(t: DayTask): string {
 /**
  * Dnešní úkoly v jednom seznamu.
  *
- * Dřív byly na obrazovce dvakrát — léky zvlášť, termíny zvlášť — a trigger,
+ * Dřív byly na obrazovce dvakrát (léky zvlášť, termíny zvlášť) a trigger,
  * jediná věc v cyklu, u které se počítají minuty, nikde. `tasksFor` je skládá
  * dohromady i s hodinou, takže tady stačí je vypsat v pořadí dne.
  */
@@ -234,12 +234,12 @@ export function screenDnes(): string {
     </header>`,
 
     // Osobní IVF karta. Ženě, která zrovna žádný cyklus neřeší, se nekreslí
-    // technika — karta se ukáže, až má co ukazovat.
+    // technika. Karta se ukáže, až má co ukazovat.
     ivf ? ivfCard(ivf, true) : '',
 
     softLanding(),
 
-    // Květ neukazuje dnešek. Ukazuje, co má za sebou — protože právě to se
+    // Květ neukazuje dnešek. Ukazuje, co má za sebou, protože právě to se
     // v léčbě ztrácí a nikdo jiný jí to nepřipomene.
     `<section class="surface pad rise">
       ${bloomEndurance(end)}
@@ -252,7 +252,7 @@ export function screenDnes(): string {
       ${trackStrip(end)}
       <button class="btn btn-sm btn-ghost" data-go="${
         // Bez běžícího cyklu vede „cyklus“ na hlášku, že takový cyklus není.
-        // Historie je správný cíl — tam se zakládá.
+        // Historie je správný cíl. Tam se zakládá.
         activeCycleId() ? `cyklus/${esc(activeCycleId() ?? '')}` : 'journey/historie'
       }" style="margin-top:1.1rem">${activeCycleId() ? 'Celá karta cyklu' : 'Založit cyklus'}</button>
     </section>`,
@@ -266,7 +266,7 @@ export function screenDnes(): string {
       </div>
     </section>`,
 
-    // Zápis a Léky přestaly být záložkami — na denní použití k nim musí
+    // Zápis a Léky přestaly být záložkami. Na denní použití k nim musí
     // vést cesta odsud, jinak by se injekce odškrtávaly přes rozcestník.
     `<div class="quickrow rise">
       <button data-go="zapis"><i>◕</i>Nálada</button>
@@ -306,7 +306,7 @@ export function screenDnes(): string {
     </section>`,
 
     // Karta dne se sama zkracuje. Při rozevřených nůžkách zůstane jen nadpis
-    // a odstavec — víc by v takový den bylo na obtíž.
+    // a odstavec. Víc by v takový den bylo na obtíž.
     card
       ? `<section class="surface pad rise">
           <p class="eyebrow">Dnešní téma</p>
@@ -397,7 +397,7 @@ export function screenNuzky(): string {
     `<section class="surface pad">
       <p class="eyebrow" style="color:var(--s1)">Co dnešek žádá · ${r.demand} z 10</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.7">
-        Spočítané z protokolu — z toho, v jaké jste fázi, kolikátý je den, co máte
+        Spočítané z protokolu. Z toho, v jaké jste fázi, kolikátý je den, co máte
         v kalendáři a kolik berete léků. <strong>Nezáleží to na tom, co si zapíšete.</strong>
         Dnešek by byl stejně náročný, i kdybyste aplikaci vůbec neotevřela.
       </p>
@@ -407,7 +407,7 @@ export function screenNuzky(): string {
     `<section class="surface pad">
       <p class="eyebrow" style="color:var(--s2)">Co na to máte · ${r.reserve === null ? 'nezapsáno' : `${r.reserve} z 10`}</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.7">
-        Tohle je jediné číslo, které pochází od vás — ze čtyř číselníků a štítků
+        Tohle je jediné číslo, které pochází od vás. Ze čtyř číselníků a štítků
         na tělo v dnešním zápisu. <strong>Nízká rezerva není selhání.</strong> Je to
         informace, podle které aplikace ubere.
       </p>
@@ -421,16 +421,16 @@ export function screenNuzky(): string {
     `<section class="surface pad">
       <p class="eyebrow">Co s tím aplikace dělá</p>
       <ul class="bullets" style="margin-top:.7rem">
-        <li><strong>Nůžky dokořán</strong> — kratší obsah, dýchání, žádné úkoly navíc.</li>
-        <li><strong>Otevřené</strong> — ubereme. Co se nestihne, počká.</li>
-        <li><strong>V rovnováze</strong> — dobrý čas na to, co jste odkládala.</li>
-        <li><strong>Zavřené</strong> — máte rezervu. Můžeme jít do hloubky.</li>
+        <li><strong>Nůžky dokořán</strong>. Kratší obsah, dýchání, žádné úkoly navíc.</li>
+        <li><strong>Otevřené</strong>. Ubereme. Co se nestihne, počká.</li>
+        <li><strong>V rovnováze</strong>. Dobrý čas na to, co jste odkládala.</li>
+        <li><strong>Zavřené</strong>. Máte rezervu. Můžeme jít do hloubky.</li>
       </ul>
     </section>`,
 
     `<p class="note">Nůžky nejsou zdravotní údaj. Nepředpovídají výsledek léčby, nehodnotí
     hodnoty z odběrů a nikdy neřeknou, že něco je špatně. Popisují náročnost dne
-    a to, jak jste ho nesla — nic víc. ${
+    a to, jak jste ho nesla. Nic víc. ${
       state.nextMilestone ? `Nejbližší milník: ${esc(state.nextMilestone.label)} za ${esc(czDays(state.nextMilestone.inDays))}.` : ''
     }</p>`,
   ].join('')

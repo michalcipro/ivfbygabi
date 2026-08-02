@@ -3,7 +3,7 @@ import type { ContentItem, ContentPack } from '../types'
 /**
  * Řízené meditace.
  *
- * Text v `body` je skutečný scénář — dá se přečíst nahlas nebo si ho projít
+ * Text v `body` je skutečný scénář. Dá se přečíst nahlas nebo si ho projít
  * očima. Záměrně nepracujeme s vizualizacemi typu „představte si zdravé
  * miminko“: v této skupině žen dokáže taková věta napáchat víc škody než užitku.
  *
@@ -58,7 +58,7 @@ Ještě jednou. Nádech nosem. Výdech ústy, delší.
 
 Nemusíte dýchat nijak zvlášť. Jen si všímejte, že to jde samo.
 
-Dnes je den, na který jste dlouho čekala. Je normální, že máte staženo v žaludku. Že vám v hlavě běží scénáře, které si nepřejete. Tělo nerozlišuje mezi vzrušením a strachem — obojí zrychluje dech.
+Dnes je den, na který jste dlouho čekala. Je normální, že máte staženo v žaludku. Že vám v hlavě běží scénáře, které si nepřejete. Tělo nerozlišuje mezi vzrušením a strachem. Obojí zrychluje dech.
 
 Nebudeme se ten strach snažit odstranit. Jen mu vedle sebe uděláme místo.
 
@@ -93,7 +93,7 @@ A až budete připravená, otevřete oči.`,
     'Určeno na první hodiny po návratu domů. Ticho mezi větami je delší než obvykle.',
     `Máte to za sebou. Ta část, kterou jste mohla ovlivnit, skončila.
 
-Lehněte si nebo se pohodlně opřete. Nemusíte ležet nehybně — to nikomu nepomůže.
+Lehněte si nebo se pohodlně opřete. Nemusíte ležet nehybně. To nikomu nepomůže.
 
 Nádech. Výdech.
 
@@ -107,7 +107,7 @@ Vydechněte.
 
 Následujících několik dní budete mít nutkání hledat příznaky. Rozebírat každé píchnutí. Ptát se internetu.
 
-Až se přistihnete, vraťte se k dechu. Ne proto, abyste na to přestala myslet — to nejde. Ale proto, abyste u toho nebyla úplně sama se svou hlavou.
+Až se přistihnete, vraťte se k dechu. Ne proto, abyste na to přestala myslet. To nejde. Ale proto, abyste u toho nebyla úplně sama se svou hlavou.
 
 Položte si ruku na břicho. Ne proto, že by tam něco cítila. Ale proto, že je to vaše tělo a zaslouží si laskavý dotek.
 
@@ -226,7 +226,7 @@ Jestli nepláčete a jen tupě koukáte do zdi, i to je v pořádku. Šok se pro
 
 Nádech.
 
-Vaše tělo teď dostane příkaz přestat s léky a vrátit se zpátky. Bude to nějakou dobu trvat a bude se to projevovat na náladě. To, co budete cítit příští týden, nebude jen smutek — bude to i hormonální propad.
+Vaše tělo teď dostane příkaz přestat s léky a vrátit se zpátky. Bude to nějakou dobu trvat a bude se to projevovat na náladě. To, co budete cítit příští týden, nebude jen smutek. Bude to i hormonální propad.
 
 Výdech.
 
@@ -234,7 +234,7 @@ Nikdo od vás dneska nic nečeká. Ani vaše rodina, ani vaše práce, ani vy sa
 
 Dovolte si dnešek prostě přečkat.
 
-A jestli vás napadá, co jste udělala špatně — nedělala. Ani jídlo, ani stres, ani ta jedna sklenka vína před měsícem. Tohle se rozhoduje na úrovni, kterou nikdo z nás neovlivní.
+A jestli vás napadá, co jste udělala špatně. Nedělala. Ani jídlo, ani stres, ani ta jedna sklenka vína před měsícem. Tohle se rozhoduje na úrovni, kterou nikdo z nás neovlivní.
 
 Nádech. Výdech.
 
@@ -284,7 +284,7 @@ Za pár týdnů se vám bude zdát, že to okolí zapomnělo. Vy nezapomenete a 
 
 Zůstaňte tu, jak dlouho chcete.
 
-A prosím — jestli je toho na vás moc, jestli nemůžete jíst, spát, nebo vás napadají myšlenky na ublížení sobě, ozvěte se svému lékaři nebo psychologovi. Tohle není něco, co se má zvládat sama.`,
+A prosím, jestli je toho na vás moc, jestli nemůžete jíst, spát, nebo vás napadají myšlenky na ublížení sobě, ozvěte se svému lékaři nebo psychologovi. Tohle není něco, co se má zvládat sama.`,
     { modifiers: ['after_loss'] },
   ),
 
@@ -295,7 +295,7 @@ A prosím — jestli je toho na vás moc, jestli nemůžete jíst, spát, nebo v
     15,
     ['two_week_wait', 'stimulation', 'waiting_next_attempt'],
     ['spanek', 'psychika', 'sebepece'],
-    'Postupné uvolnění celého těla. Na konci to ztichne — usnutí je cíl, ne selhání.',
+    'Postupné uvolnění celého těla. Na konci to ztichne. Usnutí je cíl, ne selhání.',
     `Lehněte si tak, jak budete spát.
 
 Není potřeba se snažit usnout. Tahle nahrávka nemá žádný cíl, který byste mohla nesplnit.
@@ -330,7 +330,7 @@ Chodidla. Prsty u nohou.
 
 Celé tělo je teď těžší, než bylo před minutou.
 
-Jestli vám hlavou proběhne myšlenka — a proběhne — jen ji nechte projít. Nemusíte ji řešit. Ne teď v noci.
+Jestli vám hlavou proběhne myšlenka (a proběhne) jen ji nechte projít. Nemusíte ji řešit. Ne teď v noci.
 
 Nádech. Výdech.
 
@@ -361,7 +361,7 @@ Nemusí to jít hned.
 
 Znovu. Nádech do břicha.
 
-A teď výdech — dlouhý, jako byste foukala do brčka. Pomalu.
+A teď výdech. Dlouhý, jako byste foukala do brčka. Pomalu.
 
 Ještě jednou. Nádech do břicha na tři doby.
 

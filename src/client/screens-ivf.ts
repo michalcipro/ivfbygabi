@@ -77,23 +77,23 @@ import { sectionHead, statTrio } from './viz'
  * být karta, ne řádek ve statistice.
  *
  * ---------------------------------------------------------------- AKCE ------
- * `emb-add`     arg = id cyklu            — přidat embryo
- * `emb-save`    arg = id embrya           — uložit kartu embrya
- * `emb-del`     arg = id embrya           — smazat embryo
- * `emb-day`     arg = „embryo|den“        — přidat/odebrat den kultivace
- * `dg-toggle`   arg = id diagnózy         — zaškrtnout diagnózu
- * `ex-toggle`   arg = „idVyšetření|kdo“   — otevřít zápis vyšetření
- * `ex-save`     arg = id zápisu           — uložit vyšetření
- * `ex-del`      arg = id zápisu           — smazat vyšetření
- * `sup-add`     arg = id metody nebo ''   — přidat podpůrnou péči
- * `sup-save`    arg = id zápisu           — uložit
- * `sup-del`     arg = id zápisu           — smazat
+ * `emb-add`     arg = id cyklu           . Přidat embryo
+ * `emb-save`    arg = id embrya          . Uložit kartu embrya
+ * `emb-del`     arg = id embrya          . Smazat embryo
+ * `emb-day`     arg = „embryo|den“       . Přidat/odebrat den kultivace
+ * `dg-toggle`   arg = id diagnózy        . Zaškrtnout diagnózu
+ * `ex-toggle`   arg = „idVyšetření|kdo“  . Otevřít zápis vyšetření
+ * `ex-save`     arg = id zápisu          . Uložit vyšetření
+ * `ex-del`      arg = id zápisu          . Smazat vyšetření
+ * `sup-add`     arg = id metody nebo ''  . Přidat podpůrnou péči
+ * `sup-save`    arg = id zápisu          . Uložit
+ * `sup-del`     arg = id zápisu          . Smazat
  *
  * ----------------------------------------------------------------- CSS ------
  * Používá `.subcard`, `.photos` a zbytek, co v app.css už je.
  */
 
-const DASH = '—'
+const DASH = '–'
 
 function join(parts: (string | false | null | undefined)[], sep = ' · '): string {
   return parts.filter((p): p is string => Boolean(p && p.trim())).join(sep)
@@ -151,7 +151,7 @@ const DNY = [1, 2, 3, 4, 5, 6, 7]
 /**
  * Karta jednoho embrya.
  *
- * Dny kultivace se přidávají po jednom — embryo, které se zastavilo třetí den,
+ * Dny kultivace se přidávají po jednom. Embryo, které se zastavilo třetí den,
  * nemá mít prázdné kolonky pro pátý a šestý. Prázdná kolonka u embrya, které
  * se nedožilo, je zbytečně krutá.
  */
@@ -204,7 +204,7 @@ function embryoCard(e: Embryo, open: boolean): string {
             <p class="label" style="margin-top:1.6rem">Vývoj po dnech</p>
             <p class="faint" style="font-size:.8125rem;margin-top:.35rem;line-height:1.55">
               Zapisujte jen dny, ke kterým něco víte. Embryo se přenáší i zamrazuje třetí,
-              čtvrtý, pátý i šestý den — pozdější den není automaticky horší.
+              čtvrtý, pátý i šestý den. Pozdější den není automaticky horší.
             </p>
             ${dny.map(dayBlock).join('')}
             ${
@@ -258,19 +258,19 @@ function embryoCard(e: Embryo, open: boolean): string {
   </section>`
 }
 
-/** Přehled embryí jednoho cyklu — vkládá se do karty cyklu. */
+/** Přehled embryí jednoho cyklu. Vkládá se do karty cyklu. */
 export function embryoList(cycleId: string, openId?: string | null): string {
   const list = embryosOf(cycleId)
 
   return [
     `<p class="soft" style="line-height:1.65;font-size:.9375rem">
       Každé embryo má vlastní kartu: jak se vyvíjelo den po dni, jestli se zamrazilo,
-      jestli se testovalo a kam nakonec šlo. Aplikace z toho nic neodvozuje — je to váš záznam.
+      jestli se testovalo a kam nakonec šlo. Aplikace z toho nic neodvozuje. Je to váš záznam.
     </p>`,
     list.map((e) => embryoCard(e, openId === e.id)).join(''),
     list.length === 0
       ? `<p class="faint" style="margin-top:1.1rem;font-size:.8125rem;line-height:1.55">
-          Zatím tu žádné embryo není. Přidejte je, až vám embryologie zavolá — klidně
+          Zatím tu žádné embryo není. Přidejte je, až vám embryologie zavolá, klidně
           po jednom, jak budou přibývat informace.
         </p>`
       : '',
@@ -280,7 +280,7 @@ export function embryoList(cycleId: string, openId?: string | null): string {
   ].join('')
 }
 
-/** Databáze „Moje embrya“ — napříč všemi cykly. */
+/** Databáze „Moje embrya“. Napříč všemi cykly. */
 export function screenEmbrya(openId?: string | null): string {
   const list = allEmbryos()
   const byCycle = cycles().map((c) => ({ cycle: c, items: list.filter((e) => e.cycleId === c.id) }))
@@ -289,7 +289,7 @@ export function screenEmbrya(openId?: string | null): string {
 
   if (list.length === 0) {
     return [
-      head('Moje embrya', 'Embrya', 'Karta pro každé embryo — vývoj po dnech, genetika, kam nakonec šlo.'),
+      head('Moje embrya', 'Embrya', 'Karta pro každé embryo. Vývoj po dnech, genetika, kam nakonec šlo.'),
       empty(
         'Zatím tu žádné embryo není',
         'Embrya se zapisují u konkrétního cyklu. Otevřete kartu cyklu a v sekci Embrya přidejte první.',
@@ -305,7 +305,7 @@ export function screenEmbrya(openId?: string | null): string {
     head(
       'Moje embrya',
       'Embrya',
-      'Všechna embrya napříč cykly. Karta pro každé — vývoj po dnech, genetika, kam nakonec šlo.',
+      'Všechna embrya napříč cykly. Karta pro každé. Vývoj po dnech, genetika, kam nakonec šlo.',
     ),
 
     statTrio([
@@ -331,7 +331,7 @@ export function screenEmbrya(openId?: string | null): string {
       .join(''),
 
     note(
-      'Hodnocení embrya popisuje, jak embryo vypadá — není to předpověď. Co znamená pro vás, řekne jedině embryolog a váš lékař.',
+      'Hodnocení embrya popisuje, jak embryo vypadá. Není to předpověď. Co znamená pro vás, řekne jedině embryolog a váš lékař.',
     ),
   ].join('')
 }
@@ -349,7 +349,7 @@ const STAV_ZNAK: Record<CardStep['state'], string> = {
  * Osobní IVF karta.
  *
  * Celý cyklus na pěti řádcích. Tohle je jediné místo, kde se z dat stává
- * věta „kde jsem“ — všechno ostatní jsou formuláře. Proto stojí nahoře
+ * věta „kde jsem“. Všechno ostatní jsou formuláře. Proto stojí nahoře
  * na Dnes i na Mojí cestě a proto se nekreslí prázdné kroky.
  */
 export function ivfCard(card: JourneyCard | null, compact = false): string {
@@ -358,7 +358,7 @@ export function ivfCard(card: JourneyCard | null, compact = false): string {
       <p class="eyebrow">Moje IVF cesta</p>
       <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
         Zatím tu není žádný cyklus. Až ho založíte, uvidíte tady celou jeho cestu
-        na jednom místě — stimulaci, odběr, embrya i každý transfer.
+        na jednom místě. Stimulaci, odběr, embrya i každý transfer.
       </p>
       <button class="btn btn-primary btn-sm" data-act="cycle-new" style="margin-top:1.1rem">Založit cyklus</button>
     </section>`
@@ -407,7 +407,7 @@ export function ivfCard(card: JourneyCard | null, compact = false): string {
 /**
  * Co se stalo s mými vajíčky.
  *
- * Čísla mezi kroky klesají a je to normální — jenom to nikdo neřekne nahlas.
+ * Čísla mezi kroky klesají a je to normální, jenom to nikdo neřekne nahlas.
  * Když stojí pod sebou s proporčním pruhem, je ten pokles vidět jako tvar
  * cesty, ne jako řada ztrát.
  */
@@ -430,7 +430,7 @@ export function funnelBlock(cycleId: string): string {
         .join('')}
     </ol>
     <p class="faint" style="margin-top:1rem;font-size:.8125rem;line-height:1.55">
-      Že čísla mezi kroky klesají, je běžné — ne v každém folikulu je vajíčko,
+      Že čísla mezi kroky klesají, je běžné, ne v každém folikulu je vajíčko,
       ne každé se oplodní a ne každé embryo doroste dál. Není to seznam ztrát,
       je to tvar cesty.
     </p>
@@ -479,7 +479,7 @@ function transferRow(c: CycleRow, t: CycleTransfer, poradi: number, celkem: numb
   </div>`
 }
 
-/** Databáze „Moje transfery“ — napříč všemi cykly, v čase. */
+/** Databáze „Moje transfery“. Napříč všemi cykly, v čase. */
 export function screenTransfery(): string {
   const all = cycles().flatMap((c) => {
     const list = sortedTransfers(c)
@@ -492,7 +492,7 @@ export function screenTransfery(): string {
       head('Moje transfery', 'Transfery', 'Všechny transfery na jednom místě, napříč cykly.'),
       empty(
         'Zatím tu žádný transfer není',
-        'Transfery se zapisují u cyklu. V jednom cyklu jich může být víc — čerstvý a po něm kryotransfery ze stejné zásoby embryí.',
+        'Transfery se zapisují u cyklu. V jednom cyklu jich může být víc. Čerstvý a po něm kryotransfery ze stejné zásoby embryí.',
         cycles().length
           ? `<button class="btn" data-go="cyklus/${esc(cycles()[cycles().length - 1].id)}">Otevřít poslední cyklus</button>`
           : '<button class="btn" data-act="cycle-new">Založit cyklus</button>',
@@ -522,7 +522,7 @@ export function screenTransfery(): string {
     </div>`,
 
     note(
-      'Přehled je součet toho, co máte zapsané. Co z něj plyne pro další krok, patří vašemu lékaři — aplikace nic nevyhodnocuje.',
+      'Přehled je součet toho, co máte zapsané. Co z něj plyne pro další krok, patří vašemu lékaři. Aplikace nic nevyhodnocuje.',
     ),
   ].join('')
 }
@@ -534,8 +534,8 @@ export function screenTransfery(): string {
  *
  * Karty jsou dobré na vyplňování, ale na otázku „která embrya mám“ se
  * odpovídá pohledem, ne scrollováním. Tabulka je proto první a karty
- * pod ní. Na úzkém displeji se posouvá do stran ve vlastním rámu —
- * stránka jako celek nikdy.
+ * pod ní. Na úzkém displeji se posouvá do stran ve vlastním rámu.
+ * Stránka jako celek nikdy.
  */
 export function embryoTable(list: Embryo[]): string {
   if (list.length === 0) return ''
@@ -564,7 +564,7 @@ export function embryoTable(list: Embryo[]): string {
 
 // ========================================================== moje klinika ===
 
-/** „Moje klinika“ — kontakty, které se hledají ve chvíli, kdy se hledat nedá. */
+/** „Moje klinika“. Kontakty, které se hledají ve chvíli, kdy se hledat nedá. */
 export function screenKlinika(): string {
   const c = clinic()
 
@@ -598,7 +598,7 @@ export function screenKlinika(): string {
     head(
       'Moje klinika',
       c.name.trim() || 'Klinika',
-      'Kontakty na jednom místě. V šest ráno s bolestí břicha se číslo nehledá dobře — proto je tady i to, kam volat mimo ordinační hodiny.',
+      'Kontakty na jednom místě. V šest ráno s bolestí břicha se číslo nehledá dobře, proto je tady i to, kam volat mimo ordinační hodiny.',
     ),
 
     hasClinic(c)
@@ -637,7 +637,7 @@ export function screenKlinika(): string {
         ${textField('cl-hours', 'Ordinační hodiny', c.hours, 'po–pá 7–15, odběry do 9')}
       </div>
       <div style="margin-top:1.1rem">
-        ${areaField('cl-instructions', 'Důležité instrukce', c.instructions, 'Co vám klinika řekla, že máte dělat — a kdy volat.')}
+        ${areaField('cl-instructions', 'Důležité instrukce', c.instructions, 'Co vám klinika řekla, že máte dělat. A kdy volat.')}
       </div>
       <div style="margin-top:1.1rem">
         ${areaField('cl-note', 'Vlastní poznámky', c.note, 'Kde parkovat, kterými dveřmi jít, jak se jmenuje sestra na recepci.')}
@@ -656,13 +656,13 @@ export function screenKlinika(): string {
       </div>
     </section>`,
 
-    note('Kontakty zůstávají ve vašem zařízení. Aplikace nikam nevolá ani nic neodesílá — jen připraví číslo k vytočení.'),
+    note('Kontakty zůstávají ve vašem zařízení. Aplikace nikam nevolá ani nic neodesílá, jen připraví číslo k vytočení.'),
   ].join('')
 }
 
 // =============================================================== diagnóza ===
 
-/** „Moje diagnóza“ — proč jdu na IVF. */
+/** „Moje diagnóza“. Proč jdu na IVF. */
 export function screenDiagnoza(): string {
   const vybrane = profile().diagnoses ?? []
 
@@ -693,7 +693,7 @@ export function screenDiagnoza(): string {
     head(
       'Moje diagnóza',
       'Proč jdu na IVF',
-      'Označte důvody, které se vás týkají. Může jich být víc — kombinovaný faktor je v IVF spíš pravidlo než výjimka.',
+      'Označte důvody, které se vás týkají. Může jich být víc. Kombinovaný faktor je v IVF spíš pravidlo než výjimka.',
     ),
 
     vybrane.length
@@ -709,7 +709,7 @@ export function screenDiagnoza(): string {
         </section>`
       : `<section class="surface pad rise">
           <p class="soft" style="line-height:1.65;font-size:.9375rem">
-            Zatím nemáte označené nic. Nevadí — ne každá žena zná svoji diagnózu hned
+            Zatím nemáte označené nic. Nevadí, ne každá žena zná svoji diagnózu hned
             a „nevysvětlená neplodnost“ je taky diagnóza.
           </p>
         </section>`,
@@ -736,14 +736,14 @@ export function screenDiagnoza(): string {
       : '',
 
     note(
-      'Diagnóza je informace, ne rozsudek. Aplikace z ní **neodvozuje léčbu ani prognózu** — o obojím rozhoduje váš lékař podle celého vašeho obrazu.',
+      'Diagnóza je informace, ne rozsudek. Aplikace z ní **neodvozuje léčbu ani prognózu**: o obojím rozhoduje váš lékař podle celého vašeho obrazu.',
     ),
   ].join('')
 }
 
 // ============================================================== vyšetření ===
 
-/** „Moje vyšetření“ — co může být relevantní a co už mám za sebou. */
+/** „Moje vyšetření“. Co může být relevantní a co už mám za sebou. */
 export function screenVysetreni(who: ExamWho = 'zena'): string {
   const zapsana = exams()
   const zaznam = (examId: string) => zapsana.find((e) => e.examId === examId) ?? null
@@ -795,7 +795,7 @@ export function screenVysetreni(who: ExamWho = 'zena'): string {
     head(
       'Moje vyšetření',
       'Vyšetření',
-      'Co může být na cestě relevantní. Není to povinný seznam — plán skládá lékař podle vaší anamnézy a každé ženě vyjde jinak.',
+      'Co může být na cestě relevantní. Není to povinný seznam. Plán skládá lékař podle vaší anamnézy a každé ženě vyjde jinak.',
     ),
 
     `<div class="chips" style="margin-bottom:1.2rem">
@@ -846,14 +846,14 @@ export function screenVysetreni(who: ExamWho = 'zena'): string {
     </section>`,
 
     note(
-      '**Žádné z těchhle vyšetření nemusí podstoupit každá žena.** Co je ve vašem případě potřeba, určuje lékař. Aplikace výsledky nevykládá — jsou to vaše poznámky, ne diagnóza.',
+      '**Žádné z těchhle vyšetření nemusí podstoupit každá žena.** Co je ve vašem případě potřeba, určuje lékař. Aplikace výsledky nevykládá. Jsou to vaše poznámky, ne diagnóza.',
     ),
   ].join('')
 }
 
 // ========================================================= podpůrná péče ===
 
-/** „Moje podpůrná péče“ — co využívám mimo kliniku. */
+/** „Moje podpůrná péče“. Co využívám mimo kliniku. */
 export function screenPodpora(): string {
   const list = supportEntries()
   const bezi = list.filter((e) => e.ongoing)
@@ -924,7 +924,7 @@ export function screenPodpora(): string {
     head(
       'Moje podpůrná péče',
       'Co mi pomáhá',
-      'Co využíváte mimo kliniku a jak vám to sedí. U každé metody je poctivě uvedená síla důkazů — ne proto, aby vás od něčeho odradila, ale abyste věděla, do čeho jdete.',
+      'Co využíváte mimo kliniku a jak vám to sedí. U každé metody je poctivě uvedená síla důkazů, ne proto, aby vás od něčeho odradila, ale abyste věděla, do čeho jdete.',
     ),
 
     bezi.length
@@ -955,7 +955,7 @@ export function screenPodpora(): string {
         </section>`
       : empty(
           'Zatím tu nic není',
-          'Vyberte si dole, co využíváte. Není to úkol — je to místo, kde uvidíte, co vám za ty měsíce opravdu pomohlo.',
+          'Vyberte si dole, co využíváte. Není to úkol. Je to místo, kde uvidíte, co vám za ty měsíce opravdu pomohlo.',
           '',
           '♡',
         ),
@@ -969,7 +969,7 @@ export function screenPodpora(): string {
     </section>`,
 
     note(
-      'Aplikace **neslibuje, že cokoli z tohohle zvýší šanci na otěhotnění.** Péče o sebe má smysl sama o sobě. Doplňky stravy nejsou automaticky vhodné pro každou — proberte je s klinikou, protože mohou zasahovat do léčby.',
+      'Aplikace **neslibuje, že cokoli z tohohle zvýší šanci na otěhotnění.** Péče o sebe má smysl sama o sobě. Doplňky stravy nejsou automaticky vhodné pro každou. Proberte je s klinikou, protože mohou zasahovat do léčby.',
     ),
   ].join('')
 }
@@ -983,7 +983,7 @@ export function screenPodpora(): string {
  * je informace, se kterou se dá jít k lékaři. Stejně tak dvanáct vajíček
  * v prvním cyklu a osm ve druhém.
  *
- * Aplikace ten rozdíl **nevykládá** — jen ho postaví vedle sebe. Co znamená,
+ * Aplikace ten rozdíl **nevykládá**: jen ho postaví vedle sebe. Co znamená,
  * závisí na věku, protokolu, laboratoři a kontextu, který aplikace nemá.
  */
 export function screenVysledky(): string {
@@ -1051,7 +1051,7 @@ export function screenVysledky(): string {
     head(
       'Moje výsledky',
       'Výsledky',
-      'Hodnoty a čísla z cyklů vedle sebe v čase. Jednotlivé číslo neřekne skoro nic — vývoj už ano.',
+      'Hodnoty a čísla z cyklů vedle sebe v čase. Jednotlivé číslo neřekne skoro nic. Vývoj už ano.',
     ),
 
     rady.length
@@ -1074,14 +1074,14 @@ export function screenVysledky(): string {
   ].join('')
 }
 
-/** České číslo — desetinná čárka, bez zbytečných nul. */
+/** České číslo. Desetinná čárka, bez zbytečných nul. */
 function czNum(v: number): string {
   return Number.isInteger(v) ? String(v) : v.toFixed(2).replace(/0+$/, '').replace(/\.$/, '').replace('.', ',')
 }
 
 // ================================================================ historie ===
 
-/** „Moje IVF historie“ — celá cesta na jednom řádku po cyklech. */
+/** „Moje IVF historie“. Celá cesta na jednom řádku po cyklech. */
 export function screenHistorieIvf(): string {
   const list = cycles()
   if (list.length === 0) {
@@ -1089,7 +1089,7 @@ export function screenHistorieIvf(): string {
       head('Moje IVF historie', 'Historie', 'Celá cesta na jednom místě.'),
       empty(
         'Zatím tu není žádný cyklus',
-        'Až založíte první cyklus, objeví se tu shrnutí každého z nich — od počtu vajíček po výsledek posledního transferu.',
+        'Až založíte první cyklus, objeví se tu shrnutí každého z nich. Od počtu vajíček po výsledek posledního transferu.',
         '<button class="btn" data-act="cycle-new">Založit cyklus</button>',
         '✧',
       ),
@@ -1161,7 +1161,7 @@ export function screenHistorieIvf(): string {
   ].join('')
 }
 
-/** Předvyplněné stadium pro nově přidaný den — jen návrh, dá se přepsat. */
+/** Předvyplněné stadium pro nově přidaný den, jen návrh, dá se přepsat. */
 export function stageForDay(day: number): EmbryoStage {
   return STAGE_BY_DAY[day] ?? ''
 }
@@ -1173,7 +1173,7 @@ export function isExamWho(s: string): s is ExamWho {
   return s === 'zena' || s === 'partner' || s === 'dalsi'
 }
 
-/** Poslední den kultivace embrya — pro popisky v jiných obrazovkách. */
+/** Poslední den kultivace embrya. Pro popisky v jiných obrazovkách. */
 export function embryoLastDay(e: Embryo): number | null {
   return lastDay(e)?.day ?? null
 }

@@ -63,7 +63,7 @@ export const MODIFIER_LABELS: Record<ModifierId, string> = {
   secondary_infertility: 'Sekundární neplodnost',
 }
 
-/** Témata pro doporučovací systém — učí se z chování uživatelky. */
+/** Témata pro doporučovací systém. Učí se z chování uživatelky. */
 export const TOPIC_IDS = [
   'stimulace',
   'embryologie',
@@ -114,7 +114,7 @@ export const TOPIC_LABELS: Record<TopicId, string> = {
   sebepece: 'Sebepéče',
 }
 
-/** Datum jako `YYYY-MM-DD`. Nikdy `Date` — kvůli časovým pásmům a serializaci. */
+/** Datum jako `YYYY-MM-DD`. Nikdy `Date`, kvůli časovým pásmům a serializaci. */
 export type IsoDate = string
 
 export interface Profile {
@@ -129,7 +129,7 @@ export interface Profile {
 
   birthYear: number | null
   modifiers: ModifierId[]
-  /** Vybrané důvody, proč je žena indikovaná k IVF — id z `DIAGNOSES`. */
+  /** Vybrané důvody, proč je žena indikovaná k IVF. Id z `DIAGNOSES`. */
   diagnoses: string[]
 
   // --- Kotevní data cesty ------------------------------------------------
@@ -150,9 +150,9 @@ export interface Profile {
   miscarriages: number
   embryosCreated: number
   embryosFrozen: number
-  /** Den kultivace přeneseného embrya (3 nebo 5) — pro přesný výpočet DPO. */
+  /** Den kultivace přeneseného embrya (3 nebo 5). Pro přesný výpočet DPO. */
   embryoDayAtTransfer: number | null
-  /** Gestační týden v době porodu — pro korigovaný věk. */
+  /** Gestační týden v době porodu. Pro korigovaný věk. */
   gestationalWeeksAtBirth: number | null
   clinicName: string | null
 

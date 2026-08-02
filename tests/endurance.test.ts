@@ -69,7 +69,7 @@ test('stejné datum se u jiného druhu cyklu jmenuje jinak', () => {
   assert.equal(iui.steps.find((s) => s.key === 'transfer')?.label, 'Inseminace')
 })
 
-test('milník je za ní, až když jeho datum nastalo — dnešek se počítá', () => {
+test('milník je za ní, až když jeho datum nastalo. Dnešek se počítá', () => {
   const e = readEndurance(
     input({
       cycle: cycle({
@@ -122,7 +122,7 @@ test('dny na cestě zahrnují dnešek a bez data se nepočítají', () => {
   assert.equal(readEndurance(input({ startedOn: '2026-06-10' })).days, 1)
   assert.equal(readEndurance(input({ startedOn: '2026-06-01' })).days, 10)
   assert.equal(readEndurance(input({ startedOn: null })).days, null)
-  // Datum v budoucnu je zjevně překlep — radši nic než záporné číslo.
+  // Datum v budoucnu je zjevně překlep. Radši nic než záporné číslo.
   assert.equal(readEndurance(input({ startedOn: '2026-07-01' })).days, null)
 })
 
@@ -165,13 +165,13 @@ test('součtová věta vynechává nuly a skloňuje česky', () => {
   )
   assert.equal(few.headline, '2 injekce. 3 dny na cestě.')
 
-  assert.equal(readEndurance(input()).headline, 'Zatím tu není co sčítat — a to je taky výsledek.')
+  assert.equal(readEndurance(input()).headline, 'Zatím tu není co sčítat. A to je taky výsledek.')
 })
 
 // -------------------------------------------------------------- velké číslo ---
 
 test('nula se do velkého čísla nikdy nedostane', () => {
-  // Před prvním cyklem se počítají dny na cestě — ty už za sebou má.
+  // Před prvním cyklem se počítají dny na cestě. Ty už za sebou má.
   const fresh = readEndurance(input({ startedOn: '2024-09-30' }))
   assert.deepEqual(fresh.big, { value: 619, of: null, caption: 'Dní na cestě' })
   // A dny se pak nesmí opakovat i ve větě pod květem.

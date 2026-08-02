@@ -3,7 +3,7 @@ import { CONCEPTION_GUIDES } from './conception'
 import { LOSS_GUIDES } from './loss'
 
 /**
- * Registr průvodců fázemi. Import tohohle souboru je to, co je zapne —
+ * Registr průvodců fázemi. Import tohohle souboru je to, co je zapne,
  * proto ho aplikace importuje jako první.
  */
 

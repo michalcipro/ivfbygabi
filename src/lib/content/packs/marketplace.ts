@@ -4,7 +4,7 @@ import type { ContentPack, Product } from '../types'
  * Marketplace.
  *
  * Řazení podle relevance k aktuální fázi, ne podle toho, kdo zaplatí za reklamu.
- * Každá položka má `whyNow` — vysvětlení, proč se hodí právě teď. Bez toho
+ * Každá položka má `whyNow`. Vysvětlení, proč se hodí právě teď. Bez toho
  * by to byl jen katalog.
  *
  * Ceny jsou orientační v Kč a slouží k odhadu rozpočtu, ne jako nabídka.
@@ -14,7 +14,7 @@ const products: Product[] = [
   // --- Příprava a IVF ------------------------------------------------------
   {
     id: 'mp-ovulacni-testy',
-    name: 'Ovulační testy — balení 20 ks',
+    name: 'Ovulační testy. Balení 20 ks',
     category: 'Testy',
     whyNow:
       'Když sledujete plodné dny, vyplatí se testovat několik dní v řadě. Velké balení vyjde levněji než kupovat po kusech každý cyklus.',
@@ -74,7 +74,7 @@ const products: Product[] = [
     name: 'Nahřívací polštářek s pohankovou náplní',
     category: 'Pomůcky',
     whyNow:
-      'Po odběru vajíček bývá břicho citlivé a nadmuté. Mírné teplo na záda a podbřišek uleví — na břicho po transferu ale pozor, ptejte se na klinice.',
+      'Po odběru vajíček bývá břicho citlivé a nadmuté. Mírné teplo na záda a podbřišek uleví. Na břicho po transferu ale pozor, ptejte se na klinice.',
     priceFrom: 450,
     phases: ['retrieval', 'embryo_culture', 'loss_miscarriage'],
     rating: 4.7,

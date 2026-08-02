@@ -12,7 +12,7 @@ const glossary: GlossaryTerm[] = [
     term: 'Ovulace',
     aliases: ['uvolnění vajíčka'],
     short: 'Uvolnění zralého vajíčka z vaječníku, obvykle jednou za cyklus.',
-    long: 'Vajíčko po uvolnění přežívá zhruba 12–24 hodin. Spermie ve vhodném hlenu vydrží až pět dní — proto je plodné okno delší než samotná ovulace a končí dnem ovulace. Že ovulace proběhla, se dá potvrdit vzestupem bazální teploty nebo hladinou progesteronu zhruba týden po ní.',
+    long: 'Vajíčko po uvolnění přežívá zhruba 12–24 hodin. Spermie ve vhodném hlenu vydrží až pět dní, proto je plodné okno delší než samotná ovulace a končí dnem ovulace. Že ovulace proběhla, se dá potvrdit vzestupem bazální teploty nebo hladinou progesteronu zhruba týden po ní.',
     topics: ['cekani', 'hormony'],
   },
   {
@@ -25,21 +25,21 @@ const glossary: GlossaryTerm[] = [
     term: 'Bazální teplota',
     aliases: ['BBT'],
     short: 'Tělesná teplota naměřená hned po probuzení, před vstáváním.',
-    long: 'Po ovulaci stoupá vlivem progesteronu zhruba o 0,3 °C a zůstává vyšší až do menstruace. Ovulaci potvrzuje zpětně — dopředu ji nepředpoví. Měří se každý den ve stejnou dobu, ještě v posteli.',
+    long: 'Po ovulaci stoupá vlivem progesteronu zhruba o 0,3 °C a zůstává vyšší až do menstruace. Ovulaci potvrzuje zpětně. Dopředu ji nepředpoví. Měří se každý den ve stejnou dobu, ještě v posteli.',
     topics: ['cekani', 'hormony'],
   },
   {
     term: 'Kyselina listová',
     aliases: ['folát', 'folacin', 'vitamin B9'],
     short: 'Vitamin, který snižuje riziko vrozených vad neurální trubice.',
-    long: 'Působí v prvních týdnech těhotenství, tedy dřív, než o něm většina žen ví — proto se začíná už při plánování. Dávku určuje lékař; u některých diagnóz a při užívání některých léků bývá vyšší. Po léčbě metotrexátem platí zvláštní pokyny.',
+    long: 'Působí v prvních týdnech těhotenství, tedy dřív, než o něm většina žen ví, proto se začíná už při plánování. Dávku určuje lékař; u některých diagnóz a při užívání některých léků bývá vyšší. Po léčbě metotrexátem platí zvláštní pokyny.',
     topics: ['strava', 'tehotenstvi'],
   },
   {
     term: 'Inositol',
     aliases: ['myo-inositol'],
     short: 'Látka používaná hlavně u PCOS k podpoře ovulace a citlivosti na inzulin.',
-    long: 'Data jsou nadějná, ale nejednotná — proto se řadí mezi diskutované, ne standardní. Nenahrazuje léčbu předepsanou lékařem a vždy je potřeba nahlásit, že ho berete, protože může ovlivnit odpověď na stimulaci.',
+    long: 'Data jsou nadějná, ale nejednotná, proto se řadí mezi diskutované, ne standardní. Nenahrazuje léčbu předepsanou lékařem a vždy je potřeba nahlásit, že ho berete, protože může ovlivnit odpověď na stimulaci.',
     topics: ['strava', 'hormony'],
   },
   {
@@ -51,7 +51,7 @@ const glossary: GlossaryTerm[] = [
   {
     term: 'Anamnéza',
     short: 'Souhrn vaší zdravotní historie, který lékař potřebuje znát.',
-    long: 'Zahrnuje prodělané nemoci a operace, léky, alergie, průběh cyklů, předchozí těhotenství a ztráty, a také rodinnou anamnézu — nemoci v rodině. Sepsat si ji předem šetří čas a zpřesňuje diagnostiku.',
+    long: 'Zahrnuje prodělané nemoci a operace, léky, alergie, průběh cyklů, předchozí těhotenství a ztráty, a také rodinnou anamnézu. Nemoci v rodině. Sepsat si ji předem šetří čas a zpřesňuje diagnostiku.',
     topics: ['klinika'],
   },
   {
@@ -78,7 +78,7 @@ const glossary: GlossaryTerm[] = [
     term: 'Punkce',
     aliases: ['odběr vajíček', 'OPU'],
     short: 'Odběr vajíček z folikulů tenkou jehlou pod ultrazvukovou kontrolou.',
-    long: 'Probíhá v analgosedaci a trvá zhruba 10–20 minut. Počet získaných vajíček bývá nižší než počet folikulů — ne v každém folikulu je zralé vajíčko. V následujících dnech je nejvyšší riziko OHSS.',
+    long: 'Probíhá v analgosedaci a trvá zhruba 10–20 minut. Počet získaných vajíček bývá nižší než počet folikulů, ne v každém folikulu je zralé vajíčko. V následujících dnech je nejvyšší riziko OHSS.',
     topics: ['stimulace', 'embryologie'],
   },
   {
@@ -91,13 +91,13 @@ const glossary: GlossaryTerm[] = [
   {
     term: 'Zygota',
     short: 'Oplodněné vajíčko krátce po splynutí se spermií.',
-    long: 'Den po odběru embryolog kontroluje, jestli jsou patrná dvě prvojádra — znak správného oplodnění. Z zygoty se dalším dělením stává embryo.',
+    long: 'Den po odběru embryolog kontroluje, jestli jsou patrná dvě prvojádra. Znak správného oplodnění. Z zygoty se dalším dělením stává embryo.',
     topics: ['embryologie'],
   },
   {
     term: 'Kultivace',
     short: 'Období, kdy embrya rostou v laboratoři v inkubátoru.',
-    long: 'Trvá obvykle do třetího nebo pátého dne. Do pátého dne, kdy vzniká blastocysta, se dostane jen část embryí — je to očekávaný průběh, ne chyba laboratoře.',
+    long: 'Trvá obvykle do třetího nebo pátého dne. Do pátého dne, kdy vzniká blastocysta, se dostane jen část embryí. Je to očekávaný průběh, ne chyba laboratoře.',
     topics: ['embryologie'],
   },
   {
@@ -110,13 +110,13 @@ const glossary: GlossaryTerm[] = [
   {
     term: 'Gestační váček',
     short: 'První struktura těhotenství viditelná na ultrazvuku.',
-    long: 'Bývá patrný zhruba od 5. týdne. Jeho uložení v děloze vylučuje mimoděložní těhotenství. Samotný váček ještě neznamená vyvíjející se plod — ten a srdeční akce přicházejí o něco později.',
+    long: 'Bývá patrný zhruba od 5. týdne. Jeho uložení v děloze vylučuje mimoděložní těhotenství. Samotný váček ještě neznamená vyvíjející se plod. Ten a srdeční akce přicházejí o něco později.',
     topics: ['tehotenstvi', 'vysledky'],
   },
   {
     term: 'ERA test',
     short: 'Vyšetření, které má určit nejvhodnější okno pro transfer.',
-    long: 'Z odebraného vzorku sliznice se hodnotí, kdy je připravená přijmout embryo. Používá se hlavně po opakovaném selhání implantace. Přínos je předmětem odborné diskuze — vyplatí se ptát, co konkrétně by výsledek změnil.',
+    long: 'Z odebraného vzorku sliznice se hodnotí, kdy je připravená přijmout embryo. Používá se hlavně po opakovaném selhání implantace. Přínos je předmětem odborné diskuze. Vyplatí se ptát, co konkrétně by výsledek změnil.',
     topics: ['transfer', 'genetika'],
   },
   {
@@ -129,13 +129,13 @@ const glossary: GlossaryTerm[] = [
   {
     term: 'Gestační stáří',
     short: 'Stáří těhotenství počítané od prvního dne poslední menstruace.',
-    long: 'Zapisuje se jako týdny+dny, například 24+3. U IVF se počítá z data transferu a dne kultivace embrya. Neodpovídá době od početí — to je zhruba o dva týdny méně.',
+    long: 'Zapisuje se jako týdny+dny, například 24+3. U IVF se počítá z data transferu a dne kultivace embrya. Neodpovídá době od početí. To je zhruba o dva týdny méně.',
     topics: ['tehotenstvi'],
   },
   {
     term: 'Sekundární neplodnost',
     short: 'Nedaří se otěhotnět, přestože jste už dítě porodila.',
-    long: 'Vyšetřuje se stejně jako primární neplodnost — u obou partnerů. Od minulého těhotenství se mohlo změnit hodně: věk, ovariální rezerva, průchodnost vejcovodů i spermiogram. Okolí ji často nebere vážně, přitom jde o plnohodnotnou diagnózu.',
+    long: 'Vyšetřuje se stejně jako primární neplodnost. U obou partnerů. Od minulého těhotenství se mohlo změnit hodně: věk, ovariální rezerva, průchodnost vejcovodů i spermiogram. Okolí ji často nebere vážně, přitom jde o plnohodnotnou diagnózu.',
     topics: ['klinika', 'psychika'],
   },
 ]

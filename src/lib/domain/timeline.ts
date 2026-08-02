@@ -9,11 +9,11 @@ import { LAB_BY_KEY } from '../health/lab-params'
  * Data o léčbě jsou rozházená po pěti obrazovkách: milníky v cyklu, dávky
  * v lécích, folikuly v ultrazvuku, hodnoty ve zdraví, poznámky v deníku.
  * Když se pak lékař zeptá „a kdy vám zvedli dávku?", žena listuje. Tenhle
- * modul to složí do jednoho proudu seřazeného v čase — a nic si nepřidává.
+ * modul to složí do jednoho proudu seřazeného v čase. A nic si nepřidává.
  *
  * ŽÁDNÁ INTERPRETACE. Modul jen převypráví, co uživatelka zapsala. Nehodnotí
  * hodnoty, nepočítá šance, nedoporučuje dávkování. Čísla ukazuje tak, jak
- * přišla — čtení patří lékaři.
+ * přišla. Čtení patří lékaři.
  *
  * Čistý doménový modul: žádné DOM, žádný store, žádné `Date.now()`.
  * Stejný vstup dá vždy stejný výstup, takže se dá testovat i cachovat.
@@ -21,7 +21,7 @@ import { LAB_BY_KEY } from '../health/lab-params'
  * AKCE PRO main.ts: žádné. Modul nic nevykresluje ani nevystavuje interakce.
  * Obrazovka si z `TimelineItem.source.route` udělá `data-go` sama.
  *
- * CSS: žádné nové třídy — modul nevrací HTML.
+ * CSS: žádné nové třídy. Modul nevrací HTML.
  *
  * KLÍČE IKON, které modul vrací v `TimelineItem.icon` (obrazovka si k nim
  * přiřadí glyf, doporučení v závorce vychází z EVENT_KINDS a KIND_ICONS):
@@ -56,7 +56,7 @@ export interface TimelineItem {
   title: string
   /** Jedna věta, může být prázdná. */
   detail: string
-  /** Klíč ikony — vybere si ji obrazovka. */
+  /** Klíč ikony. Vybere si ji obrazovka. */
   icon: string
   /** Zvýraznit: zákrok, výsledek, změna dávky. */
   major: boolean
@@ -67,8 +67,8 @@ export interface TimelineItem {
 // ------------------------------------------------------------ vstupní tvary ---
 
 /*
- * Doména nesmí importovat z klienta, proto si tvary deklarujeme znovu —
- * strukturálně, jen v rozsahu, který časová osa čte. Typy ze `store.ts`
+ * Doména nesmí importovat z klienta, proto si tvary deklarujeme znovu.
+ * Strukturálně, jen v rozsahu, který časová osa čte. Typy ze `store.ts`
  * do nich zapadnou beze změny (`IsoDate` je `string`, užší unionty jsou
  * přiřaditelné do `string`, pole navíc nevadí).
  */
@@ -82,7 +82,7 @@ export interface MedRow {
   repeat: string
   startOn: string | null
   endOn: string | null
-  /** Historie změn dávkování — u stimulace se dávka mění běžně. */
+  /** Historie změn dávkování. U stimulace se dávka mění běžně. */
   history: { on: string; dose: string; why: string }[]
   cycleId: string | null
 }
@@ -137,7 +137,7 @@ export interface TimelineInput {
 
 /**
  * České skloňování. Klient má vlastní `plural` v ui.ts, doména na něj ale
- * sáhnout nesmí — čtyři řádky duplicity jsou levnější než závislost obráceným
+ * sáhnout nesmí. Čtyři řádky duplicity jsou levnější než závislost obráceným
  * směrem.
  */
 function plural(n: number, one: string, few: string, many: string): string {
@@ -149,7 +149,7 @@ function plural(n: number, one: string, few: string, many: string): string {
  * Estradiol se v laborce běžně vyšplhá na pět číslic a „12400“ se čte špatně.
  */
 function num(value: number, decimals = 1): string {
-  if (!Number.isFinite(value)) return '—'
+  if (!Number.isFinite(value)) return '–'
   const body = Number.isInteger(value)
     ? String(value)
     : value
@@ -224,7 +224,7 @@ const MILESTONE_AS_EVENT: Record<string, string> = {
 }
 
 /**
- * Pořadí uvnitř dne, když čas chybí. Zákrok patří nad poznámku — jinak by
+ * Pořadí uvnitř dne, když čas chybí. Zákrok patří nad poznámku, jinak by
  * odběr vajíček skončil pod zápisem o nadýmání.
  */
 const KIND_RANK: Record<TimelineKind, number> = {
@@ -277,7 +277,7 @@ function belongs(win: CycleWindow | null, date: string, cycleId?: string | null)
 /**
  * Složí všechny zdroje do jedné osy.
  *
- * Vstup se nemění, výstup je vždy seřazený — obrazovka ho může rovnou
+ * Vstup se nemění, výstup je vždy seřazený. Obrazovka ho může rovnou
  * vykreslit nebo poslat do `groupByDay`.
  */
 export function buildTimeline(input: TimelineInput): TimelineItem[] {
@@ -306,7 +306,7 @@ export function buildTimeline(input: TimelineInput): TimelineItem[] {
         at: '',
         kind: meta.kind,
         title: m.label,
-        // Transfer i beta si popisek nesou sami — je v nich číslo, které
+        // Transfer i beta si popisek nesou sami. Je v nich číslo, které
         // z řádku cyklu vyčíst nejde, protože jich může být víc.
         detail: m.detail || milestoneDetail(c, m.key),
         icon: meta.icon,
@@ -370,7 +370,7 @@ export function buildTimeline(input: TimelineInput): TimelineItem[] {
       title: 'Ultrazvuk',
       detail: ultrasoundDetail(u),
       icon: 'uz',
-      // Kontrola, ne zákrok — kdyby svítilo všechno, nesvítí nic.
+      // Kontrola, ne zákrok, kdyby svítilo všechno, nesvítí nic.
       major: false,
       source: { route: 'zdravotni/ultrazvuk' },
     })
@@ -387,7 +387,7 @@ export function buildTimeline(input: TimelineInput): TimelineItem[] {
       at: '',
       kind: isBeta ? 'beta' : 'vysledek',
       title: param?.name ?? prettyKey(l.paramKey),
-      // Jen číslo a jednotka. Žádné „v normě" — to není naše věta.
+      // Jen číslo a jednotka. Žádné „v normě". To není naše věta.
       detail: join([num(l.value, 2), l.unit], ' '),
       icon: isBeta ? 'beta' : 'vysledek',
       major: true,
@@ -408,7 +408,7 @@ export function buildTimeline(input: TimelineInput): TimelineItem[] {
       id: `note:${n.id}`,
       date: n.date,
       at: n.at,
-      // Zápis, který je jen fotkou zprávy, je dokument — ne poznámka.
+      // Zápis, který je jen fotkou zprávy, je dokument, ne poznámka.
       kind: text ? 'poznamka' : 'dokument',
       title: text ? 'Poznámka' : filesLabel || 'Poznámka',
       detail: text ? join([excerpt(text), filesLabel]) : excerpt(files.map((f) => f.name).join(', ')),
@@ -454,7 +454,7 @@ export function groupByDay(items: TimelineItem[]): { date: string; items: Timeli
 /**
  * Dny sestupně (nejnovější nahoře), uvnitř dne chronologicky, jak den
  * probíhal. Položky bez času jdou na konec dne, mezi sebou podle váhy druhu
- * a nakonec podle id — aby bylo pořadí stabilní i mezi překreslením.
+ * a nakonec podle id, aby bylo pořadí stabilní i mezi překreslením.
  */
 function compare(a: TimelineItem, b: TimelineItem): number {
   if (a.date !== b.date) return b.date.localeCompare(a.date)
@@ -497,7 +497,7 @@ function milestoneDetail(c: CycleRow, key: string): string {
  * Čísla z laboratoře jako body na ose.
  *
  * Datum se odvozuje od odběru: oplodnění se hlásí den po něm, blastocysty
- * pátý den — tak to na klinikách chodí a stejný předpoklad používá i
+ * pátý den. Tak to na klinikách chodí a stejný předpoklad používá i
  * `readCycle`. Položka vznikne jen tehdy, když číslo uživatelka zapsala.
  */
 function embryologyItems(c: CycleRow): TimelineItem[] {
@@ -539,7 +539,7 @@ function embryologyItems(c: CycleRow): TimelineItem[] {
   }
 
   // Vývoj embryí den po dni. Každý den je vlastní zpráva z laboratoře a
-  // vlastní telefonát — na ose proto stojí zvlášť, ne slitý do jednoho bodu.
+  // vlastní telefonát. Na ose proto stojí zvlášť, ne slitý do jednoho bodu.
   const days: [number, number | null, string][] = [
     [3, c.day3, 'se vyvíjí'],
     [4, c.day4, 've stádiu moruly'],
@@ -617,7 +617,7 @@ function medItems(m: MedRow, win: CycleWindow | null): TimelineItem[] {
   }
 
   // Změna dávky je to, na co se lékař ptá nejčastěji. Proto vlastní řádek
-  // a zvýraznění — ne schovaná v detailu léku.
+  // a zvýraznění, ne schovaná v detailu léku.
   m.history.forEach((h, i) => {
     if (!h.on || !belongs(win, h.on, m.cycleId)) return
     out.push({
@@ -625,7 +625,7 @@ function medItems(m: MedRow, win: CycleWindow | null): TimelineItem[] {
       date: h.on,
       at: '',
       kind: 'davka',
-      title: `Změna dávky — ${name}`,
+      title: `Změna dávky, ${name}`,
       detail: join([h.dose && `Nově ${h.dose}`, h.why && excerpt(h.why, 70)]),
       icon: 'davka',
       major: true,
@@ -636,7 +636,7 @@ function medItems(m: MedRow, win: CycleWindow | null): TimelineItem[] {
   return out
 }
 
-/** Použitelné velikosti. Nula ani nesmysl není folikul — stejně jako v souhrnu. */
+/** Použitelné velikosti. Nula ani nesmysl není folikul. Stejně jako v souhrnu. */
 function sizes(values: number[] | undefined): number[] {
   return (values ?? []).filter((v) => Number.isFinite(v) && v > 0)
 }
@@ -650,15 +650,15 @@ function ultrasoundDetail(u: UltrasoundRow): string {
 }
 
 /**
- * Souhrn příznaků za den. Dvacet zaškrtnutých políček se na ose nedá číst —
- * důležité je, kolik jich bylo a co bolelo nejvíc.
+ * Souhrn příznaků za den. Dvacet zaškrtnutých políček se na ose nedá číst.
+ * Důležité je, kolik jich bylo a co bolelo nejvíc.
  */
 function symptomDetail(rows: SymptomLog[], labelOf?: (id: string) => string): string {
   const n = rows.length
   const counted =
     n === 1 ? 'Zapsán 1 příznak' : n <= 4 ? `Zapsány ${n} příznaky` : `Zapsáno ${n} příznaků`
 
-  // Zápis bez zadané intenzity se řadí až za ty ohodnocené — nedá se říct,
+  // Zápis bez zadané intenzity se řadí až za ty ohodnocené. Nedá se říct,
   // že byl nejsilnější, když u něj žádné číslo není.
   const rank = (v: number | null): number => (v === null || !Number.isFinite(v) ? -1 : v)
   const top = [...rows].sort(

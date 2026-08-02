@@ -5,7 +5,7 @@ import type { ContentItem, ContentPack } from '../types'
  *
  * Sekce, kterou ženy hledají nejčastěji a která bývá nejhůř vysvětlená.
  * Každé vyšetření má vlastní krátký text se stejnou kostrou, aby se v tom
- * dalo číst na přeskáčku — člověk dostane papír se zkratkou a chce vědět
+ * dalo číst na přeskáčku. Člověk dostane papír se zkratkou a chce vědět
  * jen tohle jedno.
  *
  * Dvě pravidla, která tenhle balík drží pohromadě:
@@ -32,7 +32,7 @@ const items: ContentItem[] = [
     hero: 'sky',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+    sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
     publishedOn: '2026-08-02',
     boost: 0.9,
     body: `## Neexistuje jeden seznam pro všechny
@@ -46,7 +46,7 @@ Do rozhodování obvykle vstupuje:
 - jak pravidelný je váš cyklus,
 - předchozí těhotenství, ztráty, operace v malé pánvi nebo záněty,
 - co ukázala předchozí vyšetření, včetně těch, která máte v šuplíku roky,
-- výsledky u partnera — mužský faktor se podílí na velké části případů a mění směr vyšetřování u obou,
+- výsledky u partnera. Mužský faktor se podílí na velké části případů a mění směr vyšetřování u obou,
 - rodinná anamnéza.
 
 Proto se u některých žen začíná několika odběry a ultrazvukem, zatímco jinde se rovnou přidávají specializovaná vyšetření. **Žádné z vyšetření popsaných v této sekci není povinné pro každou ženu.** U každého platí, že může být součástí plánu, pokud to lékař považuje za smysluplné.
@@ -55,7 +55,7 @@ Proto se u některých žen začíná několika odběry a ultrazvukem, zatímco 
 
 Část hormonálních hodnot dává smysl jen v určité fázi cyklu. FSH, LH a estradiol se běžně odebírají na začátku cyklu, progesteron naopak v druhé polovině. AMH se dá odebrat prakticky kdykoli.
 
-Když se odběr udělá v jiný den, výsledek není „špatný" — jen neznamená to, co se od něj čekalo. Proto vám sestra volá kvůli termínu a proto má smysl hlásit, když menstruace přijde jindy, než jste čekala.
+Když se odběr udělá v jiný den, výsledek není „špatný", jen neznamená to, co se od něj čekalo. Proto vám sestra volá kvůli termínu a proto má smysl hlásit, když menstruace přijde jindy, než jste čekala.
 
 ## Referenční meze nejsou hranice normálnosti
 
@@ -66,20 +66,20 @@ V této sekci záměrně nenajdete žádná konkrétní čísla. Není to opomen
 - Jedna hodnota se skoro nikdy nečte samostatně. Čte se spolu s ostatními, s ultrazvukem a s vaší anamnézou.
 - Hodnota mimo rozmezí neznamená automaticky diagnózu a hodnota uvnitř rozmezí nezaručuje nic.
 
-**Výklad výsledků patří lékaři, který zná celý váš obraz.** Aplikace vám pomůže rozumět tomu, co se měřilo a proč — ale neřekne vám, jestli je vaše číslo v pořádku.
+**Výklad výsledků patří lékaři, který zná celý váš obraz.** Aplikace vám pomůže rozumět tomu, co se měřilo a proč, ale neřekne vám, jestli je vaše číslo v pořádku.
 
 ## Co vyšetření nedokáže
 
-Ani kompletní sada výsledků nedá odpověď na otázku „jaká je moje šance". Vyšetření popisují, co je vidět a měřitelné. U části párů se přes veškerou snahu žádná jednoznačná příčina nenajde — tomu se říká nevysvětlená neplodnost a není to selhání vyšetřujícího lékaře.
+Ani kompletní sada výsledků nedá odpověď na otázku „jaká je moje šance". Vyšetření popisují, co je vidět a měřitelné. U části párů se přes veškerou snahu žádná jednoznačná příčina nenajde. Tomu se říká nevysvětlená neplodnost a není to selhání vyšetřujícího lékaře.
 
 ## Než přijdete pro výsledky
 
 1. Napište si předem tři otázky, které vás nejvíc pálí.
-2. Ptejte se, co konkrétně z výsledku plyne pro další postup — víc než na samotné číslo.
+2. Ptejte se, co konkrétně z výsledku plyne pro další postup. Víc než na samotné číslo.
 3. Ptejte se, jestli se má něco opakovat a kdy.
 4. Poznamenejte si laboratoř a jednotky. Při srovnávání s jiným pracovištěm to bývá klíčové.
 
-> Tento text popisuje obvyklou praxi a nenahrazuje konzultaci. Rozsah vyšetření i načasování se mezi pracovišti liší — vždy se řiďte tím, co vám řekne vaše klinika.`,
+> Tento text popisuje obvyklou praxi a nenahrazuje konzultaci. Rozsah vyšetření i načasování se mezi pracovišti liší. Vždy se řiďte tím, co vám řekne vaše klinika.`,
   },
   {
     id: 'vys-prehled-partner',
@@ -94,14 +94,14 @@ Ani kompletní sada výsledků nedá odpověď na otázku „jaká je moje šanc
     hero: 'taupe',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     boost: 0.8,
     body: `## Vyšetřuje se pár, ne žena
 
 Na mužském faktoru se podílí zhruba polovina případů, ať už samostatně, nebo v kombinaci. Přesto se pořád stává, že žena absolvuje několik kol odběrů a zákroků dřív, než někdo poprosí partnera o vzorek.
 
-Základní vyšetření u muže bývá jednoduché, rychlé a v porovnání se zbytkem diagnostiky levné. Většinou se proto zařazuje hned na začátek — ne proto, že by se čekal problém, ale proto, že jeho výsledek mění, co má smysl dělat dál.
+Základní vyšetření u muže bývá jednoduché, rychlé a v porovnání se zbytkem diagnostiky levné. Většinou se proto zařazuje hned na začátek, ne proto, že by se čekal problém, ale proto, že jeho výsledek mění, co má smysl dělat dál.
 
 ## Z čeho se plán skládá
 
@@ -109,7 +109,7 @@ Vyšetření u partnera se skládá podobně individuálně jako u ženy. Roli h
 
 - výsledek základního rozboru ejakulátu a jeho opakování,
 - anamnéza: operace v tříslech nebo na varlatech, úrazy, nesestouplá varlata v dětství, prodělané infekce,
-- horečnaté onemocnění v posledních měsících — tvorba spermií trvá zhruba dva a půl až tři měsíce, takže chřipka z jara může ovlivnit vzorek z léta,
+- horečnaté onemocnění v posledních měsících. Tvorba spermií trvá zhruba dva a půl až tři měsíce, takže chřipka z jara může ovlivnit vzorek z léta,
 - léky, doplňky, anabolika, kouření a alkohol,
 - profesní zátěž teplem nebo chemikáliemi,
 - předchozí děti nebo těhotenství v jiném vztahu.
@@ -120,7 +120,7 @@ Podle toho se může přidat vyšetření u urologa nebo androloga, hormonální
 
 Rozbor ejakulátu má přirozeně vysokou proměnlivost. Stejný muž může mít během několika týdnů výrazně odlišné výsledky podle délky abstinence, únavy, nemoci nebo prostě náhody.
 
-Proto se závěr obvykle nedělá z jednoho vzorku. Pokud první výsledek vyjde jinak, než se čekalo, bývá dalším krokem opakování s odstupem — ne okamžitá změna léčebného plánu.
+Proto se závěr obvykle nedělá z jednoho vzorku. Pokud první výsledek vyjde jinak, než se čekalo, bývá dalším krokem opakování s odstupem, ne okamžitá změna léčebného plánu.
 
 ## Referenční hodnoty nejsou hranice mezi plodným a neplodným
 
@@ -137,7 +137,7 @@ Pro spoustu mužů je tohle vyšetření nepříjemné víc, než dávají najev
 - jít na výsledky společně,
 - neposílat partnera do diskusních fór.
 
-> Tento text popisuje obvyklý postup. Rozsah a pořadí vyšetření určuje lékař podle konkrétní situace — proberte je se svou klinikou.`,
+> Tento text popisuje obvyklý postup. Rozsah a pořadí vyšetření určuje lékař podle konkrétní situace. Proberte je se svou klinikou.`,
   },
   {
     id: 'vys-prehled-dalsi',
@@ -152,12 +152,12 @@ Pro spoustu mužů je tohle vyšetření nepříjemné víc, než dávají najev
     hero: 'linen',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     boost: 0.6,
     body: `## Kdy se jde za základní sadu
 
-Základní vyšetřovací sada u ženy a u partnera pokryje většinu situací. Kruh se rozšiřuje tehdy, když k tomu je konkrétní důvod — nejčastěji:
+Základní vyšetřovací sada u ženy a u partnera pokryje většinu situací. Kruh se rozšiřuje tehdy, když k tomu je konkrétní důvod. Nejčastěji:
 
 - opakované neúspěšné transfery kvalitních embryí,
 - opakované ztráty těhotenství,
@@ -167,7 +167,7 @@ Základní vyšetřovací sada u ženy a u partnera pokryje většinu situací. 
 
 Rozšířené vyšetření není odměna za vytrvalost ani vyšší úroveň péče. Je to nástroj na konkrétní otázku. Když otázka není položená, výsledek nemá kam zapadnout.
 
-## Kde jsou důkazy slabé — a je poctivé to říct
+## Kde jsou důkazy slabé: a je poctivé to říct
 
 U části rozšířených vyšetření není důkazní podklad silný. Platí to zejména pro:
 
@@ -175,11 +175,11 @@ U části rozšířených vyšetření není důkazní podklad silný. Platí to
 - **plošné vyšetřování trombofilií** u žen bez osobní nebo rodinné anamnézy trombózy. Nález sám o sobě nemusí znamenat, že je příčinou obtíží.
 - **testy fragmentace DNA spermií.** Souvislost s některými výsledky léčby je popsaná, ale metody i hraniční hodnoty se liší a není jasně doložené, že postup vedený podle tohoto výsledku zvyšuje šanci na narozené dítě.
 
-To neznamená, že jsou tato vyšetření zbytečná vždy. Znamená to, že **u nich má smysl se zeptat, co konkrétně se změní podle výsledku** — a když odpověď zní „nic", je to důležitá informace.
+To neznamená, že jsou tato vyšetření zbytečná vždy. Znamená to, že **u nich má smysl se zeptat, co konkrétně se změní podle výsledku**: a když odpověď zní „nic", je to důležitá informace.
 
 ## Referenční meze ani tady nečtěte samy
 
-Rozšířená vyšetření produkují nejvíc čísel a nejmíň jistoty. Konkrétní meze v této sekci proto nenajdete: hodnoty se liší podle laboratoře, metody, věku a kontextu a jejich výklad patří lékaři, často z jiného oboru — hematologovi, endokrinologovi, klinickému genetikovi.
+Rozšířená vyšetření produkují nejvíc čísel a nejmíň jistoty. Konkrétní meze v této sekci proto nenajdete: hodnoty se liší podle laboratoře, metody, věku a kontextu a jejich výklad patří lékaři, často z jiného oboru. Hematologovi, endokrinologovi, klinickému genetikovi.
 
 Zvlášť tady platí, že hledání vlastního výsledku v diskusích vede k závěrům, které s vaší situací nemusí mít nic společného.
 
@@ -190,7 +190,7 @@ Rozšířená vyšetření bývají často hrazena jen částečně a čekací d
 Než přidáte další test, zeptejte se:
 
 1. Jakou otázku tímhle vyšetřením odpovídáme?
-2. Co se stane, když vyjde takto — a co, když opačně?
+2. Co se stane, když vyjde takto. A co, když opačně?
 3. Existuje pro tenhle postup dostatečný důkaz?
 4. Kolik to stojí a jak dlouho se čeká?
 5. Dá se mezitím pokračovat, nebo se čeká na výsledek?
@@ -199,7 +199,7 @@ Než přidáte další test, zeptejte se:
 
 Diagnostika je klidová část cesty, ale ne vždy. **Kontaktujte svou kliniku** při horečce, silné bolesti v podbřišku nebo silném krvácení. **Vyhledejte akutní lékařskou pomoc** při náhlé dušnosti, bolesti na hrudi nebo při bolesti, otoku a zarudnutí lýtka.
 
-> Tento text má informativní charakter. O rozsahu vyšetření rozhoduje lékař podle vaší situace — proberte ho se svou klinikou.`,
+> Tento text má informativní charakter. O rozsahu vyšetření rozhoduje lékař podle vaší situace. Proberte ho se svou klinikou.`,
   },
 
   // --- (B) ŽENA ---------------------------------------------------------
@@ -224,18 +224,18 @@ AMH (anti-Müllerův hormon) tvoří malé rostoucí folikuly ve vaječnících.
 ## Co může ukázat
 
 - Orientaci v tom, kolik vajíček by při stimulaci mohlo dozrát.
-- Podklad pro volbu protokolu a dávky léků — nižší hodnota vede často k jinému postupu než vysoká.
+- Podklad pro volbu protokolu a dávky léků. Nižší hodnota vede často k jinému postupu než vysoká.
 - Upozornění na riziko silné odpovědi na stimulaci, které bývá spojováno s vyšším AMH.
 
 Co AMH neukazuje: **kvalitu vajíček ani vaši šanci otěhotnět.** Nízká hodnota neznamená, že otěhotnět nemůžete, a vysoká hodnota nic negarantuje. Výsledek se vždy čte spolu s věkem, ultrazvukem a zbytkem obrazu.
 
 ## Kdy může být relevantní
 
-Odběr AMH může být součástí vyšetření, pokud se plánuje stimulace, pokud je podezření na sníženou rezervu, po operaci vaječníků, při nepravidelném cyklu nebo když zvažujete zamrazení vajíček. Záleží na anamnéze a doporučení lékaře — automaticky se nedělá u každé ženy.
+Odběr AMH může být součástí vyšetření, pokud se plánuje stimulace, pokud je podezření na sníženou rezervu, po operaci vaječníků, při nepravidelném cyklu nebo když zvažujete zamrazení vajíček. Záleží na anamnéze a doporučení lékaře. Automaticky se nedělá u každé ženy.
 
 ## Jak vyšetření probíhá
 
-Běžný odběr krve ze žíly. Na rozdíl od většiny ostatních hormonů obvykle nezáleží na dni cyklu a většinou není potřeba být nalačno. Řekněte předem, jestli užíváte hormonální antikoncepci nebo jiné hormonální přípravky — mohou hodnotu ovlivnit a lékař s tím při výkladu počítá.
+Běžný odběr krve ze žíly. Na rozdíl od většiny ostatních hormonů obvykle nezáleží na dni cyklu a většinou není potřeba být nalačno. Řekněte předem, jestli užíváte hormonální antikoncepci nebo jiné hormonální přípravky. Mohou hodnotu ovlivnit a lékař s tím při výkladu počítá.
 
 Výsledek bývá za několik dní. Různé laboratoře používají různé metody i jednotky, takže dvě čísla z různých pracovišť nejdou porovnat přímo.
 
@@ -264,13 +264,13 @@ Výsledek bývá za několik dní. Různé laboratoře používají různé meto
     publishedOn: '2026-08-02',
     body: `## Proč se dělá
 
-FSH (folikuly stimulující hormon) vzniká v podvěsku mozkovém a pobízí vaječníky k růstu folikulů. Jeho hladina na začátku cyklu ukazuje, jak silný signál tělo potřebuje posílat — a nepřímo tedy něco o tom, jak vaječníky odpovídají.
+FSH (folikuly stimulující hormon) vzniká v podvěsku mozkovém a pobízí vaječníky k růstu folikulů. Jeho hladina na začátku cyklu ukazuje, jak silný signál tělo potřebuje posílat. A nepřímo tedy něco o tom, jak vaječníky odpovídají.
 
 ## Co může ukázat
 
 - Orientaci v ovariální rezervě, zejména ve spojení s estradiolem a s ultrazvukem.
 - Podnět k dalšímu vyšetření, pokud hodnoty neodpovídají tomu, co se u vás čeká.
-- Informaci o řízení cyklu z centrální úrovně — nízké hodnoty FSH i LH mohou vést k vyšetření podvěsku mozkového.
+- Informaci o řízení cyklu z centrální úrovně. Nízké hodnoty FSH i LH mohou vést k vyšetření podvěsku mozkového.
 
 FSH se **nedá číst samostatně.** Vysoký estradiol může FSH uměle snížit, takže obě hodnoty se hodnotí společně. Hodnota se navíc mezi cykly mění, takže jeden odběr nebývá konečné slovo.
 
@@ -280,9 +280,9 @@ Odběr FSH může být součástí základní hormonální sady při vyšetřen�
 
 ## Jak vyšetření probíhá
 
-Odběr krve ze žíly, obvykle na začátku cyklu — nejčastěji mezi druhým a pátým dnem, přesný den určí vaše klinika. První den cyklu je den, kdy začne plné krvácení, ne špinění.
+Odběr krve ze žíly, obvykle na začátku cyklu. Nejčastěji mezi druhým a pátým dnem, přesný den určí vaše klinika. První den cyklu je den, kdy začne plné krvácení, ne špinění.
 
-Odběr bývá ráno a spolu s ním se často odebírá estradiol, LH a další hormony, aby se výsledky daly číst v celku. Hormonální antikoncepce a některé léky výsledek ovlivňují — nahlaste, co užíváte.
+Odběr bývá ráno a spolu s ním se často odebírá estradiol, LH a další hormony, aby se výsledky daly číst v celku. Hormonální antikoncepce a některé léky výsledek ovlivňují. Nahlaste, co užíváte.
 
 ## Na co se zeptat lékaře
 
@@ -299,7 +299,7 @@ Odběr bývá ráno a spolu s ním se často odebírá estradiol, LH a další h
     kind: 'article',
     title: 'LH: hormon, který spouští ovulaci',
     excerpt:
-      'Měří se na začátku cyklu i v jeho průběhu. Ukazuje, jak je řízená ovulace — a proč se doma testuje z moči.',
+      'Měří se na začátku cyklu i v jeho průběhu. Ukazuje, jak je řízená ovulace. A proč se doma testuje z moči.',
     minutes: 3,
     phases: ['diagnostics'],
     topics: ['hormony', 'vysledky'],
@@ -314,18 +314,18 @@ LH (luteinizační hormon) vzniká stejně jako FSH v podvěsku mozkovém. Jeho 
 ## Co může ukázat
 
 - Jestli tělo posílá vaječníkům signál k ovulaci a v jakém poměru k FSH.
-- Podklad pro vyhodnocení podezření na syndrom polycystických vaječníků, kde bývá poměr LH a FSH posunutý. Sám o sobě to ale není důkaz — diagnóza se opírá o víc nálezů dohromady.
-- V průběhu cyklu nebo stimulace načasování — vzestup LH mění plán dalších kroků.
+- Podklad pro vyhodnocení podezření na syndrom polycystických vaječníků, kde bývá poměr LH a FSH posunutý. Sám o sobě to ale není důkaz. Diagnóza se opírá o víc nálezů dohromady.
+- V průběhu cyklu nebo stimulace načasování. Vzestup LH mění plán dalších kroků.
 
 ## Kdy může být relevantní
 
-Odběr LH může být součástí základní hormonální sady, dále při nepravidelném cyklu, při podezření na poruchu ovulace nebo při sledování cyklu před inseminací či transferem. Nedělá se automaticky u každé ženy — záleží na anamnéze a doporučení lékaře.
+Odběr LH může být součástí základní hormonální sady, dále při nepravidelném cyklu, při podezření na poruchu ovulace nebo při sledování cyklu před inseminací či transferem. Nedělá se automaticky u každé ženy. Záleží na anamnéze a doporučení lékaře.
 
 ## Jak vyšetření probíhá
 
 Odběr krve ze žíly. Na začátku cyklu se obvykle odebírá spolu s FSH a estradiolem, uprostřed cyklu se může opakovat kvůli načasování. LH kolísá v pulzech během dne, proto se čas odběru dodržuje.
 
-Doma se LH dá orientačně sledovat ovulačními testy z moči. Ty ukazují vzestup, ale ne jeho výšku a ne to, jestli ovulace opravdu proběhla. Pokud používáte ovulační testy, řekněte to lékaři — jejich výsledky mu pomůžou při čtení laboratorních hodnot.
+Doma se LH dá orientačně sledovat ovulačními testy z moči. Ty ukazují vzestup, ale ne jeho výšku a ne to, jestli ovulace opravdu proběhla. Pokud používáte ovulační testy, řekněte to lékaři. Jejich výsledky mu pomůžou při čtení laboratorních hodnot.
 
 ## Na co se zeptat lékaře
 
@@ -352,7 +352,7 @@ Doma se LH dá orientačně sledovat ovulačními testy z moči. Ty ukazují vze
     publishedOn: '2026-08-02',
     body: `## Proč se dělá
 
-Estradiol je hlavní ženský pohlavní hormon a tvoří ho rostoucí folikuly. Jeho hladina proto zhruba kopíruje to, co se ve vaječnících děje — a zároveň ovlivňuje růst děložní sliznice.
+Estradiol je hlavní ženský pohlavní hormon a tvoří ho rostoucí folikuly. Jeho hladina proto zhruba kopíruje to, co se ve vaječnících děje. A zároveň ovlivňuje růst děložní sliznice.
 
 ## Co může ukázat
 
@@ -367,14 +367,14 @@ Odběr estradiolu může být součástí základní hormonální sady, sledová
 
 ## Jak vyšetření probíhá
 
-Odběr krve ze žíly, obvykle ráno. Na začátku cyklu se odebírá spolu s FSH a LH. Během stimulace se opakuje častěji — někdy obden, někdy denně, podle protokolu a podle toho, co ukazuje ultrazvuk.
+Odběr krve ze žíly, obvykle ráno. Na začátku cyklu se odebírá spolu s FSH a LH. Během stimulace se opakuje častěji. Někdy obden, někdy denně, podle protokolu a podle toho, co ukazuje ultrazvuk.
 
 Výsledky bývají tentýž den, protože podle nich se upravuje dávkování. Jednotky se mezi laboratořemi liší, takže hodnoty z různých pracovišť nejde srovnávat přímo.
 
 ## Na co se zeptat lékaře
 
 1. Jak čtete estradiol spolu s mým FSH?
-2. Co u mě sledujete během stimulace — hodnotu, nebo spíš její vývoj?
+2. Co u mě sledujete během stimulace. Hodnotu, nebo spíš její vývoj?
 3. Kdy dostanu výsledek a jak se dozvím případnou změnu dávky?
 4. Znamená rychlý vzestup, že se má něco změnit?
 5. Ovlivňuje tenhle výsledek termín dalšího kroku?
@@ -402,18 +402,18 @@ Progesteron tvoří žluté tělísko, které vznikne z folikulu po ovulaci. Př
 
 - Nepřímé potvrzení proběhlé ovulace.
 - Podklad pro posouzení druhé fáze cyklu, pokud je cyklus krátký nebo nepravidelný.
-- Ve stimulovaném cyklu informaci o tom, jestli hladina nestoupá dřív, než by měla — to může ovlivnit rozhodnutí o čerstvém transferu.
+- Ve stimulovaném cyklu informaci o tom, jestli hladina nestoupá dřív, než by měla. To může ovlivnit rozhodnutí o čerstvém transferu.
 - Při přípravě na kryotransfer se může sledovat kvůli načasování.
 
 Hodnota kolísá v pulzech i během jednoho dne, takže jeden odběr popisuje jeden okamžik, ne celou fázi cyklu.
 
 ## Kdy může být relevantní
 
-Odběr progesteronu může být součástí vyšetření při podezření na poruchu ovulace, při nepravidelném cyklu, při sledování cyklu před inseminací nebo v rámci sledování léčebného cyklu. Záleží na anamnéze a doporučení lékaře — u každé ženy se nedělá.
+Odběr progesteronu může být součástí vyšetření při podezření na poruchu ovulace, při nepravidelném cyklu, při sledování cyklu před inseminací nebo v rámci sledování léčebného cyklu. Záleží na anamnéze a doporučení lékaře. U každé ženy se nedělá.
 
 ## Jak vyšetření probíhá
 
-Odběr krve ze žíly. Termín se obvykle plánuje na dobu zhruba týden po předpokládané ovulaci, u pravidelného cyklu tedy někdy kolem jeho 21. dne. Pokud máte delší nebo nepravidelný cyklus, den se posouvá — proto se lékař ptá na délku cyklu a proto se termín u některých žen odvozuje od ovulačního testu nebo od ultrazvuku.
+Odběr krve ze žíly. Termín se obvykle plánuje na dobu zhruba týden po předpokládané ovulaci, u pravidelného cyklu tedy někdy kolem jeho 21. dne. Pokud máte delší nebo nepravidelný cyklus, den se posouvá, proto se lékař ptá na délku cyklu a proto se termín u některých žen odvozuje od ovulačního testu nebo od ultrazvuku.
 
 Pokud užíváte progesteron jako lék, řekněte to. Výsledek se pak čte jinak.
 
@@ -421,7 +421,7 @@ Pokud užíváte progesteron jako lék, řekněte to. Výsledek se pak čte jina
 
 1. Který den mám na odběr přijít při mé délce cyklu?
 2. Mám si předtím dělat ovulační testy?
-3. Co z výsledku plyne — potvrzuje ovulaci, nebo se bude opakovat?
+3. Co z výsledku plyne. Potvrzuje ovulaci, nebo se bude opakovat?
 4. Jak se výsledek mění tím, že užívám progesteron?
 5. Mění to plán dalšího cyklu?
 
@@ -447,7 +447,7 @@ TSH vzniká v podvěsku mozkovém a řídí činnost štítné žlázy. Je to ci
 ## Co může ukázat
 
 - Nepřímý obraz o tom, jak štítná žláza pracuje.
-- Podnět k doplnění dalších vyšetření — nejčastěji volného tyroxinu (fT4) a protilátek proti štítné žláze.
+- Podnět k doplnění dalších vyšetření. Nejčastěji volného tyroxinu (fT4) a protilátek proti štítné žláze.
 - Důvod k odeslání k endokrinologovi, pokud je hodnota mimo očekávání nebo pokud jsou přítomné protilátky.
 
 TSH samo o sobě není diagnóza. Kolísá během dne a mění se i při jiném onemocnění nebo při užívání některých léků.
@@ -458,7 +458,7 @@ Odběr TSH může být součástí vyšetření při plánování těhotenství,
 
 ## Jak vyšetření probíhá
 
-Běžný odběr krve ze žíly, obvykle ráno. Na dni cyklu většinou nezáleží. Pokud užíváte hormony štítné žlázy, řekněte, kdy jste si vzala poslední dávku — načasování odběru vůči lékům se domlouvá předem.
+Běžný odběr krve ze žíly, obvykle ráno. Na dni cyklu většinou nezáleží. Pokud užíváte hormony štítné žlázy, řekněte, kdy jste si vzala poslední dávku. Načasování odběru vůči lékům se domlouvá předem.
 
 Nahlaste i doplňky stravy s biotinem. Ty mohou u některých metod výsledek zkreslit, a proto se před odběrem někdy krátce vysazují po domluvě s lékařem.
 
@@ -492,20 +492,20 @@ Prolaktin vzniká v podvěsku mozkovém a jeho hlavní role souvisí s kojením.
 ## Co může ukázat
 
 - Jestli může být za nepravidelným cyklem právě prolaktin.
-- Podnět k pátrání po příčině — bývá jí stres, některé léky, onemocnění štítné žlázy nebo méně často nezhoubný nález na podvěsku mozkovém.
+- Podnět k pátrání po příčině. Bývá jí stres, některé léky, onemocnění štítné žlázy nebo méně často nezhoubný nález na podvěsku mozkovém.
 - Podklad pro rozhodnutí, zda odeslat k endokrinologovi a zda doplnit zobrazovací vyšetření.
 
 Jednorázově zvýšená hodnota sama o sobě nic neznamená. Prolaktin stoupá po stresu, po fyzické zátěži, po jídle, po vyšetření prsou i po pohlavním styku.
 
 ## Kdy může být relevantní
 
-Odběr může být součástí vyšetření při nepravidelném nebo chybějícím cyklu, při výtoku z prsou, při bolestech hlavy a poruchách zraku spolu s poruchou cyklu, nebo při hledání příčiny poruchy ovulace. Nedělá se u každé ženy — záleží na anamnéze a doporučení lékaře.
+Odběr může být součástí vyšetření při nepravidelném nebo chybějícím cyklu, při výtoku z prsou, při bolestech hlavy a poruchách zraku spolu s poruchou cyklu, nebo při hledání příčiny poruchy ovulace. Nedělá se u každé ženy. Záleží na anamnéze a doporučení lékaře.
 
 ## Jak vyšetření probíhá
 
 Odběr krve ze žíly, obvykle ráno, ideálně v klidu. Většina pracovišť doporučuje přijít s předstihem, chvíli si sednout a nespěchat, případně být nalačno. Přesné pokyny vám dá vaše klinika.
 
-Den před odběrem se obvykle vynechává větší fyzická zátěž, pohlavní styk a vyšetřování prsou. Pokud vyjde hodnota zvýšená, bývá dalším krokem opakování za standardních podmínek, někdy s doplněním speciálního rozboru — teprve pak se dělá závěr.
+Den před odběrem se obvykle vynechává větší fyzická zátěž, pohlavní styk a vyšetřování prsou. Pokud vyjde hodnota zvýšená, bývá dalším krokem opakování za standardních podmínek, někdy s doplněním speciálního rozboru. Teprve pak se dělá závěr.
 
 ## Na co se zeptat lékaře
 
@@ -532,14 +532,14 @@ Den před odběrem se obvykle vynechává větší fyzická zátěž, pohlavní 
     publishedOn: '2026-08-02',
     body: `## Proč se dělá
 
-AFC znamená počet antrálních folikulů — malých váčků s tekutinou, které jsou na začátku cyklu ve vaječnících vidět na ultrazvuku. Jejich počet zhruba odpovídá tomu, kolik folikulů je v daném cyklu k dispozici pro růst. Používá se jako ukazatel ovariální rezervy vedle AMH.
+AFC znamená počet antrálních folikulů. Malých váčků s tekutinou, které jsou na začátku cyklu ve vaječnících vidět na ultrazvuku. Jejich počet zhruba odpovídá tomu, kolik folikulů je v daném cyklu k dispozici pro růst. Používá se jako ukazatel ovariální rezervy vedle AMH.
 
 ## Co může ukázat
 
 - Orientaci v tom, jak by vaječníky mohly odpovědět na stimulaci.
 - Podklad pro volbu protokolu a dávek.
 - Doplnění obrazu tam, kde AMH vychází nejednoznačně nebo kde se výsledky mezi laboratořemi liší.
-- Zároveň i pohled na vaječníky jako takové — cysty, nálezy, dostupnost pro odběr.
+- Zároveň i pohled na vaječníky jako takové. Cysty, nálezy, dostupnost pro odběr.
 
 AFC nevypovídá o kvalitě vajíček. Je také do jisté míry závislý na vyšetřujícím a na přístroji, takže se počty mezi pracovišti mohou lišit.
 
@@ -549,7 +549,7 @@ Počítání antrálních folikulů může být součástí vyšetření před p
 
 ## Jak vyšetření probíhá
 
-Vaginální ultrazvuk, obvykle na začátku cyklu — nejčastěji v prvních dnech po skončení krvácení, přesný termín určí klinika. Vyšetření trvá několik minut, nevyžaduje přípravu ani plný močový měchýř a bývá popisováno jako nepříjemné spíš tlakem než bolestí.
+Vaginální ultrazvuk, obvykle na začátku cyklu. Nejčastěji v prvních dnech po skončení krvácení, přesný termín určí klinika. Vyšetření trvá několik minut, nevyžaduje přípravu ani plný močový měchýř a bývá popisováno jako nepříjemné spíš tlakem než bolestí.
 
 Lékař projde oba vaječníky a spočítá drobné folikuly. Výsledek znáte hned, protože vzniká přímo u přístroje.
 
@@ -558,7 +558,7 @@ Lékař projde oba vaječníky a spočítá drobné folikuly. Výsledek znáte h
 1. Kolik folikulů jste napočítal na každém vaječníku?
 2. Jak to čtete spolu s mým AMH a věkem?
 3. Ovlivňuje to plán stimulace?
-4. Je vidět něco dalšího — cysta, nález, který má sledování?
+4. Je vidět něco dalšího. Cysta, nález, který má sledování?
 5. Má smysl počet zopakovat v jiném cyklu?
 
 > Počet se mezi cykly i mezi vyšetřujícími může lišit. Výklad patří lékaři, který ho čte spolu se zbytkem vašeho obrazu.`,
@@ -596,7 +596,7 @@ Ultrazvuk může být součástí prvního vyšetření, sledování cyklu, př�
 
 ## Jak vyšetření probíhá
 
-Nejčastěji vaginálně — sonda se zavádí do pochvy, což dává výrazně lepší obraz než vyšetření přes břicho. Trvá to zpravidla několik minut, není potřeba plný močový měchýř a bez přípravy.
+Nejčastěji vaginálně. Sonda se zavádí do pochvy, což dává výrazně lepší obraz než vyšetření přes břicho. Trvá to zpravidla několik minut, není potřeba plný močový měchýř a bez přípravy.
 
 Někdy se stejné vyšetření opakuje v jiné fázi cyklu, protože sliznice i vaječníky vypadají v každé fázi jinak. To není známka toho, že by bylo něco špatně.
 
@@ -624,7 +624,7 @@ Pokud vám je vyšetření nepříjemné, řekněte to. Dá se zvolit jiná polo
     level: 'deep',
     hero: 'dusk',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     body: `## Proč se dělá
 
@@ -639,7 +639,7 @@ Hysteroskopie je vyšetření, při kterém se do dutiny děložní zavede tenk�
 
 Nález se často dá při stejném výkonu rovnou ošetřit. Pak se mluví o operační hysteroskopii, na rozdíl od čistě diagnostické.
 
-Poctivá poznámka k důkazům: **provádět hysteroskopii plošně u všech žen před IVF se jako přínosné nepotvrdilo.** U žen s podezřelým nálezem na ultrazvuku nebo po opakovaně neúspěšných transferech může být zvažována — o tom rozhoduje lékař podle konkrétní situace.
+Poctivá poznámka k důkazům: **provádět hysteroskopii plošně u všech žen před IVF se jako přínosné nepotvrdilo.** U žen s podezřelým nálezem na ultrazvuku nebo po opakovaně neúspěšných transferech může být zvažována. O tom rozhoduje lékař podle konkrétní situace.
 
 ## Kdy může být relevantní
 
@@ -647,7 +647,7 @@ Může být součástí plánu při podezření na nález v dutině děložní, 
 
 ## Jak vyšetření probíhá
 
-Plánuje se obvykle v první polovině cyklu, po skončení krvácení. Provádí se buď ambulantně bez narkózy, nebo v krátké celkové anestezii — záleží na pracovišti, na tom, co se čeká, a na vaší toleranci.
+Plánuje se obvykle v první polovině cyklu, po skončení krvácení. Provádí se buď ambulantně bez narkózy, nebo v krátké celkové anestezii. Záleží na pracovišti, na tom, co se čeká, a na vaší toleranci.
 
 Přístroj se zavádí pochvou a děložním hrdlem, dutina se rozvine tekutinou nebo plynem, aby byla vidět. Samotné vyšetření trvá obvykle několik minut, s operačním výkonem déle. Po zákroku bývá pár dní slabé špinění a křeče podobné menstruačním.
 
@@ -661,7 +661,7 @@ Přístroj se zavádí pochvou a děložním hrdlem, dutina se rozvine tekutinou
 4. Bude se odebírat vzorek sliznice?
 5. Za jak dlouho po výkonu se dá pokračovat v léčbě?
 
-> Text popisuje obvyklý průběh. Postupy se mezi pracovišti liší — řiďte se pokyny své kliniky.`,
+> Text popisuje obvyklý průběh. Postupy se mezi pracovišti liší. Řiďte se pokyny své kliniky.`,
   },
   {
     id: 'vys-hsg-hyfosy',
@@ -687,11 +687,11 @@ Aby mohlo dojít k přirozenému početí, musí být aspoň jeden vejcovod prů
 - Obrys dutiny děložní a některé odchylky jejího tvaru.
 - Nahromadění tekutiny ve vejcovodu.
 
-Co neukáže: **funkci vejcovodu.** Průchodná trubice ještě neznamená, že vejcovod dobře pracuje. Stejně tak nález uzávěru na jednom vyšetření se někdy při opakování nepotvrdí — vejcovod se může přechodně stáhnout.
+Co neukáže: **funkci vejcovodu.** Průchodná trubice ještě neznamená, že vejcovod dobře pracuje. Stejně tak nález uzávěru na jednom vyšetření se někdy při opakování nepotvrdí. Vejcovod se může přechodně stáhnout.
 
 ## Kdy může být relevantní
 
-Vyšetření může být součástí plánu, když se zvažuje přirozené početí nebo inseminace, po prodělaném zánětu v malé pánvi, po operaci v břiše nebo po mimoděložním těhotenství. Pokud se plánuje rovnou IVF, nemusí být potřeba — o tom rozhoduje lékař podle konkrétní situace.
+Vyšetření může být součástí plánu, když se zvažuje přirozené početí nebo inseminace, po prodělaném zánětu v malé pánvi, po operaci v břiše nebo po mimoděložním těhotenství. Pokud se plánuje rovnou IVF, nemusí být potřeba. O tom rozhoduje lékař podle konkrétní situace.
 
 ## Jak vyšetření probíhá
 
@@ -700,7 +700,7 @@ Obě metody se plánují do první poloviny cyklu, po skončení krvácení a p�
 - **HSG** používá rentgen a kontrastní látku. Nález se zaznamená na snímky.
 - **HyFoSy** používá ultrazvuk a pěnový kontrast. Bez rentgenového záření, provádí se často přímo na gynekologii.
 
-Do dělohy se zavede tenký katétr, vstříkne se kontrast a sleduje se jeho průchod. Trvá to zpravidla několik minut. Většina žen popisuje křeče podobné silnější menstruaci, u někoho krátce ostré. Řada pracovišť doporučuje vzít si hodinu předem lék proti bolesti — zeptejte se předem, jaký a jestli je to ve vašem případě vhodné. Někdy se podávají antibiotika.
+Do dělohy se zavede tenký katétr, vstříkne se kontrast a sleduje se jeho průchod. Trvá to zpravidla několik minut. Většina žen popisuje křeče podobné silnější menstruaci, u někoho krátce ostré. Řada pracovišť doporučuje vzít si hodinu předem lék proti bolesti. Zeptejte se předem, jaký a jestli je to ve vašem případě vhodné. Někdy se podávají antibiotika.
 
 Po výkonu bývá den až dva slabé špinění nebo výtok z kontrastu.
 
@@ -714,7 +714,7 @@ Po výkonu bývá den až dva slabé špinění nebo výtok z kontrastu.
 4. Ve který den cyklu mám přijít a musím se v tom cyklu chránit?
 5. Co bude následovat podle výsledku?
 
-> Text popisuje obvyklý průběh. Postupy i příprava se mezi pracovišti liší — řiďte se pokyny své kliniky.`,
+> Text popisuje obvyklý průběh. Postupy i příprava se mezi pracovišti liší. Řiďte se pokyny své kliniky.`,
   },
   {
     id: 'vys-genetika-zena',
@@ -731,7 +731,7 @@ Po výkonu bývá den až dva slabé špinění nebo výtok z kontrastu.
     publishedOn: '2026-08-02',
     body: `## Proč se dělá
 
-Genetické vyšetření hledá odchylky, které mohou ovlivnit plodnost, vývoj embrya nebo riziko přenosu onemocnění na dítě. Nejčastějším vyšetřením je karyotyp — pohled na počet a strukturu chromozomů.
+Genetické vyšetření hledá odchylky, které mohou ovlivnit plodnost, vývoj embrya nebo riziko přenosu onemocnění na dítě. Nejčastějším vyšetřením je karyotyp. Pohled na počet a strukturu chromozomů.
 
 ## Co může ukázat
 
@@ -743,13 +743,13 @@ Co neukáže: **záruku.** Normální výsledek nevylučuje všechny genetické 
 
 ## Kdy může být relevantní
 
-Může být součástí vyšetření po opakovaných ztrátách těhotenství, při opakovaně neúspěšné léčbě, při dědičném onemocnění v rodině, při nálezu u dřívějšího těhotenství, při předčasném selhání vaječníků nebo když se zvažuje PGT. **Není součástí vyšetřovacího plánu každé ženy** — záleží na anamnéze a doporučení lékaře.
+Může být součástí vyšetření po opakovaných ztrátách těhotenství, při opakovaně neúspěšné léčbě, při dědičném onemocnění v rodině, při nálezu u dřívějšího těhotenství, při předčasném selhání vaječníků nebo když se zvažuje PGT. **Není součástí vyšetřovacího plánu každé ženy**: záleží na anamnéze a doporučení lékaře.
 
 ## Jak vyšetření probíhá
 
 Obvykle jde o odběr krve. Výsledky některých testů trvají týdny.
 
-Součástí bývá **genetická konzultace** u klinického genetika — před vyšetřením i po něm. Není to formalita: teprve rozhovor s genetikem dá výsledku smysl a vysvětlí, co znamená pro vás, pro partnera a pro širší rodinu.
+Součástí bývá **genetická konzultace** u klinického genetika. Před vyšetřením i po něm. Není to formalita: teprve rozhovor s genetikem dá výsledku smysl a vysvětlí, co znamená pro vás, pro partnera a pro širší rodinu.
 
 Počítejte s tím, že výsledek se může týkat i sourozenců a rodičů. Genetik s vámi probere, jestli a jak je vhodné informovat je.
 
@@ -778,7 +778,7 @@ Počítejte s tím, že výsledek se může týkat i sourozenců a rodičů. Gen
     level: 'essential',
     hero: 'taupe',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     boost: 0.7,
     body: `## Proč se dělá
@@ -803,9 +803,9 @@ Rozbor ejakulátu bývá součástí vyšetření páru, který se snaží delš
 
 ## Jak vyšetření probíhá
 
-Vzorek se odevzdává na pracovišti, obvykle v samostatné místnosti, nebo výjimečně doma za přesně daných podmínek — to musí odsouhlasit laboratoř, protože záleží na době a teplotě přepravy.
+Vzorek se odevzdává na pracovišti, obvykle v samostatné místnosti, nebo výjimečně doma za přesně daných podmínek. To musí odsouhlasit laboratoř, protože záleží na době a teplotě přepravy.
 
-Před odběrem se obvykle doporučuje pohlavní abstinence, nejčastěji dva až pět dní; přesnou dobu určí laboratoř. Kratší i výrazně delší doba výsledek posouvá. Vzorek se má odevzdat celý — chybějící první část zkresluje koncentraci nejvíc.
+Před odběrem se obvykle doporučuje pohlavní abstinence, nejčastěji dva až pět dní; přesnou dobu určí laboratoř. Kratší i výrazně delší doba výsledek posouvá. Vzorek se má odevzdat celý. Chybějící první část zkresluje koncentraci nejvíc.
 
 Před odběrem nahlaste horečnaté onemocnění za poslední tři měsíce. Tvorba spermií trvá zhruba dva a půl až tři měsíce, takže nemoc z jara se může projevit ve vzorku z léta.
 
@@ -836,7 +836,7 @@ Výsledek jednoho vzorku většinou nestačí. Při odchylce bývá dalším kro
     publishedOn: '2026-08-02',
     body: `## Proč se dělá
 
-Morfologie je součástí rozboru ejakulátu a popisuje tvar spermií — hlavičku, krček a bičík. Hodnotí se pod mikroskopem po obarvení vzorku a výsledkem je podíl buněk, které odpovídají přísně vymezenému ideálnímu tvaru.
+Morfologie je součástí rozboru ejakulátu a popisuje tvar spermií. Hlavičku, krček a bičík. Hodnotí se pod mikroskopem po obarvení vzorku a výsledkem je podíl buněk, které odpovídají přísně vymezenému ideálnímu tvaru.
 
 ## Co může ukázat
 
@@ -852,7 +852,7 @@ Morfologie bývá součástí standardního rozboru ejakulátu, takže se hodnot
 
 ## Jak vyšetření probíhá
 
-Nevyžaduje nic navíc oproti běžnému rozboru ejakulátu — stejný vzorek, stejná příprava, stejná doba abstinence podle pokynů laboratoře. Část vzorku se nanese na sklíčko, obarví a hodnotí pod mikroskopem.
+Nevyžaduje nic navíc oproti běžnému rozboru ejakulátu. Stejný vzorek, stejná příprava, stejná doba abstinence podle pokynů laboratoře. Část vzorku se nanese na sklíčko, obarví a hodnotí pod mikroskopem.
 
 Protože se hodnocení mezi laboratořemi liší, není vhodné porovnávat procenta z různých pracovišť. Pokud se výsledek opakuje jinde, řekněte to lékaři.
 
@@ -893,7 +893,7 @@ Laboratoř obvykle rozliší:
 
 Nízký podíl pohyblivých spermií může být vodítkem k dalšímu vyšetření a může ovlivnit volbu metody léčby. Neznamená sám o sobě, že k početí nemůže dojít.
 
-Zvláštní situace nastává, když jsou skoro všechny spermie nepohyblivé — laboratoř pak obvykle doplní test, který rozliší, jestli jsou živé a jen se nehýbou.
+Zvláštní situace nastává, když jsou skoro všechny spermie nepohyblivé. Laboratoř pak obvykle doplní test, který rozliší, jestli jsou živé a jen se nehýbou.
 
 ## Kdy může být relevantní
 
@@ -941,10 +941,10 @@ Koncentrace udává, kolik spermií je v jednom mililitru vzorku. Spolu s objeme
 
 V nálezu se můžete setkat s termíny, které popisují situaci slovem místo čísla:
 
-- **normozoospermie** — parametry odpovídají referenčnímu popisu laboratoře,
-- **oligozoospermie** — snížený počet spermií,
-- **kryptozoospermie** — spermie se najdou jen po zpracování vzorku,
-- **azoospermie** — v ejakulátu se spermie nenajdou.
+- **normozoospermie**: parametry odpovídají referenčnímu popisu laboratoře,
+- **oligozoospermie**: snížený počet spermií,
+- **kryptozoospermie**: spermie se najdou jen po zpracování vzorku,
+- **azoospermie**: v ejakulátu se spermie nenajdou.
 
 Nález azoospermie neznamená automaticky, že spermie nejsou nikde. Rozlišuje se situace, kdy je překážka v odvodných cestách, od situace, kdy se spermie tvoří málo. Postup se pak liší a součástí bývá vyšetření u urologa nebo androloga, hormonální odběry a genetické vyšetření.
 
@@ -956,7 +956,7 @@ Koncentrace se hodnotí v každém rozboru ejakulátu, takže se nevyšetřuje s
 
 Stejně jako zbytek rozboru: vzorek se odevzdá podle pokynů laboratoře, po zkapalnění se změří objem a spočítají spermie v počítací komůrce.
 
-Hodně zkresluje **neúplný vzorek** — první část ejakulátu bývá na spermie nejbohatší, a když se ztratí, koncentrace vyjde nižší. Pokud se to stane, řekněte to laboratoři; je to běžné a lepší než mlčet.
+Hodně zkresluje **neúplný vzorek**: první část ejakulátu bývá na spermie nejbohatší, a když se ztratí, koncentrace vyjde nižší. Pokud se to stane, řekněte to laboratoři; je to běžné a lepší než mlčet.
 
 Při nečekaném výsledku bývá dalším krokem opakování s odstupem několika týdnů, ne okamžitá změna plánu.
 
@@ -982,16 +982,16 @@ Při nečekaném výsledku bývá dalším krokem opakování s odstupem několi
     level: 'deep',
     hero: 'dusk',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     body: `## Proč se dělá
 
-Test hodnotí, jaký podíl spermií má poškozenou genetickou informaci. Běžný rozbor ejakulátu se dívá na počet, pohyb a tvar — o stavu DNA uvnitř nic neříká. Fragmentace se proto zvažuje tam, kde běžný rozbor vychází nenápadně, a přesto se nedaří.
+Test hodnotí, jaký podíl spermií má poškozenou genetickou informaci. Běžný rozbor ejakulátu se dívá na počet, pohyb a tvar. O stavu DNA uvnitř nic neříká. Fragmentace se proto zvažuje tam, kde běžný rozbor vychází nenápadně, a přesto se nedaří.
 
 ## Co může ukázat
 
 - Podíl spermií s poškozenou DNA v daném vzorku.
-- Vodítko k pátrání po příčině — bývá jí varikokéla, zánět, kouření, obezita, teplotní zátěž, delší abstinence nebo věk.
+- Vodítko k pátrání po příčině. Bývá jí varikokéla, zánět, kouření, obezita, teplotní zátěž, delší abstinence nebo věk.
 
 Co je poctivé říct nahlas: **důkazy pro tenhle test jsou omezené.** Používá se několik různých metod, které dávají různé výsledky, hraniční hodnoty nejsou sjednocené a **není spolehlivě doložené, že postup vedený podle výsledku zvyšuje šanci na narozené dítě.** Odborné společnosti proto tento test nedoporučují jako běžnou součást vyšetření a přistupují k němu zdrženlivě.
 
@@ -999,11 +999,11 @@ To neznamená, že je nesmyslný vždy. Znamená to, že má smysl vědět před
 
 ## Kdy může být relevantní
 
-Může být zvažován při opakovaných neúspěších léčby, po opakovaných ztrátách těhotenství, při nevysvětlené neplodnosti nebo při zjištěné varikokéle. **Není součástí standardního vyšetření každého páru** — záleží na anamnéze a doporučení lékaře.
+Může být zvažován při opakovaných neúspěších léčby, po opakovaných ztrátách těhotenství, při nevysvětlené neplodnosti nebo při zjištěné varikokéle. **Není součástí standardního vyšetření každého páru**: záleží na anamnéze a doporučení lékaře.
 
 ## Jak vyšetření probíhá
 
-Odevzdává se vzorek ejakulátu jako u běžného rozboru, podle pokynů laboratoře včetně doby abstinence — ta výsledek ovlivňuje. Vzorek se zpracuje jednou z laboratorních metod a výsledkem je procentní podíl.
+Odevzdává se vzorek ejakulátu jako u běžného rozboru, podle pokynů laboratoře včetně doby abstinence. Ta výsledek ovlivňuje. Vzorek se zpracuje jednou z laboratorních metod a výsledkem je procentní podíl.
 
 Vyšetření obvykle není hrazené a cenu i metodu je dobré znát předem. Pokud se test opakuje, má smysl použít stejnou metodu ve stejné laboratoři, jinak se hodnoty nedají srovnat.
 
@@ -1036,15 +1036,15 @@ U části mužů s výrazně sníženým počtem spermií nebo bez spermií v ej
 
 ## Co může ukázat
 
-- **Karyotyp** — počet a strukturu chromozomů. Zachytí například nález navíc u chromozomu X, který patří mezi častější genetické příčiny mužské neplodnosti, nebo vyvážené přestavby.
-- **Mikrodelece na chromozomu Y** — chybějící úseky v oblastech, které se podílejí na tvorbě spermií. Výsledek může ovlivnit i odhad, jestli má smysl hledat spermie ve varleti.
-- **Vyšetření genu CFTR** — souvisí s cystickou fibrózou a s vrozeným chyběním chámovodů, které se projeví neprůchodností odvodných cest.
+- **Karyotyp**: počet a strukturu chromozomů. Zachytí například nález navíc u chromozomu X, který patří mezi častější genetické příčiny mužské neplodnosti, nebo vyvážené přestavby.
+- **Mikrodelece na chromozomu Y**: chybějící úseky v oblastech, které se podílejí na tvorbě spermií. Výsledek může ovlivnit i odhad, jestli má smysl hledat spermie ve varleti.
+- **Vyšetření genu CFTR**: souvisí s cystickou fibrózou a s vrozeným chyběním chámovodů, které se projeví neprůchodností odvodných cest.
 
 Co neukáže: **záruku.** Normální výsledek genetickou příčinu zcela nevylučuje.
 
 ## Kdy může být relevantní
 
-Může být zvažováno při azoospermii, výrazně sníženém počtu spermií, při opakovaných ztrátách těhotenství, při dědičném onemocnění v rodině nebo před plánovaným odběrem spermií z varlete. **Není součástí vyšetření každého muže** — záleží na anamnéze a doporučení lékaře.
+Může být zvažováno při azoospermii, výrazně sníženém počtu spermií, při opakovaných ztrátách těhotenství, při dědičném onemocnění v rodině nebo před plánovaným odběrem spermií z varlete. **Není součástí vyšetření každého muže**: záleží na anamnéze a doporučení lékaře.
 
 ## Jak vyšetření probíhá
 
@@ -1076,7 +1076,7 @@ Součástí bývá konzultace u klinického genetika před vyšetřením i po n�
     level: 'deep',
     hero: 'blush',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     body: `## Proč se dělá
 
@@ -1096,7 +1096,7 @@ Vyšetření může být zvažováno při prodělané trombóze nebo plicní emb
 
 ## Jak vyšetření probíhá
 
-Odběr krve, u části parametrů nalačno. Načasování je důležité — některé hodnoty se nedají spolehlivě posoudit v těhotenství, při akutní trombóze, při užívání hormonální antikoncepce nebo při léčbě na ředění krve. Vyšetření protilátek se obvykle opakuje s odstupem, protože jednorázový nález nestačí.
+Odběr krve, u části parametrů nalačno. Načasování je důležité. Některé hodnoty se nedají spolehlivě posoudit v těhotenství, při akutní trombóze, při užívání hormonální antikoncepce nebo při léčbě na ředění krve. Vyšetření protilátek se obvykle opakuje s odstupem, protože jednorázový nález nestačí.
 
 Výsledky vykládá hematolog. Ten také rozhoduje o případné léčbě a o tom, jak postupovat v těhotenství.
 
@@ -1137,24 +1137,24 @@ Cyklus není řízený jen z vaječníků. Zasahuje do něj štítná žláza, p
 - Poruchu zpracování cukru a inzulinovou rezistenci, které se s poruchami cyklu často pojí.
 - Vzácnější stavy, například poruchu nadledvin.
 
-Cílem není najít „chybu v hormonech" — takové zadání nikam nevede. Cílem je odpovědět na konkrétní otázku, která vznikla z nálezu nebo z příznaků.
+Cílem není najít „chybu v hormonech". Takové zadání nikam nevede. Cílem je odpovědět na konkrétní otázku, která vznikla z nálezu nebo z příznaků.
 
 ## Kdy může být relevantní
 
-Vyšetření u endokrinologa může být součástí plánu při nepravidelném nebo chybějícím cyklu, při zvýšeném prolaktinu nebo odchylce TSH, při známkách zvýšených mužských hormonů, při výrazné změně hmotnosti nebo při podezření na poruchu metabolismu. **U každé ženy se nedělá** — záleží na anamnéze a doporučení lékaře.
+Vyšetření u endokrinologa může být součástí plánu při nepravidelném nebo chybějícím cyklu, při zvýšeném prolaktinu nebo odchylce TSH, při známkách zvýšených mužských hormonů, při výrazné změně hmotnosti nebo při podezření na poruchu metabolismu. **U každé ženy se nedělá**: záleží na anamnéze a doporučení lékaře.
 
 ## Jak vyšetření probíhá
 
-Většinou jde o odběry krve, u části parametrů nalačno a v určenou denní dobu — některé hodnoty se během dne mění. Někdy se doplňuje zátěžový test s glukózou nebo ultrazvuk štítné žlázy.
+Většinou jde o odběry krve, u části parametrů nalačno a v určenou denní dobu. Některé hodnoty se během dne mění. Někdy se doplňuje zátěžový test s glukózou nebo ultrazvuk štítné žlázy.
 
 Než přijdete, sepište si užívané léky včetně doplňků, hormonální antikoncepci a průběh svého cyklu za poslední rok. Endokrinolog s tím pracuje víc než s jedním číslem.
 
-Případná léčba se řídí nálezem a plánuje se s ohledem na to, že chcete otěhotnět — proto řekněte hned na začátku, v jaké jste fázi.
+Případná léčba se řídí nálezem a plánuje se s ohledem na to, že chcete otěhotnět, proto řekněte hned na začátku, v jaké jste fázi.
 
 ## Na co se zeptat lékaře
 
 1. Jakou otázku má tohle vyšetření zodpovědět?
-2. Mám před odběry něco dodržet — lačnění, denní dobu, vysazení doplňků?
+2. Mám před odběry něco dodržet. Lačnění, denní dobu, vysazení doplňků?
 3. Co z nálezu plyne pro plán léčby neplodnosti?
 4. Můžeme mezitím pokračovat, nebo se čeká?
 5. Jak často se budou kontroly opakovat?
@@ -1173,7 +1173,7 @@ Případná léčba se řídí nálezem a plánuje se s ohledem na to, že chcet
     level: 'deep',
     hero: 'dusk',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy'],
+    sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-02',
     body: `## Proč se dělá
 
@@ -1203,7 +1203,7 @@ Většinou odběr krve, někdy odběr vzorku děložní sliznice. Část testů 
 4. Kolik to stojí a je to hrazené?
 5. Existuje jiné vysvětlení, které jsme ještě neprověřili?
 
-> Tento text shrnuje obecný stav poznání. O tom, jestli má vyšetření ve vaší situaci smysl, rozhoduje lékař — proberte to se svou klinikou.`,
+> Tento text shrnuje obecný stav poznání. O tom, jestli má vyšetření ve vaší situaci smysl, rozhoduje lékař. Proberte to se svou klinikou.`,
   },
   {
     id: 'vys-stitna-zlaza',
@@ -1224,10 +1224,10 @@ Většinou odběr krve, někdy odběr vzorku děložní sliznice. Část testů 
 
 ## Co může ukázat
 
-- **TSH** — první, orientační pohled na funkci.
-- **fT4**, volný tyroxin — doplňuje TSH tam, kde je hodnota mimo očekávání.
-- **Protilátky proti štítné žláze**, nejčastěji anti-TPO — mohou ukázat autoimunitní zánět, a to i tehdy, když funkce zatím vychází bez odchylky. Nález ovlivňuje četnost kontrol.
-- **Ultrazvuk štítné žlázy** — velikost, strukturu a uzly.
+- **TSH**: první, orientační pohled na funkci.
+- **fT4**, volný tyroxin. Doplňuje TSH tam, kde je hodnota mimo očekávání.
+- **Protilátky proti štítné žláze**, nejčastěji anti-TPO. Mohou ukázat autoimunitní zánět, a to i tehdy, když funkce zatím vychází bez odchylky. Nález ovlivňuje četnost kontrol.
+- **Ultrazvuk štítné žlázy**: velikost, strukturu a uzly.
 
 Jedna hodnota TSH tedy nedává úplný obraz. Co se doplní, rozhoduje lékař podle nálezu a příznaků.
 
@@ -1243,7 +1243,7 @@ Nahlaste doplňky s biotinem, které mohou u některých metod výsledek zkresli
 
 Ultrazvuk štítné žlázy je nebolestivý, provádí se vleže sondou na krku a trvá pár minut.
 
-Pokud je nález odchylný, sledování a případnou léčbu vede lékař — často endokrinolog. Cílové hodnoty v těhotenství se liší od hodnot mimo těhotenství, proto se kontroly po otěhotnění zpřísňují.
+Pokud je nález odchylný, sledování a případnou léčbu vede lékař. Často endokrinolog. Cílové hodnoty v těhotenství se liší od hodnot mimo těhotenství, proto se kontroly po otěhotnění zpřísňují.
 
 ## Na co se zeptat lékaře
 
@@ -1273,17 +1273,17 @@ Pokud je nález odchylný, sledování a případnou léčbu vede lékař — č
     boost: 0.8,
     body: `## Proč zrovna tohle
 
-První konzultace má obvykle pevně daný čas a lékař z ní potřebuje odejít s představou, co u vás vyšetřit dřív a co později. Většinu té představy si udělá z toho, co mu přinesete a co mu řeknete — ne z toho, co si sám objedná.
+První konzultace má obvykle pevně daný čas a lékař z ní potřebuje odejít s představou, co u vás vyšetřit dřív a co později. Většinu té představy si udělá z toho, co mu přinesete a co mu řeknete, ne z toho, co si sám objedná.
 
 Nejčastější zdržení nejsou složitá: chybějící staré výsledky, neznámá délka cyklu, partner, který nepřišel a nemá kdy. Každá z těch věcí posune plán o týdny.
 
 ## Jak to použít
 
-Projděte seznam pár dní předem, ne v autě před klinikou. Nepovinné položky jsou označené — nejsou zbytečné, jen se bez nich obejdete.
+Projděte seznam pár dní předem, ne v autě před klinikou. Nepovinné položky jsou označené. Nejsou zbytečné, jen se bez nich obejdete.
 
 A ještě jedna věc: ptejte se. Otázka „co konkrétně bude dál a kdy" není otravná, je to ta nejužitečnější věta celé konzultace.
 
-> Rozsah vyšetření skládá lékař podle vaší situace. Nic z toho, co si přinesete, není povinné vyšetření — je to podklad, aby se rozhodoval z něčeho.`,
+> Rozsah vyšetření skládá lékař podle vaší situace. Nic z toho, co si přinesete, není povinné vyšetření. Je to podklad, aby se rozhodoval z něčeho.`,
     checklist: [
       {
         id: 'vys-cl-doklady',

@@ -4,13 +4,13 @@ import type { IsoDate } from './profile'
  * Podpůrná péče mimo kliniku.
  *
  * Fyzioterapie, psychoterapie, akupunktura, výživa, pohyb. Žena si u sebe
- * vede, co využívá, jak často a jak se u toho cítí — a nic víc.
+ * vede, co využívá, jak často a jak se u toho cítí. A nic víc.
  *
  * -------------------------------------------------------------- DŮKAZY ------
  * U každé metody je poctivě uvedená síla důkazů. Není to hodnocení metody
  * ani rada, co dělat: je to informace, kterou při rozhodování nikdo nedá,
  * protože se špatně prodává. Aplikace **nikde neslibuje, že cokoli z tohohle
- * zvýší šanci na otěhotnění** — a u psychické podpory to platí dvojnásob.
+ * zvýší šanci na otěhotnění**. A u psychické podpory to platí dvojnásob.
  * Péče o sebe je legitimní sama o sobě, ne jako nástroj k výsledku. Stres
  * za neúspěch nemůže a aplikace to nikdy nenaznačí.
  *
@@ -41,7 +41,7 @@ export const EVIDENCE_LABEL: Record<Evidence, string> = {
 export const EVIDENCE_NOTE: Record<Evidence, string> = {
   dobre: 'Přínos pro to, co metoda slibuje, je doložený kvalitními studiemi.',
   omezene: 'Studie existují, ale jsou malé, rozporuplné nebo nízké kvality.',
-  nedostatek: 'Kvalitní studie chybí. Neznamená to, že metoda nefunguje — znamená to, že to nevíme.',
+  nedostatek: 'Kvalitní studie chybí. Neznamená to, že metoda nefunguje. Znamená to, že to nevíme.',
 }
 
 export interface SupportDef {
@@ -77,7 +77,7 @@ export const SUPPORTS: SupportDef[] = [
 
   // --- životní styl
   { id: 'vyziva', label: 'Nutriční poradenství', group: 'zivotni_styl', evidence: 'dobre', note: 'Úprava jídelníčku s odborníkem.' },
-  { id: 'doplnky', label: 'Doplňky stravy', group: 'zivotni_styl', evidence: 'omezene', note: 'Nejsou automaticky vhodné pro každou — proberte je s klinikou.' },
+  { id: 'doplnky', label: 'Doplňky stravy', group: 'zivotni_styl', evidence: 'omezene', note: 'Nejsou automaticky vhodné pro každou. Proberte je s klinikou.' },
   { id: 'spanek', label: 'Práce se spánkem', group: 'zivotni_styl', evidence: 'dobre', note: 'Spánkový režim a jeho úprava.' },
   { id: 'pohyb', label: 'Pravidelný pohyb', group: 'zivotni_styl', evidence: 'dobre', note: 'Během stimulace se intenzita upravuje podle pokynů kliniky.' },
   { id: 'odpocinek', label: 'Cílený odpočinek', group: 'zivotni_styl', evidence: 'omezene', note: 'Vědomé zpomalení, ne jen „nic nedělat“.' },
@@ -114,15 +114,15 @@ export interface SupportEntry {
   custom: string
   /** Odkdy to využívám. Tohle je ta zajímavější informace než jedno datum. */
   since: IsoDate | null
-  /** Datum posledního zápisu — u jednorázových věcí je to jediné datum. */
+  /** Datum posledního zápisu. U jednorázových věcí je to jediné datum. */
   date: IsoDate | null
   frequency: Frequency
-  /** Kdo to vedl — jméno, pracoviště. */
+  /** Kdo to vedl. Jméno, pracoviště. */
   provider: string
   /** Jak se u toho cítila, 1–5. `null` = nezapsáno. */
   feeling: number | null
   note: string
-  /** Právě to využívám — drží se v seznamu „co teď mám“. */
+  /** Právě to využívám. Drží se v seznamu „co teď mám“. */
   ongoing: boolean
 }
 

@@ -14,7 +14,7 @@ import { CONTENT_KINDS, HERO_TOKENS, type ContentPack } from '../src/lib/content
  * Obsah je největší část aplikace a rozbije se tiše. Neplatné id fáze
  * vyřadí článek z doporučování a nikdo si toho nevšimne; duplicitní id
  * zahodí registr při načtení; HTML v textu se vypíše jako holé znaky,
- * protože renderer je záměrně minimální. Nic z toho nespadne — jen to
+ * protože renderer je záměrně minimální. Nic z toho nespadne, jen to
  * nefunguje. Proto se to kontroluje tady, ne okem.
  *
  * Balíky se načítají ze složky, ne ze seznamu. Nový balík je tím pádem
@@ -73,6 +73,8 @@ test('každý balík se dá načíst a něco obsahuje', async () => {
 
 test('fáze, témata a modifikátory existují', async () => {
   const PACKS = await packs()
+  // Znak se skládá z kódu, aby ho test sám neobsahoval a nespadl na sobě.
+  const EM = String.fromCharCode(0x2014)
   const bad: string[] = []
   for (const { name, pack } of PACKS) {
     for (const it of pack.items ?? []) {
@@ -94,6 +96,8 @@ test('fáze, témata a modifikátory existují', async () => {
 
 test('druh, úroveň, vizuál a datum mají platné hodnoty', async () => {
   const PACKS = await packs()
+  // Znak se skládá z kódu, aby ho test sám neobsahoval a nespadl na sobě.
+  const EM = String.fromCharCode(0x2014)
   const bad: string[] = []
   for (const { name, pack } of PACKS) {
     for (const it of pack.items ?? []) {
@@ -109,7 +113,7 @@ test('druh, úroveň, vizuál a datum mají platné hodnoty', async () => {
   assert.deepEqual(bad, [], `neplatné hodnoty:\n${bad.join('\n')}`)
 })
 
-test('id se nikde neopakují — registr by je tiše zahodil', async () => {
+test('id se nikde neopakují. Registr by je tiše zahodil', async () => {
   const PACKS = await packs()
   const dup: string[] = []
   for (const key of ['items', 'dailyCards', 'encouragements', 'products'] as const) {
@@ -155,12 +159,14 @@ test('texty neobsahují nic, co renderer neumí', async () => {
     ['HTML entita', /&(nbsp|amp|lt|gt|quot|#\d+);/],
   ]
 
+  // Znak se skládá z kódu, aby ho test sám neobsahoval a nespadl na sobě.
+  const EM = String.fromCharCode(0x2014)
   const bad: string[] = []
   const check = (kde: string, text: string | undefined): void => {
     if (!text) return
     for (const [label, re] of pravidla) {
       const m = text.match(re)
-      if (m) bad.push(`${kde}: ${label} — ${JSON.stringify(m[0].slice(0, 60))}`)
+      if (m) bad.push(`${kde}: ${label}, ${JSON.stringify(m[0].slice(0, 60))}`)
     }
   }
 
@@ -186,6 +192,8 @@ test('texty neobsahují nic, co renderer neumí', async () => {
 
 test('kvíz má správnou odpověď v rozsahu možností', async () => {
   const PACKS = await packs()
+  // Znak se skládá z kódu, aby ho test sám neobsahoval a nespadl na sobě.
+  const EM = String.fromCharCode(0x2014)
   const bad: string[] = []
   for (const { name, pack } of PACKS) {
     for (const it of pack.items ?? []) {
@@ -199,11 +207,13 @@ test('kvíz má správnou odpověď v rozsahu možností', async () => {
 
 /**
  * Pojem „beta hCG“ se v aplikaci nepoužívá. Je to tentýž hormon a laické
- * zdvojení jen mate — hodnota z krve je prostě hCG. Hlídá se i velikost
+ * zdvojení jen mate. Hodnota z krve je prostě hCG. Hlídá se i velikost
  * písmen: „HCG“ je jiná zkratka než ta, kterou má žena na výsledku z laborky.
  */
 test('nikde nezůstalo „beta hCG“ ani „HCG“', async () => {
   const PACKS = await packs()
+  // Znak se skládá z kódu, aby ho test sám neobsahoval a nespadl na sobě.
+  const EM = String.fromCharCode(0x2014)
   const bad: string[] = []
   for (const { name, pack } of PACKS) {
     // `aliases` se nekontrolují: „HCG“ tam je schválně, protože takhle
@@ -224,7 +234,7 @@ test('nikde nezůstalo „beta hCG“ ani „HCG“', async () => {
 
 /**
  * Toxická pozitivita. Fráze, které v léčbě slýchá každá žena od okolí
- * a které v aplikaci nemají co dělat — proto se hlídají textem, ne dohodou.
+ * a které v aplikaci nemají co dělat, proto se hlídají textem, ne dohodou.
  * Záporný tvar („nemusíte myslet pozitivně“) je naopak v pořádku.
  */
 test('žádná toxická pozitivita', async () => {
@@ -236,6 +246,8 @@ test('žádná toxická pozitivita', async () => {
     /všechno se děje z nějakého důvodu/i,
     /hlavně klid, ono to přijde/i,
   ]
+  // Znak se skládá z kódu, aby ho test sám neobsahoval a nespadl na sobě.
+  const EM = String.fromCharCode(0x2014)
   const bad: string[] = []
   for (const { name, pack } of PACKS) {
     for (const it of pack.items ?? []) {
@@ -260,6 +272,8 @@ test('žádná toxická pozitivita', async () => {
  */
 test('každé „Co když…“ říká, kdy volat', async () => {
   const PACKS = await packs()
+  // Znak se skládá z kódu, aby ho test sám neobsahoval a nespadl na sobě.
+  const EM = String.fromCharCode(0x2014)
   const bad: string[] = []
   for (const { name, pack } of PACKS) {
     for (const it of pack.items ?? []) {
@@ -268,4 +282,38 @@ test('každé „Co když…“ říká, kdy volat', async () => {
     }
   }
   assert.deepEqual(bad, [], `chybí sekce o volání:\n${bad.join('\n')}`)
+})
+
+/**
+ * Em dash se v aplikaci nepoužívá.
+ *
+ * V češtině je to cizí znak, v próze ho zastoupí čárka, dvojtečka nebo tečka.
+ * Test hlídá zdrojové soubory, ne jen obsah, protože pomlčka se stejně snadno
+ * vrátí do komentáře jako do článku.
+ */
+test('nikde není em dash', async () => {
+  const { readdirSync, readFileSync, statSync } = await import('node:fs')
+  const { join } = await import('node:path')
+
+  // Znak se skládá z kódu, aby ho test sám neobsahoval a nespadl na sobě.
+  const EM = String.fromCharCode(0x2014)
+  const bad: string[] = []
+  const projdi = (dir: string): void => {
+    for (const name of readdirSync(dir)) {
+      const path = join(dir, name)
+      if (statSync(path).isDirectory()) {
+        projdi(path)
+        continue
+      }
+      if (!/\.(ts|css|md|html|json)$/.test(name)) continue
+      const text = readFileSync(path, 'utf8')
+      const n = text.split(EM).length - 1
+      if (n > 0) bad.push(`${path} (${n}×)`)
+    }
+  }
+  projdi('src')
+  projdi('scripts')
+  projdi('tests')
+
+  assert.deepEqual(bad, [], `em dash zůstal v:\n${bad.join('\n')}`)
 })

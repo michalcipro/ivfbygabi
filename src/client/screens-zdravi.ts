@@ -11,7 +11,7 @@ import { empty, esc, head, labChart, note, plural, sectionTitle } from './ui'
  *
  * Hodnoty nejsou jen body v grafu. U každé je popsané, co dělá v těle, co
  * s ní hýbe, co se s tím obecně dá dělat (strava, doplňky, pohyb) a jaké
- * kontroly navazují — a u každého doporučení, jak silný důvod za ním stojí.
+ * kontroly navazují. A u každého doporučení, jak silný důvod za ním stojí.
  *
  * Co tu nikdy nenajdete: výrok, jestli je vaše hodnota dobrá nebo špatná.
  */
@@ -92,7 +92,7 @@ export function screenZdravi(): string {
         : '',
       empty(
         'Zatím žádné hodnoty',
-        'Můžete je zadat ručně výše, nebo vložit text lékařské zprávy v Dokumentech — hodnoty z něj vytáhneme samy.',
+        'Můžete je zadat ručně výše, nebo vložit text lékařské zprávy v Dokumentech. Hodnoty z něj vytáhneme samy.',
         '<button class="btn" data-go="dokumenty">Vložit zprávu</button>',
         '◉',
       ),

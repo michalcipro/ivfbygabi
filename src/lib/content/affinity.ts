@@ -6,7 +6,7 @@ import type { Affinity } from './recommend'
  *
  * Sbíráme váhu na jednotlivé položky obsahu (otevřela, dočetla, uložila)
  * a tady z toho uděláme váhy témat 0–1, se kterými umí pracovat doporučovací
- * systém. Čistá funkce — server ji plní z databáze, prohlížeč z localStorage.
+ * systém. Čistá funkce. Server ji plní z databáze, prohlížeč z localStorage.
  */
 
 export type WeightedAffinity = Affinity & { _weights?: Map<string, number> }

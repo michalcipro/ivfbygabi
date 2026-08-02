@@ -5,7 +5,7 @@ import { PHASES } from './phases'
 import type { CommunityGroup } from '../shared/records'
 
 /**
- * Párování na komunitu — kdo patří ke komu.
+ * Párování na komunitu. Kdo patří ke komu.
  *
  * Čistá funkce bez databáze, aby stejné pravidlo platilo na serveru
  * i v prohlížeči. Databázová vrstva výsledek jen zhmotní do tabulky
@@ -45,13 +45,13 @@ export function czMonthYear(ym: string): string {
 
 /**
  * Skupiny, které dávají smysl právě pro tuhle ženu. Pořadí je pořadí
- * relevance — fáze první, otevřený kruh poslední.
+ * relevance. Fáze první, otevřený kruh poslední.
  */
 export function groupSpecsFor(profile: Profile, state: JourneyState): GroupSpec[] {
   const out: GroupSpec[] = []
   const phase = state.phase
 
-  // 1. Skupina fáze — vždycky.
+  // 1. Skupina fáze. Vždycky.
   out.push({
     slug: `faze-${slugify(phase.name)}`,
     name: phase.name,
@@ -60,7 +60,7 @@ export function groupSpecsFor(profile: Profile, state: JourneyState): GroupSpec[
     matchKey: `phase:${phase.id}`,
   })
 
-  // 2. Měsíc transferu — nejsilnější pouto v IVF komunitě.
+  // 2. Měsíc transferu. Nejsilnější pouto v IVF komunitě.
   if (profile.transferOn) {
     const ym = profile.transferOn.slice(0, 7)
     out.push({
@@ -126,7 +126,7 @@ export function groupSpecsFor(profile: Profile, state: JourneyState): GroupSpec[
   return out.filter((g) => (seen.has(g.slug) ? false : (seen.add(g.slug), true)))
 }
 
-/** Jméno, pod kterým uživatelka vystupuje — respektuje anonymní režim. */
+/** Jméno, pod kterým uživatelka vystupuje. Respektuje anonymní režim. */
 export function communityName(profile: Profile, state: JourneyState): string {
   if (!profile.anonymousInCommunity && profile.displayName) return profile.displayName
   return `Anonymně · ${PHASES[state.phase.id].name}`

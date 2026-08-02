@@ -8,7 +8,7 @@ import type { ContentItem, ContentPack, GlossaryTerm } from '../types'
  * protože odpovídají na jiné otázky a rozhoduje se o nich jinak.
  *
  * Pravidlo celé sekce: nic z toho není vyšetření pro každý pár. Kde jsou data
- * slabá nebo rozporná, říkáme to nahlas — hlavně u PGT-A.
+ * slabá nebo rozporná, říkáme to nahlas, hlavně u PGT-A.
  */
 
 const REVIEWED = 'Odborně garantováno lékařem reprodukční medicíny.'
@@ -33,13 +33,13 @@ const items: ContentItem[] = [
     reviewedBy: REVIEWED,
     sources: [
       'Společnost lékařské genetiky a genomiky ČLS JEP',
-      'ESHRE — doporučené postupy',
+      'ESHRE: doporučené postupy',
     ],
     publishedOn: PUBLISHED,
     boost: 0.8,
     body: `## Co to je
 
-Genetická konzultace je rozhovor s klinickým genetikem. Není to odběr krve ani zákrok — je to schůzka, na které se probírá vaše rodinná i osobní historie a teprve z ní vyplyne, jestli má nějaké vyšetření smysl, a pokud ano, které.
+Genetická konzultace je rozhovor s klinickým genetikem. Není to odběr krve ani zákrok. Je to schůzka, na které se probírá vaše rodinná i osobní historie a teprve z ní vyplyne, jestli má nějaké vyšetření smysl, a pokud ano, které.
 
 Pořadí je důležité. Genetik nejdřív mluví, pak případně testuje. Vyšetření objednané bez konzultace často odpoví na otázku, kterou nikdo nepoložil.
 
@@ -61,7 +61,7 @@ Konzultace není povinná zastávka na cestě IVF a neabsolvuje ji každý pár.
 
 Tohle je nejužitečnějších třicet minut, které do konzultace investujete.
 
-1. **Rodokmen do třetího kolena.** Sourozenci, rodiče, prarodiče, tety a strýcové, bratranci a sestřenice — u koho se objevilo vážnější onemocnění, vrozená vada, mentální postižení, opakované potraty, úmrtí v dětství.
+1. **Rodokmen do třetího kolena.** Sourozenci, rodiče, prarodiče, tety a strýcové, bratranci a sestřenice. U koho se objevilo vážnější onemocnění, vrozená vada, mentální postižení, opakované potraty, úmrtí v dětství.
 2. **Vlastní zdravotní historie obou partnerů.** Operace, chronické nemoci, léky.
 3. **Reprodukční historie.** Kolik cyklů, kolik transferů, kolik těhotenství, jak skončila, v jakém týdnu.
 4. **Papíry.** Zprávy z kliniky, laboratorní výsledky, nálezy z předchozích těhotenství, výsledky vyšetření tkáně po ztrátě, pokud existují.
@@ -71,17 +71,17 @@ Na konzultaci má smysl jít ve dvou. Genetika se týká obou partnerů, nikdy j
 
 ## Jak schůzka obvykle probíhá
 
-Genetik se ptá, kreslí rodokmen, ptá se znovu. Pak vysvětlí, co z toho plyne — jaké riziko je ve vaší situaci reálné a jaké testy by ho mohly upřesnit. Zazní i to, co testy nedokážou.
+Genetik se ptá, kreslí rodokmen, ptá se znovu. Pak vysvětlí, co z toho plyne. Jaké riziko je ve vaší situaci reálné a jaké testy by ho mohly upřesnit. Zazní i to, co testy nedokážou.
 
 Ve stejném rozhovoru se probírá i to, co byste s výsledkem dělali. Tahle otázka zní předčasně, ale předčasná není: vyšetření, jehož výsledek by na vašem rozhodování nic nezměnil, má jinou váhu než vyšetření, které mění plán léčby.
 
 ## Co si odnesete
 
-Písemnou zprávu. Vyžádejte si ji a schovejte ji — bude se na ni odkazovat vaše klinika, případně i lékaři v budoucím těhotenství. Zpráva obvykle obsahuje shrnutí anamnézy, doporučená vyšetření, jejich zdůvodnění a plán, co dál podle výsledku.
+Písemnou zprávu. Vyžádejte si ji a schovejte ji. Bude se na ni odkazovat vaše klinika, případně i lékaři v budoucím těhotenství. Zpráva obvykle obsahuje shrnutí anamnézy, doporučená vyšetření, jejich zdůvodnění a plán, co dál podle výsledku.
 
 ## Co konzultace neumí
 
-- **Nezaručí odpověď.** U části párů se ani po kompletním vyšetření nenajde vysvětlení. To neznamená, že žádné neexistuje — znamená to, že ho dnešní metody nevidí.
+- **Nezaručí odpověď.** U části párů se ani po kompletním vyšetření nenajde vysvětlení. To neznamená, že žádné neexistuje. Znamená to, že ho dnešní metody nevidí.
 - **Nerozhodne za vás.** Genetik popíše rizika a možnosti. Volba mezi nimi zůstává vám.
 - **Nepředpoví konkrétní těhotenství.** Pracuje s pravděpodobnostmi, ne s jistotami.
 
@@ -100,7 +100,7 @@ Písemnou zprávu. Vyžádejte si ji a schovejte ji — bude se na ni odkazovat 
     kind: 'article',
     title: 'Karyotyp: co ukáže vyšetření chromozomů',
     excerpt:
-      'Obyčejný odběr krve, na jehož výsledek se čeká týdny — a který u malé části párů vysvětlí to, co nevysvětlilo nic jiného.',
+      'Obyčejný odběr krve, na jehož výsledek se čeká týdny. A který u malé části párů vysvětlí to, co nevysvětlilo nic jiného.',
     minutes: 7,
     phases: ['genetic_testing'],
     topics: ['genetika', 'vysledky'],
@@ -113,24 +113,24 @@ Písemnou zprávu. Vyžádejte si ji a schovejte ji — bude se na ni odkazovat 
     boost: 0.6,
     body: `## Co se vyšetřuje
 
-Karyotyp je soupis chromozomů — jejich počtu a hrubé stavby. Běžný nález u ženy se zapisuje jako 46,XX, u muže 46,XY. To znamená 46 chromozomů v očekávaném uspořádání.
+Karyotyp je soupis chromozomů. Jejich počtu a hrubé stavby. Běžný nález u ženy se zapisuje jako 46,XX, u muže 46,XY. To znamená 46 chromozomů v očekávaném uspořádání.
 
-Vyšetření se dívá na velké celky. Vidí chybějící nebo nadbytečný chromozom, vidí, když si dva chromozomy vyměnily kus materiálu, vidí obrácený úsek. Nevidí drobné změny uvnitř jednotlivých genů — na ty jsou jiné metody.
+Vyšetření se dívá na velké celky. Vidí chybějící nebo nadbytečný chromozom, vidí, když si dva chromozomy vyměnily kus materiálu, vidí obrácený úsek. Nevidí drobné změny uvnitř jednotlivých genů. Na ty jsou jiné metody.
 
 ## Jak to probíhá
 
 Odebere se krev, obvykle oběma partnerům. V laboratoři se bílé krvinky nechají několik dní růst, zastaví se v okamžiku dělení, obarví a chromozomy se prohlédnou pod mikroskopem.
 
-Právě kvůli té kultivaci trvá výsledek dlouho — běžně tři až šest týdnů, někdy déle. Není to zdržování, je to biologie. Buňky se nedají uspěchat.
+Právě kvůli té kultivaci trvá výsledek dlouho. Běžně tři až šest týdnů, někdy déle. Není to zdržování, je to biologie. Buňky se nedají uspěchat.
 
 Příprava žádná není. Nemusíte být nalačno ani v konkrétní den cyklu.
 
 ## Co může nález ukázat
 
 - **Vyváženou strukturální přestavbu**, nejčastěji translokaci. Nositel je zdravý a obvykle o tom celý život neví, ale při tvorbě vajíček nebo spermií mohou vznikat nevyvážené kombinace.
-- **Inverzi** — obrácený úsek chromozomu. Význam se velmi liší podle toho, kterého chromozomu a jaké části se týká.
+- **Inverzi**: obrácený úsek chromozomu. Význam se velmi liší podle toho, kterého chromozomu a jaké části se týká.
 - **Odchylku počtu pohlavních chromozomů**, například u části mužů s výrazným nálezem ve spermiogramu.
-- **Mozaiku** — část buněk s odchylkou, část bez ní.
+- **Mozaiku**: část buněk s odchylkou, část bez ní.
 - **Nález nejasného významu.** Stává se to a je to nepříjemné. Vysvětlení takového nálezu patří genetikovi, ne internetu.
 
 U velké většiny párů vyjde karyotyp normální. To je dobrá zpráva, i když s sebou nese frustraci z toho, že jedna možná odpověď padla.
@@ -143,7 +143,7 @@ Když se karyotyp dělá, dělá se u obou partnerů. Přestavbu může nést kt
 
 ## Když nález přijde
 
-Abnormální karyotyp je informace, ne rozsudek. Co znamená pro vaše šance a jaké možnosti otevírá, se liší nález od nálezu — proto po něm následuje genetická konzultace, kde se probírá konkrétně vaše situace.
+Abnormální karyotyp je informace, ne rozsudek. Co znamená pro vaše šance a jaké možnosti otevírá, se liší nález od nálezu, proto po něm následuje genetická konzultace, kde se probírá konkrétně vaše situace.
 
 Zjištění přestavby často vysvětlí roky, které dávaly málo smyslu. Řada žen popisuje směs úlevy a vzteku. Obojí je pochopitelné.
 
@@ -153,7 +153,7 @@ Zjištění přestavby často vysvětlí roky, které dávaly málo smyslu. Řad
 - Nevyloučí dědičná onemocnění způsobená změnou v jednom genu.
 - Neurčí, jak dopadne konkrétní embryo.
 
-> Interpretace karyotypu patří klinickému genetikovi. Nález si nechte vysvětlit v kontextu vaší anamnézy — stejný zápis může mít u různých párů různý význam.`,
+> Interpretace karyotypu patří klinickému genetikovi. Nález si nechte vysvětlit v kontextu vaší anamnézy. Stejný zápis může mít u různých párů různý význam.`,
   },
   {
     id: 'gen-nosicstvi',
@@ -170,21 +170,21 @@ Zjištění přestavby často vysvětlí roky, které dávaly málo smyslu. Řad
     reviewedBy: REVIEWED,
     sources: [
       'Společnost lékařské genetiky a genomiky ČLS JEP',
-      'ESHRE — doporučené postupy',
+      'ESHRE: doporučené postupy',
     ],
     publishedOn: PUBLISHED,
     boost: 0.55,
     body: `## Základní myšlenka
 
-Každý z nás nese několik mutací, které se nijak neprojevují. U velké skupiny onemocnění totiž platí, že jedna zdravá kopie genu stačí — nemoc se objeví, až když dítě zdědí změněnou kopii od obou rodičů. Tomu se říká autozomálně recesivní dědičnost.
+Každý z nás nese několik mutací, které se nijak neprojevují. U velké skupiny onemocnění totiž platí, že jedna zdravá kopie genu stačí. Nemoc se objeví, až když dítě zdědí změněnou kopii od obou rodičů. Tomu se říká autozomálně recesivní dědičnost.
 
 Nosič je zdravý člověk. Není nemocný, nebude nemocný a nic se s ním nestane.
 
-Problém nastává jen tehdy, když se sejdou dva nosiči téže nemoci. Pak je u každého jejich těhotenství pravděpodobnost, že dítě onemocní, zhruba jedna ku čtyřem. Ta pravděpodobnost se u dalšího těhotenství nemění — každé je nezávislé.
+Problém nastává jen tehdy, když se sejdou dva nosiči téže nemoci. Pak je u každého jejich těhotenství pravděpodobnost, že dítě onemocní, zhruba jedna ku čtyřem. Ta pravděpodobnost se u dalšího těhotenství nemění. Každé je nezávislé.
 
 ## Co vyšetření dělá
 
-Z krve nebo ze stěru z úst se čte několik desítek až stovek genů podle rozsahu zvoleného panelu. Hledají se známé mutace spojené s konkrétními onemocněními — mezi nejčastěji zařazované patří cystická fibróza, spinální svalová atrofie nebo některé poruchy sluchu a metabolismu.
+Z krve nebo ze stěru z úst se čte několik desítek až stovek genů podle rozsahu zvoleného panelu. Hledají se známé mutace spojené s konkrétními onemocněními. Mezi nejčastěji zařazované patří cystická fibróza, spinální svalová atrofie nebo některé poruchy sluchu a metabolismu.
 
 Panely se mezi laboratořemi liší rozsahem i tím, jak podrobně gen čtou. Menší panel není horší, je jiný. Zeptejte se, co konkrétně váš panel obsahuje.
 
@@ -211,7 +211,7 @@ Možnosti se liší podle onemocnění a podle vašich hodnot. Genetik obvykle p
 
 - **Nepokryje všechna dědičná onemocnění.** Testuje se to, co je na panelu.
 - **Nevyloučí nově vzniklé mutace**, které se u rodičů nevyskytují.
-- **Netýká se chromozomových přestaveb** — na ty je karyotyp.
+- **Netýká se chromozomových přestaveb**: na ty je karyotyp.
 - **Nenahrazuje prenatální diagnostiku** v těhotenství.
 
 ## Pro koho je na místě
@@ -222,7 +222,7 @@ Vyšetření nosičství není součástí vyšetření každé ženy a každéh
 
 Zjištění, že jste nosička, umí zabolet víc, než by odpovídalo medicínskému významu nálezu. Přidává další vrstvu k něčemu, co už tak není lehké, a u části párů otevírá otázky o rodině a o vině, které tam vůbec nepatří.
 
-Nosičství není zavinění. Je to statisticky běžný stav, který má většina lidí — jen o něm neví, protože se nikdy netestovali.
+Nosičství není zavinění. Je to statisticky běžný stav, který má většina lidí, jen o něm neví, protože se nikdy netestovali.
 
 > Interpretace výsledků patří klinickému genetikovi. Rozsah panelu, spolehlivost metody i význam konkrétního nálezu proberte na konzultaci, ne podle popisu na internetu.`,
   },
@@ -241,15 +241,15 @@ Nosičství není zavinění. Je to statisticky běžný stav, který má větš
     reviewedBy: REVIEWED,
     sources: [
       'Společnost lékařské genetiky a genomiky ČLS JEP',
-      'ESHRE — doporučené postupy',
+      'ESHRE: doporučené postupy',
     ],
     publishedOn: PUBLISHED,
     boost: 0.6,
     body: `## Co se stalo
 
-Chromozomy jsou balíky genetické informace. U strukturální přestavby je všechen materiál přítomen, ale je jinak uspořádaný — dva chromozomy si vyměnily části, nebo se úsek uvnitř chromozomu otočil.
+Chromozomy jsou balíky genetické informace. U strukturální přestavby je všechen materiál přítomen, ale je jinak uspořádaný. Dva chromozomy si vyměnily části, nebo se úsek uvnitř chromozomu otočil.
 
-Když nic nechybí ani nepřebývá, mluví se o **vyvážené přestavbě**. Nositel je zdravý. Většina lidí s vyváženou translokací se to dozví až v souvislosti s opakovanými ztrátami těhotenství nebo neúspěšnou léčbou — jinak by neměli důvod to zjistit.
+Když nic nechybí ani nepřebývá, mluví se o **vyvážené přestavbě**. Nositel je zdravý. Většina lidí s vyváženou translokací se to dozví až v souvislosti s opakovanými ztrátami těhotenství nebo neúspěšnou léčbou, jinak by neměli důvod to zjistit.
 
 ## Proč to pak dělá potíže
 
@@ -257,7 +257,7 @@ Při tvorbě vajíček a spermií se chromozomy rozdělují do dvou polovin. U n
 
 Embryo s nevyváženým materiálem se často neuchytí, nebo těhotenství skončí ztrátou. Část kombinací může vést k narození dítěte s vrozenou vadou.
 
-Podíl vyvážených a nevyvážených kombinací se liší podle typu přestavby, podle toho, které chromozomy jsou zapojené, a podle toho, který z partnerů je nositel. Proto se nedá nic odhadnout obecně — konkrétní čísla umí říct jen genetik po prohlédnutí vašeho nálezu.
+Podíl vyvážených a nevyvážených kombinací se liší podle typu přestavby, podle toho, které chromozomy jsou zapojené, a podle toho, který z partnerů je nositel. Proto se nedá nic odhadnout obecně. Konkrétní čísla umí říct jen genetik po prohlédnutí vašeho nálezu.
 
 ## Dva typy, které uslyšíte nejčastěji
 
@@ -295,7 +295,7 @@ V párech se přesto často objeví okamžik, kdy si nositel připadá jako prob
 4. Má se vyšetřit ještě někdo z rodiny?
 5. Jaké možnosti bychom měli zvažovat a v jakém pořadí?
 
-> Konkrétní rizika u strukturálních přestaveb se počítají individuálně. Obecná čísla z článků nebo z diskusí na vaši situaci nepasují — vždy vycházejte z toho, co vám řekne klinický genetik.`,
+> Konkrétní rizika u strukturálních přestaveb se počítají individuálně. Obecná čísla z článků nebo z diskusí na vaši situaci nepasují. Vždy vycházejte z toho, co vám řekne klinický genetik.`,
   },
   {
     id: 'gen-kdy-zvazovat',
@@ -312,7 +312,7 @@ V párech se přesto často objeví okamžik, kdy si nositel připadá jako prob
     reviewedBy: REVIEWED,
     sources: [
       'Společnost lékařské genetiky a genomiky ČLS JEP',
-      'ESHRE — doporučené postupy',
+      'ESHRE: doporučené postupy',
     ],
     publishedOn: PUBLISHED,
     boost: 0.65,
@@ -330,7 +330,7 @@ Po dvou a více ztrátách se obvykle hledá příčina šířeji. Karyotyp obou
 
 ### Opakovaně neúspěšné transfery
 
-Když se přenesená embrya opakovaně neuchytí, hledá se vysvětlení na několika frontách současně — děloha, hormony, embrya. Genetika je jedna z nich, ne první a ne jediná.
+Když se přenesená embrya opakovaně neuchytí, hledá se vysvětlení na několika frontách současně. Děloha, hormony, embrya. Genetika je jedna z nich, ne první a ne jediná.
 
 ### Dědičné onemocnění v rodině
 
@@ -358,7 +358,7 @@ Vyšetření slouží k výběru vhodné kombinace a k nastavení testu.
 
 ## Co si od vyšetření slibovat a co ne
 
-Vyšetření **může** vysvětlit historii, která dávala málo smyslu, a **může** změnit plán léčby. U velké části párů ale vyjde v normě. To je dobrá zpráva zabalená do frustrace — jedna hypotéza padla a odpověď stále není.
+Vyšetření **může** vysvětlit historii, která dávala málo smyslu, a **může** změnit plán léčby. U velké části párů ale vyjde v normě. To je dobrá zpráva zabalená do frustrace. Jedna hypotéza padla a odpověď stále není.
 
 Vyšetření nepředpoví výsledek konkrétního cyklu, nezaručí těhotenství a nenahrazuje péči, kterou máte.
 
@@ -383,7 +383,7 @@ Pokud na otázku číslo tři není odpověď, stojí za to se zeptat ještě je
     kind: 'article',
     title: 'PGT krok za krokem: co se děje s embryem v laboratoři',
     excerpt:
-      'Od kultivace přes biopsii a zamrazení až po čekání na výsledek — a proč se transfer téměř vždy odkládá.',
+      'Od kultivace přes biopsii a zamrazení až po čekání na výsledek. A proč se transfer téměř vždy odkládá.',
     minutes: 10,
     phases: ['genetic_testing', 'embryo_culture'],
     topics: ['genetika', 'embryologie'],
@@ -392,14 +392,14 @@ Pokud na otázku číslo tři není odpověď, stojí za to se zeptat ještě je
     author: 'Gabi',
     reviewedBy: REVIEWED,
     sources: [
-      'ESHRE — doporučené postupy pro preimplantační genetické testování',
+      'ESHRE: doporučené postupy pro preimplantační genetické testování',
       'Společnost lékařské genetiky a genomiky ČLS JEP',
     ],
     publishedOn: PUBLISHED,
     boost: 0.9,
     body: `## Co PGT je
 
-PGT je preimplantační genetické testování — vyšetření embrya ještě před přenosem do dělohy. Vždy se provádí v rámci IVF, protože embrya musí být v laboratoři.
+PGT je preimplantační genetické testování. Vyšetření embrya ještě před přenosem do dělohy. Vždy se provádí v rámci IVF, protože embrya musí být v laboratoři.
 
 Existuje v několika podobách podle toho, co se hledá: počet chromozomů (PGT-A), konkrétní dědičné onemocnění (PGT-M), strukturální přestavba chromozomů (PGT-SR). Technický průběh je u všech tří podobný. Liší se otázka, kterou laboratoři pokládáte.
 
@@ -407,7 +407,7 @@ Existuje v několika podobách podle toho, co se hledá: počet chromozomů (PGT
 
 Po oplození se embrya sledují od prvního dne vývoje. Embryolog každý den hodnotí, jak se dělí, jak vypadají buňky, jestli vývoj pokračuje. Kolem třetího dne má embryo řádově osm buněk, kolem pátého až šestého dne může dorůst do stadia blastocysty, kde už jsou rozlišené dvě části: vnitřní buněčná masa, ze které se vyvíjí plod, a trofektoderm, ze kterého se tvoří placenta.
 
-Ne všechna embrya se do tohoto stadia dostanou. To platí i bez PGT — je to běžná součást kultivace, ne selhání laboratoře.
+Ne všechna embrya se do tohoto stadia dostanou. To platí i bez PGT. Je to běžná součást kultivace, ne selhání laboratoře.
 
 ## 2. Biopsie trofektodermu
 
@@ -419,7 +419,7 @@ Ne každé embryo je k biopsii vhodné. Embrya, která nedosáhnou potřebného 
 
 ## 3. Zamrazení
 
-Bezprostředně po biopsii se embryo **vitrifikuje** — zamrazí velmi rychlou metodou a uloží. Na výsledek se čeká, a embryo mezitím nemůže zůstat v kultivaci.
+Bezprostředně po biopsii se embryo **vitrifikuje**: zamrazí velmi rychlou metodou a uloží. Na výsledek se čeká, a embryo mezitím nemůže zůstat v kultivaci.
 
 Proto platí jednoduchá věta, kterou je dobré slyšet předem: **cyklus s PGT téměř vždy znamená odložený kryotransfer.** Přenos v témž cyklu, ve kterém proběhl odběr vajíček, se u PGT běžně nedělá.
 
@@ -446,7 +446,7 @@ Tady je důležitá věc, která se často ztrácí: **z jednoho odběru vajíč
 
 Odpovědi si nechte dát písemně nebo si je zapište. Rozhovor probíhá v období, kdy si toho zapamatujete málo.
 
-> Text popisuje obvyklý postup. Konkrétní provedení, načasování a podmínky se mezi pracovišti liší — vždy platí to, co vám řekne vaše klinika a klinický genetik.`,
+> Text popisuje obvyklý postup. Konkrétní provedení, načasování a podmínky se mezi pracovišti liší. Vždy platí to, co vám řekne vaše klinika a klinický genetik.`,
   },
   {
     id: 'gen-pgt-a',
@@ -462,7 +462,7 @@ Odpovědi si nechte dát písemně nebo si je zapište. Rozhovor probíhá v obd
     author: 'Gabi',
     reviewedBy: REVIEWED,
     sources: [
-      'ESHRE — doporučené postupy pro preimplantační genetické testování',
+      'ESHRE: doporučené postupy pro preimplantační genetické testování',
       'Společnost lékařské genetiky a genomiky ČLS JEP',
     ],
     publishedOn: PUBLISHED,
@@ -483,7 +483,7 @@ Tady je potřeba být přesná, protože marketing bývá jinde než data.
 - U vybraného euploidního embrya bývá pravděpodobnost uchycení při jednom přenosu vyšší než u nevybraného embrya. To ale není totéž jako vyšší šance na dítě z celé vaší zásoby embryí.
 - **Zda PGT-A zvyšuje celkovou šanci na narozené dítě, je předmětem odborné diskuse.** Výsledky studií nejsou jednotné a závěry se liší podle věku ženy, podle počtu embryí a podle metodiky.
 - Přínos se **liší podle věku**. U žen ve vyšším věku, kde je podíl aneuploidních embryí větší, se o něm mluví jinak než u žen mladších.
-- Přínos se **liší podle počtu embryí**. Při malém počtu embryí testování často jen přeskládá pořadí toho, co byste stejně přenášela — a přidá riziko, že po testování nezbude k transferu nic.
+- Přínos se **liší podle počtu embryí**. Při malém počtu embryí testování často jen přeskládá pořadí toho, co byste stejně přenášela. A přidá riziko, že po testování nezbude k transferu nic.
 
 To, co PGT-A často opravdu přináší, je **kratší cesta a méně neúspěšných transferů**, ne větší počet dětí. Pro některé páry je to velká hodnota. Pro jiné ne. Rozdíl mezi „rychleji" a „častěji" je ten nejdůležitější rozdíl v celém tomhle tématu.
 
@@ -491,13 +491,13 @@ To, co PGT-A často opravdu přináší, je **kratší cesta a méně neúspěš
 
 Bývá zvažováno u vyššího věku ženy, po opakovaně neúspěšných transferech a po opakovaných ztrátách těhotenství. Ani v jedné z těchto situací to není automatické doporučení a data o přínosu v nich nejsou jednotná.
 
-**PGT-A není vyšetření vhodné pro každou pacientku.** Rozhodnutí patří páru a jeho lékaři, po rozhovoru, ve kterém zazní vaše konkrétní čísla — věk, očekávaný počet embryí, dosavadní průběh léčby.
+**PGT-A není vyšetření vhodné pro každou pacientku.** Rozhodnutí patří páru a jeho lékaři, po rozhovoru, ve kterém zazní vaše konkrétní čísla. Věk, očekávaný počet embryí, dosavadní průběh léčby.
 
 ## Co s tím dělá čekání a peníze
 
 Cyklus s PGT-A znamená zamrazení embryí, čekání na výsledek a odložený kryotransfer. To je několik týdnů navíc a náklady navíc, které v Česku obvykle z velké části nese pacient.
 
-Do rozhodování patří i tohle. Není to malicherné — je to součást zátěže.
+Do rozhodování patří i tohle. Není to malicherné. Je to součást zátěže.
 
 ## Otázky, které vám dají odpověď
 
@@ -513,7 +513,7 @@ Do rozhodování patří i tohle. Není to malicherné — je to součást zát�
 - Nezaručí zdravé dítě. Netestuje všechno.
 - Nenahradí prenatální diagnostiku v těhotenství.
 
-> Tento text je vzdělávací a nenahrazuje konzultaci. O vhodnosti PGT-A ve vaší situaci rozhoduje váš lékař ve spolupráci s klinickým genetikem — a vy.`,
+> Tento text je vzdělávací a nenahrazuje konzultaci. O vhodnosti PGT-A ve vaší situaci rozhoduje váš lékař ve spolupráci s klinickým genetikem. A vy.`,
   },
   {
     id: 'gen-pgt-m',
@@ -529,21 +529,21 @@ Do rozhodování patří i tohle. Není to malicherné — je to součást zát�
     author: 'Gabi',
     reviewedBy: REVIEWED,
     sources: [
-      'ESHRE — doporučené postupy pro preimplantační genetické testování',
+      'ESHRE: doporučené postupy pro preimplantační genetické testování',
       'Společnost lékařské genetiky a genomiky ČLS JEP',
     ],
     publishedOn: PUBLISHED,
     boost: 0.6,
     body: `## Pro koho je
 
-PGT-M se používá tehdy, když je v páru **známá konkrétní mutace** způsobující dědičné onemocnění — například cystická fibróza, spinální svalová atrofie a řada dalších stavů podmíněných změnou v jednom genu.
+PGT-M se používá tehdy, když je v páru **známá konkrétní mutace** způsobující dědičné onemocnění, například cystická fibróza, spinální svalová atrofie a řada dalších stavů podmíněných změnou v jednom genu.
 
 Podmínkou je, že mutace je předem přesně popsaná. Test se nastavuje na ni. Bez znalosti konkrétní změny se PGT-M udělat nedá.
 
 ## Co tomu předchází
 
 1. **Genetická konzultace** a potvrzení mutace u nositele nebo u nemocného člena rodiny.
-2. **Příprava testu na míru.** Laboratoř sestaví systém pro vaši konkrétní mutaci a ověří ho. Často k tomu potřebuje vzorky i od dalších příbuzných — od rodičů, sourozenců nebo od nemocného dítěte.
+2. **Příprava testu na míru.** Laboratoř sestaví systém pro vaši konkrétní mutaci a ověří ho. Často k tomu potřebuje vzorky i od dalších příbuzných. Od rodičů, sourozenců nebo od nemocného dítěte.
 3. **Teprve pak se plánuje cyklus.**
 
 Příprava trvá běžně týdny až měsíce. Tohle je nejčastější překvapení celého procesu: pár přijde s tím, že chce začít, a zjistí, že první cyklus bude až za půl roku. Počítejte s tím v plánování a zeptejte se na termíny hned na první konzultaci.
@@ -558,7 +558,7 @@ U části párů se PGT-M kombinuje s testováním počtu chromozomů. Zda to m�
 
 Pro každé testované embryo se určuje, zda nese sledovanou mutaci a v jaké podobě. Podle toho se vybírá embryo k přenosu.
 
-U recesivně dědičných onemocnění bývá část embryí zdravých nositelů — tedy stejných, jako je rodič-nositel. Jak se s nimi nakládá, je téma pro genetickou konzultaci a liší se podle onemocnění i podle pracoviště.
+U recesivně dědičných onemocnění bývá část embryí zdravých nositelů, tedy stejných, jako je rodič-nositel. Jak se s nimi nakládá, je téma pro genetickou konzultaci a liší se podle onemocnění i podle pracoviště.
 
 ## Co PGT-M neumí
 
@@ -569,7 +569,7 @@ U recesivně dědičných onemocnění bývá část embryí zdravých nositelů
 
 ## Co to obnáší psychicky
 
-PGT-M přináší rozhodnutí, která nejsou technická. U párů, kde jeden z partnerů nemoc sám má nebo ji zná ze své rodiny, otevírá staré věci — vinu, úlevu i pocit, že se tu posuzuje něco, co je součástí jejich vlastního života.
+PGT-M přináší rozhodnutí, která nejsou technická. U párů, kde jeden z partnerů nemoc sám má nebo ji zná ze své rodiny, otevírá staré věci. Vinu, úlevu i pocit, že se tu posuzuje něco, co je součástí jejich vlastního života.
 
 Tenhle rozhovor patří na konzultaci a stojí za to na něj mít čas. Řada pracovišť nabízí i psychologickou podporu; není důvod ji nevyužít.
 
@@ -588,7 +588,7 @@ Tenhle rozhovor patří na konzultaci a stojí za to na něj mít čas. Řada pr
     kind: 'article',
     title: 'PGT-SR: testování embryí u chromozomových přestaveb',
     excerpt:
-      'Pro páry, kde jeden z partnerů nese translokaci. Vybírá embrya s vyváženým materiálem — a má svá jasná omezení.',
+      'Pro páry, kde jeden z partnerů nese translokaci. Vybírá embrya s vyváženým materiálem. A má svá jasná omezení.',
     minutes: 8,
     phases: ['genetic_testing', 'embryo_culture'],
     topics: ['genetika', 'embryologie'],
@@ -597,14 +597,14 @@ Tenhle rozhovor patří na konzultaci a stojí za to na něj mít čas. Řada pr
     author: 'Gabi',
     reviewedBy: REVIEWED,
     sources: [
-      'ESHRE — doporučené postupy pro preimplantační genetické testování',
+      'ESHRE: doporučené postupy pro preimplantační genetické testování',
       'Společnost lékařské genetiky a genomiky ČLS JEP',
     ],
     publishedOn: PUBLISHED,
     boost: 0.5,
     body: `## Kdy se o něm mluví
 
-PGT-SR se zvažuje u párů, kde má jeden z partnerů prokázanou **strukturální přestavbu chromozomů** — nejčastěji vyváženou reciproční nebo Robertsonskou translokaci, případně inverzi.
+PGT-SR se zvažuje u párů, kde má jeden z partnerů prokázanou **strukturální přestavbu chromozomů**: nejčastěji vyváženou reciproční nebo Robertsonskou translokaci, případně inverzi.
 
 Podmínkou je, že přestavba je popsaná z karyotypu. Laboratoř podle ní nastaví, co u embryí sledovat.
 
@@ -616,9 +616,9 @@ Provedení je stejné jako u ostatních typů PGT: kultivace, biopsie trofektode
 
 ## Co je potřeba vědět předem
 
-- **Podíl vyvážených embryí se velmi liší.** U některých přestaveb je většina embryí vyvážená, u jiných jen malá část. Konkrétní odhad pro vaši přestavbu umí dát klinický genetik — obecná čísla z internetu na vaši situaci nesedí.
+- **Podíl vyvážených embryí se velmi liší.** U některých přestaveb je většina embryí vyvážená, u jiných jen malá část. Konkrétní odhad pro vaši přestavbu umí dát klinický genetik. Obecná čísla z internetu na vaši situaci nesedí.
 - **Může se stát, že vhodné embryo nevznikne.** U přestaveb s nízkým podílem vyvážených embryí je tenhle scénář reálný a je lepší si o něm říct dopředu.
-- **Běžné metody nemusí odlišit embryo zcela bez přestavby od embrya s vyváženou přestavbou.** Obě jsou z hlediska vývoje považována za vhodná k přenosu, ale dítě může být opět nositelem. Jestli je to pro vás podstatné, řekněte to na konzultaci — někdy jde metodika upravit, někdy ne.
+- **Běžné metody nemusí odlišit embryo zcela bez přestavby od embrya s vyváženou přestavbou.** Obě jsou z hlediska vývoje považována za vhodná k přenosu, ale dítě může být opět nositelem. Jestli je to pro vás podstatné, řekněte to na konzultaci. Někdy jde metodika upravit, někdy ne.
 - **Test cílí na přestavbu.** Zda se současně hodnotí i počet ostatních chromozomů, se u jednotlivých pracovišť liší a je to otázka na konzultaci.
 
 ## Co může a co ne
@@ -627,7 +627,7 @@ PGT-SR **může snížit pravděpodobnost přenosu embrya s nevyváženým mater
 
 Nezaručí těhotenství, nezaručí zdravé dítě a nenahrazuje prenatální diagnostiku v těhotenství. Ta se po PGT obvykle probírá znovu.
 
-Ani u nositelů přestavby to není jediná možná cesta. Část párů volí početí bez testování s prenatální diagnostikou, část darované gamety. Žádná z těch cest není automaticky správná — liší se podle konkrétní přestavby, podle věku, podle toho, kolik ztrát už máte za sebou, a podle toho, co jste ochotni unést.
+Ani u nositelů přestavby to není jediná možná cesta. Část párů volí početí bez testování s prenatální diagnostikou, část darované gamety. Žádná z těch cest není automaticky správná. Liší se podle konkrétní přestavby, podle věku, podle toho, kolik ztrát už máte za sebou, a podle toho, co jste ochotni unést.
 
 ## Otázky pro konzultaci
 
@@ -653,14 +653,14 @@ Ani u nositelů přestavby to není jediná možná cesta. Část párů volí p
     author: 'Gabi',
     reviewedBy: REVIEWED,
     sources: [
-      'ESHRE — doporučené postupy pro preimplantační genetické testování',
+      'ESHRE: doporučené postupy pro preimplantační genetické testování',
       'Společnost lékařské genetiky a genomiky ČLS JEP',
     ],
     publishedOn: PUBLISHED,
     boost: 0.85,
     body: `## Odkud se ta slova berou
 
-Lidská buňka má běžně 46 chromozomů — 23 párů. Embryo dostává jednu sadu z vajíčka a jednu ze spermie. Když se při dělení něco přerozdělí jinak, počet nesedí.
+Lidská buňka má běžně 46 chromozomů, 23 párů. Embryo dostává jednu sadu z vajíčka a jednu ze spermie. Když se při dělení něco přerozdělí jinak, počet nesedí.
 
 Zpráva z genetické laboratoře používá pro výsledek tři základní kategorie.
 
@@ -672,7 +672,7 @@ Co to neznamená: že se uchytí, že těhotenství bude pokračovat a že dít�
 
 ## Aneuploidní embryo
 
-Nález ukazuje **chybějící nebo nadbytečný chromozom**. Zpráva obvykle uvádí i který — třeba přebývající 21. chromozom nebo chybějící 16.
+Nález ukazuje **chybějící nebo nadbytečný chromozom**. Zpráva obvykle uvádí i který, třeba přebývající 21. chromozom nebo chybějící 16.
 
 Většina aneuploidií vzniká náhodnou chybou při dělení, nejčastěji ve vajíčku. Pravděpodobnost stoupá s věkem ženy. Není to nic, co byste způsobila chováním, stravou, stresem nebo tím, že jste na něco zapomněla.
 
@@ -695,13 +695,13 @@ Co je na tom podstatné:
 
 ## Ještě jedna kategorie: nejednoznačný výsledek
 
-Občas laboratoř výsledek nedá — vzorek byl malý, DNA se nepodařilo vyhodnotit nebo je nález nečitelný. Mluví se o embryu bez výsledku.
+Občas laboratoř výsledek nedá. Vzorek byl malý, DNA se nepodařilo vyhodnotit nebo je nález nečitelný. Mluví se o embryu bez výsledku.
 
 Možnosti bývají opakovaná biopsie, přenos bez výsledku po konzultaci, nebo ponechání embrya zamrazeného. Každá má svá pro i proti a rozhoduje se individuálně.
 
 ## Co se ve zprávě ještě může objevit
 
-Zpráva někdy uvádí i hodnocení embrya z pohledu embryologa — stadium vývoje a kvalitu jednotlivých částí. To je jiná informace než genetický nález a jedno z druhého neplyne.
+Zpráva někdy uvádí i hodnocení embrya z pohledu embryologa. Stadium vývoje a kvalitu jednotlivých částí. To je jiná informace než genetický nález a jedno z druhého neplyne.
 
 ## Než se rozhodnete o dalším kroku
 
@@ -720,7 +720,7 @@ Poslední bod stojí za zdůraznění. Embrya čekají zamrazená a rozhodnutí 
     kind: 'article',
     title: 'Co PGT neumí: omezení, o kterých je lepší vědět předem',
     excerpt:
-      'Chyba testu, mozaicismus, riziko při biopsii a jedna věc, kterou žádné testování nezmění — počet vašich embryí.',
+      'Chyba testu, mozaicismus, riziko při biopsii a jedna věc, kterou žádné testování nezmění. Počet vašich embryí.',
     minutes: 9,
     phases: ['genetic_testing', 'embryo_culture'],
     topics: ['genetika', 'embryologie'],
@@ -729,7 +729,7 @@ Poslední bod stojí za zdůraznění. Embrya čekají zamrazená a rozhodnutí 
     author: 'Gabi',
     reviewedBy: REVIEWED,
     sources: [
-      'ESHRE — doporučené postupy pro preimplantační genetické testování',
+      'ESHRE: doporučené postupy pro preimplantační genetické testování',
       'Společnost lékařské genetiky a genomiky ČLS JEP',
     ],
     publishedOn: PUBLISHED,
@@ -740,7 +740,7 @@ Většina zklamání kolem PGT nevzniká z toho, že by test selhal. Vzniká z o
 
 ## 1. Testuje se vzorek, ne celé embryo
 
-Odebírá se několik buněk z trofektodermu — z části, ze které se tvoří placenta. Předpokládá se, že vypovídají o celém embryu, ale úplně přesně to platit nemusí.
+Odebírá se několik buněk z trofektodermu. Z části, ze které se tvoří placenta. Předpokládá se, že vypovídají o celém embryu, ale úplně přesně to platit nemusí.
 
 Z toho plyne, že výsledek má **malou, ale nenulovou míru nejistoty** v obou směrech: embryo označené jako aneuploidní nemusí být takové v celém rozsahu, a embryo označené jako euploidní může nést odchylku, kterou vzorek nezachytil.
 
@@ -758,7 +758,7 @@ PGT odpovídá na tu otázku, na kterou je nastavené. PGT-A na počet chromozom
 
 Tohle je nejdůležitější věta celého textu. **PGT netvoří embrya. Vybírá z těch, která už máte.**
 
-Když je embryí málo, testování často jen předřadí informaci, kterou byste stejně dostala — jen dřív a s vyšší cenou. A přidá riziko, že po testování nezbude k přenosu nic.
+Když je embryí málo, testování často jen předřadí informaci, kterou byste stejně dostala, jen dřív a s vyšší cenou. A přidá riziko, že po testování nezbude k přenosu nic.
 
 Proto se u malého počtu embryí o PGT uvažuje jinak než u velkého. Je to jedna z prvních věcí, kterou má smysl s lékařem probrat.
 
@@ -770,7 +770,7 @@ Riziko je nízké, ale není nulové a je legitimní se na něj zeptat. Ptejte s
 
 ## 6. Ne každé embryo se k testu dostane
 
-Testovat se dá až embryo, které dorostlo do potřebného stadia a kvality. Embrya, která se zastaví dřív, se nebiopsují. To není důsledek PGT — je to běžná součást kultivace, jen se to při plánování snadno přehlédne.
+Testovat se dá až embryo, které dorostlo do potřebného stadia a kvality. Embrya, která se zastaví dřív, se nebiopsují. To není důsledek PGT. Je to běžná součást kultivace, jen se to při plánování snadno přehlédne.
 
 ## 7. Nezaručí těhotenství
 
@@ -793,7 +793,7 @@ Jestli je tahle odpověď pro vás užitečná, závisí na tom, proč ji chcete
     kind: 'article',
     title: 'Jak se rozhoduje o PGT: otázky, které vás dovedou k odpovědi',
     excerpt:
-      'Není to volba mezi lepší a horší péčí. Je to volba, která má proměnné — a ty se dají pojmenovat.',
+      'Není to volba mezi lepší a horší péčí. Je to volba, která má proměnné. A ty se dají pojmenovat.',
     minutes: 9,
     phases: ['genetic_testing', 'embryo_culture'],
     topics: ['genetika', 'klinika'],
@@ -802,7 +802,7 @@ Jestli je tahle odpověď pro vás užitečná, závisí na tom, proč ji chcete
     author: 'Gabi',
     reviewedBy: REVIEWED,
     sources: [
-      'ESHRE — doporučené postupy pro preimplantační genetické testování',
+      'ESHRE: doporučené postupy pro preimplantační genetické testování',
       'Společnost lékařské genetiky a genomiky ČLS JEP',
     ],
     publishedOn: PUBLISHED,
@@ -811,7 +811,7 @@ Jestli je tahle odpověď pro vás užitečná, závisí na tom, proč ji chcete
 
 PGT není nadstandard, který by dělal léčbu automaticky lepší, ani zbytečnost. Je to vyšetření s konkrétní indikací, konkrétním přínosem a konkrétními omezeními. **Není vhodné pro každou pacientku a pro každý pár.**
 
-U některých situací — známá mutace v páru, prokázaná strukturální přestavba — je jeho role poměrně jasná. Jako plošné vyšetření u všech párů zůstává předmětem odborné diskuse a data nejsou jednotná. Rozhodnutí patří vám společně s lékařem a genetikem.
+U některých situací (známá mutace v páru, prokázaná strukturální přestavba) je jeho role poměrně jasná. Jako plošné vyšetření u všech párů zůstává předmětem odborné diskuse a data nejsou jednotná. Rozhodnutí patří vám společně s lékařem a genetikem.
 
 ## Šest proměnných, o kterých se rozhoduje
 
@@ -825,7 +825,7 @@ Nejpraktičtější číslo v celé úvaze. Při malém očekávaném počtu emb
 
 ### 3. Věk
 
-Podíl aneuploidních embryí stoupá s věkem ženy a s ním se mění i to, jak se o přínosu testování mluví. Obecná doporučení tady nepomůžou — potřebujete čísla vztažená k vám.
+Podíl aneuploidních embryí stoupá s věkem ženy a s ním se mění i to, jak se o přínosu testování mluví. Obecná doporučení tady nepomůžou. Potřebujete čísla vztažená k vám.
 
 ### 4. Co uděláte s výsledkem
 
@@ -837,7 +837,7 @@ Testování se v Česku obvykle z velké části hradí z vlastních prostředk�
 
 ### 6. Hodnoty
 
-Část rozhodnutí není medicínská. Týká se toho, jak se díváte na výběr mezi embryi a co byste dělali s embryi, která k přenosu nepůjdou. Tohle je legitimní součást úvahy a má zaznít nahlas — ideálně mezi vámi a partnerem dřív, než sedíte v ordinaci.
+Část rozhodnutí není medicínská. Týká se toho, jak se díváte na výběr mezi embryi a co byste dělali s embryi, která k přenosu nepůjdou. Tohle je legitimní součást úvahy a má zaznít nahlas, ideálně mezi vámi a partnerem dřív, než sedíte v ordinaci.
 
 ## Co si vyžádat
 
@@ -857,11 +857,11 @@ Testování se v Česku obvykle z velké části hradí z vlastních prostředk�
 
 ## Když si nejste jistá
 
-Druhý názor je běžná a legitimní věc. Stejně tak je legitimní PGT odmítnout, i když ho klinika nabízí — a stejně tak si ho vyžádat a probrat, i když o něm nikdo nezačal.
+Druhý názor je běžná a legitimní věc. Stejně tak je legitimní PGT odmítnout, i když ho klinika nabízí. A stejně tak si ho vyžádat a probrat, i když o něm nikdo nezačal.
 
 Jedna věc na závěr, kterou je dobré si připomenout: **z jednoho odběru vajíček může vzniknout několik embryí a několik transferů.** Rozhodnutí o testování se tedy netýká jednoho přenosu, ale celé zásoby embryí, kterou z cyklu budete mít.
 
-> Text je vzdělávací a nenahrazuje konzultaci. O vhodnosti a rozsahu PGT rozhoduje váš lékař ve spolupráci s klinickým genetikem — po rozhovoru s vámi.`,
+> Text je vzdělávací a nenahrazuje konzultaci. O vhodnosti a rozsahu PGT rozhoduje váš lékař ve spolupráci s klinickým genetikem. Po rozhovoru s vámi.`,
   },
 
   // ---------------------------------------------------------------------------
@@ -872,7 +872,7 @@ Jedna věc na závěr, kterou je dobré si připomenout: **z jednoho odběru vaj
     kind: 'article',
     title: 'Když přijde výsledek, který jsme nečekali',
     excerpt:
-      'Aneuploidní nález u všech embryí. Nebo žádné embryo k transferu. Co ten výsledek říká — a co o vás neříká.',
+      'Aneuploidní nález u všech embryí. Nebo žádné embryo k transferu. Co ten výsledek říká. A co o vás neříká.',
     minutes: 9,
     phases: ['genetic_testing', 'embryo_culture'],
     topics: ['genetika', 'psychika'],
@@ -892,7 +892,7 @@ Do té chvíle jste měli embrya. Byla někde uložená, existovala, byla vaše.
 
 Že u odebraných buněk konkrétních embryí byla nalezena odchylka v počtu chromozomů. Nic víc.
 
-Aneuploidie vzniká nejčastěji náhodnou chybou při dělení, obvykle už ve vajíčku. Její výskyt stoupá s věkem ženy a **nedá se ovlivnit chováním, stravou, doplňky, klidem ani tím, co jste udělala nebo neudělala.** To není útěcha na míru — to je popis toho, jak vznikají chyby v dělení buňky.
+Aneuploidie vzniká nejčastěji náhodnou chybou při dělení, obvykle už ve vajíčku. Její výskyt stoupá s věkem ženy a **nedá se ovlivnit chováním, stravou, doplňky, klidem ani tím, co jste udělala nebo neudělala.** To není útěcha na míru. To je popis toho, jak vznikají chyby v dělení buňky.
 
 ## Co neříká
 
@@ -904,7 +904,7 @@ A neříká ani, jak dopadne další cyklus. Každý cyklus je jiná sada vají�
 
 Hodně. Nemusíte si ho odůvodňovat.
 
-Řada žen popisuje, že si připadá hloupě — vždyť „to ještě nebylo těhotenství". Jenže vy jste ta embrya ve své hlavě už znala. Měla jste jejich čísla, možná i fotku, plánovala jste termíny. Zmizel konkrétní plán a s ním i to, co jste si k němu už stihla připojit.
+Řada žen popisuje, že si připadá hloupě. Vždyť „to ještě nebylo těhotenství". Jenže vy jste ta embrya ve své hlavě už znala. Měla jste jejich čísla, možná i fotku, plánovala jste termíny. Zmizel konkrétní plán a s ním i to, co jste si k němu už stihla připojit.
 
 Ztráta plánu je taky ztráta. Nikdo od vás nečeká, že to ustojíte za víkend.
 
@@ -921,11 +921,11 @@ Ztráta plánu je taky ztráta. Nikdo od vás nečeká, že to ustojíte za vík
 1. Co konkrétně bylo u našich embryí nalezeno?
 2. Co z toho podle vás plyne pro další cyklus?
 3. Dá se v protokolu něco změnit? Co konkrétně a s jakým očekáváním?
-4. Má v naší situaci smysl další vyšetření — u mě, u partnera?
+4. Má v naší situaci smysl další vyšetření. U mě, u partnera?
 5. Kdy nejdřív můžeme pokračovat a co doporučujete udělat do té doby?
 6. Jaké možnosti bychom měli zvažovat, pokud se to bude opakovat?
 
-Nepřijímejte odpověď, které nerozumíte. Požádejte, ať ji lékař zopakuje jinak — je to standardní součást péče, ne obtěžování.
+Nepřijímejte odpověď, které nerozumíte. Požádejte, ať ji lékař zopakuje jinak. Je to standardní součást péče, ne obtěžování.
 
 ## Když se výsledek týkal jediného embrya
 
@@ -952,7 +952,7 @@ Co víme: tenhle výsledek je informace o embryích z jednoho cyklu. Rozhodnutí
   },
 ]
 
-// PGT-A, PGT-M a Karyotyp tady záměrně nejsou — pojmy už definuje balík
+// PGT-A, PGT-M a Karyotyp tady záměrně nejsou. Pojmy už definuje balík
 // `diagnostics` a registr slovníku dedupuje podle `term`, takže druhá
 // definice by se stejně nikdy nezobrazila. Jejich synonyma jsou doplněná
 // do původních hesel v `diagnostics.ts`.
@@ -968,7 +968,7 @@ const glossary: GlossaryTerm[] = [
     term: 'Euploidní embryo',
     aliases: ['euploidie'],
     short: 'Embryo, u kterého testování nenašlo odchylku v počtu chromozomů.',
-    long: 'Nález odpovídá očekávanému počtu 46 chromozomů a embryo se považuje za vhodné k přenosu. Neznamená to záruku — euploidní embryo se nemusí uchytit, těhotenství nemusí pokračovat a testování nevylučuje všechna onemocnění. Výsledek navíc pochází z několika buněk trofektodermu, ne z celého embrya, takže má malou míru nejistoty. Prenatální diagnostiku v těhotenství nenahrazuje.',
+    long: 'Nález odpovídá očekávanému počtu 46 chromozomů a embryo se považuje za vhodné k přenosu. Neznamená to záruku. Euploidní embryo se nemusí uchytit, těhotenství nemusí pokračovat a testování nevylučuje všechna onemocnění. Výsledek navíc pochází z několika buněk trofektodermu, ne z celého embrya, takže má malou míru nejistoty. Prenatální diagnostiku v těhotenství nenahrazuje.',
     topics: ['genetika', 'embryologie'],
   },
   {

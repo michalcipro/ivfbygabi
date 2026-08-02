@@ -4,8 +4,8 @@ import type { ContentItem, ContentPack } from '../types'
  * Podpůrná péče mimo kliniku.
  *
  * Metody, na které se ženy v léčbě ptají nejčastěji a o kterých se na
- * klinice nemluví. Cílem není nabídnout „něco navíc, co pomůže otěhotnět“ —
- * to žádná z těchto metod prokazatelně neumí. Cílem je popsat je poctivě:
+ * klinice nemluví. Cílem není nabídnout „něco navíc, co pomůže otěhotnět“.
+ * To žádná z těchto metod prokazatelně neumí. Cílem je popsat je poctivě:
  * co dělají, co o nich skutečně víme, kde jsou důkazy slabé nebo žádné
  * a kde hrozí riziko. Aby se žena mohla rozhodnout informovaně a nekupovala
  * naději za peníze.
@@ -28,11 +28,11 @@ const items: ContentItem[] = [
     hero: 'sage',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['Cochrane Database of Systematic Reviews', 'NICE — doporučené postupy'],
+    sources: ['Cochrane Database of Systematic Reviews', 'NICE: doporučené postupy'],
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Fyzioterapie je zdravotnický obor, který pracuje s pohybovým aparátem — se svaly, klouby, vazy, dechem a s tím, jak se tělo hýbe jako celek. Fyzioterapeut nejdřív dělá rozbor: dívá se, jak stojíte, jak dýcháte, kde máte omezený pohyb a co bolí. Teprve pak volí postup.
+Fyzioterapie je zdravotnický obor, který pracuje s pohybovým aparátem. Se svaly, klouby, vazy, dechem a s tím, jak se tělo hýbe jako celek. Fyzioterapeut nejdřív dělá rozbor: dívá se, jak stojíte, jak dýcháte, kde máte omezený pohyb a co bolí. Teprve pak volí postup.
 
 V praxi to bývá kombinace měkkých technik na svaly a jizvy, mobilizace kloubů, práce s dechem a hlavně cvičení, které se naučíte a děláte doma sama. Ta domácí část je obvykle ta, která rozhoduje.
 
@@ -41,9 +41,9 @@ V praxi to bývá kombinace měkkých technik na svaly a jizvy, mobilizace kloub
 V průběhu léčby se tělo dostává do zátěže, se kterou nepočítalo:
 
 - **Bolesti zad a pánve** z dlouhého sezení v čekárnách, ze stresového napětí a z toho, že se hýbete míň než dřív.
-- **Jizvy po zákrocích** — po laparoskopii, hysteroskopii, po císařském řezu z předchozího porodu. Jizva, která je srostlá, může táhnout a omezovat pohyb v okolí.
+- **Jizvy po zákrocích**: po laparoskopii, hysteroskopii, po císařském řezu z předchozího porodu. Jizva, která je srostlá, může táhnout a omezovat pohyb v okolí.
 - **Chronické napětí v bránici a v ramenou.** Tělo, které je měsíce ve střehu, dýchá mělce a nahoru do hrudníku.
-- **Návrat k pohybu po delší pauze** — kdy nevíte, co si můžete dovolit, a tak radši neděláte nic.
+- **Návrat k pohybu po delší pauze**: kdy nevíte, co si můžete dovolit, a tak radši neděláte nic.
 
 To všechno jsou reálné potíže, které stojí za to řešit. Nikoli proto, že by to změnilo výsledek léčby, ale proto, že vám je líp v těle, které vás nebolí.
 
@@ -53,7 +53,7 @@ Je potřeba rozlišit dvě různé otázky.
 
 **Fyzioterapie u bolestí zad, pánve a v rehabilitaci po operacích: dobře podložené důkazy.** Tady jde o standardní zdravotní péči s roky výzkumu za sebou.
 
-**Fyzioterapie a plodnost nebo výsledky IVF: nedostatek kvalitních důkazů.** Neexistují spolehlivé studie, které by ukazovaly, že fyzioterapie zvyšuje šanci na otěhotnění nebo na úspěch cyklu. To neznamená, že je zbytečná — znamená to, že důvod, proč k ní jít, je úleva od potíží, ne naděje na lepší výsledek.
+**Fyzioterapie a plodnost nebo výsledky IVF: nedostatek kvalitních důkazů.** Neexistují spolehlivé studie, které by ukazovaly, že fyzioterapie zvyšuje šanci na otěhotnění nebo na úspěch cyklu. To neznamená, že je zbytečná. Znamená to, že důvod, proč k ní jít, je úleva od potíží, ne naděje na lepší výsledek.
 
 Když vám někdo tvrdí opak, tvrdí něco, co nemá čím doložit.
 
@@ -66,7 +66,7 @@ Když vám někdo tvrdí opak, tvrdí něco, co nemá čím doložit.
 
 ## Jak si vybrat odborníka
 
-Fyzioterapeut je regulované zdravotnické povolání — má bakalářské nebo magisterské vzdělání v oboru. To si můžete ověřit a je to první filtr.
+Fyzioterapeut je regulované zdravotnické povolání. Má bakalářské nebo magisterské vzdělání v oboru. To si můžete ověřit a je to první filtr.
 
 Co se vyplatí zjistit:
 
@@ -90,13 +90,13 @@ Co se vyplatí zjistit:
     hero: 'blush',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['Cochrane Database of Systematic Reviews', 'NICE — doporučené postupy'],
+    sources: ['Cochrane Database of Systematic Reviews', 'NICE: doporučené postupy'],
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Pánevní dno je vrstva svalů, která zdola uzavírá pánev. Nese orgány, podílí se na udržení moči a stolice, na sexuálním prožívání a na stabilitě celého trupu. Pracuje ve spojení s bránicí a s hlubokými břišními svaly — proto se s ním nedá pracovat izolovaně.
+Pánevní dno je vrstva svalů, která zdola uzavírá pánev. Nese orgány, podílí se na udržení moči a stolice, na sexuálním prožívání a na stabilitě celého trupu. Pracuje ve spojení s bránicí a s hlubokými břišními svaly, proto se s ním nedá pracovat izolovaně.
 
-Fyzioterapie pánevního dna je specializace uvnitř fyzioterapie. Terapeut hodnotí, jestli svaly umí zapnout, uvolnit a jestli reagují v souhře s dechem. Součástí vyšetření může být, ale nemusí, vaginální palpace — vždy jen s vaším výslovným souhlasem a vždy je možné ji odmítnout.
+Fyzioterapie pánevního dna je specializace uvnitř fyzioterapie. Terapeut hodnotí, jestli svaly umí zapnout, uvolnit a jestli reagují v souhře s dechem. Součástí vyšetření může být, ale nemusí, vaginální palpace. Vždy jen s vaším výslovným souhlasem a vždy je možné ji odmítnout.
 
 Řada terapeutů pracuje bez ní: přes dech, přes vnější hmaty a přes zpětnou vazbu z toho, co cítíte vy.
 
@@ -105,7 +105,7 @@ Fyzioterapie pánevního dna je specializace uvnitř fyzioterapie. Terapeut hodn
 Nejčastější důvody, se kterými sem ženy v léčbě přicházejí:
 
 - **Bolest při pohlavním styku** nebo bolest při gynekologickém vyšetření.
-- **Nadměrné napětí pánevního dna.** Svaly, které jsou trvale stažené, jsou stejný problém jako svaly slabé — a je to častější, než se čeká.
+- **Nadměrné napětí pánevního dna.** Svaly, které jsou trvale stažené, jsou stejný problém jako svaly slabé. A je to častější, než se čeká.
 - **Úniky moči**, tlak v podbřišku, pocit tíhy.
 - **Potíže po předchozím porodu** nebo po břišních operacích.
 - **Křeč a stažení při zavádění katétru.** Když víte, že přijde transfer nebo inseminace, a tělo se každou takovou situací brání víc.
@@ -124,13 +124,13 @@ Takže: jděte tam kvůli bolesti, únikům nebo napětí. Ne kvůli výsledku c
 
 - **Vyšetření vaginální cestou není pro každou ženu a nikdy není povinné.** Máte právo ho odmítnout, přerušit nebo si vyžádat jiný postup. Dobrý terapeut se ptá předem a ptá se znovu v průběhu.
 - **Po odběru vajíček a při zvětšených vaječnících** proberte načasování s klinikou. Některé postupy se v tomhle období odkládají.
-- **Máte-li za sebou sexuální trauma**, řekněte to. Nemusíte vysvětlovat detaily — stačí věta „potřebuju pomalý postup a možnost kdykoli zastavit“.
+- **Máte-li za sebou sexuální trauma**, řekněte to. Nemusíte vysvětlovat detaily. Stačí věta „potřebuju pomalý postup a možnost kdykoli zastavit“.
 - **Bolest při terapii není cíl.** Pokud vám někdo tvrdí, že to musí bolet, aby to fungovalo, odejděte.
 - **Cvičení naslepo z internetu** může potíže zhoršit. Kdo má pánevní dno v přemíře napětí, tomu posilování uškodí.
 
 ## Jak si vybrat odborníka
 
-Hledejte fyzioterapeuta s doloženou specializací na pánevní dno — v Česku existují uznávané kurzy a terapeuti je běžně uvádějí. Zeptejte se:
+Hledejte fyzioterapeuta s doloženou specializací na pánevní dno. V Česku existují uznávané kurzy a terapeuti je běžně uvádějí. Zeptejte se:
 
 1. Jak vypadá první návštěva a co bude její součástí?
 2. Pracujete i bez vaginálního vyšetření?
@@ -158,7 +158,7 @@ Hledejte fyzioterapeuta s doloženou specializací na pánevní dno — v Česku
 
 Metoda pojmenovaná po rehabilitační pracovnici Ludmile Mojžíšové, která ji rozvinula v druhé polovině 20. století. Jde o soustavu jednoduchých cviků zaměřených na páteř, pánev, břišní svaly a pánevní dno, doplněnou o mobilizační techniky, které provádí vyškolený terapeut.
 
-Původní myšlenka byla, že u části žen souvisejí potíže s otěhotněním s funkčními poruchami páteře a pánve — s napětím, blokádami a nerovnováhou svalů v této oblasti — a že jejich úprava může stav zlepšit.
+Původní myšlenka byla, že u části žen souvisejí potíže s otěhotněním s funkčními poruchami páteře a pánve (s napětím, blokádami a nerovnováhou svalů v této oblasti) a že jejich úprava může stav zlepšit.
 
 V Česku je metoda hluboce zakořeněná. Prakticky každá žena, která se roky snaží, ji od někoho slyšela doporučit.
 
@@ -168,7 +168,7 @@ Co metoda reálně dělá, je pravidelné, jemné a dobře vedené cvičení zad
 
 - může zmírnit **bolesti zad a křížové oblasti**,
 - pracuje s **napětím pánevního dna a s dechem**,
-- vede k **pravidelnému návyku** — což je samo o sobě víc, než většina lidí dokáže udržet,
+- vede k **pravidelnému návyku**: což je samo o sobě víc, než většina lidí dokáže udržet,
 - dává **pocit, že něco děláte**, v období, kdy je pasivita nejtěžší.
 
 Cviky jsou nenáročné, dělají se doma a nevyžadují vybavení. To je jejich velká praktická výhoda.
@@ -177,7 +177,7 @@ Cviky jsou nenáročné, dělají se doma a nevyžadují vybavení. To je jejich
 
 Tady je potřeba být upřímní, protože se to říká nerado.
 
-**Vliv Mojžíšovy metody na plodnost patří do kategorie „nedostatek kvalitních důkazů“.** Metoda nikdy neprošla kvalitními randomizovanými studiemi. To, co se o ní traduje — čísla o tom, kolika ženám pomohla — pochází z nekontrolovaných pozorování, kde chybí srovnávací skupina a kde není možné odlišit efekt metody od toho, že část žen otěhotní i bez ní.
+**Vliv Mojžíšovy metody na plodnost patří do kategorie „nedostatek kvalitních důkazů“.** Metoda nikdy neprošla kvalitními randomizovanými studiemi. To, co se o ní traduje (čísla o tom, kolika ženám pomohla) pochází z nekontrolovaných pozorování, kde chybí srovnávací skupina a kde není možné odlišit efekt metody od toho, že část žen otěhotní i bez ní.
 
 To není odsudek. Je to popis stavu poznání. Řada věcí ve zdravotnictví je ověřená, tahle ověřená není.
 
@@ -215,11 +215,11 @@ Metodu učí fyzioterapeuti, kteří prošli konkrétním školením. Ptejte se:
     hero: 'taupe',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['Cochrane Database of Systematic Reviews', 'ESHRE — doporučené postupy'],
+    sources: ['Cochrane Database of Systematic Reviews', 'ESHRE: doporučené postupy'],
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Tradiční čínská medicína (TČM) je ucelený systém s vlastní teorií, diagnostikou a terapií. Vychází z jiného pojetí těla než medicína, na které stojí vaše klinika — pracuje s pojmy jako energie, chlad a horko, plnost a prázdnota.
+Tradiční čínská medicína (TČM) je ucelený systém s vlastní teorií, diagnostikou a terapií. Vychází z jiného pojetí těla než medicína, na které stojí vaše klinika. Pracuje s pojmy jako energie, chlad a horko, plnost a prázdnota.
 
 V praxi zahrnuje:
 
@@ -227,7 +227,7 @@ V praxi zahrnuje:
 - **bylinné směsi** namíchané individuálně,
 - **akupunkturu** (má vlastní článek),
 - **moxování**, baňkování, masáž,
-- **dietetiku** — doporučení, co jíst a čemu se vyhnout.
+- **dietetiku**: doporučení, co jíst a čemu se vyhnout.
 
 Samostatný článek o akupunktuře najdete v této sekci. Tenhle text je hlavně o bylinách a o systému jako celku.
 
@@ -238,14 +238,14 @@ Co ženy popisují nejčastěji: dostanou čas. Vstupní konzultace v TČM trvá
 Dále:
 
 - **rituál a struktura** v období, které je jinak chaotické,
-- **pozornost k základům** — teplé jídlo, pravidelnost, spánek, méně chladu a syrového; tahle doporučení jsou většinou neškodná a někdy prospěšná,
+- **pozornost k základům**: teplé jídlo, pravidelnost, spánek, méně chladu a syrového; tahle doporučení jsou většinou neškodná a někdy prospěšná,
 - **pocit, že jste vnímaná jako celek**, ne jako sada laboratorních hodnot.
 
 To je reálná hodnota. Jen je dobré vědět, že jde o hodnotu v péči a v prožívání, ne o doložený vliv na výsledek léčby.
 
 ## Co o tom víme
 
-**Vliv TČM a čínských bylinných směsí na plodnost a na výsledky IVF: nedostatek kvalitních důkazů.** Přehledy, které se o to pokusily, narážejí na stejný problém — studie jsou malé, metodicky slabé, směsi nejsou standardizované a výsledky se neopakují. Z takového podkladu nelze tvrdit, že bylinná léčba zvyšuje šanci na těhotenství.
+**Vliv TČM a čínských bylinných směsí na plodnost a na výsledky IVF: nedostatek kvalitních důkazů.** Přehledy, které se o to pokusily, narážejí na stejný problém. Studie jsou malé, metodicky slabé, směsi nejsou standardizované a výsledky se neopakují. Z takového podkladu nelze tvrdit, že bylinná léčba zvyšuje šanci na těhotenství.
 
 **U bezpečnosti je situace jiná a je potřeba ji brát vážně.** Tady důkazy máme, a jsou nepříjemné: u bylinných přípravků byly opakovaně popsány případy poškození jater, kontaminace těžkými kovy nebo příměsi léčivých látek, které v deklarovaném složení nebyly. Riziko není u všech přípravků stejné, ale není nulové.
 
@@ -273,7 +273,7 @@ TČM není v Česku regulované zdravotnické povolání, takže titul na dveř�
     kind: 'article',
     title: 'Akupunktura při IVF: co ukazují studie',
     excerpt:
-      'Nejzkoumanější z doplňkových metod — a přesto odpověď na otázku „zvýší mi to šanci?“ zní jinak, než by leták na klinice chtěl.',
+      'Nejzkoumanější z doplňkových metod. A přesto odpověď na otázku „zvýší mi to šanci?“ zní jinak, než by leták na klinice chtěl.',
     minutes: 7,
     phases: [],
     topics: ['sebepece', 'psychika'],
@@ -281,11 +281,11 @@ TČM není v Česku regulované zdravotnické povolání, takže titul na dveř�
     hero: 'sky',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['Cochrane Database of Systematic Reviews', 'ESHRE — doporučené postupy'],
+    sources: ['Cochrane Database of Systematic Reviews', 'ESHRE: doporučené postupy'],
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Zavádění velmi tenkých jehel do definovaných bodů na těle. Jehly zůstávají zavedené obvykle dvacet až třicet minut, občas se doplňuje mírná elektrická stimulace nebo nahřívání. Sezení je nebolestivé pro většinu lidí — cítíte tupý tlak nebo teplo, ne píchnutí jako při odběru krve.
+Zavádění velmi tenkých jehel do definovaných bodů na těle. Jehly zůstávají zavedené obvykle dvacet až třicet minut, občas se doplňuje mírná elektrická stimulace nebo nahřívání. Sezení je nebolestivé pro většinu lidí. Cítíte tupý tlak nebo teplo, ne píchnutí jako při odběru krve.
 
 V souvislosti s IVF se akupunktura nabízí nejčastěji v průběhu stimulace a v den transferu, těsně před ním nebo po něm.
 
@@ -301,16 +301,16 @@ Akupunktura je z metod v této sekci nejlépe prozkoumaná, takže o ní můžem
 
 **Vliv na šanci na těhotenství a na porod živého dítěte při IVF: omezené a nekonzistentní důkazy.** Studií je hodně, ale výsledky si odporují. Přehledové práce, které je shrnují, opakovaně docházejí k závěru, že akupunktura kolem embryotransferu prokazatelně nezvyšuje pravděpodobnost těhotenství ani porodu.
 
-Zajímavý detail, který se v těch studiích ukazuje: ženy, které dostaly „naoko“ akupunkturu — jehly mimo body nebo jen dotyk — často popisovaly podobnou úlevu jako ty, které dostaly skutečné ošetření. To hodně napovídá o tom, kde efekt vzniká.
+Zajímavý detail, který se v těch studiích ukazuje: ženy, které dostaly „naoko“ akupunkturu (jehly mimo body nebo jen dotyk) často popisovaly podobnou úlevu jako ty, které dostaly skutečné ošetření. To hodně napovídá o tom, kde efekt vzniká.
 
 **Vliv na napětí a subjektivní pohodu: omezené důkazy s mírně příznivým signálem.** Slabší než u psychoterapie nebo u nácviku relaxace, ale nikoli nulový.
 
-Shrnuto: jděte tam, pokud vám to dělá dobře. Nekupujte si tím naději na lepší výsledek — ta se nedodá.
+Shrnuto: jděte tam, pokud vám to dělá dobře. Nekupujte si tím naději na lepší výsledek. Ta se nedodá.
 
 ## Na co si dát pozor
 
 - **Jednorázové sterilní jehly, vždy.** Rozbalené před vámi. Bez výjimky.
-- **Řekněte, v jaké fázi cyklu jste** a jaké léky berete. Zvlášť pokud užíváte léky ovlivňující srážlivost krve — pak jsou pravděpodobnější modřiny a krvácení z vpichu.
+- **Řekněte, v jaké fázi cyklu jste** a jaké léky berete. Zvlášť pokud užíváte léky ovlivňující srážlivost krve. Pak jsou pravděpodobnější modřiny a krvácení z vpichu.
 - **Zvětšené vaječníky po stimulaci** jsou důvod vynechat práci v podbřišku. Řekněte to, i když se na to nikdo nezeptá.
 - **Mdloba na lehátku** se stává, zvlášť nalačno a ve stresu. Najezte se předem.
 - **Kontaktujte kliniku**, pokud se po sezení objeví horečka, výrazná bolest nebo zarudnutí v místě vpichu.
@@ -337,7 +337,7 @@ Shrnuto: jděte tam, pokud vám to dělá dobře. Nekupujte si tím naději na l
     hero: 'dawn',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane Database of Systematic Reviews'],
+    sources: ['ESHRE: doporučené postupy', 'Cochrane Database of Systematic Reviews'],
     publishedOn: PUBLISHED,
     boost: 0.8,
     body: `## Co to je
@@ -346,9 +346,9 @@ Psychoterapie je odborně vedená práce s prožíváním, myšlením a chován�
 
 V kontextu léčby neplodnosti se nejčastěji setkáte s několika formami:
 
-- **Individuální terapie** — nejčastěji kognitivně behaviorální přístup, který pracuje konkrétně s úzkostí, spánkem a s tím, jak se v hlavě odvíjejí katastrofické scénáře.
+- **Individuální terapie**: nejčastěji kognitivně behaviorální přístup, který pracuje konkrétně s úzkostí, spánkem a s tím, jak se v hlavě odvíjejí katastrofické scénáře.
 - **Párová terapie**, pokud se komunikace doma zadrhla nebo pokud každý z vás zvládá zátěž jinak a přestáváte si rozumět.
-- **Krizová intervence** — jednorázová nebo krátkodobá pomoc po špatné zprávě.
+- **Krizová intervence**: jednorázová nebo krátkodobá pomoc po špatné zprávě.
 - **Podpůrné skupiny** vedené odborníkem.
 - **Psychiatrická péče**, když se přidá deprese nebo úzkostná porucha, které už samotná terapie nestačí.
 
@@ -379,13 +379,13 @@ Do terapie se chodí proto, že vám je zle a máte právo na to, aby vám bylo 
 - **Terapie potřebuje čas.** Po jednom sezení se obvykle nic nezlomí. Domluvte si dopředu, po kolika sezeních spolu vyhodnotíte, jestli to má směr.
 - **Nesednete-li si, není to selhání.** Vztah s terapeutem je pracovní nástroj. Když nefunguje, hledá se jiný člověk, ne jiná vy.
 - **Terapeut nemá radit, jestli do dalšího cyklu jít.** Má vám pomoci se rozhodnout.
-- **Kdykoli myslíte na to, že už nechcete žít, nebo máte pocit, že si ublížíte — vyhledejte akutní lékařskou pomoc.** Zavolejte na linku první psychické pomoci, jeďte na psychiatrickou pohotovost nebo volejte 155. Nečekejte na volný termín u terapeuta.
+- **Kdykoli myslíte na to, že už nechcete žít, nebo máte pocit, že si ublížíte. Vyhledejte akutní lékařskou pomoc.** Zavolejte na linku první psychické pomoci, jeďte na psychiatrickou pohotovost nebo volejte 155. Nečekejte na volný termín u terapeuta.
 
 ## Jak si vybrat odborníka
 
 - **Vzdělání:** psycholog s magisterským studiem psychologie, ideálně s dokončeným nebo probíhajícím akreditovaným psychoterapeutickým výcvikem a supervizí. Klinický psycholog má atestaci ve zdravotnictví.
 - **Zkušenost:** ptejte se přímo, jestli pracuje s tématem neplodnosti, opakovaných neúspěchů a perinatální ztráty. Není to samozřejmost.
-- **Peníze:** část péče je hrazená ze zdravotního pojištění u klinických psychologů ve smluvních zařízeních, na to bývají čekací doby. Některé kliniky mají psychologa přímo u sebe — zeptejte se, mnoho žen o tom neví.
+- **Peníze:** část péče je hrazená ze zdravotního pojištění u klinických psychologů ve smluvních zařízeních, na to bývají čekací doby. Některé kliniky mají psychologa přímo u sebe. Zeptejte se, mnoho žen o tom neví.
 - **Nastavení:** krátkodobá cílená práce nebo dlouhodobější proces? Obojí je legitimní, jen ať víte, do čeho jdete.
 
 > Rovnou odejděte od kohokoli, kdo naznačí, že za neúspěch může vaše psychika nebo že „to nechcete dost“. To není odbornost, to je ubližování.`,
@@ -407,14 +407,14 @@ Do terapie se chodí proto, že vám je zle a máte právo na to, aby vám bylo 
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Mindfulness znamená záměrné, nehodnotící všímání toho, co se děje právě teď — v těle, v dechu, v myšlenkách. Není to vyprázdněná hlava ani stav blaženosti. Je to trénink pozornosti.
+Mindfulness znamená záměrné, nehodnotící všímání toho, co se děje právě teď. V těle, v dechu, v myšlenkách. Není to vyprázdněná hlava ani stav blaženosti. Je to trénink pozornosti.
 
 Pod hlavičkou relaxačních technik se dále běžně učí:
 
-- **progresivní svalová relaxace** — postupné napínání a povolování svalových skupin,
-- **řízená imaginace** — vedený obraz, do kterého se pozornost přesune,
-- **body scan** — pomalé procházení pozornosti tělem,
-- **autogenní trénink** — nácvik pocitu tíhy a tepla v končetinách.
+- **progresivní svalová relaxace**: postupné napínání a povolování svalových skupin,
+- **řízená imaginace**: vedený obraz, do kterého se pozornost přesune,
+- **body scan**: pomalé procházení pozornosti tělem,
+- **autogenní trénink**: nácvik pocitu tíhy a tepla v končetinách.
 
 Existují i strukturované osmitýdenní programy, u nás dostupné jako kurzy i online.
 
@@ -435,7 +435,7 @@ Typický přínos, který ženy popisují:
 
 **Konkrétně u žen v léčbě neplodnosti: omezené důkazy.** Studie jsou menší, různě kvalitní a často bez pořádné kontrolní skupiny. Signál směrem k lepšímu psychickému stavu tam je, ale je slabší, než by prodejci kurzů rádi tvrdili.
 
-**Vliv na šanci otěhotnět: neprokázaný.** Meditace není terapeutická intervence na plodnost a nikdo by ji tak neměl nabízet. Praktikujte ji proto, že vám dnes odpoledne bude líp — to je smysl.
+**Vliv na šanci otěhotnět: neprokázaný.** Meditace není terapeutická intervence na plodnost a nikdo by ji tak neměl nabízet. Praktikujte ji proto, že vám dnes odpoledne bude líp. To je smysl.
 
 ## Na co si dát pozor
 
@@ -451,7 +451,7 @@ Pokud chcete víc než aplikaci:
 
 1. Hledejte lektora s doloženým výcvikem v konkrétním programu, ne s víkendovým certifikátem.
 2. Zeptejte se, jestli má zkušenost s lidmi v náročné zdravotní situaci.
-3. U skupinových kurzů se ptejte na velikost skupiny a na to, jestli se sdílí nahlas — ne každá to chce.
+3. U skupinových kurzů se ptejte na velikost skupiny a na to, jestli se sdílí nahlas, ne každá to chce.
 
 > Dobrý lektor vám neslíbí klid. Slíbí vám nácvik dovednosti, kterou si můžete vzít domů.`,
   },
@@ -475,10 +475,10 @@ Vědomá práce s tempem, hloubkou a poměrem nádechu a výdechu. Základní pr
 
 Nejpoužívanější varianty:
 
-- **Prodloužený výdech** — nádech na čtyři doby, výdech na šest až osm. Nejjednodušší a nejspolehlivější.
-- **Pomalé rytmické dýchání** — zhruba šest dechů za minutu.
-- **Boxový dech** — nádech, zádrž, výdech, zádrž, každé na stejný počet.
-- **Dech do břicha** — ruka na břiše, která se má zvedat víc než ruka na hrudníku.
+- **Prodloužený výdech**: nádech na čtyři doby, výdech na šest až osm. Nejjednodušší a nejspolehlivější.
+- **Pomalé rytmické dýchání**: zhruba šest dechů za minutu.
+- **Boxový dech**: nádech, zádrž, výdech, zádrž, každé na stejný počet.
+- **Dech do břicha**: ruka na břiše, která se má zvedat víc než ruka na hrudníku.
 
 ## Jak to může pomoci
 
@@ -496,13 +496,13 @@ Výhoda je v dostupnosti: máte to u sebe pořád, zdarma a funguje to během p�
 
 **Krátkodobý efekt pomalého dýchání na napětí, tep a subjektivní klid: omezené, ale konzistentní důkazy.** Studie jsou většinou malé, měří krátký horizont a bývají metodicky slabší. Ale směr je opakovaně stejný a mechanismus dává fyziologicky smysl.
 
-**Dlouhodobý vliv na úzkostné poruchy: omezené důkazy** — samotný dech obvykle nestačí a bývá součástí širší terapie.
+**Dlouhodobý vliv na úzkostné poruchy: omezené důkazy**: samotný dech obvykle nestačí a bývá součástí širší terapie.
 
 **Vliv na plodnost nebo na výsledek cyklu: žádný doložený.** Dechové cvičení je nástroj na to, aby vám bylo v příští půlhodině snesitelněji. Nic víc a nic míň.
 
 ## Na co si dát pozor
 
-- **Intenzivní dechové techniky s hyperventilací** — rychlé hluboké dýchání po delší dobu, holotropní dýchání, metody se silnými zádržemi — mohou vyvolat závrať, brnění, křeče v rukou nebo mdlobu. Tohle nejsou relaxační techniky.
+- **Intenzivní dechové techniky s hyperventilací** (rychlé hluboké dýchání po delší dobu, holotropní dýchání, metody se silnými zádržemi) mohou vyvolat závrať, brnění, křeče v rukou nebo mdlobu. Tohle nejsou relaxační techniky.
 - **Nikdy nedělejte zádrže dechu ve vodě ani za volantem.** Zádrž ve vodě může skončit ztrátou vědomí pod hladinou.
 - **Máte-li astma, chronické plicní nebo srdeční onemocnění, epilepsii nebo panickou poruchu**, proberte intenzivnější techniky s lékařem. U paniky může soustředění na dech příznaky nejdřív zesílit.
 - **Když se objeví závrať nebo brnění, přestaňte** a dýchejte normálně. Za chvíli to odezní.
@@ -535,14 +535,14 @@ Tohle je jedna z mála metod, kde odborníka nepotřebujete. Zkuste dnes večer:
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Jóga spojuje pohyb, dech a pozornost. Stylů jsou desítky a liší se zásadně — od dynamických a fyzicky náročných po zcela klidové.
+Jóga spojuje pohyb, dech a pozornost. Stylů jsou desítky a liší se zásadně. Od dynamických a fyzicky náročných po zcela klidové.
 
 Pro období léčby jsou nejvhodnější jemné formy:
 
 - **hatha jóga v pomalém tempu**,
-- **jin jóga** — dlouhé výdrže v pasivních polohách,
-- **restorativní jóga** — polohy podepřené polštáři a dekami, kde se nic nedělá,
-- **jóga nidra** — vedená relaxace vleže,
+- **jin jóga**: dlouhé výdrže v pasivních polohách,
+- **restorativní jóga**: polohy podepřené polštáři a dekami, kde se nic nedělá,
+- **jóga nidra**: vedená relaxace vleže,
 - a mimo jógu: **chůze, plavání, protahování, tanec doma**.
 
 ## Jak to může pomoci
@@ -558,7 +558,7 @@ Pro spoustu žen je hlavní hodnota v tom, že hodinu nemusí být ženou v lé�
 
 **Pravidelný přiměřený pohyb a celkové zdraví: dobře podložené důkazy.** O tom se nediskutuje.
 
-**Jóga a psychická pohoda: omezené důkazy** — studie ukazují mírné zlepšení nálady a snížení napětí, ale jsou menší a hůř kontrolované než u mindfulness.
+**Jóga a psychická pohoda: omezené důkazy**: studie ukazují mírné zlepšení nálady a snížení napětí, ale jsou menší a hůř kontrolované než u mindfulness.
 
 **Jóga a výsledky léčby neplodnosti: nedostatek kvalitních důkazů.** Kurzy nabízené pod hlavičkou „fertility jóga“ nemají čím doložit, že zvyšují šanci na otěhotnění. Konkrétní polohy „na podporu plodnosti“ jsou marketing, ne medicína.
 
@@ -568,9 +568,9 @@ Jděte tam kvůli tělu a hlavě. Ne kvůli číslu na výsledkovém listu.
 
 Tohle je část, kterou stojí za to nepřeskočit.
 
-- **Během stimulace a v prvních dnech po odběru vajíček** máte vaječníky zvětšené. Prudké otáčení trupu, skoky, hluboké zákruty, výrazné stlačení břicha a intenzivní posilování břišního svalstva v té době nejsou vhodné — mimo jiné kvůli riziku torze, tedy otočení vaječníku kolem vlastní stopky. Podrobnosti najdete v samostatném článku o pohybu během stimulace.
+- **Během stimulace a v prvních dnech po odběru vajíček** máte vaječníky zvětšené. Prudké otáčení trupu, skoky, hluboké zákruty, výrazné stlačení břicha a intenzivní posilování břišního svalstva v té době nejsou vhodné. Mimo jiné kvůli riziku torze, tedy otočení vaječníku kolem vlastní stopky. Podrobnosti najdete v samostatném článku o pohybu během stimulace.
 - **Horká jóga a cvičení v přetopených sálech** se v tomto období obvykle nedoporučují kvůli přehřátí a dehydrataci.
-- **Inverze — stoj na hlavě, na ramenou, svíčka** — vynechte při zvětšených vaječnících a po zákrocích. Také nemají žádný doložený vliv na uhnízdění embrya, ať se kdekoli píše cokoli.
+- **Inverze (stoj na hlavě, na ramenou, svíčka**) vynechte při zvětšených vaječnících a po zákrocích. Také nemají žádný doložený vliv na uhnízdění embrya, ať se kdekoli píše cokoli.
 - **Řekněte lektorovi předem, v jaké jste situaci.** Nemusíte mluvit o neplodnosti, stačí: „Jsem po zákroku v podbřišku, potřebuju vynechat tlak na břicho a zákruty.“
 - **Vyhledejte akutní lékařskou pomoc** při náhlé prudké jednostranné bolesti v podbřišku, zvlášť s nevolností nebo zvracením.
 - **Vždy platí pokyn vaší kliniky.** Když vám lékař řekl, ať tento týden necvičíte, neplatí tento článek, ale on.
@@ -578,7 +578,7 @@ Tohle je část, kterou stojí za to nepřeskočit.
 ## Jak si vybrat odborníka
 
 1. Ptejte se na vzdělání lektora a hlavně na ochotu upravovat polohy pro jednotlivce.
-2. Menší skupina je lepší než velká — v patnácti lidech vás nikdo neopraví.
+2. Menší skupina je lepší než velká. V patnácti lidech vás nikdo neopraví.
 3. Individuální lekce na začátku dává smysl, pokud si nejste jistá, co smíte.
 4. U kurzů označených jako „pro plodnost“ se ptejte, co konkrétně slibují. Pokud těhotenství, hledejte jinde.
 
@@ -589,7 +589,7 @@ Tohle je část, kterou stojí za to nepřeskočit.
     kind: 'article',
     title: 'Masáže: kdy ano, kdy počkat a čeho se vyvarovat',
     excerpt:
-      'Hodina, kdy se o vás někdo stará. Jen s jednou důležitou výjimkou — a ta se týká břicha.',
+      'Hodina, kdy se o vás někdo stará. Jen s jednou důležitou výjimkou. A ta se týká břicha.',
     minutes: 6,
     phases: [],
     topics: ['sebepece', 'pohyb'],
@@ -600,7 +600,7 @@ Tohle je část, kterou stojí za to nepřeskočit.
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Cílená práce s měkkými tkáněmi — svaly, vazivem, kůží. Od klasické relaxační masáže přes sportovní a hlubší techniky až po lymfatickou masáž a manuální práci s jizvami.
+Cílená práce s měkkými tkáněmi. Svaly, vazivem, kůží. Od klasické relaxační masáže přes sportovní a hlubší techniky až po lymfatickou masáž a manuální práci s jizvami.
 
 Zvlášť se v souvislosti s plodností nabízejí **břišní masáže** pod různými názvy a s příslibem „uvolnění“ dělohy nebo lepšího prokrvení pánve. Ty si zaslouží samostatnou pozornost níž.
 
@@ -622,20 +622,20 @@ Ten poslední bod ženy zmiňují často. Když vás několik týdnů někdo pí
 ## Na co si dát pozor
 
 - **Hluboká práce v podbřišku během stimulace a po odběru vajíček není vhodná.** Vaječníky mohou být výrazně zvětšené a křehké. Tlak na tuto oblast v takové chvíli je zbytečné riziko.
-- **Po embryotransferu** se hluboké břišní techniky obvykle vynechávají. Když si nejste jistá, zeptejte se na klinice — je to rychlá otázka.
+- **Po embryotransferu** se hluboké břišní techniky obvykle vynechávají. Když si nejste jistá, zeptejte se na klinice. Je to rychlá otázka.
 - **Sauna, vířivka a horké zábaly** se v tomto období často nedoporučují. Proberte to s klinikou.
 - **Užíváte-li léky ovlivňující srážlivost krve**, řekněte to. Hlubší techniky mohou zanechat výrazné modřiny.
-- **Aromaterapeutické oleje** nejsou neutrální — některé silice se v těhotenství a při snaze o něj nedoporučují. Chcete-li mít klid, požádejte o neutrální olej bez silic.
+- **Aromaterapeutické oleje** nejsou neutrální. Některé silice se v těhotenství a při snaze o něj nedoporučují. Chcete-li mít klid, požádejte o neutrální olej bez silic.
 - **Kontaktujte svou kliniku**, pokud se po masáži objeví výrazná bolest břicha, nevolnost nebo horečka.
 
 ## Jak si vybrat odborníka
 
 1. **Řekněte hned na začátku**, že jste v léčbě neplodnosti a v jaké fázi. Nemusíte nic rozvádět.
-2. **Vyžádejte si vynechání břicha**, pokud si nejste jistá — dobrý masér to bez řečí respektuje.
+2. **Vyžádejte si vynechání břicha**, pokud si nejste jistá. Dobrý masér to bez řečí respektuje.
 3. **Práce s jizvami** patří spíš fyzioterapeutovi než maséru.
 4. **Ptejte se na vzdělání.** Masér není zdravotnické povolání a úroveň se liší dramaticky.
 
-> Kdo vám nabízí masáž s příslibem, že po ní otěhotníte, prodává něco, co nemá. Masáž si zaslouží být tím, čím je — hodinou úlevy.`,
+> Kdo vám nabízí masáž s příslibem, že po ní otěhotníte, prodává něco, co nemá. Masáž si zaslouží být tím, čím je. Hodinou úlevy.`,
   },
   {
     id: 'ppc-nutricni-poradenstvi',
@@ -650,11 +650,11 @@ Ten poslední bod ženy zmiňují často. Když vás několik týdnů někdo pí
     hero: 'champagne',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane Database of Systematic Reviews'],
+    sources: ['ESHRE: doporučené postupy', 'Cochrane Database of Systematic Reviews'],
     publishedOn: PUBLISHED,
     body: `## Co to je
 
-Odborně vedená úprava stravy podle vaší situace, zdravotního stavu a výsledků. Dobrý nutriční terapeut nezačíná seznamem zakázaných potravin — začíná tím, co skutečně jíte, jak vypadá váš den a co je vůbec reálné změnit.
+Odborně vedená úprava stravy podle vaší situace, zdravotního stavu a výsledků. Dobrý nutriční terapeut nezačíná seznamem zakázaných potravin. Začíná tím, co skutečně jíte, jak vypadá váš den a co je vůbec reálné změnit.
 
 Pozor na názvosloví: **nutriční terapeut** je regulované zdravotnické povolání s odborným vzděláním. **Výživový poradce** je v Česku neregulované označení, které si může dát prakticky kdokoli po víkendovém kurzu. To je zásadní rozdíl.
 
@@ -665,7 +665,7 @@ Situace, kde má odborné vedení skutečný smysl:
 - **Metabolické potíže**, například inzulinová rezistence nebo porucha zpracování cukrů, kde má úprava stravy doložený vliv na zdraví.
 - **Onemocnění štítné žlázy, celiakie, potravinové alergie**, kde je strava součástí léčby.
 - **Výrazná změna hmotnosti kterýmkoli směrem**, řešená bezpečně a bez hladovění.
-- **Chaos v jídle ze stresu** — přeskočené obědy, večerní přejídání, kafe místo snídaně.
+- **Chaos v jídle ze stresu**: přeskočené obědy, večerní přejídání, kafe místo snídaně.
 - **Vegetariánská nebo veganská strava**, kde stojí za to ohlídat, aby nic nechybělo.
 - **Strach z jídla.** Když už se bojíte skoro všeho, protože jste to někde četla, je odborník cesta ven.
 
@@ -685,7 +685,7 @@ Rozdělme to poctivě.
 
 - **Eliminační diety bez lékařské indikace** vás mohou připravit o živiny a přidat stres, který nepotřebujete.
 - **Hubnutí v průběhu stimulace** není vhodné bez souhlasu lékaře. Prudké kalorické omezení v této fázi není neutrální zásah.
-- **Máte-li nebo jste měla poruchu příjmu potravy**, řekněte to. Detailní počítání a zakázané potraviny mohou situaci zhoršit — patří to do rukou odborníka, který o tom ví.
+- **Máte-li nebo jste měla poruchu příjmu potravy**, řekněte to. Detailní počítání a zakázané potraviny mohou situaci zhoršit. Patří to do rukou odborníka, který o tom ví.
 - **Doplňky stravy jsou samostatná kapitola** a mají svůj článek. Nutriční poradce vám je nesmí doporučovat bez ohledu na to, co užíváte od kliniky.
 - **Rozpočet.** Poradenství, které stojí jako celý cyklus, není lepší.
 
@@ -711,7 +711,7 @@ Rozdělme to poctivě.
     hero: 'dusk',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['Cochrane Database of Systematic Reviews', 'NICE — doporučené postupy'],
+    sources: ['Cochrane Database of Systematic Reviews', 'NICE: doporučené postupy'],
     publishedOn: PUBLISHED,
     boost: 0.5,
     body: `## Co to je
@@ -720,9 +720,9 @@ Odpočinek není jen spánek a spánek není jen počet hodin. Rozhoduje pravide
 
 V období léčby se spánek rozbíjí typicky ze tří důvodů:
 
-- **hlava jede** — scénáře, počítání dní, procházení výsledků,
-- **režim narušují sama léčba a její organizace** — ranní odběry, přesné časy aplikace léků, cesty na kliniku,
-- **tělo se mění** vlivem hormonů — návaly, plnost břicha, nepohodlí vleže.
+- **hlava jede**: scénáře, počítání dní, procházení výsledků,
+- **režim narušují sama léčba a její organizace**: ranní odběry, přesné časy aplikace léků, cesty na kliniku,
+- **tělo se mění** vlivem hormonů. Návaly, plnost břicha, nepohodlí vleže.
 
 ## Jak to může pomoci
 
@@ -737,22 +737,22 @@ Dobrý spánek nezmění výsledek cyklu. Změní ale to, jak ho zvládnete:
 
 **Dopad nedostatku spánku na náladu, výkonnost, pozornost a zpracování cukrů: dobře podložené důkazy.** Tady je věda jednoznačná.
 
-**Kognitivně behaviorální terapie nespavosti (KBT-I): dobře podložené důkazy** a u chronické nespavosti bývá doporučovaná jako první volba — před léky. Existuje v podobě sezení i strukturovaných online programů.
+**Kognitivně behaviorální terapie nespavosti (KBT-I): dobře podložené důkazy** a u chronické nespavosti bývá doporučovaná jako první volba. Před léky. Existuje v podobě sezení i strukturovaných online programů.
 
-**Spánek a výsledky IVF: omezené důkazy.** Pozorovací studie našly souvislosti mezi spánkovými návyky a některými parametry léčby, ale je to slabý a nespolehlivý podklad. Nedá se z toho vyvozovat, že lepším spánkem zvýšíte šanci na těhotenství — a rozhodně z toho neplyne, že za neúspěch může vaše nevyspání.
+**Spánek a výsledky IVF: omezené důkazy.** Pozorovací studie našly souvislosti mezi spánkovými návyky a některými parametry léčby, ale je to slabý a nespolehlivý podklad. Nedá se z toho vyvozovat, že lepším spánkem zvýšíte šanci na těhotenství. A rozhodně z toho neplyne, že za neúspěch může vaše nevyspání.
 
 ## Na co si dát pozor
 
 - **Léky na spaní jen po domluvě s lékařem**, který ví, že jste v cyklu. Ani volně prodejné přípravky nejsou v tomto období automaticky bez rizika.
-- **Melatonin je doplněk stravy a není vhodný pro každou ženu.** Během léčby ho vždy proberte s klinikou — patří to do článku o doplňcích a platí to i tady.
+- **Melatonin je doplněk stravy a není vhodný pro každou ženu.** Během léčby ho vždy proberte s klinikou. Patří to do článku o doplňcích a platí to i tady.
 - **Alkohol na usnutí je past.** Usnete rychleji a druhá půlka noci se rozpadne.
 - **Nespavost trvající déle než měsíc** patří k lékaři. Není to něco, co se má vydržet.
-- **Kontaktujte svou kliniku**, pokud vás v noci budí dušnost, výrazně roste obvod břicha nebo se objeví bolest a napětí v břiše — může jít o příznaky, které je potřeba posoudit.
+- **Kontaktujte svou kliniku**, pokud vás v noci budí dušnost, výrazně roste obvod břicha nebo se objeví bolest a napětí v břiše. Může jít o příznaky, které je potřeba posoudit.
 
 ## Co zkusit dnes večer
 
 1. **Stejný čas vstávání**, i po špatné noci. Vstávání drží rytmus víc než uléhání.
-2. **Poslední hodina bez telefonu** — a hlavně bez čtení diskusí o výsledcích jiných žen. Tohle je konkrétně ten obsah, který spánek rozbíjí.
+2. **Poslední hodina bez telefonu**: a hlavně bez čtení diskusí o výsledcích jiných žen. Tohle je konkrétně ten obsah, který spánek rozbíjí.
 3. **Když neusnete do zhruba dvaceti minut, vstaňte.** Jděte do jiné místnosti, dělejte něco nudného při tlumeném světle a vraťte se, až přijde únava. Ležení a snažení se posiluje spojení postele s bezmocí.
 4. **Zapište si, co vám leží v hlavě**, ještě před ulehnutím. Vyndat to z hlavy na papír funguje lépe, než to tam držet.
 5. **Chladná, tmavá ložnice.** Banální, ale účinné.
@@ -764,14 +764,14 @@ Dobrý spánek nezmění výsledek cyklu. Změní ale to, jak ho zvládnete:
 - **Psycholog s výcvikem v KBT-I** je nejvhodnější volba u dlouhodobé nespavosti.
 - **Spánkové laboratoře** existují a mají smysl při podezření na poruchu dýchání ve spánku.
 
-> Jeden cyklus může trvat déle, než čekáte — může zahrnovat čerstvý transfer i další kryotransfery ze stejné zásoby embryí. Na takhle dlouhou trať se s trvale rozbitým spánkem jde těžko. Stojí za to ho řešit dřív, než se rozpadne úplně.`,
+> Jeden cyklus může trvat déle, než čekáte. Může zahrnovat čerstvý transfer i další kryotransfery ze stejné zásoby embryí. Na takhle dlouhou trať se s trvale rozbitým spánkem jde těžko. Stojí za to ho řešit dřív, než se rozpadne úplně.`,
   },
   {
     id: 'ppc-pohyb-pri-stimulaci',
     kind: 'article',
     title: 'Pohyb během stimulace: proč zrovna teď platí jiná pravidla',
     excerpt:
-      'Vaječníky mohou být několikanásobně větší než obvykle. To mění, co si můžete dovolit — a proč se prudké otáčení nevyplácí.',
+      'Vaječníky mohou být několikanásobně větší než obvykle. To mění, co si můžete dovolit. A proč se prudké otáčení nevyplácí.',
     minutes: 7,
     phases: [],
     topics: ['pohyb', 'sebepece'],
@@ -779,14 +779,14 @@ Dobrý spánek nezmění výsledek cyklu. Změní ale to, jak ho zvládnete:
     hero: 'sand',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
+    sources: ['ESHRE: doporučené postupy', 'Česká gynekologická a porodnická společnost ČLS JEP'],
     publishedOn: PUBLISHED,
     boost: 0.9,
     body: `## Co to je
 
 Během stimulace v obou vaječnících roste současně víc folikulů. Vaječníky, které mají běžně velikost zhruba jako mandle, se tak mohou zvětšit několikanásobně a stávají se citlivějšími a pohyblivějšími. Tenhle stav trvá i několik dní po odběru vajíček, než se vaječníky vrátí do původní velikosti.
 
-Pravidla pro pohyb se proto v tomto období liší od zbytku vaší cesty. Nejde o pověru ani o opatrnost pro jistotu — jde o konkrétní anatomickou situaci.
+Pravidla pro pohyb se proto v tomto období liší od zbytku vaší cesty. Nejde o pověru ani o opatrnost pro jistotu. Jde o konkrétní anatomickou situaci.
 
 ## Jak to může pomoci
 
@@ -805,7 +805,7 @@ Ležet celý den je vlastní riziko. Nejde o volbu mezi cvičením a postelí, j
 
 **Riziko torze vaječníku při jeho výrazném zvětšení: doložené, i když vzácné.** Torze znamená, že se zvětšený vaječník otočí kolem vlastní stopky a přeruší se jeho cévní zásobení. Je to naléhavý stav, který vyžaduje okamžité ošetření. Pravděpodobnost je nízká, následky ale závažné, a proto se opatření dodržují.
 
-**Konkrétní bezpečná dávka pohybu během stimulace: nedostatek kvalitních důkazů.** Neexistuje studie, která by řekla „tolik kilometrů ano, tolik ne“. Doporučení proto vycházejí z opatrnosti a ze zkušenosti pracovišť — a liší se klinika od kliniky. **Proto platí pokyny vaší kliniky nad vším, co si přečtete.**
+**Konkrétní bezpečná dávka pohybu během stimulace: nedostatek kvalitních důkazů.** Neexistuje studie, která by řekla „tolik kilometrů ano, tolik ne“. Doporučení proto vycházejí z opatrnosti a ze zkušenosti pracovišť. A liší se klinika od kliniky. **Proto platí pokyny vaší kliniky nad vším, co si přečtete.**
 
 **Vliv pohybu během stimulace na počet a kvalitu vajíček: nedoložený.** Cvičením si výsledek nezlepšíte ani nezhoršíte, pokud dodržíte bezpečnostní opatření.
 
@@ -819,7 +819,7 @@ Co se v tomto období obvykle nedoporučuje:
 - **zvedání těžkých břemen**,
 - **kontaktní a soutěžní sporty**, kde hrozí náraz,
 - **jízda na koni a horské kolo po nerovném terénu**,
-- **potápění a horká prostředí** — sauna, vířivka.
+- **potápění a horká prostředí**: sauna, vířivka.
 
 Co obvykle zůstává v pořádku:
 
@@ -830,16 +830,16 @@ Co obvykle zůstává v pořádku:
 
 **Vyhledejte akutní lékařskou pomoc**, pokud se objeví:
 
-- **náhlá prudká bolest v podbřišku, obvykle jednostranná**, zvlášť s nevolností nebo zvracením — může jít o torzi vaječníku,
+- **náhlá prudká bolest v podbřišku, obvykle jednostranná**, zvlášť s nevolností nebo zvracením. Může jít o torzi vaječníku,
 - **mdloba, zrychlený tep a chladný pot** společně s bolestí břicha.
 
-**Kontaktujte svou kliniku** při rychle rostoucím obvodu břicha, výrazném přírůstku hmotnosti během několika dní, dušnosti nebo výrazně sníženém močení — to mohou být příznaky ovariálního hyperstimulačního syndromu.
+**Kontaktujte svou kliniku** při rychle rostoucím obvodu břicha, výrazném přírůstku hmotnosti během několika dní, dušnosti nebo výrazně sníženém močení. To mohou být příznaky ovariálního hyperstimulačního syndromu.
 
 ## Jak se v tom vyznat
 
 1. **Zeptejte se na klinice konkrétně:** „Co můžu tento týden dělat za pohyb?“ Je to běžná otázka a odpověď se liší podle toho, jak vaše vaječníky reagují.
 2. **Zeptejte se znovu po odběru vajíček.** Omezení tou chvílí nekončí.
-3. **Zeptejte se znovu před transferem a po něm.** Jeden cyklus může zahrnovat čerstvý transfer i následné kryotransfery ze stejné zásoby embryí — pokyny se v každém z těch období mohou lišit.
+3. **Zeptejte se znovu před transferem a po něm.** Jeden cyklus může zahrnovat čerstvý transfer i následné kryotransfery ze stejné zásoby embryí. Pokyny se v každém z těch období mohou lišit.
 4. **Trenérovi v posilovně nemusíte říkat diagnózu.** Stačí: „Mám zdravotní omezení, nemůžu zvedat těžké váhy, skákat a dělat rotace trupu.“
 
 > Pokud se pokyn vaší kliniky liší od tohoto textu, řiďte se klinikou. Ona ví, jak vypadají vaše vaječníky na dnešním ultrazvuku. Tento článek to vědět nemůže.`,
@@ -857,7 +857,7 @@ Co obvykle zůstává v pořádku:
     hero: 'linen',
     author: 'Tým Bloomia',
     reviewedBy: REVIEW,
-    sources: ['ESHRE — doporučené postupy', 'Cochrane Database of Systematic Reviews'],
+    sources: ['ESHRE: doporučené postupy', 'Cochrane Database of Systematic Reviews'],
     publishedOn: PUBLISHED,
     boost: 0.9,
     body: `## Co to je
@@ -871,7 +871,7 @@ Znamená to také, že skutečný obsah balení nemusí odpovídat etiketě a ž
 Tohle je nejdůležitější část článku a platí pro všechno, co následuje:
 
 - **Doplňky stravy nejsou automaticky vhodné pro každou ženu.**
-- **Mohou interagovat s léky, které v léčbě dostáváte** — s hormonální stimulací, s podporou luteální fáze, s léky ovlivňujícími srážlivost krve, s léky na štítnou žlázu.
+- **Mohou interagovat s léky, které v léčbě dostáváte**: s hormonální stimulací, s podporou luteální fáze, s léky ovlivňujícími srážlivost krve, s léky na štítnou žlázu.
 - **Než začnete cokoli užívat během IVF, proberte to se svou klinikou.** Včetně věcí, které se zdají neškodné: bylinné čaje, „přírodní“ směsi, přípravky na spaní, produkty na imunitu.
 - **Tenhle článek neuvádí žádné dávkování a záměrně.** Co a kolik je vhodné právě pro vás, může posoudit jen váš lékař, který zná vaše výsledky a vaši medikaci.
 
@@ -879,9 +879,9 @@ Tohle je nejdůležitější část článku a platí pro všechno, co následuj
 
 Doplňky mají své opodstatněné místo. Ne jako podpora plodnosti, ale ve dvou jasně vymezených situacích:
 
-**První: doplnění prokázaného nedostatku.** Když laboratoř ukáže, že vám něco chybí, doplnění dává smysl. Typicky se to řeší u vitaminu D, železa nebo vitaminu B12 — vždy podle vašich výsledků a podle rozhodnutí lékaře.
+**První: doplnění prokázaného nedostatku.** Když laboratoř ukáže, že vám něco chybí, doplnění dává smysl. Typicky se to řeší u vitaminu D, železa nebo vitaminu B12. Vždy podle vašich výsledků a podle rozhodnutí lékaře.
 
-**Druhá: prevence vrozených vývojových vad.** Doplnění kyseliny listové před početím a v raném těhotenství patří ke standardním doporučením — ale pozor na to, co přesně dělá. **Snižuje riziko vrozených vad nervové trubice u dítěte. Nezvyšuje šanci na otěhotnění.** To jsou dvě různé věci a často se pletou. Konkrétní přípravek a dávkování určí váš lékař; u některých žen se doporučení liší podle jejich zdravotního stavu a medikace.
+**Druhá: prevence vrozených vývojových vad.** Doplnění kyseliny listové před početím a v raném těhotenství patří ke standardním doporučením, ale pozor na to, co přesně dělá. **Snižuje riziko vrozených vad nervové trubice u dítěte. Nezvyšuje šanci na otěhotnění.** To jsou dvě různé věci a často se pletou. Konkrétní přípravek a dávkování určí váš lékař; u některých žen se doporučení liší podle jejich zdravotního stavu a medikace.
 
 ## Co o tom víme
 
@@ -895,7 +895,7 @@ Projděme kategorie tak, jak je uvidíte v lékárně.
 
 **Omega-3 mastné kyseliny: omezené důkazy.** Prospěšnost pro srdce a cévy má oporu; vliv na plodnost je nejasný.
 
-**Antioxidanty, koenzym Q10, inositol, DHEA, melatonin a podobné přípravky nabízené na kvalitu vajíček nebo na ovariální rezervu: omezené až nedostatečné důkazy.** Přehledové práce docházejí k tomu, že spolehlivý důkaz o zvýšení pravděpodobnosti otěhotnění nebo porodu živého dítěte chybí. U některých z těchto látek — zvlášť u DHEA — jde svým účinkem prakticky o hormonální zásah, který nepatří do samoléčby a **může být zvažován jen na základě rozhodnutí lékaře v konkrétní situaci.**
+**Antioxidanty, koenzym Q10, inositol, DHEA, melatonin a podobné přípravky nabízené na kvalitu vajíček nebo na ovariální rezervu: omezené až nedostatečné důkazy.** Přehledové práce docházejí k tomu, že spolehlivý důkaz o zvýšení pravděpodobnosti otěhotnění nebo porodu živého dítěte chybí. U některých z těchto látek (zvlášť u DHEA) jde svým účinkem prakticky o hormonální zásah, který nepatří do samoléčby a **může být zvažován jen na základě rozhodnutí lékaře v konkrétní situaci.**
 
 **Kombinované přípravky „pro plodnost“ s deseti a více složkami: nedostatek kvalitních důkazů.** Nikdo netestoval tu konkrétní kombinaci a čím víc složek, tím větší prostor pro interakce a pro překročení bezpečných dávek, když berete víc přípravků najednou.
 
@@ -918,7 +918,7 @@ Projděme kategorie tak, jak je uvidíte v lékárně.
 3. **Nutriční terapeut** pomůže s tím, co se dá pokrýt stravou místo tabletami.
 4. **Zpozorněte u kohokoli, kdo doplňky sám prodává.** Poradenství spojené s prodejem konkrétní značky není nezávislé.
 
-> Poctivé shrnutí: kromě doplnění prokázaného nedostatku a kyseliny listové v prevenci vrozených vad nemá většina přípravků prodávaných „na plodnost“ dost silné důkazy, aby se dalo tvrdit, že vám pomohou otěhotnět. Rozhodnutí je vaše — jen ať je informované a ať o něm ví vaše klinika.`,
+> Poctivé shrnutí: kromě doplnění prokázaného nedostatku a kyseliny listové v prevenci vrozených vad nemá většina přípravků prodávaných „na plodnost“ dost silné důkazy, aby se dalo tvrdit, že vám pomohou otěhotnět. Rozhodnutí je vaše, jen ať je informované a ať o něm ví vaše klinika.`,
   },
 ]
 
