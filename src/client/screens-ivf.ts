@@ -39,6 +39,7 @@ import {
   EVIDENCE_LABEL,
   EVIDENCE_NOTE,
   FEELING_LABEL,
+  FREQUENCY_LABEL,
   SUPPORTS,
   SUPPORT_GROUP_LABEL,
   supportTitle,
@@ -863,7 +864,16 @@ export function screenPodpora(): string {
       <button type="button" class="btn btn-ghost btn-sm" data-act="sup-del" data-arg="${esc(e.id)}">Smazat</button>
     </div>
     <div class="two" style="margin-top:.9rem">
-      ${dateField(`sup-${e.id}-date`, 'Datum', e.date ?? '')}
+      ${dateField(`sup-${e.id}-since`, 'Odkdy to využívám', e.since ?? '', 'Tohle je zajímavější než jedno datum.')}
+      ${selectField(
+        `sup-${e.id}-frequency`,
+        'Jak často',
+        Object.entries(FREQUENCY_LABEL) as [string, string][],
+        e.frequency,
+      )}
+    </div>
+    <div class="two" style="margin-top:1.1rem">
+      ${dateField(`sup-${e.id}-date`, 'Poslední návštěva', e.date ?? '')}
       ${textField(`sup-${e.id}-provider`, 'Kdo to vedl', e.provider, 'jméno, pracoviště')}
     </div>
     <div class="two" style="margin-top:1.1rem">
@@ -920,9 +930,21 @@ export function screenPodpora(): string {
     bezi.length
       ? `<section class="surface pad rise">
           <p class="eyebrow">Co právě využívám</p>
-          <div class="chips" style="margin-top:.7rem">
-            ${bezi.map((e) => `<span class="badge">${esc(supportTitle(e))}</span>`).join('')}
-          </div>
+          <ul class="linelist" style="margin-top:.7rem">
+            ${bezi
+              .map(
+                (e) => `<li>
+                  <span style="flex:1;min-width:0;font-weight:500">${esc(supportTitle(e))}</span>
+                  <span class="faint" style="font-size:.8125rem;white-space:nowrap">${esc(
+                    join([
+                      e.frequency ? FREQUENCY_LABEL[e.frequency] : '',
+                      e.since ? `od ${formatCzechDateShort(e.since)}` : '',
+                    ]),
+                  )}</span>
+                </li>`,
+              )
+              .join('')}
+          </ul>
         </section>`
       : '',
 

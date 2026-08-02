@@ -19,6 +19,7 @@ import {
 
 import { esc, head, note } from './ui'
 import { emptyContact } from '../lib/domain/clinic'
+import type { Frequency } from '../lib/domain/support'
 import { addPhotos, allPhotos, initPhotos, photoUrl, pickImages, removePhoto } from './photos'
 import {
   addCustomExam,
@@ -1585,9 +1586,13 @@ function action(act: string, argValue: string): void {
     }
 
     // --- podpůrná péče ----------------------------------------------------
-    case 'sup-add':
-      addSupport(argValue)
+    case 'sup-add': {
+      const row = addSupport(argValue)
+      updateSupport(row.id, (e) => {
+        e.since = viewDate()
+      })
       break
+    }
     case 'sup-custom': {
       const name = val('sup-custom').trim()
       if (!name) {
@@ -1597,11 +1602,14 @@ function action(act: string, argValue: string): void {
       const row = addSupport('')
       updateSupport(row.id, (e) => {
         e.custom = name
+        e.since = viewDate()
       })
       break
     }
     case 'sup-save': {
       updateSupport(argValue, (e) => {
+        e.since = dateOrNull(`sup-${argValue}-since`)
+        e.frequency = val(`sup-${argValue}-frequency`) as Frequency
         e.date = dateOrNull(`sup-${argValue}-date`)
         e.provider = val(`sup-${argValue}-provider`)
         const f = val(`sup-${argValue}-feeling`)
@@ -1946,6 +1954,8 @@ function action(act: string, argValue: string): void {
           title,
           body: val('st-body'),
           icon: '❦',
+          mood: val('st-mood') ? Number(val('st-mood')) : null,
+          photos: [],
         })
       })
       break

@@ -259,12 +259,22 @@ export interface LetterRow {
   onDate: IsoDate
 }
 
+/**
+ * Vzpomínka na ose vlastního příběhu.
+ *
+ * Kronika, ne zdravotní záznam. Proto tu je fotka a nálada, a proto se sem
+ * automaticky dotahují milníky léčby: cesta se skládá sama, i když si žena
+ * měsíc nic nezapíše.
+ */
 export interface StoryRow {
   id: string
   onDate: IsoDate
   title: string
   body: string
   icon: string
+  /** 1–5, nebo `null`. Jak jí u toho bylo — ne jak to dopadlo. */
+  mood: number | null
+  photos: PhotoRef[]
 }
 
 export interface PostRow {
@@ -481,6 +491,7 @@ function migrate(d: Save): Save {
   d.exams = d.exams ?? []
   d.support = (d.support ?? []).map((e) => ({ ...emptySupport(e.id), ...e }))
   d.clinic = { ...emptyClinic(), ...(d.clinic ?? {}) }
+  d.story = (d.story ?? []).map((r) => ({ ...r, mood: r.mood ?? null, photos: r.photos ?? [] }))
   d.subscription = d.subscription ?? { active: false, since: null }
 
   return d
@@ -921,6 +932,12 @@ function photoSlot(d: Save, scope: string): PhotoRef[] | null {
       return d.ultrasounds.find((x) => x.id === id)?.photos ?? null
     case 'doc':
       return d.docs.find((x) => x.id === id)?.photos ?? null
+    case 'story':
+      return d.story.find((x) => x.id === id)?.photos ?? null
+    case 'emb':
+      return d.embryos.find((x) => x.id === id)?.photos ?? null
+    case 'exam':
+      return d.exams.find((x) => x.id === id)?.photos ?? null
     case 'med':
       return d.meds.find((x) => x.id === id)?.photos ?? null
     default:

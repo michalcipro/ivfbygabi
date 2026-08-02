@@ -1,6 +1,6 @@
 import { formatCzechDate } from '../lib/domain/dates'
 import { guideFor } from '../lib/domain/guides'
-import { journey, S, viewDate } from './store'
+import { journey, S, viewDate, type MedRow } from './store'
 import { photoStrip } from './photo-ui'
 import { empty, esc, plural } from './ui'
 import { actionCard, sectionHead, segmented, statTrio } from './viz'
@@ -23,6 +23,32 @@ export type LekySection = 'dnes' | 'protokol'
 
 export function isLekySection(s: string): s is LekySection {
   return s === 'dnes' || s === 'protokol'
+}
+
+/**
+ * Historie změn dávkování.
+ *
+ * Dávka se během stimulace mění běžně a na kontrole zazní otázka „a kdy
+ * vám ji zvedli“. Bez zápisu si to nikdo nepamatuje. Aplikace nic nehodnotí —
+ * jen ukáže, co se kdy změnilo a proč to klinika řekla.
+ */
+function doseHistory(m: MedRow): string {
+  if (!m.history?.length) return ''
+  const rows = [...m.history].sort((a, b) => a.on.localeCompare(b.on))
+  return `<span style="display:block;margin-top:.6rem">
+    <span class="label" style="display:block">Změny dávky</span>
+    <ul class="linelist" style="margin-top:.4rem">
+      ${rows
+        .map(
+          (h) => `<li>
+            <span class="when">${esc(formatCzechDate(h.on, { year: false }))}</span>
+            <span style="flex:1;min-width:0">${esc(h.dose)}</span>
+            ${h.why.trim() ? `<span class="faint" style="font-size:.75rem">${esc(h.why)}</span>` : ''}
+          </li>`,
+        )
+        .join('')}
+    </ul>
+  </span>`
 }
 
 function doseKey(date: string, id: string): string {
@@ -118,6 +144,7 @@ function paneProtokol(): string {
                     <span style="min-width:0;flex:1">
                       <b style="font-weight:500">${esc(m.name)}</b>
                       <span class="faint">${esc(m.dose)}${m.timeOfDay ? ` · ${esc(m.timeOfDay)}` : ''}</span>
+                      ${doseHistory(m)}
                       ${photoStrip(`med:${m.id}`, m.photos, 'Krabička, leták nebo rozpis dávek')}
                     </span>
                     <button class="btn btn-ghost btn-sm" data-act="med-del" data-arg="${esc(m.id)}">×</button>

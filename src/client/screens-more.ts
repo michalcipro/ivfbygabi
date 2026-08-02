@@ -8,6 +8,13 @@ import { LAB_BY_KEY } from '../lib/health/lab-params'
 import { guidanceFor } from '../lib/health/lab-guidance'
 import { EVENT_KINDS, LETTER_TARGETS } from '../lib/shared/records'
 import { CATALOG, CONTENT_STATS, PRODUCTS } from '../lib/content'
+import {
+  cycleTitle,
+  OUTCOME_LABEL,
+  sortedTransfers,
+  TRANSFER_OUTCOME_LABEL,
+  type CycleRow,
+} from '../lib/domain/cycle'
 import { photoStrip } from './photo-ui'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
 import { DOC_KIND_LABEL, eventState, journey, moodAverage, profile, S, viewDate, type DocKind } from './store'
@@ -467,31 +474,93 @@ export function screenSkupina(slug: string): string {
 
 // -------------------------------------------------------------- můj příběh ---
 
+/** Spojí části a zahodí prázdné. */
+function join(parts: (string | false | null | undefined)[], sep = ' · '): string {
+  return parts.filter((x): x is string => Boolean(x && x.trim())).join(sep)
+}
+
+const MOOD_LABEL: Record<number, string> = {
+  1: 'Nejtěžší den',
+  2: 'Těžké',
+  3: 'Smíšené',
+  4: 'Dobré',
+  5: 'Nezapomenutelné',
+}
+
+/**
+ * Milníky léčby na osu příběhu.
+ *
+ * Kronika, do které se musí všechno psát ručně, zůstane prázdná. Tohle
+ * dotáhne to, co už žena zapsala jinde — začátek cyklu, odběr, každý
+ * transfer i jeho výsledek — aby se cesta skládala sama.
+ */
+function storyFromCycle(c: CycleRow): { onDate: string; title: string; body: string; icon: string; id: string }[] {
+  const out: { onDate: string; title: string; body: string; icon: string; id: string }[] = []
+  const put = (date: string | null, title: string, body = '', icon = '✧'): void => {
+    if (date) out.push({ onDate: date, title, body, icon, id: '' })
+  }
+
+  put(c.cd1On ?? c.startedOn, `${cycleTitle(c)} začal`, join([c.clinic.trim(), c.protocol.trim()]), '✧')
+  put(c.retrievalOn, 'Odběr vajíček', c.eggs !== null ? plural(c.eggs, 'vajíčko', 'vajíčka', 'vajíček') : '', '◍')
+
+  const list = sortedTransfers(c)
+  list.forEach((t, i) => {
+    const nazev = list.length > 1 ? `${i + 1}. transfer` : 'Transfer'
+    put(
+      t.date,
+      t.cancelled ? `${nazev} — zrušen` : nazev,
+      t.cancelled ? t.cancelReason : TRANSFER_OUTCOME_LABEL[t.outcome],
+      '❋',
+    )
+  })
+
+  if (c.outcome !== 'probiha') put(c.endedOn, `${cycleTitle(c)} uzavřen`, OUTCOME_LABEL[c.outcome], '●')
+
+  return out
+}
+
 export function screenPribeh(): string {
   const state = journey()
 
-  const auto = state.milestones.map((m) => ({
-    onDate: m.date,
-    title: m.label,
-    body: '',
-    icon: m.icon,
-    id: '',
-  }))
-  const entries = [...S.d.story, ...auto].sort((a, b) => b.onDate.localeCompare(a.onDate))
+  // Milníky z profilu i z léčby. Kronika se má skládat sama — žena, která
+  // si měsíc nic nezapsala, tu nesmí najít prázdno.
+  const auto = [
+    ...state.milestones.map((m) => ({ onDate: m.date, title: m.label, body: '', icon: m.icon, id: '' })),
+    ...S.d.cycles.flatMap((c) => storyFromCycle(c)),
+  ]
+  const entries = [...S.d.story.map((r) => ({ ...r })), ...auto].sort((a, b) =>
+    b.onDate.localeCompare(a.onDate),
+  )
+  const roky = [...new Set(entries.map((e) => e.onDate.slice(0, 4)))].sort().reverse()
 
   return [
-    head('Rodinná kronika', 'Můj příběh', 'Časová osa vaší cesty a dopisy. Milníky se doplňují samy z vašich dat.'),
+    head(
+      'Moje kronika',
+      'Můj příběh',
+      'Chronologie celé cesty — od prvního snažení po dnešek. Milníky léčby se doplňují samy, vzpomínky a fotky přidáváte vy. Jednou z toho může být kniha.',
+    ),
 
     `<section class="surface pad">
       <p class="eyebrow">Přidat vzpomínku</p>
       <div class="formrow"><label class="label" for="st-title">Co se stalo</label><input class="field" id="st-title" placeholder="Například: první ultrazvuk" autocomplete="off"></div>
       <div class="formrow"><label class="label" for="st-body">Jak to bylo</label><textarea class="field" id="st-body" rows="3" placeholder="Pár vět. Za rok si je nebudete pamatovat."></textarea></div>
-      <div class="formrow"><label class="label" for="st-date">Kdy</label><input class="field" type="date" id="st-date" value="${esc(viewDate())}"></div>
+      <div class="two" style="margin-top:1.1rem">
+        <div><label class="label" for="st-date">Kdy</label><input class="field" type="date" id="st-date" value="${esc(viewDate())}"></div>
+        <div><label class="label" for="st-mood">Jak mi u toho bylo</label>
+          <select class="field" id="st-mood">
+            <option value="">Nezapisovat</option>
+            <option value="1">Nejtěžší den</option>
+            <option value="2">Těžké</option>
+            <option value="3">Smíšené</option>
+            <option value="4">Dobré</option>
+            <option value="5">Nezapomenutelné</option>
+          </select></div>
+      </div>
       <button class="btn btn-primary" data-act="story-add" style="margin-top:1.25rem">Přidat na osu</button>
     </section>`,
 
     entries.length
-      ? `<section>${sectionTitle('Časová osa', plural(entries.length, 'záznam', 'záznamy', 'záznamů'))}
+      ? `<section>${sectionTitle('Moje cesta k miminku', `${plural(entries.length, 'záznam', 'záznamy', 'záznamů')}${roky.length > 1 ? ` · ${roky[roky.length - 1]}–${roky[0]}` : ''}`)}
           <ul class="timeline">
             ${entries
               .map(
@@ -501,6 +570,8 @@ export function screenPribeh(): string {
                     <p class="faint" style="font-size:.75rem">${esc(formatCzechDate(t.onDate, { year: true }))}</p>
                     <p class="display" style="font-size:1.2rem;margin-top:.2rem">${esc(t.title)}</p>
                     ${t.body ? `<p class="soft" style="margin-top:.4rem;font-size:.9375rem;line-height:1.65">${esc(t.body)}</p>` : ''}
+                    ${'mood' in t && t.mood ? `<span class="badge badge-soft" style="margin-top:.4rem">${esc(MOOD_LABEL[t.mood as number] ?? '')}</span>` : ''}
+                    ${t.id ? photoStrip(`story:${t.id}`, ('photos' in t ? (t.photos as never[]) : []) ?? [], 'Fotky k téhle chvíli') : ''}
                     ${t.id ? `<button class="btn btn-ghost btn-sm" data-act="story-del" data-arg="${esc(t.id)}" style="margin-top:.4rem">Smazat</button>` : '<p class="faint" style="font-size:.6875rem;margin-top:.3rem">z vašich dat</p>'}
                   </div>
                 </li>`,
