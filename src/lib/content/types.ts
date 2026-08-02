@@ -212,7 +212,7 @@ export interface LabParameter {
   topics: TopicId[]
   /** Kontext, ve kterém se hodnota měří. */
   context: 'cycle' | 'general' | 'male'
-  /** Očekává se růst v čase (beta HCG)? Ovlivňuje graf. */
+  /** Očekává se růst v čase (hCG)? Ovlivňuje graf. */
   trend?: 'rising' | 'stable' | 'falling'
 }
 

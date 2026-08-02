@@ -73,7 +73,7 @@ function anchorValue(profile: Profile, phase: PhaseDefinition): IsoDate | null {
 /**
  * Automatická detekce fáze z dat profilu, pokud si uživatelka fázi nezvolila
  * (nebo zvolila fázi, ze které data ukazují, že už postoupila — např.
- * „čekání na HCG“ + zadané pozitivní beta = přejdeme na rané těhotenství).
+ * „čekání na hCG“ + zadané pozitivní beta = přejdeme na rané těhotenství).
  */
 export function inferPhase(profile: Profile, today: IsoDate = todayIso()): PhaseId {
   const has = (k: keyof Profile) => {

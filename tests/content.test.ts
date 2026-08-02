@@ -199,20 +199,24 @@ test('kvíz má správnou odpověď v rozsahu možností', async () => {
 
 /**
  * Pojem „beta hCG“ se v aplikaci nepoužívá. Je to tentýž hormon a laické
- * zdvojení jen mate — hodnota z krve je prostě hCG.
+ * zdvojení jen mate — hodnota z krve je prostě hCG. Hlídá se i velikost
+ * písmen: „HCG“ je jiná zkratka než ta, kterou má žena na výsledku z laborky.
  */
-test('nikde nezůstalo „beta hCG“', async () => {
+test('nikde nezůstalo „beta hCG“ ani „HCG“', async () => {
   const PACKS = await packs()
   const bad: string[] = []
   for (const { name, pack } of PACKS) {
+    // `aliases` se nekontrolují: „HCG“ tam je schválně, protože takhle
+    // uživatelka zkratku často napíše do hledání a heslo se musí najít.
+    const spatne = (t: string): boolean => /beta\s*hcg/i.test(t) || /(?<![A-Za-z])HCG(?![A-Za-z])/.test(t)
     for (const it of pack.items ?? []) {
-      if (/beta\s*hcg/i.test(`${it.title} ${it.excerpt} ${it.body}`)) bad.push(`${name}/${it.id}`)
+      if (spatne(`${it.title} ${it.excerpt} ${it.body}`)) bad.push(`${name}/${it.id}`)
     }
     for (const c of pack.dailyCards ?? []) {
-      if (/beta\s*hcg/i.test(`${c.headline} ${c.body}`)) bad.push(`${name}/karta ${c.id}`)
+      if (spatne(`${c.headline} ${c.body} ${(c.whatsHappening ?? []).join(' ')}`)) bad.push(`${name}/karta ${c.id}`)
     }
     for (const g of pack.glossary ?? []) {
-      if (/beta\s*hcg/i.test(`${g.term} ${g.short} ${g.long}`)) bad.push(`${name}/pojem ${g.term}`)
+      if (spatne(`${g.term} ${g.short} ${g.long}`)) bad.push(`${name}/pojem ${g.term}`)
     }
   }
   assert.deepEqual(bad, [], `„beta hCG“ v:\n${bad.join('\n')}`)

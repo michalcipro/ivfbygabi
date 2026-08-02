@@ -120,7 +120,7 @@ Až budete připravená, otevřete oči a pomalu se posaďte.`,
 
   audio(
     'med-cekani-hcg',
-    'Čekání na HCG',
+    'Čekání na hCG',
     'Když je do odběru ještě několik dní a každý trvá věčnost.',
     12,
     ['two_week_wait'],

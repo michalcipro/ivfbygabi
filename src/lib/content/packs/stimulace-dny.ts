@@ -541,7 +541,7 @@ const dailyCards: DailyCard[] = [
     ],
     task: 'Ozvěte se jednomu člověku, který o vaší situaci ví. Nemusíte řešit léčbu, stačí obyčejný hovor o čemkoli jiném.',
     reflection: 'Co si o sobě říkám, když se něco protáhne? A je to spravedlivé?',
-    tip: 'Pijte během dne dost tekutin a nevynechávejte jídlo. Doporučení „hodně pít a jíst bílkoviny“ se ke konci stimulace opakuje často, přestože pro prevenci hyperstimulace nejsou důkazy silné — dehydratovaná a hladová se ale budete cítit hůř tak jako tak.',
+    tip: 'Pijte během dne dost tekutin a nevynechávejte jídlo. Doporučení „hodně pít a jíst bílkoviny“ se ke konci stimulace opakuje často, přestože pro prevenci hyperstimulace nejsou důkazy silné — dehydratovaná a hladová se ale budete cítit hůř tak jako tak. Pokud u vás klinika řeší riziko OHSS, řiďte se jejím pokynem: množství i typ nápoje se tam určuje individuálně.',
     callDoctorIf: [
       'Rychle rostoucí obvod břicha, rychlý přírůstek hmotnosti nebo dušnost — může jít o příznaky OHSS.',
       'Výrazně snížené močení.',

@@ -60,7 +60,7 @@ const products: Product[] = [
     name: 'Těhotenské testy s vysokou citlivostí',
     category: 'Testy',
     whyNow:
-      'Když se rozhodnete testovat doma, citlivější test zachytí HCG dřív. Rozhodující je ale vždycky odběr krve na klinice.',
+      'Když se rozhodnete testovat doma, citlivější test zachytí hCG dřív. Rozhodující je ale vždycky odběr krve na klinice.',
     priceFrom: 180,
     phases: ['two_week_wait', 'trying_naturally', 'iui'],
     rating: 4.4,

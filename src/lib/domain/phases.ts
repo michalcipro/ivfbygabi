@@ -245,7 +245,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
   two_week_wait: {
     id: 'two_week_wait',
     group: 'waiting',
-    name: 'Čekání na HCG',
+    name: 'Čekání na hCG',
     title: 'Čekání na hCG',
     description:
       'Nejdelších deset dní vašeho života. Každý den vám řekneme, co se právě děje a co je normální cítit.',
@@ -259,7 +259,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
   beta_positive: {
     id: 'beta_positive',
     group: 'waiting',
-    name: 'Pozitivní HCG',
+    name: 'Pozitivní hCG',
     title: 'Pozitivní hCG',
     description:
       'Dvě čárky nebo číslo, na které jste čekala. A hned s ním nová vlna otázek a opatrné radosti.',

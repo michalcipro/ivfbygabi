@@ -4,7 +4,7 @@ import type { ContentPack, DailyCard } from '../types'
  * Denní karty pro jádro IVF cyklu.
  *
  * Tohle je motor celé platformy. Karta se vybírá přesnou shodou na den,
- * takže uživatelka ve stimulaci nebo v čekání na HCG dostane každé ráno
+ * takže uživatelka ve stimulaci nebo v čekání na hCG dostane každé ráno
  * text napsaný právě pro ten den — ne obecný článek o fázi.
  *
  * Zdrojem popisu vývoje embrya je běžná embryologická praxe; časování se mezi
@@ -423,11 +423,11 @@ const twoWeekWait: DailyCard[] = [
     id: 'ck-tww-5',
     phases: ['two_week_wait'],
     day: 5,
-    headline: 'Možná právě teď vzniká první HCG.',
-    body: 'Pátý den může embryo, které se uhnízdilo, začít tvořit hormon HCG. Množství je zatím tak malé, že ho nezachytí žádný test.',
+    headline: 'Možná právě teď vzniká první hCG.',
+    body: 'Pátý den může embryo, které se uhnízdilo, začít tvořit hormon hCG. Množství je zatím tak malé, že ho nezachytí žádný test.',
     whatsHappening: [
       'Zahnizďování pokračuje.',
-      'První molekuly HCG se dostávají do krve.',
+      'První molekuly hCG se dostávají do krve.',
       'Domácí test by byl stále negativní.',
     ],
     task: 'Udělejte si dnes večer patnáct minut jen pro sebe. Bez telefonu.',
@@ -442,7 +442,7 @@ const twoWeekWait: DailyCard[] = [
     body: 'Uhnízdění se obvykle dokončuje mezi šestým a desátým dnem po transferu blastocysty. Probíhá bez jediného příznaku, který byste mohla zaznamenat.',
     whatsHappening: [
       'Embryo se zanořuje hlouběji do sliznice.',
-      'HCG pomalu stoupá, ale zatím pod hranicí detekce.',
+      'hCG pomalu stoupá, ale zatím pod hranicí detekce.',
       'Cokoliv cítíte, může být od progesteronu.',
     ],
     task: 'Zavolejte někomu, kdo o vaší léčbě neví. Mluvte o čemkoliv jiném.',
@@ -455,7 +455,7 @@ const twoWeekWait: DailyCard[] = [
     headline: 'Sedmý den. Půlka čekání je za vámi.',
     body: 'Zvládla jste týden. Zbývá zhruba stejně dlouhá doba do odběru krve — a tahle druhá půlka bývá subjektivně delší.',
     whatsHappening: [
-      'Pokud se embryo uhnízdilo, HCG stoupá.',
+      'Pokud se embryo uhnízdilo, hCG stoupá.',
       'Test doma by mohl vyjít slabě pozitivní, ale často ještě ne.',
       'Únava a napětí v prsou nic nedokazují — obojí dělá i progesteron.',
     ],
@@ -467,9 +467,9 @@ const twoWeekWait: DailyCard[] = [
     phases: ['two_week_wait'],
     day: 8,
     headline: 'Osmý den. Testovat, nebo netestovat.',
-    body: 'Od tohohle dne může citlivější domácí test zachytit HCG — ale taky nemusí, i když je všechno v pořádku. Negativní test dnes nic neuzavírá.',
+    body: 'Od tohohle dne může citlivější domácí test zachytit hCG — ale taky nemusí, i když je všechno v pořádku. Negativní test dnes nic neuzavírá.',
     whatsHappening: [
-      'HCG se při zdárném vývoji přibližně zdvojnásobuje každých 48 až 72 hodin.',
+      'hCG se při zdárném vývoji přibližně zdvojnásobuje každých 48 až 72 hodin.',
       'Zbytek dokončovací injekce už bývá z těla pryč, ale ne u každé.',
       'Slabá čárka je čárka. Žádná čárka není konec.',
     ],
@@ -484,7 +484,7 @@ const twoWeekWait: DailyCard[] = [
     headline: 'Devátý den. Hlava pracuje víc než tělo.',
     body: 'V týhle fázi většina žen popisuje, že se přistihují při analyzování každého pocitu. Je to naprosto pochopitelné — a zároveň to nic nezjistí.',
     whatsHappening: [
-      'Při uhnízdění HCG dál stoupá.',
+      'Při uhnízdění hCG dál stoupá.',
       'Příznaky raného těhotenství a příznaky před menstruací se nedají rozlišit.',
       'Špinění může, ale nemusí být.',
     ],
@@ -498,7 +498,7 @@ const twoWeekWait: DailyCard[] = [
     headline: 'Desátý den. Test už bývá spolehlivější.',
     body: 'Kolem desátého dne po transferu blastocysty bývá domácí test u probíhajícího těhotenství obvykle pozitivní. Rozhodující je ale vždycky odběr krve.',
     whatsHappening: [
-      'HCG bývá dost vysoké na záchyt běžným testem.',
+      'hCG bývá dost vysoké na záchyt běžným testem.',
       'Slabá čárka může znamenat brzké stadium, ne slabé těhotenství.',
       'Odběr krve se obvykle plánuje mezi 10. a 14. dnem.',
     ],
@@ -512,7 +512,7 @@ const twoWeekWait: DailyCard[] = [
     headline: 'Jedenáctý den. Blíží se konec čekání.',
     body: 'Ať to dopadne jakkoliv, tahle část končí. Čekání je svým způsobem těžší než jistota — i než ta špatná.',
     whatsHappening: [
-      'HCG při zdárném vývoji dál stoupá.',
+      'hCG při zdárném vývoji dál stoupá.',
       'Progesteron se obvykle užívá dál až do výsledku.',
       'Špinění před odběrem nemusí znamenat konec.',
     ],
