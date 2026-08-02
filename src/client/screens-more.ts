@@ -647,6 +647,20 @@ export function screenNastaveni(): string {
     head('Vaše nastavení', 'Nastavení', 'Všechno se dá kdykoliv změnit. Obsah se hned přepočítá.'),
 
     `<section class="surface pad">
+      <p class="eyebrow">Připomínky</p>
+      <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
+        Připomínky léků, injekcí, kontrol a odběrů se ukazují na obrazovce Dnes
+        a v kalendáři. U každého léku se dá zvlášť vypnout v Lécích.
+      </p>
+      <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
+        Systémová upozornění mimo aplikaci zatím neposíláme. Slibovat, že vás
+        aplikace v půl deváté klepne po rameni, a pak to neudělat, je u léku,
+        který se píchá na minutu přesně, horší než nic neslibovat.
+      </p>
+      <button class="btn btn-ghost btn-sm" data-go="leky/protokol" style="margin-top:1rem">Nastavit u léků</button>
+    </section>`,
+
+    `<section class="surface pad">
       <p class="eyebrow">Kde jste na cestě</p>
       <p class="soft" style="margin-top:.5rem;font-size:.9375rem">Teď: <strong>${esc(state.phase.title)}</strong> · ${esc(state.dayLabel)}</p>
       <div class="formrow" style="margin-top:1.1rem">

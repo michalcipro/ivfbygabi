@@ -307,6 +307,64 @@ export function screenChecklisty(): string {
   ].join('')
 }
 
+// ------------------------------------------------------------- co když… ---
+
+/**
+ * „Co když…“
+ *
+ * Praktická databáze pro chvíle, kdy se něco stane a je půl jedenácté večer.
+ * Každá odpověď rozlišuje tři věci, a to pořadí je záměrné: co bývá běžné,
+ * co probrat s klinikou a **kdy volat hned**. Aplikace nediagnostikuje —
+ * jen říká, kdy přestat číst a začít vytáčet číslo.
+ */
+export function screenCoKdyz(): string {
+  const items = CATALOG.filter((i) => i.id.startsWith('ck-'))
+
+  if (items.length === 0) {
+    return [
+      head('Co když…', 'Co když…', 'Praktické odpovědi na to, co se stane mimo ordinační hodiny.'),
+      empty(
+        'Tahle část se ještě připravuje',
+        'Zatím zkuste knihovnu nebo hledání — a když jde o akutní stav, volejte přímo klinice.',
+        '<button class="btn" data-go="knihovna">Otevřít knihovnu</button>',
+        '?',
+      ),
+    ].join('')
+  }
+
+  return [
+    head(
+      'Co když…',
+      'Co když…',
+      'Odpovědi na situace, které přijdou mimo ordinační hodiny. U každé je napsané, co bývá běžné, co probrat s klinikou a kdy volat hned.',
+    ),
+
+    `<div class="doctorbox">
+      <p style="font-size:.9375rem;line-height:1.65">
+        Při silné bolesti břicha, silném krvácení, dušnosti, horečce nebo kolapsu
+        nečtěte — volejte svou kliniku. Mimo její hodiny záchrannou službu na 155.
+      </p>
+    </div>`,
+
+    `<div class="stack" style="gap:.6rem;margin-top:1.4rem">
+      ${items
+        .map(
+          (i) => `<button class="tile" data-go="cist/${esc(i.id)}" style="align-items:flex-start">
+            <i>?</i>
+            <span style="min-width:0">
+              <h4 class="display" style="font-size:.9375rem">${esc(i.title)}</h4>
+              <p>${esc(i.excerpt)}</p>
+            </span>
+            <span class="go">›</span>
+          </button>`,
+        )
+        .join('')}
+    </div>`,
+
+    note('Texty jsou obecné. O vaší situaci rozhoduje vaše klinika — aplikace ji nenahrazuje.'),
+  ].join('')
+}
+
 // ---------------------------------------------------------------- hledání ---
 
 /**

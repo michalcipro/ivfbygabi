@@ -22,14 +22,18 @@ function fazeRows(): Row[] {
   return [
     ['faze', '❖', 'Moje fáze', guide ? guide.summary : `Kde jste teď: ${state.phase.name.toLowerCase()}.`],
     ['cesta', '✧', 'Celá cesta', `Všech ${PHASE_IDS.length} fází. Kde jste byla, kde jste a co přijde.`],
-    ['diagnozy', '◈', 'Diagnózy', 'Co která diagnóza znamená a na co se u ní ptát.'],
+    ['diagnozy', '◈', 'Diagnózy a stavy', 'Co která diagnóza znamená, jak se vyšetřuje a na co se ptát.'],
+    ['mojediagnoza', '◈', 'Moje diagnóza', 'Označte důvody, které se vás týkají — obsah se pak cílí podle nich.'],
+    ['vysetreni', '◉', 'Vyšetření', 'Co může být relevantní u vás, u partnera i jinde.'],
+    ['podpora', '♡', 'Podpůrná péče', 'Co si k léčbě brát mimo kliniku — a co o tom víme.'],
   ]
 }
 
 const READ: Row[] = [
-  ['knihovna', '❧', 'Knihovna', `${CONTENT_STATS.items} materiálů. Články, videa, checklisty i pojmy.`],
-  ['gabi', '✦', 'Hledat v aplikaci', 'Napište pojem nebo otázku. Hledá se jen v tom, co je uvnitř.'],
+  ['knihovna', '❧', 'Knihovna', `${CONTENT_STATS.items} materiálů. Články, checklisty, pojmy i „Co když…“.`],
+  ['hledat', '✦', 'Hledat v aplikaci', 'Napište pojem nebo otázku. Hledá se jen v tom, co je uvnitř — nic se negeneruje.'],
   ['objevit', '❋', 'Objevit', 'Doporučení podle vaší fáze a toho, co vás zajímá.'],
+  ['cokdyz', '?', 'Co když…', 'Co dělat, když se něco stane mimo ordinační hodiny.'],
 ]
 
 const RECORD: Row[] = [
@@ -39,7 +43,7 @@ const RECORD: Row[] = [
   ['denik', '✎', 'Deník a cvičení', 'Delší zápisy, ohlédnutí a cvičení na práci s hlavou.'],
   ['kalendar', '◈', 'Kalendář', 'Termíny a kontroly. Část se doplní sama z vašich dat.'],
   ['zdravi', '◉', 'Zdraví', 'Vaše hodnoty v čase. Graf ukazuje vývoj, ne diagnózu.'],
-  ['dokumenty', '▤', 'Dokumenty', 'Vložte text lékařské zprávy a hodnoty z něj vytáhneme.'],
+  ['dokumenty', '▤', 'Dokumenty', 'Papíry z kliniky na jednom místě. Aplikace je jen ukládá, nečte je.'],
   ['checklisty', '✓', 'Checklisty', 'Ať na nic nezapomenete — a odškrtnuté zůstane odškrtnuté.'],
   ['pribeh', '❦', 'Můj příběh', 'Časová osa a dopisy. Jednou z toho může být kniha.'],
 ]
@@ -48,7 +52,7 @@ const OTHER: Row[] = [
   ['komunita', '◍', 'Komunita', 'Ženy ve stejné fázi. Můžete zůstat anonymní.'],
   ['partner', '♡', 'Partner', 'Co ukázat tomu, kdo je vedle vás. Deník zůstává soukromý.'],
   ['obchod', '◇', 'Doporučené', 'Produkty a služby podle fáze. Bez placených pozic.'],
-  ['clenstvi', '✦', 'Členství', 'Jak by platforma fungovala jako předplatné.'],
+  ['clenstvi', '✦', 'Předplatné', '199 Kč měsíčně. Jedna cena za celou aplikaci.'],
   ['nastaveni', '⚙', 'Nastavení', 'Fáze, situace, vzhled, dlaždice a vaše data.'],
 ]
 
@@ -62,7 +66,7 @@ export function screenPruvodce(): string {
   return [
     `<header class="head rise">
       <p class="eyebrow">${esc(p.displayName ? `${p.displayName} · ` : '')}${esc(state.phase.name)}</p>
-      <h1 class="display">Průvodce</h1>
+      <h1 class="display">Obsah</h1>
       <p class="lede">
         Všechno, co se nedělá každý den. U každé položky je napsané, k čemu je.
         ${written ? esc(`Máte ${plural(written, 'zapsaný den', 'zapsané dny', 'zapsaných dní')}.`) : ''}

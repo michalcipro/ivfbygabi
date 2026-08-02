@@ -21,6 +21,12 @@ import { pack as cardsGaps } from './packs/cards-gaps'
 import { pack as encouragements } from './packs/encouragements'
 import { pack as meditations } from './packs/meditations'
 import { pack as podpora } from './packs/podpora'
+import { pack as diagnozy } from './packs/diagnozy'
+import { pack as vysetreni } from './packs/vysetreni'
+import { pack as genetika } from './packs/genetika'
+import { pack as oplodneni } from './packs/oplodneni'
+import { pack as podpurneMetody } from './packs/podpurne-metody'
+import { pack as podpurnaPece } from './packs/podpurna-pece'
 
 /**
  * Registr obsahu.
@@ -43,6 +49,12 @@ const PACKS: ContentPack[] = [
   encouragements,
   meditations,
   podpora,
+  diagnozy,
+  vysetreni,
+  genetika,
+  oplodneni,
+  podpurneMetody,
+  podpurnaPece,
 ]
 
 function dedupe<T extends { id: string }>(items: T[]): T[] {

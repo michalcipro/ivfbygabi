@@ -104,7 +104,7 @@ import {
   SECTIONS,
   type SectionId,
 } from './screens-phase'
-import { screenChecklisty, screenCist, screenHledat, screenKnihovna } from './screens-tools'
+import { screenChecklisty, screenCist, screenCoKdyz, screenHledat, screenKnihovna } from './screens-tools'
 import {
   czechVoice,
   onSpeechChange,
@@ -203,6 +203,7 @@ const TITLES: Record<string, string> = {
   zdravotni: 'Zdravotní data',
   objevit: 'Objevit',
   hledat: 'Hledání',
+  cokdyz: 'Co když…',
   denik: 'Deník',
   vice: 'Více',
   cesta: 'Celá cesta',
@@ -289,6 +290,7 @@ const PARENT: Record<string, string> = {
   faze: 'pruvodce',
   denik: 'pruvodce',
   hledat: 'pruvodce',
+  cokdyz: 'pruvodce',
   vice: 'pruvodce',
 }
 
@@ -388,6 +390,8 @@ function screenFor(route: string): string {
       return screenObjevit()
     case 'hledat':
       return screenHledat(view.query)
+    case 'cokdyz':
+      return screenCoKdyz()
     case 'denik': {
       const wanted = a.split('/')[0]
       const section = (DENIK_SECTIONS.some((x) => x.id === wanted) ? wanted : 'dnes') as DenikSection
