@@ -353,7 +353,7 @@ const transfer: DailyCard[] = [
   },
 ]
 
-// ---------------------------------------------------- čekání na beta HCG ---
+// ---------------------------------------------------- čekání na hCG ---
 
 const twoWeekWait: DailyCard[] = [
   {
@@ -527,7 +527,7 @@ const twoWeekWait: DailyCard[] = [
     headline: 'Dvanáctý den. Skoro tam.',
     body: 'Odběr krve bývá mezi desátým a čtrnáctým dnem. Číslo, které z něj vyjde, se nedá porovnávat s ničím cizím — rozptyl u zdravých těhotenství je obrovský.',
     whatsHappening: [
-      'Beta HCG se z krve stanoví během několika hodin.',
+      'hCG se z krve stanoví během několika hodin.',
       'Často se odběr za dva dny opakuje kvůli dynamice.',
       'Jedna hodnota sama o sobě říká málo.',
     ],
@@ -555,7 +555,7 @@ const twoWeekWait: DailyCard[] = [
     headline: 'Den odběru.',
     body: 'Dnes se to dozvíte. Ať přijde jakékoliv číslo, budete potřebovat čas ho vstřebat — i to dobré.',
     whatsHappening: [
-      'Beta HCG se stanoví z krve.',
+      'hCG se stanoví z krve.',
       'Při pozitivním výsledku se odběr obvykle za 48 hodin opakuje.',
       'Při negativním výsledku vám klinika řekne, kdy vysadit léky.',
     ],

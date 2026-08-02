@@ -689,7 +689,7 @@ Můžete a spousta žen to udělá. Vědět byste ale měla tohle:
 - **Falešně negativní** — příliš brzy je hladina nízká i při úspěšném uhnízdění.
 - **Výsledek nic nezmění.** Léčbu ani podporu podle domácího testu neupravujete.
 
-Odběr beta hCG na klinice je jediný výsledek, podle kterého se rozhoduje.
+Odběr hCG na klinice je jediný výsledek, podle kterého se rozhoduje.
 
 **Proč se dělá beta dvakrát?**
 Protože důležitější než jedno číslo je jeho **vývoj v čase**. Dynamika vypovídá víc než absolutní hodnota.
@@ -720,7 +720,7 @@ Obvykle ano a nevysazuje se svévolně. Kdy skončit, řekne klinika.
 Zavolejte na kliniku, ať víte, jak dál. Nezdvojujte dávku sama.
 
 **Kdy budu vědět jistě?**
-Beta hCG je první jistota. Ta další přichází s ultrazvukem o pár týdnů později. Mezitím se dá jen čekat, a to je poctivá odpověď.
+hCG je první jistota. Ta další přichází s ultrazvukem o pár týdnů později. Mezitím se dá jen čekat, a to je poctivá odpověď.
 
 > Odpovědi jsou obecné. Vaše pokyny k podpoře, testování i k tomu, kdy volat, má vaše klinika a ty mají přednost.`,
       minutes: 10,

@@ -27,6 +27,10 @@ import { pack as genetika } from './packs/genetika'
 import { pack as oplodneni } from './packs/oplodneni'
 import { pack as podpurneMetody } from './packs/podpurne-metody'
 import { pack as podpurnaPece } from './packs/podpurna-pece'
+import { pack as coKdyz } from './packs/co-kdyz'
+import { pack as vysledkyCesty } from './packs/vysledky-cesty'
+import { pack as slovnik } from './packs/slovnik'
+import { pack as stimulaceDny } from './packs/stimulace-dny'
 
 /**
  * Registr obsahu.
@@ -55,6 +59,10 @@ const PACKS: ContentPack[] = [
   oplodneni,
   podpurneMetody,
   podpurnaPece,
+  coKdyz,
+  vysledkyCesty,
+  slovnik,
+  stimulaceDny,
 ]
 
 function dedupe<T extends { id: string }>(items: T[]): T[] {

@@ -56,7 +56,7 @@ Po výkonu obvykle chvíli ležíte — někde deset minut, jinde vůbec. Delš�
 Než odejdete, ujistěte se, že máte:
 
 - **jasný plán užívání podpory luteální fáze** (co, jak často, jak dlouho),
-- **datum a čas odběru beta hCG**,
+- **datum a čas odběru hCG**,
 - **telefon na kliniku pro případ potíží** a informaci, kdo drží pohotovost o víkendu.
 
 ## Zbytek dne
@@ -198,7 +198,7 @@ Poslední skupina, „co zařídit doma", vypadá banálně. Přesně ta ale roz
         { id: 'tww-cl-t-8', text: 'Doprovod, pokud to klinika umožňuje', optional: true, group: 'Co si vzít' },
         { id: 'tww-cl-t-9', text: 'Zeptat se, v jakém stadiu je přenášené embryo', group: 'Na co se zeptat' },
         { id: 'tww-cl-t-10', text: 'Zeptat se, kolik embryí jde na zamrazení a kdy se to dozvím', group: 'Na co se zeptat' },
-        { id: 'tww-cl-t-11', text: 'Zapsat si přesné datum a čas odběru beta hCG', group: 'Na co se zeptat' },
+        { id: 'tww-cl-t-11', text: 'Zapsat si přesné datum a čas odběru hCG', group: 'Na co se zeptat' },
         {
           id: 'tww-cl-t-12',
           text: 'Zapsat si plán podpory luteální fáze',
@@ -404,7 +404,7 @@ Pojďme na všechny tři.
 
 Ne, embryo se pohlavním stykem nevyplaví ani neposune. Anatomicky to nedává smysl — embryo je v dutině děložní, za uzavřeným děložním hrdlem.
 
-Přesto řada klinik doporučuje zdržet se styku od transferu do odběru beta hCG, případně i déle. Důvody jsou tři a jsou věcné:
+Přesto řada klinik doporučuje zdržet se styku od transferu do odběru hCG, případně i déle. Důvody jsou tři a jsou věcné:
 
 1. **Po čerstvém cyklu jsou vaječníky zvětšené.** Hluboká penetrace může být bolestivá a v krajním případě přispět k torzi vaječníku. Tohle je nejsilnější důvod.
 2. **Orgasmus vyvolává stahy dělohy.** Není doloženo, že by uškodily, ale klinika je z opatrnosti nechce.
@@ -485,7 +485,7 @@ Formy se liší podle pracoviště a podle vás:
 
 ## Nejdůležitější věta celého článku
 
-**Nikdy podporu luteální fáze nevysazujte sama, ani když začnete krvácet, ani když si uděláte negativní test.** Krvácení při užívaném progesteronu neznamená automaticky konec a předčasné vysazení může uškodit v případě, že těhotenství probíhá. O ukončení rozhoduje lékař na základě výsledku beta hCG.
+**Nikdy podporu luteální fáze nevysazujte sama, ani když začnete krvácet, ani když si uděláte negativní test.** Krvácení při užívaném progesteronu neznamená automaticky konec a předčasné vysazení může uškodit v případě, že těhotenství probíhá. O ukončení rozhoduje lékař na základě výsledku hCG.
 
 ## Praktické zásady užívání
 
@@ -680,7 +680,7 @@ Měření teploty v tomhle období nemá vypovídací hodnotu — progesteron ji
 
 ## Jediná spolehlivá odpověď
 
-**Beta hCG z krve v termínu, který vám stanovila klinika.** Nic dřív, nic jiného. Ne proto, že by vás chtěl někdo napínat, ale proto, že dřívější informace je nespolehlivá a nespolehlivá informace v tomhle období bolí víc než čekání.
+**hCG z krve v termínu, který vám stanovila klinika.** Nic dřív, nic jiného. Ne proto, že by vás chtěl někdo napínat, ale proto, že dřívější informace je nespolehlivá a nespolehlivá informace v tomhle období bolí víc než čekání.
 
 ## Kdy volat lékaře
 
@@ -926,7 +926,7 @@ Stává se to a je to jeden z důvodů, proč kliniky testování doma nedoporu�
 - pozitivní test doma spolu s bolestí v rameni, mdlobou nebo závratí,
 - kdykoli si nejste jistá, jak dál s medikací.
 
-> Tento text nenahrazuje lékařskou péči. O výsledku rozhoduje odběr beta hCG naordinovaný vaší klinikou, ne test z lékárny.`,
+> Tento text nenahrazuje lékařskou péči. O výsledku rozhoduje odběr hCG naordinovaný vaší klinikou, ne test z lékárny.`,
       minutes: 8,
       phases: ['two_week_wait'],
       dayRange: [6, 14],
@@ -942,12 +942,12 @@ Stává se to a je to jeden z důvodů, proč kliniky testování doma nedoporu�
     {
       id: 'tww-beta-hcg-zdvojeni',
       kind: 'article',
-      title: 'Beta hCG: co to je číslo a proč se sleduje jeho zdvojení',
+      title: 'hCG: co to je číslo a proč se sleduje jeho zdvojení',
       excerpt:
         'Jedna hodnota vám toho o těhotenství řekne překvapivě málo — teprve dvě hodnoty za sebou dávají smysl.',
       body: `## Co se vlastně odebírá
 
-**hCG** (lidský choriový gonadotropin) je hormon, který produkuje tkáň budoucí placenty poté, co se embryo zahnízdí. V krvi se stanovuje jako **beta hCG** a měří se v jednotkách na litr — nejčastěji IU/l nebo mIU/ml.
+**hCG** (lidský choriový gonadotropin) je hormon, který produkuje tkáň budoucí placenty poté, co se embryo zahnízdí. V krvi se stanovuje jako **hCG** a měří se v jednotkách na litr — nejčastěji IU/l nebo mIU/ml.
 
 Krev je proti moči přesnější ze dvou důvodů: zachytí i velmi nízké koncentrace a **dá vám číslo**, ne čárku. A o čísla tady jde.
 
@@ -1460,7 +1460,7 @@ Je legitimní se zeptat:
 
 - **Příznaky nic neříkají** — a u KET s hormonální přípravou možná ještě míň, protože hormonů máte v těle víc.
 - **Brzké domácí testy klamou** — zde s jednou výhodou: **pokud jste nedostala spouštěcí injekci s hCG, nehrozí u vás falešná pozitivita z léku.** Ostatní důvody proč netestovat brzy ale zůstávají.
-- **Termín odběru beta hCG platí přesně tak, jak vám ho dala klinika.**
+- **Termín odběru hCG platí přesně tak, jak vám ho dala klinika.**
 
 ## Časování transferu a proč se počítá jinak
 
@@ -1762,7 +1762,7 @@ Provedeme vás dvěma týdny po transferu blastocysty tak, jak je popisuje embry
 
 **Den 10 až 12 — test bývá spolehlivější.** Koncentrace v moči už může přesáhnout práh citlivosti testu. Stále platí, že jediné rozhodující je vyšetření z krve.
 
-**Den 13 až 14 — odběr beta hCG.** Krev dá číslo a číslo se dá porovnat s druhým odběrem za dva až tři dny. Teprve dynamika říká něco spolehlivého.
+**Den 13 až 14 — odběr hCG.** Krev dá číslo a číslo se dá porovnat s druhým odběrem za dva až tři dny. Teprve dynamika říká něco spolehlivého.
 
 ## Dvě důležité poznámky
 
@@ -1992,10 +1992,10 @@ Každá odpověď má vysvětlení. Přečtěte si i ta u otázek, které jste t
           ],
           correct: 2,
           explain:
-            'Podporu luteální fáze nikdy nevysazujte sama a nikdy si sama neupravujte dávku. Krvácení v tomto období neznamená automaticky konec — o dalším postupu rozhoduje lékař na základě beta hCG.',
+            'Podporu luteální fáze nikdy nevysazujte sama a nikdy si sama neupravujte dávku. Krvácení v tomto období neznamená automaticky konec — o dalším postupu rozhoduje lékař na základě hCG.',
         },
         {
-          q: 'Proč se dělá druhý odběr beta hCG s odstupem dvou až tří dnů?',
+          q: 'Proč se dělá druhý odběr hCG s odstupem dvou až tří dnů?',
           options: [
             'Kvůli kontrole, jestli laboratoř neudělala chybu',
             'Protože dynamika růstu hodnoty říká víc než jediné číslo',
@@ -2056,7 +2056,7 @@ Nepovinné položky jsou označené. Nejsou méně důležité, jen nesedí kaž
           hint: 'Rychle rostoucí břicho, dušnost, snížené močení, prudký přírůstek hmotnosti.',
           group: 'Medikace a zdraví',
         },
-        { id: 'tww-cl-w-5', text: 'Zapsat si přesný termín odběru beta hCG do kalendáře', group: 'Medikace a zdraví' },
+        { id: 'tww-cl-w-5', text: 'Zapsat si přesný termín odběru hCG do kalendáře', group: 'Medikace a zdraví' },
         { id: 'tww-cl-w-6', text: 'Naplánovat si na každý den jednu procházku', group: 'Medikace a zdraví' },
         { id: 'tww-cl-w-7', text: 'Koupit slabé vložky do zásoby', hint: 'Tampony v tomto období ne.', group: 'Medikace a zdraví' },
         { id: 'tww-cl-w-8', text: 'Domluvit si vlastní pravidlo pro vyhledávání na internetu', hint: 'Například jednou denně, patnáct minut.', group: 'Hlava' },
@@ -2159,7 +2159,7 @@ Ať už jste zavřená v koupelně a brečíte, nebo sedíte a nic necítíte, n
 
 Konkrétní plán vám dá klinika, ale obvyklý rámec vypadá takhle:
 
-1. **Kontrolní odběr beta hCG** za dva až tři dny. Sleduje se dynamika — jestli hodnota stoupá tak, jak se očekává.
+1. **Kontrolní odběr hCG** za dva až tři dny. Sleduje se dynamika — jestli hodnota stoupá tak, jak se očekává.
 2. **Pokračování v podpoře luteální fáze**, často delší dobu než dosud. **Nic sama nevysazujte, ani když se cítíte skvěle.**
 3. **První ultrazvuk** v čase, kdy už může něco ukázat. Termín určuje lékař, obvykle to bývá s odstupem několika týdnů od pozitivní bety.
 4. **Předání do péče gynekologa** — kdy a jak, to se mezi pracovišti liší.
@@ -2417,7 +2417,7 @@ Na klinice zazní během pěti minut deset odborných výrazů. Ženy obvykle k�
 
 **hCG** — hormon produkovaný zárodečnou tkání po zahnízdění. Základ těhotenského testu.
 
-**Beta hCG** — stanovení hCG z krve. Přesnější než test z moči a dá vám číslo.
+**hCG** — stanovení hCG z krve. Přesnější než test z moči a dá vám číslo.
 
 **Zdvojovací čas** — doba, za kterou hodnota hCG vzroste na dvojnásobek. V raném těhotenství to bývá zhruba 48 až 72 hodin.
 
@@ -2544,7 +2544,7 @@ Pokud odpovědi nerozumíte, řekněte to. Věta *„Můžete mi to říct ješt
         { id: 'tww-cl-e-5', text: 'Jak embryo sneslo rozmrazení a nafouklo se?', hint: 'Jen u kryoembryotransferu.', optional: true, group: 'Embryolog' },
         { id: 'tww-cl-e-6', text: 'Dělal se asistovaný hatching a proč ano nebo ne?', optional: true, group: 'Embryolog' },
         { id: 'tww-cl-e-7', text: 'Můžu dostat fotku embrya?', optional: true, group: 'Embryolog' },
-        { id: 'tww-cl-e-8', text: 'Kdy přesně mám jít na odběr beta hCG?', group: 'Lékař' },
+        { id: 'tww-cl-e-8', text: 'Kdy přesně mám jít na odběr hCG?', group: 'Lékař' },
         { id: 'tww-cl-e-9', text: 'Jaký je přesný plán podpory luteální fáze?', hint: 'Co, kolikrát denně, do kdy.', group: 'Lékař' },
         { id: 'tww-cl-e-10', text: 'Co mám dělat, když dávku vynechám?', group: 'Lékař' },
         { id: 'tww-cl-e-11', text: 'Jaká omezení konkrétně platí pro mě?', hint: 'Sport, sex, cestování, koupel.', group: 'Lékař' },
@@ -2593,7 +2593,7 @@ Den transferu berte jako lehký den, ne jako den v posteli. Klid ano, nehybnost 
 
 **Tři věci na dnešek:**
 1. Nastavit připomínky na medikaci.
-2. Zapsat si termín odběru beta hCG do kalendáře.
+2. Zapsat si termín odběru hCG do kalendáře.
 3. Uložit číslo na kliniku a zjistit víkendovou pohotovost.
 
 ## Co je normální cítit
@@ -2693,7 +2693,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       ],
       task: 'Nastavte si v telefonu připomínky na všechny dávky medikace na následujících čtrnáct dní a uložte si číslo na kliniku včetně víkendové pohotovosti.',
       reflection: 'Co dnes potřebuju od lidí kolem sebe — mluvit, mlčet, nebo mít klid?',
-      tip: 'Zapište si hned dnes přesný termín odběru beta hCG a to, co vám řekl embryolog. Za tři dny si z toho rozhovoru vybavíte třetinu.',
+      tip: 'Zapište si hned dnes přesný termín odběru hCG a to, co vám řekl embryolog. Za tři dny si z toho rozhovoru vybavíte třetinu.',
       callDoctorIf: [
         'Silné krvácení, silnější než menstruace, nebo se sraženinami',
         'Prudká, narůstající bolest v podbřišku',
@@ -2950,7 +2950,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       phases: ['two_week_wait'],
       day: 14,
       headline: 'Den 14: dnes se odebírá krev',
-      body: 'Beta hCG z krve je jediné vyšetření, které v tomhle období skutečně něco znamená — dá vám číslo, ne čárku. Jedna hodnota se ale vyhodnocuje vždy v kontextu dne odběru a obvykle se doplní druhým odběrem za dva až tři dny. Ať se dnes dozvíte cokoli, těch čtrnáct dní jste zvládla a to už vám nikdo nevezme.',
+      body: 'hCG z krve je jediné vyšetření, které v tomhle období skutečně něco znamená — dá vám číslo, ne čárku. Jedna hodnota se ale vyhodnocuje vždy v kontextu dne odběru a obvykle se doplní druhým odběrem za dva až tři dny. Ať se dnes dozvíte cokoli, těch čtrnáct dní jste zvládla a to už vám nikdo nevezme.',
       whatsHappening: [
         'Odběr obvykle nevyžaduje být nalačno, ale ověřte si to na svém pracovišti',
         'Léky si dnes vezměte podle plánu, odběr na tom nic nemění',
@@ -3264,7 +3264,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       term: 'Podpora luteální fáze',
       aliases: ['luteální podpora', 'progesteronová podpora'],
       short: 'Doplňování progesteronu, případně dalších hormonů, po embryotransferu.',
-      long: 'Podává se vaginálně, injekčně do svalu nebo ústy, někdy v kombinaci s dalšími léky. Konkrétní přípravek, dávku i délku užívání určuje výhradně ošetřující lékař. Zásadní pravidlo zní: nikdy nevysazovat sama — ani při krvácení, ani po negativním domácím testu. O ukončení rozhoduje lékař podle hodnoty beta hCG.',
+      long: 'Podává se vaginálně, injekčně do svalu nebo ústy, někdy v kombinaci s dalšími léky. Konkrétní přípravek, dávku i délku užívání určuje výhradně ošetřující lékař. Zásadní pravidlo zní: nikdy nevysazovat sama — ani při krvácení, ani po negativním domácím testu. O ukončení rozhoduje lékař podle hodnoty hCG.',
       topics: ['leky', 'hormony'],
     },
     {
@@ -3281,7 +3281,7 @@ Zapište si těch pět otázek na papír a dejte ho k telefonu.`,
       topics: ['hormony', 'vysledky'],
     },
     {
-      term: 'Beta hCG',
+      term: 'hCG',
       aliases: ['beta', 'odběr bety'],
       short: 'Stanovení hladiny hCG z krve.',
       long: 'Na rozdíl od testu z moči dá číslo, které lze porovnávat v čase. Jedna hodnota vypovídá málo — záleží na dni odběru, typu transferu i individuální variabilitě. Proto se obvykle doplňuje druhým odběrem s odstupem dvou až tří dnů. Interpretace patří výhradně lékaři; hodnoty z různých laboratoří navíc nemusí být plně srovnatelné.',
