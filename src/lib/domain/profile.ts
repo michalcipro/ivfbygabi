@@ -126,6 +126,16 @@ export interface Profile {
 
   /** Fáze, kterou uživatelka zvolila. `null` = odvodit automaticky z dat. */
   declaredPhase: PhaseId | null
+  /**
+   * Kdy si uživatelka fázi naposledy zvolila sama.
+   *
+   * Bez tohohle data je volba k ničemu. Odvození fáze z dat profilu je
+   * silnější než nálepka, takže žena, která přepne na „IVF nevyšlo“, by
+   * dál dostávala injekce, protože v profilu leží datum stimulace.
+   * S tímhle datem platí pravidlo: **ruční volba vyhrává nad daty, která
+   * jsou starší než ona.** Dopředu se aplikace posunout smí, dozadu ne.
+   */
+  phaseDeclaredOn: IsoDate | null
 
   birthYear: number | null
   modifiers: ModifierId[]
@@ -170,6 +180,7 @@ export function emptyProfile(userId: string, id: string, now: string): Profile {
     birthYear: null,
     modifiers: [],
     diagnoses: [],
+    phaseDeclaredOn: null,
     tryingSince: null,
     diagnosticsStartedOn: null,
     iuiOn: null,

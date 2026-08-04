@@ -5,7 +5,7 @@ import { guideFor } from './../lib/domain/guides'
 import { DIAGNOSES, DIAGNOSIS_GROUPS, modifiersFromDiagnoses } from '../lib/domain/diagnoses'
 import { esc, heroStyle } from './ui'
 import { bloomMark } from './viz'
-import { patch, S, newProfile, type Draft } from './store'
+import { patch, S, newProfile, viewDate, type Draft } from './store'
 
 /**
  * Onboarding.
@@ -447,6 +447,8 @@ export function profileFromDraft(dr: Draft): Profile {
   if (!route) return p
 
   p.declaredPhase = route.phase
+  // Datum volby. Bez něj by odvození z dat nálepku z onboardingu přebilo.
+  p.phaseDeclaredOn = viewDate()
   p.displayName = dr.name.trim()
   p.anonymousInCommunity = dr.anon
 

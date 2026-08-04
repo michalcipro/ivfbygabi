@@ -5,6 +5,7 @@ import {
   currentTransfer,
   cycleTitle,
   estimatedBeta,
+  OUTCOME_LABEL,
   sortedTransfers,
   TRANSFER_KIND_SHORT,
   TRANSFER_OUTCOME_LABEL,
@@ -94,15 +95,33 @@ export function buildCard(c: CycleRow, embryos: Embryo[], today: IsoDate): Journ
 
   const past = (d: IsoDate | null): boolean => d !== null && d <= today
 
+  /*
+   * Uzavřený cyklus nemá nic rozběhnutého.
+   *
+   * Když žena cyklus ukončí uprostřed stimulace, nesmí u ní karta dál svítit
+   * „stimulace, 7. den“, jako by dnes večer píchala. Běh se zastaví na počtu
+   * dní, které opravdu proběhly.
+   */
+  const uzavren = c.outcome !== 'probiha' || (c.endedOn !== null && c.endedOn <= today)
+
   // --- stimulace
   if (c.kind !== 'fet') {
     if (c.stimStartOn) {
-      const den = daysBetween(c.stimStartOn, today) + 1
-      const hotovo = past(c.retrievalOn) || past(c.triggerOn)
+      const konec = uzavren && c.endedOn && c.endedOn < today ? c.endedOn : today
+      const den = daysBetween(c.stimStartOn, konec) + 1
+      const hotovo = past(c.retrievalOn) || past(c.triggerOn) || uzavren
       put(
         'stim',
         'Stimulace',
-        hotovo ? 'dokončeno' : den >= 1 ? `${den}. den` : `od ${shortDate(c.stimStartOn)}`,
+        past(c.retrievalOn) || past(c.triggerOn)
+          ? 'dokončeno'
+          : uzavren
+            ? den >= 1
+              ? czDays(den)
+              : 'nezačala'
+            : den >= 1
+              ? `${den}. den`
+              : `od ${shortDate(c.stimStartOn)}`,
         hotovo ? 'hotovo' : den >= 1 ? 'probiha' : 'ceka',
         c.stimStartOn,
       )
@@ -154,10 +173,19 @@ export function buildCard(c: CycleRow, embryos: Embryo[], today: IsoDate): Journ
     put(`transfer-${t.id}`, nazev, hodnota, stav, t.date)
   })
 
-  // --- dnešek
+  /*
+   * --- dnešek
+   *
+   * Uzavřený cyklus nemá dnešek. Kdyby karta u ukončeného cyklu dál hlásila
+   * „7. den stimulace“ a „odběr hCG za šest dní“, tvářila by se, že léčba
+   * běží dál, i když ji žena právě ukončila. Místo dne se proto ukáže,
+   * čím cyklus skončil.
+   */
   const cur = currentTransfer(c, today)
   let dnes = ''
-  if (cur?.date && cur.date <= today && !cur.cancelled) {
+  if (uzavren) {
+    dnes = c.outcome === 'probiha' ? 'Cyklus uzavřen' : OUTCOME_LABEL[c.outcome]
+  } else if (cur?.date && cur.date <= today && !cur.cancelled) {
     const dpt = daysBetween(cur.date, today)
     const druh = cur.kind === 'kryo' ? 'KET' : 'transferu'
     dnes = dpt === 0 ? `Dnes je transfer` : `${dpt}. den po ${druh}`
@@ -171,7 +199,9 @@ export function buildCard(c: CycleRow, embryos: Embryo[], today: IsoDate): Journ
   // --- co přijde
   const beta = betaDate(c, today) ?? estimatedBeta(c, today)
   let dalsi = ''
-  if (beta && beta >= today) {
+  if (uzavren) {
+    dalsi = ''
+  } else if (beta && beta >= today) {
     const za = daysBetween(today, beta)
     const presny = betaDate(c, today) !== null
     dalsi =
@@ -194,7 +224,8 @@ export function buildCard(c: CycleRow, embryos: Embryo[], today: IsoDate): Journ
     title: cycleTitle(c),
     today: dnes,
     next: dalsi,
-    steps,
+    // Žádný krok uzavřeného cyklu už neběží. Kolečko „probíhá“ by lhalo.
+    steps: uzavren ? steps.map((s) => (s.state === 'probiha' ? { ...s, state: 'hotovo' as const } : s)) : steps,
     frozen: embryos.filter((e) => e.fate === 'kryo').length,
   }
 }

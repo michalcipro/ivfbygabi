@@ -7,6 +7,7 @@ import {
   activeCycle,
   betaDate,
   currentTransfer,
+  cycleTitle,
   emptyCycle,
   emptyHcgTest,
   emptyTransfer,
@@ -24,6 +25,9 @@ import { emptySupport, type SupportEntry } from '../lib/domain/support'
 import { emptyClinic, type Clinic } from '../lib/domain/clinic'
 import { buildCard, buildFunnel, type FunnelStep, type JourneyCard } from '../lib/domain/journey-card'
 import { modifiersFromDiagnoses } from '../lib/domain/diagnoses'
+import { planPhaseChange, type ChangeStep, type PhasePlan, type StepKind } from '../lib/domain/phase-change'
+import type { PhaseId } from '../lib/domain/phases'
+import type { ModifierId as ModId } from '../lib/domain/profile'
 import { readToday, type TodayBalance } from '../lib/domain/today-tasks'
 import { readEndurance, type Endurance, type StepKey } from '../lib/domain/endurance'
 import { CATALOG } from '../lib/content'
@@ -1119,6 +1123,143 @@ export function labSeries(): { key: string; name: string; unit: string; body: { 
 export function openQuestions(): number {
   return data.questions.filter((q) => q.status === 'ceka').length
 }
+
+// ------------------------------------------------------------ změna fáze ---
+
+/** Běží dnes ten lék? Stejná podmínka, podle jaké se skládají dnešní úkoly. */
+function medRunsToday(m: MedRow, date: IsoDate): boolean {
+  if (m.startOn && date < m.startOn) return false
+  if (m.endOn && date > m.endOn) return false
+  return true
+}
+
+/**
+ * Co změna fáze udělá s daty.
+ *
+ * Plán se počítá ze současného stavu, ne z toho, co si aplikace pamatuje.
+ * Obrazovka ho ukáže dřív, než se cokoli změní.
+ */
+export function phasePlan(routeId: string, phase: PhaseId): PhasePlan {
+  const date = viewDate()
+  const c = currentCycle()
+  const p = profile()
+  return planPhaseChange({
+    routeId,
+    phase,
+    today: date,
+    openCycle: c
+      ? {
+          id: c.id,
+          title: cycleTitle(c),
+          hasTransferWaiting: c.transfers.some((t) => !t.cancelled && t.outcome === 'ceka' && t.date !== null),
+        }
+      : null,
+    runningMeds: data.meds.filter((m) => medRunsToday(m, date)).length,
+    anchors: {
+      transferOn: Boolean(p.transferOn),
+      retrievalOn: Boolean(p.retrievalOn),
+      stimulationStartOn: Boolean(p.stimulationStartOn),
+      betaTestOn: Boolean(p.betaTestOn),
+    },
+  })
+}
+
+/**
+ * Provede změnu fáze i s jejími důsledky.
+ *
+ * `vybrane` jsou kroky, které uživatelka nechala zaškrtnuté. Všechno běží
+ * v jednom zápisu, aby se nemohlo stát, že se cyklus uzavře a léky ne.
+ * Vrací id nově založeného cyklu, když nějaký vznikl.
+ */
+export function applyPhaseChange(
+  routeId: string,
+  phase: PhaseId,
+  implied: ModId[],
+  kroky: ChangeStep[],
+  vybrane: Set<StepKind>,
+): string | null {
+  const date = viewDate()
+  let novyCyklus: string | null = null
+
+  patch((d) => {
+    if (!d.profile) return
+
+    // Nálepka a datum volby. Bez data by odvození fáze volbu přebilo.
+    d.profile.declaredPhase = phase
+    d.profile.phaseDeclaredOn = date
+    for (const m of implied) {
+      if (!d.profile.modifiers.includes(m)) d.profile.modifiers.push(m)
+    }
+
+    const c = d.cycles.find((x) => x.outcome === 'probiha' && (!x.endedOn || x.endedOn >= date)) ?? null
+
+    for (const krok of kroky) {
+      if (!vybrane.has(krok.kind)) continue
+
+      switch (krok.kind) {
+        case 'mark-transfer': {
+          const t = c ? [...c.transfers].reverse().find((x) => !x.cancelled && x.outcome === 'ceka' && x.date) : null
+          if (t && krok.outcome) {
+            t.outcome =
+              krok.outcome === 'tehotenstvi'
+                ? 'pozitivni'
+                : krok.outcome === 'negativni'
+                  ? 'negativni'
+                  : krok.outcome === 'biochemicke'
+                    ? 'biochemicke'
+                    : krok.outcome === 'mimodelozni'
+                      ? 'mimodelozni'
+                      : 'ztrata'
+          }
+          break
+        }
+        case 'close-cycle':
+          if (c) {
+            c.outcome = krok.outcome ?? 'zruseno'
+            c.endedOn = c.endedOn ?? date
+          }
+          break
+        case 'stop-meds': {
+          /*
+           * Konec se zapíše na včerejšek, ne na dnešek.
+           *
+           * `endOn` je poslední den braní, takže dnešní datum by dnešní
+           * dávku ještě nabídlo. Žena, která právě zapsala, že cyklus
+           * skončil, nemá na téže obrazovce vidět injekci na dnešní večer.
+           * Lék, který začal dnes, se ale nesmí ukončit dřív, než začal.
+           */
+          const vcera = addDays(date, -1)
+          for (const m of d.meds) {
+            if (!medRunsToday(m, date)) continue
+            m.endOn = m.startOn && m.startOn > vcera ? m.startOn : vcera
+          }
+          break
+        }
+        case 'clear-anchors':
+          d.profile.transferOn = null
+          d.profile.retrievalOn = null
+          d.profile.stimulationStartOn = null
+          d.profile.betaTestOn = null
+          break
+        case 'set-loss':
+          d.profile.lossOn = d.profile.lossOn ?? date
+          break
+        case 'new-cycle': {
+          const next = d.cycles.reduce((max, x) => Math.max(max, x.number), 0) + 1
+          const row = emptyCycle(uid('cyc'), next, date)
+          if (phase === 'transfer') row.kind = 'fet'
+          d.cycles.push(row)
+          novyCyklus = row.id
+          break
+        }
+      }
+    }
+  })
+
+  return novyCyklus
+}
+
+export type { StepKind } from '../lib/domain/phase-change'
 
 // ---------------------------------------------------------- moje klinika ---
 

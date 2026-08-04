@@ -82,6 +82,38 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
   }
   const mods = new Set(profile.modifiers)
 
+  /*
+   * Ruční volba fáze vyhrává nad daty, která jsou starší než ona.
+   *
+   * Bez tohohle pravidla je přepínač fáze jen nálepka: žena přepne na
+   * „IVF nevyšlo“, ale v profilu pořád leží datum stimulace, takže odvození
+   * ji vrátí zpátky do cyklu a aplikace jí zítra ve 20:00 naplánuje injekci.
+   *
+   * Platí ale jen pro fáze, které samy nemají kotevní datum, nebo ho žena
+   * vyplněné nemá. Když ho vyplněné má, je to lepší informace než nálepka:
+   * ze zvoleného „transferu“ se má za týden samo stát čekání na hCG a za
+   * dva týdny výsledek. Kdyby volba vyhrávala i tady, cesta by se zastavila
+   * v den, kdy si ji uživatelka nastavila, a už nikdy by se nepohnula.
+   *
+   * Dopředu se posunout smí vždycky. Když po volbě přibude novější datum,
+   * odvození převezme vedení, protože je čerstvější než nálepka.
+   */
+  if (profile.declaredPhase && profile.phaseDeclaredOn) {
+    const vlastniKotva = PHASES[profile.declaredPhase].anchor
+    const maVlastniKotvu = vlastniKotva !== null && has(vlastniKotva)
+    const kotvy = [
+      profile.lossOn,
+      profile.betaTestOn,
+      profile.transferOn,
+      profile.retrievalOn,
+      profile.stimulationStartOn,
+      profile.iuiOn,
+    ].filter((d): d is IsoDate => typeof d === 'string' && d.length > 0)
+    const nejnovejsi = kotvy.sort().pop() ?? null
+    const nicNovejsiho = nejnovejsi === null || nejnovejsi <= profile.phaseDeclaredOn
+    if (!maVlastniKotvu && nicNovejsiho) return profile.declaredPhase
+  }
+
   // Ztráta má přednost před těhotenskými daty. Je to nejčerstvější událost.
   if (has('lossOn')) {
     const since = daysBetween(profile.lossOn!, today)
@@ -237,12 +269,38 @@ function buildDayLabel(
 
 
 /**
+ * Fáze rozdělené podle toho, jak pokus dopadl.
+ *
+ * Skupina fází sama o sobě nestačí. „Pozitivní hCG“ i „čekání na další pokus“
+ * patří do skupiny čekání, takže obsah psaný pro pozitivní výsledek se přes
+ * příbuznost skupiny prodere ženě, která právě zapsala, že cyklus nevyšel.
+ * Článek o tom, co dělat po pozitivním testu, je pro ni v ten den to nejhorší,
+ * co může na obrazovce být.
+ */
+const DOBRY_KONEC = new Set<PhaseId>(['beta_positive'])
+const SPATNY_KONEC = new Set<PhaseId>([
+  'waiting_next_attempt',
+  'repeated_failure',
+  'loss_biochemical',
+  'loss_ectopic',
+  'loss_missed',
+  'loss_miscarriage',
+  'uterine_revision',
+])
+
+/**
  * Jak dobře daný obsah sedí na aktuální stav. Používá doporučovací systém.
  * Vrací 0 (nesedí) až 1 (přesná trefa).
  */
 export function phaseAffinity(state: JourneyState, phases: readonly PhaseId[]): number {
   if (phases.length === 0) return 0.25
   if (phases.includes(state.phase.id)) return 1
+
+  // Obsah psaný výhradně pro opačný výsledek se nesmí ukázat vůbec.
+  const opacnyKonec =
+    (SPATNY_KONEC.has(state.phase.id) && phases.every((p) => DOBRY_KONEC.has(p))) ||
+    (DOBRY_KONEC.has(state.phase.id) && phases.every((p) => SPATNY_KONEC.has(p)))
+  if (opacnyKonec) return 0
 
   const sameGroup = phases.some((p) => PHASES[p].group === state.phase.group)
   if (sameGroup) return 0.55

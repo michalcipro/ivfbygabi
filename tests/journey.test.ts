@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { inferPhase, resolveJourney } from '../src/lib/domain/journey'
+import { inferPhase, phaseAffinity, resolveJourney } from '../src/lib/domain/journey'
 import { emptyProfile, type Profile } from '../src/lib/domain/profile'
 import { addDays, czDays, daysBetween, gestationLabel, humanAge, isValidIsoDate, pickDeterministic, seedFrom } from '../src/lib/domain/dates'
 
@@ -160,4 +160,68 @@ test('resolveJourney seřadí milníky a najde nejbližší budoucí', () => {
     [...state.milestones].map((m) => m.date).sort(),
   )
   assert.equal(state.nextMilestone?.key, 'betaTestOn')
+})
+
+// ------------------------------------------------------ ruční volba fáze ---
+
+test('zvolená fáze bez vlastní kotvy přebije starší data z cyklu', () => {
+  // Přesně situace, kvůli které pravidlo vzniklo: žena přepne na „IVF
+  // nevyšlo“, ale v profilu jí pořád leží datum stimulace a transferu.
+  const p = profileWith({
+    stimulationStartOn: '2026-04-20',
+    transferOn: '2026-05-01',
+    declaredPhase: 'waiting_next_attempt',
+    phaseDeclaredOn: '2026-05-06',
+  })
+  assert.equal(inferPhase(p, '2026-05-06'), 'waiting_next_attempt')
+  assert.equal(inferPhase(p, '2026-05-08'), 'waiting_next_attempt')
+})
+
+test('bez data volby zůstává nálepka bezmocná', () => {
+  const p = profileWith({ transferOn: '2026-05-01', declaredPhase: 'waiting_next_attempt' })
+  assert.equal(inferPhase(p, '2026-05-06'), 'two_week_wait')
+})
+
+test('novější datum než volba převezme vedení', () => {
+  const p = profileWith({
+    declaredPhase: 'waiting_next_attempt',
+    phaseDeclaredOn: '2026-05-06',
+    transferOn: '2026-06-01',
+  })
+  assert.equal(inferPhase(p, '2026-06-01'), 'transfer')
+})
+
+test('zvolená fáze s vlastní kotvou se dál posouvá v čase', () => {
+  // Kdyby volba vyhrávala i tady, cesta by zamrzla v den nastavení.
+  const p = profileWith({
+    declaredPhase: 'transfer',
+    phaseDeclaredOn: '2026-05-01',
+    transferOn: '2026-05-01',
+  })
+  assert.equal(inferPhase(p, '2026-05-01'), 'transfer')
+  assert.equal(inferPhase(p, '2026-05-07'), 'two_week_wait')
+})
+
+test('zvolená ztráta drží, dokud nevyprší, pak se cesta posune dál', () => {
+  const p = profileWith({
+    declaredPhase: 'loss_missed',
+    phaseDeclaredOn: '2026-05-01',
+    lossOn: '2026-05-01',
+  })
+  assert.equal(inferPhase(p, '2026-05-10'), 'loss_missed')
+  assert.equal(inferPhase(p, '2026-09-01'), 'waiting_next_attempt')
+})
+
+test('obsah pro pozitivní výsledek se nezobrazí po neúspěchu a naopak', () => {
+  const po = resolveJourney(
+    profileWith({ declaredPhase: 'waiting_next_attempt', phaseDeclaredOn: '2026-05-06' }),
+    '2026-05-06',
+  )
+  assert.equal(phaseAffinity(po, ['beta_positive']), 0)
+  // Příbuzná skupina to dřív prodrala dovnitř. Přesná shoda platí dál.
+  assert.equal(phaseAffinity(po, ['waiting_next_attempt']), 1)
+  assert.ok(phaseAffinity(po, ['beta_positive', 'waiting_next_attempt']) > 0)
+
+  const beta = resolveJourney(profileWith({ betaTestOn: '2026-05-06' }), '2026-05-06')
+  assert.equal(phaseAffinity(beta, ['loss_miscarriage']), 0)
 })

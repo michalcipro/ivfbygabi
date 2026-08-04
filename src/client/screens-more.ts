@@ -749,9 +749,9 @@ export function screenNastaveni(): string {
         p.declaredPhase && p.declaredPhase !== state.phase.id
           ? `<div class="banner" style="margin-top:1rem;border-color:var(--sand)">
               <span style="color:var(--taupe)">◈</span>
-              <span>Zadaná data mají přednost: počítáme vás jako <strong>${esc(state.phase.name)}</strong>${
+              <span>Počítáme vás jako <strong>${esc(state.phase.name)}</strong>${
                 state.anchorDate ? `, protože máte vyplněné datum ${esc(ANCHOR_LABELS[state.phase.anchor ?? ''] ?? 'události')} (${esc(formatCzechDate(state.anchorDate))})` : ''
-              }. Zvolená fáze se použije, až jí data nebudou odporovat, nebo datum níž smažte.</span>
+              }. Podle data se cesta posouvá sama, aby se nezastavila v den, kdy jste si fázi nastavila. Když nesedí, změňte datum níž.</span>
             </div>`
           : ''
       }

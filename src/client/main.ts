@@ -19,11 +19,14 @@ import {
 
 import { esc, head, note } from './ui'
 import { emptyContact } from '../lib/domain/clinic'
+import type { ChangeStep } from '../lib/domain/phase-change'
 import type { Frequency } from '../lib/domain/support'
 import { addPhotos, allPhotos, initPhotos, photoUrl, pickImages, removePhoto } from './photos'
 import {
   addCustomExam,
   addCycle,
+  applyPhaseChange,
+  phasePlan,
   addDoc,
   addEmbryo,
   addSupport,
@@ -73,8 +76,9 @@ import {
   type JournalRow,
   type QuestionPriority,
   type QuestionStatus,
+  type StepKind,
 } from './store'
-import { draft, phasePicker, profileFromDraft, renderOnboarding, ROUTES, routeById, stepHasDate } from './onboarding'
+import { draft, phasePicker, profileFromDraft, renderOnboarding, ROUTES, routeById, stepHasDate, type RouteDef } from './onboarding'
 import { screenCesta, screenObjevit, screenProc } from './screens-home'
 import { screenDnes, screenNuzky } from './screens-dnes'
 import { isZapisSection, screenZapis, type ZapisSection } from './screens-zapis'
@@ -331,6 +335,10 @@ const view = {
   /** Je otevřené rychlé přidání? */
   quick: false,
   docText: '',
+  /** Zvolená fáze, která čeká na potvrzení. Dokud je tady, nic se nezměnilo. */
+  phasePick: null as string | null,
+  /** Kroky změny fáze, které si uživatelka odškrtla. */
+  phaseOff: [] as string[],
 }
 
 let stack: string[] = []
@@ -991,11 +999,14 @@ function screenZmenaFaze(): string {
   const state = journey()
   const aktualni = ROUTES.find((r) => r.phase === p.declaredPhase)?.id ?? ''
 
+  const zvoleno = view.phasePick ? routeById(view.phasePick) : null
+  if (zvoleno) return screenZmenaFazePotvrzeni(zvoleno, state.phase.name)
+
   return [
     head(
       'Moje fáze',
       'Změnila se vaše situace?',
-      'Vyberte, kde jste teď. Aplikace přepočítá dnešek, obsah i checklisty, ale nic z toho, co máte zapsané, nezmizí.',
+      'Vyberte, kde jste teď. Než se cokoli změní, ukážeme vám, co to udělá s vašimi daty.',
     ),
     `<section class="surface pad rise">
       <p class="eyebrow">Teď máte nastaveno</p>
@@ -1006,6 +1017,61 @@ function screenZmenaFaze(): string {
     note(
       'Cykly, embrya, transfery, deník ani dokumenty se změnou fáze nemažou. Vaše cesta se skládá dál, jen se posune to, co je nahoře.',
     ),
+  ].join('')
+}
+
+/**
+ * Potvrzení změny fáze.
+ *
+ * Přepnout nálepku nestačí. Když si žena zvolí „IVF nevyšlo“, ale v protokolu
+ * jí dál běží injekce a v profilu leží datum transferu, aplikace jí zítra ve
+ * 20:00 naplánuje píchání, jako by se nic nestalo. Proto se tady ukáže, co se
+ * skutečně stane, uživatelka si to může upravit a teprve pak se to provede.
+ *
+ * Nic z toho není mazání. Cyklus dostane výsledek, léky datum konce a všechno
+ * zůstává v historii. Mění se jen to, co aplikace považuje za dnešek.
+ */
+function screenZmenaFazePotvrzeni(r: RouteDef, aktualniNazev: string): string {
+  const plan = phasePlan(r.id, r.phase)
+  const kroky = plan.steps
+
+  const krok = (s: ChangeStep) => {
+    const on = !view.phaseOff.includes(s.kind)
+    return `<div class="surface" style="padding:1rem 1.2rem">
+      <div style="display:flex;gap:.9rem;align-items:flex-start">
+        <button class="check" data-act="faze-krok" data-arg="${esc(s.kind)}" aria-pressed="${on}"
+                style="width:auto;flex:none;margin-top:.1rem"><span class="box">✓</span></button>
+        <div style="flex:1;min-width:0">
+          <p style="font-weight:500">${esc(s.label)}</p>
+          <p class="faint" style="margin-top:.25rem;font-size:.8125rem;line-height:1.55">${esc(s.detail)}</p>
+        </div>
+      </div>
+    </div>`
+  }
+
+  return [
+    head('Moje fáze', 'Než to potvrdíte', `Měníte fázi z „${aktualniNazev}“ na „${r.label}“.`),
+    kroky.length > 0
+      ? `<section>
+          <p class="eyebrow">Co se stane</p>
+          <p class="faint" style="font-size:.8125rem;margin-top:.35rem;line-height:1.5">
+            Cokoli z toho můžete odškrtnout. Změní se jen to, co necháte zaškrtnuté.
+          </p>
+          <div class="stack" style="gap:.6rem;margin-top:.9rem">${kroky.map(krok).join('')}</div>
+        </section>`
+      : `<section class="surface pad rise">
+          <p style="line-height:1.6">Nemáte otevřený cyklus ani běžící léky, takže se změní jen to, co vám aplikace nabízí. V datech nic upravovat nepotřebujeme.</p>
+        </section>`,
+    `<section class="surface pad">
+      <p class="eyebrow">Co zůstává</p>
+      <ul class="stack" style="gap:.4rem;margin-top:.6rem;padding-left:1.1rem">
+        ${plan.keeps.map((k) => `<li class="soft" style="font-size:.875rem;line-height:1.55">${esc(k)}</li>`).join('')}
+      </ul>
+    </section>`,
+    `<div class="row wrap" style="gap:.6rem;margin-top:.4rem">
+      <button class="btn btn-primary" data-act="faze-potvrdit">Potvrdit změnu</button>
+      <button class="btn btn-ghost" data-act="faze-zpet">Zpět na výběr</button>
+    </div>`,
   ].join('')
 }
 
@@ -1504,18 +1570,38 @@ function action(act: string, argValue: string): void {
     case 'faze-zmena': {
       const r = routeById(argValue)
       if (!r) return
-      // Fáze se mění, data zůstávají. Kotevní datum se přepíše jen tehdy,
-      // když ho nová fáze potřebuje a uživatelka ho ještě nemá, jinak by
-      // se přepsala historie, kterou si zapsala dřív.
-      patch((d) => {
-        if (!d.profile) return
-        d.profile.declaredPhase = r.phase
-        for (const m of r.implied ?? []) {
-          if (!d.profile.modifiers.includes(m)) d.profile.modifiers.push(m)
-        }
-      })
-      toast(`Fáze změněna na ${r.label.toLowerCase()}. Vaše data zůstávají.`)
-      go('dnes')
+      // Nemění se ještě nic. Nejdřív se spočítá, co by změna udělala s daty,
+      // a uživatelka to uvidí. Bez toho by aplikace dál plánovala injekce
+      // z cyklu, který podle ní skončil.
+      view.phasePick = r.id
+      view.phaseOff = []
+      break
+    }
+    case 'faze-krok':
+      view.phaseOff = view.phaseOff.includes(argValue)
+        ? view.phaseOff.filter((k) => k !== argValue)
+        : [...view.phaseOff, argValue]
+      break
+    case 'faze-zpet':
+      view.phasePick = null
+      view.phaseOff = []
+      break
+    case 'faze-potvrdit': {
+      const r = view.phasePick ? routeById(view.phasePick) : null
+      if (!r) return
+      const plan = phasePlan(r.id, r.phase)
+      const vybrane = new Set<StepKind>(
+        plan.steps.filter((s) => !view.phaseOff.includes(s.kind)).map((s) => s.kind),
+      )
+      const novy = applyPhaseChange(r.id, r.phase, r.implied ?? [], plan.steps, vybrane)
+      view.phasePick = null
+      view.phaseOff = []
+      toast(
+        vybrane.size > 0
+          ? `Hotovo: ${r.label}. Přepočítali jsme dnešek, historie zůstává.`
+          : `Hotovo: ${r.label}. Vaše data zůstávají.`,
+      )
+      go(novy ? `cyklus/${novy}` : 'dnes')
       return
     }
     case 'faze-more':
@@ -2054,7 +2140,10 @@ function change(act: string, argValue: string, value: string): void {
     case 'set-phase':
       if (value !== '' && !isPhaseId(value)) return
       patch((d) => {
-        if (d.profile) d.profile.declaredPhase = value === '' ? null : value
+        if (!d.profile) return
+        d.profile.declaredPhase = value === '' ? null : value
+        // Bez data volby by ji odvození z dat okamžitě přebilo.
+        d.profile.phaseDeclaredOn = value === '' ? null : viewDate()
       })
       break
     case 'set-date': {

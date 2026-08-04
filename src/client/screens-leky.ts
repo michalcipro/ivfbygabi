@@ -32,6 +32,25 @@ export function isLekySection(s: string): s is LekySection {
  * vám ji zvedli“. Bez zápisu si to nikdo nepamatuje. Aplikace nic nehodnotí,
  * jen ukáže, co se kdy změnilo a proč to klinika řekla.
  */
+/** Časy dávek. Starý `timeOfDay` zůstává kvůli dřív uloženým datům. */
+function medTimes(m: MedRow): string {
+  return m.times?.length ? m.times.join(', ') : (m.timeOfDay ?? '')
+}
+
+/**
+ * Ukončený lék.
+ *
+ * Když se cyklus uzavře, léky dostanou datum konce a přestanou se nabízet.
+ * V protokolu ale zůstávají, takže musí být poznat, že už neběží. Bez toho
+ * vypadá seznam pořád stejně, ať léčba běží, nebo skončila.
+ */
+function medEnded(m: MedRow): string {
+  if (!m.endOn || m.endOn >= viewDate()) return ''
+  return `<span class="faint" style="display:block;margin-top:.3rem;font-size:.75rem">
+    Ukončeno ${esc(formatCzechDate(m.endOn, { year: false }))}
+  </span>`
+}
+
 function doseHistory(m: MedRow): string {
   if (!m.history?.length) return ''
   const rows = [...m.history].sort((a, b) => a.on.localeCompare(b.on))
@@ -143,7 +162,8 @@ function paneProtokol(): string {
                   `<li>
                     <span style="min-width:0;flex:1">
                       <b style="font-weight:500">${esc(m.name)}</b>
-                      <span class="faint">${esc(m.dose)}${m.timeOfDay ? ` · ${esc(m.timeOfDay)}` : ''}</span>
+                      <span class="faint">${esc(m.dose)}${medTimes(m) ? ` · ${esc(medTimes(m))}` : ''}</span>
+                      ${medEnded(m)}
                       ${doseHistory(m)}
                       ${photoStrip(`med:${m.id}`, m.photos, 'Krabička, leták nebo rozpis dávek')}
                     </span>
