@@ -80,8 +80,6 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
     const v = profile[k]
     return typeof v === 'string' && v.length > 0
   }
-  const mods = new Set(profile.modifiers)
-
   /*
    * Ruční volba fáze vyhrává nad daty, která jsou starší než ona.
    *
@@ -114,54 +112,87 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
     if (!maVlastniKotvu && nicNovejsiho) return profile.declaredPhase
   }
 
-  // Ztráta má přednost před těhotenskými daty. Je to nejčerstvější událost.
-  if (has('lossOn')) {
-    const since = daysBetween(profile.lossOn!, today)
+  /*
+   * Fáze se čte z NEJNOVĚJŠÍHO data, ne z pevného pořadí polí.
+   *
+   * Dřív se kotvy zkoušely shora dolů: ztráta, beta, transfer, odběr,
+   * stimulace. Kdo byl v seznamu výš, vyhrál, i když jeho datum bylo o půl
+   * roku starší. Žena, která v březnu potratila a v květnu začala novou
+   * stimulaci, tak zůstala tři měsíce ve fázi ztráty. Žena po druhém
+   * transferu se počítala od prvního.
+   *
+   * Pořadí teď určuje čas. Rozhoduje poslední věc, která se opravdu stala.
+   * Když z ní fáze nevyjde (datum je moc staré na to, aby ještě něco
+   * znamenalo), zkusí se předchozí a tak dál. Až když nepomůže nic, co
+   * proběhlo, přijdou na řadu naplánované termíny, od nejbližšího.
+   *
+   * Shoda dat se rozsoudí pořadím v léčbě: pozdější krok vyhrává.
+   */
+  interface Vetev {
+    date: IsoDate
+    /** Pořadí v léčbě. Rozhoduje jen při shodě dat. */
+    order: number
+    read: (days: number) => PhaseId | null
+  }
+
+  const vetve: Vetev[] = []
+  const kotva = (key: keyof Profile, read: (days: number) => PhaseId | null): void => {
+    const v = profile[key]
+    if (typeof v === 'string' && v.length > 0) vetve.push({ date: v, order: vetve.length, read })
+  }
+
+  kotva('lossOn', (since) => {
     if (since >= 0 && since <= 90) {
       if (profile.declaredPhase && PHASES[profile.declaredPhase].group === 'loss') {
         return profile.declaredPhase
       }
       return 'loss_miscarriage'
     }
-    if (since > 90 && !has('lastPeriodOn') && !has('transferOn')) {
-      return 'waiting_next_attempt'
-    }
-  }
+    if (since > 90 && !has('lastPeriodOn') && !has('transferOn')) return 'waiting_next_attempt'
+    return null
+  })
 
-  // Pozitivní beta bez zadaného těhotenství.
-  if (has('betaTestOn')) {
-    const since = daysBetween(profile.betaTestOn!, today)
-    if (since >= 0 && since <= 28) return 'beta_positive'
-  }
+  kotva('betaTestOn', (since) => (since >= 0 && since <= 28 ? 'beta_positive' : null))
 
-  // IVF cyklus. Od nejpozdější události zpět.
-  if (has('transferOn')) {
-    const dpt = daysBetween(profile.transferOn!, today)
+  kotva('transferOn', (dpt) => {
     if (dpt === 0) return 'transfer'
     if (dpt > 0 && dpt <= 14) return 'two_week_wait'
     if (dpt > 14 && dpt <= 60) return 'waiting_next_attempt'
     if (dpt < 0 && dpt >= -7) return 'embryo_culture'
-  }
+    return null
+  })
 
-  if (has('retrievalOn')) {
-    const dpr = daysBetween(profile.retrievalOn!, today)
+  kotva('retrievalOn', (dpr) => {
     if (dpr === 0) return 'retrieval'
     if (dpr === 1) return 'fertilization'
     if (dpr > 1 && dpr <= 6) return 'embryo_culture'
     if (dpr > 6 && dpr <= 45) return 'waiting_next_attempt'
     if (dpr < 0 && dpr >= -14) return 'stimulation'
-  }
+    return null
+  })
 
-  if (has('stimulationStartOn')) {
-    const d = daysBetween(profile.stimulationStartOn!, today)
+  kotva('stimulationStartOn', (d) => {
     if (d >= 0 && d <= 20) return 'stimulation'
     if (d < 0) return 'ivf_prep'
-  }
+    return null
+  })
 
-  if (has('iuiOn')) {
-    const d = daysBetween(profile.iuiOn!, today)
+  kotva('iuiOn', (d) => {
     if (d >= 0 && d <= 16) return d === 0 ? 'iui' : 'two_week_wait'
     if (d < 0 && d >= -14) return 'iui'
+    return null
+  })
+
+  const probehlo = vetve
+    .filter((v) => v.date <= today)
+    .sort((a, b) => b.date.localeCompare(a.date) || a.order - b.order)
+  const naplanovano = vetve
+    .filter((v) => v.date > today)
+    .sort((a, b) => a.date.localeCompare(b.date) || a.order - b.order)
+
+  for (const v of [...probehlo, ...naplanovano]) {
+    const nalezeno = v.read(daysBetween(v.date, today))
+    if (nalezeno) return nalezeno
   }
 
   if (profile.ivfCycles > 2 || profile.transfersDone > 2) return 'repeated_failure'

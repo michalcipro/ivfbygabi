@@ -458,13 +458,24 @@ export function bloodTests(c: CycleRow): HcgTest[] {
  * žádný odběr hCG zapsaný není, vrací `null`. A stav se pozná z transferu.
  */
 export function betaDate(c: CycleRow, today: IsoDate = todayIso()): IsoDate | null {
-  const bloods = bloodTests(c)
   const cur = currentTransfer(c, today)
-  if (!cur) return bloods[0]?.date ?? null
-  const mine = bloods.filter(
-    (t) => t.transferId === cur.id || (!t.transferId && cur.date && (t.date as IsoDate) >= cur.date),
-  )
-  return mine[0]?.date ?? null
+  const bloods = cur
+    ? bloodTests(c).filter(
+        (t) => t.transferId === cur.id || (!t.transferId && cur.date && (t.date as IsoDate) >= cur.date),
+      )
+    : bloodTests(c)
+
+  // Poslední, který se opravdu stal. Když ještě žádný nebyl, ten nejbližší
+  // naplánovaný. Ze dvou odběrů u jednoho transferu je ten novější zprávou
+  // o tom, kde žena je; ten starší je historie.
+  const probehle = bloods.filter((t) => (t.date as IsoDate) <= today)
+  if (probehle.length > 0) return probehle[probehle.length - 1].date as IsoDate
+  return bloods[0]?.date ?? null
+}
+
+/** Nejbližší odběr krve, který teprve přijde. Opakovaný odběr se počítá. */
+export function nextBloodTest(c: CycleRow, today: IsoDate = todayIso()): IsoDate | null {
+  return bloodTests(c).find((t) => (t.date as IsoDate) > today)?.date ?? null
 }
 
 /** Kolik embryí se v cyklu dohromady přeneslo. */

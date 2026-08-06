@@ -112,6 +112,43 @@ test('opakované neúspěchy se poznají z počtu cyklů', () => {
   assert.equal(inferPhase(profileWith({ ivfCycles: 4 }), '2026-05-01'), 'repeated_failure')
 })
 
+// ------------------------------------------------- nejnovější data vyhrávají ---
+
+test('novější stimulace přebije starší transfer', () => {
+  // Dřív vyhrával transfer, protože stál v kódu výš. Žena, která začala
+  // další cyklus, tak zůstala viset v mezidobí po tom předchozím.
+  const p = profileWith({ transferOn: '2026-05-20', stimulationStartOn: '2026-06-05' })
+  assert.equal(inferPhase(p, '2026-06-10'), 'stimulation')
+})
+
+test('novější transfer přebije starší pozitivní hCG', () => {
+  const p = profileWith({ betaTestOn: '2026-05-20', transferOn: '2026-06-10' })
+  assert.equal(inferPhase(p, '2026-06-15'), 'two_week_wait')
+})
+
+test('novější odběr přebije starší stimulaci', () => {
+  const p = profileWith({ stimulationStartOn: '2026-06-01', retrievalOn: '2026-06-12' })
+  assert.equal(inferPhase(p, '2026-06-12'), 'retrieval')
+})
+
+test('když se ještě nic nestalo, rozhoduje nejbližší termín', () => {
+  // Odběr za dva dny, transfer za týden. Žena je ve stimulaci, ne
+  // v kultivaci embryí.
+  const p = profileWith({ retrievalOn: '2026-06-20', transferOn: '2026-06-25' })
+  assert.equal(inferPhase(p, '2026-06-18'), 'stimulation')
+})
+
+test('staré datum, ze kterého už nic nevyplývá, pustí ke slovu předchozí', () => {
+  // Transfer je 90 dní starý, z toho fáze nevyjde. Stimulace o týden dřív
+  // taky ne. Spadne se až na tvrzení z profilu.
+  const p = profileWith({
+    transferOn: '2026-03-01',
+    stimulationStartOn: '2026-02-20',
+    diagnosticsStartedOn: '2026-01-01',
+  })
+  assert.equal(inferPhase(p, '2026-06-15'), 'diagnostics')
+})
+
 // --------------------------------------------------------- gestační výpočty ---
 
 // ------------------------------------------------------- korigovaný věk ---

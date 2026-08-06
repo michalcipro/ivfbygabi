@@ -17,7 +17,7 @@ import {
 } from '../lib/domain/cycle'
 import { photoStrip } from './photo-ui'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
-import { DOC_KIND_LABEL, eventState, journey, moodAverage, profile, S, viewDate, type DocKind } from './store'
+import { DOC_KIND_LABEL, eventState, journey, moodAverage, profile, rawProfile, S, viewDate, type DocKind } from './store'
 import { SEED_POSTS } from './seed'
 import { ROUTES } from './onboarding'
 
@@ -705,7 +705,11 @@ export function screenPartner(): string {
 // -------------------------------------------------------------- nastavení ---
 
 export function screenNastaveni(): string {
-  const p = profile()
+  // Ruční hodnoty do políček, spočítané do popisků. Kdyby se do inputu
+  // dostalo datum z cyklu, uživatelka by ho uložila do profilu a vznikla by
+  // druhá kopie téhož údaje.
+  const p = rawProfile()
+  const skutecne = profile()
   const state = journey()
   const currentRoute = ROUTES.find((r) => r.phase === p.declaredPhase)
 
@@ -779,10 +783,19 @@ export function screenNastaveni(): string {
         )
           .map(
             ([field, label]) =>
-              `<div><label class="label" for="d-${field}">${label}</label><input class="field" type="date" id="d-${field}" value="${esc(p[field] ?? '')}" data-act="set-date" data-arg="${field}"></div>`,
+              `<div><label class="label" for="d-${field}">${label}</label><input class="field" type="date" id="d-${field}" value="${esc(p[field] ?? '')}" data-act="set-date" data-arg="${field}">${
+                skutecne[field] && skutecne[field] !== p[field]
+                  ? `<span class="faint" style="display:block;margin-top:.35rem;font-size:.75rem">Počítáme z běžícího cyklu: ${esc(formatCzechDate(skutecne[field] as string, { year: false }))}</span>`
+                  : ''
+              }</div>`,
           )
           .join('')}
       </div>
+      <p class="faint" style="margin-top:1rem;font-size:.8125rem;line-height:1.55">
+        Když máte rozepsaný cyklus, aplikace počítá z něj. Je čerstvější než to,
+        co jste vyplnila na začátku. Tahle políčka zůstávají pro dny, které
+        v žádném cyklu zapsané nemáte.
+      </p>
     </section>`,
 
     `<section class="surface pad">

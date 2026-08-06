@@ -1,5 +1,6 @@
 import { emptyProfile, type IsoDate, type ModifierId, type Profile } from '../lib/domain/profile'
 import { resolveJourney, type JourneyState } from '../lib/domain/journey'
+import { effectiveProfile } from '../lib/domain/latest'
 import { addDays, daysBetween, today as realToday } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { findPattern, readDay, type DayLog, type DayReading, type Pattern } from '../lib/domain/strain'
@@ -629,8 +630,25 @@ export function isOnboarded(): boolean {
   return data.profile !== null
 }
 
-export function profile(): Profile {
+/**
+ * Profil tak, jak ho uživatelka vyplnila. Bez doplňování z cyklu.
+ *
+ * Patří do nastavení a do zápisu. Všude jinde se používá `profile()`,
+ * protože ruční hodnoty z onboardingu stárnou a léčba jde dál.
+ */
+export function rawProfile(): Profile {
   return data.profile ?? newProfile()
+}
+
+/**
+ * Profil, se kterým aplikace počítá.
+ *
+ * Kotevní data se berou z běžícího cyklu, protože tam uživatelka zapisuje
+ * skutečnou léčbu. Hodnota z onboardingu se použije, jen když v cyklu chybí
+ * a není starší než ten cyklus. Podrobnosti v `domain/latest.ts`.
+ */
+export function profile(): Profile {
+  return effectiveProfile(rawProfile(), data.cycles, viewDate())
 }
 
 export function hasModifier(m: ModifierId): boolean {
@@ -1134,6 +1152,20 @@ function medRunsToday(m: MedRow, date: IsoDate): boolean {
 }
 
 /**
+ * Který lék se právě píchá.
+ *
+ * Zápis do mapy vpichů potřebuje jméno. Dřív se bralo `meds[0]`, což je lék
+ * přidaný do protokolu jako první: ženě, která už měsíc píchá Ovitrelle,
+ * aplikace zapisovala Gonal-f, protože ten měla v seznamu dřív. Bere se
+ * poslední přidaný z těch, které dnes běží.
+ */
+export function currentMedName(date: IsoDate = viewDate()): string {
+  const bezici = data.meds.filter((m) => medRunsToday(m, date))
+  const pool = bezici.length ? bezici : data.meds
+  return pool[pool.length - 1]?.name.trim() || 'Injekce'
+}
+
+/**
  * Co změna fáze udělá s daty.
  *
  * Plán se počítá ze současného stavu, ne z toho, co si aplikace pamatuje.
@@ -1142,7 +1174,9 @@ function medRunsToday(m: MedRow, date: IsoDate): boolean {
 export function phasePlan(routeId: string, phase: PhaseId): PhasePlan {
   const date = viewDate()
   const c = currentCycle()
-  const p = profile()
+  // Krok „přestat počítat dny“ maže ruční hodnoty v profilu, takže se ptáme
+  // jich. Data z cyklu odejdou s jeho uzavřením, ne s tímhle krokem.
+  const p = rawProfile()
   return planPhaseChange({
     routeId,
     phase,
@@ -1198,7 +1232,14 @@ export function applyPhaseChange(
 
       switch (krok.kind) {
         case 'mark-transfer': {
-          const t = c ? [...c.transfers].reverse().find((x) => !x.cancelled && x.outcome === 'ceka' && x.date) : null
+          // Nejnovější čekající transfer, ne poslední v pořadí zápisu.
+          // Zapsat se dá i zpětně a pořadí v poli pak neodpovídá času.
+          const cekajici = c
+            ? c.transfers
+                .filter((x) => !x.cancelled && x.outcome === 'ceka' && x.date)
+                .sort((a, b) => (a.date as IsoDate).localeCompare(b.date as IsoDate))
+            : []
+          const t = cekajici[cekajici.length - 1] ?? null
           if (t && krok.outcome) {
             t.outcome =
               krok.outcome === 'tehotenstvi'

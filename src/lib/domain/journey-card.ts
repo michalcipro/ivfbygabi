@@ -2,6 +2,7 @@ import type { IsoDate } from './profile'
 import { daysBetween } from './dates'
 import {
   betaDate,
+  nextBloodTest,
   currentTransfer,
   cycleTitle,
   estimatedBeta,
@@ -197,13 +198,16 @@ export function buildCard(c: CycleRow, embryos: Embryo[], today: IsoDate): Journ
   }
 
   // --- co přijde
-  const beta = betaDate(c, today) ?? estimatedBeta(c, today)
+  // „Co přijde“ je vždycky budoucnost. Zapsaný termín vyhrává nad odhadem
+  // a opakovaný odběr nad tím prvním, který už proběhl.
+  const naplanovany = nextBloodTest(c, today)
+  const beta = naplanovany ?? estimatedBeta(c, today)
   let dalsi = ''
   if (uzavren) {
     dalsi = ''
   } else if (beta && beta >= today) {
     const za = daysBetween(today, beta)
-    const presny = betaDate(c, today) !== null
+    const presny = naplanovany !== null || betaDate(c, today) !== null
     dalsi =
       za === 0
         ? 'Odběr hCG dnes'

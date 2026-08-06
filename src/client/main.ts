@@ -57,6 +57,7 @@ import {
   viewDate,
   isOnboarded,
   addShot,
+  currentMedName,
   activeCycleId,
   setSymptomIntensity,
   toggleSymptomLog,
@@ -1209,7 +1210,7 @@ function action(act: string, argValue: string): void {
     case 'shot': {
       // Píchá se to, co má uživatelka v lécích. Když nemá nic, aspoň se
       // zapíše místo. O tom to celé je.
-      addShot(argValue, S.d.meds[0]?.name ?? 'Injekce')
+      addShot(argValue, currentMedName())
       break
     }
     case 'shot-del': {
