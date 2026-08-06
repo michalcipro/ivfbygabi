@@ -22,6 +22,7 @@ import {
   viewDate,
 } from './store'
 import { ivfCard } from './screens-ivf'
+import { transferToday } from './screens-transfer'
 import { contentCard, esc, plural, sectionTitle } from './ui'
 import { bloomEndurance, chart, partsList, scissorRing, seriesKey, trackStrip } from './viz'
 
@@ -263,6 +264,10 @@ export function screenDnes(): string {
           </div>
         </section>`
       : '',
+
+    // Po transferu je tohle to první, co má žena vidět. Nejdelší dva týdny
+    // léčby, ve kterých se jinak neděje nic, na co by se dalo dívat.
+    transferToday(),
 
     // Osobní IVF karta. Ženě, která zrovna žádný cyklus neřeší, se nekreslí
     // technika. Karta se ukáže, až má co ukazovat.

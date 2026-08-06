@@ -15,6 +15,7 @@ import {
   emptyCycle,
   emptyHcgTest,
   emptyTransfer,
+  plannedHcg,
   readCycle,
   type CycleRow,
   type CycleStatus,
@@ -799,7 +800,7 @@ export interface CalItem {
 export function allEvents(): CalItem[] {
   // Zapsaný termín odběru hCG vyhrává nad odhadem z data transferu.
   const bezici = activeCycle(data.cycles, viewDate())
-  const auto = autoEventsFor(profile(), journey(), bezici ? betaDate(bezici, viewDate()) : null).map((e) => ({
+  const auto = autoEventsFor(profile(), journey(), bezici ? (plannedHcg(bezici, viewDate()) ?? betaDate(bezici, viewDate())) : null).map((e) => ({
     id: `auto:${e.onDate}:${e.title}`,
     title: e.title,
     kind: e.kind,

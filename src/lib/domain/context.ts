@@ -5,6 +5,7 @@ import {
   defaultCycle,
   estimatedBeta,
   nextBloodTest,
+  plannedHcg,
   sortedTransfers,
   type CycleRow,
   type CycleTransfer,
@@ -186,7 +187,7 @@ export function resolveContext(input: ContextInput): CurrentContext {
 
   // --- hCG
   const hcg = lastHcg(cycle, transfer, today)
-  const zapsany = nextBloodTest(cycle, today) ?? betaDate(cycle, today)
+  const zapsany = nextBloodTest(cycle, today) ?? plannedHcg(cycle, today) ?? betaDate(cycle, today)
   const hcgOn = zapsany ?? estimatedBeta(cycle, today)
   const hcgEstimated = hcgOn !== null && zapsany === null
   const daysToHcg = hcgOn && hcgOn >= today ? daysBetween(today, hcgOn) : null

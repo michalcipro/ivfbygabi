@@ -1,4 +1,5 @@
 import type { IsoDate } from './profile'
+import type { PgtKind, PgtResult } from './embryo'
 import { addDays, daysBetween, today as todayIso } from './dates'
 
 /**
@@ -80,6 +81,24 @@ export interface PhotoRef {
 
 export type TransferKind = 'cerstvy' | 'kryo'
 
+/** Stadium embrya v den transferu. Podmnožina stadií z karty embrya. */
+export type TransferStage = '' | 'rihovani' | 'morula' | 'blastocysta'
+
+export const TRANSFER_STAGE_LABEL: Record<TransferStage, string> = {
+  '': 'Nezapsáno',
+  rihovani: 'Rýhování (cleavage)',
+  morula: 'Morula',
+  blastocysta: 'Blastocysta',
+}
+
+/** Co embryolog obvykle hlásí ve který den kultivace. Jen předvyplnění. */
+export function stageForDay(day: number | null): TransferStage {
+  if (day === null) return ''
+  if (day <= 3) return 'rihovani'
+  if (day === 4) return 'morula'
+  return 'blastocysta'
+}
+
 export const TRANSFER_KIND_LABEL: Record<TransferKind, string> = {
   cerstvy: 'Čerstvý embryotransfer',
   kryo: 'Kryoembryotransfer (KET)',
@@ -138,6 +157,19 @@ export interface CycleTransfer {
   id: string
   kind: TransferKind
   date: IsoDate | null
+  /**
+   * Stadium přeneseného embrya.
+   *
+   * Ze dne kultivace se dá odhadnout, ale ne určit: pátý den je embryo
+   * obvykle blastocysta, někdy ještě morula. Zapisuje se, co řekla
+   * embryologie, ne co by mělo vyjít z tabulky.
+   */
+  stage: TransferStage
+  /** Genetické testování přeneseného embrya. */
+  pgt: PgtKind
+  pgtResult: PgtResult
+  /** Termín odběru hCG, jak ho určila klinika. */
+  hcgPlannedOn: IsoDate | null
   /** Která embrya se přenesla. Id z `Embryo`. Může být prázdné. */
   embryoIds: string[]
   /** Kolik embryí bylo vloženo. */
@@ -167,6 +199,10 @@ export function emptyTransfer(id: string, kind: TransferKind = 'cerstvy'): Cycle
     id,
     kind,
     date: null,
+    stage: '',
+    pgt: '',
+    pgtResult: '',
+    hcgPlannedOn: null,
     embryoIds: [],
     embryos: null,
     embryoDay: null,
@@ -476,6 +512,16 @@ export function betaDate(c: CycleRow, today: IsoDate = todayIso()): IsoDate | nu
   return bloods[0]?.date ?? null
 }
 
+/**
+ * Termín odběru hCG, jak ho určila klinika.
+ *
+ * Bere se z transferu, o který teď jde. Je to zapsaný termín, ne odhad,
+ * takže vyhrává nad počítáním z data transferu.
+ */
+export function plannedHcg(c: CycleRow, today: IsoDate = todayIso()): IsoDate | null {
+  return currentTransfer(c, today)?.hcgPlannedOn ?? null
+}
+
 /** Nejbližší odběr krve, který teprve přijde. Opakovaný odběr se počítá. */
 export function nextBloodTest(c: CycleRow, today: IsoDate = todayIso()): IsoDate | null {
   return bloodTests(c).find((t) => (t.date as IsoDate) > today)?.date ?? null
@@ -735,6 +781,8 @@ export function nextUp(c: CycleRow, today: IsoDate = todayIso()): NextUp[] {
 export function estimatedBeta(c: CycleRow, today: IsoDate = todayIso()): IsoDate | null {
   const known = betaDate(c, today)
   if (known) return known
+  const planned = plannedHcg(c, today)
+  if (planned) return planned
   const t = currentTransfer(c, today)
   if (!t?.date) return null
   return addDays(t.date, t.embryoDay === 3 ? 12 : 10)

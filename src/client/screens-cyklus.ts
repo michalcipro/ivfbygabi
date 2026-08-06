@@ -20,6 +20,8 @@ import {
   PREP_LABEL,
   TRANSFER_KIND_LABEL,
   TRANSFER_OUTCOME_LABEL,
+  TRANSFER_STAGE_LABEL,
+  stageForDay,
   type CycleRow,
   type CycleStatus,
   type CycleTransfer,
@@ -30,7 +32,7 @@ import {
 } from '../lib/domain/cycle'
 import { numbersFor } from '../lib/domain/cycle-stats'
 import { nudges } from '../lib/domain/smart-reminders'
-import { embryoTitle } from '../lib/domain/embryo'
+import { embryoTitle, PGT_LABEL, PGT_RESULT_LABEL } from '../lib/domain/embryo'
 import { embryoList } from './screens-ivf'
 import { photoStrip } from './photo-ui'
 import { cycleById, cycles, embryosOf, shownCycle, viewDate } from './store'
@@ -169,6 +171,10 @@ function formValues(c: CycleRow): Record<string, string> {
     v[`tr.${t.id}.date`] = t.date ?? ''
     v[`tr.${t.id}.embryos`] = numStr(t.embryos)
     v[`tr.${t.id}.embryoDay`] = numStr(t.embryoDay)
+    v[`tr.${t.id}.stage`] = t.stage
+    v[`tr.${t.id}.pgt`] = t.pgt
+    v[`tr.${t.id}.pgtResult`] = t.pgtResult
+    v[`tr.${t.id}.hcgPlannedOn`] = t.hcgPlannedOn ?? ''
     v[`tr.${t.id}.grade`] = t.grade
     v[`tr.${t.id}.prep`] = t.prep
     v[`tr.${t.id}.endometrium`] = numStr(t.endometrium)
@@ -194,7 +200,7 @@ function formValues(c: CycleRow): Record<string, string> {
 /** Které klíče patří do které sekce. Zároveň seznam id pro uložení. */
 function sectionKeys(c: CycleRow): Record<string, string[]> {
   const trKeys = c.transfers.flatMap((t) =>
-    ['kind', 'date', 'embryos', 'embryoDay', 'grade', 'prep', 'endometrium', 'meds', 'cancelled', 'cancelReason', 'note'].map(
+    ['kind', 'date', 'embryos', 'embryoDay', 'stage', 'pgt', 'pgtResult', 'hcgPlannedOn', 'grade', 'prep', 'endometrium', 'meds', 'cancelled', 'cancelReason', 'note'].map(
       (k) => `tr.${t.id}.${k}`,
     ),
   )
@@ -541,10 +547,18 @@ function transferBlock(c: CycleRow, t: CycleTransfer, i: number, v: Record<strin
     </div>
     <div class="two" style="margin-top:1.1rem">
       ${numField(k('embryos'), 'Kolik embryí vloženo', v[k('embryos')] ?? '')}
-      ${numField(k('embryoDay'), 'Den kultivace embrya', v[k('embryoDay')] ?? '', 'Obvykle 3 až 6.')}
+      ${numField(k('embryoDay'), 'Den kultivace embrya', v[k('embryoDay')] ?? '', 'D3 až D6. Podle něj se skládá denní obsah po transferu.')}
     </div>
     <div class="two" style="margin-top:1.1rem">
+      ${selectField(k('stage'), 'Stadium embrya', Object.entries(TRANSFER_STAGE_LABEL) as [string, string][], v[k('stage')] || stageForDay(t.embryoDay))}
       ${textField(k('grade'), 'Hodnocení embrya', v[k('grade')] ?? '', 'např. 4AA')}
+    </div>
+    <div class="two" style="margin-top:1.1rem">
+      ${selectField(k('pgt'), 'Genetické testování', Object.entries(PGT_LABEL) as [string, string][], v[k('pgt')] ?? '')}
+      ${selectField(k('pgtResult'), 'Výsledek testování', Object.entries(PGT_RESULT_LABEL) as [string, string][], v[k('pgtResult')] ?? '')}
+    </div>
+    <div class="two" style="margin-top:1.1rem">
+      ${dateField(k('hcgPlannedOn'), 'Plánovaný odběr hCG', v[k('hcgPlannedOn')] ?? '', 'Když ho znáte. Termín určuje klinika.')}
       ${selectField(k('prep'), 'Příprava sliznice', Object.entries(PREP_LABEL) as [string, string][], v[k('prep')] ?? '')}
     </div>
     <div class="two" style="margin-top:1.1rem">

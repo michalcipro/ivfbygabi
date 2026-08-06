@@ -15,6 +15,7 @@ import {
   type HcgLook,
   type TransferKind,
   type TransferOutcome,
+  type TransferStage,
 } from '../lib/domain/cycle'
 
 import { esc, head, note } from './ui'
@@ -126,6 +127,7 @@ import {
 } from './speech'
 import { DENIK_SECTIONS, screenCviceni, screenDenik, type DenikSection } from './screens-denik'
 import { screenHodnota, screenZdravi } from './screens-zdravi'
+import { isTransferSection, screenPoTransferu, type TransferSection } from './screens-transfer'
 import { renderSummary, type SummaryId } from './summary'
 import {
   screenClenstvi,
@@ -320,7 +322,7 @@ const SUMMARY_HIDDEN = [
   'dnes', 'zapis', 'leky', 'sledovani', 'pruvodce', 'nuzky',
   // Tyhle mají vlastní hlavičku se stavem cyklu. Druhý souhrn nad ní
   // by říkal totéž jinými slovy.
-  'journey', 'cyklus', 'otazky', 'zdravotni',
+  'journey', 'cyklus', 'otazky', 'zdravotni', 'po-transferu',
 ]
 
 /** Stav, který nemá cenu ukládat. Přežívá jen do zavření záložky. */
@@ -333,6 +335,13 @@ const view = {
   accordion: null as string | null,
   /** Rozbalená karta embrya. Vlastní stav. Harmonika sekcí je jiná věc. */
   embryo: null as string | null,
+  /**
+   * Který den cesty po transferu je otevřený. `null` = dnešek.
+   *
+   * Nepatří do adresy: dnešek se posouvá sám a odkaz na „den 4“ by za
+   * týden vedl do minulosti, aniž by to bylo vidět.
+   */
+  trDen: null as string | null,
   /** Je otevřené rychlé přidání? */
   quick: false,
   docText: '',
@@ -393,6 +402,13 @@ function screenFor(route: string): string {
     case 'journey': {
       const want = a.split('/')[0]
       return screenJourney(isJourneySection(want) ? (want as JourneySection) : 'prehled', view.accordion)
+    }
+    case 'po-transferu': {
+      const want = a.split('/')[0]
+      return screenPoTransferu(
+        isTransferSection(want) ? (want as TransferSection) : 'dnes',
+        view.trDen,
+      )
     }
     case 'cyklus':
       // Bez rozbalené sekce by formulář byl celý zavřený a nově založený
@@ -855,6 +871,10 @@ function saveCycleForm(id: string): void {
       t.date = dateOrNull(k('date'))
       t.embryos = numOrNull(k('embryos'))
       t.embryoDay = numOrNull(k('embryoDay'))
+      t.stage = val(k('stage')) as TransferStage
+      t.pgt = val(k('pgt')) as PgtKind
+      t.pgtResult = val(k('pgtResult')) as PgtResult
+      t.hcgPlannedOn = dateOrNull(k('hcgPlannedOn'))
       t.grade = val(k('grade'))
       t.prep = (val(k('prep')) || t.prep) as PrepKind
       t.endometrium = numOrNull(k('endometrium'))
@@ -1140,6 +1160,14 @@ function action(act: string, argValue: string): void {
 
     // --- přepínače v záhlaví ---------------------------------------------
     // Dílek jde do adresy, ne do stavu. Tím funguje zpět i sdílení odkazu.
+    case 'tr-sec':
+      go(`po-transferu/${argValue}`)
+      return
+    case 'tr-den':
+      // Den se drží mimo adresu, ale překreslit se musí hned.
+      view.trDen = argValue === 'dnes' ? null : argValue
+      go('po-transferu/dnes')
+      return
     case 'zapis-sec':
       go(`zapis/${argValue}`)
       return

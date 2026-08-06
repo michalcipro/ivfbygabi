@@ -118,6 +118,7 @@ export const JOURNEY_SECTIONS = [
 function journeyHubs(): string {
   return `<div class="tiles" style="margin:1.5rem 0">
     ${[
+      ['po-transferu', '♡', 'Po transferu', 'Den po dni od transferu k odběru hCG. Co se může dít.'],
       ['embrya', '❖', 'Moje embrya', 'Karta pro každé embryo. Vývoj po dnech, genetika, osud.'],
       ['transfery', '❋', 'Moje transfery', 'Všechny transfery napříč cykly, od nejnovějšího.'],
       ['vysledky', '◉', 'Moje výsledky', 'Hodnoty a čísla z cyklů vedle sebe v čase.'],
