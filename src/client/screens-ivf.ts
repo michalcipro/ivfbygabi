@@ -11,6 +11,7 @@ import {
   type CycleRow,
   type CycleTransfer,
 } from '../lib/domain/cycle'
+import { SOURCE_LABEL } from '../lib/domain/cycle'
 import {
   embryoSummary,
   embryoTitle,
@@ -137,6 +138,17 @@ function selectField(id: string, text: string, options: [string, string][], valu
     </select>${hint(help)}</div>`
 }
 
+/** Zaškrtávátko s vysvětlením. Stav si drží samo pole, ne překreslení. */
+function checkField(id: string, text: string, on: boolean, help?: string): string {
+  return `<div>
+    <label class="row" style="gap:.6rem;align-items:flex-start;cursor:pointer">
+      <input type="checkbox" id="${esc(id)}"${on ? ' checked' : ''} style="margin-top:.2rem;flex:none">
+      <span style="min-width:0;font-size:.9375rem;line-height:1.5">${esc(text)}</span>
+    </label>
+    ${hint(help)}
+  </div>`
+}
+
 function areaField(id: string, text: string, value: string, placeholder = ''): string {
   return `<div>${label(id, text)}
     <textarea class="field" id="${esc(id)}" rows="3" placeholder="${esc(placeholder)}">${esc(value)}</textarea></div>`
@@ -200,7 +212,26 @@ function embryoCard(e: Embryo, open: boolean, prenesene = false): string {
         ? `<div style="margin-top:1.3rem">
             <div class="two">
               ${textField(`emb-${e.id}-label`, 'Vlastní název', e.label, `Embryo #${e.number}`)}
-              ${selectField(`emb-${e.id}-fate`, 'Kde embryo skončilo', Object.entries(FATE_LABEL) as [string, string][], e.fate)}
+              ${selectField(`emb-${e.id}-fate`, 'Stav embrya', Object.entries(FATE_LABEL) as [string, string][], e.fate)}
+            </div>
+            <div class="two" style="margin-top:1.1rem">
+              ${selectField(`emb-${e.id}-origin`, 'Původ', Object.entries(SOURCE_LABEL) as [string, string][], e.origin)}
+              ${dateField(`emb-${e.id}-createdOn`, 'Datum vzniku', e.createdOn ?? '', 'U vlastního embrya den odběru. U darovaného to, co víte.')}
+            </div>
+            ${
+              e.origin === 'darovane'
+                ? `<div style="margin-top:1.1rem">
+                    ${textField(`emb-${e.id}-donorNote`, 'Poznámka k dárcovství', e.donorNote, 'co o původu víte a chcete si pamatovat')}
+                  </div>`
+                : ''
+            }
+            <div style="margin-top:1.2rem">
+              ${checkField(
+                `emb-${e.id}-finalState`,
+                'Cesta tohohle embrya je u konce',
+                e.finalState,
+                'Zaškrtněte, až se o embryu rozhodlo definitivně. Dokud není zaškrtnuté a stav to připouští, počítá se jako dostupné k dalšímu transferu.',
+              )}
             </div>
 
             <p class="label" style="margin-top:1.6rem">Vývoj po dnech</p>

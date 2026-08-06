@@ -1,5 +1,5 @@
 import type { IsoDate } from './profile'
-import type { PhotoRef } from './cycle'
+import type { MaterialSource, PhotoRef } from './cycle'
 
 /**
  * Embryo jako samostatný záznam.
@@ -44,22 +44,44 @@ export const STAGE_BY_DAY: Record<number, EmbryoStage> = {
 /** Kde embryo skončilo. */
 export type EmbryoFate =
   | 'kultivace'
+  | 'ceka-pgt'
+  | 'vhodne'
   | 'transfer'
   | 'kryo'
   | 'rozmrazeno'
   | 'zastaveno'
+  | 'degenerovalo'
   | 'nevhodne'
   | 'darovano'
+  | 'jine'
 
 export const FATE_LABEL: Record<EmbryoFate, string> = {
   kultivace: 'V kultivaci',
+  'ceka-pgt': 'Čeká na genetické testování',
+  vhodne: 'Vhodné k transferu',
   transfer: 'Přeneseno',
   kryo: 'Zamraženo',
   rozmrazeno: 'Rozmraženo',
   zastaveno: 'Vývoj se zastavil',
+  degenerovalo: 'Degenerovalo',
   nevhodne: 'Nebylo vhodné k použití',
   darovano: 'Darováno',
+  jine: 'Jiný stav',
 }
+
+/**
+ * Stavy, u kterých je cesta embrya přirozeně u konce.
+ *
+ * Slouží jen jako předvyplnění zaškrtávátka „konečný stav“. Rozhoduje
+ * vždycky uživatelka: přenesené embryo může skončit těhotenstvím i ničím
+ * a aplikace to za ni odhadovat nebude.
+ */
+export const KONCOVE_STAVY = new Set<EmbryoFate>([
+  'zastaveno',
+  'degenerovalo',
+  'nevhodne',
+  'darovano',
+])
 
 export type PgtKind = '' | 'pgta' | 'pgtm' | 'pgtsr' | 'jine'
 
@@ -103,7 +125,14 @@ export interface EmbryoDay {
 
 export interface Embryo {
   id: string
+  /** Ke kterému cyklu embryo patří. Prázdné u darovaného embrya zvenčí. */
   cycleId: string
+  /** Vlastní, nebo darované. U darovaného nemusí být znám odběr ani vývoj. */
+  origin: MaterialSource
+  /** Co o dárcovství uživatelka ví a chce si pamatovat. */
+  donorNote: string
+  /** Kdy embryo vzniklo. U vlastního se dá odvodit z odběru, u darovaného ne. */
+  createdOn: IsoDate | null
   /** Pořadové číslo v rámci cyklu. „Embryo #2“. */
   number: number
   /** Vlastní název. Prázdné = použije se pořadí. */
@@ -120,6 +149,14 @@ export interface Embryo {
   pgtSampledOn: IsoDate | null
   pgtResult: PgtResult
   pgtNote: string
+  /**
+   * Cesta embrya je u konce.
+   *
+   * Zaškrtne to uživatelka. Bez toho aplikace neví, jestli embryo, které
+   * se přeneslo a nevyšlo, ještě někde čeká, nebo je to uzavřená kapitola,
+   * a před uzavřením cyklu se na to musí umět zeptat.
+   */
+  finalState: boolean
   note: string
   photos: PhotoRef[]
 }
@@ -128,6 +165,9 @@ export function emptyEmbryo(id: string, cycleId: string, number: number): Embryo
   return {
     id,
     cycleId,
+    origin: 'vlastni',
+    donorNote: '',
+    createdOn: null,
     number,
     label: '',
     days: [],
@@ -140,6 +180,7 @@ export function emptyEmbryo(id: string, cycleId: string, number: number): Embryo
     pgtSampledOn: null,
     pgtResult: '',
     pgtNote: '',
+    finalState: false,
     note: '',
     photos: [],
   }
@@ -170,9 +211,16 @@ export function isBlastocyst(e: Embryo): boolean {
   return e.days.some((d) => d.stage === 'blastocysta')
 }
 
-/** Je embryo pořád k dispozici k transferu? */
+/**
+ * Je embryo pořád k dispozici k transferu?
+ *
+ * Rozhoduje o tom, jestli může z cyklu následovat další kryotransfer.
+ * Označený konečný stav vyhrává nad vším ostatním: embryo, u kterého
+ * uživatelka řekla, že je jeho cesta u konce, se nenabízí.
+ */
 export function isAvailable(e: Embryo): boolean {
-  return e.fate === 'kryo' || e.fate === 'kultivace'
+  if (e.finalState) return false
+  return e.fate === 'kryo' || e.fate === 'kultivace' || e.fate === 'vhodne' || e.fate === 'ceka-pgt'
 }
 
 /** Krátký popis do seznamu: „5. den · blastocysta · 4AA · zamraženo“. */

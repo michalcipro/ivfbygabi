@@ -55,7 +55,13 @@ export interface PlanInput {
   phase: PhaseId
   today: IsoDate
   /** Běží nějaký cyklus? */
-  openCycle: { id: string; title: string; hasTransferWaiting: boolean } | null
+  openCycle: {
+    id: string
+    title: string
+    hasTransferWaiting: boolean
+    /** Kolik embryí z toho cyklu je pořád k dispozici. */
+    embryosLeft: number
+  } | null
   /** Kolik léků má dnes běžet. */
   runningMeds: number
   /** Kotevní data v profilu, ze kterých se počítá „kolikátý je dnes den“. */
@@ -132,15 +138,25 @@ export function planPhaseChange(input: PlanInput): PhasePlan {
     })
   }
 
-  // --- uzavření cyklu
+  /*
+   * --- uzavření cyklu
+   *
+   * Negativní výsledek neznamená konec cyklu. Z jednoho odběru bývá zásoba
+   * embryí na několik kryotransferů a ta může ležet v laboratoři měsíce.
+   * Když embrya zbývají, uzavření se nabídne **nezaškrtnuté** a je u něj
+   * napsané proč. Zaškrtnout si ho uživatelka může, rozhodnutí je její.
+   */
   if (openCycle && konciCyklus) {
     const outcome: CycleOutcome = KONEC[routeId] ?? 'zruseno'
+    const zbyva = openCycle.embryosLeft
     steps.push({
       kind: 'close-cycle',
       label: `Uzavřít ${openCycle.title.toLowerCase()}`,
       detail:
-        'Cyklus dostane datum konce a výsledek. Zůstane v historii se všemi embryi, transfery i čísly.',
-      on: true,
+        zbyva > 0
+          ? `Z cyklu ${zbyva === 1 ? 'zbývá jedno embryo' : zbyva <= 4 ? `zbývají ${zbyva} embrya` : `zbývá ${zbyva} embryí`} k dispozici, takže z něj může následovat další kryotransfer. Uzavírat ho nemusíte. Když ho uzavřete, dostane datum konce a výsledek a zůstane v historii.`
+          : 'Cyklus dostane datum konce a výsledek. Zůstane v historii se všemi embryi, transfery i čísly.',
+      on: zbyva === 0,
       outcome,
     })
   }

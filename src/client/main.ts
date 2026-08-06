@@ -10,6 +10,9 @@ import {
   type CycleKind,
   type CycleOutcome,
   type FertMethod,
+  OUTCOME_LABEL,
+  type MaterialSource,
+  type NoEmbryoReason,
   type PrepKind,
   type HcgKind,
   type HcgLook,
@@ -26,6 +29,7 @@ import { addPhotos, allPhotos, initPhotos, photoUrl, pickImages, removePhoto } f
 import {
   addCustomExam,
   addCycle,
+  closeCycleNow,
   applyPhaseChange,
   phasePlan,
   addDoc,
@@ -354,6 +358,59 @@ const view = {
 let stack: string[] = []
 const scrollMemory = new Map<string, number>()
 
+/**
+ * Překreslení, které nesmí hnout stránkou.
+ *
+ * Aplikace se překresluje celá. U navigace je to správně: nová obrazovka
+ * začíná nahoře, návrat zpět na místě, kde uživatelka odešla. U akce na
+ * téže obrazovce je to ale k vzteku. Žena vyplňuje transfer, rozbalí
+ * genetické testování a stránka jí ujede na pozici, kterou si aplikace
+ * zapamatovala při příchodu. Musí se znova doscrollovat a najít, kde byla.
+ *
+ * Akce proto překresluje s `keepPlace`: pozice i rozepsané pole zůstávají.
+ */
+let keepPlace = false
+
+/** Překreslení bez pohybu stránky. Pro akce, které se dějí na místě. */
+function renderInPlace(): void {
+  keepPlace = true
+  render()
+}
+
+interface FocusSnap {
+  id: string
+  start: number | null
+  end: number | null
+}
+
+/** Kde stál kurzor, než se obrazovka překreslila. */
+function snapFocus(): FocusSnap | null {
+  const el = document.activeElement as HTMLInputElement | HTMLTextAreaElement | null
+  if (!el?.id) return null
+  const textove = el.tagName === 'INPUT' || el.tagName === 'TEXTAREA'
+  return {
+    id: el.id,
+    start: textove ? el.selectionStart : null,
+    end: textove ? el.selectionEnd : null,
+  }
+}
+
+function restoreFocus(snap: FocusSnap | null): void {
+  if (!snap) return
+  const el = document.getElementById(snap.id) as HTMLInputElement | HTMLTextAreaElement | null
+  if (!el) return
+  el.focus({ preventScroll: true })
+  // `setSelectionRange` neexistuje u date, number ani u selectu. Kurzor se
+  // tam vrátit nedá a focus stačí.
+  if (snap.start !== null && typeof el.setSelectionRange === 'function') {
+    try {
+      el.setSelectionRange(snap.start, snap.end ?? snap.start)
+    } catch {
+      /* pole, které výběr nepodporuje */
+    }
+  }
+}
+
 function currentRoute(): string {
   const raw = location.hash.replace(/^#\/?/, '')
   return raw || 'dnes'
@@ -364,6 +421,7 @@ const arg = (route: string) => route.split('/').slice(1).join('/')
 
 function go(route: string): void {
   scrollMemory.set(currentRoute(), window.scrollY)
+  keepPlace = false
   location.hash = `#/${route}`
 }
 
@@ -547,6 +605,10 @@ function render(): void {
   const p = profile()
   const narrow = ['cist', 'proc', 'clenstvi', 'pojem', 'diagnoza'].includes(base(route))
 
+  // Musí se přečíst před přepsáním `innerHTML`. Potom už je pozdě.
+  const misto = window.scrollY
+  const kurzor = keepPlace ? snapFocus() : null
+
   app.innerHTML = `<div class="shell">
     <aside class="sidebar no-print">
       <div class="brand">${wordmark(24)}<span class="brand-phase">${esc(state.phase.name)}</span></div>
@@ -585,7 +647,14 @@ function render(): void {
 
   // Grafy se staví až tady. Hover se nedá pověsit na řetězec.
   hydrateCharts(app)
-  window.scrollTo(0, scrollMemory.get(route) ?? 0)
+
+  if (keepPlace) {
+    window.scrollTo(0, misto)
+    restoreFocus(kurzor)
+    keepPlace = false
+  } else {
+    window.scrollTo(0, scrollMemory.get(route) ?? 0)
+  }
 }
 
 function applyTheme(): void {
@@ -611,6 +680,10 @@ const numOrNull = (id: string): number | null => {
 
 /** Datum z pole. Prázdné je `null`. */
 const dateOrNull = (id: string): string | null => val(id) || null
+
+/** Stav zaškrtávátka. Chybějící pole znamená nezaškrtnuto, ne chybu. */
+const checked = (id: string): boolean =>
+  (document.getElementById(id) as HTMLInputElement | null)?.checked ?? false
 
 /** Zaškrtnuté radio ve skupině. */
 const radio = (name: string): string =>
@@ -861,6 +934,10 @@ function saveCycleForm(id: string): void {
     row.day6 = numOrNull('cyc-day6')
     row.frozen = numOrNull('cyc-frozen')
     row.methodsNote = val('cyc-methodsNote')
+    row.eggSource = (val('cyc-eggSource') || row.eggSource) as MaterialSource
+    row.spermSource = (val('cyc-spermSource') || row.spermSource) as MaterialSource
+    row.donorNote = val('cyc-donorNote')
+    row.noEmbryoReason = val('cyc-noEmbryoReason') as NoEmbryoReason
 
     // Seznamy se čtou po položkách. Chybějící pole se přeskočí, kdyby
     // se přečetlo jako prázdné, uložení by smazalo, co uživatelka zapsala.
@@ -935,7 +1012,7 @@ function attachPhoto(scope: string): void {
     }
     withPhotos(scope, (list) => list.push(...refs))
     toast(refs.length === 1 ? 'Fotka uložena.' : `Uloženo ${refs.length} fotek.`)
-    render()
+    renderInPlace()
   })()
 }
 
@@ -982,6 +1059,10 @@ function saveEmbryoForm(id: string): void {
   updateEmbryo(id, (row) => {
     row.label = val(`emb-${id}-label`)
     row.fate = (val(`emb-${id}-fate`) || row.fate) as EmbryoFate
+    row.origin = (val(`emb-${id}-origin`) || row.origin) as MaterialSource
+    row.createdOn = dateOrNull(`emb-${id}-createdOn`)
+    row.donorNote = val(`emb-${id}-donorNote`)
+    row.finalState = checked(`emb-${id}-finalState`)
     row.frozenOn = dateOrNull(`emb-${id}-frozenOn`)
     row.frozenDay = numOrNull(`emb-${id}-frozenDay`)
     row.thawedOn = dateOrNull(`emb-${id}-thawedOn`)
@@ -1373,7 +1454,7 @@ function action(act: string, argValue: string): void {
       return
     case 'say-stop':
       stopSpeech()
-      render()
+      renderInPlace()
       return
 
     // --- kalendář ---------------------------------------------------------
@@ -1438,6 +1519,18 @@ function action(act: string, argValue: string): void {
       break
 
     // --- cykly ------------------------------------------------------------
+    case 'cycle-close': {
+      // Uzavření je vždycky ruční a vždycky vědomé. Než se provede,
+      // uloží se rozepsaný formulář, ať se nic z něj neztratí.
+      saveCycleForm(argValue)
+      const vysledek = closeCycleNow(argValue)
+      toast(
+        vysledek
+          ? `Cyklus uzavřen: ${OUTCOME_LABEL[vysledek].toLowerCase()}. Výsledek můžete změnit v sekci Výsledek.`
+          : 'Cyklus uzavřen. Výsledek si doplňte v sekci Výsledek.',
+      )
+      break
+    }
     case 'cycle-new': {
       // Založit a rovnou otevřít. Prázdný cyklus v seznamu, který si musí
       // sama najít a rozkliknout, by byl krok navíc pro nic.
@@ -1603,7 +1696,12 @@ function action(act: string, argValue: string): void {
       // a uživatelka to uvidí. Bez toho by aplikace dál plánovala injekce
       // z cyklu, který podle ní skončil.
       view.phasePick = r.id
-      view.phaseOff = []
+      // Kroky, které plán nabízí nezaškrtnuté, musí nezaškrtnuté i zůstat.
+      // Bez tohohle řádku by se uzavření cyklu předškrtlo i ženě, které
+      // v laboratoři zbývají embrya na další kryotransfer.
+      view.phaseOff = phasePlan(r.id, r.phase)
+        .steps.filter((s) => !s.on)
+        .map((s) => s.kind)
       break
     }
     case 'faze-krok':
@@ -1908,7 +2006,7 @@ function action(act: string, argValue: string): void {
         )
         withPhotos(`doc:${id}`, (list) => list.push(...refs))
         toast('Dokument uložen.')
-        render()
+        renderInPlace()
       })()
       return
     }
@@ -1999,7 +2097,7 @@ function action(act: string, argValue: string): void {
         )
         withPhotos(`doc:${id}`, (list) => list.push(...refs))
         toast('Dokument uložen.')
-        render()
+        renderInPlace()
       })()
       return
     }
@@ -2160,7 +2258,9 @@ function action(act: string, argValue: string): void {
       return
   }
 
-  render()
+  // Akce se dějí na obrazovce, na které uživatelka právě je. Stránka
+  // se proto nesmí hnout.
+  renderInPlace()
 }
 
 /** Změny ve formulářích, které se ukládají rovnou (výběry a data). */
@@ -2213,7 +2313,7 @@ function change(act: string, argValue: string, value: string): void {
     default:
       return
   }
-  render()
+  renderInPlace()
 }
 
 // ---------------------------------------------------------------- napojení ---
@@ -2274,13 +2374,9 @@ document.addEventListener('input', (ev) => {
 
   if (el.id === 'q') {
     view.query = el.value
-    const caret = el.selectionStart
-    render()
-    const box = document.getElementById('q') as HTMLInputElement | null
-    if (box) {
-      box.focus()
-      if (caret !== null) box.setSelectionRange(caret, caret)
-    }
+    // Hledání překresluje při každém písmenu. Kurzor i pozice se vrací
+    // stejným způsobem jako u ostatních akcí.
+    renderInPlace()
   }
 })
 

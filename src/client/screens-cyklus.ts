@@ -9,7 +9,11 @@ import {
   hcgDay,
   HCG_KIND_LABEL,
   HCG_LOOK_LABEL,
+  EGG_SOURCE_LABEL,
   FERT_LABEL,
+  hasOwnRetrieval,
+  NO_EMBRYO_LABEL,
+  SPERM_SOURCE_LABEL,
   KIND_LABEL,
   METHODS,
   METHOD_GROUPS,
@@ -31,6 +35,7 @@ import {
   type PrepKind,
 } from '../lib/domain/cycle'
 import { numbersFor } from '../lib/domain/cycle-stats'
+import { reviewClose } from '../lib/domain/cycle-close'
 import { nudges } from '../lib/domain/smart-reminders'
 import { embryoTitle, PGT_LABEL, PGT_RESULT_LABEL } from '../lib/domain/embryo'
 import { embryoList } from './screens-ivf'
@@ -145,6 +150,10 @@ function formValues(c: CycleRow): Record<string, string> {
     doctor: c.doctor,
     protocol: c.protocol,
     cd1On: c.cd1On ?? c.startedOn,
+    eggSource: c.eggSource,
+    spermSource: c.spermSource,
+    donorNote: c.donorNote,
+    noEmbryoReason: c.noEmbryoReason,
     stimStartOn: c.stimStartOn ?? '',
     triggerOn: c.triggerOn ?? '',
     triggerAt: c.triggerAt,
@@ -208,7 +217,16 @@ function sectionKeys(c: CycleRow): Record<string, string[]> {
     ['kind', 'date', 'transferId', 'look', 'value', 'note'].map((k) => `hcg.${t.id}.${k}`),
   )
   return {
-    'cyklus-zaklad': ['name', 'kind', 'clinic', 'doctor', 'protocol'],
+    'cyklus-zaklad': [
+      'name',
+      'kind',
+      'clinic',
+      'doctor',
+      'protocol',
+      'eggSource',
+      'spermSource',
+      'donorNote',
+    ],
     'cyklus-milniky': ['cd1On', 'stimStartOn', 'triggerOn', 'triggerAt', 'retrievalOn'],
     'cyklus-laborator': [
       'eggs',
@@ -222,6 +240,7 @@ function sectionKeys(c: CycleRow): Record<string, string[]> {
       'day5',
       'day6',
       'frozen',
+      'noEmbryoReason',
     ],
     'cyklus-embrya': [],
     'cyklus-metody': ['methodsNote'],
@@ -738,6 +757,19 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
       <div style="margin-top:1.1rem">
         ${textField('protocol', 'Protokol', v.protocol, 'krátký, dlouhý, antagonistický…', 'Pište to, co máte na papíře z kliniky. Až budete cykly srovnávat, tohle je první, na co se podíváte.')}
       </div>
+      <p class="label" style="margin-top:1.6rem">Odkud je materiál</p>
+      <div class="two" style="margin-top:.6rem">
+        ${selectField('eggSource', 'Vajíčka', Object.entries(EGG_SOURCE_LABEL) as [string, string][], v.eggSource)}
+        ${selectField('spermSource', 'Spermie', Object.entries(SPERM_SOURCE_LABEL) as [string, string][], v.spermSource)}
+      </div>
+      ${
+        c.eggSource === 'darovane' || c.spermSource === 'darovane' || c.kind === 'darovane_embryo'
+          ? `<div style="margin-top:1.1rem">
+              ${textField('donorNote', 'Poznámka k dárcovství', v.donorNote, 'čerstvé nebo mražené, číslo vzorku, co víte', 'Zapisujte jen to, co si chcete pamatovat. Aplikace nic z toho nikam neposílá.')}
+            </div>`
+          : ''
+      }
+      ${hint('U darovaných vajíček aplikace nenabízí zápis vlastního odběru. Nemá se na co ptát.')}
       ${photoStrip(`cyc:${c.id}:protokol`, c.protocolPhotos, 'Fotka protokolu z kliniky')}`,
 
     'cyklus-milniky': `
@@ -755,6 +787,20 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
       ${note('Transfery a testy hCG mají vlastní sekce. V jednom cyklu jich bývá víc než jeden. Co nevíte, nechte prázdné.')}`,
 
     'cyklus-laborator': `
+      ${
+        hasOwnRetrieval(c)
+          ? ''
+          : `<div class="banner" style="border-color:var(--sand);margin-bottom:1.2rem">
+              <span style="color:var(--taupe)">◈</span>
+              <span>${esc(
+                c.kind === 'darovane_embryo'
+                  ? 'U darovaného embrya vlastní odběr ani embryologie nebyly. Vyplňujte jen to, co o embryu víte.'
+                  : c.eggSource === 'darovane'
+                    ? 'U darovaných vajíček vlastní odběr nebyl. Čísla níž vyplňujte, jen pokud je od kliniky máte.'
+                    : 'Kryotransfer ze zásoby z dřívějšího odběru. Čísla odběru patří k tomu cyklu, ve kterém proběhl.',
+              )}</span>
+            </div>`
+      }
       <div class="two">
         ${numField('eggs', 'Odebraná vajíčka', v.eggs)}
         ${numField('mature', 'Z toho zralá', v.mature, 'Zralá jsou přesnější základ pro míru oplození.')}
@@ -784,6 +830,15 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
       </div>
       <div style="margin-top:1.1rem">
         ${numField('day6', '6. den. Blastocysty', v.day6, 'Z blastocyst šestého dne se rodí děti stejně jako z pátého.')}
+      </div>
+
+      <p class="label" style="margin-top:1.6rem">Když embryo nevzniklo</p>
+      <p class="faint" style="font-size:.8125rem;margin-top:.35rem;line-height:1.55">
+        Cyklus, ze kterého embryo nevzešlo, je taky výsledek. Aplikace ho z prázdného
+        seznamu neodvozuje: prázdno znamená nevyplněno, ne že se nic nestalo.
+      </p>
+      <div style="margin-top:.9rem">
+        ${selectField('noEmbryoReason', 'Důvod', Object.entries(NO_EMBRYO_LABEL) as [string, string][], v.noEmbryoReason)}
       </div>
       <div style="margin-top:1.1rem">
         ${numField('frozen', 'Zamražená embrya', v.frozen)}
@@ -861,6 +916,94 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
       </div>
       ${photoStrip(`cyc:${c.id}:vysledek`, c.resultPhotos, 'Fotky zpráv a výsledků')}`,
   }
+}
+
+/**
+ * Uzavření cyklu. Ručně a s kontrolou.
+ *
+ * Cyklus se nikdy nezavírá sám. Než se zavře, ukáže se, co je zapsané,
+ * co ne a jaká embrya z cyklu ještě zbývají. Nic z toho není podmínka;
+ * uzavřít se dá i s mezerami. Ale zpětně se ty mezery dohledávají hůř.
+ */
+function closeCard(c: CycleRow): string {
+  const r = reviewClose(c, embryosOf(c.id), viewDate())
+  const uzavren = c.endedOn !== null || c.outcome !== 'probiha'
+
+  if (uzavren) {
+    return `<section class="surface pad rise">
+      <p class="eyebrow">Cyklus je uzavřený</p>
+      <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
+        ${esc(OUTCOME_LABEL[c.outcome])}${c.endedOn ? ` · ${esc(formatCzechDate(c.endedOn))}` : ''}.
+        Všechno v něm zůstává a dá se dopsat kdykoli. Znovu otevřít ho můžete
+        v sekci Výsledek: stačí smazat datum uzavření.
+      </p>
+    </section>`
+  }
+
+  return `<section class="surface pad rise">
+    <p class="eyebrow">Uzavřít IVF cyklus</p>
+    <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
+      Cyklus se neuzavírá sám. Ani po odběru, ani po transferu, ani po negativním
+      hCG. Dokud z něj můžou následovat další kryotransfery, zůstává otevřený.
+    </p>
+
+    <p class="label" style="margin-top:1.5rem">Kontrola před uzavřením</p>
+    <ul class="linelist" style="margin-top:.6rem">
+      ${r.checks
+        .map(
+          (k) => `<li>
+            <span class="when">${k.done ? '✓' : '·'}</span>
+            <span style="flex:1;min-width:0">${esc(k.label)}
+              <br><span class="faint" style="font-size:.75rem">${esc(k.detail)}</span></span>
+          </li>`,
+        )
+        .join('')}
+    </ul>
+
+    ${
+      r.embryos.length
+        ? `<p class="label" style="margin-top:1.5rem">Embrya z tohohle cyklu</p>
+           <ul class="linelist" style="margin-top:.6rem">
+             ${r.embryos
+               .map(
+                 (e) => `<li>
+                   <span class="when">${e.final ? '●' : e.available ? '◔' : '○'}</span>
+                   <span style="flex:1;min-width:0">${esc(e.title)}
+                     <span class="faint">${esc(e.state)}${e.final ? ' · konečný stav' : ''}</span></span>
+                 </li>`,
+               )
+               .join('')}
+           </ul>
+           <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
+             Než cyklus uzavřete, zkontrolujte prosím, jestli je u všech embryí zapsaný
+             jejich aktuální stav. Doplnit ho můžete v sekci Embrya.
+           </p>`
+        : ''
+    }
+
+    ${
+      r.warning
+        ? `<div class="banner" style="border-color:var(--sand);margin-top:1.2rem">
+            <span style="color:var(--taupe)">◈</span>
+            <span>${esc(r.warning)}</span>
+          </div>`
+        : ''
+    }
+
+    ${
+      !r.ready
+        ? `<p class="faint" style="margin-top:1.2rem;font-size:.8125rem;line-height:1.55">
+            Některé informace ještě nejsou doplněné. Uzavřít cyklus přesto můžete,
+            rozhodnutí je vaše.
+          </p>`
+        : ''
+    }
+
+    <div class="row wrap" style="gap:.6rem;margin-top:1.3rem">
+      <button class="btn" data-act="acc" data-arg="cyklus-vysledek">Doplnit informace</button>
+      <button class="btn btn-primary" data-act="cycle-close" data-arg="${esc(c.id)}">Uzavřít cyklus</button>
+    </div>
+  </section>`
 }
 
 function form(c: CycleRow, open: string | null | undefined, openEmbryo: string | null | undefined): string {
@@ -972,6 +1115,8 @@ export function screenCyklus(id: string, open?: string | null, openEmbryo?: stri
         Data i fotky zůstávají ve vašem zařízení. Nikam se neodesílají.
       </p>
     </section>`,
+
+    closeCard(c),
 
     `<section class="surface pad rise">
       <p class="eyebrow">Smazání cyklu</p>

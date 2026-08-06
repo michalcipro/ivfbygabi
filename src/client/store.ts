@@ -2,6 +2,7 @@ import { emptyProfile, type IsoDate, type ModifierId, type Profile } from '../li
 import { resolveJourney, type JourneyState } from '../lib/domain/journey'
 import { effectiveProfile } from '../lib/domain/latest'
 import { resolveContext, type CurrentContext } from '../lib/domain/context'
+import { deriveOutcome } from '../lib/domain/cycle-close'
 import { addDays, daysBetween, today as realToday } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { findPattern, readDay, type DayLog, type DayReading, type Pattern } from '../lib/domain/strain'
@@ -17,6 +18,7 @@ import {
   emptyTransfer,
   plannedHcg,
   readCycle,
+  type CycleOutcome,
   type CycleRow,
   type CycleStatus,
   type CycleTransfer,
@@ -24,7 +26,7 @@ import {
   type PhotoRef,
   type TransferOutcome,
 } from '../lib/domain/cycle'
-import { emptyEmbryo, sortEmbryos, type Embryo } from '../lib/domain/embryo'
+import { emptyEmbryo, isAvailable, sortEmbryos, type Embryo } from '../lib/domain/embryo'
 import { emptyExam, type ExamEntry, type ExamWho } from '../lib/domain/exams'
 import { emptySupport, type SupportEntry } from '../lib/domain/support'
 import { emptyClinic, type Clinic } from '../lib/domain/clinic'
@@ -567,6 +569,13 @@ function migrateCycle(c: CycleRow): CycleRow {
     cd1On: old.cd1On ?? null,
     startedOn: base.startedOn,
     endedOn: old.endedOn ?? null,
+    // Pole doplněná později. Starý záznam je nemá a musí dostat výchozí
+    // hodnotu, ne `undefined`: bez toho by se zapsaný zdroj materiálu při
+    // každém načtení zahodil.
+    eggSource: old.eggSource ?? base.eggSource,
+    spermSource: old.spermSource ?? base.spermSource,
+    donorNote: old.donorNote ?? '',
+    noEmbryoReason: old.noEmbryoReason ?? '',
     stimStartOn: old.stimStartOn ?? null,
     triggerOn: old.triggerOn ?? null,
     triggerAt: old.triggerAt ?? '',
@@ -1224,6 +1233,7 @@ export function phasePlan(routeId: string, phase: PhaseId): PhasePlan {
           id: c.id,
           title: cycleTitle(c),
           hasTransferWaiting: c.transfers.some((t) => !t.cancelled && t.outcome === 'ceka' && t.date !== null),
+          embryosLeft: data.embryos.filter((e) => e.cycleId === c.id && isAvailable(e)).length,
         }
       : null,
     runningMeds: data.meds.filter((m) => medRunsToday(m, date)).length,
@@ -1339,6 +1349,25 @@ export function applyPhaseChange(
 }
 
 export type { StepKind } from '../lib/domain/phase-change'
+
+/**
+ * Ruční uzavření cyklu.
+ *
+ * Nikdy se neděje samo. Vrací výsledek, který se zapsal, aby se dal
+ * uživatelce ukázat: tiché nastavení výsledku by bylo horší než žádné.
+ */
+export function closeCycleNow(id: string): CycleOutcome | null {
+  const c = cycleById(id)
+  if (!c) return null
+  const vysledek = deriveOutcome(c, data.embryos)
+  patch((d) => {
+    const row = d.cycles.find((x) => x.id === id)
+    if (!row) return
+    row.endedOn = row.endedOn ?? viewDate()
+    if (row.outcome === 'probiha' && vysledek) row.outcome = vysledek
+  })
+  return vysledek
+}
 
 // ---------------------------------------------------------- moje klinika ---
 

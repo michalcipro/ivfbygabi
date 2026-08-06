@@ -57,14 +57,85 @@ export const OUTCOME_LABEL: Record<CycleOutcome, string> = {
   zamrazeno: 'Embrya zamražena',
 }
 
+/**
+ * Odkud je materiál. Vlastní, nebo darovaný.
+ *
+ * Musí být u vajíček i u spermií zvlášť. Kombinace jsou všechny čtyři a
+ * každá vypadá v zápisu jinak: žena s darovanými vajíčky nemá vlastní
+ * odběr a nemá smysl se jí na něj ptát.
+ */
+export type MaterialSource = 'nezapsano' | 'vlastni' | 'darovane'
+
+export const SOURCE_LABEL: Record<MaterialSource, string> = {
+  nezapsano: 'Nezapsáno',
+  vlastni: 'Vlastní',
+  darovane: 'Darované',
+}
+
+export const EGG_SOURCE_LABEL: Record<MaterialSource, string> = {
+  nezapsano: 'Nezapsáno',
+  vlastni: 'Vlastní vajíčka',
+  darovane: 'Darovaná vajíčka',
+}
+
+export const SPERM_SOURCE_LABEL: Record<MaterialSource, string> = {
+  nezapsano: 'Nezapsáno',
+  vlastni: 'Vlastní spermie',
+  darovane: 'Darované spermie',
+}
+
+/**
+ * Proč z cyklu nevzniklo embryo.
+ *
+ * Cyklus, ze kterého nic nevzešlo, není chyba v datech ani prázdné místo
+ * ve formuláři. Je to výsledek a musí jít zapsat, jinak aplikace tvrdí,
+ * že se nic nestalo. Stalo se.
+ */
+export type NoEmbryoReason =
+  | ''
+  | 'zadna-vajicka'
+  | 'nevhodna-vajicka'
+  | 'zadne-spermie'
+  | 'neoplodnilo'
+  | 'abnormalni-oplodneni'
+  | 'zastavil-vyvoj'
+  | 'jiny'
+  | 'nespecifikovano'
+
+export const NO_EMBRYO_LABEL: Record<NoEmbryoReason, string> = {
+  '': 'Embrya vznikla',
+  'zadna-vajicka': 'Nebylo získáno žádné vajíčko',
+  'nevhodna-vajicka': 'Žádné vajíčko nebylo vhodné k oplodnění',
+  'zadne-spermie': 'Nebyly dostupné použitelné spermie',
+  neoplodnilo: 'Vajíčka se neoplodnila',
+  'abnormalni-oplodneni': 'Nedošlo k normálnímu oplodnění',
+  'zastavil-vyvoj': 'Všechna embrya zastavila vývoj',
+  jiny: 'Jiný důvod',
+  nespecifikovano: 'Nechci upřesňovat',
+}
+
 /** Druh cyklu. Mění, které milníky vůbec dávají smysl. */
-export type CycleKind = 'ivf' | 'fet' | 'iui' | 'monitorovany'
+export type CycleKind = 'ivf' | 'fet' | 'iui' | 'monitorovany' | 'darovane_embryo'
 
 export const KIND_LABEL: Record<CycleKind, string> = {
   ivf: 'IVF se stimulací',
   fet: 'Kryotransfer (FET)',
   iui: 'Inseminace (IUI)',
   monitorovany: 'Monitorovaný cyklus',
+  darovane_embryo: 'Transfer darovaného embrya',
+}
+
+/**
+ * Má cyklus vlastní odběr a embryologii?
+ *
+ * Kryotransfer ze zásoby z minula ani transfer darovaného embrya vlastní
+ * odběr nemají. Ptát se ženy na počet odebraných vajíček v cyklu, ve kterém
+ * žádný odběr nebyl, je nesmysl, a prázdná kolonka u darovaného embrya
+ * vypadá jako chybějící údaj.
+ */
+export function hasOwnRetrieval(c: CycleRow): boolean {
+  if (c.kind === 'fet' || c.kind === 'darovane_embryo') return false
+  return c.eggSource !== 'darovane'
 }
 
 /**
@@ -347,6 +418,20 @@ export interface CycleRow {
   startedOn: IsoDate
   endedOn: IsoDate | null
 
+  // --- odkud je materiál ---------------------------------------------------
+  eggSource: MaterialSource
+  spermSource: MaterialSource
+  /** Poznámka k dárcovství. Typ, čerstvé nebo mražené, číslo vzorku. */
+  donorNote: string
+  /**
+   * Proč z cyklu nevzniklo embryo.
+   *
+   * Prázdné znamená, že embrya vznikla, nebo že se to zatím neřešilo.
+   * Nikdy se nedovozuje z toho, že je seznam embryí prázdný: prázdný
+   * seznam znamená „nevyplněno“, ne „nic nevzniklo“.
+   */
+  noEmbryoReason: NoEmbryoReason
+
   // --- milníky ------------------------------------------------------------
   stimStartOn: IsoDate | null
   triggerOn: IsoDate | null
@@ -410,6 +495,10 @@ export function emptyCycle(id: string, number: number, startedOn: IsoDate): Cycl
     cd1On: null,
     startedOn,
     endedOn: null,
+    eggSource: 'nezapsano',
+    spermSource: 'nezapsano',
+    donorNote: '',
+    noEmbryoReason: '',
     stimStartOn: null,
     triggerOn: null,
     triggerAt: '',

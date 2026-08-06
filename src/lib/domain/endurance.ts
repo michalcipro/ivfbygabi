@@ -58,6 +58,9 @@ const TRACK: Record<CycleKind, StepKey[]> = {
   fet: ['cd1', 'stim', 'transfer', 'beta', 'konec'],
   iui: ['cd1', 'stim', 'trigger', 'transfer', 'beta', 'konec'],
   monitorovany: ['cd1', 'trigger', 'beta', 'konec'],
+  // Darované embryo nemá vlastní odběr ani stimulaci vaječníků. Sliznice
+  // se připravuje, embryo se přenáší, čeká se na hCG.
+  darovane_embryo: ['cd1', 'stim', 'transfer', 'beta', 'konec'],
 }
 
 /** Bez cyklu se kreslí běžná dráha IVF. Je to nejčastější případ. */

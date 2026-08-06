@@ -14,7 +14,7 @@ function vstup(patch: Partial<PlanInput>): PlanInput {
   }
 }
 
-const bezici = { id: 'c1', title: '1. IVF cyklus', hasTransferWaiting: false }
+const bezici = { id: 'c1', title: '1. IVF cyklus', hasTransferWaiting: false, embryosLeft: 0 }
 const kinds = (steps: { kind: StepKind }[]) => steps.map((s) => s.kind)
 
 test('IVF nevyšlo uzavře cyklus, ukončí léky a přestane počítat dny', () => {
@@ -33,7 +33,7 @@ test('IVF nevyšlo uzavře cyklus, ukončí léky a přestane počítat dny', ()
 
 test('čekající transfer se zapíše, aby v přehledu nezůstal viset', () => {
   const plan = planPhaseChange(
-    vstup({ openCycle: { ...bezici, hasTransferWaiting: true } }),
+    vstup({ openCycle: { ...bezici, hasTransferWaiting: true, embryosLeft: 0 } }),
   )
   assert.equal(plan.steps[0].kind, 'mark-transfer')
   assert.equal(plan.steps[0].outcome, 'negativni')
@@ -45,7 +45,7 @@ test('pozitivní hCG nikdy nenabídne vysazení léků', () => {
     vstup({
       routeId: 'beta',
       phase: 'beta_positive',
-      openCycle: { ...bezici, hasTransferWaiting: true },
+      openCycle: { ...bezici, hasTransferWaiting: true, embryosLeft: 0 },
       runningMeds: 4,
       anchors: { transferOn: true, retrievalOn: true, stimulationStartOn: true, betaTestOn: true },
     }),
@@ -104,4 +104,19 @@ test('plán vždycky říká, co zůstává', () => {
   assert.ok(plan.keeps.length >= 3)
   assert.ok(plan.keeps.some((k) => k.toLowerCase().includes('deník')))
   assert.ok(plan.keeps.some((k) => k.toLowerCase().includes('protokolu')))
+})
+
+test('negativní hCG neuzavírá cyklus, dokud zbývají embrya', () => {
+  // Pravidlo, kvůli kterému to vzniklo: z jednoho odběru bývá zásoba na
+  // několik kryotransferů. Nabídnout se uzavření smí, předškrtnout ne.
+  const plan = planPhaseChange(vstup({ openCycle: { ...bezici, embryosLeft: 2 } }))
+  const krok = plan.steps.find((s) => s.kind === 'close-cycle')
+  assert.ok(krok, 'uzavření se má nabídnout')
+  assert.equal(krok?.on, false, 'ale nesmí být předškrtnuté')
+  assert.ok(krok?.detail.includes('kryotransfer'))
+})
+
+test('bez zbývajících embryí se uzavření předškrtne', () => {
+  const plan = planPhaseChange(vstup({ openCycle: bezici }))
+  assert.equal(plan.steps.find((s) => s.kind === 'close-cycle')?.on, true)
 })
