@@ -424,11 +424,14 @@ export function sortedTransfers(c: CycleRow): CycleTransfer[] {
  * transferu“ a myslet tím ten, který byl před třemi měsíci, nedává smysl.
  */
 export function currentTransfer(c: CycleRow, today: IsoDate = todayIso()): CycleTransfer | null {
-  const dated = sortedTransfers(c).filter((t) => t.date)
+  // Zrušený transfer se nepočítá. Není od čeho počítat dny a hlásit „5. den
+  // po transferu“ ženě, které se transfer neuskutečnil, je krutý nesmysl.
+  const zive = sortedTransfers(c).filter((t) => !t.cancelled)
+  const dated = zive.filter((t) => t.date)
   const done = dated.filter((t) => (t.date as IsoDate) <= today)
   if (done.length > 0) return done[done.length - 1]
   if (dated.length > 0) return dated[0]
-  return c.transfers.length > 0 ? c.transfers[c.transfers.length - 1] : null
+  return zive.length > 0 ? zive[zive.length - 1] : null
 }
 
 /** Nejbližší transfer, který teprve přijde. */
@@ -737,9 +740,31 @@ export function estimatedBeta(c: CycleRow, today: IsoDate = todayIso()): IsoDate
   return addDays(t.date, t.embryoDay === 3 ? 12 : 10)
 }
 
+/**
+ * Řazení cyklů od nejnovějšího.
+ *
+ * Rozhoduje datum zahájení. Při shodě pořadí zápisu, protože vyšší číslo
+ * znamená, že cyklus vznikl později. Bez druhého kritéria by dva cykly
+ * zahájené týž den vycházely v náhodném pořadí.
+ */
+export function byNewest(a: CycleRow, b: CycleRow): number {
+  return b.startedOn.localeCompare(a.startedOn) || b.number - a.number
+}
+
 /** Cyklus, který právě běží. Když jich běží víc, vyhrává nejnovější. */
 export function activeCycle(cycles: CycleRow[], today: IsoDate = todayIso()): CycleRow | null {
   const open = cycles.filter((c) => c.outcome === 'probiha' && (!c.endedOn || c.endedOn >= today))
   if (open.length === 0) return null
-  return [...open].sort((a, b) => b.startedOn.localeCompare(a.startedOn))[0]
+  return [...open].sort(byNewest)[0]
+}
+
+/**
+ * Cyklus, se kterým aplikace pracuje, dokud si uživatelka nevybere jiný.
+ *
+ * Běžící vyhrává. Když žádný neběží, je to ten poslední zaznamenaný, ne
+ * první založený. Žena se třemi cykly za sebou musí po otevření aplikace
+ * vidět třetí, i když už je uzavřený.
+ */
+export function defaultCycle(cycles: CycleRow[], today: IsoDate = todayIso()): CycleRow | null {
+  return activeCycle(cycles, today) ?? ([...cycles].sort(byNewest)[0] ?? null)
 }

@@ -3,7 +3,7 @@ import { cycleTitle } from '../lib/domain/cycle'
 import { NO_DIAGNOSIS } from '../lib/health/interpret'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import {
-  currentCycle,
+  shownCycle,
   cycleById,
   cycleStatus,
   S,
@@ -120,7 +120,7 @@ function join(parts: (string | false | null | undefined)[], sep = ' · '): strin
 function cycleDayOf(date: string, cycleId: string | null): number | null {
   // Fallback platí jen pro záznam bez vazby. Když je cyklus zapsaný, ale
   // mezitím smazaný, nesmí záznam dostat CD číslo z jiného cyklu.
-  const c = cycleId ? cycleById(cycleId) : currentCycle()
+  const c = cycleId ? cycleById(cycleId) : shownCycle()
   if (!c || !c.cd1On || date < c.cd1On) return null
   return daysBetween(c.cd1On, date) + 1
 }
@@ -542,9 +542,9 @@ function paneUltrazvuk(): string {
   const newestFirst = [...scans].reverse()
   const last = scans[scans.length - 1]
   const lastNumbers = last ? scanNumbers(last) : null
-  // Bez běžícího cyklu by odkaz na detail cyklu skončil na prázdné obrazovce,
-  // takže prázdný stav vede tam, kde se dá termín kontroly aspoň zapsat.
-  const running = currentCycle()
+  // Odkaz vede na cyklus, se kterým aplikace pracuje. Když žádný zapsaný
+  // není, vede prázdný stav tam, kde se dá termín kontroly aspoň zapsat.
+  const running = shownCycle()
 
   const overview =
     scans.length === 0
@@ -692,8 +692,8 @@ const LEDE: Record<ZdravSection, string> = {
 }
 
 export function screenZdravotni(section: ZdravSection): string {
-  const c = currentCycle()
-  const status = cycleStatus()
+  const c = shownCycle()
+  const status = cycleStatus(c)
   const measured = S.d.health.length + S.d.ultrasounds.length + S.d.labs.length
 
   const eyebrow =

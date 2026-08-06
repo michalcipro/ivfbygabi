@@ -33,7 +33,7 @@ import { nudges } from '../lib/domain/smart-reminders'
 import { embryoTitle } from '../lib/domain/embryo'
 import { embryoList } from './screens-ivf'
 import { photoStrip } from './photo-ui'
-import { cycleById, embryosOf, viewDate } from './store'
+import { cycleById, cycles, embryosOf, shownCycle, viewDate } from './store'
 import { empty, esc, head, note, plural, ring } from './ui'
 import { accordion, statTile, statTrio } from './viz'
 
@@ -904,13 +904,23 @@ function form(c: CycleRow, open: string | null | undefined, openEmbryo: string |
  * rozbalené všechny. Viz komentář v hlavičce souboru.
  */
 export function screenCyklus(id: string, open?: string | null, openEmbryo?: string | null): string {
-  const c = cycleById(id)
+  // Bez id se otevírá ten, se kterým aplikace pracuje: běžící, jinak
+  // poslední zaznamenaný. Nikdy ne první založený. Odkazy z připomínek
+  // a z Dneška id nenesou, takže tady dřív končily na prázdné obrazovce.
+  const c = id ? cycleById(id) : shownCycle()
   if (!c) {
-    return empty(
-      'Tenhle cyklus tu není',
-      'Možná jste ho smazala, nebo odkaz vede jinam. V historii najdete všechny cykly, které máte zapsané.',
-      '<button class="btn" data-go="journey/historie">Do historie cyklů</button>',
-    )
+    return cycles().length === 0
+      ? empty(
+          'Zatím žádný cyklus',
+          'Až začne stimulace nebo příprava na transfer, založte si cyklus. Budete do něj zapisovat termíny, čísla z laboratoře, embrya i transfery.',
+          '<button class="btn btn-primary" data-act="cycle-new">Založit cyklus</button>',
+          '✧',
+        )
+      : empty(
+          'Tenhle cyklus tu není',
+          'Možná jste ho smazala, nebo odkaz vede jinam. V historii najdete všechny cykly, které máte zapsané.',
+          '<button class="btn" data-go="journey/historie">Do historie cyklů</button>',
+        )
   }
 
   const st = readCycle(c, viewDate())

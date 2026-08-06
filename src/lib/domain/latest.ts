@@ -1,4 +1,5 @@
 import { activeCycle, bloodTests, currentTransfer, type CycleRow } from './cycle'
+import { reachedDay, type Embryo } from './embryo'
 import { today as todayIso } from './dates'
 import type { IsoDate, Profile } from './profile'
 
@@ -50,6 +51,15 @@ function positiveHcgDate(c: CycleRow, today: IsoDate): IsoDate | null {
   return mine[0]?.date ?? null
 }
 
+/** Do kolikátého dne došlo embryo, které se tímhle transferem přeneslo. */
+function embryoDayOf(ids: string[], embryos: Embryo[]): number | null {
+  const dny = embryos
+    .filter((e) => ids.includes(e.id))
+    .map(reachedDay)
+    .filter((d): d is number => d !== null)
+  return dny.length ? Math.max(...dny) : null
+}
+
 /**
  * Profil doplněný o to nejnovější, co uživatelka zapsala do běžícího cyklu.
  *
@@ -60,6 +70,7 @@ export function effectiveProfile(
   profile: Profile,
   cycles: CycleRow[],
   today: IsoDate = todayIso(),
+  embryos: Embryo[] = [],
 ): Profile {
   const c = activeCycle(cycles, today)
   if (!c) return profile
@@ -78,11 +89,13 @@ export function effectiveProfile(
     retrievalOn: c.retrievalOn ?? zProfilu(profile.retrievalOn),
     transferOn,
     betaTestOn: positiveHcgDate(c, today) ?? zProfilu(profile.betaTestOn),
-    // Den kultivace patří k transferu, ze kterého se počítá. Ruční hodnota
-    // se použije, jen když transfer vede pořád profil.
+    // Den kultivace patří k transferu, ze kterého se počítá, a k embryu,
+    // které se jím přeneslo. Po druhém transferu to bývá jiné číslo:
+    // v lednu se přenášela pětka, v srpnu šestka. Ruční hodnota se použije,
+    // jen když transfer vede pořád profil.
     embryoDayAtTransfer:
       t?.date && t.date === transferOn
-        ? (t.embryoDay ?? profile.embryoDayAtTransfer)
+        ? (t.embryoDay ?? embryoDayOf(t.embryoIds, embryos) ?? profile.embryoDayAtTransfer)
         : profile.embryoDayAtTransfer,
     // Inseminace ani ztráta nejsou pole cyklu. Starší než běžící cyklus ale
     // znamená, že se od nich přešlo dál: žena po ztrátě, která začala nový

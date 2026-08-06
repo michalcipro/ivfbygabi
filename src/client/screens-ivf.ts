@@ -52,6 +52,7 @@ import { photoStrip } from './photo-ui'
 import {
   allEmbryos,
   clinic,
+  context,
   cycleById,
   cycles,
   embryoById,
@@ -62,6 +63,7 @@ import {
   labSeries,
   openQuestions,
   profile,
+  shownCycle,
   supportEntries,
   viewDate,
 } from './store'
@@ -155,7 +157,7 @@ const DNY = [1, 2, 3, 4, 5, 6, 7]
  * nemá mít prázdné kolonky pro pátý a šestý. Prázdná kolonka u embrya, které
  * se nedožilo, je zbytečně krutá.
  */
-function embryoCard(e: Embryo, open: boolean): string {
+function embryoCard(e: Embryo, open: boolean, prenesene = false): string {
   const dny = [...e.days].sort((a, b) => a.day - b.day)
   const zapsane = new Set(dny.map((d) => d.day))
 
@@ -184,7 +186,7 @@ function embryoCard(e: Embryo, open: boolean): string {
   return `<section class="surface pad rise" id="embryo-${esc(e.id)}">
     <div class="row wrap" style="justify-content:space-between;gap:.6rem;align-items:baseline">
       <div style="min-width:0">
-        <p class="eyebrow">${esc(FATE_LABEL[e.fate])}</p>
+        <p class="eyebrow">${esc(FATE_LABEL[e.fate])}${prenesene ? ' · aktuální' : ''}</p>
         <h3 class="display" style="font-size:1.2rem;margin-top:.2rem">${esc(embryoTitle(e))}</h3>
         <p class="soft" style="margin-top:.3rem;font-size:.875rem;line-height:1.55">${esc(embryoSummary(e))}</p>
       </div>
@@ -267,7 +269,7 @@ export function embryoList(cycleId: string, openId?: string | null): string {
       Každé embryo má vlastní kartu: jak se vyvíjelo den po dni, jestli se zamrazilo,
       jestli se testovalo a kam nakonec šlo. Aplikace z toho nic neodvozuje. Je to váš záznam.
     </p>`,
-    list.map((e) => embryoCard(e, openId === e.id)).join(''),
+    list.map((e) => embryoCard(e, openId === e.id, prenesenaId().has(e.id))).join(''),
     list.length === 0
       ? `<p class="faint" style="margin-top:1.1rem;font-size:.8125rem;line-height:1.55">
           Zatím tu žádné embryo není. Přidejte je, až vám embryologie zavolá, klidně
@@ -278,6 +280,16 @@ export function embryoList(cycleId: string, openId?: string | null): string {
       ${list.length === 0 ? 'Přidat embryo' : 'Přidat další embryo'}
     </button>`,
   ].join('')
+}
+
+/**
+ * Embrya, která se přenesla transferem, ze kterého se dnes počítá.
+ *
+ * Nové embryo v laboratoři není přenesené embryo. Za aktuální se považuje
+ * jen to, které je na aktuálním transferu vypsané.
+ */
+function prenesenaId(): Set<string> {
+  return new Set(context().embryos.map((e) => e.id))
 }
 
 /** Databáze „Moje embrya“. Napříč všemi cykly. */
@@ -293,8 +305,8 @@ export function screenEmbrya(openId?: string | null): string {
       empty(
         'Zatím tu žádné embryo není',
         'Embrya se zapisují u konkrétního cyklu. Otevřete kartu cyklu a v sekci Embrya přidejte první.',
-        cycles().length
-          ? `<button class="btn" data-go="cyklus/${esc(cycles()[cycles().length - 1].id)}">Otevřít poslední cyklus</button>`
+        shownCycle()
+          ? `<button class="btn" data-go="cyklus/${esc(shownCycle()?.id ?? '')}">Otevřít poslední cyklus</button>`
           : '<button class="btn" data-act="cycle-new">Založit cyklus</button>',
         '❖',
       ),
@@ -325,7 +337,7 @@ export function screenEmbrya(openId?: string | null): string {
       .map(
         (g) => `<section style="margin-top:1.8rem">
           ${sectionHead(cycleTitle(g.cycle), { label: 'Karta cyklu', go: `cyklus/${g.cycle.id}` })}
-          ${g.items.map((e) => embryoCard(e, openId === e.id)).join('')}
+          ${g.items.map((e) => embryoCard(e, openId === e.id, prenesenaId().has(e.id))).join('')}
         </section>`,
       )
       .join(''),
@@ -493,8 +505,8 @@ export function screenTransfery(): string {
       empty(
         'Zatím tu žádný transfer není',
         'Transfery se zapisují u cyklu. V jednom cyklu jich může být víc. Čerstvý a po něm kryotransfery ze stejné zásoby embryí.',
-        cycles().length
-          ? `<button class="btn" data-go="cyklus/${esc(cycles()[cycles().length - 1].id)}">Otevřít poslední cyklus</button>`
+        shownCycle()
+          ? `<button class="btn" data-go="cyklus/${esc(shownCycle()?.id ?? '')}">Otevřít poslední cyklus</button>`
           : '<button class="btn" data-act="cycle-new">Založit cyklus</button>',
         '❋',
       ),
@@ -540,10 +552,21 @@ export function screenTransfery(): string {
 export function embryoTable(list: Embryo[]): string {
   if (list.length === 0) return ''
 
+  // Číslo embrya se počítá zvlášť v každém cyklu, takže „Embryo #1“ může
+  // v tabulce přes všechny cykly stát třikrát. Bez sloupce s cyklem se
+  // nedá poznat, o které jde.
+  const nazev = new Map(cycles().map((c) => [c.id, cycleTitle(c)] as const))
+  const prenesene = prenesenaId()
+
   const radek = (e: Embryo) => {
     const last = lastDay(e)
     return `<tr>
-      <td><button class="linkish" data-act="emb-open" data-arg="${esc(e.id)}">${esc(embryoTitle(e))}</button></td>
+      <td><button class="linkish" data-act="emb-open" data-arg="${esc(e.id)}">${esc(embryoTitle(e))}</button>${
+        prenesene.has(e.id)
+          ? '<br><span class="faint" style="font-size:.7rem">aktuální</span>'
+          : ''
+      }</td>
+      <td>${esc(nazev.get(e.cycleId) ?? DASH)}</td>
       <td class="num">${last ? `D${last.day}` : DASH}</td>
       <td>${last && last.stage ? esc(STAGE_LABEL[last.stage]) : DASH}</td>
       <td>${last?.grade.trim() ? esc(last.grade) : DASH}</td>
@@ -555,7 +578,7 @@ export function embryoTable(list: Embryo[]): string {
   return `<div class="tablewrap">
     <table class="datatable">
       <thead>
-        <tr><th>Embryo</th><th>Den</th><th>Stadium</th><th>Hodnocení</th><th>Genetika</th><th>Stav</th></tr>
+        <tr><th>Embryo</th><th>Cyklus</th><th>Den</th><th>Stadium</th><th>Hodnocení</th><th>Genetika</th><th>Stav</th></tr>
       </thead>
       <tbody>${list.map(radek).join('')}</tbody>
     </table>

@@ -31,7 +31,9 @@ import { funnelBlock, ivfCard } from './screens-ivf'
 import { SYMPTOM_BY_ID } from '../lib/domain/symptoms'
 import {
   allEvents,
+  context,
   currentCycle,
+  shownCycle,
   journeyCard,
   cycles,
   cycleStatus,
@@ -561,7 +563,7 @@ const TL_ICON: Record<string, string> = {
 const TL_LIMIT = 150
 
 function timelineItems(): TimelineItem[] {
-  const c = currentCycle() ?? cycles()[0] ?? null
+  const c = shownCycle()
   return buildTimeline({
     cycle: c,
     events: allEvents(),
@@ -663,7 +665,7 @@ function paneTimeline(openId: string | null): string {
  * kryotransfery ze stejné zásoby. Slít je do jednoho řádku by zahodilo
  * přesně tu informaci, kvůli které se do historie chodí.
  */
-function transferRows(c: CycleRow): [string, string | null][] {
+function transferRows(c: CycleRow, currentId: string | null): [string, string | null][] {
   const list = sortedTransfers(c)
   return list.map((t, i) => {
     const label = list.length > 1 ? `${i + 1}. transfer` : 'Transfer'
@@ -674,6 +676,9 @@ function transferRows(c: CycleRow): [string, string | null][] {
       t.embryoDay !== null ? `${t.embryoDay}. den` : null,
       t.grade.trim() || null,
       TRANSFER_OUTCOME_LABEL[t.outcome],
+      // Který z nich je ten, ze kterého se dnes počítá. Po třetím KET
+      // v jednom cyklu to z data samo nevykoukne.
+      t.id === currentId ? 'aktuální' : null,
     ].filter((x): x is string => Boolean(x))
     return [label, parts.join(' · ')]
   })
@@ -700,7 +705,7 @@ function methodsText(c: CycleRow): string | null {
 }
 
 /** Všechna čísla jednoho cyklu. Co není zapsané, se nezobrazuje. */
-function historyBody(c: CycleRow): string {
+function historyBody(c: CycleRow, currentTransferId: string | null): string {
   const n = numbersFor(c)
   const meds = S.d.meds.filter((m) => m.cycleId === c.id)
 
@@ -729,7 +734,7 @@ function historyBody(c: CycleRow): string {
     ['Blastocysty 6. den', numOrNull(c.day6)],
     ['Podíl blastocyst', pct(n.blastRate)],
     ['Zamražená embrya', numOrNull(c.frozen)],
-    ...transferRows(c),
+    ...transferRows(c, currentTransferId),
     ...betaRows(c),
     ['Doplňkové metody', methodsText(c)],
     ['Uzavřeno', c.endedOn ? formatCzechDateShort(c.endedOn) : null],
@@ -768,6 +773,9 @@ function historyBody(c: CycleRow): string {
 
 function paneHistory(openId: string | null): string {
   const list = cycles()
+  // Který cyklus a transfer aplikace považuje za aktuální. Historie je celá
+  // vidět, jen musí být jasné, ze kterého řádku se počítá dnešek.
+  const ctx = context()
 
   if (list.length === 0) {
     return empty(
@@ -789,9 +797,11 @@ function paneHistory(openId: string | null): string {
           accordion(
             c.id,
             cycleTitle(c),
-            `${formatCzechDateShort(c.startedOn)} · ${KIND_LABEL[c.kind]} · ${OUTCOME_LABEL[c.outcome]}`,
+            `${formatCzechDateShort(c.startedOn)} · ${KIND_LABEL[c.kind]} · ${OUTCOME_LABEL[c.outcome]}${
+              c.id === ctx.cycle?.id ? ' · Aktuální' : ' · Historie'
+            }`,
             openId === c.id,
-            historyBody(c),
+            historyBody(c, c.id === ctx.cycle?.id ? (ctx.transfer?.id ?? null) : null),
           ),
         )
         .join('')}
@@ -978,7 +988,7 @@ function paneStats(): string {
 
 /** Popisek nad nadpisem, kde uživatelka je, ještě než začne číst. */
 function eyebrowText(): string {
-  const c = currentCycle()
+  const c = shownCycle()
   const st = c ? cycleStatus(c) : null
   if (c && st) return `${cycleTitle(c)} · ${st.headline}`
   const n = cycles().length

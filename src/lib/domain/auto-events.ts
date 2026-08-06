@@ -15,7 +15,15 @@ import type { CalendarEvent } from '../shared/records'
 
 export type AutoEvent = Omit<CalendarEvent, 'id' | 'done' | 'auto'>
 
-export function autoEventsFor(profile: Profile, state: JourneyState): AutoEvent[] {
+/**
+ * @param hcgOn Zapsaný termín odběru hCG z cyklu. Když je, odhad se nedělá:
+ *   dva termíny hCG v kalendáři, každý na jiný den, jsou horší než žádný.
+ */
+export function autoEventsFor(
+  profile: Profile,
+  state: JourneyState,
+  hcgOn: string | null = null,
+): AutoEvent[] {
   const out: AutoEvent[] = []
 
   if (profile.transferOn) {
@@ -29,14 +37,25 @@ export function autoEventsFor(profile: Profile, state: JourneyState): AutoEvent[
     })
     // Odběr hCG se běžně dělá zhruba 10.–12. den po transferu blastocysty.
     const embryoDay = profile.embryoDayAtTransfer ?? 5
-    out.push({
-      title: 'Odběr hCG (orientačně)',
-      kind: 'hcg',
-      onDate: addDays(profile.transferOn, embryoDay === 3 ? 12 : 10),
-      atTime: null,
-      location: profile.clinicName,
-      note: 'Přesný termín vám určí klinika. Tohle je jen orientační odhad.',
-    })
+    out.push(
+      hcgOn
+        ? {
+            title: 'Odběr hCG',
+            kind: 'hcg',
+            onDate: hcgOn,
+            atTime: null,
+            location: profile.clinicName,
+            note: null,
+          }
+        : {
+            title: 'Odběr hCG (orientačně)',
+            kind: 'hcg',
+            onDate: addDays(profile.transferOn, embryoDay === 3 ? 12 : 10),
+            atTime: null,
+            location: profile.clinicName,
+            note: 'Přesný termín vám určí klinika. Tohle je jen orientační odhad.',
+          },
+    )
   }
 
   if (profile.retrievalOn) {

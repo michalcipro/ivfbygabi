@@ -4,7 +4,8 @@ import { guideFor } from '../lib/domain/guides'
 import { CATALOG, DAILY_CARDS, contentById } from '../lib/content'
 import { buildRails, pickDailyCard } from '../lib/content/recommend'
 import {
-  activeCycleId,
+  context,
+  shownCycleId,
   affinity,
   journeyCard,
   openQuestions,
@@ -203,6 +204,9 @@ function overdue(): string {
 
 export function screenDnes(): string {
   const state = journey()
+  // Dnešek se skládá z posledního relevantního stavu: cyklus, transfer,
+  // embryo, den po transferu, hCG. Ne z prvního zápisu v datech.
+  const ctx = context()
   const date = viewDate()
   const r = dayReading(date)
   const bal = todayBalance()
@@ -227,11 +231,38 @@ export function screenDnes(): string {
       <p class="eyebrow">${esc(formatCzechDate(date, { weekday: true }))}</p>
       <h1 class="display">${p.displayName ? `Dobrý den, ${esc(p.displayName)}.` : 'Dnešek'}</h1>
       <p class="lede">${esc(state.dayLabel)}</p>
+      ${
+        ctx.headline
+          ? `<p class="faint" style="margin-top:.5rem;font-size:.8125rem;line-height:1.5">${esc(ctx.headline)}${
+              ctx.cycleActive ? '' : ' · uzavřený cyklus'
+            }</p>`
+          : ''
+      }
       <div class="phasechip">
         <span>Moje fáze: <strong>${esc(state.phase.name)}</strong></span>
         <button data-go="faze-zmena">Změnit →</button>
       </div>
     </header>`,
+
+    // Dva zápisy, které si odporují. Aplikace nehádá, který platí, a nechá
+    // to na uživatelce. Tiše si vybrat jeden by znamenalo počítat dny
+    // z čísla, které si nikdo nepotvrdil.
+    ctx.conflicts.length
+      ? `<section class="surface pad rise">
+          <p class="eyebrow">Zkontrolujte prosím</p>
+          <div class="stack" style="gap:.9rem;margin-top:.8rem">
+            ${ctx.conflicts
+              .map(
+                (k) => `<div class="banner" style="border-color:var(--sand)">
+                  <span style="color:var(--taupe)">◈</span>
+                  <span>${esc(k.message)}</span>
+                </div>
+                <button class="btn btn-sm" data-go="${esc(k.route)}">Otevřít a srovnat</button>`,
+              )
+              .join('')}
+          </div>
+        </section>`
+      : '',
 
     // Osobní IVF karta. Ženě, která zrovna žádný cyklus neřeší, se nekreslí
     // technika. Karta se ukáže, až má co ukazovat.
@@ -251,10 +282,10 @@ export function screenDnes(): string {
       </div>
       ${trackStrip(end)}
       <button class="btn btn-sm btn-ghost" data-go="${
-        // Bez běžícího cyklu vede „cyklus“ na hlášku, že takový cyklus není.
-        // Historie je správný cíl. Tam se zakládá.
-        activeCycleId() ? `cyklus/${esc(activeCycleId() ?? '')}` : 'journey/historie'
-      }" style="margin-top:1.1rem">${activeCycleId() ? 'Celá karta cyklu' : 'Založit cyklus'}</button>
+        // Otevře se ten, se kterým aplikace pracuje: běžící, jinak poslední
+        // zaznamenaný. Když žádný není, vede tlačítko do historie, kde se zakládá.
+        shownCycleId() ? `cyklus/${esc(shownCycleId() ?? '')}` : 'journey/historie'
+      }" style="margin-top:1.1rem">${shownCycleId() ? 'Celá karta cyklu' : 'Založit cyklus'}</button>
     </section>`,
 
     `<section class="surface pad rise">

@@ -7,7 +7,7 @@ import { EVENT_KINDS } from '../lib/shared/records'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import {
   allEvents,
-  currentCycle,
+  shownCycle,
   cycleStatus,
   eventState,
   journey,
@@ -471,7 +471,9 @@ function visitCard(): string {
  */
 function visitSummary(): { summary: VisitSummary; from: string; to: string } {
   const today = viewDate()
-  const cycle = currentCycle()
+  // Poslední zaznamenaný, ne jen běžící. Na kontrolu po neúspěšném cyklu
+  // se jde právě s jeho čísly.
+  const cycle = shownCycle()
 
   // Období: od poslední proběhlé návštěvy, jinak tři týdny zpátky. Delší okno
   // by do návrhů zatáhlo věci, které už dávno padly, proto je i strop.

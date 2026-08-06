@@ -17,7 +17,20 @@ import {
 } from '../lib/domain/cycle'
 import { photoStrip } from './photo-ui'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
-import { DOC_KIND_LABEL, eventState, journey, moodAverage, profile, rawProfile, S, viewDate, type DocKind } from './store'
+import {
+  allEvents,
+  DOC_KIND_LABEL,
+  eventState,
+  journey,
+  moodAverage,
+  profile,
+  rawProfile,
+  reminders,
+  S,
+  viewDate,
+  type CalItem,
+  type DocKind,
+} from './store'
 import { SEED_POSTS } from './seed'
 import { ROUTES } from './onboarding'
 
@@ -123,48 +136,17 @@ export function screenProfil(): string {
 
 // -------------------------------------------------------------- kalendář ---
 
-export interface CalItem {
-  id: string
-  title: string
-  kind: string
-  onDate: string
-  note: string | null
-  auto: boolean
-}
-
-/** Všechny události (vlastní i odvozené z profilu) v jednom seznamu. */
-export function allEvents(): CalItem[] {
-  const state = journey()
-  const auto = autoEventsFor(profile(), state).map((e) => ({
-    id: `auto:${e.onDate}:${e.title}`,
-    title: e.title,
-    kind: e.kind,
-    onDate: e.onDate,
-    note: e.note,
-    auto: true,
-  }))
-  const mine = S.d.events.map((e) => ({
-    id: e.id,
-    title: e.title,
-    kind: e.kind,
-    onDate: e.onDate,
-    note: e.note,
-    auto: false,
-  }))
-  return [...mine, ...auto].sort((a, b) => a.onDate.localeCompare(b.onDate))
-}
-
-/**
- * Co vyžaduje pozornost: dnešek, zítřek a všechno, co mělo proběhnout
- * a není odškrtnuté. Tohle se ukazuje i na domovské stránce.
+/*
+ * Kalendář i domovská stránka čtou události ze store.
+ *
+ * Dřív si je tahle obrazovka skládala sama a byla to druhá kopie téhož
+ * kódu. Rozešly se: store přestal odhadovat termín odběru hCG, když ho
+ * uživatelka má zapsaný, a kalendář ho odhadoval dál, takže v seznamu
+ * stály dva odběry, každý na jiný den. Jeden zdroj, jedna pravda.
  */
-export function reminders(today: string): CalItem[] {
-  return allEvents().filter((e) => {
-    const st = eventState(e.id)
-    if (st.done) return false
-    return e.onDate <= addDays(today, 1)
-  })
-}
+export type { CalItem } from './store'
+export { allEvents, reminders } from './store'
+
 
 function eventRow(e: CalItem, today: string): string {
   const meta = EVENT_KINDS[e.kind] ?? EVENT_KINDS.vlastni

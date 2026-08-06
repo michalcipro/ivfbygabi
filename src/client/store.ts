@@ -1,12 +1,15 @@
 import { emptyProfile, type IsoDate, type ModifierId, type Profile } from '../lib/domain/profile'
 import { resolveJourney, type JourneyState } from '../lib/domain/journey'
 import { effectiveProfile } from '../lib/domain/latest'
+import { resolveContext, type CurrentContext } from '../lib/domain/context'
 import { addDays, daysBetween, today as realToday } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { findPattern, readDay, type DayLog, type DayReading, type Pattern } from '../lib/domain/strain'
 import {
   activeCycle,
   betaDate,
+  byNewest,
+  defaultCycle,
   currentTransfer,
   cycleTitle,
   emptyCycle,
@@ -648,7 +651,7 @@ export function rawProfile(): Profile {
  * a není starší než ten cyklus. Podrobnosti v `domain/latest.ts`.
  */
 export function profile(): Profile {
-  return effectiveProfile(rawProfile(), data.cycles, viewDate())
+  return effectiveProfile(rawProfile(), data.cycles, viewDate(), data.embryos)
 }
 
 export function hasModifier(m: ModifierId): boolean {
@@ -794,7 +797,9 @@ export interface CalItem {
  * v obrazovce kalendáře, vznikl by kruh v importech.
  */
 export function allEvents(): CalItem[] {
-  const auto = autoEventsFor(profile(), journey()).map((e) => ({
+  // Zapsaný termín odběru hCG vyhrává nad odhadem z data transferu.
+  const bezici = activeCycle(data.cycles, viewDate())
+  const auto = autoEventsFor(profile(), journey(), bezici ? betaDate(bezici, viewDate()) : null).map((e) => ({
     id: `auto:${e.onDate}:${e.title}`,
     title: e.title,
     kind: e.kind,
@@ -883,12 +888,44 @@ export function pattern(): Pattern | null {
 // ----------------------------------------------------------------- cykly ---
 
 export function cycles(): CycleRow[] {
-  return [...data.cycles].sort((a, b) => b.startedOn.localeCompare(a.startedOn))
+  return [...data.cycles].sort(byNewest)
 }
 
-/** Cyklus, který právě běží. */
+/**
+ * Cyklus, který právě běží. `null`, když neběží žádný.
+ *
+ * Tohle je otázka „běží léčba?“, ne „co mám ukázat“. Používá se tam, kde
+ * se zapisuje: nový ultrazvuk se nesmí připnout k uzavřenému cyklu.
+ */
 export function currentCycle(): CycleRow | null {
   return activeCycle(data.cycles, viewDate())
+}
+
+/**
+ * Cyklus, který aplikace ukazuje, dokud si uživatelka nevybere jiný.
+ *
+ * Běžící vyhrává, jinak poslední zaznamenaný. Nikdy ne první založený.
+ */
+export function shownCycle(): CycleRow | null {
+  return defaultCycle(data.cycles, viewDate())
+}
+
+export function shownCycleId(): string | null {
+  return shownCycle()?.id ?? null
+}
+
+/**
+ * Co je poslední relevantní věc, která se uživatelce stala.
+ *
+ * Cyklus, transfer, embryo, den po transferu, hCG. Odsud čte Dnes.
+ */
+export function context(): CurrentContext {
+  return resolveContext({
+    cycles: data.cycles,
+    embryos: data.embryos,
+    today: viewDate(),
+    profileTransferOn: rawProfile().transferOn,
+  })
 }
 
 export function activeCycleId(): string | null {
@@ -1321,7 +1358,7 @@ export function updateClinic(fn: (c: Clinic) => void): void {
  * k založení, ne prázdná kostra.
  */
 export function journeyCard(): JourneyCard | null {
-  const c = currentCycle() ?? [...data.cycles].sort((a, b) => b.startedOn.localeCompare(a.startedOn))[0]
+  const c = shownCycle()
   return c ? buildCard(c, embryosOf(c.id), viewDate()) : null
 }
 
@@ -1447,7 +1484,9 @@ export function todayBalance(): TodayBalance {
  */
 export function endurance(): Endurance {
   const date = viewDate()
-  const c = currentCycle()
+  // Poslední zaznamenaný, ne jen běžící. Číslo, které má být důkazem, se
+  // nesmí propadnout na nulu v den, kdy žena cyklus uzavře.
+  const c = shownCycle()
   const st = cycleStatus(c)
 
   // Injekční léky se z klíče `med:{datum}:{id}` zpětně dohledají, aby se
