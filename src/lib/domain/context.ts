@@ -115,7 +115,14 @@ const PRAZDNY: CurrentContext = {
   conflicts: [],
 }
 
-/** „KET #2“ u druhého a dalšího, „KET“ u jediného. */
+/**
+ * „KET #2“ u druhého a dalšího, „KET“ u jediného.
+ *
+ * Čísluje se **v rámci druhu**, ne přes všechny transfery. Cyklus, ve kterém
+ * byl čerstvý transfer a po něm dva kryotransfery, má ET, KET #1 a KET #2.
+ * Kdyby se číslovalo dohromady, první kryotransfer by se jmenoval KET #2
+ * a žena by hledala, kde je KET #1.
+ */
 function transferName(t: CycleTransfer, order: number, total: number): string {
   const druh = t.kind === 'kryo' ? 'KET' : 'ET'
   return total > 1 ? `${druh} #${order}` : druh
@@ -146,8 +153,9 @@ export function resolveContext(input: ContextInput): CurrentContext {
   const transfer = currentTransfer(cycle, today)
   const idx = transfer ? vsechny.findIndex((t) => t.id === transfer.id) : -1
   const transferOrder = idx >= 0 ? idx + 1 : null
-  const transferLabel =
-    transfer && transferOrder ? transferName(transfer, transferOrder, vsechny.length) : ''
+  const stejnyDruh = transfer ? vsechny.filter((t) => t.kind === transfer.kind) : []
+  const poradiDruhu = transfer ? stejnyDruh.findIndex((t) => t.id === transfer.id) + 1 : 0
+  const transferLabel = transfer ? transferName(transfer, poradiDruhu, stejnyDruh.length) : ''
 
   // --- embrya na tom transferu
   const ids = new Set(transfer?.embryoIds ?? [])
@@ -271,9 +279,10 @@ export function cycleEvents(c: CycleRow, embryos: Embryo[], today: IsoDate = tod
   }
 
   const vsechny = sortedTransfers(c)
-  vsechny.forEach((t, i) => {
+  vsechny.forEach((t) => {
     if (t.cancelled) return
-    const nazev = transferName(t, i + 1, vsechny.length)
+    const druh = vsechny.filter((x) => x.kind === t.kind)
+    const nazev = transferName(t, druh.findIndex((x) => x.id === t.id) + 1, druh.length)
     const kdo = t.embryoIds
       .map((id) => mine.find((e) => e.id === id))
       .filter((e): e is Embryo => Boolean(e))

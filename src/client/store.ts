@@ -27,6 +27,22 @@ import {
   type TransferOutcome,
 } from '../lib/domain/cycle'
 import { emptyEmbryo, isAvailable, sortEmbryos, type Embryo } from '../lib/domain/embryo'
+import {
+  byCategory,
+  byCycle,
+  byTransfer,
+  emptyExpense,
+  emptyPayment,
+  financeStats,
+  paymentHistory,
+  readExpense,
+  totals as financeTotals,
+  type Expense,
+  type FinanceGroup,
+  type FinanceStats,
+  type Payment,
+  type PaymentRow,
+} from '../lib/domain/finance'
 import { emptyExam, type ExamEntry, type ExamWho } from '../lib/domain/exams'
 import { emptySupport, type SupportEntry } from '../lib/domain/support'
 import { emptyClinic, type Clinic } from '../lib/domain/clinic'
@@ -340,6 +356,11 @@ export interface Save {
   cycles: CycleRow[]
   /** Jednotlivá embrya napříč cykly. Vazba je přes `cycleId`. */
   embryos: Embryo[]
+  /**
+   * Výdaje za léčbu. Jedna položka je jeden náklad a nese si vlastní
+   * seznam plateb. Vazba na cyklus a na transfer je přes id.
+   */
+  expenses: Expense[]
   /** Zapsaná vyšetření. Vzniknou, až do nich uživatelka něco napíše. */
   exams: ExamEntry[]
   /** Podpůrná péče mimo kliniku. */
@@ -399,6 +420,7 @@ function blank(): Save {
     shots: [],
     cycles: [],
     embryos: [],
+    expenses: [],
     exams: [],
     support: [],
     clinic: emptyClinic(),
@@ -1349,6 +1371,118 @@ export function applyPhaseChange(
 }
 
 export type { StepKind } from '../lib/domain/phase-change'
+
+// ---------------------------------------------------------------- finance ---
+
+/**
+ * Výdaje za léčbu.
+ *
+ * Jedna položka = jeden náklad. Platby k ní se přidávají po jedné a součty
+ * se počítají vždycky z nich, nikdy se neukládají. Uložený součet by se
+ * dřív nebo později rozešel se skutečností.
+ */
+export function expenses(): Expense[] {
+  return [...data.expenses].sort(
+    (a, b) => (b.onDate ?? '').localeCompare(a.onDate ?? '') || a.title.localeCompare(b.title, 'cs'),
+  )
+}
+
+export function expenseById(id: string): Expense | null {
+  return data.expenses.find((e) => e.id === id) ?? null
+}
+
+export function addExpense(cycleId: string | null = null, transferId: string | null = null): Expense {
+  const row = emptyExpense(uid('exp'), cycleId)
+  row.transferId = transferId
+  row.onDate = viewDate()
+  patch((d) => {
+    d.expenses.push(row)
+  })
+  return row
+}
+
+export function updateExpense(id: string, fn: (e: Expense) => void): void {
+  patch((d) => {
+    const e = d.expenses.find((x) => x.id === id)
+    if (e) fn(e)
+  })
+}
+
+export function removeExpense(id: string): void {
+  patch((d) => {
+    d.expenses = d.expenses.filter((e) => e.id !== id)
+  })
+}
+
+export function addPayment(expenseId: string): Payment | null {
+  const row = emptyPayment(uid('pay'), viewDate())
+  let ok = false
+  patch((d) => {
+    const e = d.expenses.find((x) => x.id === expenseId)
+    if (!e) return
+    e.payments.push(row)
+    ok = true
+  })
+  return ok ? row : null
+}
+
+export function removePayment(expenseId: string, paymentId: string): void {
+  patch((d) => {
+    const e = d.expenses.find((x) => x.id === expenseId)
+    if (e) e.payments = e.payments.filter((p) => p.id !== paymentId)
+  })
+}
+
+/** Výdaje jednoho cyklu, včetně těch navázaných na jeho transfery. */
+export function expensesOf(cycleId: string): Expense[] {
+  return data.expenses.filter((e) => e.cycleId === cycleId)
+}
+
+export function financeByCycle(): FinanceGroup[] {
+  return byCycle(
+    data.expenses,
+    cycles().map((c) => ({ id: c.id, title: cycleTitle(c) })),
+  )
+}
+
+export function financeByTransfer(cycleId: string): FinanceGroup[] {
+  const c = cycleById(cycleId)
+  if (!c) return []
+  const poradi = [...c.transfers].sort((a, b) => (a.date ?? '').localeCompare(b.date ?? ''))
+  // Číslování v rámci druhu, stejně jako v `domain/context.ts`. ET a dva
+  // kryotransfery jsou ET, KET #1 a KET #2, ne ET #1, KET #2 a KET #3.
+  return byTransfer(
+    expensesOf(cycleId),
+    poradi.map((t) => {
+      const druh = poradi.filter((x) => x.kind === t.kind)
+      const i = druh.findIndex((x) => x.id === t.id) + 1
+      return {
+        id: t.id,
+        title: `${t.kind === 'kryo' ? 'KET' : 'ET'}${druh.length > 1 ? ` #${i}` : ''}`,
+      }
+    }),
+  )
+}
+
+export function financeByCategory(): FinanceGroup[] {
+  return byCategory(data.expenses)
+}
+
+export function financeSummary(): FinanceStats {
+  const vsechny = data.cycles
+  const transfery = vsechny.flatMap((c) => c.transfers.filter((t) => !t.cancelled))
+  return financeStats(data.expenses, {
+    cycles: vsechny.length,
+    transfers: transfery.length,
+    kets: transfery.filter((t) => t.kind === 'kryo').length,
+  })
+}
+
+export function financeHistory(): PaymentRow[] {
+  return paymentHistory(data.expenses)
+}
+
+export { readExpense, financeTotals }
 
 /**
  * Ruční uzavření cyklu.

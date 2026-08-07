@@ -105,6 +105,7 @@ export function screenProfil(): string {
     ['klinika', '✚', 'Moje klinika', c.name.trim() || 'Kontakty, telefon i to, kam volat mimo ordinační hodiny'],
     ['vysetreni', '◉', 'Moje vyšetření', vys ? `${vys} zapsaných` : 'Co může být relevantní a co už mám za sebou'],
     ['podpora', '♡', 'Podpůrná péče', pod ? `${pod} právě využívám` : 'Co si k léčbě beru mimo kliniku'],
+    ['finance', '◇', 'Moje IVF finance', 'Kolik cesta stála, co je zaplacené a co zbývá'],
     ['dokumenty', '▤', 'Moje dokumenty', S.d.docs.length ? `${S.d.docs.length} uložených` : 'Papíry z kliniky na jednom místě'],
     ['otazky', '?', 'Otázky pro lékaře', 'Co se chci zeptat, než na to zapomenu'],
     ['partner', '♡', 'Pro partnera', 'Co ukázat tomu, kdo je vedle vás'],

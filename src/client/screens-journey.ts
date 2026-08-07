@@ -123,6 +123,7 @@ function journeyHubs(): string {
       ['transfery', '❋', 'Moje transfery', 'Všechny transfery napříč cykly, od nejnovějšího.'],
       ['vysledky', '◉', 'Moje výsledky', 'Hodnoty a čísla z cyklů vedle sebe v čase.'],
       ['historie', '✧', 'Moje IVF historie', 'Celá cesta v přehledu. Co bylo v kterém cyklu.'],
+      ['finance', '◇', 'Moje IVF finance', 'Kolik cesta stála, co je zaplacené a co zbývá.'],
       ['kalendar', '◈', 'Kalendář', 'Termíny, kontroly a odběry. Část se doplní sama.'],
       ['zdravotni', '◉', 'Zdravotní data', 'Ultrazvuky, laboratoř, měření.'],
       ['dokumenty', '▤', 'Dokumenty', 'Papíry z kliniky na jednom místě.'],

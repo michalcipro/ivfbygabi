@@ -29,7 +29,13 @@ import { addPhotos, allPhotos, initPhotos, photoUrl, pickImages, removePhoto } f
 import {
   addCustomExam,
   addCycle,
+  addExpense,
+  addPayment,
   closeCycleNow,
+  expenseById,
+  removeExpense,
+  removePayment,
+  updateExpense,
   applyPhaseChange,
   phasePlan,
   addDoc,
@@ -94,6 +100,7 @@ import { screenPruvodce } from './screens-pruvodce'
 import { isJourneySection, screenJourney, type JourneySection } from './screens-journey'
 import { screenCyklus } from './screens-cyklus'
 import type { EmbryoFate, EmbryoStage, PgtKind, PgtResult, ThawResult } from '../lib/domain/embryo'
+import type { PaymentMethod } from '../lib/domain/finance'
 import {
   isExamWho,
   screenDiagnoza as screenMojeDiagnoza,
@@ -132,6 +139,7 @@ import {
 import { DENIK_SECTIONS, screenCviceni, screenDenik, type DenikSection } from './screens-denik'
 import { screenHodnota, screenZdravi } from './screens-zdravi'
 import { isTransferSection, screenPoTransferu, type TransferSection } from './screens-transfer'
+import { isFinanceSection, screenFinance, type FinanceSection } from './screens-finance'
 import { renderSummary, type SummaryId } from './summary'
 import {
   screenClenstvi,
@@ -326,7 +334,7 @@ const SUMMARY_HIDDEN = [
   'dnes', 'zapis', 'leky', 'sledovani', 'pruvodce', 'nuzky',
   // Tyhle mají vlastní hlavičku se stavem cyklu. Druhý souhrn nad ní
   // by říkal totéž jinými slovy.
-  'journey', 'cyklus', 'otazky', 'zdravotni', 'po-transferu',
+  'journey', 'cyklus', 'otazky', 'zdravotni', 'po-transferu', 'finance',
 ]
 
 /** Stav, který nemá cenu ukládat. Přežívá jen do zavření záložky. */
@@ -346,6 +354,8 @@ const view = {
    * týden vedl do minulosti, aniž by to bylo vidět.
    */
   trDen: null as string | null,
+  /** Rozbalený výdaj ve financích. Rozepsaný formulář, ne navigace. */
+  expense: null as string | null,
   /** Je otevřené rychlé přidání? */
   quick: false,
   docText: '',
@@ -460,6 +470,10 @@ function screenFor(route: string): string {
     case 'journey': {
       const want = a.split('/')[0]
       return screenJourney(isJourneySection(want) ? (want as JourneySection) : 'prehled', view.accordion)
+    }
+    case 'finance': {
+      const want = a.split('/')[0]
+      return screenFinance(isFinanceSection(want) ? (want as FinanceSection) : 'prehled', view.expense)
     }
     case 'po-transferu': {
       const want = a.split('/')[0]
@@ -1053,6 +1067,44 @@ function zoomPhoto(id: string): void {
  * Volá se z tlačítka i před každou akcí, která překreslí stránku. Přidání
  * dne kultivace nebo smazání by jinak zahodilo rozepsané kolonky.
  */
+/**
+ * Uložení rozepsaného výdaje.
+ *
+ * Volá se před každým překreslením, které by formulář zahodilo: při
+ * rozbalení jiné položky, při přidání platby i při jejím smazání. Bez
+ * toho by přidání platby smazalo název, který uživatelka právě dopsala.
+ */
+function saveExpenseForm(id: string): void {
+  const e = expenseById(id)
+  if (!e || !document.getElementById(`fin-${id}-title`)) return
+  const k = (f: string): string => `fin-${id}-${f}`
+
+  updateExpense(id, (row) => {
+    row.title = val(k('title'))
+    const vybrana = val(k('category'))
+    const vlastni = val(k('customCategory')).trim()
+    // Vlastní kategorie vyhrává. Je to pole, do kterého se píše ručně,
+    // takže vyplněné znamená, že uživatelka nabídku výš odmítla.
+    row.category = vlastni || (vybrana === '__vlastni' ? row.category : vybrana)
+    row.planned = numOrNull(k('planned'))
+    row.actual = numOrNull(k('actual'))
+    row.priceUnknown = checked(k('priceUnknown'))
+    row.insurance = numOrNull(k('insurance'))
+    row.onDate = dateOrNull(k('onDate'))
+    row.cycleId = val(k('cycleId')) || null
+    row.transferId = val(k('transferId')) || null
+    row.note = val(k('note'))
+
+    for (const p of row.payments) {
+      if (!document.getElementById(`fin-pay-${p.id}-amount`)) continue
+      p.amount = numOrNull(`fin-pay-${p.id}-amount`) ?? 0
+      p.onDate = dateOrNull(`fin-pay-${p.id}-onDate`) ?? p.onDate
+      p.method = (val(`fin-pay-${p.id}-method`) || p.method) as PaymentMethod
+      p.note = val(`fin-pay-${p.id}-note`)
+    }
+  })
+}
+
 function saveEmbryoForm(id: string): void {
   const e = embryoById(id)
   if (!e || !document.getElementById(`emb-${id}-fate`)) return
@@ -1241,6 +1293,9 @@ function action(act: string, argValue: string): void {
 
     // --- přepínače v záhlaví ---------------------------------------------
     // Dílek jde do adresy, ne do stavu. Tím funguje zpět i sdílení odkazu.
+    case 'fin-sec':
+      go(`finance/${argValue}`)
+      return
     case 'tr-sec':
       go(`po-transferu/${argValue}`)
       return
@@ -1519,6 +1574,43 @@ function action(act: string, argValue: string): void {
       break
 
     // --- cykly ------------------------------------------------------------
+    case 'fin-add': {
+      const [cycleId, transferId] = argValue.split('|')
+      if (view.expense) saveExpenseForm(view.expense)
+      const row = addExpense(cycleId || null, transferId || null)
+      view.expense = row.id
+      go('finance/prehled')
+      return
+    }
+    case 'fin-open': {
+      // Rozepsaný formulář se musí uložit dřív, než se překreslí.
+      if (view.expense) saveExpenseForm(view.expense)
+      view.expense = view.expense === argValue ? null : argValue
+      break
+    }
+    case 'fin-save': {
+      saveExpenseForm(argValue)
+      toast('Výdaj uložen.')
+      break
+    }
+    case 'fin-del': {
+      if (!confirm('Smazat tenhle výdaj i se všemi jeho platbami?')) return
+      removeExpense(argValue)
+      if (view.expense === argValue) view.expense = null
+      toast('Výdaj smazán.')
+      break
+    }
+    case 'fin-pay-add': {
+      saveExpenseForm(argValue)
+      addPayment(argValue)
+      break
+    }
+    case 'fin-pay-del': {
+      const [expenseId, paymentId] = argValue.split('|')
+      saveExpenseForm(expenseId)
+      removePayment(expenseId, paymentId)
+      break
+    }
     case 'cycle-close': {
       // Uzavření je vždycky ruční a vždycky vědomé. Než se provede,
       // uloží se rozepsaný formulář, ať se nic z něj neztratí.

@@ -461,6 +461,14 @@ button { font: inherit; color: inherit; }
 .linelist li { display: flex; align-items: baseline; gap: 0.85rem; font-size: 0.9375rem; }
 .linelist .when { width: 5.5rem; flex: none; font-size: 0.75rem; color: var(--fg-faint); }
 
+/* Řádek s částkou.
+   Uvnitř částky jsou nedělitelné mezery, aby se „220 000 Kč“ nezlomilo
+   uprostřed čísla. Je to tedy jeden široký nezlomitelný blok a na úzkém
+   telefonu se vedle názvu nevejde. Musí proto umět spadnout na vlastní
+   řádek, jinak by stránka jela do stran. */
+.linelist li.money { flex-wrap: wrap; }
+.linelist li.money .num { margin-left: auto; }
+
 /* Přehrávač meditace a slot na video. */
 .player {
   margin-top: 1.5rem; padding: 1.15rem 1.25rem;

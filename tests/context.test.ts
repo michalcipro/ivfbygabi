@@ -191,3 +191,25 @@ test('budoucí události se do proudu nedostanou', () => {
   })
   assert.deepEqual(cycleEvents(c, [], TODAY), [])
 })
+
+test('transfery se číslují v rámci druhu, ne přes všechny dohromady', () => {
+  // Zadání: ET #1, KET #1, KET #2. Ne ET #1, KET #2, KET #3.
+  const c = cyc('c1', 1, '2026-05-01', {
+    transfers: [
+      tr('t1', { kind: 'cerstvy', date: '2026-05-20', outcome: 'negativni' }),
+      tr('t2', { kind: 'kryo', date: '2026-06-20', outcome: 'negativni' }),
+      tr('t3', { kind: 'kryo', date: '2026-08-06' }),
+    ],
+  })
+  assert.equal(resolveContext({ cycles: [c], embryos: [], today: TODAY }).transferLabel, 'KET #2')
+})
+
+test('jediný transfer svého druhu číslo nedostane', () => {
+  const c = cyc('c1', 1, '2026-05-01', {
+    transfers: [
+      tr('t1', { kind: 'cerstvy', date: '2026-05-20', outcome: 'negativni' }),
+      tr('t2', { kind: 'kryo', date: '2026-08-06' }),
+    ],
+  })
+  assert.equal(resolveContext({ cycles: [c], embryos: [], today: TODAY }).transferLabel, 'KET')
+})
