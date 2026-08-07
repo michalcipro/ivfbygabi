@@ -31,6 +31,8 @@ import { pack as coKdyz } from './packs/co-kdyz'
 import { pack as vysledkyCesty } from './packs/vysledky-cesty'
 import { pack as slovnik } from './packs/slovnik'
 import { pack as stimulaceDny } from './packs/stimulace-dny'
+import { pack as penize } from './packs/penize'
+import { pack as muz } from './packs/muz'
 
 /**
  * Registr obsahu.
@@ -63,6 +65,8 @@ const PACKS: ContentPack[] = [
   vysledkyCesty,
   slovnik,
   stimulaceDny,
+  penize,
+  muz,
 ]
 
 function dedupe<T extends { id: string }>(items: T[]): T[] {
