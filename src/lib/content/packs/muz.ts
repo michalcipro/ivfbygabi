@@ -575,6 +575,7 @@ Zeptejte se na klinice, jestli spolupracuje s psychologem se zkušeností s repr
   },
   {
     id: 'muz-sex-behem-ivf',
+    sources: ['Doporučení k pohlavnímu styku během léčby se mezi pracovišti liší a řídí se vaší konkrétní situací. Rozhoduje vždy vaše klinika.'],
     kind: 'article',
     title: 'Sex během IVF, když se z něj stal úkol',
     excerpt:

@@ -33,6 +33,9 @@ import { pack as slovnik } from './packs/slovnik'
 import { pack as stimulaceDny } from './packs/stimulace-dny'
 import { pack as penize } from './packs/penize'
 import { pack as muz } from './packs/muz'
+import { pack as prace } from './packs/prace'
+import { pack as zmenaKliniky } from './packs/zmena-kliniky'
+import { pack as konecLecby } from './packs/konec-lecby'
 
 /**
  * Registr obsahu.
@@ -67,6 +70,9 @@ const PACKS: ContentPack[] = [
   stimulaceDny,
   penize,
   muz,
+  prace,
+  zmenaKliniky,
+  konecLecby,
 ]
 
 function dedupe<T extends { id: string }>(items: T[]): T[] {

@@ -91,7 +91,7 @@ Dražší klinika automaticky neznamená vyšší šanci. Levnější klinika au
 
 ## Co udělat, než začnete porovnávat
 
-1. Vyžádejte si písemný ceník, ne ústní odhad. Máte na něj nárok a klinika ho má.
+1. Vyžádejte si písemný ceník, ne ústní odhad. Kliniky ho běžně mají a poskytnou ho.
 2. Nechte si na papír napsat, co konkrétně je v základní ceně cyklu.
 3. Zeptejte se, co se stane s cenou, když se cyklus zruší před odběrem.
 4. Zeptejte se, kolik zaplatíte za kryotransfer z už zamraženého embrya.
@@ -215,9 +215,9 @@ Dávka se během stimulace často upravuje podle toho, jak folikuly rostou. Kdy�
 
 U per často zůstává na konci nedávkovatelný zbytek. Zeptejte se na klinice, jestli se dá kombinovat zbytek z jednoho pera s novým a jestli je to u vašeho přípravku bezpečné a přesné.
 
-### 5. Uschovejte nepoužité léky správně
+### 5. Zeptejte se, co s nepoužitými léky
 
-Pokud cyklus skončí dřív, může být část léků použitelná v dalším pokusu. Podmínkou je dodržený chladový řetězec a platná exspirace. Zeptejte se lékárníka na konkrétní podmínky skladování a poznamenejte si datum.
+Pokud cyklus skončí dřív, zůstanou vám neotevřená balení. Jestli se s nimi dá ještě něco dělat, rozhoduje vaše klinika a lékárna, ne aplikace a ne diskusní skupina. Zavolejte na kliniku a zeptejte se, co s nimi. Zapište si název přípravku, sílu, počet balení a exspiraci, ať máte při tom hovoru po ruce čísla.
 
 ## Čeho se držte dál
 
@@ -280,7 +280,7 @@ Ke kryokonzervaci vždy podepisujete samostatnou smlouvu. Přečtěte si v ní t
 
 ## Co se opravdu stane, když nezaplatíte
 
-Neplatí, že se embrya zlikvidují druhý den. Klinika má obvykle povinnost vás vyzvat a dát vám lhůtu. Zároveň ale platí, že po marném uplynutí lhůty stanovené smlouvou může být skladování ukončeno. To je nevratné.
+Neplatí, že se embrya zlikvidují druhý den. Kliniky obvykle mívají postup, jak vás vyzvat, a dávají lhůtu. Konkrétní podmínky i následky nezaplacení jsou ale ve smlouvě, kterou jste podepsala, a mezi pracovišti se liší. Přečtěte si ji a zeptejte se přímo na klinice, co se v jejím případě děje. Je to rozhodnutí, které nemusí jít vzít zpět.
 
 Nejčastější důvod, proč se to stane, není nezájem. Je to změněná adresa, změněný e mail nebo výzva, která spadla do spamu. V období, kdy se do léčby nechystáte, na embrya nemyslíte a klinika nemá jak se k vám dostat.
 
