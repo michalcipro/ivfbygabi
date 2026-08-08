@@ -1,6 +1,5 @@
 import type { JourneyState } from './journey'
 import type { Profile } from './profile'
-import { MODIFIER_LABELS } from './profile'
 import { PHASES } from './phases'
 import type { CommunityGroup } from '../shared/records'
 
@@ -23,107 +22,108 @@ export function slugify(s: string): string {
     .replace(/^-|-$/g, '')
 }
 
-const MONTHS = [
-  'leden',
-  'únor',
-  'březen',
-  'duben',
-  'květen',
-  'červen',
-  'červenec',
-  'srpen',
-  'září',
-  'říjen',
-  'listopad',
-  'prosinec',
+/**
+ * Skupiny komunity. Čtyři. Ne víc.
+ *
+ * Dřív se skupiny odvozovaly z fáze, měsíce transferu, každé diagnózy,
+ * kliniky i věku. Ženě po druhém cyklu jich vyšlo přes deset a v každé
+ * bylo pár lidí. Komunita, kde je všude prázdno, není komunita, je to
+ * seznam prázdných místností.
+ *
+ * Čtyři skupiny podle toho, kde žena v léčbě je. Do každé smí každá,
+ * ale jedna se jí podle fáze nabídne jako první, aby nemusela vybírat.
+ *
+ * Skupina po neúspěchu je oddělená schválně. Žena, které se to nepovedlo,
+ * nemá číst o cizím pozitivním hCG, dokud si to sama nevybere.
+ */
+
+export const GROUP_IVF = 'jsem-v-ivf-procesu'
+export const GROUP_PO_TRANSFERU = 'jsem-po-transferu'
+export const GROUP_NEVYSLO = 'nevyslo-to'
+export const GROUP_CHAT = 'vseobecny-chat'
+
+export const GROUPS: GroupSpec[] = [
+  {
+    slug: GROUP_IVF,
+    name: 'Jsem v IVF procesu',
+    description:
+      'Stimulace, kontroly, odběr, čekání na embrya, laboratoř, genetika, léky. Pro všechny, kdo jsou v cyklu a transfer je teprve před nimi.',
+    kind: 'phase',
+    matchKey: `group:${GROUP_IVF}`,
+  },
+  {
+    slug: GROUP_PO_TRANSFERU,
+    name: 'Jsem po transferu',
+    description:
+      'Dny po ET nebo KET, čekání na hCG, příznaky, nervozita, testování. Nejdelší dva týdny, které se dají strávit ve společnosti.',
+    kind: 'phase',
+    matchKey: `group:${GROUP_PO_TRANSFERU}`,
+  },
+  {
+    slug: GROUP_NEVYSLO,
+    name: 'Nevyšlo to',
+    description:
+      'Negativní hCG, neúspěšný nebo zrušený transfer, biochemické těhotenství, ztráta, cyklus bez embrya. Bez rad a bez cizích dobrých zpráv.',
+    kind: 'special',
+    matchKey: `group:${GROUP_NEVYSLO}`,
+  },
+  {
+    slug: GROUP_CHAT,
+    name: 'Všeobecný chat',
+    description: 'Všechno ostatní. Otázky, zkušenosti, tipy a běžný život, který během léčby jde dál.',
+    kind: 'special',
+    matchKey: `group:${GROUP_CHAT}`,
+  },
 ]
 
-export function czMonthYear(ym: string): string {
-  const [y, m] = ym.split('-')
-  return `${MONTHS[Number(m) - 1]} ${y}`
+/** Fáze, po kterých se nabízí skupina pro neúspěch. */
+const PO_NEUSPECHU = new Set([
+  'waiting_next_attempt',
+  'repeated_failure',
+  'loss_biochemical',
+  'loss_ectopic',
+  'loss_missed',
+  'loss_miscarriage',
+  'uterine_revision',
+])
+
+/** Fáze, ve kterých je žena po transferu a čeká. */
+const PO_TRANSFERU = new Set(['transfer', 'two_week_wait', 'beta_positive'])
+
+/** Fáze uvnitř cyklu, ještě před transferem. */
+const V_CYKLU = new Set([
+  'ivf_prep',
+  'stimulation',
+  'retrieval',
+  'fertilization',
+  'embryo_culture',
+  'genetic_testing',
+  'iui',
+])
+
+/**
+ * Která skupina se ženě nabídne jako první.
+ *
+ * Je to návrh, ne zámek. Do ostatních se dostane jedním klepnutím a nikde
+ * jí aplikace neřekne, že tam nepatří.
+ */
+export function suggestedGroup(state: JourneyState): string {
+  const id = state.phase.id
+  if (PO_NEUSPECHU.has(id)) return GROUP_NEVYSLO
+  if (PO_TRANSFERU.has(id)) return GROUP_PO_TRANSFERU
+  if (V_CYKLU.has(id)) return GROUP_IVF
+  return GROUP_CHAT
 }
 
 /**
- * Skupiny, které dávají smysl právě pro tuhle ženu. Pořadí je pořadí
- * relevance. Fáze první, otevřený kruh poslední.
+ * Skupiny pro tuhle ženu. Vždycky všechny čtyři, jen v jiném pořadí:
+ * doporučená první.
  */
-export function groupSpecsFor(profile: Profile, state: JourneyState): GroupSpec[] {
-  const out: GroupSpec[] = []
-  const phase = state.phase
-
-  // 1. Skupina fáze. Vždycky.
-  out.push({
-    slug: `faze-${slugify(phase.name)}`,
-    name: phase.name,
-    description: `Ženy, které jsou právě teď ve stejné fázi jako vy: ${phase.title.toLowerCase()}.`,
-    kind: 'phase',
-    matchKey: `phase:${phase.id}`,
-  })
-
-  // 2. Měsíc transferu. Nejsilnější pouto v IVF komunitě.
-  if (profile.transferOn) {
-    const ym = profile.transferOn.slice(0, 7)
-    out.push({
-      slug: `transfer-${ym}`,
-      name: `Transfer ${czMonthYear(ym)}`,
-      description: 'Ženy, které měly transfer ve stejném měsíci. Čekáte spolu.',
-      kind: 'special',
-      matchKey: `transfer:${ym}`,
-    })
-  }
-
-  // 4. Diagnózy a situace.
-  for (const mod of profile.modifiers) {
-    const label = MODIFIER_LABELS[mod]
-    if (!label) continue
-    const kind: CommunityGroup['kind'] =
-      mod === 'pcos' || mod === 'endometriosis' || mod === 'low_amh' || mod === 'male_factor'
-        ? 'diagnosis'
-        : 'special'
-    out.push({
-      slug: `situace-${slugify(label)}`,
-      name: label,
-      description: `Bezpečný prostor pro ženy, kterých se týká: ${label.toLowerCase()}.`,
-      kind,
-      matchKey: `mod:${mod}`,
-    })
-  }
-
-  // 5. Klinika.
-  if (profile.clinicName) {
-    out.push({
-      slug: `klinika-${slugify(profile.clinicName)}`,
-      name: profile.clinicName,
-      description: 'Ženy, které chodí na stejnou kliniku. Praktické zkušenosti z první ruky.',
-      kind: 'clinic',
-      matchKey: `clinic:${slugify(profile.clinicName)}`,
-    })
-  }
-
-  // 6. Věková skupina.
-  if (profile.birthYear) {
-    const age = new Date().getFullYear() - profile.birthYear
-    const band = age < 30 ? 'do 30' : age < 35 ? '30–34' : age < 40 ? '35–39' : '40+'
-    out.push({
-      slug: `vek-${slugify(band)}`,
-      name: `Věk ${band}`,
-      description: 'Podobný věk znamená podobná rozhodnutí a podobný tlak času.',
-      kind: 'age',
-      matchKey: `age:${band}`,
-    })
-  }
-
-  // 7. Věčně otevřená skupina pro všechny.
-  out.push({
-    slug: 'vecerni-kruh',
-    name: 'Večerní kruh',
-    description: 'Otevřený prostor pro cokoliv, co potřebujete říct nahlas. Bez rad, jen podpora.',
-    kind: 'special',
-    matchKey: null,
-  })
-
-  const seen = new Set<string>()
-  return out.filter((g) => (seen.has(g.slug) ? false : (seen.add(g.slug), true)))
+export function groupSpecsFor(_profile: Profile, state: JourneyState): GroupSpec[] {
+  const doporucena = suggestedGroup(state)
+  return [...GROUPS].sort((a, b) =>
+    a.slug === doporucena ? -1 : b.slug === doporucena ? 1 : 0,
+  )
 }
 
 /** Jméno, pod kterým uživatelka vystupuje. Respektuje anonymní režim. */

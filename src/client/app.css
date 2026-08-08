@@ -439,6 +439,11 @@ button { font: inherit; color: inherit; }
 .check[aria-pressed='true'] .box { background: var(--sage); border-color: var(--sage-deep); color: #fff; }
 .check[aria-pressed='true'] .txt { color: var(--fg-faint); text-decoration: line-through; }
 
+/* Volba, ne odškrtnutý úkol.
+   Přeškrtnutá „Zahrnout finance“ vypadá jako vyřízená položka, přitom
+   znamená pravý opak: že se to do dokumentu dostane. */
+.check.opt[aria-pressed='true'] .txt { color: var(--fg); text-decoration: none; }
+
 .quote { border-radius: var(--r-xl); padding: clamp(2rem, 5vw, 3.25rem) 1.5rem; text-align: center; }
 .quote p { position: relative; z-index: 1; font-family: var(--display); font-size: clamp(1.3rem, 2.6vw, 1.6rem); line-height: 1.5; max-width: 34rem; margin: 0 auto; color: #2b2521; }
 .quote .by { margin-top: 1.2rem; font-family: var(--sans); font-size: 0.8125rem; color: rgb(43 37 33 / 0.55); }

@@ -129,7 +129,8 @@ export interface Attachment {
   data: string
 }
 
-export type MedKind = 'injekce' | 'tableta' | 'gel' | 'naplast' | 'cipek' | 'sprej'
+export type { MedKind } from '../lib/domain/meds-catalog'
+import type { MedKind } from '../lib/domain/meds-catalog'
 
 export interface MedRow {
   id: string
@@ -397,6 +398,13 @@ export interface Save {
   /** 0 = dnešek. Nenulové jen když si uživatelka vědomě přepne na jiný den. */
   dayOffset: number
   seenTour: boolean
+  /**
+   * Rozepsaný název léku z číselníku.
+   *
+   * Výběr ze seznamu překreslí formulář, aby se předvyplnila forma a
+   * jednotka. Bez tohohle pole by se rozepsaný název ztratil.
+   */
+  medDraft: string
   /** Rozbalené jemnější dělení fází v onboardingu i v přepínači. */
   obMore: boolean
 }
@@ -443,6 +451,7 @@ function blank(): Save {
     theme: 'auto',
     dayOffset: 0,
     seenTour: false,
+    medDraft: '',
     obMore: false,
   }
 }
@@ -752,6 +761,35 @@ export function saveJournal(row: JournalRow): void {
   })
 }
 
+// --------------------------------------------------------------- léky ---
+
+/**
+ * Léky, které na daný den podle protokolu připadají.
+ *
+ * Bere v úvahu datum od, datum do a opakování. Bez toho by se v kalendáři
+ * ukazovaly i dávky, které už dávno skončily, a odškrtnutý den by nic
+ * neznamenal.
+ */
+export function medsOn(date: IsoDate): MedRow[] {
+  return data.meds.filter((m) => {
+    if (m.startOn && date < m.startOn) return false
+    if (m.endOn && date > m.endOn) return false
+    if (m.repeat === 'jednou') return m.startOn === date
+    if (m.repeat === 'obden' && m.startOn) return daysBetween(m.startOn, date) % 2 === 0
+    return true
+  })
+}
+
+/** Klíč odškrtnutí jedné dávky. Sdílí ho Léky i Kalendář. */
+export function doseKey(date: IsoDate, id: string): string {
+  return `med:${date}:${id}`
+}
+
+/** Kolik dávek je na daný den odškrtnutých. */
+export function dosesDone(date: IsoDate): number {
+  return medsOn(date).filter((m) => data.checks[doseKey(date, m.id)]).length
+}
+
 // ------------------------------------------------------------- kalendář ---
 
 export function eventState(id: string): { done: boolean; note: string } {
@@ -791,6 +829,32 @@ export function exerciseLog(): ExerciseEntry[] {
 export function saveExercise(exercise: string, fields: string[]): void {
   patch((d) => {
     d.exercises.unshift({ id: uid('ex'), exercise, date: viewDate(), fields })
+  })
+}
+
+export function removeExercise(id: string): void {
+  patch((d) => {
+    d.exercises = d.exercises.filter((e) => e.id !== id)
+  })
+}
+
+export function removeJournal(date: IsoDate): void {
+  patch((d) => {
+    delete d.journal[date]
+  })
+}
+
+/**
+ * Smaže celý deník.
+ *
+ * Zápisy, vyplněná cvičení i nálady. Nic jiného: cykly, embrya, transfery
+ * ani finance se nedotkne. Kdyby tohle tlačítko mazalo i léčbu, nikdo by
+ * ho nepoužil, i když by potřeboval.
+ */
+export function wipeJournal(): void {
+  patch((d) => {
+    d.journal = {}
+    d.exercises = []
   })
 }
 
@@ -1476,6 +1540,43 @@ export function financeSummary(): FinanceStats {
     transfers: transfery.length,
     kets: transfery.filter((t) => t.kind === 'kryo').length,
   })
+}
+
+/**
+ * Klíčová data cesty, složená z toho, co je zapsané v cyklech.
+ *
+ * Nikde se nevyplňují ručně. Datum transferu je v transferu, datum odběru
+ * v cyklu a aplikace je jen posbírá. Duplicitní kolonka v nastavení by
+ * dřív nebo později ukazovala něco jiného než karta cyklu.
+ */
+export function klicovaData(): { date: IsoDate; label: string; source: string }[] {
+  const out: { date: IsoDate; label: string; source: string }[] = []
+  for (const c of cycles()) {
+    const nazev = cycleTitle(c)
+    const put = (date: IsoDate | null, label: string): void => {
+      if (date) out.push({ date, label, source: nazev })
+    }
+    put(c.cd1On, 'První den cyklu')
+    put(c.stimStartOn, 'Začátek stimulace')
+    put(c.triggerOn, 'Trigger')
+    put(c.retrievalOn, 'Odběr vajíček')
+
+    const poradi = [...c.transfers]
+      .filter((t) => t.date && !t.cancelled)
+      .sort((a, b) => (a.date as IsoDate).localeCompare(b.date as IsoDate))
+    for (const t of poradi) {
+      const druh = poradi.filter((x) => x.kind === t.kind)
+      const i = druh.findIndex((x) => x.id === t.id) + 1
+      const znacka = t.kind === 'kryo' ? 'KET' : 'ET'
+      put(t.date, druh.length > 1 ? `${znacka} #${i}` : znacka)
+      put(t.hcgPlannedOn, 'Plánovaný odběr hCG')
+    }
+    for (const h of c.hcgTests) {
+      put(h.date, h.kind === 'krev' ? 'Odběr hCG' : 'Domácí test')
+    }
+    put(c.endedOn, 'Uzavření cyklu')
+  }
+  return out.sort((a, b) => b.date.localeCompare(a.date))
 }
 
 export function financeHistory(): PaymentRow[] {

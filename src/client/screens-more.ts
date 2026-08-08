@@ -2,7 +2,7 @@ import { MODIFIER_LABELS, MODIFIER_IDS, type ModifierId } from '../lib/domain/pr
 import { PHASES, PHASE_IDS, PHASE_GROUP_META } from '../lib/domain/phases'
 import { addDays, formatCzechDate, czDays } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
-import { groupSpecsFor, communityName } from '../lib/domain/community-match'
+import { groupSpecsFor, communityName, suggestedGroup, GROUP_NEVYSLO } from '../lib/domain/community-match'
 import { adviceFor } from '../lib/domain/partner'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import { guidanceFor } from '../lib/health/lab-guidance'
@@ -16,9 +16,12 @@ import {
   type CycleRow,
 } from '../lib/domain/cycle'
 import { photoStrip } from './photo-ui'
+import { medDoses, medForm } from './screens-leky'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
 import {
   allEvents,
+  cycles,
+  klicovaData,
   DOC_KIND_LABEL,
   eventState,
   journey,
@@ -256,24 +259,24 @@ export function screenKalendar(): string {
       ? empty('Zatím nic v kalendáři', 'Přidejte si termín, nebo doplňte data v nastavení. Část událostí pak vznikne sama.')
       : '',
 
-    `<section class="surface pad">
-      <p class="eyebrow">Léky</p>
-      <div class="two" style="margin-top:1rem">
-        <div><label class="label" for="med-name">Název</label><input class="field" id="med-name" placeholder="Například progesteron" autocomplete="off"></div>
-        <div><label class="label" for="med-time">Kdy</label><input class="field" id="med-time" placeholder="Například 20:00" autocomplete="off"></div>
-      </div>
-      <button class="btn btn-sm" data-act="med-add" style="margin-top:1rem">Přidat lék</button>
-      ${
-        S.d.meds.length
-          ? `<ul class="linelist">${S.d.meds
-              .map(
-                (m) =>
-                  `<li><span>${esc(m.name)}</span>${m.timeOfDay ? `<span class="faint num" style="margin-left:auto;font-size:.75rem">${esc(m.timeOfDay)}</span>` : ''}<button class="btn btn-ghost btn-sm" data-act="med-del" data-arg="${esc(m.id)}">×</button></li>`,
-              )
-              .join('')}</ul>`
-          : '<p class="faint" style="margin-top:1rem;font-size:.8125rem">Zatím žádné. Dávkování si vždycky řiďte předpisem od lékaře. Aplikace ho nenavrhuje.</p>'
-      }
-    </section>`,
+    `<section>${sectionTitle('Léky', S.d.meds.length ? plural(S.d.meds.length, 'lék v protokolu', 'léky v protokolu', 'léků v protokolu') : 'Zatím žádné')}</section>`,
+
+    medDoses(today),
+
+    medForm(),
+
+    S.d.meds.length
+      ? `<section class="surface pad">
+          <p class="eyebrow">Celý protokol</p>
+          <ul class="linelist" style="margin-top:.7rem">${S.d.meds
+            .map(
+              (m) =>
+                `<li><span style="min-width:0;flex:1"><b style="font-weight:500">${esc(m.name)}</b> <span class="faint">${esc([m.dose, m.times?.length ? m.times.join(', ') : (m.timeOfDay ?? '')].filter(Boolean).join(' · '))}</span></span><button class="btn btn-ghost btn-sm" data-act="med-del" data-arg="${esc(m.id)}">×</button></li>`,
+            )
+            .join('')}</ul>
+          <button class="btn btn-sm" data-go="leky/protokol" style="margin-top:1rem">Otevřít Léky</button>
+        </section>`
+      : '',
   ].join('')
 }
 
@@ -375,20 +378,40 @@ export function screenKomunita(): string {
   const state = journey()
   const p = profile()
   const groups = groupSpecsFor(p, state)
+  const doporucena = suggestedGroup(state)
   const me = communityName(p, state)
 
   return [
-    head(`Vystupujete jako ${me}`, 'Komunita', 'Skupiny se párují podle vašeho příběhu. Fáze, měsíc transferu, diagnóza, klinika, věk. Ne podle náhody.'),
+    head(
+      `Vystupujete jako ${me}`,
+      'Komunita',
+      'Čtyři skupiny podle toho, kde v léčbě jste. Jedna se vám nabídne první, ale do všech smíte kdykoliv.',
+    ),
 
-    `<section>${sectionTitle('Vaše skupiny', `${plural(groups.length, 'skupina', 'skupiny', 'skupin')} podle vašeho profilu`)}
+    `<section>${sectionTitle('Skupiny', 'Doporučená podle vaší fáze je nahoře')}
       <div class="tiles">
         ${groups
           .map(
             (g) =>
-              `<button class="tile" data-go="skupina/${esc(g.slug)}"><i>◍</i><span style="min-width:0"><h4 class="display">${esc(g.name)}</h4><p>${esc(g.description)}</p></span><span class="go">›</span></button>`,
+              `<button class="tile" data-go="skupina/${esc(g.slug)}"><i>◍</i><span style="min-width:0">
+                <h4 class="display">${esc(g.name)}${g.slug === doporucena ? ' <span class="badge badge-soft">pro vás</span>' : ''}</h4>
+                <p>${esc(g.description)}</p></span><span class="go">›</span></button>`,
           )
           .join('')}
       </div>
+    </section>`,
+
+    `<section class="surface pad">
+      <p class="eyebrow">Proč jsou jen čtyři</p>
+      <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
+        Dřív se skupiny dělily podle fáze, měsíce transferu, diagnózy, kliniky i věku.
+        Vycházelo jich přes deset a v každé byl někdo sám. Čtyři skupiny znamenají,
+        že když něco napíšete, je tam někdo, kdo to čte.
+      </p>
+      <p class="soft" style="margin-top:.9rem;line-height:1.7;font-size:.9375rem">
+        Skupina po neúspěchu je oddělená schválně. Když se to nepovede, nemáte číst
+        o cizím pozitivním hCG dřív, než si to sama vyberete.
+      </p>
     </section>`,
 
     note(
@@ -404,7 +427,10 @@ export function screenSkupina(slug: string): string {
   if (!group) return empty('Skupina nenalezena', 'Vraťte se do komunity a vyberte si znovu.', '<button class="btn" data-go="komunita">Do komunity</button>')
 
   const mine = S.d.posts.filter((x) => x.groupSlug === slug)
-  const seeded = slug === 'vecerni-kruh' || group.kind === 'phase' ? SEED_POSTS[state.group] ?? [] : []
+  // Ukázkové příspěvky patří k fázi, ve které žena je. Do skupiny po neúspěchu
+  // se ale nikdy nesmí dostat cizí dobrá zpráva, takže tam jdou jen zápisy ze
+  // skupiny ztrát, ať je uživatelka kdekoliv.
+  const seeded = slug === GROUP_NEVYSLO ? SEED_POSTS.loss : (SEED_POSTS[state.group] ?? [])
 
   const post = (
     author: string,
@@ -687,7 +713,7 @@ export function screenPartner(): string {
 
 // -------------------------------------------------------------- nastavení ---
 
-export function screenNastaveni(): string {
+export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean }): string {
   // Ruční hodnoty do políček, spočítané do popisků. Kdyby se do inputu
   // dostalo datum z cyklu, uživatelka by ho uložila do profilu a vznikla by
   // druhá kopie téhož údaje.
@@ -755,30 +781,56 @@ export function screenNastaveni(): string {
 
     `<section class="surface pad">
       <p class="eyebrow">Klíčová data</p>
-      <div class="two" style="margin-top:1rem">
-        ${(
-          [
-            ['stimulationStartOn', 'Začátek stimulace'],
-            ['retrievalOn', 'Odběr vajíček'],
-            ['transferOn', 'Transfer'],
-            ['betaTestOn', 'Odběr hCG'],
-          ] as const
-        )
-          .map(
-            ([field, label]) =>
-              `<div><label class="label" for="d-${field}">${label}</label><input class="field" type="date" id="d-${field}" value="${esc(p[field] ?? '')}" data-act="set-date" data-arg="${field}">${
-                skutecne[field] && skutecne[field] !== p[field]
-                  ? `<span class="faint" style="display:block;margin-top:.35rem;font-size:.75rem">Počítáme z běžícího cyklu: ${esc(formatCzechDate(skutecne[field] as string, { year: false }))}</span>`
-                  : ''
-              }</div>`,
-          )
-          .join('')}
-      </div>
-      <p class="faint" style="margin-top:1rem;font-size:.8125rem;line-height:1.55">
-        Když máte rozepsaný cyklus, aplikace počítá z něj. Je čerstvější než to,
-        co jste vyplnila na začátku. Tahle políčka zůstávají pro dny, které
-        v žádném cyklu zapsané nemáte.
+      <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
+        Skládají se sama z vašich cyklů. Nic tu nevyplňujte podruhé: co je
+        zapsané v cyklu, je zapsané i tady.
       </p>
+      ${
+        klicovaData().length
+          ? `<ul class="linelist" style="margin-top:1rem">
+              ${klicovaData()
+                .map(
+                  (d) => `<li>
+                    <span class="when">${esc(formatCzechDate(d.date, { year: true }))}</span>
+                    <span style="flex:1;min-width:0">${esc(d.label)}
+                      <span class="faint" style="font-size:.75rem">${esc(d.source)}</span></span>
+                  </li>`,
+                )
+                .join('')}
+            </ul>
+            <button class="btn btn-sm" data-go="journey/historie" style="margin-top:1.1rem">Upravit v cyklech</button>`
+          : `<div class="banner" style="border-color:var(--sand);margin-top:1rem">
+              <span style="color:var(--taupe)">◈</span>
+              <span>Zatím tu nic není, protože nemáte zapsaný žádný cyklus. Až si ho
+              založíte, klíčová data se objeví sama.</span>
+            </div>
+            <button class="btn btn-primary btn-sm" data-act="cycle-new" style="margin-top:1.1rem">Založit cyklus</button>`
+      }
+      ${
+        // Ruční pole zůstávají jen pro ženu, která kartu cyklu nevede.
+        // Jakmile má běžící cyklus, počítá se z něj a duplicitní kolonky
+        // by ji jen sváděly zapsat totéž podruhé.
+        cycles().length === 0
+          ? `<div style="margin-top:1.5rem">
+              <p class="label">Nebo zadejte ručně</p>
+              <div class="two" style="margin-top:.7rem">
+                ${(
+                  [
+                    ['stimulationStartOn', 'Začátek stimulace'],
+                    ['retrievalOn', 'Odběr vajíček'],
+                    ['transferOn', 'Transfer'],
+                    ['betaTestOn', 'Odběr hCG'],
+                  ] as const
+                )
+                  .map(
+                    ([field, label]) =>
+                      `<div><label class="label" for="d-${field}">${label}</label><input class="field" type="date" id="d-${field}" value="${esc(p[field] ?? '')}" data-act="set-date" data-arg="${field}"></div>`,
+                  )
+                  .join('')}
+              </div>
+            </div>`
+          : ''
+      }
     </section>`,
 
     `<section class="surface pad">
@@ -833,6 +885,34 @@ export function screenNastaveni(): string {
     </section>`,
 
     `<section class="surface pad">
+      <p class="eyebrow">Přehled mé IVF cesty</p>
+      <p class="soft" style="margin-top:.6rem;font-size:.9375rem;line-height:1.65">
+        Čitelný dokument, ne technický export. Profil, každý cyklus, embrya, transfery
+        a hCG za sebou tak, jak se to odehrálo. Dá se vytisknout, uložit jako PDF
+        nebo přinést na první konzultaci jinam.
+      </p>
+
+      <div class="stack" style="gap:.2rem;margin-top:1.1rem">
+        <button class="check opt" data-act="report-opt" data-arg="finance" aria-pressed="${reportOpts.finance}">
+          <span class="box">✓</span>
+          <span class="txt" style="font-size:.9375rem;line-height:1.5">Zahrnout finance
+            <br><span class="faint" style="font-size:.8125rem">Součty za cesty i za jednotlivé cykly</span></span>
+        </button>
+        <button class="check opt" data-act="report-opt" data-arg="journal" aria-pressed="${reportOpts.journal}">
+          <span class="box">✓</span>
+          <span class="txt" style="font-size:.9375rem;line-height:1.5">Zahrnout osobní deník
+            <br><span class="faint" style="font-size:.8125rem">Výchozí je nezahrnovat. Zápisy z deníku jsou to nejosobnější, co tu je.</span></span>
+        </button>
+      </div>
+
+      <button class="btn btn-primary" data-act="report-open" style="margin-top:1.25rem">Vytvořit přehled</button>
+      <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
+        Otevře se v novém okně a nabídne tisk. V dialogu tisku vyberte Uložit jako PDF.
+        Nikam se nic neodesílá, dokument vzniká přímo ve vašem zařízení.
+      </p>
+    </section>`,
+
+    `<section class="surface pad">
       <p class="eyebrow">Vaše data</p>
       <p class="soft" style="margin-top:.6rem;font-size:.9375rem;line-height:1.65">Všechno, co jste zapsala (profil, deník, hodnoty, dopisy) je uložené jen v tomhle prohlížeči. Nikam se to neodesílá.</p>
       <dl class="kv" style="margin-top:1rem">
@@ -842,10 +922,14 @@ export function screenNastaveni(): string {
         <dt>Uloženého obsahu</dt><dd class="num">${S.d.saved.length}</dd>
       </dl>
       <div class="row wrap" style="gap:.6rem;margin-top:1.25rem">
-        <button class="btn btn-sm" data-act="export">Stáhnout moje data</button>
+        <button class="btn btn-sm" data-act="export">Záloha dat (JSON)</button>
         <button class="btn btn-sm" data-act="forget">Zapomenout naučené zájmy</button>
         <button class="btn btn-sm" data-act="wipe" style="border-color:var(--blush)">Smazat všechno</button>
       </div>
+      <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
+        Záloha je soubor pro přenos do jiného zařízení, ne dokument na čtení. Na čtení
+        je přehled výš.
+      </p>
     </section>`,
   ].join('')
 }

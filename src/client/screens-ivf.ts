@@ -46,7 +46,7 @@ import {
   supportTitle,
   type SupportGroup,
 } from '../lib/domain/support'
-import { CONTACT_ROLES, hasClinic, telHref, type ClinicContact } from '../lib/domain/clinic'
+import { CONTACT_ROLES, hasClinic, hasCoordinator, telHref, type ClinicContact } from '../lib/domain/clinic'
 import { type CardStep, type FunnelStep, type JourneyCard } from '../lib/domain/journey-card'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import { photoStrip } from './photo-ui'
@@ -654,6 +654,53 @@ export function screenKlinika(): string {
       c.name.trim() || 'Klinika',
       'Kontakty na jednom místě. V šest ráno s bolestí břicha se číslo nehledá dobře, proto je tady i to, kam volat mimo ordinační hodiny.',
     ),
+
+    /*
+     * Koordinátorka nahoře, ještě před údaji kliniky.
+     *
+     * Je to člověk, kterému se v českých centrech volá nejčastěji, a
+     * v obecném seznamu kontaktů se ztrácí mezi lékařem a recepcí.
+     */
+    (() => {
+      const k = c.coordinator
+      const je = hasCoordinator(k)
+      return `<section class="surface pad rise">
+        <p class="eyebrow">Moje koordinátorka</p>
+        ${
+          je
+            ? `<h3 class="display" style="font-size:1.2rem;margin-top:.4rem">${esc(k.name.trim() || 'Koordinátorka')}</h3>
+               ${k.note.trim() ? `<p class="soft" style="margin-top:.4rem;font-size:.9375rem;line-height:1.6">${esc(k.note)}</p>` : ''}
+               ${
+                 k.phone.trim()
+                   ? `<a class="btn btn-primary btn-block" href="${esc(telHref(k.phone))}" style="margin-top:1rem">Zavolat koordinátorce · ${esc(k.phone)}</a>`
+                   : ''
+               }
+               ${
+                 k.email.trim()
+                   ? `<a class="btn btn-block" href="mailto:${esc(k.email)}" style="margin-top:.6rem">Napsat e-mail · ${esc(k.email)}</a>`
+                   : ''
+               }`
+            : `<p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
+                 Zatím nemáte uložený kontakt na svou koordinátorku. Až ho doplníte,
+                 bude odsud na jedno klepnutí.
+               </p>`
+        }
+        <div style="margin-top:1.3rem">
+          <div class="two">
+            ${textField('co-name', 'Jméno a příjmení', k.name, 'např. Petra Nováková')}
+            ${textField('co-phone', 'Telefon', k.phone, '+420…')}
+          </div>
+          <div class="two" style="margin-top:1.1rem">
+            ${textField('co-email', 'E-mail', k.email, '')}
+            ${textField('co-note', 'Poznámka', k.note, 'kdy je k zastižení, co přes ni řešíte')}
+          </div>
+          <div class="row wrap" style="gap:.6rem;margin-top:1.2rem">
+            <button class="btn btn-primary" data-act="clinic-save">${je ? 'Uložit změny' : 'Přidat koordinátorku'}</button>
+            ${je ? '<button class="btn btn-ghost btn-sm" data-act="coord-clear">Odstranit</button>' : ''}
+          </div>
+        </div>
+      </section>`
+    })(),
 
     hasClinic(c)
       ? `<section class="surface pad rise">

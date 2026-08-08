@@ -1,7 +1,15 @@
 import { addDays, czDays, formatCzechDate } from '../lib/domain/dates'
 import { guideFor } from '../lib/domain/guides'
 import { promptFor, PROMPT_KIND_LABELS } from '../lib/domain/journal-prompts'
-import { EXERCISES, exerciseById, exercisesFor, suggestExercise } from '../lib/domain/exercises'
+import {
+  EXERCISES,
+  exerciseById,
+  exercisesFor,
+  exercisesInTopic,
+  suggestExercise,
+  topicsWithContent,
+  type Exercise,
+} from '../lib/domain/exercises'
 import { ENCOURAGEMENTS } from '../lib/content'
 import { seedFrom } from '../lib/domain/dates'
 import { upcomingEvents } from './screens-home'
@@ -29,6 +37,7 @@ import { empty, esc, head, lineChart, note, plural, ring, sectionTitle } from '.
 export const DENIK_SECTIONS = [
   { id: 'dnes', label: 'Dnešek' },
   { id: 'cviceni', label: 'Cvičení' },
+  { id: 'zapisy', label: 'Zápisy' },
   { id: 'vyvoj', label: 'Vývoj' },
   { id: 'ohlednuti', label: 'Ohlédnutí' },
 ] as const
@@ -105,7 +114,11 @@ function sectionDnes(): string {
     return list.length ? list[seedFrom(date, 'denik') % list.length] : null
   })()
 
-  const suggested = exerciseById(suggestExercise(row?.mood ?? null, row?.anxiety ?? null))
+  // Když je dnešek zapsaný, řídí návrh nálada a úzkost. Když ještě není,
+  // nemá se z čeho vycházet, tak rozhoduje fáze. Nikdy náhodné cvičení.
+  const suggested = row
+    ? exerciseById(suggestExercise(row.mood, row.anxiety))
+    : (exercisesFor(state.group, state.phase.id)[0] ?? exerciseById('dech'))
 
   return [
     context(),
@@ -178,44 +191,147 @@ function sectionDnes(): string {
 
 // ----------------------------------------------------------------- cvičení ---
 
-function sectionCviceni(): string {
+function exerciseTile(e: Exercise, pocet: number): string {
+  return `<button class="tile" data-go="cviceni/${e.id}" style="align-items:flex-start">
+    <i>${e.icon}</i>
+    <span style="min-width:0">
+      <h4 class="display">${esc(e.title)}</h4>
+      <p>${esc(e.when)}</p>
+      <p class="faint num" style="font-size:.75rem;margin-top:.3rem">${e.minutes} min${
+        pocet ? ` · ${esc(plural(pocet, 'záznam', 'záznamy', 'záznamů'))}` : ''
+      }</p>
+    </span>
+    <span class="go">›</span>
+  </button>`
+}
+
+/**
+ * Práce se sebou.
+ *
+ * Nahoře to, co se hodí k dnešní fázi. Pod tím okruhy, aby se dalo hledat
+ * podle toho, co zrovna tíží, ne podle toho, v jakém pořadí to kdo napsal.
+ * Okruhy jsou sbalené: dvacet čtyři cvičení v jednom sloupci nikdo nepřečte.
+ */
+function sectionCviceni(open: string | null): string {
   const state = journey()
-  const list = exercisesFor(state.group)
   const done = exerciseLog()
+  const pocet = (id: string): number => done.filter((d) => d.exercise === id).length
+
+  // Fázi rozumí `exercisesFor`. Vezmeme jen ty, které jsou psané přímo pro
+  // tuhle fázi nebo pro její skupinu, ostatní patří do okruhů níž.
+  const proFazi = exercisesFor(state.group, state.phase.id).filter(
+    (e) => e.phases?.includes(state.phase.id) || e.groups?.includes(state.group),
+  )
 
   return [
-    `<p class="lede soft">Techniky, které se dají udělat teď hned. Nejsou to články o tom, jak by to šlo. Jsou to kroky, které tu odklikáte.</p>`,
+    `<p class="lede soft">Práce se sebou. Techniky, které se dají udělat teď hned. Nejsou to články o tom, jak by to šlo. Jsou to kroky, které tu odklikáte.</p>`,
 
-    `<div class="stack" style="gap:.75rem">
-      ${list
-        .map(
-          (e) => `<button class="tile" data-go="cviceni/${e.id}" style="align-items:flex-start">
-            <i>${e.icon}</i>
-            <span style="min-width:0">
-              <h4 class="display">${esc(e.title)}</h4>
-              <p>${esc(e.when)}</p>
-              <p class="faint num" style="font-size:.75rem;margin-top:.3rem">${e.minutes} min${
-                done.filter((d) => d.exercise === e.id).length
-                  ? ` · ${esc(plural(done.filter((d) => d.exercise === e.id).length, 'záznam', 'záznamy', 'záznamů'))}`
+    proFazi.length
+      ? `<section>${sectionTitle('Hodí se teď', esc(state.phase.name))}
+          <div class="stack" style="gap:.75rem">
+            ${proFazi.slice(0, 4).map((e) => exerciseTile(e, pocet(e.id))).join('')}
+          </div>
+        </section>`
+      : '',
+
+    `<section>${sectionTitle('Okruhy', `${esc(plural(EXERCISES.length, 'cvičení', 'cvičení', 'cvičení'))} celkem`)}
+      <div class="stack" style="gap:.6rem">
+        ${topicsWithContent()
+          .map((t) => {
+            const list = exercisesInTopic(t.id)
+            const otevreno = open === `topic:${t.id}`
+            return `<div class="surface" style="padding:0;overflow:hidden">
+              <button class="acc-head" data-act="acc" data-arg="topic:${esc(t.id)}" aria-expanded="${otevreno}"
+                style="display:flex;width:100%;gap:.9rem;align-items:center;padding:1.05rem 1.25rem;background:none;border:0;text-align:left;cursor:pointer;color:inherit">
+                <span style="font-size:1.15rem;line-height:1">${t.icon}</span>
+                <span style="min-width:0;flex:1">
+                  <b style="font-weight:500;display:block;font-size:.9375rem">${esc(t.label)}</b>
+                  <span class="faint" style="font-size:.8125rem;display:block;margin-top:.15rem">${esc(t.note)}</span>
+                </span>
+                <span class="faint num" style="font-size:.75rem">${list.length}</span>
+                <span class="go" style="transform:rotate(${otevreno ? '90' : '0'}deg);transition:transform .18s">›</span>
+              </button>
+              ${
+                otevreno
+                  ? `<div class="stack" style="gap:.6rem;padding:0 1.25rem 1.25rem">
+                      ${list.map((e) => exerciseTile(e, pocet(e.id))).join('')}
+                    </div>`
                   : ''
-              }</p>
-            </span>
-            <span class="go">›</span>
-          </button>`,
-        )
-        .join('')}
-    </div>`,
+              }
+            </div>`
+          })
+          .join('')}
+      </div>
+    </section>`,
+
+    note(
+      'Tyhle techniky vycházejí z postupů běžných v kognitivně-behaviorální terapii a všímavosti. **Nejsou léčba a nenahrazují odbornou pomoc**: jsou to nástroje na konkrétní těžkou chvíli.',
+    ),
+  ].join('')
+}
+
+// ----------------------------------------------------------------- zápisy ---
+
+/**
+ * Historie deníku.
+ *
+ * Zápisy a vyplněná cvičení pohromadě, od nejnovějšího. Každý řádek jde
+ * smazat: co si žena napsala, patří jenom jí, a musí to jít vzít zpátky.
+ */
+function sectionZapisy(): string {
+  const rows = journalList()
+    .filter((r) => r.note.trim() || r.promptAnswer.trim() || r.win.trim())
+    .slice()
+    .reverse()
+  const done = exerciseLog()
+
+  if (rows.length === 0 && done.length === 0) {
+    return empty(
+      'Zatím tu nic není',
+      'Až něco zapíšete nebo vyplníte cvičení, najdete to tady. Můžete se k tomu vracet a kdykoliv to smazat.',
+      '<button class="btn btn-primary" data-go="denik/dnes">Zapsat dnešek</button>',
+      '❖',
+    )
+  }
+
+  return [
+    `<p class="lede soft">Všechno, co jste si zapsala, na jednom místě. Nikdo jiný to nevidí a cokoliv z toho jde smazat.</p>`,
+
+    rows.length
+      ? `<section>${sectionTitle('Zápisy', esc(plural(rows.length, 'den', 'dny', 'dní')))}
+          <div class="stack" style="gap:.6rem">
+            ${rows
+              .slice(0, 40)
+              .map(
+                (r) => `<div class="surface" style="padding:1.1rem 1.3rem">
+                  <div class="row wrap" style="justify-content:space-between;gap:.5rem;align-items:baseline">
+                    <p class="faint" style="font-size:.75rem">${esc(formatCzechDate(r.date, { weekday: true }))} · nálada ${r.mood}/5</p>
+                    <button class="btn btn-ghost btn-sm" data-act="journal-del" data-arg="${esc(r.date)}">Smazat</button>
+                  </div>
+                  ${r.promptAnswer.trim() ? `<p style="margin-top:.45rem;font-size:.9375rem;line-height:1.65;white-space:pre-wrap">${esc(r.promptAnswer)}</p>` : ''}
+                  ${r.note.trim() ? `<p class="soft" style="margin-top:.45rem;font-size:.9375rem;line-height:1.65;white-space:pre-wrap">${esc(r.note)}</p>` : ''}
+                  ${r.win.trim() ? `<p class="faint" style="margin-top:.5rem;font-size:.8125rem">Povedlo se: ${esc(r.win)}</p>` : ''}
+                </div>`,
+              )
+              .join('')}
+          </div>
+        </section>`
+      : '',
 
     done.length
-      ? `<section>${sectionTitle('Co jste vyplnila', 'Vaše záznamy')}
+      ? `<section>${sectionTitle('Vyplněná cvičení', esc(plural(done.length, 'záznam', 'záznamy', 'záznamů')))}
           <div class="stack" style="gap:.6rem">
             ${done
-              .slice(0, 8)
+              .slice(0, 40)
               .map((d) => {
                 const ex = exerciseById(d.exercise)
-                return `<div class="surface" style="padding:1rem 1.2rem">
-                  <p class="faint" style="font-size:.75rem">${esc(formatCzechDate(d.date))} · ${esc(ex?.title ?? d.exercise)}</p>
-                  <p style="margin-top:.4rem;font-size:.9375rem;line-height:1.6">${esc(d.fields.filter(Boolean).join(' · '))}</p>
+                return `<div class="surface" style="padding:1.1rem 1.3rem">
+                  <div class="row wrap" style="justify-content:space-between;gap:.5rem;align-items:baseline">
+                    <p class="faint" style="font-size:.75rem">${esc(formatCzechDate(d.date))} · ${esc(ex?.title ?? d.exercise)}</p>
+                    <button class="btn btn-ghost btn-sm" data-act="ex-del" data-arg="${esc(d.id)}">Smazat</button>
+                  </div>
+                  <p style="margin-top:.4rem;font-size:.9375rem;line-height:1.65;white-space:pre-wrap">${esc(d.fields.filter(Boolean).join('\n'))}</p>
+                  ${ex ? `<button class="btn btn-ghost btn-sm" data-go="cviceni/${esc(ex.id)}" style="margin-top:.6rem">Vyplnit znovu</button>` : ''}
                 </div>`
               })
               .join('')}
@@ -223,8 +339,17 @@ function sectionCviceni(): string {
         </section>`
       : '',
 
+    `<section class="surface pad" style="border-color:var(--blush)">
+      <p class="eyebrow">Smazat deník</p>
+      <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
+        Smaže všechny zápisy, nálady a vyplněná cvičení. Cyklů, embryí, transferů
+        ani financí se to nedotkne. Vrátit to nejde.
+      </p>
+      <button class="btn btn-sm" data-act="journal-wipe" style="margin-top:1rem;border-color:var(--blush)">Vymazat celý deník</button>
+    </section>`,
+
     note(
-      'Tyhle techniky vycházejí z postupů běžných v kognitivně-behaviorální terapii a všímavosti. **Nejsou léčba a nenahrazují odbornou pomoc**: jsou to nástroje na konkrétní těžkou chvíli.',
+      'Deník se neposílá nikam a nikomu. **Partner v Partner mode uvidí jen průměrnou náladu za týden**, nikdy text. Do PDF přehledu se zápisy dostanou jen tehdy, když to v Nastavení sama zapnete.',
     ),
   ].join('')
 }
@@ -437,7 +562,7 @@ function sectionOhlednuti(): string {
 
 // ------------------------------------------------------------- vykreslení ---
 
-export function screenDenik(section: DenikSection): string {
+export function screenDenik(section: DenikSection, open: string | null): string {
   const state = journey()
   const avg = moodAverage(7)
 
@@ -451,12 +576,14 @@ export function screenDenik(section: DenikSection): string {
 
   const body =
     section === 'cviceni'
-      ? sectionCviceni()
-      : section === 'vyvoj'
-        ? sectionVyvoj()
-        : section === 'ohlednuti'
-          ? sectionOhlednuti()
-          : sectionDnes()
+      ? sectionCviceni(open)
+      : section === 'zapisy'
+        ? sectionZapisy()
+        : section === 'vyvoj'
+          ? sectionVyvoj()
+          : section === 'ohlednuti'
+            ? sectionOhlednuti()
+            : sectionDnes()
 
   return header + subnav(section) + body
 }

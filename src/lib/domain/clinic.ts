@@ -21,6 +21,31 @@ export interface ClinicContact {
   note: string
 }
 
+/**
+ * Koordinátorka.
+ *
+ * V českých centrech je to člověk, který ženu provází celým cyklem: hlídá
+ * termíny, vysvětluje rozpis a je první, komu se volá, když se něco děje.
+ * V seznamu kontaktů se ale ztrácí mezi lékařem, embryologem a recepcí,
+ * a přitom je to číslo, které žena hledá nejčastěji. Proto má vlastní pole
+ * a vlastní kartu, ne jen řádek mezi ostatními.
+ */
+export interface Coordinator {
+  name: string
+  phone: string
+  email: string
+  note: string
+}
+
+export function emptyCoordinator(): Coordinator {
+  return { name: '', phone: '', email: '', note: '' }
+}
+
+/** Má koordinátorka vyplněné aspoň něco, co se dá použít? */
+export function hasCoordinator(c: Coordinator): boolean {
+  return Boolean(c.name.trim() || c.phone.trim() || c.email.trim())
+}
+
 export interface Clinic {
   name: string
   address: string
@@ -36,6 +61,7 @@ export interface Clinic {
   instructions: string
   note: string
   contacts: ClinicContact[]
+  coordinator: Coordinator
 }
 
 export function emptyClinic(): Clinic {
@@ -50,6 +76,7 @@ export function emptyClinic(): Clinic {
     instructions: '',
     note: '',
     contacts: [],
+    coordinator: emptyCoordinator(),
   }
 }
 

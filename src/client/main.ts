@@ -22,7 +22,7 @@ import {
 } from '../lib/domain/cycle'
 
 import { esc, head, note } from './ui'
-import { emptyContact } from '../lib/domain/clinic'
+import { emptyContact, emptyCoordinator } from '../lib/domain/clinic'
 import type { ChangeStep } from '../lib/domain/phase-change'
 import type { Frequency } from '../lib/domain/support'
 import { addPhotos, allPhotos, initPhotos, photoUrl, pickImages, removePhoto } from './photos'
@@ -59,7 +59,10 @@ import {
   profile,
   reset,
   S,
+  removeExercise,
+  removeJournal,
   saveExercise,
+  wipeJournal,
   saveJournal,
   setEventNote,
   toggleEventDone,
@@ -101,6 +104,7 @@ import { isJourneySection, screenJourney, type JourneySection } from './screens-
 import { screenCyklus } from './screens-cyklus'
 import type { EmbryoFate, EmbryoStage, PgtKind, PgtResult, ThawResult } from '../lib/domain/embryo'
 import type { PaymentMethod } from '../lib/domain/finance'
+import { JINY_LEK, kindFor, type MedKind } from '../lib/domain/meds-catalog'
 import {
   isExamWho,
   screenDiagnoza as screenMojeDiagnoza,
@@ -118,6 +122,7 @@ import { isZdravSection, measureTitle, screenZdravotni, type ZdravSection } from
 import { weekShareText } from './screens-tyden'
 import { hydrateCharts, wordmark } from './viz'
 import { quickButton, quickSheet } from './quick-add'
+import { currentReport, openReport } from './report-print'
 import {
   screenDiagnoza,
   screenDiagnozy,
@@ -363,6 +368,14 @@ const view = {
   phasePick: null as string | null,
   /** Kroky změny fáze, které si uživatelka odškrtla. */
   phaseOff: [] as string[],
+  /**
+   * Co se má dostat do PDF přehledu.
+   *
+   * Deník je schválně vypnutý. Přehled se dává z ruky, deník ne, dokud
+   * si to uživatelka výslovně nezvolí. Volba se nikam neukládá, aby
+   * příště zase začínala vypnutá.
+   */
+  report: { finance: true, journal: false },
 }
 
 let stack: string[] = []
@@ -503,7 +516,7 @@ function screenFor(route: string): string {
     case 'denik': {
       const wanted = a.split('/')[0]
       const section = (DENIK_SECTIONS.some((x) => x.id === wanted) ? wanted : 'dnes') as DenikSection
-      return screenDenik(section)
+      return screenDenik(section, view.accordion)
     }
     case 'cviceni':
       return screenCviceni(a)
@@ -569,7 +582,7 @@ function screenFor(route: string): string {
     case 'partner':
       return screenPartner()
     case 'nastaveni':
-      return screenNastaveni()
+      return screenNastaveni(view.report)
     case 'clenstvi':
       return screenClenstvi()
     case 'proc':
@@ -1230,6 +1243,16 @@ function screenZmenaFazePotvrzeni(r: RouteDef, aktualniNazev: string): string {
 }
 
 function saveClinicForm(): void {
+  // Koordinátorka má vlastní kartu, která je na obrazovce i tehdy, když
+  // údaje kliniky ještě nejsou vyplněné. Ukládá se proto zvlášť.
+  if (document.getElementById('co-name')) {
+    updateClinic((c) => {
+      c.coordinator.name = val('co-name')
+      c.coordinator.phone = val('co-phone')
+      c.coordinator.email = val('co-email')
+      c.coordinator.note = val('co-note')
+    })
+  }
   if (!document.getElementById('cl-name')) return
   updateClinic((c) => {
     c.name = val('cl-name')
@@ -1487,6 +1510,19 @@ function action(act: string, argValue: string): void {
       saveExercise(argValue, fields)
       break
     }
+    case 'journal-del':
+      if (!confirm('Smazat zápis z tohohle dne? Vrátit to nejde.')) return
+      removeJournal(argValue)
+      break
+    case 'ex-del':
+      if (!confirm('Smazat tenhle záznam cvičení? Vrátit to nejde.')) return
+      removeExercise(argValue)
+      break
+    case 'journal-wipe':
+      if (!confirm('Vymazat celý deník? Všechny zápisy, nálady i vyplněná cvičení zmizí. Cyklů, embryí a financí se to nedotkne.')) return
+      wipeJournal()
+      toast('Deník je prázdný.')
+      break
     case 'breath-start':
       startBreathing()
       return
@@ -1544,19 +1580,27 @@ function action(act: string, argValue: string): void {
       })
       break
     case 'med-add': {
-      const name = val('med-name')
-      if (!name) return
+      const name = val('med-name').trim()
+      if (!name) {
+        toast('Napište název přípravku, nebo ho vyberte ze seznamu.')
+        focusField('med-name')
+        return
+      }
+      // Dávka a jednotka se ukládají jako jeden text, protože se tak
+      // i čte: „225 IU“. Rozdělené by se to muselo pokaždé skládat.
+      const davka = [val('med-dose').trim(), val('med-unit').trim()].filter(Boolean).join(' ')
+      const opakovani = val('med-repeat')
       patch((d) => {
         d.meds.push({
           id: uid('md'),
           name,
-          kind: 'injekce',
-          dose: val('med-dose'),
+          kind: (val('med-kind') || kindFor(name)) as MedKind,
+          dose: davka,
           times: val('med-time') ? [val('med-time')] : [],
-          repeat: 'denne',
-          startOn: null,
-          endOn: null,
-          doctorNote: '',
+          repeat: opakovani === 'obden' || opakovani === 'jednou' ? opakovani : 'denne',
+          startOn: dateOrNull('med-from'),
+          endOn: dateOrNull('med-to'),
+          doctorNote: val('med-note'),
           instructions: '',
           notify: true,
           history: [],
@@ -1564,7 +1608,9 @@ function action(act: string, argValue: string): void {
           photos: [],
           cycleId: activeCycleId(),
         })
+        d.medDraft = ''
       })
+      toast(`${name} přidán do protokolu.`)
       break
     }
     case 'med-del':
@@ -1833,6 +1879,12 @@ function action(act: string, argValue: string): void {
     case 'clinic-save':
       saveClinicForm()
       toast('Uloženo.')
+      break
+    case 'coord-clear':
+      updateClinic((c) => {
+        c.coordinator = emptyCoordinator()
+      })
+      toast('Kontakt na koordinátorku odstraněn.')
       break
     case 'clinic-contact-add':
       saveClinicForm()
@@ -2332,6 +2384,20 @@ function action(act: string, argValue: string): void {
       location.hash = '#/dnes'
       applyTheme()
       break
+    case 'report-opt':
+      if (argValue === 'finance') view.report.finance = !view.report.finance
+      if (argValue === 'journal') view.report.journal = !view.report.journal
+      break
+    case 'report-open': {
+      const doc = currentReport({
+        includeFinance: view.report.finance,
+        includeJournal: view.report.journal,
+      })
+      if (!openReport(doc)) {
+        toast('Prohlížeč zablokoval nové okno. Povolte vyskakovací okna a zkuste to znovu.')
+      }
+      return
+    }
     case 'export': {
       // Fotky žijí mimo `S.d` (v IndexedDB), takže se do exportu musí přidat
       // ručně. Bez nich by soubor tvrdil, že je kompletní, a nebyl by.
@@ -2358,6 +2424,19 @@ function action(act: string, argValue: string): void {
 /** Změny ve formulářích, které se ukládají rovnou (výběry a data). */
 function change(act: string, argValue: string, value: string): void {
   switch (act) {
+    case 'med-pick': {
+      // Výběr z číselníku jen předvyplní název. Dávku, čas ani cokoli
+      // jiného aplikace nenavrhuje.
+      const [nazev, skupina] = value.split('|')
+      patch((d) => {
+        d.medDraft = nazev === JINY_LEK ? '' : nazev
+      })
+      if (nazev === JINY_LEK) {
+        toast(skupina ? 'Napište název přípravku do pole Název.' : 'Napište název do pole Název.')
+        focusField('med-name')
+      }
+      break
+    }
     case 'set-phase':
       if (value !== '' && !isPhaseId(value)) return
       patch((d) => {

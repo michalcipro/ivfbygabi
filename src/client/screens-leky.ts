@@ -1,6 +1,14 @@
 import { formatCzechDate } from '../lib/domain/dates'
+import {
+  DISCLAIMER,
+  JINY_LEK,
+  kindFor,
+  MED_GROUPS,
+  MED_KIND_LABEL,
+  MED_UNITS,
+} from '../lib/domain/meds-catalog'
 import { guideFor } from '../lib/domain/guides'
-import { journey, S, viewDate, type MedRow } from './store'
+import { doseKey, dosesDone, journey, medsOn, S, viewDate, type MedRow } from './store'
 import { photoStrip } from './photo-ui'
 import { empty, esc, plural } from './ui'
 import { actionCard, sectionHead, segmented, statTrio } from './viz'
@@ -33,6 +41,13 @@ export function isLekySection(s: string): s is LekySection {
  * jen ukáže, co se kdy změnilo a proč to klinika řekla.
  */
 /** Časy dávek. Starý `timeOfDay` zůstává kvůli dřív uloženým datům. */
+function selectField(id: string, label: string, options: [string, string][], value: string): string {
+  return `<div><label class="label" for="${esc(id)}">${esc(label)}</label>
+    <select class="field" id="${esc(id)}">
+      ${options.map(([v, l]) => `<option value="${esc(v)}"${v === value ? ' selected' : ''}>${esc(l)}</option>`).join('')}
+    </select></div>`
+}
+
 function medTimes(m: MedRow): string {
   return m.times?.length ? m.times.join(', ') : (m.timeOfDay ?? '')
 }
@@ -70,13 +85,115 @@ function doseHistory(m: MedRow): string {
   </span>`
 }
 
-function doseKey(date: string, id: string): string {
-  return `med:${date}:${id}`
+/**
+ * Formulář na přidání léku.
+ *
+ * Sdílený mezi Léky a Kalendářem. Dřív měl kalendář vlastní osekanou verzi
+ * jen s názvem a časem, takže tam přidaný lék neměl dávku ani datum konce
+ * a v protokolu vypadal jako nedodělaný. Jeden formulář, jedno chování.
+ */
+export function medForm(): string {
+  return `<section class="surface pad rise">
+      <p class="eyebrow">Přidat lék</p>
+
+      <div class="formrow" style="margin-top:.9rem">
+        <label class="label" for="med-pick">Přípravek</label>
+        <select class="field" id="med-pick" data-act="med-pick">
+          <option value="">Vyberte ze seznamu…</option>
+          ${MED_GROUPS.map(
+            (g) => `<optgroup label="${esc(g.label)}">
+              ${g.items.map((x) => `<option value="${esc(x)}">${esc(x)}</option>`).join('')}
+              <option value="${esc(`${JINY_LEK}|${g.id}`)}">${esc(JINY_LEK)}</option>
+            </optgroup>`,
+          ).join('')}
+        </select>
+        <p class="faint" style="font-size:.75rem;margin-top:.35rem;line-height:1.45">
+          Když v seznamu není, napište název rovnou do pole níž.
+        </p>
+      </div>
+
+      <div class="two" style="margin-top:1.1rem">
+        <div><label class="label" for="med-name">Název</label>
+          <input class="field" id="med-name" value="${esc(S.d.medDraft ?? '')}" placeholder="např. Gonal-f" autocomplete="off"></div>
+        ${selectField('med-kind', 'Forma', Object.entries(MED_KIND_LABEL) as [string, string][], kindFor(S.d.medDraft ?? ''))}
+      </div>
+
+      <div class="two" style="margin-top:1.1rem">
+        <div><label class="label" for="med-dose">Dávka</label>
+          <input class="field" id="med-dose" placeholder="např. 225" autocomplete="off"></div>
+        ${selectField('med-unit', 'Jednotka', MED_UNITS.map((u) => [u, u]) as [string, string][], kindFor(S.d.medDraft ?? '') === 'injekce' ? 'IU' : 'mg')}
+      </div>
+
+      <div class="two" style="margin-top:1.1rem">
+        <div><label class="label" for="med-time">Čas</label>
+          <input class="field" id="med-time" placeholder="např. 20:00" autocomplete="off"></div>
+        ${selectField(
+          'med-repeat',
+          'Opakování',
+          [
+            ['denne', 'Každý den'],
+            ['obden', 'Obden'],
+            ['jednou', 'Jednorázově'],
+          ],
+          'denne',
+        )}
+      </div>
+
+      <div class="two" style="margin-top:1.1rem">
+        <div><label class="label" for="med-from">Od</label>
+          <input class="field" type="date" id="med-from" value="${esc(viewDate())}"></div>
+        <div><label class="label" for="med-to">Do</label>
+          <input class="field" type="date" id="med-to" value=""></div>
+      </div>
+
+      <div style="margin-top:1.1rem">
+        <label class="label" for="med-note">Poznámka</label>
+        <input class="field" id="med-note" placeholder="co k tomu klinika řekla" autocomplete="off">
+      </div>
+
+      <button class="btn btn-primary" data-act="med-add" style="margin-top:1.25rem">Přidat do protokolu</button>
+      <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">${esc(DISCLAIMER)}</p>
+    </section>`
+}
+
+/**
+ * Dávky na jeden den s odškrtáváním.
+ *
+ * Ukazuje jen to, co na ten den podle protokolu opravdu připadá. Lék, který
+ * skončil nebo se bere obden, tu v mezidni není, aby odškrtnutý den znamenal,
+ * že je hotovo doopravdy.
+ */
+export function medDoses(date: string): string {
+  const meds = medsOn(date)
+  if (meds.length === 0) return ''
+
+  const done = dosesDone(date)
+
+  return `<section class="surface pad rise">
+    <div class="row wrap" style="justify-content:space-between;gap:.6rem;align-items:baseline">
+      <p class="eyebrow">Dávky na ${esc(formatCzechDate(date, { weekday: true }))}</p>
+      <span class="faint num" style="font-size:.75rem">${done} / ${meds.length}</span>
+    </div>
+    <div class="stack" style="gap:.2rem;margin-top:.7rem">
+      ${meds
+        .map((m) => {
+          const key = doseKey(date, m.id)
+          const hotovo = Boolean(S.d.checks[key])
+          return `<button class="check" data-act="check" data-arg="${esc(key)}" aria-pressed="${hotovo}">
+            <span class="box">✓</span>
+            <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(m.name)}
+              <br><span class="faint" style="font-size:.8125rem">${esc([m.dose, medTimes(m), MED_KIND_LABEL[m.kind]].filter(Boolean).join(' · '))}</span></span>
+          </button>`
+        })
+        .join('')}
+    </div>
+    <p class="faint" style="margin-top:.8rem;font-size:.75rem;line-height:1.5">Odškrtnutí je jen vaše poznámka, že je hotovo. Aplikace nikdy nepřipomíná dávku, kterou neurčila klinika.</p>
+  </section>`
 }
 
 function paneDnes(): string {
   const date = viewDate()
-  const meds = S.d.meds
+  const meds = medsOn(date)
 
   if (meds.length === 0) {
     return [
@@ -89,7 +206,7 @@ function paneDnes(): string {
     ].join('')
   }
 
-  const done = meds.filter((m) => S.d.checks[doseKey(date, m.id)]).length
+  const done = dosesDone(date)
 
   return [
     statTrio([
@@ -98,21 +215,7 @@ function paneDnes(): string {
       { icon: '◷', value: meds.length - done, label: 'Zbývá' },
     ]),
 
-    `<section class="surface pad rise" style="margin-top:1.1rem">
-      <p class="eyebrow">${esc(formatCzechDate(date, { weekday: true }))}</p>
-      <div class="stack" style="gap:.2rem;margin-top:.7rem">
-        ${meds
-          .map((m) => {
-            const key = doseKey(date, m.id)
-            return `<button class="check" data-act="check" data-arg="${esc(key)}" aria-pressed="${Boolean(S.d.checks[key])}">
-              <span class="box">✓</span>
-              <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(m.name)}
-                <br><span class="faint" style="font-size:.8125rem">${esc(m.dose)}${m.timeOfDay ? ` · ${esc(m.timeOfDay)}` : ''}</span></span>
-            </button>`
-          })
-          .join('')}
-      </div>
-    </section>`,
+    `<div style="margin-top:1.1rem">${medDoses(date)}</div>`,
 
     done === meds.length
       ? `<p class="note">Dnešek máte odškrtnutý celý. To se počítá.</p>`
@@ -134,23 +237,7 @@ function paneProtokol(): string {
   const guide = guideFor(state.phase.id)
 
   return [
-    `<section class="surface pad rise">
-      <p class="eyebrow">Přidat lék</p>
-      <div class="two" style="margin-top:.9rem">
-        <div><label class="label" for="med-name">Název</label>
-          <input class="field" id="med-name" placeholder="např. Gonal-F" autocomplete="off"></div>
-        <div><label class="label" for="med-dose">Dávka</label>
-          <input class="field" id="med-dose" placeholder="např. 225 IU" autocomplete="off"></div>
-      </div>
-      <div class="formrow" style="margin-top:1.1rem">
-        <label class="label" for="med-time">Kdy</label>
-        <input class="field" id="med-time" placeholder="např. ráno 7:00" autocomplete="off">
-      </div>
-      <button class="btn btn-primary" data-act="med-add" style="margin-top:1.25rem">Přidat do protokolu</button>
-      <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
-        Dávky si aplikace nevymýšlí ani nekontroluje. Zapisujete to, co vám určila klinika.
-      </p>
-    </section>`,
+    medForm(),
 
     meds.length
       ? `<section class="surface pad rise">
