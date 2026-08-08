@@ -2573,6 +2573,12 @@ window.addEventListener('hashchange', () => {
 load()
 applyTheme()
 
+// Bez jazyka prohlížeč neumí česky dělit slova. „Kryoembryotransfer“ se
+// pak v úzkém sloupci na telefonu zlomí kdekoliv a bez spojovníku.
+// Šablona `<html>` neobsahuje, prvek si vyrábí prohlížeč sám, takže se
+// jazyk nastavuje odsud.
+document.documentElement.lang = 'cs'
+
 // Seznam hlasů se v některých prohlížečích plní až po startu. Až doteče,
 // přepíše se upozornění „hlasy se ještě načítají“.
 onSpeechChange(speechTick)

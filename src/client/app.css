@@ -1240,7 +1240,9 @@ textarea.field { resize: vertical; line-height: 1.6; }
 }
 button.daycell { cursor: pointer; transition: border-color .25s var(--calm); }
 button.daycell:hover { border-color: var(--sand); }
-.daycell b { display: block; font-size: .875rem; font-weight: 500; }
+/* Jen datum nahoře, ne každé tučné písmo v buňce. Bez `>` chytalo pravidlo
+   i čísla u ikon a lámalo dvojici „ikona a počet“ na dva řádky. */
+.daycell > b { display: block; font-size: .875rem; font-weight: 500; }
 .daycell .sub { display: block; font-size: .6875rem; color: var(--fg-faint); }
 .daycell .counts { display: flex; justify-content: center; gap: .5rem; margin-top: .45rem; font-size: .8125rem; color: var(--fg-soft); }
 
@@ -1398,8 +1400,11 @@ body::before {
   line-height: 1.05; letter-spacing: -.02em; margin-top: .4rem;
 }
 .cyclemeta { display: flex; flex-wrap: wrap; gap: .35rem .9rem; margin-top: .9rem; font-size: .8125rem; color: var(--fg-soft); }
-.cyclemeta span { display: inline-flex; gap: .3rem; align-items: baseline; }
-.cyclemeta b { color: var(--fg); font-weight: 500; }
+.cyclemeta span { display: inline-flex; flex-wrap: wrap; gap: .3rem; align-items: baseline; min-width: 0; }
+.cyclemeta b { color: var(--fg); font-weight: 500; min-width: 0; }
+/* Popisek se nelomí. „Lékař“ rozseknuté na „Léka“ a „ř“ vypadá jako chyba
+   v datech, ne jako těsný sloupec. */
+.cyclemeta i { font-style: normal; white-space: nowrap; }
 .cycleprogress { height: 3px; border-radius: 3px; background: var(--line); margin-top: 1.1rem; overflow: hidden; }
 .cycleprogress i { display: block; height: 100%; background: var(--s1); border-radius: 3px; transition: width .8s var(--calm); }
 
@@ -1513,6 +1518,9 @@ button.tlitem:hover b { color: var(--s1); }
 .cmp th {
   font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase;
   color: var(--fg-faint); font-weight: 600;
+  /* Čísla se nelámou, popisky sloupců ano. Jinak šířku tabulky určuje
+     nejdelší nadpis a osm sloupců se nevejde ani na počítač. */
+  white-space: normal;
 }
 .cmp td.r, .cmp th.r { text-align: right; }
 .cmp td.num { font-variant-numeric: lining-nums tabular-nums; }
@@ -1522,9 +1530,10 @@ button.tlitem:hover b { color: var(--s1); }
 
 /* --- srovnávací tabulky na telefonu --------------------------------------
    Pět sloupců se na 390px nevejde ani při rolování. Buňky zbydou tak úzké,
-   že se každá věta láme po slovech. Pod 640px se proto řádek rozloží
-   na kartičku a název sloupce se přesune před hodnotu. */
-@media (max-width: 640px) {
+   že se každá věta láme po slovech. Pod 64rem se proto řádek rozloží
+   na kartičku a název sloupce se přesune před hodnotu. Hranice je stejná
+   jako u ostatních tabulek níž, aby se obě chovaly stejně. */
+@media (max-width: 63.99rem) {
   .prose .tablewrap { overflow-x: visible; background: none; }
   .prose table, .prose tbody, .prose tr, .prose td { display: block; width: 100%; }
   .prose thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -1644,4 +1653,231 @@ button.tlitem:hover b { color: var(--s1); }
 .phasechip button {
   background: none; border: 0; padding: 0; cursor: pointer;
   font: inherit; color: var(--s1); white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   TELEFON A TABLET
+
+   Jediné pravidlo: na malé obrazovce se nikdy neposouvá do stran. Ani celá
+   stránka, ani pás uvnitř ní. Vodorovný posuv se na telefonu nedá objevit,
+   protože ho nic neohlašuje. Co je za pravým okrajem, pro uživatelku
+   neexistuje, i když to technicky vzato jde dorolovat.
+
+   Proto se všechno, co bylo na počítači vodorovný pás (souhrn nahoře,
+   karty obsahu, pás dnů, srovnávací tabulky), na telefonu překlápí do
+   sloupce nebo do mřížky. Nic se přitom neschovává.
+   ========================================================================== */
+
+/* --- dlouhá slova ---------------------------------------------------------
+   Čeština má „kryoembryotransfer“ a uživatelka si do deníku vloží odkaz.
+   Jedno takové slovo umí roztlačit celý řádek za okraj, protože se počítá
+   do nejmenší možné šířky bloku. `anywhere` je tady schválně místo
+   `break-word`: jen ono tu nejmenší šířku opravdu sníží. */
+body { overflow-wrap: anywhere; hyphens: auto; }
+
+/* Čísla, částky, časy a datumy se nelámou nikdy. „12 500 Kč“ zlomené přes
+   dva řádky se čte jako dvě různá čísla. */
+.num, .statv, .bignum, .when, .val, time, code {
+  overflow-wrap: normal; hyphens: none;
+}
+
+/* Nadpisy se nedělí spojovníkem. Displejové písmo je na to moc velké
+   a spojovník uprostřed nadpisu vypadá jako chyba sazby. */
+h1, h2, h3, h4, .display { hyphens: none; }
+
+/* Položka seznamu je uvnitř mřížky. Bez tohohle si drží nejmenší šířku
+   podle nejdelšího slova a přeteče, i když je text kolem zlomitelný. */
+.linelist li, .bullets li, .ivfstep, .funnel li { min-width: 0; }
+.linelist li > span { min-width: 0; }
+
+/* Datum vlevo v seznamu má na počítači pevných 5,5rem. Na telefonu tím
+   ukrojí třetinu řádku a na text zbyde tak málo, že se „Kryoembryotransfer“
+   nemá kam vejít a zlomí se uprostřed slova. Řádky s datem se proto na
+   telefonu rozloží: datum nahoru přes celou šířku, text a stav pod něj.
+   `:has` je tu schválně, aby se nezměnily řádky, které datum nemají. */
+@media (max-width: 34rem) {
+  .linelist { gap: .85rem; }
+  .linelist li:has(> .when) {
+    display: grid;
+    /* Hlavní text má přednost: 9,5rem je nejdelší slovo, které se v téhle
+       velikosti v aplikaci vyskytuje („Kryoembryotransfer“). Zbytek řádku
+       dostane stav a v případě potřeby se zalomí. */
+    grid-template-columns: minmax(9.5rem, 1fr) minmax(0, auto);
+    gap: .15rem .7rem; align-items: baseline;
+  }
+  .linelist li:has(> .when) > .when { grid-column: 1 / -1; width: auto; }
+  /* Stav vpravo se smí zalomit. Jinak si urve šířku podle nejdelší věty
+     a hlavnímu textu zbyde míň, než je nejdelší slovo. */
+  .linelist li:has(> .when) > .tag { white-space: normal; text-align: right; }
+}
+
+/* Krátký štítek na konci řádku. Na počítači se nelomí. */
+.tag { white-space: nowrap; }
+
+/* Pod 22rem (rozložený telefon, staré malé Androidy) přestává platit
+   i rezerva pro nejdelší slovo. Přednost dostane částka a datum, text
+   se zlomí, kde to jde. Lepší zlomené slovo než utržený okraj. */
+@media (max-width: 22rem) {
+  .linelist li:has(> .when) { grid-template-columns: minmax(0, 1fr) minmax(0, auto); }
+  .btn { white-space: normal; }
+}
+
+/* Tlačítko ani karta nikdy nepřerostou svůj sloupec. Pevné šířky
+   (17rem u karty) platí, dokud je pro ně místo. */
+.btn, .ccard { max-width: 100%; }
+
+/* Řádek události v kalendáři. Rozvržení stojí v CSS, ne v atributu `style`
+   šablony: inline zápis přebije i pravidlo z média a na telefonu by se
+   nedal přeskládat. */
+.evrow { display: flex; gap: .9rem; align-items: flex-start; }
+
+/* Prostrkání versálek přidá u desetiznakového slova skoro dvacet bodů.
+   V úzké dlaždici to stačí na to, aby se „oplozených“ zlomilo. Na telefonu
+   se prostrkání zkrátí; velká písmena jsou čitelná i tak. */
+@media (max-width: 34rem) {
+  .eyebrow { letter-spacing: 0.08em; }
+
+  /* Řádek kalendáře: odškrtnutí, text, štítek druhu. Vedle sebe zbyde na
+     telefonu na název 116 px, což nestačí ani na „Embryotransfer“. Štítek
+     se proto přesune pod text. */
+  .evrow {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.4rem 0.75rem;
+  }
+  .evrow > .badge { grid-column: 2; justify-self: start; }
+}
+
+/* --- trojice čísel --------------------------------------------------------
+   Tři sloupce na 320 px nechají popisku 58 px. „Těhotenství“ potřebuje 61
+   a zlomí se uprostřed slova. Užší odsazení a menší popisek to spraví;
+   sloupce zůstanou tři, protože se čtou proti sobě. */
+@media (max-width: 26rem) {
+  .trio { gap: .4rem; }
+  .triocell { padding: .8rem .3rem; }
+  .triocell .lb { font-size: .625rem; letter-spacing: 0; }
+}
+
+/* --- souhrn nahoře --------------------------------------------------------
+   Šest dlaždic v pásu je 856 px. Na telefonu byly čtyři z nich za okrajem,
+   včetně Připomínek. Mřížka je vysype pod sebe: dvě vedle sebe na telefonu,
+   víc, jakmile je místo. */
+.summary-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+  gap: 0.45rem;
+  overflow: visible;
+}
+.sumtile { flex: initial; min-width: 0; }
+
+/* Na telefonu je dlaždice o třetinu užší, takže „Čekání na hCG“ končilo
+   jako „Čekání na h…“. Hodnota se místo ořezu zalomí do dvou řádků;
+   dlaždice zůstanou stejně vysoké, protože je mřížka natáhne. */
+@media (max-width: 40rem) {
+  .sumtile .lbl { font-size: 0.5625rem; letter-spacing: 0.06em; }
+  .sumtile .val {
+    white-space: normal; text-overflow: clip;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; font-size: 0.875rem; line-height: 1.3;
+  }
+}
+
+/* --- karty obsahu ---------------------------------------------------------
+   Karusel dává smysl myší, ne palcem. Na telefonu i na tabletu se z pásu
+   stane mřížka, která se zalomí: jeden sloupec na telefonu, dva na tabletu.
+   Nad 64rem, tedy na počítači, pás zůstává, protože tam se posouvá kolečkem
+   a je z něj vidět, že pokračuje. */
+@media (max-width: 63.99rem) {
+  .rail {
+    display: grid; gap: 0.85rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    overflow-x: visible; padding: 2px 2px 0;
+  }
+  .rail > * { scroll-snap-align: none; }
+  .rail .ccard, .bubble-gabi .rail .ccard { width: 100%; }
+}
+/* Na telefonu se náhled sníží, aby se sloupec karet nenatáhl donekonečna. */
+@media (max-width: 34rem) {
+  .ccard .hero { height: 7.5rem; }
+}
+
+/* --- přepínače sekcí ------------------------------------------------------
+   Pět dílků se do 320 px nevejde. Zalomí se do dvou řádků; kulatý rám by
+   u dvou řádků vypadal jako chyba, tak se z něj stane zaoblený obdélník. */
+@media (max-width: 34rem) {
+  .segmented {
+    flex-wrap: wrap; overflow-x: visible; border-radius: var(--r-lg);
+  }
+  .segmented button { flex: 1 1 auto; padding: 0.55rem 0.7rem; font-size: 0.8125rem; }
+}
+
+/* Podnavigace fází má devět dílků, takže se musí zalamovat i na tabletu. */
+@media (max-width: 47.99rem) {
+  .subnav { flex-wrap: wrap; overflow-x: visible; }
+}
+
+/* --- pás posledních dnů ---------------------------------------------------
+   Sedm buněk po 6,6rem je 46rem, což se nevejde ani na tablet naležato.
+   Do 48rem se z pásu stane sloupec: datum vlevo, nálada uprostřed, počty
+   vpravo. Nad tím zůstane řádek, ale jako mřížka o sedmi stejných dílech,
+   které se smrsknou podle místa, ne pás, který uteče za okraj. */
+@media (max-width: 47.99rem) {
+  .daystrip {
+    display: grid; grid-template-columns: 1fr; gap: 0.4rem;
+    overflow-x: visible; padding-bottom: 0;
+  }
+  .daycell {
+    width: auto; display: grid; grid-template-columns: auto 1fr auto;
+    gap: 0.7rem; align-items: baseline; text-align: left; padding: 0.6rem 0.9rem;
+  }
+  .daycell .sub { text-align: left; }
+  .daycell .counts { margin-top: 0; justify-content: flex-end; }
+}
+
+/* Ikona a číslo patří k sobě. `overflow-wrap: anywhere` z celého dokumentu
+   tady škodí: dovolí zlom mezi ikonou a číslem, takže se dvojice smrskne
+   na šířku ikony a číslo spadne pod ni. */
+.daycell .counts, .daycell .counts > span {
+  overflow-wrap: normal; white-space: nowrap;
+}
+.daycell .counts > span { flex: none; }
+@media (min-width: 48rem) {
+  .daystrip {
+    display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
+    overflow-x: visible;
+  }
+  .daycell { width: auto; min-width: 0; }
+}
+
+/* --- srovnávací a datové tabulky -----------------------------------------
+   Osm sloupců čísel se na telefon nevejde v žádné podobě. Řádek se rozloží
+   na kartičku a název sloupce se přesune před hodnotu, stejně jako to už
+   dělají tabulky v článcích. Buňky proto musí mít `data-label`. */
+@media (max-width: 63.99rem) {
+  .cmp, .tablewrap { overflow-x: visible; background: none; }
+  .cmp table, .cmp tbody, .cmp tr, .cmp td,
+  .datatable, .datatable tbody, .datatable tr, .datatable td { display: block; width: 100%; }
+  .cmp thead, .datatable thead {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);
+  }
+  .cmp tr, .datatable tr {
+    background: var(--card-muted); border-radius: var(--r-sm);
+    padding: 0.35rem 0.85rem; margin-bottom: 0.5rem;
+  }
+  .cmp td, .datatable td {
+    border-bottom: 1px solid var(--line); padding: 0.5rem 0;
+    white-space: normal; text-align: left;
+  }
+  .cmp td.r, .datatable td.r { text-align: left; }
+  .cmp td.sticky, .datatable td.sticky { position: static; background: none; }
+  .cmp tr td:last-child, .datatable tr td:last-child { border-bottom: 0; }
+  .cmp td::before, .datatable td::before {
+    content: attr(data-label);
+    display: block; font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--fg-faint); font-weight: 600; margin-bottom: 0.15rem;
+  }
+  /* První buňka je název položky, tedy nadpis kartičky, ne údaj. */
+  .cmp tr td:first-child, .datatable tr td:first-child { font-weight: 600; font-size: 1rem; }
+  .cmp tr td:first-child::before, .datatable tr td:first-child::before { content: none; }
+  /* Prázdné buňky by v kartičce byly řádek s popiskem a pomlčkou. */
+  .cmp td:empty, .datatable td:empty { display: none; }
 }

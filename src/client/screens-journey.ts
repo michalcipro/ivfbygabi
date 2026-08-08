@@ -222,7 +222,9 @@ function symptomLabel(id: string): string {
 
 /** Řádek do `.cyclemeta`. Prázdné hodnoty se zahazují už u volajícího. */
 function meta(label: string, value: string): string {
-  return `<span>${esc(label)} <b>${esc(value)}</b></span>`
+  // Popisek má vlastní prvek, aby se dal v CSS zakázat zlom. Jako holý
+  // textový uzel se na úzkém telefonu lámal na „Léka / ř“.
+  return `<span><i>${esc(label)}</i> <b>${esc(value)}</b></span>`
 }
 
 /** Definiční řádky do `.kv`. Co není zapsané, se nezobrazuje. */
@@ -836,15 +838,18 @@ function compareTable(list: CycleRow[]): string {
       <tbody>
         ${rows
           .map(
+            // `data-label` není dekorace. Na telefonu se z řádku stane
+            // kartička a popisek sloupce se přesune před hodnotu. Bez něj
+            // by tam zůstala holá čísla bez toho, co znamenají.
             (n) => `<tr>
-              <td class="sticky">${esc(n.title)}</td>
-              <td class="r num">${esc(n.stimDays !== null ? czDays(n.stimDays) : '–')}</td>
-              <td class="r num">${esc(numOrNull(n.eggs) ?? '–')}</td>
-              <td class="r num">${esc(numOrNull(n.mature) ?? '–')}</td>
-              <td class="r num">${esc(numOrNull(n.fertilized) ?? '–')}</td>
-              <td class="r num">${esc(numOrNull(n.blastocysts) ?? '–')}</td>
-              <td class="r num">${esc(numOrNull(n.frozen) ?? '–')}</td>
-              <td>${esc(OUTCOME_LABEL[n.outcome])}</td>
+              <td class="sticky" data-label="Cyklus">${esc(n.title)}</td>
+              <td class="r num" data-label="Stimulace">${esc(n.stimDays !== null ? czDays(n.stimDays) : '–')}</td>
+              <td class="r num" data-label="Vajíčka">${esc(numOrNull(n.eggs) ?? '–')}</td>
+              <td class="r num" data-label="Zralá vajíčka">${esc(numOrNull(n.mature) ?? '–')}</td>
+              <td class="r num" data-label="Oplozená vajíčka">${esc(numOrNull(n.fertilized) ?? '–')}</td>
+              <td class="r num" data-label="Blastocysty">${esc(numOrNull(n.blastocysts) ?? '–')}</td>
+              <td class="r num" data-label="Zamražená embrya">${esc(numOrNull(n.frozen) ?? '–')}</td>
+              <td data-label="Výsledek">${esc(OUTCOME_LABEL[n.outcome])}</td>
             </tr>`,
           )
           .join('')}

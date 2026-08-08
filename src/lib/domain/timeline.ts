@@ -289,8 +289,11 @@ export function buildTimeline(input: TimelineInput): TimelineItem[] {
   const covered = new Set<string>()
   // Den odběru hCG, kde už je zapsaná hodnota. Samotný milník by pak stál vedle
   // výsledku jako prázdná ozvěna.
+  // `?? ''` není přebytečné. Hodnota uložená starší verzí aplikace klíč
+  // parametru mít nemusí a bez pojistky spadne celá časová osa na prázdnou
+  // obrazovku. Data v prohlížeči přežijí víc verzí než kód.
   const betaResults = new Set(
-    input.labs.filter((l) => l.paramKey.includes('hcg')).map((l) => l.onDate),
+    input.labs.filter((l) => (l.paramKey ?? '').includes('hcg')).map((l) => l.onDate),
   )
   if (c) {
     for (const m of cycleMilestones(c)) {
@@ -380,7 +383,7 @@ export function buildTimeline(input: TimelineInput): TimelineItem[] {
   for (const l of input.labs) {
     if (!belongs(win, l.onDate)) continue
     const param = LAB_BY_KEY[l.paramKey]
-    const isBeta = l.paramKey.includes('hcg')
+    const isBeta = (l.paramKey ?? '').includes('hcg')
     out.push({
       id: `lab:${l.id}`,
       date: l.onDate,

@@ -591,18 +591,20 @@ export function embryoTable(list: Embryo[]): string {
 
   const radek = (e: Embryo) => {
     const last = lastDay(e)
+    // `data-label` drží význam sloupce i potom, co se na telefonu z řádku
+    // stane kartička a hlavička tabulky zmizí.
     return `<tr>
-      <td><button class="linkish" data-act="emb-open" data-arg="${esc(e.id)}">${esc(embryoTitle(e))}</button>${
+      <td data-label="Embryo"><button class="linkish" data-act="emb-open" data-arg="${esc(e.id)}">${esc(embryoTitle(e))}</button>${
         prenesene.has(e.id)
           ? '<br><span class="faint" style="font-size:.7rem">aktuální</span>'
           : ''
       }</td>
-      <td>${esc(nazev.get(e.cycleId) ?? DASH)}</td>
-      <td class="num">${last ? `D${last.day}` : DASH}</td>
-      <td>${last && last.stage ? esc(STAGE_LABEL[last.stage]) : DASH}</td>
-      <td>${last?.grade.trim() ? esc(last.grade) : DASH}</td>
-      <td>${e.pgt ? esc(PGT_LABEL[e.pgt]) + (e.pgtResult ? `<br><span class="faint">${esc(PGT_RESULT_LABEL[e.pgtResult])}</span>` : '') : DASH}</td>
-      <td><span class="badge badge-soft">${esc(FATE_LABEL[e.fate])}</span></td>
+      <td data-label="Cyklus">${esc(nazev.get(e.cycleId) ?? DASH)}</td>
+      <td class="num" data-label="Den">${last ? `D${last.day}` : DASH}</td>
+      <td data-label="Stadium">${last && last.stage ? esc(STAGE_LABEL[last.stage]) : DASH}</td>
+      <td data-label="Hodnocení">${last?.grade.trim() ? esc(last.grade) : DASH}</td>
+      <td data-label="Genetika">${e.pgt ? esc(PGT_LABEL[e.pgt]) + (e.pgtResult ? `<br><span class="faint">${esc(PGT_RESULT_LABEL[e.pgtResult])}</span>` : '') : DASH}</td>
+      <td data-label="Stav"><span class="badge badge-soft">${esc(FATE_LABEL[e.fate])}</span></td>
     </tr>`
   }
 
@@ -1036,7 +1038,7 @@ export function screenPodpora(): string {
               .map(
                 (e) => `<li>
                   <span style="flex:1;min-width:0;font-weight:500">${esc(supportTitle(e))}</span>
-                  <span class="faint" style="font-size:.8125rem;white-space:nowrap">${esc(
+                  <span class="faint tag" style="font-size:.8125rem">${esc(
                     join([
                       e.frequency ? FREQUENCY_LABEL[e.frequency] : '',
                       e.since ? `od ${formatCzechDateShort(e.since)}` : '',
@@ -1226,8 +1228,11 @@ export function screenHistorieIvf(): string {
                 .map(
                   (t, i) => `<li>
                     <span class="when">${esc(t.date ? formatCzechDateShort(t.date) : DASH)}</span>
-                    <span style="flex:1;min-width:0">${esc(tr.length > 1 ? `${i + 1}. transfer` : 'Transfer')} · ${esc(TRANSFER_KIND_LABEL[t.kind])}</span>
-                    <span class="faint" style="font-size:.75rem;white-space:nowrap">${esc(t.cancelled ? 'zrušen' : TRANSFER_OUTCOME_LABEL[t.outcome])}</span>
+                    <!-- Krátký druh, ne „Kryoembryotransfer (KET)“. Vedle slova
+                         „transfer“ je dlouhý název zdvojený a na telefonu je to
+                         nejdelší slovo v aplikaci. -->
+                    <span style="flex:1;min-width:0">${esc(tr.length > 1 ? `${i + 1}. transfer` : 'Transfer')} · ${esc(TRANSFER_KIND_SHORT[t.kind])}</span>
+                    <span class="faint tag" style="font-size:.75rem">${esc(t.cancelled ? 'zrušen' : TRANSFER_OUTCOME_LABEL[t.outcome])}</span>
                   </li>`,
                 )
                 .join('')}

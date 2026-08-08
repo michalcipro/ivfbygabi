@@ -161,7 +161,7 @@ function eventRow(e: CalItem, today: string): string {
   const overdue = inDays < 0 && !st.done
 
   return `<div class="surface" style="padding:1.1rem 1.25rem${overdue ? ';border-color:var(--blush)' : ''}">
-    <div style="display:flex;gap:.9rem;align-items:flex-start">
+    <div class="evrow">
       <button class="check" data-act="event-done" data-arg="${esc(e.id)}" aria-pressed="${st.done}" style="width:auto;flex:none;margin-top:.1rem">
         <span class="box">✓</span>
       </button>
