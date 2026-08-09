@@ -123,6 +123,10 @@ import { weekShareText } from './screens-tyden'
 import { hydrateCharts, wordmark } from './viz'
 import { quickButton, quickSheet } from './quick-add'
 import { currentReport, openReport } from './report-print'
+import { screenOBloomii } from './screens-obloomii'
+import { screenNapisteMi } from './screens-napiste'
+import { emptyFeedback, hasContent, type FeedbackTopic } from '../lib/domain/feedback'
+import { sendFeedback } from './feedback-send'
 import {
   screenDiagnoza,
   screenDiagnozy,
@@ -263,6 +267,8 @@ const TITLES: Record<string, string> = {
   obchod: 'Doporučené',
   partner: 'Partner mode',
   nastaveni: 'Nastavení',
+  'o-bloomii': 'Kdo stojí za Bloomií',
+  'napiste-mi': 'Napište mi',
   clenstvi: 'Členství',
   proc: 'Proč vidím tohle',
 }
@@ -309,6 +315,8 @@ const PARENT: Record<string, string> = {
   obchod: 'pruvodce',
   partner: 'pruvodce',
   nastaveni: 'pruvodce',
+  'o-bloomii': 'profil',
+  'napiste-mi': 'profil',
   clenstvi: 'pruvodce',
   proc: 'dnes',
   journey: 'dnes',
@@ -376,6 +384,10 @@ const view = {
    * příště zase začínala vypnutá.
    */
   report: { finance: true, journal: false },
+  /** Rozepsaná zpětná vazba. Neukládá se: odejde, nebo zmizí s oknem. */
+  feedback: emptyFeedback(),
+  /** Co se stalo po odeslání: prázdné, `odeslano` nebo `posta`. */
+  feedbackStav: '',
 }
 
 let stack: string[] = []
@@ -583,6 +595,10 @@ function screenFor(route: string): string {
       return screenPartner()
     case 'nastaveni':
       return screenNastaveni(view.report)
+    case 'o-bloomii':
+      return screenOBloomii()
+    case 'napiste-mi':
+      return screenNapisteMi(view.feedback, view.feedbackStav)
     case 'clenstvi':
       return screenClenstvi()
     case 'proc':
@@ -2384,6 +2400,43 @@ function action(act: string, argValue: string): void {
       location.hash = '#/dnes'
       applyTheme()
       break
+    // --- zpětná vazba -----------------------------------------------------
+    case 'fb-topic':
+      saveFeedbackForm()
+      view.feedback.topic = argValue as FeedbackTopic
+      view.feedbackStav = ''
+      break
+    case 'fb-star':
+      saveFeedbackForm()
+      // Klepnutí na už vybranou hvězdu hodnocení zruší. Jinak by šlo
+      // vzít zpátky jen restartem aplikace.
+      view.feedback.rating = view.feedback.rating === Number(argValue) ? null : Number(argValue)
+      view.feedbackStav = ''
+      break
+    case 'fb-reply':
+      saveFeedbackForm()
+      view.feedback.mayReply = !view.feedback.mayReply
+      view.feedbackStav = ''
+      break
+    case 'fb-send': {
+      saveFeedbackForm()
+      if (!hasContent(view.feedback)) {
+        toast('Napište prosím aspoň větu, ať mám co poslat.')
+        focusField('fb-msg')
+        return
+      }
+      const zprava = view.feedback
+      void sendFeedback(zprava, viewDate()).then((vysledek) => {
+        view.feedbackStav = vysledek
+        // Formulář se čistí až po skutečném odeslání. Kdyby se vyprázdnil
+        // dřív a odeslání selhalo, přišla by o všechno, co napsala.
+        if (vysledek === 'odeslano') view.feedback = emptyFeedback()
+        render()
+      })
+      toast('Odesílám…')
+      return
+    }
+
     case 'report-opt':
       if (argValue === 'finance') view.report.finance = !view.report.finance
       if (argValue === 'journal') view.report.journal = !view.report.journal
@@ -2419,6 +2472,24 @@ function action(act: string, argValue: string): void {
   // Akce se dějí na obrazovce, na které uživatelka právě je. Stránka
   // se proto nesmí hnout.
   renderInPlace()
+}
+
+/**
+ * Uloží rozepsanou zpětnou vazbu z polí do stavu.
+ *
+ * Obrazovka se překresluje celá, takže bez tohohle by klepnutí na hvězdu
+ * smazalo rozepsanou zprávu.
+ */
+function saveFeedbackForm(): void {
+  const f = view.feedback
+  const el = (id: string) => document.getElementById(id) as HTMLInputElement | null
+  if (!el('fb-msg')) return
+  f.message = val('fb-msg')
+  f.likes = val('fb-likes')
+  f.changes = val('fb-changes')
+  f.missing = val('fb-missing')
+  f.name = val('fb-name')
+  f.email = val('fb-email')
 }
 
 /** Změny ve formulářích, které se ukládají rovnou (výběry a data). */

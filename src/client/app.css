@@ -1902,3 +1902,28 @@ h1, h2, h3, h4, .display { hyphens: none; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .hero .motif { color: rgb(255 255 255 / 0.5); }
 }
+
+
+/* --- Bloomia: značka v sekci o autorce -----------------------------------
+   Jediné místo, kde se název vysvětluje sám sebou, tak dostane vlastní
+   kresbu. BLOOM a MIA se spojí a mezi nimi stojí poupě. */
+.bloomia-mark {
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  margin-top: 1.2rem; padding: 1.4rem 1rem;
+  border-radius: var(--r-lg); background: var(--card-muted);
+  color: var(--taupe-deep);
+}
+.bloomia-mark .part {
+  font-family: var(--display); font-size: clamp(1.35rem, 5vw, 1.9rem);
+  letter-spacing: .12em; color: var(--fg);
+}
+.bloomia-story .prose em { color: var(--taupe-deep); font-style: italic; }
+
+/* --- hvězdičky u recenze ------------------------------------------------- */
+.star {
+  border: 0; background: none; cursor: pointer; padding: .15rem;
+  font-size: 1.65rem; line-height: 1; color: var(--line);
+  transition: color .2s var(--calm), transform .2s var(--calm);
+}
+.star:hover { transform: scale(1.08); }
+.star[aria-pressed='true'] { color: var(--taupe); }
