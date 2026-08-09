@@ -36,6 +36,8 @@ import { pack as muz } from './packs/muz'
 import { pack as prace } from './packs/prace'
 import { pack as zmenaKliniky } from './packs/zmena-kliniky'
 import { pack as konecLecby } from './packs/konec-lecby'
+import { pack as dnyPoTransferu } from './packs/dny-po-transferu'
+import { pack as diarChecklisty } from './packs/diar-checklisty'
 
 /**
  * Registr obsahu.
@@ -73,6 +75,8 @@ const PACKS: ContentPack[] = [
   prace,
   zmenaKliniky,
   konecLecby,
+  dnyPoTransferu,
+  diarChecklisty,
 ]
 
 function dedupe<T extends { id: string }>(items: T[]): T[] {

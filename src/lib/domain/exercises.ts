@@ -441,6 +441,59 @@ export const EXERCISES: Exercise[] = [
     how: 'Napíšete si dopis tak, jak byste psala nejbližší kamarádce ve stejné situaci. Sebe-soucit není omlouvání ani lítost. Je to způsob, jak snížit tlak natolik, aby zbyla energie na to podstatné. Ženy v léčbě k sobě bývají mnohem tvrdší než ke komukoliv jinému.',
     groups: ['loss', 'waiting', 'treatment'],
   },
+
+  // --------------------------------------------- z tištěného diáře Gabi ---
+  {
+    id: 'udelala-jsem-maximum',
+    topic: 'dnes',
+    title: 'Udělala jsem maximum',
+    when: 'Večer před transferem nebo před odběrem. A pak kdykoli, když se přistihnete, jak hledáte, co jste udělala špatně.',
+    minutes: 6,
+    icon: '✦',
+    how: 'Sepíšete, co jste pro tenhle pokus udělala, a pak výslovně oddělíte to, co ovlivnit nešlo. Hlava po neúspěchu automaticky hledá vinu a najde ji vždycky, protože seznam „co jsem mohla udělat jinak“ je nekonečný. Tenhle zápis je něco, k čemu se dá vrátit a co ten seznam přebije: máte černé na bílém, co jste doopravdy udělala.',
+    groups: ['treatment', 'waiting'],
+    phases: ['transfer', 'stimulation', 'retrieval', 'two_week_wait'],
+    steps: [
+      { label: 'Co jsem pro tenhle pokus udělala', hint: 'Léky na čas, kontroly, odběry, změny, které jsem zvládla. Klidně deset řádků.' },
+      { label: 'Co jsem udělala navíc pro sebe', hint: 'Spánek, procházky, terapie, hranice v práci, rozhovor s partnerem.' },
+      { label: 'Co jsem ovlivnit nemohla', hint: 'Kvalita vajíček, genetika embrya, jak zareagovalo tělo. Nic z toho se nerozhoduje na úrovni, kam dosáhnete.' },
+    ],
+    closing: 'Kdyby to nevyšlo, co z tohohle seznamu bude pořád platit?',
+  },
+  {
+    id: 'nesrovnavat-cisla',
+    topic: 'myslenky',
+    title: 'Moje čísla nejsou cizí čísla',
+    when: 'Po odběru nebo po telefonátu z embryologie, když srovnáváte svoje počty s cizími.',
+    minutes: 5,
+    icon: '◔',
+    how: 'Rozeberete konkrétní srovnání, které vám leží v hlavě. Čísla z odběru se srovnávat nedají: každá jde do léčby z jiného důvodu, s jinou zásobou a jiným protokolem. Neplatí ani to, že víc folikulů znamená víc vajíček, ani že víc vajíček znamená lepší embrya. Tohle cvičení to srovnání nezakazuje, jen ho dopíše do konce, kde se obvykle rozpadne.',
+    groups: ['treatment'],
+    phases: ['retrieval', 'fertilization', 'embryo_culture'],
+    steps: [
+      { label: 'S čím se zrovna srovnávám', hint: 'Napište konkrétně. „Ona měla dvanáct vajíček a já pět.“' },
+      { label: 'Co o té druhé ženě nevím', hint: 'Věk, diagnóza, protokol, kolikátý je to cyklus, jak to dopadlo dál.' },
+      { label: 'Co vím o sobě', hint: 'Proč jdu na IVF já a co k mým číslům řekl můj lékař.' },
+    ],
+    closing: 'Změnilo by se něco na mé situaci, kdybych její číslo neznala?',
+  },
+  {
+    id: 'dnes-si-dovolim',
+    topic: 'ztrata',
+    title: 'Co si dneska dovolím',
+    when: 'V den negativního výsledku, po prvním nárazu.',
+    minutes: 4,
+    icon: '❍',
+    how: 'Vyberete si jednu věc, kterou jste si během léčby odpírala, a jednu, která vám dělá dobře. Není to odměna a nemá to nic zahladit. Je to způsob, jak dát tělu signál, že tenhle den někde končí. Truchlení tím nekončí a nemá končit; jen si vedle něj sedne něco jiného.',
+    groups: ['loss'],
+    phases: ['waiting_next_attempt', 'repeated_failure', 'loss_biochemical'],
+    steps: [
+      { label: 'Co jsem si celou dobu odpírala', hint: 'Horká vana, káva, jídlo, sport, volný večer. Cokoliv.' },
+      { label: 'Co si z toho dneska dovolím', hint: 'Jednu věc stačí. A nemusíte ani to, když dneska nechcete nic.' },
+      { label: 'Kdo o dnešku ví', hint: 'Komu jsem to řekla, nebo komu to říct chci. A komu ne.' },
+    ],
+    closing: 'Co bych dneska potřebovala slyšet od někoho blízkého?',
+  },
 ]
 
 export function exerciseById(id: string): Exercise | undefined {
