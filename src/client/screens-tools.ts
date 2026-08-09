@@ -201,6 +201,27 @@ export function screenCist(id: string): string {
 
 // ---------------------------------------------------------------- knihovna ---
 
+/**
+ * Knihovna začíná u toho, kde žena je.
+ *
+ * Bez tohohle bloku začínala u prvního článku v katalogu, tedy u přirozeného
+ * snažení, i když měla za sebou tři cykly. Celá knihovna se dá projít pod
+ * tím, ale první, co uvidí, je její fáze.
+ *
+ * Blok se nekreslí při hledání ani při filtru: tam chce vidět výsledek,
+ * ne doporučení.
+ */
+function proVas(): string {
+  const state = journey()
+  const items = recommend(CATALOG, state, affinity(), { limit: 6, threshold: 0.05 })
+  if (items.length === 0) return ''
+
+  return `<section>
+    ${sectionTitle('Pro vaši fázi', esc(state.dayLabel))}
+    <div class="rail">${items.map((i) => contentCard(i)).join('')}</div>
+  </section>`
+}
+
 export function screenKnihovna(query: string, kind: string): string {
   const q = query.trim()
   let items = q.length > 1 ? searchContent(q, 200) : CATALOG
@@ -208,9 +229,12 @@ export function screenKnihovna(query: string, kind: string): string {
 
   const kinds: string[] = ['vse', ...new Set(CATALOG.map((i) => i.kind))]
   const terms = q.length > 1 ? searchGlossary(q).slice(0, 8) : []
+  const filtrovano = q.length > 1 || kind !== 'vse'
 
   return [
     head('Celá knihovna', 'Knihovna', `${CONTENT_STATS.items} materiálů a ${GLOSSARY.length} pojmů. Hledá se v nadpisech i v textu.`),
+
+    filtrovano ? '' : proVas(),
 
     `<div class="stack" style="gap:1rem">
       <input class="searchbar" id="q" placeholder="Zkuste: hcg, blastocysta, OHSS, endometrium…" value="${esc(query)}" autocomplete="off">
