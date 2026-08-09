@@ -1881,3 +1881,24 @@ h1, h2, h3, h4, .display { hyphens: none; }
   /* Prázdné buňky by v kartičce byly řádek s popiskem a pomlčkou. */
   .cmp td:empty, .datatable td:empty { display: none; }
 }
+
+
+/* --- znak na kartě obsahu -------------------------------------------------
+   Karta měla jen barevnou plochu s pilulkou druhu. Dvacet karet pod sebou
+   vypadalo jako dvacet nedodělaných placeholderů. Znak říká, o čem text je,
+   ještě než si ho člověk přečte.
+
+   Kreslí se tenkou čarou v barvě textu, takže drží ve světlém i tmavém
+   motivu a nepůsobí jako nálepka nalepená na přechod. */
+.hero .motif {
+  position: absolute; top: 0.9rem; left: 0.9rem;
+  color: rgb(43 37 33 / 0.42);
+}
+.ccard .hero, .featurecard .hero, .prodcard .hero { position: relative; }
+.featurecard .motif { top: 1.5rem; left: 1.5rem; color: rgb(43 37 33 / 0.36); }
+
+/* Na tmavém motivu jsou plochy karet tmavší, takže tmavá kresba zmizí. */
+:root[data-theme='dark'] .hero .motif { color: rgb(255 255 255 / 0.5); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .hero .motif { color: rgb(255 255 255 / 0.5); }
+}

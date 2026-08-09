@@ -1,5 +1,7 @@
 import type { ContentItem, HeroToken } from '../lib/content/types'
 import { KIND_ICONS, KIND_LABELS } from '../lib/content/types'
+import { motifFor } from '../lib/content/motif'
+import { motifSvg } from './motif-svg'
 
 /** Stavební prvky. Všechny obrazovky se skládají z těchhle kousků. */
 
@@ -192,6 +194,7 @@ export function contentCard(item: ContentItem | undefined, why?: string): string
   if (!item) return ''
   return `<button class="ccard" data-go="cist/${esc(item.id)}">
     <div class="hero grain" style="${heroStyle(item.hero)}">
+      ${motifSvg(motifFor(item), 56)}
       <div class="meta">
         <span class="pill-kind">${esc(KIND_ICONS[item.kind])} ${esc(KIND_LABELS[item.kind])}</span>
         <span class="pill-min num">${item.minutes} min</span>

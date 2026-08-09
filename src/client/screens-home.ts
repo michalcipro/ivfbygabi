@@ -1,4 +1,6 @@
 import { PHASES, PHASE_GROUPS, PHASE_GROUP_META, PHASE_IDS, type PhaseId } from '../lib/domain/phases'
+import { motifFor } from '../lib/content/motif'
+import { motifSvg } from './motif-svg'
 import { MODIFIER_LABELS, TOPIC_LABELS, type TopicId } from '../lib/domain/profile'
 import { addDays, czDays, formatCzechDate, seedFrom } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
@@ -275,7 +277,7 @@ export function screenDnes(): string {
     ? `<section class="rise">
         ${sectionTitle('Dnešní doporučení', reasonFromDayLabel(state.dayLabel))}
         <button class="featurecard" data-go="cist/${esc(feature.id)}">
-          <div class="hero grain" style="${heroStyle(feature.hero)}"></div>
+          <div class="hero grain" style="${heroStyle(feature.hero)}">${motifSvg(motifFor(feature), 72)}</div>
           <div class="txt">
             <p class="eyebrow">${esc(feature.minutes)} min · ${esc(feature.topics.map((t) => TOPIC_LABELS[t]).slice(0, 2).join(' · '))}</p>
             <h3 class="display">${esc(feature.title)}</h3>
