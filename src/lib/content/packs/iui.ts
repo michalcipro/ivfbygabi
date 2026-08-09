@@ -204,9 +204,9 @@ První inseminace nevyšla. Ani druhá. Třetí ano.
 Kdybych to měla někomu říct dopředu: neděste se toho zákroku. Bát se máte spíš těch čtrnácti dní potom.`,
   },
   {
-    id: 'iui-video',
-    kind: 'video',
-    title: 'Video: jak vypadá zákrok a co uslyšíte v ordinaci',
+    id: 'iui-prubeh-zakroku',
+    kind: 'article',
+    title: 'Jak vypadá zákrok a co uslyšíte v ordinaci',
     excerpt: 'Průvodce zákrokem od příchodu po odchod, ať vás v ordinaci nic nepřekvapí.',
     minutes: 6,
     phases: ['iui'],
@@ -214,15 +214,24 @@ Kdybych to měla někomu říct dopředu: neděste se toho zákroku. Bát se má
     level: 'essential',
     hero: 'sage',
     publishedOn: '2026-07-20',
-    mediaNote:
-      'Video ukazuje průběh zákroku bez explicitních záběrů. Vysvětlení používá schéma. Uvidíte, kde budete ležet, co lékař dělá a co budete cítit.',
-    body: `## Co ve videu uvidíte
+    body: `## Jak to probíhá
 
-- Jak vypadá místnost a kde budete ležet.
-- Co dělá laboratoř se vzorkem, než se vrátí na sál.
-- Jak vypadá katétr. Je výrazně tenčí, než si většina žen představuje.
-- Co budete cítit a jak dlouho.
-- Co se děje bezprostředně po zákroku.
+**Místnost** vypadá jako běžná gynekologická ordinace. Budete ležet na
+gynekologickém křesle, stejně jako při kontrole.
+
+**Vzorek** je v tu chvíli už zpracovaný v laboratoři: spermie se oddělí od
+semenné tekutiny a zahustí do malého objemu. Zpracování trvá zhruba hodinu
+a probíhá ještě předtím, než jdete na sál.
+
+**Katétr** je tenká měkká hadička, výrazně tenčí, než si většina žen
+představuje. Zavede se přes děložní hrdlo a spermie se vypustí přímo do
+dutiny děložní.
+
+**Trvání** je krátké, obvykle pár minut. Delší bývá příprava než samotný
+zákrok.
+
+**Po zákroku** zůstanete chvíli ležet, obvykle deset až patnáct minut.
+Je to zvyklost, ne podmínka.
 
 ## Nejčastější otázky
 

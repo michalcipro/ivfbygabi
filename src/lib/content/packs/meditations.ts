@@ -1,13 +1,17 @@
 import type { ContentItem, ContentPack } from '../types'
 
 /**
- * Řízené meditace.
+ * Řízená cvičení pro zklidnění.
  *
- * Text v `body` je skutečný scénář. Dá se přečíst nahlas nebo si ho projít
- * očima. Záměrně nepracujeme s vizualizacemi typu „představte si zdravé
- * miminko“: v této skupině žen dokáže taková věta napáchat víc škody než užitku.
+ * V knihovně to jsou články jako každé jiné, jen psané jako scénář: dají se
+ * přečíst očima, nebo si je nechat přečíst nahlas. Příznak `readAloud` na to
+ * zapne přehrávač. Dřív to byl samostatný druh obsahu „Meditace“, což
+ * slibovalo nahrávku, která nikdy neexistovala.
  *
- * Meditace nenahrazují psychoterapii. U závažných obtíží na to obsah upozorňuje.
+ * Záměrně nepracujeme s vizualizacemi typu „představte si zdravé miminko“:
+ * v této skupině žen dokáže taková věta napáchat víc škody než užitku.
+ *
+ * Nenahrazují psychoterapii. U závažných obtíží na to obsah upozorňuje.
  */
 
 function audio(
@@ -23,7 +27,7 @@ function audio(
 ): ContentItem {
   return {
     id,
-    kind: 'audio',
+    kind: 'article',
     title,
     excerpt,
     body,
@@ -35,6 +39,7 @@ function audio(
     author: 'Gabi',
     publishedOn: '2026-02-14',
     mediaNote,
+    readAloud: true,
     ...extra,
   }
 }
@@ -220,7 +225,7 @@ Sedněte si. Nebo si lehněte. Nemusíte nic dělat správně.
 
 Nádech. A výdech.
 
-Jestli pláčete, plačte dál. Tahle nahrávka počká.
+Jestli pláčete, plačte dál. Tenhle text počká.
 
 Jestli nepláčete a jen tupě koukáte do zdi, i to je v pořádku. Šok se projevuje různě.
 
@@ -298,7 +303,7 @@ A prosím, jestli je toho na vás moc, jestli nemůžete jíst, spát, nebo vás
     'Postupné uvolnění celého těla. Na konci to ztichne. Usnutí je cíl, ne selhání.',
     `Lehněte si tak, jak budete spát.
 
-Není potřeba se snažit usnout. Tahle nahrávka nemá žádný cíl, který byste mohla nesplnit.
+Není potřeba se snažit usnout. Tohle nemá žádný cíl, který byste mohla nesplnit.
 
 Nádech nosem. Výdech ústy, delší.
 
@@ -441,7 +446,7 @@ To je všechno. Můžete se vrátit ke svému dni.`,
     'Pro chvíle, kdy máte na vlastní tělo vztek.',
     `Hodně žen v léčbě popisuje, že se cítí zrazené vlastním tělem. Že jim nefunguje to jediné, co má fungovat samo.
 
-Jestli to znáte, tahle nahrávka je pro vás.
+Jestli to znáte, tohle je pro vás.
 
 Lehněte si. Ruce volně.
 

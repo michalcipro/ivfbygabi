@@ -177,8 +177,8 @@ export function newThisWeek(today: string, limit = 12): ContentItem[] {
 export const CONTENT_STATS = {
   items: CATALOG.length,
   articles: CATALOG.filter((c) => c.kind === 'article').length,
-  videos: CATALOG.filter((c) => c.kind === 'video').length,
-  audio: CATALOG.filter((c) => c.kind === 'audio').length,
+  /** Články psané jako scénář k poslechu. Dřív to byl samostatný druh. */
+  readAloud: CATALOG.filter((c) => c.readAloud).length,
   checklists: CATALOG.filter((c) => c.kind === 'checklist').length,
   stories: CATALOG.filter((c) => c.kind === 'story').length,
   dailyCards: DAILY_CARDS.length,

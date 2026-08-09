@@ -189,34 +189,32 @@ Projděte checklist v klidu, ideálně den dopředu. Položky označené jako ne
       ],
     },
     {
-      id: 'diag-video-mapa-vysetreni',
-      kind: 'video',
+      id: 'diag-mapa-vysetreni',
+      kind: 'article',
       title: 'Mapa diagnostiky: co následuje po čem',
       excerpt:
-        'Devět minut, po kterých budete vědět, kde v procesu jste a co vás čeká dál. Bez toho, abyste se ptala pětkrát na totéž.',
-      body: `## O čem video je
+        'Po přečtení budete vědět, kde v procesu jste a co vás čeká dál. Bez toho, abyste se ptala pětkrát na totéž.',
+      body: `Diagnostika neplodnosti vypadá zvenčí jako chaotická hromada odběrů a termínů. Ve skutečnosti má logiku a ta logika je jednoduchá: **nejdřív se ptáme, jestli jsou vajíčka, jestli jsou spermie a jestli se mají kde potkat.** Všechno ostatní jsou doplňující otázky.
 
-Diagnostika neplodnosti vypadá zvenčí jako chaotická hromada odběrů a termínů. Ve skutečnosti má logiku a ta logika je jednoduchá: **nejdřív se ptáme, jestli jsou vajíčka, jestli jsou spermie a jestli se mají kde potkat.** Všechno ostatní jsou doplňující otázky.
-
-Ve videu procházíme mapu po čtyřech blocích.
+Mapa má čtyři bloky.
 
 **Blok první. Vaječníky.** Kolik zásoby je a jak vaječník reaguje. Sem patří AMH z krve, které se dá odebrat kdykoli v cyklu, a počet antrálních folikulů na ultrazvuku na začátku cyklu. Doplňuje je hormonální profil odebíraný typicky mezi druhým a čtvrtým dnem cyklu, FSH, LH, estradiol.
 
-**Blok druhý. Spermie.** Spermiogram. Jedno vyšetření, které dokáže zásadně změnit směr celé léčby, a přesto se na něj v mnoha párech čeká měsíce. Ve videu ukazujeme, proč se dělá jako jedno z prvních a proč se často opakuje.
+**Blok druhý. Spermie.** Spermiogram. Jedno vyšetření, které dokáže zásadně změnit směr celé léčby, a přesto se na něj v mnoha párech čeká měsíce. Dělá se jako jedno z prvních právě proto, že může změnit směr, a často se opakuje: výsledek kolísá podle mnoha vlivů a jeden vzorek nestačí.
 
 **Blok třetí. Cesta.** Vejcovody a dutina děložní. HSG nebo HyFoSy ukáže průchodnost, ultrazvuk a případně hysteroskopie ukážou dutinu zevnitř. Tenhle blok se plánuje na první polovinu cyklu.
 
-**Blok čtvrtý. Doplňky podle situace.** Štítná žláza, prolaktin, androgeny, testy na trombofilii, karyotyp, imunologie. Nedělají se všem a nedělají se najednou. Ve videu vysvětlujeme, co obvykle bývá důvodem, proč je lékař přidá.
+**Blok čtvrtý. Doplňky podle situace.** Štítná žláza, prolaktin, androgeny, testy na trombofilii, karyotyp, imunologie. Nedělají se všem a nedělají se najednou. Lékař je přidává podle anamnézy, podle nálezu v základních blocích nebo podle toho, co se stalo v předchozích cyklech.
 
 ## Proč se to nedá udělat všechno v jednom týdnu
 
 Protože část vyšetření je vázaná na den cyklu. Odběry na začátku, progesteron zhruba týden po ovulaci, HSG v první polovině cyklu po odeznění menstruace. Jeden cyklus tak obvykle stačí na většinu základu. Když se něco nestihne, posouvá se to o měsíc. A to je nejčastější důvod, proč diagnostika trvá déle, než čekáte.
 
-## Co si z videa odnést
+## Co si z toho odnést
 
 Že máte právo znát plán. Nemusíte tušit, co vás čeká. Můžete se zeptat, jaký je rozvrh na tenhle cyklus a co se stane, když se něco nestihne.
 
-> Video je vzdělávací a nenahrazuje konzultaci. Pořadí i rozsah vyšetření určuje vaše klinika podle vaší situace.`,
+> Článek je vzdělávací a nenahrazuje konzultaci. Pořadí i rozsah vyšetření určuje vaše klinika podle vaší situace.`,
       minutes: 9,
       phases: ['diagnostics'],
       dayRange: [1, 14],
@@ -227,8 +225,6 @@ Protože část vyšetření je vázaná na den cyklu. Odběry na začátku, pro
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
       publishedOn: '2025-09-11',
       boost: 0.75,
-      mediaNote:
-        'Animovaná mapa diagnostiky na klidném pozadí. Čtyři bloky vyšetření se postupně rozsvěcují, vlevo běží časová osa cyklu, takže je vidět, které vyšetření patří na který den. Komentuje ženský hlas, tempo pomalé, bez hudby pod řečí.',
     },
     {
       id: 'diag-clanek-hormonalni-profil',
@@ -2112,12 +2108,12 @@ Poslední bod je vždy důvod vyhledat pomoc okamžitě. Obraťte se na svého l
       boost: 0.8,
     },
     {
-      id: 'diag-audio-deset-minut-pred-zakrokem',
-      kind: 'audio',
+      id: 'diag-deset-minut-pred-zakrokem',
+      kind: 'article',
       title: 'Deset minut před zákrokem',
       excerpt:
-        'Nahrávka na poslech v čekárně. Pro chvíli, kdy vám buší srdce a nechcete o tom s nikým mluvit.',
-      body: `## Přepis nahrávky
+        'Pro chvíli v čekárně, kdy vám buší srdce a nechcete o tom s nikým mluvit.',
+      body: `Můžete si to přečíst očima, nebo si to nechat přečíst nahlas do sluchátek.
 
 Sedíte někde, kde jste sedět nechtěla. Možná máte na sobě papírovou košili, možná ještě svoje oblečení. Kolem vás chodí lidé, pro které je tohle úterý.
 
@@ -2139,7 +2135,7 @@ A ještě jedna věc. Až to skončí, budete o jednu položku dál. Ne u cíle.
 
 Ještě jeden dlouhý výdech. A teď dýchejte normálně.
 
-> Nahrávka slouží ke zklidnění a nenahrazuje lékařskou ani psychologickou péči. Pokud se cítíte na omdlení, máte silnou bolest nebo se vám špatně dýchá, řekněte to personálu.`,
+> Slouží ke zklidnění a nenahrazuje lékařskou ani psychologickou péči. Pokud se cítíte na omdlení, máte silnou bolest nebo se vám špatně dýchá, řekněte to personálu.`,
       minutes: 10,
       phases: ['diagnostics', 'genetic_testing'],
       dayRange: [1, 60],
@@ -2148,22 +2144,21 @@ Ještě jeden dlouhý výdech. A teď dýchejte normálně.
       hero: 'blush',
       author: 'Gabi',
       publishedOn: '2026-01-22',
+      readAloud: true,
       mediaNote:
-        'Scénář je psaný k poslechu: krátké věty a dlouhé pauzy mezi nimi, aby se stihlo dýchat. S tichem trvá zhruba deset minut. Do sluchátek v čekárně se hodí líp než na reproduktor.',
+        'Psané k poslechu: krátké věty a dlouhé pauzy mezi nimi, aby se stihlo dýchat. S pauzami to trvá zhruba deset minut. Do sluchátek v čekárně se hodí líp než na reproduktor.',
     },
     {
-      id: 'diag-podcast-kdyz-najdou-neco-navic',
-      kind: 'podcast',
+      id: 'diag-kdyz-najdou-neco-navic',
+      kind: 'article',
       title: 'Když výsledky najdou něco navíc',
       excerpt:
         'O tom, co se stane, když přijdete kvůli plodnosti a odejdete s diagnózou, kterou jste vůbec nehledala.',
-      body: `## O čem díl je
-
-Diagnostika neplodnosti má vedlejší účinek, o kterém nikdo předem nemluví: **prohlédnou vás důkladněji než kdy dřív v životě.** A občas se při tom najde něco, co s plodností nesouvisí vůbec.
+      body: `Diagnostika neplodnosti má vedlejší účinek, o kterém nikdo předem nemluví: **prohlédnou vás důkladněji než kdy dřív v životě.** A občas se při tom najde něco, co s plodností nesouvisí vůbec.
 
 Nejčastěji jde o štítnou žlázu, o kterou se do té doby nikdo nezajímal. Někdy o inzulinovou rezistenci. Někdy o vysoký krevní tlak, o chudokrevnost, o nedostatek vitaminu D. Občas o nález na ultrazvuku, který si žádá kontrolu.
 
-V dílu mluvíme o třech věcech.
+Tady jsou tři věci, které se kolem toho vyplatí vědět.
 
 **Za prvé. Proč to tak zaskočí.** Přišla jste s jedním úkolem a najednou máte dva. Emočně to působí jako podraz, i když je to vlastně dobrá zpráva: našlo se něco, o čem byste jinak nevěděla roky.
 
@@ -2171,19 +2166,19 @@ V dílu mluvíme o třech věcech.
 
 **Za třetí. Praktické pořadí.** Ne všechno se musí řešit hned a ne všechno se musí řešit před léčbou. Klíčová otázka na lékaře zní: **odkládá tenhle nález léčbu neplodnosti, nebo běží vedle ní?** U velké části nálezů zní odpověď "běží vedle".
 
-## Co v dílu ještě zazní
+## Co se ještě vyplatí vědět
 
 - Proč nemá smysl srovnávat svoje výsledky s výsledky kamarádky.
 - Jak mluvit s praktickým lékařem, aby nálezy z reprodukční kliniky převzal.
 - Kdy si říct o druhý názor a jak to udělat bez pocitu zrady.
 - Proč se vyplatí mít jednoho člověka, který drží celkový obraz.
 
-## Věta z dílu, kterou si možná odnesete
+## Věta, kterou si možná odnesete
 
 Vaše tělo nemá "nic v pořádku". Má několik věcí, které se dají pojmenovat, a tím pádem i řešit. To je rozdíl mezi bezmocí a plánem.
 
-> Podcast je vzdělávací a nenahrazuje lékařskou péči. Jakýkoli nález konzultujte se svým ošetřujícím lékařem.`,
-      minutes: 24,
+> Článek je vzdělávací a nenahrazuje lékařskou péči. Jakýkoli nález konzultujte se svým ošetřujícím lékařem.`,
+      minutes: 9,
       phases: ['diagnostics'],
       dayRange: [10, 60],
       topics: ['vysledky', 'psychika', 'klinika'],
@@ -2191,8 +2186,6 @@ Vaše tělo nemá "nic v pořádku". Má několik věcí, které se dají pojmen
       hero: 'taupe',
       author: 'Tým Bloomia',
       publishedOn: '2026-02-03',
-      mediaNote:
-        'Rozhovor dvou hlasů ve studiu, neformální tempo, bez hudebních předělů uprostřed. Na začátku krátká znělka, na konci shrnutí tří bodů. Vhodné na poslech při chůzi nebo v autě.',
     },
     {
       id: 'diag-kviz-ctete-vysledky',

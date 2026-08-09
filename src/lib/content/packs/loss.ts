@@ -1237,41 +1237,80 @@ Cíl není „přestat být smutná". Cíl je, aby smutek přestal být jediné,
       boost: 0.9,
     },
     {
-      id: 'loss-audio-prvni-noci',
-      kind: 'audio',
+      id: 'loss-prvni-noci',
+      kind: 'article',
       title: 'Na první noci: když nejde spát',
       excerpt:
-        'Dvanáct minut hlasu, který po vás nic nechce. Na noc, kdy je ticho nesnesitelné.',
-      body: `## O čem tahle nahrávka je
+        'Text, který po vás nic nechce. Na noc, kdy je ticho nesnesitelné.',
+      body: `## Proč jsou první noci nejhorší
 
-Nemá vás uklidnit. Nemá vás naučit dýchat správně. Nemá z toho udělat lekci.
+Přes den se dá utéct do činnosti. Zavolat, uklidit, jít někam. V noci není kam.
+Řada žen popisuje první noci po ztrátě jako nejtěžší část celé zkušenosti:
+tělo je vyčerpané, ale hlava pořád dokola přehrává tentýž den.
 
-Je určená na hodinu, kdy jsou všichni ostatní vzhůru už dávno spící, vy ležíte a hlava pořád dokola přehrává tentýž den. Řada žen popisuje první noci po ztrátě jako nejhorší část celé zkušenosti. Přes den se dá utéct do činnosti, v noci není kam.
+Tenhle text vás nemá uklidnit ani naučit dýchat správně. Je to postup na
+jednu konkrétní noc. Můžete si ho přečíst očima, nebo si ho nechat přečíst
+nahlas.
 
-## Jak nahrávka probíhá
+## 1. Pojmenování
 
-**Prvních devadesát vteřin** je jen krátká věta o tom, kde jste a co se stalo. Bez příkras. Zkušenost ukazuje, že pojmenování je paradoxně první krok k tomu, aby tělo povolilo.
+Řekněte si nahlas nebo v duchu, co se stalo. Bez příkras, jednou větou.
 
-**Pak přijde práce s dechem**: pomalý nádech nosem a delší výdech ústy, ve vlastním tempu, bez počítání. Prodloužený výdech tlumí aktivaci nervového systému. Není to trik, je to fyziologie. Nemusíte nic dělat správně; když se ztratíte, prostě se vrátíte.
+„Ztratila jsem miminko.“
 
-**Střední část** vede pozornost tělem shora dolů. Čelist, ramena, ruce, břicho, nohy. U břicha se hlas na chvíli zastaví a dá prostor. Většina žen tady pláče. Je to počítáno.
+Zní to krutě. Ale pojmenování je paradoxně první krok k tomu, aby tělo
+povolilo. Dokud se tomu vyhýbáme, drží se v pohotovosti.
 
-**Poslední část** je krátká pasáž o tom, že dnešní noc nemusíte nic řešit. Že rozhodnutí, otázky a plány mají čas do rána. Že vaším jediným úkolem do rána je dýchat.
+## 2. Dech
 
-Nahrávka končí tichem, ne slovem. Nikdo vás nebude na konci probouzet.
+Pomalý nádech nosem. Delší výdech ústy. Ve vlastním tempu, bez počítání.
+
+Prodloužený výdech tlumí aktivaci nervového systému. Není to trik, je to
+fyziologie. Nemusíte nic dělat správně. Když se ztratíte, prostě se vrátíte
+k dalšímu nádechu.
+
+Zůstaňte u toho tak dlouho, jak vám to je snesitelné. Klidně dvě minuty.
+
+## 3. Tělo shora dolů
+
+Projděte pozorností jednu část těla za druhou. U každé se jen na chvíli
+zastavte a nechte ji být těžkou.
+
+- **Čelist.** Povolte ji. Zuby se nemusí dotýkat.
+- **Ramena.** Nechte je klesnout. Jsou nejspíš výš, než by musela být.
+- **Ruce.** Těžké až po konečky prstů.
+- **Břicho.** Tady se zastavte na dýl.
+- **Nohy.** Stehna, lýtka, chodidla.
+
+U břicha většina žen pláče. Je to v pořádku a je s tím počítáno. Jestli
+chcete, položte si tam ruce. Bylo tam. Vaše tělo o tom ví.
+
+## 4. Dnes v noci nic neřešíte
+
+Rozhodnutí, otázky a plány mají čas do rána. Co bude dál, jestli znovu, co
+řeknete v práci, co s daty, co s medikací. Nic z toho se dneska v noci
+nevyřeší.
+
+Váš jediný úkol do rána je dýchat.
 
 ## Praktické
 
-- **Sluchátka nejsou nutná**, ale pomáhají, když spíte vedle někoho.
 - **Můžete usnout kdykoli.** To není přerušení, to je cíl.
-- **Můžete ji pustit i vícekrát za noc.** Neopotřebuje se.
-- Pokud vás vede pozornost k tělu spíš do úzkosti než z ní (což se po zákroku stává) poslouchejte jen první část a zbytek přeskočte.
+- **Můžete se k textu vrátit i vícekrát za noc.** Neopotřebuje se.
+- Pokud vás pozornost k tělu vede spíš do úzkosti než z ní, což se po
+  zákroku stává, zůstaňte jen u dechu a zbytek vynechte.
+- Sluchátka pomáhají, když spíte vedle někoho a necháváte si text číst nahlas.
 
 ## Kdy tohle nestačí
 
-Nahrávka je opora, ne léčba. Když nespíte déle než dva týdny, budí vás opakované obrazy z nemocnice, máte záchvaty úzkosti nebo myšlenky na to, že nechcete žít, **potřebujete odbornou pomoc**: přes svého lékaře, krizovou linku nebo psychiatrickou pohotovost. Ozvěte se hned, ne až to bude horší.
+Tohle je opora, ne léčba. Když nespíte déle než dva týdny, budí vás
+opakované obrazy z nemocnice, máte záchvaty úzkosti nebo myšlenky na to, že
+nechcete žít, **potřebujete odbornou pomoc**: přes svého lékaře, krizovou
+linku nebo psychiatrickou pohotovost. Ozvěte se hned, ne až to bude horší.
 
-> Nahrávka nenahrazuje odbornou psychologickou ani lékařskou péči.`,
+Linka první psychické pomoci **116 123** funguje nepřetržitě a zdarma.
+
+> Text nenahrazuje odbornou psychologickou ani lékařskou péči.`,
       minutes: 12,
       phases: ['loss_biochemical', 'loss_ectopic', 'loss_missed', 'loss_miscarriage', 'uterine_revision'],
       dayRange: [0, 14],
@@ -1282,8 +1321,9 @@ Nahrávka je opora, ne léčba. Když nespíte déle než dva týdny, budí vás
       reviewedBy: 'Odborně garantováno – psychologická podpora',
       publishedOn: '2025-09-29',
       boost: 0.8,
+      readAloud: true,
       mediaNote:
-        'Velmi pomalé tempo, zhruba dvanáct minut i s pauzami. Struktura: pojmenování situace, práce s dechem s důrazem na delší výdech, postupné uvolnění pozornosti tělem shora dolů s pauzou u břicha a závěrečná pasáž o tom, že dnes v noci není potřeba nic řešit. Končí tichem, nikoli výzvou k probuzení.',
+        'Psané velmi pomalu, na noc. Dá se přečíst očima nebo nechat přečíst nahlas. Končí tichem, ne výzvou.',
     },
     {
       id: 'loss-vyroci-a-termin',

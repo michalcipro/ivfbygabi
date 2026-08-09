@@ -1,11 +1,16 @@
 import type { PhaseId } from '../domain/phases'
 import type { ModifierId, TopicId } from '../domain/profile'
 
+/**
+ * Druhy obsahu v knihovně.
+ *
+ * Video, meditace a podcast tu bývaly jako samostatné druhy. Aplikace ale
+ * nemá server, takže z videa byl vždycky jen přepis a z meditace předčítaný
+ * text. Filtr sliboval média, která nikde nebyla. Jejich témata jsou teď
+ * články; scénář k poslechu si nese příznak `readAloud`.
+ */
 export const CONTENT_KINDS = [
   'article',
-  'video',
-  'audio',
-  'podcast',
   'checklist',
   'story',
   'course',
@@ -18,9 +23,6 @@ export type ContentKind = (typeof CONTENT_KINDS)[number]
 
 export const KIND_LABELS: Record<ContentKind, string> = {
   article: 'Článek',
-  video: 'Video',
-  audio: 'Meditace',
-  podcast: 'Podcast',
   checklist: 'Checklist',
   story: 'Příběh',
   course: 'Kurz',
@@ -31,9 +33,6 @@ export const KIND_LABELS: Record<ContentKind, string> = {
 
 export const KIND_ICONS: Record<ContentKind, string> = {
   article: '❧',
-  video: '▷',
-  audio: '◍',
-  podcast: '◉',
   checklist: '✓',
   story: '❦',
   course: '❖',
@@ -101,17 +100,17 @@ export interface ContentItem {
   quiz?: QuizQuestion[]
   /** Kapitoly kurzu, pokud kind === 'course'. */
   chapters?: { title: string; minutes: number; body: string }[]
-  /** U videa/audia: popis toho, co uvidí/uslyší. */
+  /** Poznámka pod textem: pro koho a na kdy je psaný. */
   mediaNote?: string
   /**
-   * Cesta k opravdovému souboru, až bude.
+   * Text je psaný jako scénář k poslechu.
    *
-   * Meditace se dají přehrát bez souboru. Prohlížeč je umí přečíst nahlas.
-   * Video ne. Dokud tady nic není, obrazovka to řekne rovnou: video se
-   * připravuje. Popisek „Video: …“ nad textem, který žádné video není, je
-   * horší než přiznaná mezera.
+   * Řízená cvičení a meditace se dají přečíst očima, ale fungují líp,
+   * když je někdo čte nahlas. Prohlížeč to umí a česky. Není to studiová
+   * nahrávka a obrazovka to říká rovnou; předstírat něco jiného by bylo
+   * horší než ta věc sama.
    */
-  mediaSrc?: string
+  readAloud?: boolean
 }
 
 export interface ChecklistEntry {

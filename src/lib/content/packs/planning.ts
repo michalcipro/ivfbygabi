@@ -1842,33 +1842,70 @@ Dvě doporučení nad rámec odrážek:
       ],
     },
     {
-      id: 'plan-video-plodne-okno',
-      kind: 'video',
-      title: 'Plodné okno na jednom obrázku',
-      excerpt: 'Šest minut, po kterých už nikdy nebudete počítat ovulaci od poslední menstruace.',
-      body: `## O čem video je
+      id: 'plan-plodne-okno',
+      kind: 'article',
+      title: 'Plodné okno: co většina z nás počítá špatně',
+      excerpt: 'Po tomhle článku už nikdy nebudete počítat ovulaci od poslední menstruace.',
+      body: `## Dvě čísla, ze kterých plyne všechno ostatní
 
-Krátké vysvětlení jediné věci, kterou většina žen počítá špatně: **kdy vlastně nastává ovulace a které dny jsou plodné.**
+Vajíčko je po ovulaci schopné oplození zhruba **dvanáct až dvacet čtyři hodin**.
+Spermie přežívají v příznivém cervikálním hlenu **až pět dní**.
 
-### Část první: dvě čísla
+Z těchhle dvou čísel vzniká plodné okno dlouhé zhruba šest dní. A hlavně:
+tohle okno **končí ovulací**, nezačíná jí. Většina párů, která to načasuje
+špatně, to načasuje pozdě.
 
-Video začíná dvěma údaji, ze kterých vyplývá všechno ostatní. Vajíčko je po ovulaci schopné oplození zhruba dvanáct až dvacet čtyři hodin. Spermie přežívají v příznivém cervikálním hlenu až pět dní. Na časové ose se ukáže, jak z toho vzniká plodné okno o délce zhruba šesti dní, které **končí ovulací**, nikoli jí začíná.
+## Nejčastější chyba: čtrnáctý den
 
-### Část druhá: nejčastější chyba
+Pravidlo „ovulace je čtrnáctý den“ platí jen pro cyklus dlouhý 28 dní.
 
-Na dvou paralelních osách je vedle sebe cyklus o délce 28 dní a cyklus o délce 33 dní. U obou je vyznačená ovulace. Ukazuje se, proč pravidlo „ovulace je čtrnáctý den" platí jen pro jednu z nich a proč se ovulace počítá **od očekávané další menstruace zpět**, ne od té poslední dopředu.
+Představte si dva cykly vedle sebe. Jeden 28denní, druhý 33denní. U obou
+trvá druhá fáze cyklu, tedy doba od ovulace do menstruace, zhruba stejně:
+kolem čtrnácti dní. Ta délka je poměrně stálá. Co se mezi ženami a mezi
+cykly liší, je první fáze, tedy doba od menstruace k ovulaci.
 
-### Část třetí: jak okno poznat
+Proto se ovulace nepočítá od poslední menstruace dopředu, ale **od očekávané
+další menstruace zpět**. U 33denního cyklu tak vychází zhruba na 19. den, ne
+na 14.
 
-Tři signály vedle sebe: cervikální hlen, který se mění na kluzký a tažný, pozitivní LH test a vzestup bazální teploty. Video ukazuje, který z nich přichází kdy. A proč teplota přichází pozdě na to, aby se podle ní dal načasovat styk v daném cyklu.
+Když máte cyklus nepravidelný, tohle počítání spolehlivě nefunguje vůbec
+a je potřeba se řídit signály.
 
-### Část čtvrtá: co dělat
+## Tři signály a jejich načasování
 
-Dvě rovnocenné strategie: styk obden během plodného okna, nebo pravidelně dvakrát až třikrát týdně po celý cyklus bez počítání. Zmiňuje se, proč druhá varianta bývá pro vztah šetrnější.
+| Signál | Co znamená | Kdy přichází |
+| --- | --- | --- |
+| Cervikální hlen | Mění se na kluzký, tažný, průhledný | Několik dní **před** ovulací |
+| LH test | Zachytí vzestup luteinizačního hormonu | Zhruba 24 až 36 hodin **před** ovulací |
+| Bazální teplota | Vzestup o dvě až pět desetin stupně | **Až po** ovulaci |
 
-Na závěr krátký seznam věcí, které na výsledek nemají vliv: poloha, ležení s nohama nahoře, čas dne. A jedna, která vliv má: běžné lubrikanty mohou zhoršit pohyblivost spermií.
+Z toho plyne důležitá věc: teplota přichází pozdě na to, aby se podle ní dal
+v témže cyklu načasovat styk. Slouží ke zpětnému potvrzení, ne k plánování.
 
-> Video má informativní charakter a nenahrazuje lékařskou péči. Pokud se snažíte déle než rok, nebo déle než půl roku při věku nad 35 let, objednejte se k lékaři.`,
+## Dvě strategie, obě v pořádku
+
+1. **Styk obden během plodného okna.** Přesnější, ale znamená to počítat
+   a sledovat.
+2. **Pravidelně dvakrát až třikrát týdně po celý cyklus, bez počítání.**
+   Statisticky srovnatelné a pro vztah obvykle šetrnější, protože se ze
+   sexu nestane úkol s termínem.
+
+Pokud vám první varianta bere víc, než dává, druhá není horší volba.
+
+## Co na výsledek nemá vliv
+
+- Poloha při styku.
+- Ležení s nohama nahoře po něm.
+- Denní doba.
+
+## A jedna věc, která vliv mít může
+
+Běžné lubrikanty mohou zhoršit pohyblivost spermií. Existují lubrikanty
+označené jako vhodné při snaze o početí.
+
+> Článek má informativní charakter a nenahrazuje lékařskou péči. Pokud se
+> snažíte déle než rok, nebo déle než půl roku při věku nad 35 let,
+> objednejte se k lékaři.`,
       minutes: 6,
       phases: ['trying_naturally', 'preparing_body'],
       dayRange: [0, 200],
@@ -1879,37 +1916,73 @@ Na závěr krátký seznam věcí, které na výsledek nemají vliv: poloha, le�
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
       sources: ['ESHRE: doporučené postupy'],
       publishedOn: '2026-02-19',
-      mediaNote:
-        'Animované vysvětlení na časové ose cyklu. Uvidíte, jak se plodné okno posouvá podle délky cyklu, kdy přichází který signál (hlen, LH test, teplota) a kde se dělá nejčastější chyba v počítání. Klidný ženský hlas, žádné dramatické hudební podkresy.',
     },
     {
-      id: 'plan-video-jak-merit-bazalni-teplotu',
-      kind: 'video',
-      title: 'Bazální teplota: ukázka měření a čtení grafu',
-      excerpt: 'Praktická ukázka, jak měřit a jak vypadá graf, ve kterém ovulace opravdu proběhla.',
-      body: `## O čem video je
+      id: 'plan-jak-merit-bazalni-teplotu',
+      kind: 'article',
+      title: 'Bazální teplota: jak měřit a jak číst graf',
+      excerpt: 'Návod pro ženy, které nechtějí strávit tři cykly hledáním, co dělají špatně.',
+      body: `## Čím a kdy měřit
 
-Praktická ukázka pro ženy, které chtějí měřit bazální teplotu a nechtějí strávit tři cykly hledáním, co dělají špatně.
+Digitální teploměr **se dvěma desetinnými místy**. Rozdíly, které hledáte,
+jsou v desetinách stupně, takže teploměr s jedním desetinným místem je na to
+příliš hrubý.
 
-### Část první: čím a kdy
+Pravidlo měření:
 
-Ukázka digitálního teploměru s dvěma desetinnými místy a vysvětlení, proč je lepší než klasický. Následuje pravidlo měření: **hned po probuzení, před vstáváním a napitím, ve stejnou dobu, po alespoň třech hodinách souvislého spánku.** Zdůrazňuje se, že se metoda měření nemíchá. Kdo měří vaginálně, měří vaginálně celý cyklus.
+- **hned po probuzení**, před vstáváním a napitím,
+- **ve stejnou dobu**, plus minus půl hodiny,
+- **po alespoň třech hodinách souvislého spánku**.
 
-### Část druhá: jak vypadá dobrý graf
+A jedno pravidlo navíc: metodu měření nemíchejte. Kdo měří vaginálně, měří
+vaginálně celý cyklus. Přechod mezi ústy a pochvou uprostřed cyklu udělá
+v grafu skok, který vypadá jako ovulace a není.
 
-Na obrazovce se postupně vykresluje jeden reálně vypadající cyklus. Nejdřív nižší hodnoty první fáze. Pak skok o několik desetin stupně. Pak stabilní vyšší hladina až do menstruace. Vysvětluje se, proč se tomu říká **dvoufázová křivka** a proč znamená, že ovulace nejspíš proběhla.
+## Jak vypadá graf, ve kterém ovulace proběhla
 
-### Část třetí: co graf neumí
+Po ovulaci začne žluté tělísko tvořit progesteron a ten mírně zvyšuje
+tělesnou teplotu.
 
-Klíčová část celého videa. Teplota stoupá **až po ovulaci**, takže v daném cyklu už na načasování styku nepomůže. Slouží ke zpětnému potvrzení a k poznání vlastního vzorce. Zároveň zaznívá, že tvar křivky **není diagnóza**: krátká druhá fáze je informace pro lékaře, ne závěr, který si uděláte sama.
+V grafu to vypadá takhle:
 
-### Část čtvrtá: dny, které se do grafu nepočítají
+1. **První fáze cyklu:** nižší hodnoty, kolísají v úzkém pásmu.
+2. **Skok:** o dvě až pět desetin stupně, obvykle během jednoho až dvou dní.
+3. **Druhá fáze:** stabilně vyšší hladina, drží se až do menstruace.
 
-Ukázka výkyvů způsobených nemocí, alkoholem, špatně prospanou nocí nebo cestou přes časová pásma. Doporučení tyhle dny označit a při hodnocení je vyloučit.
+Tomuhle se říká **dvoufázová křivka** a znamená, že ovulace nejspíš proběhla.
+Plochá křivka bez skoku může znamenat cyklus bez ovulace, ale taky
+nepřesné měření.
 
-Na závěr věta, která je v tomhle videu nejdůležitější: **měření je nástroj, ne povinnost.** Pokud vám bere víc klidu, než dává informace, je v pořádku ho odložit.
+## Co graf neumí
 
-> Video je informativní a nenahrazuje lékařské vyšetření. Grafy teploty posuzuje lékař v kontextu dalších nálezů.`,
+Tohle je nejdůležitější část celého článku.
+
+Teplota stoupá **až po ovulaci**. V daném cyklu už tedy na načasování styku
+nepomůže. Slouží ke zpětnému potvrzení a k poznání vlastního vzorce napříč
+cykly.
+
+A druhá věc: tvar křivky **není diagnóza**. Krátká druhá fáze je informace
+pro lékaře, ne závěr, který si uděláte sama v tři ráno nad diskusním fórem.
+
+## Dny, které se do hodnocení nepočítají
+
+Teplotu spolehlivě rozhodí:
+
+- nemoc nebo zvýšená teplota,
+- alkohol předchozí večer,
+- špatně prospaná noc nebo měření po probuzení v jinou dobu,
+- cesta přes časová pásma.
+
+Tyhle dny si označte a při hodnocení je vyloučte. Jeden vyskočený bod
+neznamená nic.
+
+## Poslední věc, a je nejdůležitější
+
+**Měření je nástroj, ne povinnost.** Pokud vám bere víc klidu, než dává
+informace, je úplně v pořádku ho odložit.
+
+> Článek je informativní a nenahrazuje lékařské vyšetření. Grafy teploty
+> posuzuje lékař v kontextu dalších nálezů.`,
       minutes: 7,
       phases: ['trying_naturally'],
       dayRange: [0, 150],
@@ -1919,38 +1992,67 @@ Na závěr věta, která je v tomhle videu nejdůležitější: **měření je n
       author: 'Tým Bloomia',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
       publishedOn: '2026-03-05',
-      mediaNote:
-        'Záběr na teploměr a ruce při měření, pak animovaný graf, který se vykresluje den po dni. Uvidíte rozdíl mezi dvoufázovou a plochou křivkou a příklady výkyvů, které se vyřazují. Bez hudby, jen komentář.',
     },
     {
-      id: 'plan-audio-vecerni-uvolneni',
-      kind: 'audio',
+      id: 'plan-vecerni-uvolneni',
+      kind: 'article',
       title: 'Večer, kdy zase nic: dvanáct minut na uklidnění',
       excerpt:
-        'Nahrávka pro den, kdy přišla menstruace a vy potřebujete něco jiného než dobré rady.',
-      body: `## O čem nahrávka je
+        'Vedené zklidnění pro den, kdy přišla menstruace a vy potřebujete něco jiného než dobré rady.',
+      body: `Tohle není cvičení, které vám bude tvrdit, že všechno bude dobré. Je to
+dvanáct minut pro večer, kdy jste zjistila, že tenhle cyklus zase nevyšel.
 
-Tohle není meditace, která vám bude tvrdit, že všechno bude dobré. Je to dvanáct minut vedeného zklidnění pro večer, kdy jste zjistila, že tenhle cyklus zase nevyšel.
+Můžete si to přečíst očima, nebo si to nechat přečíst nahlas. Nemusíte projít
+celé.
 
-### Jak je nahrávka postavená
+## 1. Přistání
 
-**První tři minuty. Přistání.** Žádné dýchání do břicha, žádné vizualizace. Jen věta, že to, co teď cítíte, dává smysl, a pozvání položit si ruku někam, kde ji budete cítit. Zvuk zůstává tichý.
+Žádné dýchání do břicha, žádné vizualizace. Zatím nic.
 
-**Minuty tři až šest. Dech.** Vedený pomalý dech s delším výdechem. Nádech na čtyři doby, výdech na šest. Delší výdech aktivuje tlumivou část nervového systému a je to jedna z mála věcí, které fungují spolehlivě a hned. Bez počítání nahlas, jen s klidným rytmem hlasu.
+To, co teď cítíte, dává smysl. Nemusíte to zlehčovat ani zveličovat.
 
-**Minuty šest až devět. Uvolnění těla.** Postupné povolení čelisti, ramen, břicha a pánevního dna. Právě tahle místa drží napětí u žen, které měsíce čekají na výsledek.
+Položte si ruku někam, kde ji budete cítit. Na hrudník, na břicho, na stehno.
+Nechte ji tam.
 
-**Minuty devět až dvanáct. Dvě věty.** Nahrávka končí dvěma větami, které si můžete vzít s sebou do postele. Nejsou to afirmace o pozitivním myšlení. Je to konstatování: **tohle byl těžký den a vy jste ho zvládla.** A: **zítra po vás nikdo nechce, abyste byla v pořádku.**
+## 2. Dech
 
-### Kdy si ji pustit
+Nádech nosem na čtyři doby. Výdech ústy na šest.
+
+Ještě jednou. Nádech čtyři. Výdech šest.
+
+Delší výdech aktivuje tlumivou část nervového systému. Je to jedna z mála
+věcí, které fungují spolehlivě a hned. Není to trik, je to fyziologie.
+
+Zůstaňte u toho pár minut, ve svém tempu. Nemusíte počítat přesně.
+
+## 3. Uvolnění těla
+
+Postupně povolte:
+
+- **čelist**, zuby se nemusí dotýkat,
+- **ramena**, nechte je klesnout,
+- **břicho**, měkké,
+- **pánevní dno**, tohle místo drží napětí u žen, které měsíce čekají na
+  výsledek, a skoro nikdo o něm nemluví.
+
+## 4. Dvě věty na konec
+
+Nejsou to afirmace o pozitivním myšlení.
+
+**Tohle byl těžký den a vy jste ho zvládla.**
+
+**Zítra po vás nikdo nechce, abyste byla v pořádku.**
+
+## Kdy se k tomu vrátit
 
 - Večer v den, kdy přišla menstruace.
 - Před spaním, když nemůžete usnout kvůli přemýšlení.
 - Ráno před odběry nebo kontrolou, jestli máte deset minut v autě.
 
-Nahrávku můžete poslouchat opakovaně. Právě opakování dělá z dechového cvičení něco, co si tělo zapamatuje.
+Opakování je to, co dělá z dechového cvičení něco, co si tělo zapamatuje.
 
-> Audio nenahrazuje psychologickou ani lékařskou péči. Pokud smutek nebo úzkost trvají většinu dní déle než dva týdny, obraťte se prosím na odborníka.`,
+> Nenahrazuje psychologickou ani lékařskou péči. Pokud smutek nebo úzkost
+> trvají většinu dní déle než dva týdny, obraťte se prosím na odborníka.`,
       minutes: 12,
       phases: ['trying_naturally', 'preparing_body'],
       dayRange: [30, 500],
@@ -1959,45 +2061,78 @@ Nahrávku můžete poslouchat opakovaně. Právě opakování dělá z dechovéh
       hero: 'dusk',
       author: 'Gabi',
       publishedOn: '2026-03-12',
+      readAloud: true,
       mediaNote:
-        'Scénář počítá s tím, že možná pláčete. Jsou v něm záměrně dlouhé pauzy a nikdo po vás nic nechce. Nemusíte ho poslouchat celý.',
+        'Psané s tím, že možná pláčete. Jsou tu záměrně dlouhé pauzy a nikdo po vás nic nechce. Nemusíte to projít celé.',
     },
     {
-      id: 'plan-podcast-rok-snazeni',
-      kind: 'podcast',
+      id: 'plan-rok-snazeni',
+      kind: 'article',
       title: 'Rok snažení: co se za tu dobu naučíte o sobě a o vztahu',
       excerpt:
-        'Rozhovor o tom, jak vypadá dvanáct cyklů zevnitř. A co z toho stojí za to si nechat.',
-      body: `## O čem díl je
+        'Jak vypadá dvanáct cyklů zevnitř. A co z toho stojí za to si nechat.',
+      body: `Tenhle text je o roce přirozeného snažení. Ne o léčbě, ne o klinikách.
+O té fázi, kterou spousta žen prožije potichu a sama.
 
-Otevřený rozhovor o roce přirozeného snažení. Ne o léčbě, ne o klinikách. O té fázi, kterou spousta žen prožije potichu a sama.
+## První tři měsíce
 
-### Kapitola: první tři měsíce
+Počáteční nadšení. Vysazení antikoncepce, nakoupené vitamíny, poprvé stažená
+aplikace. V prvních cyklech ještě funguje logika „to bude ono“ a menstruace
+je zklamání, ale ne rána.
 
-O tom, jak vypadá počáteční nadšení. Vysazení antikoncepce, nakoupené vitamíny, poprvé stažená aplikace. O tom, že v prvních cyklech ještě funguje logika „to bude ono" a menstruace je zklamání, ale ne rána.
+Jedno uklidnění, které stojí za zapamatování: **tři neúspěšné cykly nejsou
+signál problému.** Většina párů otěhotní během prvního roku a skoro nikdo
+z nich netrefil hned první měsíc.
 
-Zaznívá tu jedno uklidnění, které stojí za zapamatování: **tři neúspěšné cykly nejsou signál problému.** Většina párů otěhotní během prvního roku a nikdo z nich netrefil hned první měsíc.
+## Kdy se to zlomí
 
-### Kapitola: kdy se to zlomí
+Obvykle mezi čtvrtým a šestým měsícem. Objeví se první ovulační testy, první
+čtení diskusí ve tři ráno, první srovnávání s kamarádkami.
 
-Obvykle mezi čtvrtým a šestým měsícem. Objeví se první ovulační testy, první čtení diskusí ve tři ráno, první srovnávání s kamarádkami. Mluví se o tom, jak se v tomhle období mění sex. A jak se z něj bez varování stane úkol.
+A mění se sex. Bez varování se z něj stane úkol s termínem. Tohle popisuje
+většina párů a skoro nikdo to nečeká.
 
-### Kapitola: co dělá tlak s párem
+## Co dělá tlak s párem
 
-Část, kvůli které tenhle díl vznikl. O tom, že muži často zažívají tlak na výkon a nemluví o něm, a že ženy si to vykládají jako nezájem. O dělbě rolí, která se v drtivé většině párů zvrhne v to, že všechno organizuje ona.
+Tahle část je důvod, proč text vznikl.
 
-Konkrétní tipy, které v dílu zazní: nesdělovat mu den cyklu, zavést blízkost, která není o početí, a domluvit se předem, co kdo potřebuje v den, kdy přijde menstruace.
+Muži často zažívají tlak na výkon a nemluví o něm. Ženy si to vykládají jako
+nezájem. Vzniká z toho spirála, ve které se dva lidé míjejí ve stejné
+místnosti.
 
-### Kapitola: kdy přestat čekat
+Druhá věc je dělba rolí. V drtivé většině párů se zvrhne v to, že všechno
+organizuje ona: termíny, testy, vitamíny, čtení, plánování. On „pomáhá“.
+To slovo je samo o sobě problém.
 
-Připomenutí hranic, které doporučují odborné společnosti (**rok při věku do 35 let, půl roku od 35 let**) a delší pasáž o tom, proč tolik párů tuhle hranici o měsíce přetáhne. Nejčastěji ze strachu, že návštěva lékaře udělá z problému skutečnost.
+Tři věci, které pomáhají:
 
-### Kapitola: co si z toho roku nechat
+1. **Nesdělovat mu den cyklu.** Ne kvůli tajení, ale proto, aby konkrétní
+   večer nebyl označkovaný.
+2. **Zavést blízkost, která není o početí.** Cokoliv, co není sex a co dělá
+   z dvou spolupracovníků zase pár.
+3. **Domluvit se předem, co kdo potřebuje v den, kdy přijde menstruace.**
+   Ona možná potřebuje být sama. On možná potřebuje vědět, že za to nemůže.
+   Domluvit se na tom předem je snazší než v tu chvíli.
 
-Závěr o tom, co z toho období zůstane užitečné, ať už to dopadne jakkoli: znalost vlastního cyklu, schopnost mluvit s partnerem o nepříjemných věcech a jasno v tom, koho ve svém životě chcete a koho ne.
+## Kdy přestat čekat
 
-> Podcast má informativní charakter a nenahrazuje lékařskou péči. Popsané zkušenosti jsou individuální a nelze z nich vyvozovat závěry o vaší situaci.`,
-      minutes: 34,
+Odborné společnosti doporučují vyšetření po **roce snahy do 35 let věku**
+a po **půl roce od 35 let**.
+
+Spousta párů tuhle hranici o měsíce přetáhne. Nejčastěji ze strachu, že
+návštěva lékaře udělá z problému skutečnost. Přitom vyšetření nic nezpůsobí:
+jen popíše, co už tam je, a spousta věcí se dá řešit rychle.
+
+## Co si z toho roku nechat
+
+Ať to dopadne jakkoli, zůstane vám znalost vlastního cyklu, schopnost mluvit
+s partnerem o nepříjemných věcech a jasno v tom, koho ve svém životě chcete
+a koho ne.
+
+> Článek má informativní charakter a nenahrazuje lékařskou péči. Popsané
+> zkušenosti jsou individuální a nelze z nich vyvozovat závěry o vaší
+> situaci.`,
+      minutes: 12,
       phases: ['trying_naturally'],
       dayRange: [60, 420],
       topics: ['psychika', 'vztah', 'partner', 'komunita'],
@@ -2005,8 +2140,6 @@ Závěr o tom, co z toho období zůstane užitečné, ať už to dopadne jakkol
       hero: 'taupe',
       author: 'Tým Bloomia',
       publishedOn: '2026-03-26',
-      mediaNote:
-        'Rozhovor dvou žen ve studiu, nesestříhaný do dokonalosti. Je slyšet smích i pauzy. Bez znělky uprostřed, bez reklam.',
     },
     {
       id: 'plan-pribeh-ctrnact-mesicu',

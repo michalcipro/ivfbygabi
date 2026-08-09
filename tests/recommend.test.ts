@@ -104,10 +104,10 @@ test('řady se obsahem nepřekrývají', () => {
   const catalog = [
     ...Array.from({ length: 12 }, (_, i) => item({ id: `a${i}`, phases: ['two_week_wait'] })),
     ...Array.from({ length: 12 }, (_, i) =>
-      item({ id: `v${i}`, kind: 'video', phases: ['two_week_wait'] }),
+      item({ id: `v${i}`, kind: 'checklist', phases: ['two_week_wait'] }),
     ),
     ...Array.from({ length: 12 }, (_, i) =>
-      item({ id: `m${i}`, kind: 'audio', phases: ['two_week_wait'] }),
+      item({ id: `m${i}`, kind: 'story', phases: ['two_week_wait'] }),
     ),
   ]
   const rails = buildRails(catalog, TWW_STATE, emptyAffinity())

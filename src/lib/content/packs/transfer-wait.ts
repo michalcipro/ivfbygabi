@@ -1739,16 +1739,16 @@ Pár sezení u párového terapeuta v tomhle období není známka rozpadu. Je t
       boost: 0.5,
     },
     {
-      id: 'tww-video-co-se-deje-po-transferu',
-      kind: 'video',
+      id: 'tww-co-se-deje-po-transferu',
+      kind: 'article',
       title: 'Co se děje v děloze den po dni',
       excerpt:
         'Čtrnáct dní od přenosu embrya až po odběr krve. Přehledně a bez zbytečné mystiky.',
-      body: `## O čem video je
+      body: `Tady jsou dva týdny po transferu blastocysty tak, jak je popisuje embryologie.
+Ne proto, abyste si každý den něco představovala, ale proto, že **znalost procesu
+snižuje úzkost z neznáma**.
 
-Provedeme vás dvěma týdny po transferu blastocysty tak, jak je popisuje embryologie. Ne proto, abyste si každý den něco představovala, ale proto, že **znalost procesu snižuje úzkost z neznáma**.
-
-## Přepis hlavních částí
+## Den po dni
 
 **Den 0. Transfer.** Blastocysta je uložena do dutiny děložní. Je uzavřená v obalu zvaném zona pellucida a zatím se volně pohybuje v tenké vrstvě tekutiny mezi stěnami dělohy.
 
@@ -1770,7 +1770,7 @@ Provedeme vás dvěma týdny po transferu blastocysty tak, jak je popisuje embry
 
 A druhá poznámka: **tenhle proces nemůžete ovlivnit ani urychlit.** To zní krutě, ale spoustě žen to paradoxně uleví. Nic z toho, co uděláte v pátek odpoledne, nerozhodne o výsledku.
 
-> Video má informativní charakter a nenahrazuje lékařskou péči. Termín odběru a další postup určuje vaše klinika.`,
+> Článek má informativní charakter a nenahrazuje lékařskou péči. Termín odběru a další postup určuje vaše klinika.`,
       minutes: 9,
       phases: ['two_week_wait', 'transfer'],
       dayRange: [0, 14],
@@ -1781,23 +1781,24 @@ A druhá poznámka: **tenhle proces nemůžete ovlivnit ani urychlit.** To zní 
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
       sources: ['ESHRE: doporučené postupy'],
       publishedOn: '2026-02-16',
-      mediaNote:
-        'Animovaný průřez dělohou s klidným komentářem. Na časové ose se den po dni ukazuje líhnutí blastocysty, přichycení, zanořování a nástup tvorby hCG. Vpravo dole běží ukazatel, od kdy má smysl testovat. Bez dramatické hudby, bez ultrazvukových záběrů dětí.',
       boost: 0.7,
     },
     {
-      id: 'tww-audio-kotva-cekani',
-      kind: 'audio',
+      id: 'tww-kotva-cekani',
+      kind: 'article',
       title: 'Deset minut, kdy nemusíte nic řešit',
       excerpt:
-        'Krátká zvuková kotva pro chvíle, kdy se hlava rozjela a vy potřebujete přistát zpátky v těle.',
-      body: `## Kdy si to pustit
+        'Krátká kotva pro chvíle, kdy se hlava rozjela a vy potřebujete přistát zpátky v těle.',
+      body: `## Kdy po tom sáhnout
 
 Ve chvíli, kdy se přistihnete, jak posté hledáte „příznaky 8. den po transferu". Nebo ve tři ráno. Nebo v autě na parkovišti před prací, protože se vám nechce dovnitř.
 
-Nahrávka nemá za cíl, abyste se cítila skvěle. Má za cíl **snížit napětí natolik, abyste mohla pokračovat v dalších pěti minutách svého dne**.
+Nemá to za cíl, abyste se cítila skvěle. Má to za cíl **snížit napětí natolik,
+abyste mohla pokračovat v dalších pěti minutách svého dne**.
 
-## Přepis
+Můžete si to přečíst očima, nebo si to nechat přečíst nahlas.
+
+## Text
 
 *„Sedněte si nebo si lehněte tak, jak vám to teď vyhovuje. Nemusíte měnit pozici, nemusíte narovnávat záda. Stačí, že jste tady.*
 
@@ -1817,7 +1818,7 @@ Nahrávka nemá za cíl, abyste se cítila skvěle. Má za cíl **snížit napě
 
 Nic velkého. Napijte se vody, projděte se k oknu. Jestli vám to pomohlo, poznamenejte si to. V příštích dnech se vám bude hodit vědět, co u vás funguje.
 
-> Nahrávka je podpůrná a nenahrazuje odbornou psychologickou ani lékařskou péči. Pokud máte pocit, že situaci nezvládáte, ozvěte se svému lékaři nebo na Linku první psychické pomoci 116 123.`,
+> Text je podpůrný a nenahrazuje odbornou psychologickou ani lékařskou péči. Pokud máte pocit, že situaci nezvládáte, ozvěte se svému lékaři nebo na Linku první psychické pomoci 116 123.`,
       minutes: 10,
       phases: ['two_week_wait', 'transfer'],
       dayRange: [1, 14],
@@ -1826,23 +1827,26 @@ Nic velkého. Napijte se vody, projděte se k oknu. Jestli vám to pomohlo, pozn
       hero: 'dusk',
       author: 'Gabi',
       publishedOn: '2026-02-23',
+      readAloud: true,
       mediaNote:
-        'Tempo je pomalé a scénář nikde nezmiňuje slova jako miminko, naděje ani úspěch. Záměrně. Žádná vizualizace, žádná výzva na konci.',
+        'Tempo je pomalé a text nikde nezmiňuje slova jako miminko, naděje ani úspěch. Záměrně. Žádná vizualizace, žádná výzva na konci.',
       boost: 0.55,
     },
     {
-      id: 'tww-audio-vizualizace-zahnizdeni',
-      kind: 'audio',
+      id: 'tww-vizualizace-zahnizdeni',
+      kind: 'article',
       title: 'Vizualizace pro dny zahnizďování',
       excerpt:
-        'Nahrávka pro pátý až sedmý den, kdy tělo dělá tu nejtišší práci a vy k ní nemáte přístup.',
+        'Pro pátý až sedmý den, kdy tělo dělá tu nejtišší práci a vy k ní nemáte přístup.',
       body: `## Pár slov na začátek
 
 Vizualizace nezvyšuje šanci na otěhotnění a tenhle text vám nic takového neslibuje. Co ale umí, je dát vaší úzkosti tvar a na chvíli ji zklidnit. A to není málo.
 
-Pokud vám podobné nahrávky nesedí, klidně ji přeskočte. Nic tím nezmeškáte.
+Pokud vám podobné texty nesedí, klidně ho přeskočte. Nic tím nezmeškáte.
 
-## Přepis
+Dá se přečíst očima nebo nechat přečíst nahlas.
+
+## Text
 
 *„Lehněte si a nechte ruce položené volně podél těla nebo na břiše. Podle toho, co je vám příjemnější.*
 
@@ -1864,9 +1868,9 @@ Pokud vám podobné nahrávky nesedí, klidně ji přeskočte. Nic tím nezmešk
 
 ## Kdy ji nepoužívat
 
-Pokud po ní zůstáváte rozrušená nebo vás nutí přemýšlet víc, ne míň, není to nahrávka pro vás. Existují ženy, kterým v tomhle období pomůže spíš seriál, procházka nebo pečení. Všechny tyhle varianty jsou v pořádku.
+Pokud po něm zůstáváte rozrušená nebo vás nutí přemýšlet víc, ne míň, není to text pro vás. Existují ženy, kterým v tomhle období pomůže spíš seriál, procházka nebo pečení. Všechny tyhle varianty jsou v pořádku.
 
-> Nahrávka je podpůrná a nenahrazuje lékařskou ani psychologickou péči.`,
+> Text je podpůrný a nenahrazuje lékařskou ani psychologickou péči.`,
       minutes: 8,
       phases: ['two_week_wait'],
       dayRange: [4, 9],
@@ -1875,20 +1879,20 @@ Pokud po ní zůstáváte rozrušená nebo vás nutí přemýšlet víc, ne mí�
       hero: 'dawn',
       author: 'Gabi',
       publishedOn: '2026-03-02',
+      readAloud: true,
       mediaNote:
-        'Pomalé vedení s dlouhými pauzami. Scénář nikde nepopisuje embryo ani nesugeruje výsledek. Soustředí se na dech, dotyk dlaně na podbřišku a na vděk vlastnímu tělu.',
+        'Pomalé vedení s dlouhými pauzami. Text nikde nepopisuje embryo ani nesugeruje výsledek. Soustředí se na dech, dotyk dlaně na podbřišku a na vděk vlastnímu tělu.',
     },
     {
-      id: 'tww-podcast-dva-tydny-nahlas',
-      kind: 'podcast',
-      title: 'Dva týdny nahlas: rozhovor o čekání',
+      id: 'tww-dva-tydny-nahlas',
+      kind: 'article',
+      title: 'Dva týdny nahlas: co o čekání říkají ženy, které ho mají za sebou',
       excerpt:
-        'Poslech pro ty dny, kdy potřebujete slyšet, že takhle to má většina žen. A že se z toho dá vyjít.',
-      body: `## O čem epizoda je
+        'Pro dny, kdy potřebujete vědět, že takhle to má většina žen. A že se z toho dá vyjít.',
+      body: `Nejde o zázračné rady. Jde o to vidět, jak dva týdny čekání prožívají jiné
+ženy. A zjistit, že vaše reakce nejsou přehnané.
 
-Nejde o zázračné rady. Jde o to slyšet, jak dva týdny čekání prožívají jiné ženy. A zjistit, že vaše reakce nejsou přehnané.
-
-## Hlavní body z epizody
+Tohle je šest vět, které od žen po IVF slyšíme nejčastěji.
 
 **„Nejhorší byl třetí den, ne poslední."**
 Většina žen čeká, že bude nejtěžší konec. Realita bývá jiná: první dny po transferu, kdy se všechno zastaví, jsou často nejhorší. Adrenalin z výkonu opadne, tělo je unavené a před vámi je prázdno.
@@ -1900,20 +1904,20 @@ Srovnávání příznaků s cizími ženami je jedna z nejrychlejších cest k z
 Míra otevřenosti je individuální. Neexistuje povinnost sdílet.
 
 **„Testovala jsem od sedmého dne a bylo to to nejhloupější, co jsem udělala."**
-Klasika, kterou v epizodě slyšíte v různých variacích. Brzké testy nepřinesou informaci, jen šest dní emoční horské dráhy navíc.
+Klasika, která se opakuje v různých variacích. Brzké testy nepřinesou informaci, jen šest dní emoční horské dráhy navíc.
 
 **„Domluvili jsme se, co uděláme, když to nevyjde."**
 Páry, které měly plán B, popisují den výsledku jako výrazně snesitelnější. Není to přivolávání neúspěchu, je to příprava.
 
 **„Nikdo mi neřekl, že progesteron dělá úplně stejné příznaky."**
-Nejčastější aha moment celé epizody.
+Nejčastější aha moment ze všech.
 
 ## Pro koho to je
 
-Pro dny, kdy potřebujete slyšet lidský hlas a ne další seznam doporučení. A taky pro partnery. Ti z epizody obvykle pochopí víc než z desítek vašich vysvětlování.
+Pro dny, kdy potřebujete číst lidskou řeč a ne další seznam doporučení. A taky pro partnery. Ti z tohohle textu obvykle pochopí víc než z desítek vašich vysvětlování.
 
-> Osobní zkušenosti v epizodě nejsou lékařským doporučením. O svém postupu se vždy raďte se svým ošetřujícím lékařem.`,
-      minutes: 28,
+> Osobní zkušenosti nejsou lékařským doporučením. O svém postupu se vždy raďte se svým ošetřujícím lékařem.`,
+      minutes: 8,
       phases: ['two_week_wait'],
       dayRange: [1, 14],
       topics: ['cekani', 'psychika', 'komunita'],
@@ -1921,8 +1925,6 @@ Pro dny, kdy potřebujete slyšet lidský hlas a ne další seznam doporučení.
       hero: 'taupe',
       author: 'Tým Bloomia',
       publishedOn: '2026-03-09',
-      mediaNote:
-        'Rozhovor tří žen po IVF, nahrávaný v jedné místnosti bez střihu na dramatická místa. Slyšíte i pauzy a smích. Bez hudebních předělů, bez reklamy uprostřed.',
     },
     {
       id: 'tww-kviz-myty-cekani',

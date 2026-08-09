@@ -240,13 +240,6 @@ export function buildRails(
 
   add('for-you', 'Právě pro vás', dayReason, { limit: 8, min: 1 })
 
-  add('watch', 'Podívejte se', 'Videa pro vaši fázi', { kind: 'video', limit: 10 })
-
-  add('listen', 'Zklidněte se', 'Meditace a audio na dnešní večer', {
-    kind: ['audio', 'podcast'],
-    limit: 8,
-  })
-
   add('read', 'K přečtení', 'Články, které teď dávají smysl', { kind: 'article', limit: 10 })
 
   add('stories', 'Příběhy žen jako vy', 'Nejste v tom sama', { kind: 'story', limit: 8 })

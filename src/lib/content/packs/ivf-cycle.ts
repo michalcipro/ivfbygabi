@@ -821,36 +821,89 @@ Poslední rada: **kupte si dvě jehly navíc.** Pero se dá upustit, jehla se d�
       ],
     },
     {
-      id: 'cyk-video-technika-vpichu',
-      kind: 'video',
-      title: 'Video: ruka na břiše, jehla, výdech',
+      id: 'cyk-technika-vpichu',
+      kind: 'article',
+      title: 'Injekce krok za krokem: ruka na břiše, jehla, výdech',
       excerpt:
-        'Sedm minut, ve kterých uvidíte celý postup zblízka a beze spěchu. Od mytí rukou po nádobu na ostrý odpad.',
-      body: `## Co ve videu uvidíte
+        'Celý postup zblízka a beze spěchu. Od mytí rukou po nádobu na ostrý odpad.',
+      body: `Většina žen si první injekci nastuduje z letáku a pak stojí půl hodiny nad
+stolem. Leták totiž popisuje kroky, ale neřekne nic o **tempu**. A právě tempo
+dělá rozdíl mezi vpichem, který není skoro cítit, a modřinou.
 
-Video je natočené z pohledu první osoby, tedy tak, jak to uvidíte vy sama, když se podíváte dolů na vlastní břicho. Žádné animace, žádné modelky s dokonalým bříškem. Reálné ruce, reálný stůl v kuchyni.
+Dvě nejčastější chyby jsou přesně opačné, než by člověk čekal: **příliš pomalé
+zapíchnutí** a **příliš rychlé vytlačení léku**.
 
-**Minuta 0–1: příprava plochy.** Mytí rukou, prostření čisté utěrky, vyskládání pomůcek zleva doprava v pořadí, ve kterém je budete potřebovat. Uvidíte, proč se pořadí vyplatí dodržet.
+## 1. Příprava plochy
 
-**Minuta 1–2: kontrola léku.** Přečtení názvu, koncentrace a expirace nahlas. Ukazujeme, jak vypadá správně rozpuštěný roztok a co je důvod, aby lahvička skončila v koši a vy u telefonu.
+Umyjte si ruce. Prostřete čistou utěrku. Vyskládejte pomůcky zleva doprava
+v pořadí, ve kterém je budete potřebovat: lék, pero nebo stříkačka, jehla,
+dezinfekce, suchý čtvereček, kontejner na jehly.
 
-**Minuta 2–3: nastavení dávky na peru.** Zblízka na displej, včetně toho, jak se dávka opravuje, když ji přetočíte, a jak se dělá odvzdušnění.
+Pořadí zní jako zbytečnost. Není. Až budete držet nataženou stříkačku, nechcete
+zjišťovat, kde je dezinfekce.
 
-**Minuta 3–5: samotný vpich.** Uchopení kožní řasy, úhel, rychlý pohyb dovnitř, pomalé vytlačení, počítání do deseti, vytažení. Uvidíte i to, jak vypadá kapka krve po vytažení a proč se místo netře.
+## 2. Lék z ledničky ven včas
 
-**Minuta 5–6: po vpichu.** Odhození jehly do kontejneru, přiložení suchého čtverečku, zápis do rozpisu.
+Pokud se přípravek skladuje v chladu, **vyndejte ho zhruba půl hodiny předem**.
+Studená tekutina je při vytlačování cítit výrazně víc. Tohle je jedna
+z nejúčinnějších drobností celé stimulace.
 
-**Minuta 6–7: mapa břicha.** Kreslíme na břicho čtyři kvadranty a ukazujeme systém střídání míst, aby se stejný bod nepoužil dřív než za týden.
+Přečtěte si nahlas název, koncentraci a expiraci. Nahlas proto, že v šest ráno
+oči čtou, ale hlava ne.
 
-## Proč to stojí za sedm minut
+## 3. Nastavení dávky
 
-Většina žen si první injekci nastuduje z letáku a pak stojí půl hodiny nad stolem, protože leták neukazuje **tempo**. Nejčastější chyby jsou dvě: příliš pomalé zapíchnutí a příliš rychlé vytlačení léku. Obojí se dá odkoukat za minutu a přečíst se dá jen těžko.
+U pera nastavte dávku na displeji. Když ji přetočíte, dá se vrátit zpět; návod
+k peru ukazuje jak. Odvzdušnění se u některých per dělá, u jiných ne, řiďte se
+tím, co vám ukázala sestra.
 
-## Než pustíte
+U hotových předplněných injekcí není potřeba dělat nic. **Bublinka vzduchu
+v předplněné injekci nevadí a neodstřikuje se**, pokud vám klinika neřekla
+jinak: odstřikováním se ztrácí část dávky.
 
-Připravte si vlastní pomůcky a pusťte si video **při skutečné aplikaci**, ne jen jako přípravu. Pauzujte, kdykoli potřebujete.
+## 4. Místo a kožní řasa
 
-> Video ukazuje obecnou techniku podkožní aplikace. Konkrétní přípravek, dávku i způsob podání vám určí vaše klinika a její pokyny mají přednost.`,
+Najděte místo na spodní části břicha, aspoň dva prsty od pupku. Vydezinfikujte
+a nechte oschnout.
+
+Uchopte kožní řasu, tedy „špek“, a **držte ji po celou dobu**. Tohle je věc,
+na kterou se nejčastěji zapomíná. Držení řasy oddálí podkoží od svalu
+a vpich je znatelně méně cítit.
+
+Jehlu zapíchněte **kolmo a svižně**. Pomalé zapichování bolí víc, ne míň.
+
+## 5. Vytlačení
+
+Tlačte **pomalu**. Tady se nespěchá. Po vytlačení celé dávky nechte jehlu ještě
+pár vteřin na místě, ať se tekutina nevrátí kanálkem zpátky.
+
+Řasu pořád držte.
+
+## 6. Vytažení a po vpichu
+
+Jehlu vytáhněte pomalu, řasu pusťte až potom. Přiložte suchý čtvereček. Kapka
+krve po vytažení je běžná.
+
+Místo promasírujte, pusťte a promasírujte znovu. Pomáhá to roztéct tekutině
+a snižuje to počet bulek.
+
+Jehlu odhoďte do kontejneru na ostrý odpad, ne do koše. A zapište si dávku
+do rozpisu, dokud ji máte v ruce.
+
+## 7. Mapa břicha
+
+Rozdělte si břicho na čtyři kvadranty a střídejte je tak, aby se stejný bod
+nepoužil dřív než zhruba za týden. Aplikace pro tohle má mapu míst vpichu,
+která si střídání pamatuje za vás.
+
+## Malý tip navíc
+
+Chyťte si injekci hned na začátku tak, abyste ji dokázala stlačit jednou rukou.
+Druhou budete držet řasu a přehmatávat uprostřed se nechce.
+
+> Článek popisuje obecnou techniku podkožní aplikace. Konkrétní přípravek,
+> dávku i způsob podání vám určí vaše klinika a její pokyny mají přednost.
+> Některé přípravky se aplikují jinam než do břicha.`,
       minutes: 7,
       phases: ['ivf_prep', 'stimulation'],
       dayRange: [0, 4],
@@ -860,8 +913,6 @@ Připravte si vlastní pomůcky a pusťte si video **při skutečné aplikaci**,
       author: 'Gabi',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
       publishedOn: '2025-10-20',
-      mediaNote:
-        'Sedmiminutové video z pohledu první osoby: příprava pomůcek, kontrola léku, nastavení dávky na peru, vpich zblízka, likvidace jehly a mapa střídání míst na břiše. Bez hudby, jen klidný komentář a reálný zvuk kuchyně.',
       boost: 0.7,
     },
     {
@@ -1188,34 +1239,67 @@ Volejte na kliniku nebo na pohotovost, pokud se objeví:
       boost: 0.95,
     },
     {
-      id: 'cyk-audio-vecer-pred-odberem',
-      kind: 'audio',
-      title: 'Poslech na večer před odběrem',
+      id: 'cyk-vecer-pred-odberem',
+      kind: 'article',
+      title: 'Večer před odběrem: když je všechno rozhodnuté',
       excerpt:
-        'Dvanáct minut na noc, kdy je všechno rozhodnuté a vy nemůžete dělat vůbec nic.',
-      body: `## O čem to je
+        'Na noc mezi triggerem a odběrem, kdy nemůžete udělat vůbec nic.',
+      body: `Tohle je určené na jednu konkrétní noc: tu mezi triggerem a odběrem. Je to
+nejpodivnější noc celého cyklu.
 
-Tahle nahrávka je určená na jednu konkrétní noc: tu mezi triggerem a odběrem. Je to nejpodivnější noc celého cyklu. Deset dní jste každý den něco dělala. Píchala, měřila, jezdila na kontroly, zapisovala čísla. A teď nemůžete udělat vůbec nic. Vajíčka dozrávají bez vás.
+Deset dní jste každý den něco dělala. Píchala, měřila, jezdila na kontroly,
+zapisovala čísla. A teď nemůžete udělat vůbec nic. Vajíčka dozrávají bez vás.
 
-Nahrávka nezačíná dechovým cvičením. Začíná větou, že je v pořádku ležet a nespat.
+Nezačneme dechovým cvičením. Začneme tím, že **je v pořádku ležet a nespat**.
 
-**První část (asi 3 minuty)** je o tom, jak vypnout počítání. Ne tak, že si zakážete myslet. To nefunguje –, ale tak, že si dovolíte jednou nahlas projít, co všechno jste udělala. Celý seznam. Až po ten poslední vpich ve 21:45.
+## 1. Vypnout počítání
 
-**Druhá část (asi 4 minuty)** je klidné, pomalé dýchání s prodlouženým výdechem. Nádech na čtyři, výdech na šest. Prodloužený výdech je jediná věc, kterou umíte vědomě ovlivnit nervový systém, a funguje i tehdy, když tomu nevěříte.
+Ne tak, že si zakážete myslet. To nefunguje. Ale tak, že si jednou nahlas
+projdete, co všechno jste udělala. Celý seznam.
 
-**Třetí část (asi 5 minut)** je vedená pozornost po těle, od chodidel nahoru. Když dojdeme k břichu, nevynecháme ho a nebudeme ho žádat, aby bylo jiné. Břicho je dnes napjaté, těžké a plné. Necháme ho takové.
+Kolik dní stimulace. Kolik vpichů. Kolik kontrol. Kolik ranních vstávání.
+Až po ten poslední vpich ve 21:45, který jste trefila na minutu.
 
-Nahrávka končí bez pobídky a bez závěrečné věty typu „a teď věřte". Prostě ztichne.
+Hlava potřebuje slyšet, že seznam je hotový. Pak ho pustí.
+
+## 2. Dech
+
+Nádech na čtyři. Výdech na šest.
+
+Prodloužený výdech je jediná věc, kterou vědomě ovlivníte nervový systém.
+Funguje i tehdy, když tomu nevěříte.
+
+Zůstaňte u toho čtyři pět minut. Bez počítání nahlas, jen ve svém rytmu.
+
+## 3. Tělo od chodidel nahoru
+
+Projděte pozorností chodidla, lýtka, kolena, stehna, pánev.
+
+Když dojdete k **břichu**, nevynechte ho a nežádejte po něm, aby bylo jiné.
+Břicho je dneska napjaté, těžké a plné. Nechte ho takové. Je to důsledek toho,
+že se povedlo přesně to, co se povést mělo.
+
+Pak hrudník, ramena, ruce, čelist, čelo.
+
+## Bez závěrečné věty
+
+Žádné „a teď věřte“. Prostě ticho.
 
 ## Pro koho to není
 
-Pokud vám vedený hlas v hlavě přijde spíš rušivý než uklidňující, nesnažte se to vydržet. Vypněte to a pusťte si radši něco, co znáte nazpaměť. Cílem je usnout, ne odposlouchat.
+Pokud vám vedený text v hlavě přijde spíš rušivý než uklidňující, nesnažte se
+to vydržet. Nechte to být a pusťte si radši něco, co znáte nazpaměť. Cílem je
+usnout, ne tohle dočíst.
 
-## Praktická poznámka
+## Dvě praktické věci před spaním
 
-Než si to pustíte, zkontrolujte dvě věci: že máte nastavený budík na ráno a že vedle postele leží připravené oblečení. Klidnější se usíná, když ráno nečeká rozhodování.
+1. Nastavený budík na ráno.
+2. Připravené oblečení vedle postele.
 
-> Nahrávka je podpůrná a nenahrazuje lékařskou ani psychoterapeutickou péči. Pokud vás úzkost dlouhodobě vyčerpává, řekněte o tom svému lékaři.`,
+Klidněji se usíná, když ráno nečeká rozhodování.
+
+> Text je podpůrný a nenahrazuje lékařskou ani psychoterapeutickou péči.
+> Pokud vás úzkost dlouhodobě vyčerpává, řekněte o tom svému lékaři.`,
       minutes: 12,
       phases: ['stimulation', 'retrieval'],
       dayRange: [9, 13],
@@ -1224,8 +1308,9 @@ Než si to pustíte, zkontrolujte dvě věci: že máte nastavený budík na rá
       hero: 'dusk',
       author: 'Gabi',
       publishedOn: '2025-11-09',
+      readAloud: true,
       mediaNote:
-        'Tři části: pojmenování toho, co máte za sebou, dech s prodlouženým výdechem a pomalé projití těla. S pauzami zhruba dvanáct minut. Končí tichem, bez závěrečné výzvy.',
+        'Tři části: pojmenování toho, co máte za sebou, dech s prodlouženým výdechem a pomalé projití těla. Končí tichem, bez závěrečné výzvy.',
       boost: 0.6,
     },
     {
@@ -2502,16 +2587,14 @@ Nikdo vám za tenhle cyklus nedá známku z vyrovnanosti. Cílem není projít t
       boost: 0.75,
     },
     {
-      id: 'cyk-podcast-embryolog',
-      kind: 'podcast',
-      title: 'Podcast: co se opravdu děje za dveřmi laboratoře',
+      id: 'cyk-embryolog',
+      kind: 'article',
+      title: 'Co se opravdu děje za dveřmi laboratoře',
       excerpt:
-        'Rozhovor o tom, jak vypadá běžný den embryologa a proč vám nikdy neřekne procenta v den jedna.',
-      body: `## O čem je tahle epizoda
+        'Jak vypadá běžný den embryologa a proč vám nikdy neřekne procenta v den jedna.',
+      body: `Většina žen si laboratoř představuje jako bílou místnost s obřími mikroskopy a týmem, který se dívá na jejich embrya nepřetržitě. Skutečnost je jiná a je uklidňující: laboratoř je **tmavá, tichá a její hlavní pravidlo zní nerušit**.
 
-Většina žen si laboratoř představuje jako bílou místnost s obřími mikroskopy a týmem, který se dívá na jejich embrya nepřetržitě. Skutečnost je jiná a je uklidňující: laboratoř je **tmavá, tichá a její hlavní pravidlo zní nerušit**.
-
-V epizodě mluvíme o tom, jak vypadá běžný den v embryologické laboratoři. Od chvíle, kdy okénkem přijdou první zkumavky z odběrového sálu, po večerní kontrolu inkubátorů.
+Takhle vypadá běžný den v embryologické laboratoři. Od chvíle, kdy okénkem přijdou první zkumavky z odběrového sálu, po večerní kontrolu inkubátorů.
 
 **Část první: ráno.** Vyhledávání vajíček v odsáté tekutině, posouzení zralosti, příprava vzorku spermií. Proč se identita pacientky kontroluje při každém jednotlivém kroku a proč je to vždy dvakrát.
 
@@ -2519,9 +2602,9 @@ V epizodě mluvíme o tom, jak vypadá běžný den v embryologické laboratoři
 
 **Část třetí: telefonáty.** Jak se sdělují čísla. Proč embryolog neříká procenta úspěšnosti v den po odběru, ne proto, že by je tajil, ale proto, že v ten okamžik neexistují. Co naopak říct umí a na co se ho ptát.
 
-**Část čtvrtá: co embryologa v téhle práci nejvíc drží.** A co ho nejvíc bolí. Nejčastěji věta „takže jsem to zkazila", kterou od pacientek slyší pravidelně a která nikdy nebyla pravda.
+**Část čtvrtá: co embryology v téhle práci nejvíc bolí.** Nejčastěji věta „takže jsem to zkazila“, kterou od pacientek slyší pravidelně a která nikdy nebyla pravda.
 
-## Věta, která z epizody nejvíc zůstane
+## Věta, která z toho nejvíc zůstane
 
 „Když se embryo zastaví, není to proto, že by u něj někdo stál špatně. Je to proto, že si tu informaci přineslo s sebou. My tomu jen přihlížíme a snažíme se mu k tomu vytvořit nejlepší možné podmínky."
 
@@ -2530,7 +2613,7 @@ V epizodě mluvíme o tom, jak vypadá běžný den v embryologické laboratoři
 Pro každou, kdo je teď mezi odběrem a transferem a nedokáže si představit, kde její embrya vlastně jsou. Pomůže to i partnerům. Je to jediná část procesu, která je technická a dá se pochopit bez emocí.
 
 > Obsah je informativní a obecný. Konkrétní informace o vašich embryích vám může poskytnout pouze embryolog vaší kliniky.`,
-      minutes: 28,
+      minutes: 10,
       phases: ['fertilization', 'embryo_culture', 'retrieval'],
       dayRange: [0, 6],
       topics: ['embryologie', 'klinika', 'cekani'],
@@ -2539,8 +2622,6 @@ Pro každou, kdo je teď mezi odběrem a transferem a nedokáže si představit,
       author: 'Tým Bloomia',
       reviewedBy: 'Odborně garantováno – reprodukční medicína',
       publishedOn: '2026-03-02',
-      mediaNote:
-        'Osmadvacetiminutový rozhovor v klidném tempu, bez hudebních předělů. Slyšíte otázky laika a odpovědi embryologa, včetně popisu zvuků laboratoře a vysvětlení, proč se inkubátory otevírají co nejméně.',
       boost: 0.55,
     },
     {

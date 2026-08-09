@@ -22,20 +22,20 @@ import { czechVoice, speechAvailable, speechState, toChunks } from './speech'
 /**
  * Přehrávač meditace.
  *
- * Aplikace nemá server a nahrávka dvanáctiminutové meditace by vážila víc než
- * všechno ostatní dohromady. Prohlížeč ale umí mluvit. A česky. Meditace se
- * proto předčítá. Není to studiová nahrávka a obrazovka to říká rovnou;
- * předstírat něco jiného by bylo horší než ta věc sama.
+ * Aplikace nemá server a nahrávka dvanáctiminutového cvičení by vážila víc než
+ * všechno ostatní dohromady. Prohlížeč ale umí mluvit. A česky. Články psané
+ * jako scénář se proto předčítají. Není to studiová nahrávka a obrazovka to
+ * říká rovnou; předstírat něco jiného by bylo horší než ta věc sama.
  *
- * Pauzy mezi větami dělá `speech.ts`. Bez nich by to nebyla meditace, ale
- * přečtený článek.
+ * Pauzy mezi větami dělá `speech.ts`. Bez nich by to nebylo vedené cvičení,
+ * ale přečtený článek.
  */
 function audioPlayer(item: ContentItem): string {
   if (!speechAvailable()) {
     return `<div class="player">
       <p class="eyebrow">Poslech</p>
       <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
-        Váš prohlížeč neumí číst nahlas. Scénář níž je celý. Dá se přečíst
+        Váš prohlížeč neumí číst nahlas. Text níž je celý. Dá se přečíst
         očima nebo si ho někdo může přečíst nahlas vám.
       </p>
     </div>`
@@ -62,38 +62,14 @@ function audioPlayer(item: ContentItem): string {
     </div>
     <p class="faint" id="say-voice" style="margin-top:.75rem;font-size:.8125rem;line-height:1.55">${
       czechVoice()
-        ? 'Čte hlas vašeho zařízení, ne nahrané studio. Mezi větami se dělají pauzy. Jsou součástí meditace.'
+        ? 'Čte hlas vašeho zařízení, ne nahrané studio. Mezi větami se dělají pauzy. Jsou součástí cvičení.'
         : 'České hlasy se ještě načítají, nebo je zařízení nemá. Bez nich zní výslovnost divně; text níž je celý.'
     }</p>
   </div>`
 }
 
-/**
- * Video.
- *
- * Dokud u položky není soubor, obrazovka to napíše. Nadpis „Video: …“ nad
- * textem, který žádné video není, je slib, který aplikace nedodrží.
- */
-function videoBlock(item: ContentItem): string {
-  if (item.mediaSrc) {
-    return `<div class="player">
-      <video controls preload="metadata" playsinline style="width:100%;border-radius:var(--r-lg);display:block"
-             src="${esc(item.mediaSrc)}"></video>
-    </div>`
-  }
-  return `<div class="player">
-    <p class="eyebrow">Video se připravuje</p>
-    <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">
-      Natáčí se. Než bude hotové, je níž celý přepis. Je v něm všechno, co
-      ve videu uslyšíte a uvidíte.
-    </p>
-  </div>`
-}
-
 function mediaBlock(item: ContentItem): string {
-  if (item.kind === 'audio') return audioPlayer(item)
-  if (item.kind === 'video') return videoBlock(item)
-  return ''
+  return item.readAloud ? audioPlayer(item) : ''
 }
 
 // ------------------------------------------------------------------ čtečka ---
