@@ -138,7 +138,7 @@ export function screenProfil(): string {
     ['partner', '♡', 'Pro partnera', 'Co ukázat tomu, kdo je vedle vás'],
     ['komunita', '◍', 'Komunita', 'Ženy ve stejné fázi. Můžete zůstat anonymní'],
     ['clenstvi', '✦', 'Předplatné', 'Jak funguje a jak ho spravovat'],
-    ['o-bloomii', '✿', 'Kdo stojí za Bloomií', 'Proč Bloomia vznikla a co znamená její jméno'],
+    ['o-bloomii', '✿', 'Kdo stojí za BlooMií', 'Proč BlooMia vznikla a co znamená její jméno'],
     ['napiste-mi', '✉', 'Napište mi', 'Zpětná vazba, nápad, recenze nebo co vám chybí'],
     ['nastaveni', '⚙', 'Nastavení', 'Fáze, situace, vzhled a vaše data'],
     ['vice', '⋯', 'Všechno ostatní', 'Rozcestník na zbytek aplikace'],
@@ -911,13 +911,13 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
     </section>`,
 
     `<section class="surface pad">
-      <p class="eyebrow">Bloomia</p>
+      <p class="eyebrow">BlooMia</p>
       <p class="soft" style="margin-top:.6rem;font-size:.9375rem;line-height:1.65">
-        Bloomii vytvořila Gabriela, která si sama prošla IVF. Název vznikl spojením
+        BlooMii vytvořila Gabriela, která si sama prošla IVF. Název vznikl spojením
         slov Bloom a Mia.
       </p>
       <div class="row wrap" style="gap:.6rem;margin-top:1.1rem">
-        <button class="btn btn-sm" data-go="o-bloomii">Kdo stojí za Bloomií</button>
+        <button class="btn btn-sm" data-go="o-bloomii">Kdo stojí za BlooMií</button>
         <button class="btn btn-sm" data-go="napiste-mi">Napište mi</button>
       </div>
     </section>`,

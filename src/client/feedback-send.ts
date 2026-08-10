@@ -3,7 +3,7 @@ import { bodyFor, subjectFor, type Feedback } from '../lib/domain/feedback'
 /**
  * Odeslání zpětné vazby.
  *
- * Bloomia nemá server. Jediný způsob, jak dostat zprávu Gabriele, aniž by
+ * BlooMia nemá server. Jediný způsob, jak dostat zprávu Gabriele, aniž by
  * se stavěl backend, je přeposílací služba pro formuláře.
  *
  * ------------------------------------------------------------ NASTAVENÍ ---
@@ -49,7 +49,7 @@ export async function sendFeedback(f: Feedback, today: string): Promise<SendResu
       body: JSON.stringify({
         access_key: ACCESS_KEY,
         subject: subjectFor(f),
-        from_name: f.name.trim() || 'Uživatelka Bloomie',
+        from_name: f.name.trim() || 'Uživatelka BlooMie',
         message: bodyFor(f, today),
       }),
     })

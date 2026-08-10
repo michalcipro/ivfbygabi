@@ -5,7 +5,7 @@ import { esc, note } from './ui'
 /**
  * Napište mi.
  *
- * Jediná obrazovka v Bloomii, ze které něco odchází ven. Proto je na ní
+ * Jediná obrazovka v BlooMii, ze které něco odchází ven. Proto je na ní
  * napsané víc než jinde: co se odešle, komu, a hlavně co se neodešle.
  *
  * ---------------------------------------------------------------- AKCE ---
@@ -32,7 +32,7 @@ export function screenNapisteMi(f: Feedback, stav: string): string {
     `<header class="head rise">
       <p class="eyebrow">Zpětná vazba</p>
       <h1 class="display">Napište mi</h1>
-      <p class="lede">Chybí vám v Bloomii něco? Něco nefunguje? Nebo vás naopak něco potěšilo?
+      <p class="lede">Chybí vám v BlooMii něco? Něco nefunguje? Nebo vás naopak něco potěšilo?
       Píše to Gabriela, ne robot, a čte to taky ona.</p>
     </header>`,
 
@@ -40,7 +40,7 @@ export function screenNapisteMi(f: Feedback, stav: string): string {
       ? `<section class="surface pad rise" style="border-color:var(--sage-deep)">
           <p class="display" style="font-size:1.3rem;line-height:1.45">Děkuji, že jste mi napsala.</p>
           <p class="soft" style="margin-top:.7rem;line-height:1.7;font-size:.9375rem">
-            Vaše zpětná vazba mi pomáhá Bloomii dál zlepšovat.
+            Vaše zpětná vazba mi pomáhá BlooMii dál zlepšovat.
           </p>
         </section>`
       : '',
@@ -75,7 +75,7 @@ export function screenNapisteMi(f: Feedback, stav: string): string {
     </section>`,
 
     `<section class="surface pad rise">
-      <p class="eyebrow">Jak se vám Bloomia používá</p>
+      <p class="eyebrow">Jak se vám BlooMia používá</p>
       <p class="faint" style="margin-top:.4rem;font-size:.8125rem;line-height:1.55">
         Nepovinné. Když nevyplníte nic, odešle se jen zpráva výš.
       </p>

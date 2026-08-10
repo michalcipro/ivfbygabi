@@ -612,36 +612,90 @@ export function toggleRow(key: string, title: string, body: string, on: boolean)
 // ------------------------------------------------------------------ značka ---
 
 /**
- * Kvetoucí znak.
+ * Srdce znaku. Dva souměrné oblouky a hrot dole.
  *
- * Šest okvětních lístků vyrůstá ze středu. Čím dál od středu, tím
- * otevřenější. Kreslí se tahem, ne výplní, aby fungoval i v malé velikosti
- * a v obou motivech. Vnitřek nese barvu meruňky, obvod barvu listu:
- * květ proti listí, což je celý nápad Bloomie.
+ * Kreslí se z jednoho místa, protože stejný tvar používá znak v aplikaci,
+ * ikona na ploše i hlavička dokumentu. Dvě verze téhož srdce by se dřív
+ * nebo později rozešly a značka by přestala být jedna.
  */
-export function bloomMark(size = 28, animate = false): string {
-  const petals = 6
-  const out: string[] = []
-  for (let i = 0; i < petals; i++) {
-    const a = (i * 360) / petals
-    // Otočení musí být na obalu, ne na tahu. Kdyby bylo na tahu, přepsala
-    // by ho CSS transformace z animace a všechny lístky by se složily na sebe.
-    out.push(
-      `<g transform="rotate(${a} 24 24)">
-        <path d="M24 25 C 23 17, 18 11, 24 4 C 30 11, 25 17, 24 25 Z"
-              fill="none" stroke="${i % 2 === 0 ? 'var(--s1)' : 'var(--sage-deep)'}"
-              stroke-width="2" stroke-linejoin="round"
-              ${animate ? `style="animation:petal .85s var(--calm) ${i * 80}ms both"` : ''}/>
-      </g>`,
-    )
-  }
-  return `<svg class="bloom" width="${size}" height="${size}" viewBox="0 0 48 48" aria-hidden="true">
-    ${out.join('')}
-    <circle cx="24" cy="24" r="3" fill="var(--s1)"/>
+const SRDCE =
+  'M24 40.4C20.6 37.6 14.4 33.4 14.4 29.1c0-2.7 2.1-4.7 4.7-4.7 1.9 0 3.8 1.1 4.9 2.8 1.1-1.7 3-2.8 4.9-2.8 2.6 0 4.7 2 4.7 4.7 0 4.3-6.2 8.5-9.6 11.3Z'
+
+/**
+ * Znak BlooMia: tři tečky a pod nimi srdce.
+ *
+ * Tečky jdou odshora dolů a rostou. Je to cesta, čekání a to, jak se
+ * z ničeho postupně stane něco. Srdce dole není ozdoba, je to cíl.
+ *
+ * Znak se používá střídmě. Rozpoznatelný je právě proto, že není všude:
+ * ikona aplikace, favicon, načítání, hlavička, patička dokumentu. Ne
+ * u každého nadpisu.
+ *
+ * `mono` vypne barvy a kreslí jednou barvou textu. Pro tisk, dokumenty
+ * a všude, kde růžová se švestkou nemají co dělat.
+ */
+export function bloomMark(size = 28, animate = false, mono = false): string {
+  const tecka = mono ? 'currentColor' : 'var(--heart)'
+  const srdce = mono ? 'currentColor' : 'var(--mia)'
+  // Tři tečky nad sebou, každá o kousek větší. Průhlednost klesá odshora,
+  // takže nejmenší je nejtišší.
+  const tecky = [
+    { cy: 9.6, r: 1.6, op: 0.4 },
+    { cy: 15.2, r: 2.05, op: 0.68 },
+    { cy: 21.2, r: 2.5, op: 1 },
+  ]
+  return `<svg class="bmark${animate ? ' bmark-anim' : ''}" width="${size}" height="${size}"
+     viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+    ${tecky
+      .map(
+        (t, i) =>
+          `<circle cx="24" cy="${t.cy}" r="${t.r}" fill="${tecka}" fill-opacity="${t.op}"
+             ${animate ? `style="animation:bmdot 1.4s var(--calm) ${i * 180}ms infinite"` : ''}/>`,
+      )
+      .join('')}
+    <path d="${SRDCE}" fill="${srdce}"
+          ${animate ? 'style="animation:bmheart 1.4s var(--calm) 540ms infinite"' : ''}/>
   </svg>`
+}
+
+/**
+ * Jméno značky.
+ *
+ * Bloo je švestkové, Mia pudrově růžová. Rozdělení není ozdoba: v tom
+ * předělu je celý příběh názvu, takže se nesmí sjednotit do jedné barvy
+ * ani prohodit.
+ *
+ * Nepíše se přes `esc()`, protože jde o dvě pevné části názvu, ne o vstup
+ * uživatelky.
+ */
+export function bloomiaName(): string {
+  return `<b class="bmname"><span class="bloo">Bloo</span><span class="mia">Mia</span></b>`
 }
 
 /** Jméno se znakem. Používá se v postranním panelu a v uvítání. */
 export function wordmark(size = 26): string {
-  return `<span class="wordmark">${bloomMark(size)}<b>Bloomia</b></span>`
+  return `<span class="wordmark">${bloomMark(size)}${bloomiaName()}</span>`
+}
+
+/**
+ * Celé logo i s claimem.
+ *
+ * Znak, jméno, jemné srdce mezi dvěma linkami a pod tím „TVOJE IVF CESTA“.
+ * Používá se tam, kde má značka prostor: uvítání, o BlooMii, hlavička PDF.
+ * Do rozhraní mezi obsah nepatří, tam stačí `wordmark()`.
+ */
+export function logoFull(size = 44, mono = false): string {
+  return `<div class="bmlogo${mono ? ' mono' : ''}">
+    ${bloomMark(size, false, mono)}
+    ${bloomiaName()}
+    <div class="bmrule" aria-hidden="true">
+      <i></i>
+      <svg width="18" height="18" viewBox="0 0 48 48" fill="none"
+           stroke="${mono ? 'currentColor' : 'var(--heart)'}" stroke-width="3">
+        <path d="${SRDCE}"/>
+      </svg>
+      <i></i>
+    </div>
+    <p class="bmclaim">Tvoje IVF cesta</p>
+  </div>`
 }

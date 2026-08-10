@@ -66,7 +66,7 @@ import { applyTopicAffinity, type WeightedAffinity } from '../lib/content/affini
  */
 
 /**
- * Klíč v úložišti zůstává i po přejmenování na Bloomia. Kdyby se změnil,
+ * Klíč v úložišti zůstává i po přejmenování na BlooMia. Kdyby se změnil,
  * každá uživatelka by přišla o celý svůj deník. A to je ta poslední věc,
  * kterou smí rebranding udělat.
  */

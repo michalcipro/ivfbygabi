@@ -140,7 +140,7 @@ import { weekShareText } from './screens-tyden'
 import { hydrateCharts, wordmark } from './viz'
 import { quickButton, quickSheet } from './quick-add'
 import { currentReport, openReport } from './report-print'
-import { screenOBloomii } from './screens-obloomii'
+import { screenOBlooMii } from './screens-obloomii'
 import { screenNapisteMi } from './screens-napiste'
 import { emptyFeedback, hasContent, type FeedbackTopic } from '../lib/domain/feedback'
 import { sendFeedback } from './feedback-send'
@@ -285,7 +285,7 @@ const TITLES: Record<string, string> = {
   partner: 'Partner mode',
   nastaveni: 'Nastavení',
   zaloha: 'Záloha a obnova',
-  'o-bloomii': 'Kdo stojí za Bloomií',
+  'o-bloomii': 'Kdo stojí za BlooMií',
   'napiste-mi': 'Napište mi',
   clenstvi: 'Členství',
   proc: 'Proč vidím tohle',
@@ -627,7 +627,7 @@ function screenFor(route: string): string {
         neuklada: saveFailed(),
       })
     case 'o-bloomii':
-      return screenOBloomii()
+      return screenOBlooMii()
     case 'napiste-mi':
       return screenNapisteMi(view.feedback, view.feedbackStav)
     case 'clenstvi':
@@ -2835,7 +2835,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 window.addEventListener('appinstalled', () => {
   vyzva = null
   view.zaloha.lzeInstalovat = false
-  toast('Bloomia je na ploše. Data teď zůstávají v bezpečí i mezi otevřeními.')
+  toast('BlooMia je na ploše. Data teď zůstávají v bezpečí i mezi otevřeními.')
 })
 
 function nabidnoutInstalaci(): void {
@@ -2873,7 +2873,7 @@ function ukazNovouVerzi(): void {
   const el = document.createElement('div')
   el.className = 'toast newver'
   el.setAttribute('role', 'status')
-  el.innerHTML = `<span>Je tu nová verze Bloomie.</span>
+  el.innerHTML = `<span>Je tu nová verze BlooMie.</span>
     <button class="nv-ano" data-act="pwa-obnovit">Načíst</button>
     <button class="nv-ne" data-act="pwa-pozdeji">Později</button>`
   document.body.appendChild(el)

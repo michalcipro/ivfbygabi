@@ -903,7 +903,7 @@ export const CONCEPTION_GUIDES: PhaseGuide[] = [
     mind: [
       {
         title: 'Tady vaše cesta v téhle aplikaci končí',
-        body: 'Bloomia vás doprovází od rozhodnutí až sem. K pozitivnímu testu. Průběh těhotenství je jiná etapa s jinými otázkami a patří vašemu gynekologovi, ke kterému vás centrum v následujících týdnech předá. Deník, hodnoty i poznámky vám tu zůstávají: jsou vaše a hodí se na první návštěvě u nového lékaře. A kdyby se cesta znovu otočila, najdete tu i to.',
+        body: 'BlooMia vás doprovází od rozhodnutí až sem. K pozitivnímu testu. Průběh těhotenství je jiná etapa s jinými otázkami a patří vašemu gynekologovi, ke kterému vás centrum v následujících týdnech předá. Deník, hodnoty i poznámky vám tu zůstávají: jsou vaše a hodí se na první návštěvě u nového lékaře. A kdyby se cesta znovu otočila, najdete tu i to.',
       },
       {
         title: 'Radovat se neumíte a je to v pořádku',

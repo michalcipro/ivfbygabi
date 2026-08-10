@@ -193,7 +193,7 @@ function clanek(dpt: number): ContentItem {
     level: 'essential',
     // Střídání pozadí, ať čtrnáct karet pod sebou není čtrnáctkrát stejná.
     hero: (['sky', 'champagne', 'sage', 'dawn', 'linen'] as const)[dpt % 5],
-    author: 'Tým Bloomia',
+    author: 'Tým BlooMia',
     reviewedBy: 'Odborně garantováno – reprodukční medicína',
     sources: ['ESHRE: doporučené postupy'],
     publishedOn: '2026-08-09',

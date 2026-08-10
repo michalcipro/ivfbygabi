@@ -1,4 +1,4 @@
-# Bloomia
+# BlooMia
 
 Česká aplikace pro ženy na IVF cestě. Od prvního rozhodnutí, přes diagnostiku,
 stimulaci, odběr, embrya, transfery a čekání na hCG až po pozitivní test, ztrátu

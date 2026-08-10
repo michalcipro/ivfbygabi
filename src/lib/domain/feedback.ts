@@ -2,7 +2,7 @@
  * Zpětná vazba pro Gabrielu.
  *
  * Čistý modul: skládá zprávu a hlídá, že se neposílá prázdná nebo omylem.
- * Odesílání samotné je v klientovi, protože je to jediné místo v Bloomii,
+ * Odesílání samotné je v klientovi, protože je to jediné místo v BlooMii,
  * kde něco opouští zařízení.
  *
  * ------------------------------------------------------------- SOUKROMÍ ---
@@ -84,7 +84,7 @@ export function looksLikeEmail(s: string): boolean {
 }
 
 export function subjectFor(f: Feedback): string {
-  return `Bloomia: ${TOPIC_LABEL[f.topic]}`
+  return `BlooMia: ${TOPIC_LABEL[f.topic]}`
 }
 
 /** Tělo e-mailu. Prázdné části se vynechávají, ať se to dá číst. */

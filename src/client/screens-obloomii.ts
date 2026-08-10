@@ -1,7 +1,8 @@
 import { esc, note } from './ui'
+import { logoFull } from './viz'
 
 /**
- * Kdo stojí za Bloomií.
+ * Kdo stojí za BlooMií.
  *
  * Osobní část aplikace. Není to „o nás“ z firemního webu; je to text ženy,
  * která si IVF prošla, a proto se tu píše v první osobě a bez marketingu.
@@ -19,38 +20,19 @@ import { esc, note } from './ui'
 /** Živnostenské údaje. Doplní se, až je Gabi dodá; do té doby se nekreslí. */
 const ICO = ''
 
-/**
- * Značka jako obrázek.
- *
- * BLOOM a MIA se spojí do jednoho slova a mezi nimi je poupě. Je to jediné
- * místo v aplikaci, kde se název vysvětluje sám sebou, tak si zaslouží
- * vlastní kresbu, ne jen tučný nadpis.
- */
-function znak(): string {
-  return `<div class="bloomia-mark" aria-hidden="true">
-    <span class="part">BLOOM</span>
-    <svg width="34" height="34" viewBox="0 0 48 48" fill="none" stroke="currentColor"
-         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M24 40V24"/>
-      <path d="M24 24c0-6.5 3-11.2 8.5-13 1 6-2 11.4-8.5 13Z"/>
-      <path d="M24 29c-5.4-.7-8.6-4.2-9.4-9.4 5.2.5 8.6 3.5 9.4 9.4Z" opacity=".75"/>
-    </svg>
-    <span class="part">MIA</span>
-  </div>`
-}
-
-export function screenOBloomii(): string {
+export function screenOBlooMii(): string {
   return [
-    `<header class="head rise">
-      <p class="eyebrow">Kdo stojí za Bloomií</p>
+    `<header class="head rise" style="text-align:center">
+      ${logoFull(52)}
+      <p class="eyebrow" style="margin-top:2rem">Kdo stojí za BlooMií</p>
       <h1 class="display">Ing. Gabriela Černá</h1>
-      <p class="lede">Bloomia nevznikla jako další aplikace. Vznikla z vlastní zkušenosti.</p>
+      <p class="lede">BlooMia nevznikla jako další aplikace. Vznikla z vlastní zkušenosti.</p>
       ${ICO ? `<p class="faint" style="margin-top:.9rem;font-size:.8125rem">IČO ${esc(ICO)}</p>` : ''}
     </header>`,
 
     // ------------------------------------------------------------- o mně ---
     `<section class="surface pad rise">
-      <p class="eyebrow">Proč Bloomia vznikla</p>
+      <p class="eyebrow">Proč BlooMia vznikla</p>
       <div class="prose" style="margin-top:.9rem">
         <p>Jsem Gabriela a sama jsem si prošla cestou IVF, která nebyla jednoduchá,
         rychlá ani přímočará.</p>
@@ -59,24 +41,23 @@ export function screenOBloomii(): string {
         Jaké je řešit léky, odběry, embrya, transfery, peníze, práci i otázky okolí.
         A také vím, jaké je prožívat naději i strach zároveň.</p>
 
-        <p>Bloomia vznikla proto, že jsem během své vlastní cesty hledala místo,
+        <p>BlooMia vznikla proto, že jsem během své vlastní cesty hledala místo,
         kde by bylo všechno důležité pohromadě. Nejen medicínské informace.
         Ale také praktická pomoc. Prostor pro vlastní poznámky. Přehled léčby.
         Finance. Emoce. Podporu. A pocit, že na to člověk nemusí být úplně sám.</p>
       </div>
     </section>`,
 
-    // ------------------------------------------------ proč zrovna Bloomia ---
+    // ------------------------------------------------ proč zrovna BlooMia ---
     `<section class="surface pad rise bloomia-story">
-      <p class="eyebrow">Proč Bloomia?</p>
-      ${znak()}
+      <p class="eyebrow">Proč BlooMia?</p>
       <div class="prose" style="margin-top:1.2rem">
-        <p>Možná tě napadne, proč se aplikace jmenuje právě Bloomia. Ten název
+        <p>Možná tě napadne, proč se aplikace jmenuje právě BlooMia. Ten název
         má pro mě mnohem větší význam než jen hezké slovo.</p>
 
         <p><strong>Bloom</strong> znamená rozkvétat. A <strong>Mia</strong> je moje dcera.</p>
 
-        <p>Bloomia tak vznikla spojením dvou slov, která pro mě představují celou
+        <p>BlooMia tak vznikla spojením dvou slov, která pro mě představují celou
         jednu cestu. Cestu, na které nebylo všechno jednoduché, přímé ani
         samozřejmé. Cestu IVF.</p>
 
@@ -87,16 +68,27 @@ export function screenOBloomii(): string {
         <p>Nakonec se nám podařilo otěhotnět po 9. transferu ve 3. IVF cyklu.
         A dnes máme naši holčičku Miu.</p>
 
-        <p>Právě proto pro mě Bloomia znamená něco jako: <em>z cesty, na které
+        <p>Právě proto pro mě BlooMia znamená něco jako: <em>z cesty, na které
         jsme čekali na rozkvět, vznikla Mia.</em></p>
+
+        <p>Bloom znamená rozkvést. Protože i cesta, která začíná nejistotou,
+        bolestí, čekáním, zklamáním nebo ztrátou, může jednou rozkvést v něco,
+        o čem jsme dlouho snily.</p>
+
+        <p>BlooMia vznikla pro ženy, které právě svou cestou procházejí. Ať už
+        stojí na jejím začátku, čekají na další krok, prožívají radost, strach,
+        zklamání, nebo začínají znovu.</p>
       </div>
+
+      <p class="bmrovnice">Bloom <i>+</i> Mia <i>=</i> <span class="bloo">Bloo</span><span class="mia">Mia</span></p>
+      <p class="bmrovnice-pod">Tvoje IVF cesta. Krok za krokem.</p>
     </section>`,
 
     // -------------------------------------------------------- co to není ---
     `<section class="surface-muted pad rise">
-      <p class="eyebrow">A co Bloomia není</p>
+      <p class="eyebrow">A co BlooMia není</p>
       <div class="prose" style="margin-top:.9rem">
-        <p>Bloomia není příběh o tom, že když něco uděláš správně, určitě se
+        <p>BlooMia není příběh o tom, že když něco uděláš správně, určitě se
         dočkáš stejného výsledku.</p>
 
         <p>Není to návod na těhotenství. Není to slib. A už vůbec ne medicínská
@@ -132,7 +124,7 @@ export function screenOBloomii(): string {
 
         <p>To všechno se do IVF vejde.</p>
 
-        <p>Přeji si, aby ti Bloomia pomohla mít v tom všem alespoň o trochu
+        <p>Přeji si, aby ti BlooMia pomohla mít v tom všem alespoň o trochu
         větší přehled, klid a pocit, že na své cestě nejsi sama.</p>
 
         <p>Ať už tvoje cesta povede kamkoliv.</p>
@@ -148,7 +140,7 @@ export function screenOBloomii(): string {
         praktické věci, psychiku během léčby a také svůj vlastní příběh.
       </p>
       <p class="soft" style="margin-top:.7rem;line-height:1.7;font-size:.9375rem">
-        Pokud chceš Bloomii doplnit o další obsah, najdeš tam další informace
+        Pokud chceš BlooMii doplnit o další obsah, najdeš tam další informace
         a zkušenosti z IVF cesty.
       </p>
       <a class="btn btn-primary btn-block" style="margin-top:1.3rem"
@@ -156,7 +148,7 @@ export function screenOBloomii(): string {
         Navštívit Instagram
       </a>
       <p class="faint" style="margin-top:.8rem;font-size:.75rem;line-height:1.5">
-        Odkaz vede mimo aplikaci, do Instagramu. Bloomia tam neposílá nic
+        Odkaz vede mimo aplikaci, do Instagramu. BlooMia tam neposílá nic
         o vás ani o vaší léčbě.
       </p>
     </section>`,
@@ -164,8 +156,8 @@ export function screenOBloomii(): string {
     `<section class="surface pad rise">
       <p class="eyebrow">Napište mi</p>
       <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
-        Chybí vám v Bloomii něco? Něco nefunguje? Nebo vás naopak něco potěšilo?
-        Napište mi to, prosím. Bloomia se z toho staví dál.
+        Chybí vám v BlooMii něco? Něco nefunguje? Nebo vás naopak něco potěšilo?
+        Napište mi to, prosím. BlooMia se z toho staví dál.
       </p>
       <button class="btn btn-block" data-go="napiste-mi" style="margin-top:1.1rem">Napsat Gabriele</button>
     </section>`,

@@ -97,7 +97,7 @@ function naPlochuBlok(lzeInstalovat: boolean): string {
   const applePostup = `<div class="prose" style="margin-top:.9rem"><ol>
     <li>Dole na liště Safari klepněte na ikonu <strong>Sdílet</strong>, čtvereček se šipkou nahoru.</li>
     <li>V nabídce sjeďte níž a vyberte <strong>Přidat na plochu</strong>.</li>
-    <li>Potvrďte <strong>Přidat</strong>. Na ploše přibude ikona Bloomia.</li>
+    <li>Potvrďte <strong>Přidat</strong>. Na ploše přibude ikona BlooMia.</li>
     <li>Od téhle chvíle aplikaci otvírejte přes ni, ne přes záložku v prohlížeči.</li>
   </ol></div>
   <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.6">V Chromu na iPhonu
@@ -105,17 +105,17 @@ function naPlochuBlok(lzeInstalovat: boolean): string {
   nikam neztratí, aplikace na ploše je čte ze stejného místa.</p>`
 
   const jinyPostup = lzeInstalovat
-    ? `<p class="soft" style="margin-top:.7rem;line-height:1.7">Váš prohlížeč umí Bloomii
+    ? `<p class="soft" style="margin-top:.7rem;line-height:1.7">Váš prohlížeč umí BlooMii
        nainstalovat jako samostatnou aplikaci. Otevře se pak v vlastním okně, funguje
        i bez signálu a data má chráněnější.</p>
        <button class="btn btn-primary" data-act="pwa-install" style="margin-top:1rem">Nainstalovat aplikaci</button>`
     : `<p class="soft" style="margin-top:.7rem;line-height:1.7">V nabídce prohlížeče najdete
        položku <strong>Nainstalovat aplikaci</strong> nebo <strong>Přidat na plochu</strong>.
-       Bloomia se pak otevírá ve vlastním okně, funguje i bez signálu a data má chráněnější.</p>`
+       BlooMia se pak otevírá ve vlastním okně, funguje i bez signálu a data má chráněnější.</p>`
 
   return `<section class="surface pad rise">
     <p class="eyebrow">Doporučený krok</p>
-    <h2 class="display" style="font-size:1.35rem;margin-top:.4rem">Přidejte si Bloomii na plochu</h2>
+    <h2 class="display" style="font-size:1.35rem;margin-top:.4rem">Přidejte si BlooMii na plochu</h2>
     ${jeApple() ? applePostup : jinyPostup}
   </section>`
 }

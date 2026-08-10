@@ -1,33 +1,50 @@
 /* ==========================================================================
-   Bloomia. Prohlížečová verze aplikace.
-   Tokeny jsou 1:1 ze src/app/globals.css. Tohle není prezentace o aplikaci,
-   je to aplikace.
+   BlooMia. Prohlížečová verze aplikace.
+   Tvoje IVF cesta. Tohle není prezentace o aplikaci, je to aplikace.
    ========================================================================== */
 
 :root {
-  /* Bloomia, Lis.
-     Sešit s lisovanými květinami. Studeně šeříkový papír, na něm lístky,
-     a barvy usušených okvětních plátků. Krémový papír by z toho udělal
-     svatební oznámení, proto je chladný.
+  /* -------------------------------------------------- ZNAČKOVÁ PALETA ---
+     Šest oficiálních barev BlooMia. Nic jiného se do aplikace nedostane:
+     každý další odstín níž je z nich odvozený.
 
-     Ozdobné barvy (růže, levandule, sláma, list) jsou schválně měkké. Na
-     ploškách, okrajích lístků a razítkách. Na data jsou moc bledé, proto má
-     graf vlastní, hlubší sadu (--s1…--s4 níž). */
-  --slip: #fbfafc;
-  --paper: #eeebf1;
-  --paper-deep: #e5e1eb;
-  --petal: #ded9e6;
-  --stem: #c6bed2;
-  --rose: #b9748a;
-  --rose-deep: #9c5771;
-  --lavender: #8c86c4;
-  --lavender-deep: #6b63a8;
+     Bloo je švestková, Mia je pudrová růžová. Rozdělení v logu není
+     ozdoba, je to celý příběh názvu, takže se drží i v rozhraní: švestková
+     nese text a orientaci, růžová nese akci a to, co právě žije. */
+  --bloo: #625673;
+  --mia: #c97887;
+  --heart: #d98998;
+  --soft-rose: #e8b7bc;
+  --ivory: #fbf8f7;
+  --watercolor: #f8edee;
+
+  /* Odvozené odstíny. Hlubší varianty pro text a stavy, kde by oficiální
+     barva neunesla kontrast. */
+  --bloo-deep: #4a4058;
+  --bloo-ink: #3a3245;
+  --mia-deep: #b05f6f;
+  --rose-veil: #f3e2e4;
+
+  /* ------------------------------------------------------- PLOCHY ---
+     Ivory je hlavní světlé pozadí, watercolor jemné růžové pozadí sekcí.
+     Karta je bílá, aby se od stránky odlepila bez stínu, který by v téhle
+     paletě zašpinil. */
+  --slip: #ffffff;
+  --paper: var(--ivory);
+  --paper-deep: var(--watercolor);
+  --petal: var(--rose-veil);
+  --stem: var(--soft-rose);
+  --rose: var(--mia);
+  --rose-deep: var(--mia-deep);
+  --lavender: var(--bloo);
+  --lavender-deep: var(--bloo-deep);
   --straw: #c9a961;
   --leaf: #7e9478;
   --leaf-deep: #5e7359;
 
-  /* Staré názvy zůstávají, jen ukazují na Lis. Sáhne na ně půlka souboru;
-     přepsat je jedním místem je bezpečnější než honit stovky výskytů. */
+  /* Staré názvy zůstávají, jen ukazují na BlooMii. Sáhne na ně půlka
+     souboru; přepsat je jedním místem je bezpečnější než honit stovky
+     výskytů. */
   --porcelain: var(--slip);
   --cream: var(--paper);
   --linen: var(--paper-deep);
@@ -35,81 +52,100 @@
   --sand: var(--stem);
   --taupe: var(--lavender);
   --taupe-deep: var(--lavender-deep);
-  --blush: #eed8e0;
+  --blush: var(--soft-rose);
   --blush-deep: var(--rose);
-  --sage: #cfd8cb;
+  --sage: #d5dcd2;
   --sage-deep: var(--leaf);
-  --sky: #cdcae0;
+  --sky: #dcd7e2;
   --gold: var(--straw);
 
   --page: var(--paper);
   --card: var(--slip);
   --card-muted: var(--paper-deep);
-  --line: #ddd8e2;
-  --fg: #2b2431;
+  --line: #ebdfe0;
+  /* Text je švestkový, ne černý. Čerň by v téhle paletě působila jako
+     cizí prvek, ale samotná značková švestka je na dlouhé čtení světlá,
+     proto o stupeň hlubší. */
+  --fg: var(--bloo-ink);
   --fg-soft: #6f6579;
-  --fg-faint: #948ba0;
+  --fg-faint: #a0919b;
 
-  /* Datová paleta. Stejné čtyři odstíny jako ozdobné, ale prohloubené tak,
-     aby unesly graf. Prošly všemi pěti kontrolami validátoru v obou režimech
-     včetně simulace protanopie a deuteranopie.
+  /* Barva akce. Mia Rose, protože růžová v BlooMii nese to, co se právě
+     děje: hlavní tlačítko, aktivní prvek, rozepsaný krok. Datová paleta
+     níž je jiná věc; tenká linka v grafu potřebuje hlubší odstín, který
+     tenhle nemá. */
+  --accent: var(--mia);
+  --accent-deep: var(--mia-deep);
+
+  /* Datová paleta. Odstíny pro graf, hlubší než ozdobné, protože bledá
+     linka v grafu se nedá přečíst. Prošly všemi pěti kontrolami
+     validátoru v obou režimech včetně simulace protanopie a deuteranopie.
      s1 = co dnešek žádá, s2 = co na to máte, s3 = úzkost, s4 = naděje. */
   --s1: #c23d5d;
   --s2: #7143bb;
   --s3: #be8800;
   --s4: #006c35;
 
-  --display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
-  --sans: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  /* Bodoni Moda nese emoci a příběh, DM Sans přehlednost a informaci. */
+  --display: 'Bodoni Moda', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 
-  /* Lístek, ne dlaždice. Papír se neohýbá do velkých oblouků, proto malé
-     poloměry. Kulaté zůstávají jen prvky, které mají být na klepnutí:
-     tlačítka, chipy, dávky. */
-  --r-xs: 3px;
-  --r-sm: 5px;
-  --r-md: 7px;
-  --r-lg: 10px;
-  --r-xl: 14px;
-  --r-2xl: 18px;
+  /* Měkké, ne bublinaté. Karta je velkoryse zaoblená, ovládací prvek méně,
+     aby se dal odlišit povrch od tlačítka. */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+  --r-2xl: 30px;
 
-  --halo: rgb(185 116 138 / 0.055);
-  --sheen: rgb(255 255 255 / 0.72);
-  --track: #e3dfe9;
+  --halo: rgb(201 120 135 / 0.06);
+  --sheen: rgb(255 255 255 / 0.8);
+  --track: #f0e2e4;
 
-  --veil: 0 1px 0 rgb(43 36 49 / 0.05), 0 4px 14px -6px rgb(43 36 49 / 0.12);
-  --lift: 0 1px 0 rgb(43 36 49 / 0.06), 0 10px 26px -12px rgb(43 36 49 / 0.2);
-  --float: 0 2px 2px rgb(43 36 49 / 0.06), 0 24px 56px -22px rgb(43 36 49 / 0.28);
+  /* Velmi jemné stíny, tónované do švestky. Šedý stín by pod růžovou
+     kartou vypadal špinavě. */
+  --veil: 0 1px 0 rgb(98 86 115 / 0.04), 0 4px 16px -8px rgb(98 86 115 / 0.14);
+  --lift: 0 1px 0 rgb(98 86 115 / 0.05), 0 12px 30px -14px rgb(98 86 115 / 0.22);
+  --float: 0 2px 3px rgb(98 86 115 / 0.05), 0 28px 60px -24px rgb(98 86 115 / 0.3);
   --calm: cubic-bezier(0.22, 0.61, 0.36, 1);
   color-scheme: light;
 }
 
-/* Noc v Lisu: švestkově černá, ne neutrální. Drží to pohromadě s papírem. */
+/* Noc v BlooMii: švestkově tmavá, ne neutrální. Růžová se v ní musí
+   rozsvítit, jinak zmizí, a švestka zesvětlit, jinak splyne s pozadím. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --slip: #1e1926;
-    --paper: #16121b;
-    --paper-deep: #261f30;
-    --petal: #322943;
-    --stem: #4b3f5c;
-    --rose: #d48da4;
-    --rose-deep: #b9748a;
-    --lavender: #a49ddd;
-    --lavender-deep: #8c86c4;
+    --accent: var(--mia);
+    --accent-deep: var(--mia-deep);
+    --bloo: #a99bbd;
+    --mia: #e09aa7;
+    --heart: #e4a6b2;
+    --soft-rose: #8a6874;
+    --ivory: #1a1620;
+    --watercolor: #262029;
+
+    --bloo-deep: #8c7ea3;
+    --bloo-ink: #f4eef0;
+    --mia-deep: #c97887;
+    --rose-veil: #30262e;
+
+    --slip: #221d29;
+    --paper: var(--ivory);
+    --paper-deep: var(--watercolor);
+    --petal: var(--rose-veil);
+    --stem: var(--soft-rose);
     --straw: #ddbe79;
     --leaf: #93a98c;
     --leaf-deep: #7e9478;
-    --blush: #3a2b34;
     --sage: #2b3830;
     --sky: #2c2a3d;
 
-    --page: var(--paper);
-    --card: var(--slip);
-    --card-muted: var(--paper-deep);
-    --line: rgb(255 255 255 / 0.085);
-    --fg: #f0ecf4;
-    --fg-soft: #b3a9be;
-    --fg-faint: #857f8f;
-    --halo: rgb(212 141 164 / 0.15);
+    --line: rgb(255 255 255 / 0.09);
+    --fg: var(--bloo-ink);
+    --fg-soft: #bcb0c0;
+    --fg-faint: #8c8296;
+    --halo: rgb(224 154 167 / 0.15);
     --sheen: rgb(255 255 255 / 0.045);
     --track: rgb(255 255 255 / 0.09);
     --s1: #c14d66;
@@ -121,30 +157,36 @@
 }
 
 :root[data-theme='dark'] {
-  --slip: #1e1926;
-  --paper: #16121b;
-  --paper-deep: #261f30;
-  --petal: #322943;
-  --stem: #4b3f5c;
-  --rose: #d48da4;
-  --rose-deep: #b9748a;
-  --lavender: #a49ddd;
-  --lavender-deep: #8c86c4;
+    --accent: var(--mia);
+    --accent-deep: var(--mia-deep);
+  --bloo: #a99bbd;
+  --mia: #e09aa7;
+  --heart: #e4a6b2;
+  --soft-rose: #8a6874;
+  --ivory: #1a1620;
+  --watercolor: #262029;
+
+  --bloo-deep: #8c7ea3;
+  --bloo-ink: #f4eef0;
+  --mia-deep: #c97887;
+  --rose-veil: #30262e;
+
+  --slip: #221d29;
+  --paper: var(--ivory);
+  --paper-deep: var(--watercolor);
+  --petal: var(--rose-veil);
+  --stem: var(--soft-rose);
   --straw: #ddbe79;
   --leaf: #93a98c;
   --leaf-deep: #7e9478;
-  --blush: #3a2b34;
   --sage: #2b3830;
   --sky: #2c2a3d;
 
-  --page: var(--paper);
-  --card: var(--slip);
-  --card-muted: var(--paper-deep);
-  --line: rgb(255 255 255 / 0.085);
-  --fg: #f0ecf4;
-  --fg-soft: #b3a9be;
-  --fg-faint: #857f8f;
-  --halo: rgb(212 141 164 / 0.15);
+  --line: rgb(255 255 255 / 0.09);
+  --fg: var(--bloo-ink);
+  --fg-soft: #bcb0c0;
+  --fg-faint: #8c8296;
+  --halo: rgb(224 154 167 / 0.15);
   --sheen: rgb(255 255 255 / 0.045);
   --track: rgb(255 255 255 / 0.09);
   --s1: #c14d66;
@@ -155,32 +197,38 @@
 }
 
 :root[data-theme='light'] {
-  --slip: #fbfafc;
-  --paper: #eeebf1;
-  --paper-deep: #e5e1eb;
-  --petal: #ded9e6;
-  --stem: #c6bed2;
-  --rose: #b9748a;
-  --rose-deep: #9c5771;
-  --lavender: #8c86c4;
-  --lavender-deep: #6b63a8;
+    --accent: var(--mia);
+    --accent-deep: var(--mia-deep);
+  --bloo: #625673;
+  --mia: #c97887;
+  --heart: #d98998;
+  --soft-rose: #e8b7bc;
+  --ivory: #fbf8f7;
+  --watercolor: #f8edee;
+
+  --bloo-deep: #4a4058;
+  --bloo-ink: #3a3245;
+  --mia-deep: #b05f6f;
+  --rose-veil: #f3e2e4;
+
+  --slip: #ffffff;
+  --paper: var(--ivory);
+  --paper-deep: var(--watercolor);
+  --petal: var(--rose-veil);
+  --stem: var(--soft-rose);
   --straw: #c9a961;
   --leaf: #7e9478;
   --leaf-deep: #5e7359;
-  --blush: #eed8e0;
-  --sage: #cfd8cb;
-  --sky: #cdcae0;
+  --sage: #d5dcd2;
+  --sky: #dcd7e2;
 
-  --page: var(--paper);
-  --card: var(--slip);
-  --card-muted: var(--paper-deep);
-  --line: #ddd8e2;
-  --fg: #2b2431;
+  --line: #ebdfe0;
+  --fg: var(--bloo-ink);
   --fg-soft: #6f6579;
-  --fg-faint: #948ba0;
-  --halo: rgb(185 116 138 / 0.055);
-  --sheen: rgb(255 255 255 / 0.72);
-  --track: #e3dfe9;
+  --fg-faint: #a0919b;
+  --halo: rgb(201 120 135 / 0.06);
+  --sheen: rgb(255 255 255 / 0.8);
+  --track: #f0e2e4;
   --s1: #c23d5d;
   --s2: #7143bb;
   --s3: #be8800;
@@ -244,9 +292,14 @@ button { font: inherit; color: inherit; }
   padding: 0.7rem 1.3rem; border: 1px solid var(--line); background: var(--card);
   cursor: pointer; transition: all 0.35s var(--calm); white-space: nowrap;
 }
-.btn:hover { background: var(--card-muted); border-color: var(--sand); }
-.btn-primary { background: var(--fg); color: var(--page); border-color: transparent; }
-.btn-primary:hover { background: var(--taupe-deep); color: #fff; }
+/* Sekundární tlačítko: ivory plocha, růžový obrys, švestkový text.
+   Nese vedlejší volby a nikdy nesoutěží s hlavní akcí o pozornost. */
+.btn { color: var(--bloo); border-color: var(--soft-rose); }
+.btn:hover { background: var(--card-muted); border-color: var(--heart); }
+/* Hlavní akce je Mia Rose. Je to jediné místo v rozhraní, kde růžová
+   plocha nese text, takže musí být vidět na první pohled. */
+.btn-primary { background: var(--mia); color: var(--ivory); border-color: transparent; }
+.btn-primary:hover { background: var(--mia-deep); color: var(--ivory); border-color: transparent; }
 .btn-ghost { background: transparent; border-color: transparent; color: var(--fg-soft); }
 .btn-ghost:hover { background: var(--card-muted); color: var(--fg); }
 .btn-block { width: 100%; }
@@ -539,9 +592,9 @@ button { font: inherit; color: inherit; }
   border: 1px solid var(--line); border-radius: var(--r-sm);
   padding: 0.3rem 0.55rem; background: var(--card);
 }
-.track li.done { color: var(--fg); border-color: var(--s1); background: var(--card-muted); }
+.track li.done { color: var(--fg); border-color: var(--accent); background: var(--card-muted); }
 .track li i { font-style: normal; font-size: 0.6875rem; color: var(--fg-faint); }
-.track li.done i { color: var(--s1); }
+.track li.done i { color: var(--accent); }
 
 /* Pás cesty, kde jsem, co bylo, co přijde. */
 .journey {
@@ -666,7 +719,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
   cursor: pointer; transition: all 0.3s var(--calm);
 }
 .chips button:hover { border-color: var(--sand); }
-.chips button[aria-pressed='true'] { background: var(--fg); color: var(--page); border-color: transparent; }
+.chips button[aria-pressed='true'] { background: var(--bloo); color: var(--ivory); border-color: transparent; }
 
 .slider { width: 100%; accent-color: var(--taupe); }
 .chart { width: 100%; height: auto; display: block; }
@@ -726,7 +779,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 
 .chat { display: flex; flex-direction: column; gap: 1rem; }
 .bubble { max-width: min(44rem, 100%); border-radius: var(--r-lg); padding: 1rem 1.25rem; font-size: 0.9375rem; line-height: 1.65; }
-.bubble-user { align-self: flex-end; max-width: min(32rem, 100%); background: var(--fg); color: var(--page); border-bottom-right-radius: var(--r-xs); }
+.bubble-user { align-self: flex-end; max-width: min(32rem, 100%); background: var(--bloo); color: var(--ivory); border-bottom-right-radius: var(--r-xs); }
 .bubble-gabi { align-self: flex-start; background: var(--card); border: 1px solid var(--line); border-bottom-left-radius: var(--r-xs); }
 .bubble-gabi .prose { font-size: 0.9375rem; }
 .bubble-gabi .rail { max-width: 100%; }
@@ -799,7 +852,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
   width: 1.35rem; height: 1.35rem; border-radius: 99px; border: 1px solid var(--line);
   flex: none; margin-top: 0.15rem; display: grid; place-items: center; font-size: 0.7rem; color: transparent;
 }
-.pick[aria-pressed='true'] .mark { background: var(--taupe); border-color: transparent; color: #fff; }
+.pick[aria-pressed='true'] .mark { background: var(--taupe); border-color: transparent; color: var(--ivory); }
 .pick b { font-weight: 500; font-size: 0.9375rem; }
 .pick span { display: block; margin-top: 0.2rem; font-size: 0.8125rem; color: var(--fg-soft); line-height: 1.45; }
 .ob-group { margin-top: 1.75rem; }
@@ -868,7 +921,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
   border: 1px solid var(--line); font-size: .6875rem; letter-spacing: .1em;
   text-transform: uppercase; color: var(--fg-soft);
 }
-.statepill.alert { border-color: var(--s1); color: var(--fg); }
+.statepill.alert { border-color: var(--accent); color: var(--fg); }
 
 .parts { list-style: none; margin: .5rem 0 0; padding: 0; }
 .parts li {
@@ -890,11 +943,11 @@ textarea.field { resize: vertical; line-height: 1.6; }
   font-variant-numeric: tabular-nums; transition: all .25s var(--calm);
 }
 .dial button:hover { border-color: var(--sand); }
-.dial button[aria-checked='true'] { color: #fff; border-color: transparent; }
+.dial button[aria-checked='true'] { color: var(--ivory); border-color: transparent; }
 .dial.cool button[aria-checked='true'] { background: var(--s2); }
 .dial.warm button[aria-checked='true'] { background: var(--s3); }
 .dial.plum button[aria-checked='true'] { background: var(--s4); }
-.dial.gold button[aria-checked='true'] { background: var(--s1); }
+.dial.gold button[aria-checked='true'] { background: var(--accent); }
 .dialends {
   display: flex; justify-content: space-between; margin-top: .35rem;
   font-size: .6875rem; color: var(--fg-faint);
@@ -903,9 +956,9 @@ textarea.field { resize: vertical; line-height: 1.6; }
 /* --- mapa vpichů -------------------------------------------------------- */
 .belly { display: flex; justify-content: center; margin-top: .7rem; }
 .zone { cursor: pointer; }
-.zone:hover circle { stroke: var(--s1); }
+.zone:hover circle { stroke: var(--accent); }
 .zone:focus-visible { outline: none; }
-.zone:focus-visible circle { stroke: var(--s1); stroke-width: 2.5; }
+.zone:focus-visible circle { stroke: var(--accent); stroke-width: 2.5; }
 
 /* --- grafy -------------------------------------------------------------- */
 .chartbox { position: relative; margin-top: .7rem; }
@@ -940,7 +993,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
   display: flex; flex-direction: column; align-items: center; gap: .35rem;
   font-size: .6875rem; transition: all .25s var(--calm);
 }
-.quickrow button:hover { border-color: var(--s1); transform: translateY(-1px); }
+.quickrow button:hover { border-color: var(--accent); transform: translateY(-1px); }
 .quickrow button i { font-style: normal; font-size: 1.2rem; }
 
 /* --- štítky na tělo ----------------------------------------------------- */
@@ -955,7 +1008,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 /* --- čtení dne ---------------------------------------------------------- */
 .reading {
   margin-top: .8rem; border-radius: 18px; padding: 1.05rem 1.2rem;
-  background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--s1);
+  background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent);
 }
 .reading.cool { border-left-color: var(--s2); }
 .reading.plum { border-left-color: var(--s4); }
@@ -1043,8 +1096,8 @@ textarea.field { resize: vertical; line-height: 1.6; }
   border-color: transparent; font-weight: 600; letter-spacing: 0.12em;
 }
 .statepill.alert {
-  border-color: color-mix(in oklab, var(--s1) 45%, transparent);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--s1) 8%, transparent);
+  border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 8%, transparent);
 }
 .serieskey span { font-weight: 500; }
 .serieskey b { color: var(--fg); margin-left: .1rem; }
@@ -1061,7 +1114,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .dial.cool button[aria-checked='true'] { box-shadow: 0 10px 24px -10px var(--s2); }
 .dial.warm button[aria-checked='true'] { box-shadow: 0 10px 24px -10px var(--s3); }
 .dial.plum button[aria-checked='true'] { box-shadow: 0 10px 24px -10px var(--s4); }
-.dial.gold button[aria-checked='true'] { box-shadow: 0 10px 24px -10px var(--s1); }
+.dial.gold button[aria-checked='true'] { box-shadow: 0 10px 24px -10px var(--accent); }
 .dialends { letter-spacing: 0.06em; text-transform: lowercase; }
 
 /* --- dlaždice se statistikou -------------------------------------------- */
@@ -1090,7 +1143,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .tabbar button[aria-current='page']::before {
   content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
   width: 2.2rem; height: 2px; border-radius: 0 0 3px 3px;
-  background: var(--s1); box-shadow: 0 0 12px var(--s1);
+  background: var(--accent); box-shadow: 0 0 12px var(--accent);
 }
 .tabbar button span { letter-spacing: .06em; }
 
@@ -1117,9 +1170,9 @@ textarea.field { resize: vertical; line-height: 1.6; }
    bledá pilulka s nečitelným písmem. Tint se odvozuje od datové zlaté
    a text nosí barvu popředí, takže funguje v obou motivech. */
 .badge-soft {
-  background: color-mix(in oklab, var(--s1) 18%, transparent);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
   color: var(--fg);
-  border: 1px solid color-mix(in oklab, var(--s1) 26%, transparent);
+  border: 1px solid color-mix(in oklab, var(--accent) 26%, transparent);
 }
 
 /* --- číslo pod květem ------------------------------------------------------
@@ -1186,8 +1239,8 @@ textarea.field { resize: vertical; line-height: 1.6; }
 }
 .triocell .ic {
   display: grid; place-items: center; width: 30px; height: 30px; margin: 0 auto;
-  border-radius: 50%; background: color-mix(in oklab, var(--s1) 18%, transparent);
-  color: var(--s1); font-size: .875rem;
+  border-radius: 50%; background: color-mix(in oklab, var(--accent) 18%, transparent);
+  color: var(--accent); font-size: .875rem;
 }
 .triocell b { display: block; font-family: var(--display); font-size: 1.75rem; line-height: 1; margin-top: .45rem; }
 .triocell .lb { display: block; font-size: .6875rem; color: var(--fg-faint); margin-top: .2rem; }
@@ -1200,11 +1253,11 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .sechead h3 { font-size: 1.25rem; margin: 0; }
 .addbtn {
   width: 2rem; height: 2rem; border-radius: 50%; flex: none;
-  border: 1px solid var(--line); background: var(--card); color: var(--s1);
+  border: 1px solid var(--line); background: var(--card); color: var(--accent);
   font-size: 1.15rem; line-height: 1; cursor: pointer; font-family: inherit;
   transition: all .25s var(--calm);
 }
-.addbtn:hover { border-color: var(--s1); transform: translateY(-1px); }
+.addbtn:hover { border-color: var(--accent); transform: translateY(-1px); }
 
 /* --- akční karta a řádek rozcestníku ------------------------------------- */
 .actioncard, .hubrow {
@@ -1215,7 +1268,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
   color: var(--fg); font-family: inherit; transition: all .28s var(--calm);
 }
 .actioncard:hover, .hubrow:hover { border-color: var(--sand); transform: translateY(-1px); }
-.actioncard .ic, .hubrow .ic { flex: none; font-size: 1.25rem; line-height: 1; color: var(--s1); }
+.actioncard .ic, .hubrow .ic { flex: none; font-size: 1.25rem; line-height: 1; color: var(--accent); }
 .actioncard .txt, .hubrow .txt { flex: 1; min-width: 0; }
 .actioncard b, .hubrow b { display: block; font-weight: 500; font-size: 1rem; }
 .actioncard .txt > span, .hubrow .why {
@@ -1283,7 +1336,7 @@ button.daycell:hover { border-color: var(--sand); }
   border-radius: 50%; background: var(--card); box-shadow: var(--veil);
   transition: left .28s var(--calm);
 }
-.togglerow[aria-pressed='true'] .knob { background: var(--s1); }
+.togglerow[aria-pressed='true'] .knob { background: var(--accent); }
 .togglerow[aria-pressed='true'] .knob::after { left: 22px; background: #fff; }
 
 /* --- výběr příznaku ------------------------------------------------------ */
@@ -1296,16 +1349,16 @@ button.daycell:hover { border-color: var(--sand); }
 .symgrid button:hover { border-color: var(--sand); color: var(--fg); }
 .symgrid button[aria-pressed='true'] { background: var(--s3); border-color: var(--s3); color: #fff; }
 /* Příznak, u kterého se ukazuje, kdy zavolat na kliniku. */
-.symgrid button.flag[aria-pressed='true'] { background: var(--s1); border-color: var(--s1); }
+.symgrid button.flag[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); }
 .symwarn {
   margin-top: .8rem; padding: .9rem 1.05rem; border-radius: 14px;
-  background: color-mix(in oklab, var(--s1) 10%, var(--card));
-  border: 1px solid color-mix(in oklab, var(--s1) 35%, transparent);
+  background: color-mix(in oklab, var(--accent) 10%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
   font-size: .875rem; line-height: 1.6; color: var(--fg-soft);
 }
 
 /* ==========================================================================
-   Bloomia. Značka a atmosféra.
+   BlooMia. Značka a atmosféra.
    ========================================================================== */
 
 .bloom { display: block; flex: none; overflow: visible; }
@@ -1327,7 +1380,7 @@ button.daycell:hover { border-color: var(--sand); }
 body::before {
   content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
   background:
-    radial-gradient(70rem 40rem at 78% -8%, color-mix(in oklab, var(--s1) 12%, transparent), transparent 62%),
+    radial-gradient(70rem 40rem at 78% -8%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 62%),
     radial-gradient(56rem 44rem at -10% 108%, color-mix(in oklab, var(--sage-deep) 14%, transparent), transparent 60%);
 }
 
@@ -1349,10 +1402,10 @@ body::before {
   position: fixed; right: 1.1rem; z-index: 55;
   bottom: calc(env(safe-area-inset-bottom, 0px) + 5.3rem);
   width: 3.4rem; height: 3.4rem; border-radius: 50%;
-  border: 1px solid color-mix(in oklab, var(--s1) 45%, transparent);
-  background: linear-gradient(160deg, color-mix(in oklab, var(--s1) 92%, #fff) 0%, var(--s1) 100%);
-  color: #fff; cursor: pointer; font-family: inherit;
-  box-shadow: 0 10px 30px -8px color-mix(in oklab, var(--s1) 60%, transparent), var(--lift);
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, transparent);
+  background: linear-gradient(160deg, color-mix(in oklab, var(--accent) 92%, #fff) 0%, var(--accent) 100%);
+  color: var(--ivory); cursor: pointer; font-family: inherit;
+  box-shadow: 0 10px 30px -8px color-mix(in oklab, var(--accent) 60%, transparent), var(--lift);
   display: grid; place-items: center; transition: transform .3s var(--calm);
 }
 @media (min-width: 1024px) { .fab { bottom: 2rem; right: 2rem; } }
@@ -1384,8 +1437,8 @@ body::before {
   padding: .75rem .9rem; cursor: pointer; color: var(--fg); font-family: inherit;
   transition: all .25s var(--calm);
 }
-.quickitem:hover { border-color: var(--s1); transform: translateY(-1px); }
-.quickitem .ic { flex: none; font-size: 1.15rem; color: var(--s1); }
+.quickitem:hover { border-color: var(--accent); transform: translateY(-1px); }
+.quickitem .ic { flex: none; font-size: 1.15rem; color: var(--accent); }
 .quickitem b { display: block; font-weight: 500; font-size: .9375rem; }
 .quickitem .txt > span { display: block; font-size: .75rem; color: var(--fg-faint); margin-top: .1rem; }
 
@@ -1406,7 +1459,7 @@ body::before {
    v datech, ne jako těsný sloupec. */
 .cyclemeta i { font-style: normal; white-space: nowrap; }
 .cycleprogress { height: 3px; border-radius: 3px; background: var(--line); margin-top: 1.1rem; overflow: hidden; }
-.cycleprogress i { display: block; height: 100%; background: var(--s1); border-radius: 3px; transition: width .8s var(--calm); }
+.cycleprogress i { display: block; height: 100%; background: var(--accent); border-radius: 3px; transition: width .8s var(--calm); }
 
 .nextrow { display: flex; gap: .5rem; overflow-x: auto; margin-top: 1rem; padding-bottom: .3rem; scrollbar-width: none; min-width: 0; }
 .nextrow::-webkit-scrollbar { display: none; }
@@ -1414,7 +1467,7 @@ body::before {
   flex: 0 0 auto; border: 1px solid var(--line); border-radius: 14px;
   padding: .55rem .8rem; background: var(--card-muted); font-size: .8125rem;
 }
-.nextpill.urgent { border-color: var(--s1); background: color-mix(in oklab, var(--s1) 12%, var(--card-muted)); }
+.nextpill.urgent { border-color: var(--accent); background: color-mix(in oklab, var(--accent) 12%, var(--card-muted)); }
 .nextpill b { display: block; font-weight: 500; }
 .nextpill span { display: block; font-size: .6875rem; color: var(--fg-faint); margin-top: .1rem; }
 
@@ -1448,7 +1501,7 @@ body::before {
   content: ''; position: absolute; left: 0; top: .75rem; bottom: .75rem;
   width: 3px; border-radius: 0 2px 2px 0; background: var(--lavender);
 }
-.tlitem.major::before { background: var(--s1); }
+.tlitem.major::before { background: var(--accent); }
 .tlitem .when { font-size: .6875rem; color: var(--fg-faint); }
 .tlitem b { display: block; font-weight: 600; font-size: .9375rem; margin-top: .1rem; }
 .tlitem.major b { font-family: var(--display); font-weight: 400; font-size: 1.1rem; }
@@ -1466,7 +1519,7 @@ body::before {
   font-size: .9375rem; line-height: 1.55;
 }
 .nudge.dulezite { border-left-color: var(--s2); }
-.nudge.urgentni { border-left-color: var(--s1); background: color-mix(in oklab, var(--s1) 7%, var(--card)); }
+.nudge.urgentni { border-left-color: var(--accent); background: color-mix(in oklab, var(--accent) 7%, var(--card)); }
 .nudge .txt { flex: 1; min-width: 0; }
 
 /* --- intenzita příznaku -------------------------------------------------- */
@@ -1477,11 +1530,11 @@ body::before {
   border-radius: 9px; font-family: inherit; font-size: .75rem; cursor: pointer;
   font-variant-numeric: lining-nums tabular-nums; transition: all .2s var(--calm);
 }
-.scale button[aria-pressed='true'] { color: #fff; border-color: transparent; }
+.scale button[aria-pressed='true'] { color: var(--ivory); border-color: transparent; }
 
 /* --- priorita otázky ----------------------------------------------------- */
 .prio { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
-.prio.vysoka { background: var(--s1); }
+.prio.vysoka { background: var(--accent); }
 .prio.stredni { background: var(--s3); }
 .prio.nizka { background: var(--fg-faint); }
 
@@ -1496,7 +1549,7 @@ body::before {
   cursor: pointer; transition: background .3s var(--calm), color .3s var(--calm), border-color .3s var(--calm);
 }
 .chipset label:hover { border-color: var(--sand); color: var(--fg); }
-.chipset input:checked + label { background: var(--fg); color: var(--page); border-color: transparent; }
+.chipset input:checked + label { background: var(--bloo); color: var(--ivory); border-color: transparent; }
 .chipset input:focus-visible + label { outline: 2px solid var(--taupe); outline-offset: 2px; }
 
 /* --- položka časové osy jako tlačítko ------------------------------------ */
@@ -1505,7 +1558,7 @@ button.tlitem {
   display: block; width: 100%; text-align: left;
   border: 0; cursor: pointer; font: inherit; color: inherit;
 }
-button.tlitem:hover b { color: var(--s1); }
+button.tlitem:hover b { color: var(--accent); }
 
 /* --- srovnávací tabulka cyklů -------------------------------------------- */
 /* Roluje sama vodorovně, stránka pod ní ne. */
@@ -1586,9 +1639,9 @@ button.tlitem:hover b { color: var(--s1); }
   flex: none; font-size: .875rem; color: var(--fg-faint);
   font-variant-numeric: tabular-nums; text-align: right;
 }
-.ivfstep-hotovo .mark { color: var(--s1); }
+.ivfstep-hotovo .mark { color: var(--accent); }
 .ivfstep-hotovo .val { color: var(--fg); }
-.ivfstep-probiha .mark { color: var(--s1); }
+.ivfstep-probiha .mark { color: var(--accent); }
 .ivfstep-probiha .name { font-weight: 500; }
 .ivfstep-probiha .val { color: var(--fg); font-weight: 500; }
 .ivfstep-neproběhlo .name, .ivfstep-neproběhlo .val { color: var(--fg-faint); text-decoration: line-through; }
@@ -1613,7 +1666,7 @@ button.tlitem:hover b { color: var(--s1); }
   grid-column: 2; display: block; height: .5rem;
   background: var(--card-muted); border-radius: 999px; overflow: hidden;
 }
-.funnel .bar i { display: block; height: 100%; background: var(--s1); opacity: .55; border-radius: 999px; }
+.funnel .bar i { display: block; height: 100%; background: var(--accent); opacity: .55; border-radius: 999px; }
 .funnel .lbl {
   grid-column: 2; font-size: .8125rem; color: var(--fg-faint);
   display: flex; gap: .4rem; align-items: baseline;
@@ -1627,6 +1680,13 @@ button.tlitem:hover b { color: var(--s1); }
   text-align: left; padding: .55rem .6rem;
   border-bottom: 1px solid var(--line); white-space: nowrap;
 }
+/* Na šířce, kde se tabulka ještě vejde celá, ale jen o pár pixelů, se
+   stlačí odsazení. Osm pixelů posuvu je horší než o chlup užší buňka:
+   uživatelka nepozná, že se má tabulka posouvat, a část sloupců prostě
+   nenajde. */
+@media (min-width: 64rem) and (max-width: 75rem) {
+  .datatable th, .datatable td { padding: .55rem .4rem; }
+}
 .datatable th { font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-faint); font-weight: 500; }
 .datatable td.num { font-variant-numeric: tabular-nums; }
 .datatable tbody tr:last-child td { border-bottom: 0; }
@@ -1637,7 +1697,7 @@ button.tlitem:hover b { color: var(--s1); }
   font: inherit; color: var(--fg); font-weight: 500;
   border-bottom: 1px solid var(--line);
 }
-.linkish:hover { border-bottom-color: var(--s1); }
+.linkish:hover { border-bottom-color: var(--accent); }
 
 
 /* Přepínač fáze v hlavičce. Fáze se v léčbě mění a musí být vidět, že
@@ -1652,7 +1712,7 @@ button.tlitem:hover b { color: var(--s1); }
 .phasechip strong { color: var(--fg); font-weight: 500; }
 .phasechip button {
   background: none; border: 0; padding: 0; cursor: pointer;
-  font: inherit; color: var(--s1); white-space: nowrap;
+  font: inherit; color: var(--accent); white-space: nowrap;
 }
 
 
@@ -1904,7 +1964,7 @@ h1, h2, h3, h4, .display { hyphens: none; }
 }
 
 
-/* --- Bloomia: značka v sekci o autorce -----------------------------------
+/* --- BlooMia: značka v sekci o autorce -----------------------------------
    Jediné místo, kde se název vysvětluje sám sebou, tak dostane vlastní
    kresbu. BLOOM a MIA se spojí a mezi nimi stojí poupě. */
 .bloomia-mark {
@@ -1945,3 +2005,73 @@ h1, h2, h3, h4, .display { hyphens: none; }
 .newver .nv-ano { background: var(--page); color: var(--fg); border: 0; font-weight: 600; }
 .newver .nv-ne { background: none; color: var(--page); border: 1px solid rgb(255 255 255 / .3); opacity: .85; }
 @media (max-width: 24rem) { .newver > span { flex-basis: 100%; text-align: center; } }
+
+/* --- značka BlooMia ------------------------------------------------------
+
+   Bloo je švestkové, Mia pudrově růžová. Rozdělení je celý příběh názvu,
+   takže se nesmí sjednotit do jedné barvy. Nikde se nedeformuje ani
+   neroztahuje: velikost se mění jen přes font-size a šířku znaku. */
+.bmname {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.bmname .bloo { color: var(--bloo); }
+.bmname .mia { color: var(--mia); }
+:root[data-theme='dark'] .bmname .bloo,
+.mono .bmname .bloo, .mono .bmname .mia { color: inherit; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .bmname .bloo { color: var(--bloo); }
+}
+
+.bmark { flex: none; display: block; }
+
+/* Načítání: tečky naskakují odshora a srdce na konci ťukne. Je to jediné
+   místo, kde se znak hýbe. */
+@keyframes bmdot {
+  0%, 100% { opacity: .25; transform: translateY(1px); }
+  40% { opacity: 1; transform: translateY(0); }
+}
+@keyframes bmheart {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.09); }
+}
+.bmark-anim circle, .bmark-anim path { transform-origin: 24px 30px; }
+@media (prefers-reduced-motion: reduce) {
+  .bmark-anim circle, .bmark-anim path { animation: none !important; }
+}
+
+/* Celé logo i s claimem. Jen tam, kde má značka prostor. */
+.bmlogo { display: grid; justify-items: center; gap: .55rem; text-align: center; }
+.bmlogo .bmname { font-size: clamp(1.9rem, 7vw, 2.6rem); }
+.bmrule {
+  display: grid; grid-template-columns: minmax(1.5rem, 5rem) auto minmax(1.5rem, 5rem);
+  align-items: center; gap: .7rem; width: 100%; max-width: 20rem;
+}
+.bmrule i { display: block; height: 1px; background: var(--soft-rose); }
+.bmclaim {
+  margin: 0; font-family: var(--sans); font-size: .75rem; font-weight: 500;
+  letter-spacing: .3em; text-transform: uppercase; color: var(--bloo);
+}
+.bmlogo.mono .bmrule i { background: currentColor; opacity: .35; }
+.bmlogo.mono .bmclaim { color: inherit; }
+
+/* Rovnice jména. Bloom a Mia se před očima spojí do značky, takže se
+   předěl barev drží i tady: jinak by věta tvrdila něco, co obrázek
+   nepotvrzuje. */
+.bmrovnice {
+  margin: 1.6rem 0 0; text-align: center;
+  font-family: var(--display); font-size: clamp(1.25rem, 5vw, 1.6rem);
+  font-weight: 500; line-height: 1.3; color: var(--fg);
+}
+.bmrovnice i { font-style: normal; color: var(--fg-faint); padding: 0 .15em; }
+.bmrovnice .bloo { color: var(--bloo); }
+.bmrovnice .mia { color: var(--mia); }
+.bmrovnice-pod {
+  margin: .5rem 0 0; text-align: center;
+  font-size: .8125rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--fg-soft);
+}

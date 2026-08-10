@@ -80,7 +80,7 @@ export function problemText(p: BackupProblem): string {
     case 'nejde-precist':
       return 'Soubor se nepodařilo přečíst. Bývá to tím, že se cestou poškodil nebo že to není soubor se zálohou.'
     case 'neni-zaloha':
-      return 'Tohle není záloha z Bloomie. Hledejte soubor, jehož název začíná na „bloomia-zaloha“ a končí na .json.'
+      return 'Tohle není záloha z BlooMie. Hledejte soubor, jehož název začíná na „bloomia-zaloha“ a končí na .json.'
     case 'novejsi-verze':
       return 'Záloha je z novější verze aplikace, než která tu běží. Otevřete aplikaci znovu, ať se načte aktuální verze, a zkuste to pak.'
     case 'prazdna':

@@ -8,7 +8,7 @@ import { motifSvg } from './motif-svg'
 /**
  * Obrazy ke článkům.
  *
- * Bloomia je lis. Usušené květiny na chladně šeříkovém papíře. Gradienty
+ * BlooMia je lis. Usušené květiny na chladně šeříkovém papíře. Gradienty
  * proto vycházejí z okvětních plátků: růže, levandule, sláma a list, vždy
  * od nejsvětlejšího místa plátku k jeho okraji.
  */

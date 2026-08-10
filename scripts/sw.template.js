@@ -1,5 +1,5 @@
 /**
- * Service worker Bloomie.
+ * Service worker BlooMie.
  *
  * ------------------------------------------------------------- PROČ VŮBEC ---
  * Dva důvody, oba praktické:
@@ -81,7 +81,7 @@ async function zeSiteNeboZDisku(klic, request) {
     if (res && res.ok && res.type === 'basic') await cache.put(klic, res.clone())
     return res
   } catch {
-    return new Response('Bloomia je offline a tahle část se ještě nestihla uložit do zařízení.', {
+    return new Response('BlooMia je offline a tahle část se ještě nestihla uložit do zařízení.', {
       status: 503,
       headers: { 'Content-Type': 'text/plain; charset=utf-8' },
     })
