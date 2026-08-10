@@ -1363,10 +1363,7 @@ button.daycell:hover { border-color: var(--sand); }
 
 .bloom { display: block; flex: none; overflow: visible; }
 .wordmark { display: inline-flex; align-items: center; gap: .55rem; }
-.wordmark b {
-  font-family: var(--display); font-weight: 400; font-size: 1.35rem;
-  letter-spacing: -0.01em; color: var(--fg);
-}
+.wordmark .bmname { font-size: 1.35rem; }
 @keyframes petal {
   from { opacity: 0; transform: scale(.4); }
   to { opacity: 1; transform: scale(1); }
@@ -2074,4 +2071,67 @@ h1, h2, h3, h4, .display { hyphens: none; }
   margin: .5rem 0 0; text-align: center;
   font-size: .8125rem; letter-spacing: .2em; text-transform: uppercase;
   color: var(--fg-soft);
+}
+
+/* ==========================================================================
+   Čitelnost nadpisů na telefonu
+
+   Bodoni Moda má extrémní rozdíl mezi tenkým a tlustým tahem. Ve velkém
+   nadpisu je to celý půvab písma, v sedmnácti pixelech na telefonu ale
+   vlásnice prostě zmizí a z nadpisu zůstane šeď.
+
+   Váha se proto řídí velikostí: čím menší text, tím silnější řez. Velký
+   uvítací nadpis zůstává lehký, protože tam je co číst i z vlásnic.
+   ========================================================================== */
+
+/* Malé nadpisy: názvy karet, dlaždic a sekcí. Těch je v aplikaci nejvíc. */
+h3.display, h4.display, p.display, span.display, .tile h4, .ccard h3, .avatar {
+  font-weight: 600;
+}
+
+/* Střední: nadpisy sekcí a citáty. */
+h2.display, blockquote, .prose h2, .prose blockquote p, .quote p {
+  font-weight: 500;
+}
+
+/* Velký uvítací nadpis zůstává lehký. */
+h1.display { font-weight: 400; }
+
+/* Čísla v patkovém řezu nesou váhu sama velikostí, tam se nepřitvrzuje. */
+.bignum, .stage, .d { font-weight: 400; }
+
+/* ==========================================================================
+   Stránka se nesmí posouvat do stran
+
+   Na iPhonu umí Safari stránku „gumovat“ i tam, kde nic nepřetéká, a
+   aplikace pak působí, že lítá do stran. Zámek je na obou prvcích:
+   samotné `body` nestačí, protože posouvá kořen.
+
+   `clip` místo `hidden` schválně: `hidden` by zabilo `position: sticky`
+   u lepících se hlaviček uvnitř obrazovek.
+   ========================================================================== */
+html {
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+}
+body {
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Spodní lišta drží na místě
+
+   Safari umí při setrvačném rolování pevně umístěné prvky na okamžik
+   odpojit a lišta pak probleskuje pryč. Vlastní kompoziční vrstva to
+   drží přišpendlené po celou dobu rolování.
+   ========================================================================== */
+.tabbar {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  /* Nikdy se neschovává. Je to jediná cesta ven z obrazovky a hledat ji
+     rolováním nahoru je přesně to, co uživatelka v čekárně dělat nechce. */
+  transition: none;
 }
