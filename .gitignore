@@ -24,3 +24,6 @@ coverage/
 
 # vygenerovaná prohlížečová verze aplikace
 /app/
+
+# vygenerovaná prodejní stránka
+/web/

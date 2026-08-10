@@ -24,7 +24,7 @@ import {
   S,
   viewDate,
 } from './store'
-import { empty, esc, head, lineChart, note, plural, ring, sectionTitle } from './ui'
+import { des, empty, esc, head, lineChart, note, plural, ring, sectionTitle } from './ui'
 
 /**
  * Deník.
@@ -83,10 +83,21 @@ function context(): string {
     }
     ${
       yesterday
-        ? `<p class="faint" style="margin-top:1.1rem;font-size:.8125rem">Včera jste měla náladu ${yesterday.mood}/5${yesterday.win ? ` a povedlo se: ${esc(yesterday.win)}` : ''}.</p>`
+        ? `<p class="faint" style="margin-top:1.1rem;font-size:.8125rem">Včera jste měla náladu ${yesterday.mood}/5${yesterday.win ? ` a povedlo se: ${esc(tecka(yesterday.win))}` : '.'}</p>`
         : ''
     }
   </section>`
+}
+
+/**
+ * Doplní tečku na konec, ale jen když tam žádná interpunkce není.
+ *
+ * Text píše uživatelka. Když si větu ukončí sama, natvrdo přilepená tečka
+ * z toho udělá „procházku..“ a vypadá to jako chyba aplikace.
+ */
+function tecka(text: string): string {
+  const t = text.trim()
+  return /[.!?…]$/.test(t) ? t : `${t}.`
 }
 
 function slider(key: string, label: string, value: number, hint: string): string {
@@ -404,10 +415,10 @@ function sectionVyvoj(): string {
       <div class="surface pad">
         <p class="eyebrow">Průměry za posledních ${recent.length} dní</p>
         <dl class="kv" style="margin-top:.9rem">
-          <dt>Nálada</dt><dd class="num">${avg('mood')} / 5</dd>
-          <dt>Úzkost</dt><dd class="num">${avg('anxiety')} / 5</dd>
-          <dt>Naděje</dt><dd class="num">${avg('hope')} / 5</dd>
-          <dt>Energie</dt><dd class="num">${avg('energy')} / 5</dd>
+          <dt>Nálada</dt><dd class="num">${des(avg('mood'))} / 5</dd>
+          <dt>Úzkost</dt><dd class="num">${des(avg('anxiety'))} / 5</dd>
+          <dt>Naděje</dt><dd class="num">${des(avg('hope'))} / 5</dd>
+          <dt>Energie</dt><dd class="num">${des(avg('energy'))} / 5</dd>
         </dl>
       </div>
       <div class="surface pad">
@@ -570,7 +581,7 @@ export function screenDenik(section: DenikSection, open: string | null): string 
     <p class="eyebrow">Soukromé. Nikdo jiný to nevidí</p>
     <h1 class="display">Deník</h1>
     <p class="lede">${esc(formatCzechDate(viewDate(), { weekday: true }))} · ${esc(state.dayLabel)}${
-      avg !== null ? ` · nálada za týden ${avg}/5` : ''
+      avg !== null ? ` · nálada za týden ${des(avg)}/5` : ''
     }</p>
   </header>`
 

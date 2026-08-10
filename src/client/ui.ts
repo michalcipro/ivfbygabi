@@ -166,6 +166,17 @@ export function md(text: string): string {
 // ------------------------------------------------------------- komponenty ---
 
 /** České množné číslo: 1 zápis, 2–4 zápisy, 5+ zápisů. */
+/**
+ * Desetinné číslo česky.
+ *
+ * `2.9` je anglický zápis. V češtině se píše `2,9` a v aplikaci, která
+ * jinak hlídá i em pomlčku, působí tečka jako překlep. Celá čísla se
+ * nechávají bez desetinné části: „3 / 5“ se čte líp než „3,0 / 5“.
+ */
+export function des(n: number): string {
+  return Number.isInteger(n) ? String(n) : String(n).replace('.', ',')
+}
+
 export function plural(n: number, one: string, few: string, many: string): string {
   return `${n} ${n === 1 ? one : n >= 2 && n <= 4 ? few : many}`
 }

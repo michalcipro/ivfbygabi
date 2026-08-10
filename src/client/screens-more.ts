@@ -20,7 +20,7 @@ import { naPlose } from './storage-health'
 import { odkazNaZalohu } from './screens-zaloha'
 import { photoStrip } from './photo-ui'
 import { medDoses, medForm } from './screens-leky'
-import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
+import { des, contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
 import {
   allEvents,
   cycles,
@@ -431,8 +431,9 @@ export function screenKomunita(): string {
       <p class="eyebrow">Proč jsou jen čtyři</p>
       <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
         Dřív se skupiny dělily podle fáze, měsíce transferu, diagnózy, kliniky i věku.
-        Vycházelo jich přes deset a v každé byl někdo sám. Čtyři skupiny znamenají,
-        že když něco napíšete, je tam někdo, kdo to čte.
+        Vycházelo jich přes deset a v každé by byl někdo sám. Čtyři jsou tak akorát.
+        <strong>Skupiny zatím nejsou propojené:</strong> co napíšete, zůstane ve vašem
+        zařízení a nikdo jiný to nevidí. Ostatní příspěvky jsou ukázkové.
       </p>
       <p class="soft" style="margin-top:.9rem;line-height:1.7;font-size:.9375rem">
         Skupina po neúspěchu je oddělená schválně. Když se to nepovede, nemáte číst
@@ -714,7 +715,7 @@ export function screenPartner(): string {
       <p class="soft" style="margin-top:.75rem;font-size:1.0625rem;line-height:1.7">${esc(advice.whatsHappening)}</p>
       <div class="row wrap" style="gap:.75rem;margin-top:1.25rem">
         <span class="badge">${esc(state.phase.title)}</span>
-        ${avg !== null ? `<span class="badge">Průměrná nálada za týden: <b class="num" style="margin-left:.25rem">${avg}/5</b></span>` : '<span class="badge">Nálada zatím nezapsaná</span>'}
+        ${avg !== null ? `<span class="badge">Průměrná nálada za týden: <b class="num" style="margin-left:.25rem">${des(avg)}/5</b></span>` : '<span class="badge">Nálada zatím nezapsaná</span>'}
       </div>
     </section>`,
 

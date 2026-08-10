@@ -3,7 +3,7 @@ import { guideFor } from '../lib/domain/guides'
 import { promptFor } from '../lib/domain/journal-prompts'
 import { reminders, allEvents } from './screens-more'
 import { eventState, journalFor, journalList, journey, moodAverage, profile, viewDate } from './store'
-import { esc, plural } from './ui'
+import { des, esc, plural } from './ui'
 
 /**
  * Souhrn nahoře.
@@ -74,7 +74,7 @@ function tiles(): Tile[] {
     { id: 'faze', label: 'Kde jste', value: state.phase.name },
     { id: 'tyden', label: weekLabel(), value: dayValue },
     { id: 'ceka', label: when ?? 'Co vás čeká', value: what ?? 'nic v kalendáři' },
-    { id: 'nalada', label: 'Jak na tom jste', value: avg !== null ? `${avg} / 5` : 'nezapsáno' },
+    { id: 'nalada', label: 'Jak na tom jste', value: avg !== null ? `${des(avg)} / 5` : 'nezapsáno' },
     {
       id: 'pripominky',
       label: 'Připomínky',
@@ -187,7 +187,7 @@ function panelNalada(): string {
         .join('')}
     </div>
     <dl class="kv" style="margin-top:1rem">
-      ${avg !== null ? `<dt>Průměr za týden</dt><dd class="num">${avg} / 5</dd>` : ''}
+      ${avg !== null ? `<dt>Průměr za týden</dt><dd class="num">${des(avg)} / 5</dd>` : ''}
       <dt>Poslední zápis</dt><dd>${esc(formatCzechDate(last.date))} · ${last.mood}/5</dd>
     </dl>
     ${last.win.trim() ? `<p class="whybox" style="margin-top:.8rem"><strong>Povedlo se:</strong> ${esc(last.win)}</p>` : ''}

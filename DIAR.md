@@ -1,6 +1,6 @@
 # Tištěný IVF diář Gabi: pracovní přepis
 
-Pracovní soubor pro převod tištěného diáře do Bloomie. Není to obsah aplikace,
+Pracovní soubor pro převod tištěného diáře do BlooMie. Není to obsah aplikace,
 je to zdroj. Do aplikace jde až přepracovaná, ověřená a bezpečně formulovaná
 verze.
 
@@ -309,7 +309,7 @@ falešně pozitivní testy.
 - **KAM** Po transferu (denní obsah), Deník (cvičení „čekání“), Knihovna
 - **FÁZE** čekání na hCG
 - **POZOR** hned první bod „Myslete POZITIVNĚ!“ i „Snažte se být bez stresu“
-  jsou přesně to, co Bloomia nesmí říkat. V diáři je to Gabinin seznam
+  jsou přesně to, co BlooMia nesmí říkat. V diáři je to Gabinin seznam
   z vlastní zkušenosti, v aplikaci by z toho byl tlak a po neúspěchu vina.
   Převzít jako „co pomáhalo Gabi“ v uvozovkách a přerámovat: ne „mysli
   pozitivně“, ale „dělejte jen to, s čím jste OK“ (což na téže stránce
@@ -411,7 +411,7 @@ Ovitrelle nebo Pregnyl.
 
 ## Co se z diáře v aplikaci nedělá doslova
 
-Souhrn pro rychlou kontrolu. Tyhle věty se do Bloomie nesmí dostat tak, jak
+Souhrn pro rychlou kontrolu. Tyhle věty se do BlooMie nesmí dostat tak, jak
 jsou napsané v diáři:
 
 1. „Myslete POZITIVNĚ.“ Zakázaná fráze. Nahradit „dělejte jen to, s čím jste

@@ -13,7 +13,7 @@ Tohle není seznam pro pochvalu. Je to základ, ze kterého se počítá zbytek.
 
 | Co | Měření |
 | --- | --- |
-| Obsah | 927 položek v knihovně |
+| Obsah | 404 položek katalogu, 830 včetně denních karet, pojmů a povzbuzení |
 | Testy | 284 prochází, 0 padá |
 | Závislosti za běhu | žádné |
 | Velikost | 2649 kB syrově |
@@ -36,15 +36,25 @@ Jsou o tom, co aplikace tvrdí, komu patří data a jak se za ni zaplatí.
 Věci, které se nesmí pustit k lidem tak, jak jsou teď. Body 5 a 6 už
 vyřešené jsou, zůstávají tu i s tím, co se s nimi udělalo.
 
-### 1. „Odborně garantováno" u 291 položek bez garanta
+### 1. „Odborně garantováno" u 304 z 404 položek bez garanta
 
-291 z 927 článků nese větu o odborné garanci:
+**Oprava proti první verzi auditu.** Původní čísla (927 položek, 291 garancí)
+vznikla hrubým hledáním v balících obsahu a započítala i vnořená id, tedy
+položky checklistů a otázky kvízů. Přeměřeno z běhového katalogu:
 
-- 149× *Odborně garantováno lékařem reprodukční medicíny.*
-- 127× *Odborně garantováno – reprodukční medicína*
-- 9× *Odborně garantováno – psychologická podpora*
-- 3× *Odborně garantováno – perinatální psychologie*
-- 2× klinická výživa, 1× fyzioterapie
+- katalog má **404 položek** (361 článků, 29 checklistů, 7 příběhů, 5 kvízů,
+  1 kurz, 1 pojem), k tomu 174 denních karet, 162 pojmů ve slovníku,
+  84 povzbuzení a 6 produktů, celkem 830,
+- větu o odborné garanci nese **304 položek katalogu**, ne 291,
+- zdroje má uvedených **219 položek**, ne 206.
+
+Rozdíl proti hledání ve zdroji dělá obsah, který se skládá programově:
+čtrnáct článků o dnech po transferu se v kódu píše jednou a vzniká z nich
+čtrnáct položek.
+
+**Je to horší, než audit původně tvrdil.** Nejde o 31 % obsahu, ale o
+**75 % katalogu**: tři ze čtyř položek nesou razítko odborné garance,
+u kterého nestojí žádné jméno.
 
 Pokud ty texty žádný lékař nečetl, je to nepravdivé tvrzení vůči spotřebitelce
 a u zdravotního obsahu to není maličkost. Žena se podle toho rozhoduje, kdy
@@ -57,7 +67,7 @@ Cesty jsou dvě a obě jsou v pořádku:
   odbornost: *Odborně zkontrolovala MUDr. Jméno Příjmení, reprodukční medicína,
   8/2026*. Konkrétní jméno má úplně jinou váhu než anonymní razítko.
 - **Nebo formulaci nahradit tím, co je pravda**: *Vychází z doporučených postupů
-  ESHRE a z české praxe. Není to lékařská rada.* U 206 položek už zdroje jsou,
+  ESHRE a z české praxe. Není to lékařská rada.* U 219 položek už zdroje jsou,
   takže je na čem stavět.
 
 Co nejde: nechat to takhle.
@@ -80,14 +90,14 @@ Chybí:
 Nejsem právník. Tohle je seznam k předání někomu, kdo dělá e-commerce a
 zdravotní data, ne hotové řešení.
 
-### 3. Není rozhodnuto, jestli je Bloomia zdravotnický prostředek
+### 3. Není rozhodnuto, jestli je BlooMia zdravotnický prostředek
 
 Aplikace ženě říká, co se dnes může dít s jejím embryem, odkdy má testování
 smysl a kdy zvednout telefon na kliniku. Podle evropského nařízení MDR
 2017/745 rozhoduje **určený účel**: software pro predikci nebo prognózu stavu
 je zdravotnický prostředek se vším, co k tomu patří.
 
-Bloomia podle mě prostředek **není**, je to informace a deník, ne nástroj,
+BlooMia podle mě prostředek **není**, je to informace a deník, ne nástroj,
 který by cokoliv počítal o konkrétní pacientce. Ale tohle musí být vědomé a
 sepsané rozhodnutí, ne náhoda. Konkrétně:
 
@@ -206,7 +216,7 @@ heslo. Přihlašovací údaje k e-mailu v kódu nejsou a být nesmí.
 ### 10. IČO chybí
 
 `const ICO = ''` v `src/client/screens-obloomii.ts`. Obrazovka „Kdo stojí za
-Bloomií" ho zatím nevypisuje vůbec, což je správné chování prázdné hodnoty,
+BlooMií" ho zatím nevypisuje vůbec, což je správné chování prázdné hodnoty,
 ale pro placenou službu je to povinný údaj. Čekám na skutečné číslo.
 
 ### 11. Žádná ikona

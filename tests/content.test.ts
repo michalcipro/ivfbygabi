@@ -314,11 +314,20 @@ test('nikde není em dash', async () => {
   projdi('src')
   projdi('scripts')
   projdi('tests')
+  // Prodejní stránka je jiný kus kódu než aplikace, ale čte ji tentýž
+  // člověk. Bez tohohle řádku se do ní em pomlčka vrátí a testy zůstanou
+  // zelené.
+  projdi('landing')
 
-  // Dokumentace v kořeni se čte stejně jako aplikace, takže platí i pro ni.
-  for (const name of readdirSync('.')) {
-    if (!name.endsWith('.md')) continue
-    const n = readFileSync(name, 'utf8').split(EM).length - 1
+  // Dokumentace v kořeni a popis balíku. I package.json se někam vypisuje.
+  for (const name of [...readdirSync('.').filter((n) => n.endsWith('.md')), 'package.json']) {
+    let text: string
+    try {
+      text = readFileSync(name, 'utf8')
+    } catch {
+      continue
+    }
+    const n = text.split(EM).length - 1
     if (n > 0) bad.push(`${name} (${n}×)`)
   }
 
