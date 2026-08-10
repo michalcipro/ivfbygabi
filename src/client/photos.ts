@@ -208,6 +208,47 @@ export function allPhotos(): Record<string, string> {
   return Object.fromEntries(cache)
 }
 
+/**
+ * Nahradí všechny fotky obsahem ze zálohy.
+ *
+ * Obnova musí být úplná. Kdyby se fotky ze zálohy jen přidaly ke stávajícím,
+ * zůstaly by v aplikaci snímky, na které už nikde nevede odkaz, a zabíraly by
+ * místo, které je právě na iPhonu vzácné.
+ *
+ * Vrací `false`, když se nepodařilo zapsat do IndexedDB. Fotky pak žijí jen
+ * v paměti do zavření záložky a obrazovka to musí přiznat, ne předstírat.
+ */
+export async function replacePhotos(next: Record<string, string>): Promise<boolean> {
+  cache.clear()
+  for (const [id, dataUri] of Object.entries(next)) cache.set(id, dataUri)
+
+  if (!db) return false
+  return new Promise<boolean>((resolve) => {
+    try {
+      const tx = db!.transaction(STORE, 'readwrite')
+      const store = tx.objectStore(STORE)
+      store.clear()
+      const dnes = new Date().toISOString().slice(0, 10)
+      for (const [id, dataUri] of Object.entries(next)) {
+        store.put({ id, name: 'fotka.jpg', addedOn: dnes, data: dataUri })
+      }
+      tx.oncomplete = () => resolve(true)
+      tx.onerror = () => resolve(false)
+      tx.onabort = () => resolve(false)
+    } catch {
+      persist = false
+      resolve(false)
+    }
+  })
+}
+
+/** Kolik místa fotky zabírají. Datové URI je text, takže délka je odhad v bajtech. */
+export function photosBytes(): number {
+  let n = 0
+  for (const v of cache.values()) n += v.length
+  return n
+}
+
 /** Smaže fotku z paměti i z úložiště. */
 export function removePhoto(id: string): void {
   cache.delete(id)

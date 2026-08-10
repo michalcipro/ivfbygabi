@@ -1,0 +1,22 @@
+{
+  "name": "Bloomia",
+  "short_name": "Bloomia",
+  "description": "Vaše cesta. Vaše tempo. Vaše IVF. Každý den obsah přesně na ten den.",
+  "lang": "cs",
+  "dir": "ltr",
+  "id": "/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#eeebf1",
+  "theme_color": "#eeebf1",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

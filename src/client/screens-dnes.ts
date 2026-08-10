@@ -18,9 +18,13 @@ import {
   profile,
   readingSeries,
   reminders,
+  S,
+  saveFailed,
   shotsOn,
   viewDate,
 } from './store'
+import { backupReminder } from '../lib/domain/backup'
+import { naPlose } from './storage-health'
 import { ivfCard } from './screens-ivf'
 import { transferToday } from './screens-transfer'
 import { contentCard, esc, plural, sectionTitle } from './ui'
@@ -33,6 +37,46 @@ import { bloomEndurance, chart, partsList, scissorRing, seriesKey, trackStrip } 
  * proč, a pak jenom to, co se dnes doopravdy hodí. Nic k procházení.
  * Na procházení je Průvodce.
  */
+
+/**
+ * Varování o datech.
+ *
+ * Data ženy žijí jen v prohlížeči a Safari na iPhonu je maže po sedmi
+ * dnech nečinnosti. Připomínka zálohy patří do Nastavení; sem se pustí
+ * jen ve dvou případech, kdy by ticho stálo celý deník:
+ *
+ * - **Aplikace přestala ukládat.** Havárie, musí být vidět hned.
+ * - **Rozjetá léčba a pořád žádná záloha.** Jemné pobídnutí se sem
+ *   nepouští, Dnes má být klidné místo, ne seznam úkolů.
+ */
+function varovaniODatech(date: string): string {
+  if (saveFailed()) {
+    return `<div class="banner" style="border-color:var(--blush)">
+      <span style="color:var(--rose)">!</span>
+      <span><strong>Aplikace teď neukládá.</strong> Co napíšete, zmizí po zavření záložky.</span>
+      <button class="btn btn-sm" data-go="zaloha" style="margin-left:auto">Zachránit data</button>
+    </div>`
+  }
+
+  const r = backupReminder({
+    lastBackupOn: S.d.lastBackupOn,
+    today: date,
+    zapisu: Object.keys(S.d.journal).length,
+    cyklu: S.d.cycles.length,
+    naPlose: naPlose(),
+  })
+  if (r.level !== 'durazna') return ''
+
+  const duvod =
+    r.dni === null
+      ? 'Všechno máte jen v tomhle prohlížeči a zálohu zatím ne.'
+      : 'Od poslední zálohy už uběhlo hodně času.'
+  return `<div class="banner">
+    <span style="color:var(--taupe)">◇</span>
+    <span>${esc(duvod)}</span>
+    <button class="btn btn-sm" data-go="zaloha" style="margin-left:auto">Udělat zálohu</button>
+  </div>`
+}
 
 /**
  * Otázky pro lékaře na dashboardu.
@@ -228,6 +272,7 @@ export function screenDnes(): string {
     .slice(0, budget)
 
   return [
+    varovaniODatech(date),
     `<header class="head rise">
       <p class="eyebrow">${esc(formatCzechDate(date, { weekday: true }))}</p>
       <h1 class="display">${p.displayName ? `Dobrý den, ${esc(p.displayName)}.` : 'Dnešek'}</h1>

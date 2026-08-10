@@ -15,6 +15,9 @@ import {
   TRANSFER_OUTCOME_LABEL,
   type CycleRow,
 } from '../lib/domain/cycle'
+import { backupReminder, type Reminder } from '../lib/domain/backup'
+import { naPlose } from './storage-health'
+import { odkazNaZalohu } from './screens-zaloha'
 import { photoStrip } from './photo-ui'
 import { medDoses, medForm } from './screens-leky'
 import { contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
@@ -30,6 +33,7 @@ import {
   rawProfile,
   reminders,
   S,
+  saveFailed,
   viewDate,
   type CalItem,
   type DocKind,
@@ -38,6 +42,26 @@ import { SEED_POSTS } from './seed'
 import { ROUTES } from './onboarding'
 
 /** Rozcestník a všechny obrazovky, které z něj vedou. */
+
+/**
+ * Stav zálohy pro upozornění v Nastavení.
+ *
+ * Obrazovka Záloha a obnova je o patro níž a sama od sebe se nenajde.
+ * Kdo tam nikdy nezajde, musí se to dozvědět tady.
+ */
+function zalohaPripominka(): Reminder {
+  return backupReminder({
+    lastBackupOn: S.d.lastBackupOn,
+    today: viewDate(),
+    zapisu: Object.keys(S.d.journal).length,
+    cyklu: S.d.cycles.length,
+    naPlose: naPlose(),
+  })
+}
+
+function zalohaNeuklada(): boolean {
+  return saveFailed()
+}
 
 /** Lidský název kotevního data. Pro vysvětlení, proč fáze vyšla takhle. */
 const ANCHOR_LABELS: Record<string, string> = {
@@ -935,14 +959,15 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
         <dt>Dopisů</dt><dd class="num">${S.d.letters.length}</dd>
         <dt>Uloženého obsahu</dt><dd class="num">${S.d.saved.length}</dd>
       </dl>
+      ${odkazNaZalohu(zalohaPripominka(), zalohaNeuklada())}
       <div class="row wrap" style="gap:.6rem;margin-top:1.25rem">
-        <button class="btn btn-sm" data-act="export">Záloha dat (JSON)</button>
+        <button class="btn btn-primary btn-sm" data-go="zaloha">Záloha a obnova</button>
         <button class="btn btn-sm" data-act="forget">Zapomenout naučené zájmy</button>
         <button class="btn btn-sm" data-act="wipe" style="border-color:var(--blush)">Smazat všechno</button>
       </div>
       <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
-        Záloha je soubor pro přenos do jiného zařízení, ne dokument na čtení. Na čtení
-        je přehled výš.
+        Záloha uloží všechno do jednoho souboru a stejným souborem se to dá načíst zpátky,
+        i v jiném telefonu. Není to dokument na čtení, na to je přehled výš.
       </p>
     </section>`,
   ].join('')

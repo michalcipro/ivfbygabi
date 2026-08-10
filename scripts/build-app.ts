@@ -10,7 +10,8 @@
  */
 
 import { build } from 'esbuild'
-import { readFileSync, writeFileSync, mkdirSync, statSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { copyFileSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 
 const ROOT = process.cwd()
@@ -54,14 +55,41 @@ async function main() {
     .replace('/*__CSS__*/', () => safeForStyle(css))
     .replace('/*__APP__*/', () => safeForScript(js))
 
-  mkdirSync(dirname(outPath), { recursive: true })
+  const outDir = dirname(outPath)
+  mkdirSync(outDir, { recursive: true })
   writeFileSync(outPath, html, 'utf8')
+
+  // Manifest a ikony leží vedle aplikace, ne uvnitř ní: prohlížeč si je
+  // musí umět stáhnout samostatně, aby šla přidat na plochu.
+  const pubDir = join(ROOT, 'public')
+  let zkopirovano = 0
+  try {
+    for (const name of readdirSync(pubDir)) {
+      if (statSync(join(pubDir, name)).isDirectory()) continue
+      copyFileSync(join(pubDir, name), join(outDir, name))
+      zkopirovano++
+    }
+  } catch {
+    // Bez `public/` se aplikace pořád otevře, jen nepůjde přidat na plochu.
+  }
+
+  /**
+   * Otisk hotové aplikace.
+   *
+   * Service worker se musí při každé změně aplikace lišit, jinak prohlížeč
+   * novou verzi nikdy nenabídne a uživatelky by zůstaly na té staré napořád.
+   * Otisk obsahu to zaručí bez ručního číslování verzí.
+   */
+  const otisk = createHash('sha256').update(html).digest('hex').slice(0, 16)
+  const swTemplate = read(join(ROOT, 'scripts', 'sw.template.js'))
+  if (swTemplate) writeFileSync(join(outDir, 'sw.js'), swTemplate.replace('__VERZE__', otisk), 'utf8')
 
   const kb = (n: number) => `${Math.round(n / 1024)} kB`
   console.log(`Aplikace zapsána: ${outPath} (${kb(statSync(outPath).size)})`)
   console.log(`  kód:    ${kb(Buffer.byteLength(js))} (jádro, doporučování a celá knihovna obsahu)`)
   console.log(`  styl:   ${kb(Buffer.byteLength(css))}`)
   console.log(`  písmo:  ${kb(Buffer.byteLength(fonts))}`)
+  console.log(`  vedle:  ${zkopirovano} souborů z public/, sw.js s otiskem ${otisk}`)
 }
 
 main().catch((err) => {

@@ -14,14 +14,14 @@ Tohle není seznam pro pochvalu. Je to základ, ze kterého se počítá zbytek.
 | Co | Měření |
 | --- | --- |
 | Obsah | 927 položek v knihovně |
-| Testy | 260 prochází, 0 padá |
+| Testy | 284 prochází, 0 padá |
 | Závislosti za běhu | žádné |
-| Velikost | 2 628 kB syrově, 909 kB gzip, 689 kB brotli |
+| Velikost | 2649 kB syrově |
 | První vykreslení (iPhone 13) | FCP 296 ms, load 266 ms |
 | Přepnutí obrazovky | 31 až 36 ms |
 | Paměť | 11 MB |
-| Bez sítě | 0 síťových požadavků, aplikace funguje celá |
-| Vodorovný posuv | 0 z 1 264 kombinací tras a šířek |
+| Bez sítě | otevře se i bez signálu, 0 požadavků |
+| Vodorovný posuv | 0 z 1 280 kombinací tras a šířek |
 | Formulářové prvky bez názvu | 0 |
 | Obrázky bez `alt` | 0 |
 | `console.log`, `TODO`, `FIXME` ve zdroji | 0 |
@@ -33,7 +33,8 @@ Jsou o tom, co aplikace tvrdí, komu patří data a jak se za ni zaplatí.
 
 ## Blokátory
 
-Věci, které se nesmí pustit k lidem tak, jak jsou teď.
+Věci, které se nesmí pustit k lidem tak, jak jsou teď. Body 5 a 6 už
+vyřešené jsou, zůstávají tu i s tím, co se s nimi udělalo.
 
 ### 1. „Odborně garantováno" u 291 položek bez garanta
 
@@ -102,9 +103,9 @@ transferu je přesně ta správná obrana. Musí zůstat.
 `d.subscription.active` je boolean, který se překlopí tlačítkem. Nic negatuje,
 nic neúčtuje, nic nefakturuje. Za 199 Kč měsíčně se dnes zaplatit nedá.
 
-### 5. Data ženy žijí jen v prohlížeči a iOS je maže
+### 5. Data ženy žijí jen v prohlížeči a iOS je maže (vyřešeno)
 
-Tohle je nejvážnější technická věc v celém auditu.
+Tohle byla nejvážnější technická věc v celém auditu.
 
 - Safari na iPhonu maže `localStorage` i IndexedDB po **7 dnech bez otevření
   stránky**. Není to chyba, je to záměr (ITP).
@@ -112,11 +113,34 @@ Tohle je nejvážnější technická věc v celém auditu.
 - Takže: žena zaplatí, píše si deník, odjede na dva týdny k moři, a vrátí se
   k prázdné aplikaci.
 
-A záchranná brzda nefunguje. V Nastavení je tlačítko **Záloha dat (JSON)**,
-které soubor stáhne. **Obnova neexistuje.** V celém kódu není žádný import.
-To je horší než žádné tlačítko, protože slibuje jistotu, kterou nemá.
+A záchranná brzda nefungovala. V Nastavení bylo tlačítko **Záloha dat (JSON)**,
+které soubor stáhlo. **Obnova neexistovala.** To je horší než žádné tlačítko,
+protože slibuje jistotu, kterou nemá.
 
-### 6. Když se úložiště naplní, aplikace to zamlčí
+**Co se udělalo:**
+
+1. **Obnova ze zálohy.** Nová obrazovka Záloha a obnova. Soubor se nejdřív
+   zkontroluje a ukáže se, co v něm je (datum, rozsah deníku, počty), a teprve
+   po potvrzení se cokoliv přepíše. Prázdná záloha, cizí soubor ani záloha
+   z novější verze neprojdou. Načte se i plochý tvar ze starších verzí, aby
+   ženy o už stažené zálohy nepřišly. Ověřeno v prohlížeči: záloha, smazání
+   všeho, obnova, stav bit po bitu stejný.
+2. **Sdílení místo stahování.** Na iPhonu se otevře systémové sdílení, takže
+   jde zálohu uložit do Souborů nebo na iCloud. Stahování zůstává jako
+   záložní cesta pro počítač a Android.
+3. **PWA.** Manifest, ikony a service worker. Přidání na plochu je jediná
+   dokumentovaná výjimka ze sedmidenního mazání. Aplikace se navíc otevře
+   i bez signálu, což je přesně situace v čekárně. Ověřeno: se sítí vypnutou
+   naskočí celá.
+4. **Návod na instalaci** rovnou v aplikaci, krok za krokem, jen na zařízeních,
+   kde to dává smysl.
+5. **Připomínka zálohy.** Mlčí, dokud není co ztratit. Na ploše se ozve
+   později, protože tam je riziko menší.
+6. **Trvalé úložiště.** Aplikace o něj umí požádat a řekne, co prohlížeč
+   odpověděl. Nic neslibuje: na iPhonu tohle sedmidenní mazání nezruší
+   a je to tam napsané.
+
+### 6. Když se úložiště naplní, aplikace to zamlčí (vyřešeno)
 
 ```ts
 export function save(): void {
@@ -138,6 +162,11 @@ najde mnohem dřív. Aplikace na to musí umět upozornit.
 
 Zablokované úložiště (Safari v anonymním režimu) je naopak ošetřené správně:
 0 chyb, aplikace se normálně vykreslí.
+
+**Co se udělalo:** `save()` si selhání pamatuje. Od té chvíle se varování
+ukáže na Dnes, v Nastavení i na obrazovce Záloha a obnova, a to s jedinou
+rozumnou radou: udělat si hned zálohu. Ověřeno se simulovaným plným
+úložištěm.
 
 ---
 
@@ -287,13 +316,14 @@ Tahle fáze je nejpomalejší a nezávisí na kódu. Začít se s ní má první
 
 ### Fáze 2: data ženy nesmí zmizet (blokuje spuštění)
 
-11. **Obnova ze zálohy.** Načtení JSON souboru zpátky, včetně fotek z
-    IndexedDB a kontroly verze. Bez toho tlačítko „Záloha dat" lže.
-12. **Hlídání kvóty.** Když `save()` selže, říct to nahlas a nabídnout zálohu.
-13. **Připomínka zálohy** jednou za čas, ne otravně.
-14. **PWA**: manifest, ikony, service worker s verzovanou cache, tok
-    aktualizace.
-15. **Návod na instalaci na plochu** v aplikaci i na landing page.
+11. ~~**Obnova ze zálohy** včetně fotek z IndexedDB a kontroly verze~~ hotovo.
+12. ~~**Hlídání kvóty.** Když `save()` selže, říct to nahlas~~ hotovo.
+13. ~~**Připomínka zálohy** jednou za čas, ne otravně~~ hotovo.
+14. ~~**PWA**: manifest, ikony, service worker, tok aktualizace~~ hotovo.
+15. ~~**Návod na instalaci na plochu** v aplikaci~~ hotovo v aplikaci,
+    zbývá na landing page.
+16. Vyzkoušet přidání na plochu na skutečném iPhonu a ověřit, že data
+    přežijí týden bez otevření. Tohle emulátor neukáže.
 
 ### Fáze 3: platba
 

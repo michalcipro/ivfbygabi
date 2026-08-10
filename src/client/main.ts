@@ -25,7 +25,20 @@ import { esc, head, note } from './ui'
 import { emptyContact, emptyCoordinator } from '../lib/domain/clinic'
 import type { ChangeStep } from '../lib/domain/phase-change'
 import type { Frequency } from '../lib/domain/support'
-import { addPhotos, allPhotos, initPhotos, photoUrl, pickImages, removePhoto } from './photos'
+import {
+  addPhotos,
+  allPhotos,
+  initPhotos,
+  photoUrl,
+  photosBytes,
+  pickImages,
+  removePhoto,
+  replacePhotos,
+} from './photos'
+import { backupName, backupReminder, makeBackup, readBackup, type BackupRead } from '../lib/domain/backup'
+import { prectiText, ulozZalohu, vyberZalohu } from './backup-file'
+import { naPlose, pozadatOTrvale, stavUloziste } from './storage-health'
+import { emptyZaloha, screenZaloha } from './screens-zaloha'
 import {
   addCustomExam,
   addCycle,
@@ -86,6 +99,10 @@ import {
   updateExam,
   updateSupport,
   withPhotos,
+  markBackedUp,
+  replaceAll,
+  saveFailed,
+  snapshot,
   type DocKind,
   type HealthKind,
   type JournalRow,
@@ -267,6 +284,7 @@ const TITLES: Record<string, string> = {
   obchod: 'Doporučené',
   partner: 'Partner mode',
   nastaveni: 'Nastavení',
+  zaloha: 'Záloha a obnova',
   'o-bloomii': 'Kdo stojí za Bloomií',
   'napiste-mi': 'Napište mi',
   clenstvi: 'Členství',
@@ -315,6 +333,7 @@ const PARENT: Record<string, string> = {
   obchod: 'pruvodce',
   partner: 'pruvodce',
   nastaveni: 'pruvodce',
+  zaloha: 'nastaveni',
   'o-bloomii': 'profil',
   'napiste-mi': 'profil',
   clenstvi: 'pruvodce',
@@ -388,6 +407,8 @@ const view = {
   feedback: emptyFeedback(),
   /** Co se stalo po odeslání: prázdné, `odeslano` nebo `posta`. */
   feedbackStav: '',
+  /** Stav obrazovky Záloha a obnova. Přežije překreslení, ne zavření okna. */
+  zaloha: emptyZaloha(),
 }
 
 let stack: string[] = []
@@ -595,6 +616,16 @@ function screenFor(route: string): string {
       return screenPartner()
     case 'nastaveni':
       return screenNastaveni(view.report)
+    case 'zaloha':
+      // Stav úložiště se ptá prohlížeče asynchronně. Načte se při prvním
+      // vykreslení a obrazovka se pak překreslí sama.
+      nactiStavUloziste()
+      return screenZaloha(view.zaloha, {
+        lastBackupOn: S.d.lastBackupOn,
+        reminder: pripominkaZalohy(),
+        fotekBajtu: photosBytes(),
+        neuklada: saveFailed(),
+      })
     case 'o-bloomii':
       return screenOBloomii()
     case 'napiste-mi':
@@ -1059,6 +1090,123 @@ function attachPhoto(scope: string): void {
   })()
 }
 
+// ------------------------------------------------------- záloha a obnova ---
+
+/**
+ * Má se dnes připomenout záloha?
+ *
+ * Počítá se z toho, co je v aplikaci zapsáno, a z toho, jestli běží na
+ * ploše. Na ploše iOS data nemaže, takže se připomíná později.
+ */
+function pripominkaZalohy() {
+  return backupReminder({
+    lastBackupOn: S.d.lastBackupOn,
+    today: realToday(),
+    zapisu: Object.keys(S.d.journal).length,
+    cyklu: S.d.cycles.length,
+    naPlose: naPlose(),
+  })
+}
+
+let stavSeZjistuje = false
+
+/** Zeptá se prohlížeče na úložiště. Jen jednou, výsledek si drží obrazovka. */
+function nactiStavUloziste(): void {
+  if (view.zaloha.stav || stavSeZjistuje) return
+  stavSeZjistuje = true
+  void stavUloziste().then((s) => {
+    stavSeZjistuje = false
+    view.zaloha.stav = s
+    renderInPlace()
+  })
+}
+
+/**
+ * Uloží zálohu do souboru.
+ *
+ * Soubor se skládá synchronně. Na iPhonu musí systémové sdílení
+ * odstartovat přímo z klepnutí a jakékoliv čekání před ním ho zablokuje.
+ *
+ * Datum zálohy se zapíše teprve po úspěchu. Kdyby se zapsalo dopředu,
+ * aplikace by přestala připomínat zálohu, kterou žena ve skutečnosti
+ * nemá.
+ */
+function ulozitZalohu(): void {
+  const dnes = realToday()
+  // Bez odsazení: soubor s fotkami je i tak velký a na telefonu se to pozná.
+  const text = JSON.stringify(makeBackup(snapshot(), allPhotos(), dnes))
+
+  void ulozZalohu(text, backupName(dnes)).then((v) => {
+    if (v === 'zruseno') {
+      view.zaloha.hlaska = ''
+    } else if (v === 'chyba') {
+      view.zaloha.hlaska =
+        'Soubor se nepodařilo uložit. Zkuste to prosím znovu, nebo aplikaci otevřete v jiném prohlížeči.'
+    } else {
+      markBackedUp(dnes)
+      view.zaloha.hlaska =
+        v === 'sdileno'
+          ? 'Záloha je hotová. Uložte si ji někam, kde ji najdete i z jiného zařízení.'
+          : 'Záloha se stáhla. Najdete ji mezi staženými soubory.'
+    }
+    renderInPlace()
+  })
+}
+
+/** Načte soubor a připraví ho k potvrzení. Na data zatím nesahá. */
+function nacistZalohu(): void {
+  void (async () => {
+    const soubor = await vyberZalohu()
+    if (!soubor) return
+    const text = await prectiText(soubor)
+    const vysledek: BackupRead =
+      text === null ? { ok: false, problem: 'nejde-precist' } : readBackup(text)
+    view.zaloha.navrh = vysledek
+    view.zaloha.hlaska = ''
+    renderInPlace()
+  })()
+}
+
+/**
+ * Přepíše data obnovenou zálohou.
+ *
+ * Až tady se sahá na úložiště, a to teprve po potvrzení, kdy žena viděla,
+ * co v souboru je. Fotky jdou do IndexedDB zvlášť a můžou selhat samy o
+ * sobě; i tak je obnova zbytku úspěch a musí to být řečeno přesně.
+ */
+function potvrditObnovu(): void {
+  const n = view.zaloha.navrh
+  if (!n || !n.ok) return
+  const kolikFotek = Object.keys(n.photos).length
+
+  void (async () => {
+    replaceAll(n.data)
+    const fotkyOk = kolikFotek === 0 ? true : await replacePhotos(n.photos)
+
+    view.zaloha.navrh = null
+    view.zaloha.hlaska = fotkyOk
+      ? 'Hotovo. Data ze zálohy jsou načtená.'
+      : 'Data jsou načtená, ale fotky se nepodařilo trvale uložit. Zůstanou jen do zavření aplikace.'
+
+    // Ze zálohy může přijít jiný motiv i jiná fáze, takže se překresluje
+    // všechno včetně vzhledu, ne jen tahle obrazovka.
+    applyTheme()
+    render()
+  })()
+}
+
+/** Požádá prohlížeč o trvalé úložiště. Odpověď je na něm, ne na nás. */
+function pozadatTrvale(): void {
+  void (async () => {
+    const dal = await pozadatOTrvale()
+    view.zaloha.stav = await stavUloziste()
+    view.zaloha.hlaska = dal
+      ? 'Prohlížeč potvrdil, že data bude držet natrvalo.'
+      : 'Prohlížeč trvalé uložení zatím nedal. Většinou ho nabídne sám, až aplikaci pár dní po sobě otevřete.'
+    renderInPlace()
+  })()
+}
+
 /** Zvětšení fotky přes celou obrazovku. Mimo render. Je to jen náhled. */
 function zoomPhoto(id: string): void {
   const url = photoUrl(id)
@@ -1292,6 +1440,20 @@ function saveClinicForm(): void {
 }
 
 function action(act: string, argValue: string): void {
+  // Nová verze aplikace se přijímá kdykoliv, i uprostřed onboardingu.
+  // S léčbou to nesouvisí a tlačítko, které nic nedělá, je horší než
+  // žádné tlačítko.
+  if (act === 'pwa-obnovit') {
+    prevzitNovouVerzi()
+    return
+  }
+  if (act === 'pwa-pozdeji') {
+    // Nabídka zmizí, ale verze zůstává nachystaná. Naskočí sama při
+    // příštím úplném otevření aplikace.
+    document.querySelector('.newver')?.remove()
+    return
+  }
+
   if (!isOnboarded()) {
     if (onboardingAction(act, argValue)) render()
     return
@@ -2451,20 +2613,27 @@ function action(act: string, argValue: string): void {
       }
       return
     }
-    case 'export': {
-      // Fotky žijí mimo `S.d` (v IndexedDB), takže se do exportu musí přidat
-      // ručně. Bez nich by soubor tvrdil, že je kompletní, a nebyl by.
-      const blob = new Blob([JSON.stringify({ ...S.d, photos: allPhotos() }, null, 2)], {
-        type: 'application/json',
-      })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `ivf-by-gabi-${realToday()}.json`
-      a.click()
-      URL.revokeObjectURL(url)
+    // --- záloha a obnova --------------------------------------------------
+    // Fotky žijí mimo `S.d`, v IndexedDB. Do zálohy i z ní se přenášejí
+    // zvlášť. Bez nich by soubor tvrdil, že je kompletní, a nebyl by.
+    case 'zaloha-ulozit':
+      ulozitZalohu()
       return
-    }
+    case 'zaloha-nacist':
+      nacistZalohu()
+      return
+    case 'zaloha-potvrdit':
+      potvrditObnovu()
+      return
+    case 'zaloha-zrusit':
+      view.zaloha.navrh = null
+      break
+    case 'zaloha-trvale':
+      pozadatTrvale()
+      return
+    case 'pwa-install':
+      nabidnoutInstalaci()
+      return
     default:
       return
   }
@@ -2639,6 +2808,124 @@ window.addEventListener('hashchange', () => {
   render()
 })
 
+// -------------------------------------------------------------------- PWA ---
+
+/**
+ * Přidání na plochu a nová verze.
+ *
+ * Na iPhonu žádné z tohohle nefunguje: Safari instalaci nenabízí a musí
+ * si ji žena udělat ručně přes Sdílet. Obrazovka Záloha a obnova jí to
+ * proto ukáže krok za krokem. Tady se řeší prohlížeče, které to umí samy.
+ */
+interface InstalacniVyzva extends Event {
+  prompt: () => Promise<void>
+  userChoice: Promise<{ outcome: string }>
+}
+
+let vyzva: InstalacniVyzva | null = null
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Bez tohohle prohlížeč vyskočí s vlastním pruhem ve chvíli, kterou si
+  // vybere sám. Nabídne se až na obrazovce, kde to dává smysl.
+  e.preventDefault()
+  vyzva = e as InstalacniVyzva
+  view.zaloha.lzeInstalovat = true
+})
+
+window.addEventListener('appinstalled', () => {
+  vyzva = null
+  view.zaloha.lzeInstalovat = false
+  toast('Bloomia je na ploše. Data teď zůstávají v bezpečí i mezi otevřeními.')
+})
+
+function nabidnoutInstalaci(): void {
+  const v = vyzva
+  if (!v) return
+  void (async () => {
+    await v.prompt()
+    const { outcome } = await v.userChoice
+    // Nabídku jde použít jen jednou. Prohlížeč pošle novou, až uzná za vhodné.
+    vyzva = null
+    view.zaloha.lzeInstalovat = false
+    if (outcome !== 'accepted') {
+      view.zaloha.hlaska = 'Nevadí. Zálohu si udělejte i tak, ať o nic nepřijdete.'
+    }
+    renderInPlace()
+  })()
+}
+
+/** Nachystaná nová verze aplikace. Čeká, až žena řekne, že se to hodí. */
+let ceka: ServiceWorker | null = null
+let prebiram = false
+
+/**
+ * Nabídka nové verze.
+ *
+ * Vlastní pruh, ne obyčejná hláška: obyčejná zmizí za tři vteřiny a
+ * s ní i jediná cesta, jak novou verzi načíst. Sedí mimo `#app`, takže
+ * překreslení obrazovky ji nesmete.
+ *
+ * Nepřepíná se samo. Aplikace, která se vymění uprostřed psaní deníku,
+ * je horší než aplikace o den starší.
+ */
+function ukazNovouVerzi(): void {
+  if (document.querySelector('.newver')) return
+  const el = document.createElement('div')
+  el.className = 'toast newver'
+  el.setAttribute('role', 'status')
+  el.innerHTML = `<span>Je tu nová verze Bloomie.</span>
+    <button class="nv-ano" data-act="pwa-obnovit">Načíst</button>
+    <button class="nv-ne" data-act="pwa-pozdeji">Později</button>`
+  document.body.appendChild(el)
+}
+
+function prevzitNovouVerzi(): void {
+  if (!ceka) return
+  prebiram = true
+  document.querySelector('.newver')?.remove()
+  ceka.postMessage({ typ: 'prevzit' })
+}
+
+/**
+ * Registrace service workeru.
+ *
+ * Bez něj se aplikace v čekárně bez signálu neotevře vůbec. Nová verze se
+ * nikdy nepřepne sama uprostřed práce: nachystá se stranou a žena ji
+ * přijme klepnutím.
+ */
+function nastavServiceWorker(): void {
+  if (!('serviceWorker' in navigator)) return
+  if (location.protocol !== 'https:' && location.hostname !== 'localhost') return
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    // Přebírá se jen na výslovné přání. Bez téhle pojistky by se stránka
+    // uměla načíst dokola.
+    if (!prebiram) return
+    prebiram = false
+    location.reload()
+  })
+
+  void navigator.serviceWorker
+    .register('sw.js', { updateViaCache: 'none' })
+    .then((reg) => {
+      const nabidni = (sw: ServiceWorker | null): void => {
+        if (!sw || !navigator.serviceWorker.controller) return
+        ceka = sw
+        ukazNovouVerzi()
+      }
+      if (reg.waiting) nabidni(reg.waiting)
+      reg.addEventListener('updatefound', () => {
+        const novy = reg.installing
+        novy?.addEventListener('statechange', () => {
+          if (novy.state === 'installed') nabidni(novy)
+        })
+      })
+    })
+    .catch(() => {
+      // Bez service workeru aplikace funguje dál, jen nebude offline.
+    })
+}
+
 // ------------------------------------------------------------------ start ---
 
 load()
@@ -2663,3 +2950,5 @@ render()
 // nečeká. Místo nich se krátce ukáže zástupný rámeček a jakmile doteče
 // obsah, obrazovka se překreslí.
 void initPhotos().then(render)
+
+nastavServiceWorker()

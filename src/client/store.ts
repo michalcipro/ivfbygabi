@@ -407,6 +407,14 @@ export interface Save {
   medDraft: string
   /** Rozbalené jemnější dělení fází v onboardingu i v přepínači. */
   obMore: boolean
+  /**
+   * Kdy naposledy vznikla záloha.
+   *
+   * Data žijí jen v tomhle prohlížeči a Safari na iPhonu umí úložiště po
+   * týdnu nečinnosti smazat. Bez tohohle data by aplikace neuměla poznat,
+   * že je nejvyšší čas si o zálohu říct.
+   */
+  lastBackupOn: IsoDate | null
 }
 
 function blank(): Save {
@@ -453,6 +461,7 @@ function blank(): Save {
     seenTour: false,
     medDraft: '',
     obMore: false,
+    lastBackupOn: null,
   }
 }
 
@@ -635,12 +644,74 @@ function migrateCycle(c: CycleRow): CycleRow {
   }
 }
 
+/**
+ * Selhalo poslední ukládání?
+ *
+ * Tiché selhání je nejhorší chování, jaké tenhle soubor uměl: aplikace dál
+ * vypadala, že ukládá, a žena psala deník do prázdna. Příznak si drží
+ * modul, obrazovka ho musí říct nahlas.
+ */
+let neuklada = false
+
+export function saveFailed(): boolean {
+  return neuklada
+}
+
 export function save(): void {
   try {
     localStorage.setItem(KEY, JSON.stringify(data))
+    neuklada = false
   } catch {
-    // Plný nebo zakázaný storage: aplikace dál běží, jen si nic nezapamatuje.
+    // Plné nebo zakázané úložiště. Aplikace běží dál, protože rozepsaný
+    // zápis na obrazovce je pořád lepší než bílá stránka, ale od téhle
+    // chvíle to nesmí tajit.
+    neuklada = true
   }
+}
+
+/** Obsah úložiště pro zálohu. Kopie, aby se do dat nedalo sáhnout zvenčí. */
+export function snapshot(): Record<string, unknown> {
+  return JSON.parse(JSON.stringify(data)) as Record<string, unknown>
+}
+
+/** Zapíše datum úspěšné zálohy. Z něj se počítá připomínka. */
+export function markBackedUp(on: IsoDate): void {
+  data.lastBackupOn = on
+  save()
+}
+
+/**
+ * Sedí druh hodnoty ze souboru s tím, co aplikace čeká?
+ *
+ * Migrace volá `.map()` a `Object.entries()` bez ptaní. Kdyby se do pole
+ * dostal text z poškozeného souboru, spadla by celá aplikace do bílé
+ * obrazovky a žena by neměla ani jak se dostat zpátky.
+ */
+function sedi(vzor: unknown, v: unknown): boolean {
+  if (Array.isArray(vzor)) return Array.isArray(v)
+  if (vzor === null) return v === null || (typeof v === 'object' && !Array.isArray(v))
+  if (typeof vzor === 'object') return typeof v === 'object' && v !== null && !Array.isArray(v)
+  return typeof v === typeof vzor
+}
+
+/**
+ * Nahradí celý obsah úložiště obnovenou zálohou.
+ *
+ * Ze souboru se berou jen klíče, které aplikace zná a které mají správný
+ * druh hodnoty. Co nesedí, zůstane prázdné. Raději obnova bez jedné
+ * kolonky než obnova, po které se aplikace neotevře.
+ */
+export function replaceAll(next: Record<string, unknown>): void {
+  const zaklad = blank() as unknown as Record<string, unknown>
+  const cisty: Record<string, unknown> = { ...zaklad }
+  for (const [k, v] of Object.entries(next)) {
+    if (!(k in zaklad)) continue
+    if (!sedi(zaklad[k], v)) continue
+    cisty[k] = v
+  }
+  cisty.v = 1
+  data = migrate(cisty as unknown as Save)
+  save()
 }
 
 export const S = {
