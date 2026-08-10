@@ -86,9 +86,12 @@
   --s3: #be8800;
   --s4: #006c35;
 
-  /* Bodoni Moda nese emoci a příběh, DM Sans přehlednost a informaci. */
-  --display: 'Bodoni Moda', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  /* Lora nese emoci a příběh, DM Sans přehlednost a informaci.
+     Bodoni zůstal jen na značku: didone je krásný ve velkém nadpisu, ale
+     v sedmnácti pixelech na telefonu z něj zbude šeď. */
+  --display: 'Lora', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
   --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --brand: 'BlooMia Mark', 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
 
   /* Měkké, ne bublinaté. Karta je velkoryse zaoblená, ovládací prvek méně,
      aby se dal odlišit povrch od tlačítka. */
@@ -2009,7 +2012,7 @@ h1, h2, h3, h4, .display { hyphens: none; }
    takže se nesmí sjednotit do jedné barvy. Nikde se nedeformuje ani
    neroztahuje: velikost se mění jen přes font-size a šířku znaku. */
 .bmname {
-  font-family: var(--display);
+  font-family: var(--brand);
   font-weight: 500;
   font-size: 1.4rem;
   letter-spacing: -0.005em;
@@ -2061,7 +2064,7 @@ h1, h2, h3, h4, .display { hyphens: none; }
    nepotvrzuje. */
 .bmrovnice {
   margin: 1.6rem 0 0; text-align: center;
-  font-family: var(--display); font-size: clamp(1.25rem, 5vw, 1.6rem);
+  font-family: var(--brand); font-size: clamp(1.25rem, 5vw, 1.6rem);
   font-weight: 500; line-height: 1.3; color: var(--fg);
 }
 .bmrovnice i { font-style: normal; color: var(--fg-faint); padding: 0 .15em; }

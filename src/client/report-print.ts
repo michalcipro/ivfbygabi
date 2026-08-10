@@ -29,7 +29,7 @@ const CSS = `
   }
   .sheet { max-width: 176mm; margin: 0 auto; padding: 10mm 6mm 16mm; }
   h1 {
-    font-family: "Bodoni Moda", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-family: Lora, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
     font-size: 26pt; font-weight: 400; letter-spacing: -0.01em; margin: 0; line-height: 1.15;
     color: #3a3245;
   }
@@ -42,7 +42,7 @@ const CSS = `
   .doclogo { display: flex; align-items: center; gap: 8pt; margin: 0 0 14pt; }
   .doclogo svg { flex: none; }
   .doclogo b {
-    font-family: "Bodoni Moda", "Iowan Old Style", Georgia, serif;
+    font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
     font-size: 17pt; font-weight: 500; letter-spacing: -0.005em; line-height: 1;
   }
   .doclogo .bloo { color: #625673; }
