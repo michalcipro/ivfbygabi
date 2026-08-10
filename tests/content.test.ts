@@ -315,5 +315,12 @@ test('nikde není em dash', async () => {
   projdi('scripts')
   projdi('tests')
 
+  // Dokumentace v kořeni se čte stejně jako aplikace, takže platí i pro ni.
+  for (const name of readdirSync('.')) {
+    if (!name.endsWith('.md')) continue
+    const n = readFileSync(name, 'utf8').split(EM).length - 1
+    if (n > 0) bad.push(`${name} (${n}×)`)
+  }
+
   assert.deepEqual(bad, [], `em dash zůstal v:\n${bad.join('\n')}`)
 })
