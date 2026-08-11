@@ -3,8 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>BlooMia: průvodce IVF, který počítá dny za vás</title>
-<meta name="description" content="Průvodce pro ženy na IVF. Ne obecné rady o neplodnosti, ale obsah pro šestý den po transferu, pro devátý den stimulace, pro den, kdy nezbylo žádné embryo. Vaše data zůstávají ve vašem telefonu.">
+<title>BlooMia: tvoje IVF cesta, jeden den po druhém</title>
+<meta name="description" content="Průvodce pro ženy na IVF. Od prvního vyšetření přes stimulaci, odběr, embrya a transfer až po hCG, včetně dnů, kdy to nevyjde. Bez registrace, bez reklam, data zůstávají ve vašem zařízení.">
 <link rel="canonical" href="https://mybloomia.com/">
 
 <meta name="theme-color" content="#fbf8f7">
@@ -16,8 +16,8 @@
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:site_name" content="BlooMia">
 <meta property="og:url" content="https://mybloomia.com/">
-<meta property="og:title" content="BlooMia: průvodce IVF, který počítá dny za vás">
-<meta property="og:description" content="Obsah pro šestý den po transferu, pro devátý den stimulace, pro den, kdy nezbylo žádné embryo. Vaše data zůstávají ve vašem telefonu.">
+<meta property="og:title" content="BlooMia: tvoje IVF cesta, jeden den po druhém">
+<meta property="og:description" content="Od prvního vyšetření přes stimulaci, odběr, embrya a transfer až po hCG. Včetně dnů, kdy to nevyjde.">
 <meta property="og:image" content="https://mybloomia.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -31,9 +31,13 @@
    Stránka a aplikace musí vypadat jako jedna věc, jinak žena po kliknutí
    na tlačítko neví, jestli je pořád na správném webu.
 
-   Jediné, co je tu navíc, je noční sekce: tam, kde stránka mluví o tom,
-   co aplikace NEDĚLÁ, se změní i podklad. Je to jediné místo, kde se
-   prodejní stránka zastaví a jde proti sobě, tak ať je to vidět.
+   Stavba stránky je záměrně dávkovaná. Horní třetina prodává pocit
+   a hodnotu, střed ukazuje, čím je aplikace jiná, spodek staví důvěru.
+   Technické podrobnosti jsou až v otázkách a v patičce. Kdo si je chce
+   přečíst, dojde si pro ně. Komu stačí vědět, co to je, nemusí je vidět.
+
+   Noční sekce je jediné místo, kde stránka jde proti sobě a říká, co
+   aplikace nedělá. Proto se tam mění i podklad. Ať je to vidět.
    ========================================================================== */
 
 :root {
@@ -60,6 +64,11 @@
   --link: #a35364;
   --night: #2b2333;
 
+  /* Nadpisy sází Lora, ne Bodoni Moda.
+
+     Bodoni má tenké dříky a na telefonu se v odstavcových velikostech
+     rozpadá, což byla konkrétní stížnost při zkoušení aplikace. Zůstává
+     proto tam, kde je velký a kde nese značku: ve slově BlooMia. */
   --display: 'Lora', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
   --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   --brand: 'BlooMia Mark', 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
@@ -140,7 +149,10 @@ strong { font-weight: 600; color: var(--bloo-ink); }
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--mia);
+  /* Značková růžová má na světlém podkladu 3,0:1, tedy pod hranicí
+     čitelnosti. Tenhle odstín drží 4,8:1 i na nejsvětlejším akvarelovém
+     podkladu a barevně sedí k hlavnímu tlačítku. */
+  color: #a24f5f;
   margin: 0 0 0.9rem;
 }
 .lede { font-size: 1.1875rem; color: var(--muted); line-height: 1.6; overflow-wrap: anywhere; }
@@ -158,7 +170,8 @@ a:hover { color: var(--bloo); }
   font-weight: 500;
   letter-spacing: -0.005em;
   line-height: 1;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 .bmname .bloo { color: var(--bloo); }
 .bmname .mia { color: var(--mia); }
@@ -185,9 +198,17 @@ a:hover { color: var(--bloo); }
 .top .wrap {
   display: flex; align-items: center; gap: 0.7rem;
   padding-top: 0.7rem; padding-bottom: 0.7rem;
+  /* Při zvětšeném písmu se tlačítko na úzkém telefonu nevejde vedle
+     značky. Ať radši sjede pod ni, než aby vyjelo z obrazovky ven.
+     Zmenšovat písmo tlačítku by šlo proti tomu, proč si ho někdo
+     zvětšil. */
+  flex-wrap: wrap;
 }
-.top .bmname { font-size: 1.3rem; }
-.top .btn { margin-left: auto; }
+/* Při zvětšeném písmu v prohlížeči je značka širší než lišta a tlačítko
+   vytlačí ven z obrazovky. Ustoupit má značka, ne výzva: kdo je na
+   stránce, ví, kde je, ale tlačítko musí zůstat dosažitelné. */
+.top .bmname { font-size: 1.3rem; min-width: 0; overflow: hidden; text-overflow: clip; }
+.top .btn { margin-left: auto; min-width: 0; }
 
 /* ------------------------------------------------------------------ tlačítka */
 
@@ -240,14 +261,12 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
 .hero h1 { margin-bottom: 1.1rem; }
 .hero .lede { max-width: 30rem; margin-bottom: 1.9rem; }
 .hero-akce { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; }
-.hero-pod { margin-top: 1.1rem; max-width: 26rem; }
+.hero-pod { margin-top: 1.2rem; max-width: 27rem; }
 .hero-obraz { display: grid; place-items: center; padding-bottom: clamp(2.5rem, 6vw, 4rem); }
 
 .logo-blok { display: grid; justify-items: start; gap: 0.7rem; margin-bottom: 1.8rem; max-width: 100%; }
-.logo-radka { max-width: 100%; }
-.bmname { overflow-wrap: anywhere; white-space: normal; }
+.logo-radka { max-width: 100%; display: flex; align-items: center; gap: 0.6rem; }
 .logo-blok .bmname { font-size: clamp(2.1rem, 7vw, 2.9rem); }
-.logo-radka { display: flex; align-items: center; gap: 0.6rem; }
 .claim {
   font-size: 0.75rem; font-weight: 500; letter-spacing: 0.26em;
   text-transform: uppercase; color: var(--bloo); margin: 0;
@@ -273,6 +292,72 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
   font-size: 0.8125rem; line-height: 1.55; color: var(--faint);
 }
 
+/* -------------------------------------------------------------------- USP */
+
+/* Jediná věta na celou šířku. Je to hlavní rozdíl proti ostatním
+   aplikacím, tak dostane vlastní obrazovku a žádnou konkurenci. */
+.usp { text-align: center; }
+.usp h2 { font-size: clamp(1.8rem, 5.6vw, 3rem); margin-bottom: 1.2rem; }
+.usp .lede { max-width: 38rem; margin: 0 auto 1.1rem; }
+.usp .lede:last-child { margin-bottom: 0; }
+
+/* ------------------------------------------------------------------ rovnice */
+
+/* Šestý den po transferu není totéž u trojdenního embrya a u blastocysty.
+   Je to celý rozdíl mezi BlooMií a obecnou aplikací, a čísla to ukážou
+   rychleji než odstavec. Na telefonu jde sloupec pod sebe, znaménka se
+   otočí, ať se nic nemusí posouvat do stran. */
+.rovnice {
+  display: grid; gap: 0.6rem; align-items: stretch;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 1.8rem 0 1.2rem;
+}
+@media (min-width: 46rem) {
+  .rovnice { grid-template-columns: minmax(0, 1fr) 1.6rem minmax(0, 1fr) 1.6rem minmax(0, 1fr); gap: 0.8rem; }
+}
+.rov-pole {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 1.1rem 1.2rem;
+  box-shadow: var(--veil);
+}
+.rov-pole .stitek {
+  display: block; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem;
+}
+.rov-pole b {
+  display: block; font-family: var(--display); font-weight: 500;
+  font-size: clamp(1.35rem, 4.6vw, 1.7rem); line-height: 1.15; color: var(--bloo-ink);
+  font-variant-numeric: tabular-nums;
+}
+.rov-znak {
+  display: grid; place-items: center;
+  font-family: var(--display); font-size: 1.5rem; line-height: 1; color: var(--mia);
+}
+.rov-vysledek { border-color: var(--soft-rose); background: var(--watercolor); }
+.rov-vysledek b { color: var(--bloo); }
+
+/* --------------------------------------------------------------- postup */
+
+/* Čtyři kroky. Číslo s nulou napřed, protože jde o skutečné pořadí:
+   bez prvního kroku nemá druhý co počítat. */
+.postup { list-style: none; counter-reset: krok; margin: 0; padding: 0; display: grid; gap: 1rem; }
+@media (min-width: 46rem) { .postup { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; } }
+.postup li {
+  counter-increment: krok;
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r-xl); padding: 1.5rem 1.4rem;
+  box-shadow: var(--veil);
+}
+.postup li::before {
+  content: counter(krok, decimal-leading-zero);
+  display: block;
+  font-family: var(--display); font-variant-numeric: tabular-nums;
+  color: var(--mia); font-weight: 600; font-size: 1.05rem;
+  letter-spacing: 0.04em; margin-bottom: 0.7rem;
+}
+.postup h3 { margin-bottom: 0.45rem; }
+.postup p { font-size: 0.9375rem; color: var(--muted); margin: 0; }
+
 /* ------------------------------------------------------------------- čísla */
 
 .cisla {
@@ -281,6 +366,7 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
   border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
 }
 .cisla div { background: var(--ivory); padding: 1.1rem 1rem; text-align: center; }
+.ground-white .cisla div { background: var(--white); }
 .cisla b {
   display: block; font-family: var(--display); font-weight: 500;
   font-size: 1.9rem; line-height: 1; color: var(--bloo);
@@ -301,8 +387,9 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
   border-radius: var(--r-xl); padding: 1.6rem 1.5rem;
   box-shadow: var(--veil);
 }
+.ground-white .karta { background: var(--ivory); }
 .karta h3 { margin-bottom: 0.5rem; }
-.karta p { font-size: 0.9375rem; color: var(--muted); margin-bottom: 0.7rem; }
+.karta p { font-size: 0.9375rem; color: var(--muted); margin-bottom: 0; }
 
 /* Dvojice: text vedle telefonu. */
 .dvojice { display: grid; gap: clamp(2rem, 5vw, 3.2rem); align-items: center; grid-template-columns: minmax(0, 1fr); }
@@ -325,6 +412,18 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
   color: var(--bloo);
 }
 
+/* Velký citát na celou sekci. Jedna věta, kterou má žena odejít
+   s pocitem, že jí konečně někdo řekl pravdu. */
+.velky-citat { text-align: center; }
+.velky-citat blockquote {
+  margin: 0 auto; max-width: 30rem;
+  font-family: var(--display); font-weight: 500;
+  font-size: clamp(1.5rem, 5vw, 2.2rem); line-height: 1.28;
+  letter-spacing: -0.015em; color: var(--bloo-ink);
+  text-wrap: balance;
+}
+.velky-citat .pod { max-width: 34rem; margin: 1.6rem auto 0; }
+
 /* ---------------------------------------------------------------- seznam */
 
 .vypis { list-style: none; margin: 0; padding: 0; }
@@ -337,6 +436,73 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
 .vypis .zn { color: var(--heart); font-size: 0.9rem; line-height: 1.5; }
 .vypis b { font-weight: 600; }
 .vypis span.txt { color: var(--muted); }
+
+/* --------------------------------------------------------------- osa cesty */
+
+/* Cesta není přímka a stránka to nesmí kreslit jako přímku. Poslední
+   uzel se proto větví na čtyři možnosti a jedna z nich je ukončení léčby. */
+.osa { list-style: none; margin: 1.6rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.osa li {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 99px; padding: 0.42rem 0.95rem;
+  font-size: 0.9375rem; color: var(--bloo-ink);
+}
+.osa li.start { border-color: var(--soft-rose); background: var(--watercolor); }
+/* Šipka je jenom znaménko mezi uzly, ne uzel. Bez tohohle by dostala
+   rámeček a vypadala by jako další krok cesty. */
+.osa li.sipka {
+  border: 0; background: none; padding: 0.42rem 0;
+  color: var(--heart); font-size: 0.95rem;
+}
+.osa-vetve { display: grid; gap: 0.5rem; margin-top: 1rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 40rem) { .osa-vetve { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 60rem) { .osa-vetve { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.osa-vetve div {
+  border: 1px dashed var(--soft-rose); border-radius: var(--r-md);
+  padding: 0.7rem 0.9rem; font-size: 0.9375rem; color: var(--muted); background: var(--white);
+}
+
+/* ------------------------------------------------------------- výsledky */
+
+.stavy { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
+.stavy span {
+  border: 1px solid rgb(255 255 255 / 0.18); border-radius: 99px;
+  padding: 0.4rem 0.9rem; font-size: 0.9375rem; color: #efe9ee;
+}
+
+/* ------------------------------------------------------------- pro koho */
+
+.prokoho { display: grid; gap: 0.4rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+@media (min-width: 40rem) { .prokoho { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem 1.4rem; } }
+@media (min-width: 60rem) { .prokoho { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.prokoho li {
+  display: grid; grid-template-columns: 0.9rem minmax(0, 1fr); gap: 0.55rem;
+  align-items: baseline; font-size: 0.9375rem; color: var(--bloo-ink);
+  padding: 0.3rem 0;
+}
+.prokoho li::before { content: '\2022'; color: var(--heart); font-size: 0.8rem; }
+
+/* --------------------------------------------------------------- galerie */
+
+/* Sedm obrazovek. Na telefonu se jimi listuje do strany, ale posouvá se
+   jenom tenhle pás, ne stránka. Bez `overscroll-behavior-x` by se švih
+   prstem přenesl na celou stránku a ta by ujela. */
+.galerie {
+  display: flex; gap: 1.1rem; margin-top: 2rem;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding: 0.4rem 0 1.6rem;
+  scrollbar-width: thin;
+}
+.galerie::-webkit-scrollbar { height: 6px; }
+.galerie::-webkit-scrollbar-thumb { background: var(--soft-rose); border-radius: 99px; }
+.galerie figure { flex: none; width: min(15rem, 68vw); margin: 0; scroll-snap-align: center; }
+.galerie .telefon { width: 100%; border-radius: 1.8rem; }
+.galerie .telefon img { border-radius: 1.45rem; }
+.galerie figcaption { margin-top: 0.8rem; font-size: 0.875rem; line-height: 1.5; color: var(--muted); }
+.galerie figcaption b { display: block; color: var(--bloo-ink); font-weight: 600; margin-bottom: 0.15rem; }
+.galerie-obal { position: relative; }
 
 /* ----------------------------------------------------------------- noční */
 
@@ -352,27 +518,32 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
 .noc .vypis span.txt { color: #c3b7c6; }
 .noc .vypis .zn { color: var(--heart); }
 .noc a { color: var(--heart); }
+.noc .citat { color: #f0e6ea; border-left-color: var(--heart); }
+.noc blockquote { color: #fbf6f8; }
 
-/* -------------------------------------------------------------- postup */
+/* ------------------------------------------------------------------ Gabi */
 
-.postup { list-style: none; counter-reset: krok; margin: 1.4rem 0 0; padding: 0; }
-.postup li {
-  counter-increment: krok;
-  display: grid; grid-template-columns: 1.9rem minmax(0, 1fr); gap: 0.85rem;
-  align-items: baseline; padding: 0.6rem 0;
+.gabi { display: grid; gap: clamp(1.8rem, 4vw, 3rem); grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 52rem) { .gabi { grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); } }
+.portret {
+  border-radius: var(--r-xl); border: 1px solid var(--line); background: var(--watercolor);
+  aspect-ratio: 4 / 5; display: grid; place-items: center; gap: 0.8rem;
+  padding: 1.6rem; text-align: center; box-shadow: var(--veil);
 }
-.postup li::before {
-  content: counter(krok);
-  font-family: var(--display); font-variant-numeric: tabular-nums;
-  color: var(--mia); font-weight: 600; font-size: 0.95rem;
+.portret .misto { font-size: 0.8125rem; line-height: 1.55; color: var(--muted); max-width: 14rem; }
+.rovnice-jmena {
+  display: grid; gap: 0.35rem; margin: 1.6rem 0;
+  font-family: var(--display); font-size: 1.0625rem; color: var(--bloo);
 }
+.rovnice-jmena b { font-weight: 500; color: var(--bloo-ink); }
+.rovnice-jmena .soucet { border-top: 1px solid var(--line); padding-top: 0.5rem; margin-top: 0.2rem; }
 
 /* ----------------------------------------------------------------- cena */
 
 .cena {
   background: var(--white); border: 1px solid var(--soft-rose);
   border-radius: var(--r-xl); padding: clamp(1.8rem, 4vw, 2.6rem);
-  box-shadow: var(--lift); max-width: 34rem; margin: 0 auto;
+  box-shadow: var(--lift); max-width: 36rem; margin: 0 auto;
 }
 .cena .castka {
   font-family: var(--display); font-weight: 500;
@@ -380,6 +551,25 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
   color: var(--bloo-ink); font-variant-numeric: tabular-nums;
 }
 .cena .za { font-size: 1rem; color: var(--muted); font-family: var(--sans); }
+.cena .vcene { list-style: none; margin: 1.6rem 0; padding: 0; display: grid; gap: 0.45rem; }
+@media (min-width: 34rem) { .cena .vcene { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.45rem 1.2rem; } }
+.cena .vcene li {
+  display: grid; grid-template-columns: 1rem minmax(0, 1fr); gap: 0.5rem;
+  align-items: baseline; font-size: 0.9375rem; color: var(--bloo-ink);
+}
+.cena .vcene li::before { content: '\2713'; color: var(--mia); font-size: 0.85rem; }
+.cena .duraz {
+  border-left: 2px solid var(--soft-rose); padding-left: 0.95rem;
+  margin: 1.6rem 0; font-family: var(--display); font-size: 1.0625rem;
+  line-height: 1.55; color: var(--bloo);
+}
+/* Platba zatím neběží. Stránka to řekne jednou, na jednom místě,
+   a neschovává to pod tlačítko. */
+.stav-platby {
+  margin-top: 1.4rem; border: 1px dashed var(--soft-rose); border-radius: var(--r-md);
+  padding: 0.85rem 1rem; font-size: 0.9375rem; line-height: 1.6; color: var(--muted);
+  background: var(--watercolor);
+}
 
 /* ------------------------------------------------------------------ otázky */
 
@@ -408,6 +598,9 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 .paticka .bmname .bloo { color: #cbbcd8; }
 .paticka .bmname .mia { color: var(--heart); }
 .paticka .sloupce { display: grid; gap: 2rem; margin: 2rem 0; }
+/* Bez tohohle mají sloupce minimální šířku podle nejdelšího slova
+   a při zvětšeném písmu přetečou ven. */
+.paticka .sloupce > div { min-width: 0; }
 @media (min-width: 46rem) { .paticka .sloupce { grid-template-columns: 1fr 1fr; } }
 .paticka h3 { color: #fbf6f8; font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; font-family: var(--sans); font-weight: 600; margin-bottom: 0.8rem; }
 .paticka ul { list-style: none; margin: 0; padding: 0; }
@@ -427,12 +620,22 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 }
 
 /* Poslední výzva před patičkou. */
-/* Zdravotní upozornění hned pod tlačítkem. Nesmí být světlejší ani menší
-   než ostatní drobný text, jinak vypadá, že se za něj stránka stydí. */
+.zaver { text-align: center; }
+.zaver blockquote {
+  margin: 0 auto; max-width: 26rem;
+  font-family: var(--display); font-weight: 500;
+  font-size: clamp(1.5rem, 5vw, 2.1rem); line-height: 1.3;
+  letter-spacing: -0.015em; color: var(--bloo-ink); text-wrap: balance;
+}
+.zaver .btn { margin-top: 1.8rem; }
+.zaver .claim { margin-top: 1.4rem; letter-spacing: 0.22em; }
+
+/* Zdravotní upozornění. Nesmí být světlejší ani menší než ostatní drobný
+   text, jinak vypadá, že se za něj stránka stydí. */
 .upozorneni {
   font-size: 0.875rem; line-height: 1.6; color: var(--muted);
   border-left: 2px solid var(--soft-rose); padding-left: 0.9rem;
-  max-width: 30rem; margin-top: 1rem;
+  max-width: 32rem; margin-top: 1.2rem;
 }
 
 /* Tisk. Návod na plochu a podmínky si někdo uloží do PDF. */
@@ -440,16 +643,15 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
   .top { display: none; }
   body { background: #fff; }
   .telefon { box-shadow: none; }
+  .galerie { overflow: visible; flex-wrap: wrap; }
   .noc, .paticka { background: #fff; color: #3a3245; }
-  .noc h2, .noc h3, .noc strong, .paticka h3, .paticka strong { color: #3a3245; }
+  .noc h2, .noc h3, .noc strong, .noc blockquote, .paticka h3, .paticka strong { color: #3a3245; }
   .noc .lede, .noc .soft, .noc .faint, .paticka, .pravni { color: #4a4058; }
+  .stavy span { border-color: #999; color: #3a3245; }
   .doplnit { border-color: #999; color: #3a3245; background: none; }
   section { padding: 1.5rem 0; break-inside: avoid; }
   a { color: #3a3245; }
 }
-
-.zaver { text-align: center; }
-.zaver .btn { margin-top: 1.6rem; }
 </style>
 
 <header class="top" id="lista">
@@ -467,14 +669,14 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 
 <main>
 
-<!-- ============================================================= hero === -->
+<!-- ====================================================== 1. hero === -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-grid">
       <div>
         <div class="logo-blok">
           <div class="logo-radka">
-            <svg class="znak" width="42" height="42" viewBox="0 0 48 48" aria-hidden="true">
+            <svg class="znak" width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
               <circle cx="24" cy="9.6" r="1.6" fill="#d98998" fill-opacity=".4"/>
               <circle cx="24" cy="15.2" r="2.05" fill="#d98998" fill-opacity=".68"/>
               <circle cx="24" cy="21.2" r="2.5" fill="#d98998"/>
@@ -485,649 +687,771 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
           <p class="claim">Tvoje IVF cesta</p>
         </div>
 
-        <h1>Vaše cesta. Vaše tempo. Vaše IVF.</h1>
+        <h1>Tvoje IVF cesta. Jeden den po druhém.</h1>
         <p class="lede">
-          Ne obecné rady o neplodnosti. Obsah pro šestý den po transferu, pro devátý
-          den stimulace, pro den, kdy nezbylo žádné embryo.
+          Od prvního vyšetření přes stimulaci, odběr, embrya a transfer až po hCG,
+          včetně dnů, kdy to nevyjde.
         </p>
 
         <div class="hero-akce">
           <a class="btn btn-primary btn-lg" href="/app/">Otevřít BlooMii</a>
-          <a class="btn btn-lg" href="#co-nedela">Co aplikace nedělá</a>
+          <a class="btn btn-lg" href="#jak-to-funguje">Zjistit, jak BlooMia funguje</a>
         </div>
-        <p class="hero-pod">
-          Nastavení zabere minutu a kdykoliv se dá změnit. Nechceme e-mail ani heslo,
-          protože je k ničemu nepotřebujeme.
-        </p>
-        <p class="hero-pod upozorneni">
-          BlooMia je informační a záznamová aplikace. Neslouží ke stanovení diagnózy,
-          k prognóze ani k rozhodování o léčbě a není zdravotnickým prostředkem.
-          Nenahrazuje vašeho lékaře. Při akutních potížích volejte kliniku nebo
-          pohotovost.
+
+        <p class="faint hero-pod">
+          Bez registrace. Bez reklam. Vaše data zůstávají ve vašem zařízení.
         </p>
       </div>
 
       <div class="hero-obraz">
         <div class="telefon">
-          <img src="snimky/po-transferu.jpg" width="560" height="1212"
-               alt="Obrazovka aplikace: čtvrtý den po transferu, do odběru hCG zbývá šest dní, embryo je D6.">
+          <img src="snimky/dnes.jpg" width="780" height="1688"
+               alt="Obrazovka Dnes v aplikaci BlooMia: čtvrtý den po transferu, druhý cyklus, embryo D6.">
         </div>
-        <p class="telefon-popis">Skutečná obrazovka aplikace. Ne obrázek z fotobanky.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================================================== čtvrtý den === -->
-<section>
+<!-- ======================================================= 2. USP === -->
+<section class="usp ground-white">
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Proč BlooMia</p>
-      <h2>Čtvrtý den po transferu není totéž co čtrnáctý</h2>
-    </div>
-    <p>
-      Většina aplikací o neplodnosti má jeden text o čekání. Otevřete ho čtvrtý den
-      a otevřete ho čtrnáctý den a je to pořád tentýž text. Přitom čtvrtý den je ticho,
-      o které se nedá opřít, a čtrnáctý den je odběr.
+    <p class="eyebrow">V čem je BlooMia jiná</p>
+    <h2>BlooMia ví, kde na své cestě právě jste.</h2>
+    <p class="lede">
+      Není to databáze článků o neplodnosti seřazená podle abecedy.
+      BlooMia ví, jakou fázi a jaký den jste si v aplikaci zadala,
+      a podle toho vybírá obsah relevantní pro dnešek.
     </p>
-    <p>
-      BlooMia pracuje jinak. Ví, ve které z 21 fází jste a kolikátý je to v ní den.
-      Podle toho postaví obrazovku Dnes. V aplikaci je <strong>174 denních karet</strong>.
-      112 z nich je psaných na jeden konkrétní den jedné fáze, zbytek na krátký úsek
-      dní, kde by rozdíl mezi dnem a dnem byl vymyšlený.
-    </p>
-    <p>
-      Devátý den stimulace tedy dostanete devátý den stimulace. Ne článek
-      <em>jak zvládat stimulaci</em>.
-    </p>
-    <p class="faint">
-      Neznamená to, že aplikace ví, co se děje ve vašem těle. To neví nikdo. Ví jen,
-      kolikátý je den, a podle toho vybírá, co má smysl číst právě dnes.
+    <p class="lede">
+      A vychází z posledních relevantních informací, ne automaticky
+      z prvního cyklu. Když máte za sebou tři cykly a devět transferů,
+      počítá s tím posledním.
     </p>
 
-    <div class="cisla" style="margin-top:2.4rem">
-      <div><b>404</b><span>článků a checklistů</span></div>
+    <div class="oddel" aria-hidden="true">
+      <svg width="46" height="26" viewBox="0 0 48 28">
+        <circle cx="24" cy="4" r="1.5" fill="#d98998" fill-opacity=".4"/>
+        <circle cx="24" cy="9.5" r="1.9" fill="#d98998" fill-opacity=".68"/>
+        <circle cx="24" cy="15.5" r="2.3" fill="#d98998"/>
+        <path d="M24 27C21 24.6 15.6 21 15.6 17.3c0-2.3 1.8-4 4-4 1.7 0 3.3.9 4.4 2.4 1-1.5 2.6-2.4 4.3-2.4 2.3 0 4.1 1.7 4.1 4C32.4 21 27 24.6 24 27Z" fill="#c97887"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ 3. konkrétní ukázka === -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Konkrétní příklad</p>
+    <h2>Nejste jen po transferu.</h2>
+    <p class="lede" style="margin-top:1rem;max-width:34rem">
+      Obecná aplikace ví, že jste po transferu. To je všechno.
+      BlooMia počítá i s tím, jak staré embryo se přenášelo.
+    </p>
+
+    <div class="rovnice">
+      <div class="rov-pole">
+        <span class="stitek">Dnes</span>
+        <b>6. den po transferu</b>
+      </div>
+      <div class="rov-znak" aria-hidden="true">+</div>
+      <div class="rov-pole">
+        <span class="stitek">Embryo</span>
+        <b>D3 embryo</b>
+      </div>
+      <div class="rov-znak" aria-hidden="true">=</div>
+      <div class="rov-pole rov-vysledek">
+        <span class="stitek">Embryonální stáří</span>
+        <b>9 dní</b>
+      </div>
+    </div>
+
+    <p class="soft" style="max-width:34rem">
+      Den po transferu sám o sobě nestačí. Záleží i na tom, jak staré
+      embryo bylo přeneseno. BlooMia obojí rozlišuje a podle toho vybírá,
+      co vám dnes ukáže.
+    </p>
+    <p class="faint" style="max-width:34rem;margin-top:1rem">
+      Je to kontext, ne předpověď. Z čísla dnů se nedá odvodit, jak
+      transfer dopadl.
+    </p>
+  </div>
+</section>
+
+<!-- =================================================== 4. jak to funguje === -->
+<section class="ground-rose" id="jak-to-funguje">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Čtyři kroky</p>
+      <h2>Jak BlooMia funguje?</h2>
+    </div>
+
+    <ol class="postup">
+      <li>
+        <h3>Řeknete nám, kde jste.</h3>
+        <p>Vyberete svou aktuální situaci a fázi. Trvá to necelou minutu a dá se to kdykoliv přepnout.</p>
+      </li>
+      <li>
+        <h3>Zapíšete svou cestu.</h3>
+        <p>Cykly, odběry, embrya, transfery, léky, výsledky a další informace. Tolik nebo tak málo, kolik chcete.</p>
+      </li>
+      <li>
+        <h3>BlooMia naváže na poslední relevantní informace.</h3>
+        <p>Nepracuje automaticky s prvním cyklem, když máte pozdější relevantní cyklus nebo transfer.</p>
+      </li>
+      <li>
+        <h3>Každý den vidíte to, co dává smysl právě dnes.</h3>
+        <p>Obsah se přizpůsobuje aktuálně zadané fázi a dni. Nemusíte nic hledat.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========================================================= 5. čísla === -->
+<section class="ground-white">
+  <div class="wrap">
+    <div class="cisla">
+      <div><b>404+</b><span>článků a checklistů</span></div>
       <div><b>174</b><span>denních karet</span></div>
       <div><b>162</b><span>pojmů ve slovníku</span></div>
       <div><b>21</b><span>fází cesty</span></div>
     </div>
+    <p class="soft" style="margin-top:1.6rem;max-width:34rem">
+      Nemusíte nic složitě hledat. BlooMia vám ukáže, co může být
+      relevantní právě dnes.
+    </p>
   </div>
 </section>
 
-<div class="oddel">
-  <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true">
-    <circle cx="24" cy="9.6" r="1.6" fill="#d98998" fill-opacity=".4"/>
-    <circle cx="24" cy="15.2" r="2.05" fill="#d98998" fill-opacity=".68"/>
-    <circle cx="24" cy="21.2" r="2.5" fill="#d98998"/>
-    <path d="M24 40.4C20.6 37.6 14.4 33.4 14.4 29.1c0-2.7 2.1-4.7 4.7-4.7 1.9 0 3.8 1.1 4.9 2.8 1.1-1.7 3-2.8 4.9-2.8 2.6 0 4.7 2 4.7 4.7 0 4.3-6.2 8.5-9.6 11.3Z" fill="#c97887"/>
-  </svg>
-</div>
-
-<!-- ===================================================== po transferu === -->
-<section class="ground-rose">
+<!-- ================================================ 6. dva týdny čekání === -->
+<section>
   <div class="wrap wrap-wide">
     <div class="dvojice">
       <div>
-        <p class="eyebrow">Dva týdny čekání</p>
-        <h2>Čtvrtý den po D3 embryu není čtvrtý den po blastocystě</h2>
-        <p style="margin-top:1.2rem">
-          Dva týdny po transferu bývají nejtěžší část léčby a zároveň ta, kde na
-          internetu najdete nejvíc protichůdných výkladů píchnutí v podbřišku.
+        <p class="eyebrow">Čekání na hCG</p>
+        <h2>Dva týdny čekání. Každý den je jiný.</h2>
+        <p class="lede" style="margin-top:1rem">
+          4. den po D3 embryu není totéž jako 4. den po blastocystě.
+          BlooMia rozlišuje den po transferu a embryonální stáří.
         </p>
-        <p>
-          BlooMia má na každý z těch dnů jednu stránku: co se v tenhle den může dít
-          s embryem, co se děje v těle, co můžete cítit, co dnes nemusíte řešit
-          a kolik zbývá do odběru hCG.
-        </p>
-        <p>
-          A pod tím jedna odborná drobnost, kterou většina aplikací přehlíží. Den po
-          transferu sám o sobě neříká nic, dokud se neví, jak staré embryo se přenášelo.
-          Text o embryu se proto neváže na den po transferu, ale na
-          <strong>embryonální stáří</strong>, tedy na součet dne kultivace a dne po
-          transferu.
+
+        <ul class="vypis" style="margin-top:1.4rem">
+          <li><span class="zn" aria-hidden="true">◇</span><span class="txt">co se může dít s embryem</span></li>
+          <li><span class="zn" aria-hidden="true">◇</span><span class="txt">co se může dít v těle</span></li>
+          <li><span class="zn" aria-hidden="true">◇</span><span class="txt">co můžete cítit</span></li>
+          <li><span class="zn" aria-hidden="true">◇</span><span class="txt">co dnes nemusíte řešit</span></li>
+          <li><span class="zn" aria-hidden="true">◇</span><span class="txt">kolik zbývá do hCG</span></li>
+        </ul>
+
+        <p class="faint" style="margin-top:1.4rem">
+          Nic z toho neříká, jestli transfer vyšel. To řekne až odběr.
         </p>
       </div>
       <div class="dvojice-obraz">
         <div class="telefon">
-          <img src="snimky/embryo.jpg" width="560" height="1212" loading="lazy"
-               alt="Karta embrya v aplikaci s údaji o typu, transferu, hodnocení a genetice.">
+          <img src="snimky/po-transferu.jpg" width="780" height="1688" loading="lazy"
+               alt="Obrazovka po transferu: dnešní podpora a informace o tom, co se může dít s embryem.">
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================================================== příznaky === -->
-<section>
+<!-- ================================================ 7. poctivost === -->
+<section class="velky-citat ground-rose">
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Poctivost místo výkladů</p>
-      <h2>Příznaky nejsou důkaz. Ani když jich je hodně, ani když nejsou žádné.</h2>
-    </div>
-    <p>
-      Ve dvou týdnech po transferu se dá najít cokoliv a ke všemu se najde obojí:
-      ženy, kterým to vyšlo, i ženy, kterým ne.
-    </p>
-    <p>BlooMia to říká rovnou a stejnou větou pokaždé:</p>
-    <blockquote class="citat">
-      Příznaky můžou souviset s hormonální léčbou, s běžnými změnami v těle nebo
-      s těhotenstvím. Samotné příznaky nejsou spolehlivý způsob, jak určit výsledek
-      transferu. A jejich nepřítomnost neznamená, že transfer nevyšel.
+    <p class="eyebrow">Poctivost místo výkladů</p>
+    <blockquote>
+      Příznaky nejsou důkaz. Ani když jich je hodně, ani když nejsou žádné.
     </blockquote>
-    <p>
-      V seznamu toho, co se v téhle fázi běžně objevuje, je na prvním místě
-      <strong>žádné příznaky</strong>. Schválně.
+    <p class="soft pod">
+      Příznaky mohou souviset s hormonální léčbou, s běžnými změnami v těle
+      nebo s těhotenstvím. Samotné příznaky nejsou spolehlivý způsob, jak
+      určit výsledek transferu.
+    </p>
+    <p class="soft pod">
+      Proto je v BlooMii <strong>„žádné příznaky“ vždycky legitimní
+      možnost</strong>. Nikdo vám nebude podsouvat, že každý pocit
+      něco znamená.
     </p>
   </div>
 </section>
 
-<!-- ========================================================== cyklus === -->
-<section class="ground-white">
-  <div class="wrap wrap-wide">
-    <div class="dvojice obracene">
-      <div class="dvojice-obraz">
-        <div class="telefon">
-          <img src="snimky/cyklus.jpg" width="560" height="1212" loading="lazy"
-               alt="Přehled cyklů: druhý cyklus se dvěma kryotransfery a první cyklus s jedenácti vajíčky.">
-        </div>
-      </div>
-      <div>
-        <p class="eyebrow">Jak to má být</p>
-        <h2>Třetí kryotransfer ze stejného odběru je pořád tentýž cyklus</h2>
-        <p style="margin-top:1.2rem">
-          Aplikace na plodnost znají menstruační cyklus s jednou ovulací. IVF je jinak.
-          Z jednoho odběru vznikne zásoba embryí a z ní se transfery dělají klidně
-          rok po sobě.
-        </p>
-        <p>
-          Proto v BlooMii nemá cyklus jedno políčko na datum transferu. Má seznam
-          transferů a seznam odběrů hCG, oba bez omezení počtu. Aplikace pak sama počítá,
-          o který transfer právě jde, a zrušené přeskakuje.
-        </p>
-        <p>
-          Cyklus se navíc nikdy nezavírá sám, ani po negativním výsledku. Zavřete ho,
-          až budete chtít vy.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================================== nevyšlo to === -->
-<section class="ground-rose">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">To, co se neprodává</p>
-      <h2>Den, kdy to nevyšlo, je v aplikaci taky den</h2>
-    </div>
-    <p>
-      Cyklus, který nevyjde, není výjimka. Přesto je to v aplikacích prázdné místo:
-      obsah o těhotenství běží dál a celá situace se schová pod jedno slovo
-      <em>negativní</em>.
-    </p>
-    <p>
-      V BlooMii má cyklus <strong>devět možných výsledků</strong>, ne dva. Probíhá,
-      těhotenství, negativní hCG, biochemické těhotenství, mimoděložní těhotenství,
-      ztráta těhotenství, nebylo embryo k transferu, cyklus zrušen, embrya zamražena.
-    </p>
-    <p>
-      Zrušený transfer, biochemické těhotenství a mimoděložní jsou tři úplně jiné
-      situace se třemi jinými postupy. Kdyby se schovaly pod jedno slovo, aplikace
-      by vám tvrdila, že se nic nestalo.
-    </p>
-    <p>
-      Skupina Ztráty má šest fází: čtyři druhy ztráty, revizi dutiny a opakovaný
-      neúspěch. Ukončení léčby má vlastní obsah taky. Nikdo vás nebude přesvědčovat,
-      ať to zkusíte znovu.
-    </p>
-  </div>
-</section>
-
-<!-- ========================================================== telefon === -->
+<!-- ================================================= 8. celá IVF cesta === -->
 <section>
   <div class="wrap wrap-wide">
-    <div class="dvojice">
-      <div>
-        <p class="eyebrow">Bezpečnost</p>
-        <h2>A dny, kdy nemá smysl číst, ale zvednout telefon</h2>
-        <p style="margin-top:1.2rem">
-          Vědět, který je den, znamená taky vědět, co v ten den může být důvod nečekat
-          do rána. <strong>87 ze 174 denních karet</strong> nese vlastní sekci s tím,
-          kdy volat lékaři. Není to obecná patička, je to napsané k tomu dni.
-        </p>
-        <p>
-          Stejné pravidlo platí ve vyhledávání. Když napíšete něco, co může znamenat
-          akutní stav, odpověď nezačne odkazem na článek, ale pokynem ozvat se klinice.
-          Pravidel je pět: silné krvácení, příznaky OHSS, náhlá silná bolest nebo bolest
-          vystřelující do ramene, horečka, a věta o tom, že nechcete žít.
-        </p>
-        <blockquote class="citat">
-          Tohle nejsou příznaky čekání. Tohle jsou důvody zvednout telefon.
-        </blockquote>
-        <p>
-          A protože je to důležité: <strong>když se varování neukáže, neznamená to,
-          že je všechno v pořádku.</strong> Pravidla jsou pevná a aplikace nic
-          nevyhodnocuje. O tom, jestli volat, rozhodujete vy a vaše klinika.
-        </p>
-      </div>
-      <div class="dvojice-obraz">
-        <div class="telefon">
-          <img src="snimky/denik.jpg" width="560" height="1212" loading="lazy"
-               alt="Obrazovka Deník s kartou, kde právě jste, a odpočtem do odběru hCG.">
-        </div>
-      </div>
+    <div class="sec-head">
+      <p class="eyebrow">Celá cesta, ne jeden cyklus</p>
+      <h2>Od rozhodnutí po výsledek. A dál.</h2>
     </div>
+
+    <ul class="osa">
+      <li class="start">Snažíme se</li>
+      <li aria-hidden="true" class="sipka">→</li>
+      <li>vyšetření</li>
+      <li aria-hidden="true" class="sipka">→</li>
+      <li>příprava</li>
+      <li aria-hidden="true" class="sipka">→</li>
+      <li>stimulace</li>
+      <li aria-hidden="true" class="sipka">→</li>
+      <li>odběr</li>
+      <li aria-hidden="true" class="sipka">→</li>
+      <li>oplodnění</li>
+      <li aria-hidden="true" class="sipka">→</li>
+      <li>embrya</li>
+      <li aria-hidden="true" class="sipka">→</li>
+      <li>transfer</li>
+      <li aria-hidden="true" class="sipka">→</li>
+      <li>hCG</li>
+      <li aria-hidden="true" class="sipka">→</li>
+      <li>výsledek</li>
+    </ul>
+
+    <div class="osa-vetve">
+      <div>další transfer</div>
+      <div>další cyklus</div>
+      <div>ztráta</div>
+      <div>ukončení léčby</div>
+    </div>
+
+    <p class="soft" style="margin-top:1.8rem;max-width:34rem">
+      <strong>Jeden IVF cyklus může mít víc transferů.</strong>
+      BlooMia počítá s embryotransfery i s kryoembryotransfery a s tím,
+      že cesta nemusí být přímá.
+    </p>
   </div>
 </section>
 
-<!-- ======================================================= co je uvnitř === -->
+<!-- ============================================ 9. i když to nevyjde === -->
+<section class="noc">
+  <div class="wrap">
+    <p class="eyebrow">Když to nevyjde</p>
+    <h2>I když to nevyjde, BlooMia zůstává s vámi.</h2>
+    <p class="lede" style="margin-top:1.2rem">
+      Negativní hCG není konec aplikace.<br>
+      Zrušený transfer není chyba v systému.<br>
+      Biochemické těhotenství není totéž jako negativní test.<br>
+      Ztráta není prázdné místo.
+    </p>
+
+    <p class="soft" style="margin-top:1.8rem">
+      Cyklus se v BlooMii uzavírá jedním z devíti výsledků. Každý má
+      vlastní obsah, vlastní slova a vlastní pokračování:
+    </p>
+
+    <div class="stavy">
+      <span>probíhá</span>
+      <span>těhotenství</span>
+      <span>negativní hCG</span>
+      <span>biochemické těhotenství</span>
+      <span>mimoděložní těhotenství</span>
+      <span>ztráta těhotenství</span>
+      <span>nebylo embryo k transferu</span>
+      <span>cyklus zrušen</span>
+      <span>embrya zamražena</span>
+    </div>
+
+    <p class="citat" style="margin-top:2rem">
+      Nikdo vás nebude přesvědčovat, že musíte pokračovat nebo to zkusit znovu.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================== 10. co BlooMia umí === -->
 <section class="ground-white">
   <div class="wrap wrap-wide">
     <div class="sec-head">
       <p class="eyebrow">Co je uvnitř</p>
-      <h2>Celá léčba na jednom místě, ne jen kalendář</h2>
-      <p class="soft">Velká část léčby se neodehrává na klinice.</p>
+      <h2>Celá IVF cesta na jednom místě.</h2>
     </div>
 
-    <div class="karty karty-3">
+    <div class="karty karty-2 karty-3">
       <div class="karta">
-        <h3>Cykly, embrya, transfery</h3>
-        <p>Karta pro každé embryo a pro každý transfer, bez omezení počtu. Stavy,
-        hodnocení, genetika, osud.</p>
+        <h3>Cykly, embrya a transfery</h3>
+        <p>Mějte přehled o každém cyklu, embryu, transferu i kryotransferu.</p>
       </div>
       <div class="karta">
-        <h3>Deník a zápis dne</h3>
-        <p>Nálada, úzkost, naděje a energie. 112 příznaků k zaškrtnutí a 29 deníkových
-        otázek, které se střídají podle fáze.</p>
+        <h3>Deník</h3>
+        <p>Zachyťte, co se děje nejen v léčbě, ale i ve vás.</p>
       </div>
       <div class="karta">
         <h3>Léky a injekce</h3>
-        <p>Číselník 55 přípravků, dnešní dávky, protokol. Slouží k zápisu, ne jako
-        doporučení: dávku určuje vaše klinika.</p>
+        <p>Zapisujte si léky, dávky a protokol podle pokynů své kliniky.</p>
       </div>
       <div class="karta">
         <h3>Otázky pro lékaře</h3>
-        <p>64 hotových otázek podle fáze. Lékař má osm minut a vy si po cestě domů
-        vzpomenete na to hlavní.</p>
+        <p>Přijďte na kontrolu připravená.</p>
       </div>
       <div class="karta">
         <h3>Zdravotní hodnoty</h3>
-        <p>16 laboratorních parametrů v čase. Řekne směr, změnu v procentech
-        a zdvojovací čas u hCG. Nikdy verdikt.</p>
+        <p>Sledujte své vlastní záznamy v čase, bez verdiktů a bez předpovídání výsledku.</p>
       </div>
       <div class="karta">
-        <h3>Finance a práce</h3>
-        <p>Jeden náklad může mít libovolně mnoho plateb. K termínu si zapíšete, jestli
-        berete volno nebo potřebujete odvoz.</p>
+        <h3>Finance</h3>
+        <p>Mějte přehled o nákladech, částečných platbách, doplatcích a tom, kdo co hradí.</p>
       </div>
-    </div>
-
-    <div class="dvojice" style="margin-top:clamp(2.5rem,6vw,4rem)">
-      <div>
-        <h3 style="font-size:1.3rem;margin-bottom:0.7rem">A 830 položek, které nemusíte procházet</h3>
-        <p class="soft">
-          Domovská stránka se skládá do řad a u každé řady stojí, proč tam je. Třeba
-          <em>Protože jste 8. den po transferu</em>. Nemusíte formulovat dotaz. Nemusíte
-          vědět, jak se jmenuje to, co hledáte.
-        </p>
-        <p class="soft">
-          V doporučeních platí i tvrdé zákazy, ne jen pořadí: text o hlídání OHSS po
-          čerstvé stimulaci se u kryotransferu mezi doporučeními neobjeví. V Knihovně
-          si pak projdete všechno, tam nic schované není.
-        </p>
+      <div class="karta">
+        <h3>Práce</h3>
+        <p>Zapište si termíny, volno, odvoz nebo další praktické věci.</p>
       </div>
-      <div class="dvojice-obraz">
-        <div class="telefon">
-          <img src="snimky/knihovna.jpg" width="560" height="1212" loading="lazy"
-               alt="Knihovna v aplikaci: seznam článků a checklistů s vlastním znakem u každé položky.">
-        </div>
+      <div class="karta">
+        <h3>Klinika</h3>
+        <p>Kontakty, koordinátorka a otázky na jednom místě.</p>
+      </div>
+      <div class="karta">
+        <h3>Knihovna</h3>
+        <p>Články, checklisty, příběhy, kvízy a slovník.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================================================== co nedělá === -->
-<section class="noc" id="co-nedela">
-  <div class="wrap">
+<!-- ================================================== 11. pro koho je === -->
+<section class="ground-rose">
+  <div class="wrap wrap-wide">
     <div class="sec-head">
-      <p class="eyebrow">Poctivě</p>
-      <h2>Co BlooMia nedělá</h2>
-      <p class="lede">
-        Tenhle seznam většina prodejních stránek nemá. Každý řádek na něm je přitom
-        důvod, proč se BlooMii dá věřit ve zbytku.
-      </p>
+      <p class="eyebrow">Pro koho</p>
+      <h2>BlooMia je pro vás, pokud…</h2>
     </div>
 
-    <ul class="vypis">
-      <li><span class="zn">&#8226;</span><span><b>Nestanovuje diagnózu.</b></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Neříká, jestli je vaše hodnota dobrá.</b> <span class="txt">Ukáže směr, změnu v procentech a jestli číslo leží uvnitř orientačního rozmezí, které má uložené. Není to rozmezí vaší laboratoře a není to hodnocení. To závisí na dni cyklu, věku a diagnóze, tedy na kontextu, který aplikace nemá.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Nepředpovídá výsledek a nepočítá šance.</b> <span class="txt">Statistiky sečtou, co máte zapsané, a nic k tomu nedopočítají.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Nenavrhuje ani nemění dávkování.</b> <span class="txt">Co, kolik a kdy budete brát, určuje výhradně vaše klinika. Tahle věta stojí přímo u výběru léku, ne v patičce.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Není v ní chatbot ani jazykový model.</b> <span class="txt">Souhrn pro lékaře se skládá z vašich zápisů: ze stejného vstupu vypadne vždycky stejný text.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Neposílá oznámení.</b> <span class="txt">V noci vás nevzbudí připomínkou, že do odběru zbývá devět dní.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Neměří provoz.</b> <span class="txt">Žádná analytika, žádné sledování, žádné reklamní skripty.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Nemá účet ani heslo.</b> <span class="txt">Nemáme kam si vás uložit, protože nemáme server.</span></span></li>
+    <ul class="prokoho">
+      <li>právě zvažujete IVF</li>
+      <li>čekáte na vyšetření</li>
+      <li>připravujete se na IVF</li>
+      <li>stimulujete</li>
+      <li>jdete na odběr</li>
+      <li>čekáte na embrya</li>
+      <li>čekáte na transfer</li>
+      <li>jste po čerstvém transferu</li>
+      <li>jste po kryotransferu</li>
+      <li>čekáte na hCG</li>
+      <li>transfer nevyšel</li>
+      <li>prožíváte biochemické těhotenství</li>
+      <li>prožíváte mimoděložní těhotenství</li>
+      <li>prožíváte ztrátu</li>
+      <li>máte další cyklus</li>
+      <li>přemýšlíte, jestli pokračovat</li>
+      <li>nebo jen potřebujete mít ve své cestě víc jasno</li>
     </ul>
 
-    <p style="margin-top:1.6rem;font-size:0.9375rem">
-      BlooMia je informační a záznamová aplikace. Neslouží ke stanovení diagnózy,
-      k prognóze ani k rozhodování o léčbě a není zdravotnickým prostředkem.
-      Nenahrazuje péči vašeho lékaře ani pokyny vaší kliniky.
+    <p class="citat" style="margin-top:2rem;max-width:30rem">
+      Nemusíte vědět, kam vaše cesta povede. Stačí vědět, kde jste dnes.
     </p>
   </div>
 </section>
 
-<!-- =========================================================== data === -->
+<!-- ================================================== 12. screenshoty === -->
 <section>
-  <div class="wrap">
+  <div class="wrap wrap-wide">
     <div class="sec-head">
-      <p class="eyebrow">Vaše data</p>
-      <h2>Kde vaše data jsou a kde nejsou</h2>
-    </div>
-    <p>
-      Deník, cykly, embrya, léky, laboratorní hodnoty i finance zůstávají v prohlížeči
-      vašeho zařízení. Fotky protokolů a zpráv z kliniky leží zvlášť, aby jedna fotka
-      nepřetekla úložiště a nezahodila zbytek.
-    </p>
-    <p>
-      Není kam ta data poslat, protože BlooMia nemá server ani účet. Aplikace
-      neposílá ven žádná vaše data; ze sítě si stáhne jen sama sebe. Jediné místo,
-      které to kdy má měnit, je formulář zpětné vazby, a ten odešle jen text, který
-      do něj sama napíšete. Nikdy ne váš deník, cykly ani hodnoty.
-    </p>
-    <p>
-      Nebudeme vám ale tvrdit, že jsou vaše data <em>u nás v bezpečí</em>. Nejsou u nás.
-      A má to důsledek, který se musí říct dřív, než něco zaplatíte.
-    </p>
-    <div class="karta" style="border-color:var(--soft-rose);margin-top:1.6rem">
-      <h3>Safari na iPhonu maže data webů, které sedm dní neotevřete</h3>
-      <p style="margin-bottom:0">
-        Není to chyba, je to ochrana proti sledování napříč weby. Bohužel se netýká jen
-        reklamních cookies, ale i vašeho deníku. Dvoutýdenní dovolená stačí. Vyřeší to
-        dvě věci: přidat aplikaci na plochu a mít zálohu. Obojí je v aplikaci popsané
-        krok za krokem a záloha se dá kdykoliv načíst zpátky, i v jiném telefonu.
+      <p class="eyebrow">Sedm obrazovek</p>
+      <h2>Jak to vypadá uvnitř.</h2>
+      <p class="soft" style="margin-top:0.8rem">
+        Skutečné obrazovky aplikace s ukázkovými daty. Listuje se do stran.
       </p>
     </div>
   </div>
-</section>
 
-<!-- ======================================================== na plochu === -->
-<section class="ground-rose">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Jednou a máte klid</p>
-      <h2>Přidejte si BlooMii na plochu</h2>
-      <p class="soft">
-        S tím se aplikace otevírá ve vlastním okně, funguje i bez signálu a data má
-        chráněnější. Bez toho platí sedmidenní mazání i pro vás.
-      </p>
-    </div>
-
-    <div class="karty karty-2">
-      <div class="karta">
-        <h3>iPhone a iPad, Safari</h3>
-        <ol class="postup">
-          <li><span>Otevřete <strong>mybloomia.com/app</strong> v Safari. Musí to být
-          aplikace, ne tahle stránka.</span></li>
-          <li><span>Dole na liště klepněte na ikonu <strong>Sdílet</strong>, čtvereček se šipkou nahoru.</span></li>
-          <li><span>Sjeďte níž a vyberte <strong>Přidat na plochu</strong>.</span></li>
-          <li><span>Potvrďte <strong>Přidat</strong>. Na ploše přibude ikona BlooMia.</span></li>
-          <li><span>Od téhle chvíle aplikaci otvírejte přes ni, ne přes záložku.</span></li>
-        </ol>
-        <p class="faint" style="margin-top:1rem">
-          V Chromu na iPhonu je to stejné, jen se ikona Sdílet schovává v nabídce
-          vpravo nahoře.
-        </p>
-      </div>
-      <div class="karta">
-        <h3>Android a počítač</h3>
-        <p>
-          V nabídce prohlížeče najdete položku <strong>Nainstalovat aplikaci</strong>
-          nebo <strong>Přidat na plochu</strong>. Některé prohlížeče instalaci nabídnou
-          samy pruhem dole.
-        </p>
-        <p style="margin-bottom:0">
-          Data se z prohlížeče nikam neztratí. Aplikace na ploše je čte ze stejného
-          místa.
-        </p>
+  <div class="galerie-obal">
+    <div class="wrap wrap-wide">
+      <div class="galerie">
+        <figure>
+          <div class="telefon">
+            <img src="snimky/dnes.jpg" width="780" height="1688" loading="lazy"
+                 alt="Obrazovka Dnes: pozdrav jménem, čtvrtý den po transferu, karta o tom, co se může dít s embryem.">
+          </div>
+          <figcaption><b>Dnes</b>Kolikátý je den, v jaké jste fázi a co k tomu dnes patří.</figcaption>
+        </figure>
+        <figure>
+          <div class="telefon">
+            <img src="snimky/cesta.jpg" width="780" height="1688" loading="lazy"
+                 alt="Obrazovka Vaše cesta: seznam fází od plánování dál, aktuální fáze zvýrazněná.">
+          </div>
+          <figcaption><b>Moje cesta</b>Dvacet jedna fází. Vaše je zvýrazněná a dá se přepnout.</figcaption>
+        </figure>
+        <figure>
+          <div class="telefon">
+            <img src="snimky/cyklus.jpg" width="780" height="1688" loading="lazy"
+                 alt="Obrazovka cyklu: kryotransfer, dny po transferu, den cyklu a termín odběru hCG.">
+          </div>
+          <figcaption><b>IVF cyklus</b>Protokol, termíny, čísla z laboratoře a co z nich vychází.</figcaption>
+        </figure>
+        <figure>
+          <div class="telefon">
+            <img src="snimky/embrya.jpg" width="780" height="1688" loading="lazy"
+                 alt="Obrazovka Embrya: přehled embryí napříč cykly, karta prvního embrya s hodnocením.">
+          </div>
+          <figcaption><b>Embrya a transfery</b>Karta pro každé embryo. Vývoj po dnech, genetika, kam nakonec šlo.</figcaption>
+        </figure>
+        <figure>
+          <div class="telefon">
+            <img src="snimky/denik.jpg" width="780" height="1688" loading="lazy"
+                 alt="Obrazovka Deník: dnešní zápis, nálada za týden, cvičení a ohlédnutí.">
+          </div>
+          <figcaption><b>Deník</b>Nálada, zápisky, cvičení a ohlédnutí zpátky.</figcaption>
+        </figure>
+        <figure>
+          <div class="telefon">
+            <img src="snimky/finance.jpg" width="780" height="1688" loading="lazy"
+                 alt="Obrazovka Finance: celkem za IVF cestu, uhrazeno, zbývá, podíl pojišťovny.">
+          </div>
+          <figcaption><b>Finance</b>Kolik už to stálo, co je uhrazené a co hradí pojišťovna.</figcaption>
+        </figure>
+        <figure>
+          <div class="telefon">
+            <img src="snimky/knihovna.jpg" width="780" height="1688" loading="lazy"
+                 alt="Obrazovka Knihovna: články vybrané pro aktuální fázi, čtvrtý den po transferu.">
+          </div>
+          <figcaption><b>Knihovna</b>Články, checklisty, příběhy a slovník. Vybrané pro vaši fázi.</figcaption>
+        </figure>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================ Gabi === -->
+<!-- =================================================== 13. bezpečnost === -->
 <section class="ground-white">
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Kdo za tím stojí</p>
-      <h2>BlooMii dělá Gabi. Sama si prošla IVF.</h2>
-    </div>
-    <p>
-      Je to jediný důvod, proč aplikace vznikla. Tohle je její text, tak jak ho najdete
-      i v aplikaci.
+    <p class="eyebrow">Bezpečnost</p>
+    <h2>Když je důležité nečekat, BlooMia to připomene.</h2>
+    <p class="lede" style="margin-top:1rem;max-width:34rem">
+      Některé denní karty obsahují informaci o tom, kdy je vhodné
+      kontaktovat kliniku a nečekat do rána.
     </p>
-    <blockquote class="citat">
-      Jsem Gabriela a sama jsem si prošla cestou IVF, která nebyla jednoduchá, rychlá
-      ani přímočará. Vím, jaké je čekat na výsledky. Jaké je žít od kontroly ke kontrole.
-      Jaké je řešit léky, odběry, embrya, transfery, peníze, práci i otázky okolí.
-      A také vím, jaké je prožívat naději i strach zároveň.
-    </blockquote>
-    <p>
-      Nakonec se jí podařilo otěhotnět po devátém transferu ve třetím IVF cyklu.
-      Její dcera se jmenuje Mia.
-    </p>
-    <p>
-      A odtud je i jméno. <strong>Bloom</strong> znamená rozkvést, <strong>Mia</strong>
-      je její dcera. Bloom a Mia dohromady dávají BlooMia.
-    </p>
-    <p class="faint">
-      Je to lidský kontext, ne důkaz. Každá cesta je jiná a nikdo nemůže slíbit, jak
-      dopadne ta vaše.
-    </p>
-    <p style="margin-top:1.6rem">
-      <a href="https://www.instagram.com/ivf_by_gabi/" target="_blank" rel="noopener noreferrer">Instagram @ivf_by_gabi</a>
-    </p>
-  </div>
-</section>
 
-<!-- ===================================================== není hotové === -->
-<section class="noc">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Než zaplatíte</p>
-      <h2>Co ještě není hotové</h2>
-      <p class="lede">
-        Kdybychom tuhle sekci vynechali, celá stránka výš by přestala platit.
-      </p>
-    </div>
-    <ul class="vypis">
-      <li><span class="zn">&#8226;</span><span><b>Platba zatím neběží.</b> <span class="txt">Tlačítko předplatného dnes jen přepíná stav ve vašem telefonu. Nic se neúčtuje, žádná faktura nechodí a nic v aplikaci není zamčené.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Komunita zatím není síť.</b> <span class="txt">Skupiny podle fáze existují, ale příspěvek, který napíšete, zůstane ve vašem zařízení. Ostatní příspěvky jsou označené jako ukázkové.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Kontaktní formulář zatím neodesílá sám.</b> <span class="txt">Otevře poštovního klienta a aplikace vám na obrazovce řekne, co se doopravdy stalo.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Meditace nejsou nahrané.</b> <span class="txt">Text předčítá hlas prohlížeče. Není to profesionální namluvení a aplikace to netvrdí.</span></span></li>
-      <li><span class="zn">&#8226;</span><span><b>Obsah zatím nemá jmenovaného odborného garanta.</b> <span class="txt">Vychází z doporučených postupů a z české praxe a u 219 položek jsou uvedené zdroje. Dokud u něj nestojí konkrétní jméno a odbornost, netvrdíme, že je odborně garantovaný.</span></span></li>
+    <ul class="vypis" style="margin-top:1.4rem">
+      <li><span class="zn" aria-hidden="true">◇</span><span class="txt">silné krvácení</span></li>
+      <li><span class="zn" aria-hidden="true">◇</span><span class="txt">výrazná nebo náhlá bolest</span></li>
+      <li><span class="zn" aria-hidden="true">◇</span><span class="txt">příznaky OHSS</span></li>
+      <li><span class="zn" aria-hidden="true">◇</span><span class="txt">horečka</span></li>
+      <li><span class="zn" aria-hidden="true">◇</span><span class="txt">akutní psychická krize</span></li>
     </ul>
+
+    <p class="upozorneni">
+      BlooMia nic nediagnostikuje a sama neurčuje, jak je váš stav akutní.
+      Při akutních nebo nejasných potížích kontaktujte svou kliniku nebo
+      zdravotnickou pomoc.
+    </p>
   </div>
 </section>
 
-<!-- =========================================================== cena === -->
-<section id="cena">
+<!-- ================================================ 14. co nedělá === -->
+<section class="noc" id="co-nedela">
+  <div class="wrap">
+    <p class="eyebrow">Aby bylo jasno</p>
+    <h2>BlooMia není lékař. A ani se jím nesnaží být.</h2>
+
+    <ul class="vypis" style="margin-top:1.6rem">
+      <li><span class="zn" aria-hidden="true">×</span><span class="txt">nestanovuje diagnózu</span></li>
+      <li><span class="zn" aria-hidden="true">×</span><span class="txt">nepředpovídá výsledek</span></li>
+      <li><span class="zn" aria-hidden="true">×</span><span class="txt">nepočítá individuální šance</span></li>
+      <li><span class="zn" aria-hidden="true">×</span><span class="txt">nehodnotí laboratorní hodnoty jako dobré nebo špatné</span></li>
+      <li><span class="zn" aria-hidden="true">×</span><span class="txt">nemění dávkování</span></li>
+      <li><span class="zn" aria-hidden="true">×</span><span class="txt">nenahrazuje kliniku</span></li>
+      <li><span class="zn" aria-hidden="true">×</span><span class="txt">nerozhoduje za vás</span></li>
+      <li><span class="zn" aria-hidden="true">×</span><span class="txt">nepoužívá chatbota jako náhradu odborného rozhodování</span></li>
+    </ul>
+
+    <p class="citat" style="margin-top:2rem">
+      BlooMia vám nepřidá jistotu tam, kde ji medicína nemá.
+      Přidá vám ale přehled tam, kde ho mít můžete.
+    </p>
+
+    <p class="faint" style="margin-top:1.6rem">
+      BlooMia není zdravotnický prostředek a neslouží k diagnostice ani
+      k léčbě. Informace v aplikaci jsou vzdělávací.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================ 15. data a soukromí === -->
+<section>
+  <div class="wrap wrap-wide">
+    <div class="dvojice obracene">
+      <div class="dvojice-obraz">
+        <div class="telefon">
+          <img src="snimky/osa.jpg" width="780" height="1688" loading="lazy"
+               alt="Obrazovka Osa: časová osa cyklu s termíny odběru hCG, transferu a nasazených léků.">
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Data a soukromí</p>
+        <h2>Vaše data zůstávají ve vašem zařízení.</h2>
+
+        <ul class="vypis" style="margin-top:1.4rem">
+          <li><span class="zn" aria-hidden="true">◇</span><span class="txt">aplikace nevyžaduje účet ani heslo</span></li>
+          <li><span class="zn" aria-hidden="true">◇</span><span class="txt">osobní záznamy se neodesílají na server BlooMia</span></li>
+          <li><span class="zn" aria-hidden="true">◇</span><span class="txt">zálohu si vytvoříte kdykoliv jedním klepnutím</span></li>
+          <li><span class="zn" aria-hidden="true">◇</span><span class="txt">záloha je soubor, který si musíte bezpečně uložit</span></li>
+        </ul>
+
+        <p class="soft" style="margin-top:1.4rem">
+          Protože BlooMia pracuje s daty uloženými v zařízení, je důležité
+          pravidelně vytvářet zálohu a bezpečně ji uchovávat.
+        </p>
+
+        <p style="margin-top:1.4rem">
+          <a class="btn" href="/app/#/zaloha">Jak zálohovat data</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 16. Gabi === -->
+<section class="ground-white">
+  <div class="wrap wrap-wide">
+    <div class="gabi">
+      <!-- Portrét zatím není nahraný. Než přijde, drží místo znak a jméno.
+           Prázdný rámeček s křížkem by vypadal jako rozbitý obrázek. -->
+      <div class="portret">
+        <svg width="54" height="54" viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="9.6" r="1.6" fill="#d98998" fill-opacity=".4"/>
+          <circle cx="24" cy="15.2" r="2.05" fill="#d98998" fill-opacity=".68"/>
+          <circle cx="24" cy="21.2" r="2.5" fill="#d98998"/>
+          <path d="M24 40.4C20.6 37.6 14.4 33.4 14.4 29.1c0-2.7 2.1-4.7 4.7-4.7 1.9 0 3.8 1.1 4.9 2.8 1.1-1.7 3-2.8 4.9-2.8 2.6 0 4.7 2 4.7 4.7 0 4.3-6.2 8.5-9.6 11.3Z" fill="#c97887"/>
+        </svg>
+        <p class="misto"><strong>Gabriela</strong><br>Sem patří fotografie. Než přijde, drží místo znak.</p>
+      </div>
+
+      <div>
+        <p class="eyebrow">Kdo za tím stojí</p>
+        <h2>BlooMia nevznikla u počítače. Vznikla z vlastní IVF cesty.</h2>
+
+        <p class="soft" style="margin-top:1.2rem">
+          Jsem Gabriela a sama jsem si prošla cestou IVF, která nebyla
+          jednoduchá, rychlá ani přímočará.
+        </p>
+        <p class="soft">
+          Vím, jaké je čekat na výsledky. Jaké je žít od kontroly ke kontrole.
+          Jaké je řešit léky, odběry, embrya, transfery, peníze, práci
+          i otázky okolí. A také vím, jaké je prožívat naději a strach zároveň.
+        </p>
+        <p class="soft">
+          Nakonec se mi podařilo otěhotnět po devátém transferu ve třetím
+          IVF cyklu. Moje dcera se jmenuje Mia.
+        </p>
+
+        <div class="rovnice-jmena">
+          <span><b>Bloom</b> znamená rozkvést.</span>
+          <span><b>Mia</b> je moje dcera.</span>
+          <span class="soucet">Bloom + Mia = <b>BlooMia</b>.</span>
+        </div>
+
+        <p class="faint">
+          Je to lidský kontext, ne důkaz. Každá cesta je jiná a nikdo
+          nemůže slíbit, jak dopadne ta vaše.
+        </p>
+
+        <p style="margin-top:1.4rem">
+          <a href="https://www.instagram.com/ivf_by_gabi/" target="_blank" rel="noopener noreferrer">Instagram @ivf_by_gabi</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 17. cena === -->
+<section class="ground-rose" id="cena">
   <div class="wrap">
     <div class="sec-head" style="text-align:center">
       <p class="eyebrow">Cena</p>
-      <h2>Jedna cena za celou aplikaci</h2>
+      <h2>Jedna cena za celou BlooMii.</h2>
     </div>
 
     <div class="cena">
-      <p style="margin-bottom:1.2rem">
-        <span class="castka">199 K&#269;</span> <span class="za">měsíčně</span>
+      <p style="margin:0">
+        <span class="castka">199 Kč</span>
+        <span class="za"> / měsíc</span>
       </p>
-      <p class="soft">
-        Neprodáváme jednotlivé články a neplatíte za <em>šťastný konec</em>. Obsah pro
-        negativní hCG, zrušený transfer nebo ztrátu je v ceně stejně jako ten ostatní.
-      </p>
-      <p class="soft">
-        Kdyby se platilo za jednotlivé texty, aplikace by měla důvod psát jich co
-        nejvíc a řadit dopředu ty, které se dobře prodávají. To by v léčbě dopadlo
-        špatně.
-      </p>
-      <ul class="vypis" style="margin-top:1.4rem">
-        <li><span class="zn">&#10003;</span><span>Celý obsah: články, denní karty, checklisty, slovník</span></li>
-        <li><span class="zn">&#10003;</span><span>Cykly, embrya a transfery bez omezení počtu</span></li>
-        <li><span class="zn">&#10003;</span><span>Deník, zápis dne, kalendář, léky a otázky pro lékaře</span></li>
-        <li><span class="zn">&#10003;</span><span>Finance, dokumenty a přehled k tisku</span></li>
-        <li><span class="zn">&#10003;</span><span>Podpora ve všech výsledcích, nejen v tom dobrém</span></li>
+
+      <ul class="vcene">
+        <li>celý obsah</li>
+        <li>všechny fáze</li>
+        <li>všechny IVF cykly</li>
+        <li>neomezený počet embryí</li>
+        <li>neomezený počet transferů</li>
+        <li>deník</li>
+        <li>knihovna</li>
+        <li>finance</li>
+        <li>dokumenty</li>
+        <li>otázky pro lékaře</li>
+        <li>podpora i při neúspěchu a ztrátě</li>
       </ul>
-      <p style="margin-top:1.6rem;text-align:center">
+
+      <p class="duraz">
+        Neplatíte za šťastný konec.
+      </p>
+      <p class="soft" style="font-size:0.9375rem">
+        Obsah pro negativní hCG, zrušený transfer nebo ztrátu je v ceně
+        stejně jako všechno ostatní.
+      </p>
+
+      <p style="margin:1.6rem 0 0">
         <a class="btn btn-primary btn-lg" href="/app/">Otevřít BlooMii</a>
       </p>
-      <p class="faint" style="text-align:center;margin-top:0.9rem">
-        Platba zatím neběží, aplikace je zatím celá otevřená. Až se spustí,
-        dozvíte se to dřív, než se cokoliv strhne.
+
+      <p class="stav-platby">
+        <strong>Platba zatím neběží.</strong> Aplikace je teď otevřená celá
+        a nic se v ní neplatí. Až se předplatné spustí, dozvíte se to
+        předem a rozhodnete se sama.
       </p>
     </div>
   </div>
 </section>
 
-<!-- ========================================================== otázky === -->
-<section class="ground-rose">
+<!-- ==================================================== 18. otázky === -->
+<section>
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Časté otázky</p>
-      <h2>Co se ptají nejčastěji</h2>
+      <p class="eyebrow">Otázky</p>
+      <h2>Co se ptají nejčastěji.</h2>
     </div>
 
     <details>
       <summary>Musím se registrovat?</summary>
-      <div class="odpoved">Ne. Není účet, není heslo, není ověřování e-mailu. Nastavení
-      zabere minutu a kdykoliv se dá změnit.</div>
+      <div class="odpoved">Ne. Žádný účet, žádné heslo, žádný e-mail. Otevřete aplikaci a jste uvnitř.</div>
     </details>
     <details>
-      <summary>Je to aplikace z obchodu?</summary>
-      <div class="odpoved">Ne. BlooMia běží v prohlížeči a přidá se na plochu telefonu,
-      návod je o kus výš. Po přidání se otevírá ve vlastním okně jako každá jiná
-      aplikace.</div>
+      <summary>Je BlooMia aplikace z obchodu?</summary>
+      <div class="odpoved">
+        Ne, běží v prohlížeči. Dá se ale přidat na plochu telefonu a pak se
+        chová jako běžná aplikace: má vlastní ikonu a otevírá se na celou
+        obrazovku.
+      </div>
     </details>
     <details>
-      <summary>Funguje to bez internetu?</summary>
-      <div class="odpoved">Ano. Celá aplikace se uloží do telefonu a startuje z disku.
-      V čekárně bez signálu i v letadle.</div>
+      <summary>Funguje bez internetu?</summary>
+      <div class="odpoved">
+        Ano. Po prvním otevření se uloží celá a další dny už síť nepotřebuje.
+        Funguje i v čekárně bez signálu.
+      </div>
     </details>
     <details>
-      <summary>Je to jen pro IVF?</summary>
-      <div class="odpoved">Ne. Cesta má 21 fází a na začátku si vybíráte z 24 situací,
-      od <em>snažíme se o miminko</em> přes vyšetření a přípravu na IVF až po
-      kryoembryotransfer, ztrátu nebo další cyklus.</div>
+      <summary>Je jen pro IVF?</summary>
+      <div class="odpoved">
+        Těžiště je v IVF, ale cesta začíná dřív. Obsah pokrývá i období,
+        kdy se o IVF teprve rozhodujete nebo čekáte na vyšetření.
+      </div>
     </details>
     <details>
-      <summary>Co když jsem po neúspěšném transferu nebo po ztrátě?</summary>
-      <div class="odpoved">To je v aplikaci samostatná větev, ne prázdné místo. Ztráta
-      má pět vlastních fází a opakovaný neúspěch i ukončení léčby mají vlastní obsah.
-      Nikdo vás nebude přesvědčovat, ať to zkusíte znovu.</div>
+      <summary>Co když jsem po neúspěšném transferu?</summary>
+      <div class="odpoved">
+        Pak jste přesně ta, pro koho tahle část vznikla. Negativní výsledek
+        má v BlooMii vlastní obsah, ne prázdnou obrazovku a ne pobízení
+        do dalšího kola.
+      </div>
+    </details>
+    <details>
+      <summary>Co když prožívám ztrátu?</summary>
+      <div class="odpoved">
+        Ztráta, biochemické i mimoděložní těhotenství jsou samostatné
+        výsledky s vlastním obsahem. Nikdo vás nebude tlačit dopředu.
+      </div>
     </details>
     <details>
       <summary>Uvidí moje zápisy někdo další?</summary>
-      <div class="odpoved">Nikomu je neposíláme a nemáme je u sebe. Vidí je ale každý,
-      kdo má váš odemčený telefon, protože aplikace nemá vlastní zámek. A záloha je
-      nešifrovaný soubor, takže ji chraňte stejně jako fotku zprávy z kliniky.</div>
+      <div class="odpoved">
+        Ne. Záznamy zůstávají v úložišti vašeho prohlížeče a neodesílají se
+        na server BlooMia. Ven jde jedině to, co sama pošlete přes formulář
+        zpětné vazby.
+      </div>
     </details>
     <details>
-      <summary>Můžu si data přenést do jiného telefonu?</summary>
-      <div class="odpoved">Ano. Aplikace uloží všechno do jednoho souboru, včetně fotek,
-      a stejným souborem se to dá načíst zpátky v jiném zařízení.</div>
+      <summary>Mohu data přenést do jiného telefonu?</summary>
+      <div class="odpoved">
+        Ano, přes zálohu. V aplikaci si uložíte soubor se všemi daty
+        a na druhém zařízení ho načtete. Soubor si chraňte, je v něm
+        všechno, co jste zapsala.
+      </div>
     </details>
     <details>
-      <summary>Nahrazuje to lékaře?</summary>
-      <div class="odpoved">Ne, a ani se o to nepokouší. BlooMia nestanovuje diagnózu,
-      nehodnotí vaše hodnoty a nemění dávkování. Při akutních potížích volejte svou
-      kliniku nebo lékařskou pohotovost.</div>
+      <summary>Nahrazuje BlooMia lékaře?</summary>
+      <div class="odpoved">
+        Ne. Nediagnostikuje, nehodnotí vaše výsledky a nemění dávkování.
+        Pro rozhodování o léčbě platí vždycky to, co říká vaše klinika.
+      </div>
+    </details>
+    <details>
+      <summary>Kolik stojí?</summary>
+      <div class="odpoved">
+        199 Kč měsíčně za celou aplikaci, včetně obsahu pro neúspěch
+        a ztrátu. Platba zatím neběží a aplikace je otevřená celá.
+      </div>
     </details>
   </div>
 </section>
 
-<!-- ========================================================== závěr === -->
-<section class="zaver">
+<!-- ================================================ 19. finální CTA === -->
+<section class="zaver ground-rose">
   <div class="wrap">
-    <svg class="znak" width="34" height="34" viewBox="0 0 48 48" aria-hidden="true" style="margin:0 auto 1.2rem">
-      <circle cx="24" cy="9.6" r="1.6" fill="#d98998" fill-opacity=".4"/>
-      <circle cx="24" cy="15.2" r="2.05" fill="#d98998" fill-opacity=".68"/>
-      <circle cx="24" cy="21.2" r="2.5" fill="#d98998"/>
-      <path d="M24 40.4C20.6 37.6 14.4 33.4 14.4 29.1c0-2.7 2.1-4.7 4.7-4.7 1.9 0 3.8 1.1 4.9 2.8 1.1-1.7 3-2.8 4.9-2.8 2.6 0 4.7 2 4.7 4.7 0 4.3-6.2 8.5-9.6 11.3Z" fill="#c97887"/>
-    </svg>
-    <h2>Kdekoliv na té cestě zrovna jste</h2>
-    <p class="lede" style="max-width:30rem;margin:1rem auto 0">
-      Aplikace se zeptá na jednu věc a zbytek už ví sama.
-    </p>
-    <a class="btn btn-primary btn-lg" href="/app/">Otevřít BlooMii</a>
+    <blockquote>
+      Nemusíte vědět, kam vaše IVF cesta povede. Stačí vědět, kde jste dnes.
+    </blockquote>
+    <p><a class="btn btn-primary btn-lg" href="/app/">Otevřít BlooMii</a></p>
+    <p class="claim">Tvoje IVF cesta. Jeden den po druhém.</p>
   </div>
 </section>
 
 </main>
 
-<!-- ========================================================= patička === -->
+<!-- ================================================== 20. patička === -->
 <footer class="paticka">
   <div class="wrap wrap-wide">
-    <div class="logo-radka">
-      <svg class="znak" width="30" height="30" viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="24" cy="9.6" r="1.6" fill="#d98998" fill-opacity=".4"/>
-        <circle cx="24" cy="15.2" r="2.05" fill="#d98998" fill-opacity=".68"/>
-        <circle cx="24" cy="21.2" r="2.5" fill="#d98998"/>
-        <path d="M24 40.4C20.6 37.6 14.4 33.4 14.4 29.1c0-2.7 2.1-4.7 4.7-4.7 1.9 0 3.8 1.1 4.9 2.8 1.1-1.7 3-2.8 4.9-2.8 2.6 0 4.7 2 4.7 4.7 0 4.3-6.2 8.5-9.6 11.3Z" fill="#c97887"/>
-      </svg>
-      <span class="bmname"><span class="bloo">Bloo</span><span class="mia">Mia</span></span>
-    </div>
+    <span class="bmname"><span class="bloo">Bloo</span><span class="mia">Mia</span></span>
 
     <div class="sloupce">
       <div>
         <h3>Provozovatelka</h3>
         <ul>
           <li>Ing. Gabriela Černá</li>
-          <li>IČO: <span class="doplnit">doplnit</span></li>
-          <li>Sídlo: <span class="doplnit">doplnit</span></li>
-          <li>E-mail: <span class="doplnit">doplnit adresu na mybloomia.com</span></li>
+          <li>IČO: <span class="doplnit">DOPLNIT</span></li>
+          <li>Sídlo: <span class="doplnit">DOPLNIT</span></li>
+          <li>E-mail: <span class="doplnit">DOPLNIT</span></li>
+          <li><a href="https://www.instagram.com/ivf_by_gabi/" target="_blank" rel="noopener noreferrer">Instagram @ivf_by_gabi</a></li>
         </ul>
       </div>
       <div>
         <h3>Dokumenty</h3>
+        <!-- Dokumenty zatím nejsou. Odkaz na `#` by skočil na začátek
+             stránky a vypadal by jako rozbitý web, tak tu zatím nejsou
+             odkazy, ale poznámky. -->
         <ul>
-          <li><a href="/obchodni-podminky">Obchodní podmínky</a> <span class="doplnit">chybí</span></li>
-          <li><a href="/ochrana-udaju">Zásady ochrany osobních údajů</a> <span class="doplnit">chybí</span></li>
-          <li><a href="/zdravotni-upozorneni">Zdravotní upozornění</a> <span class="doplnit">chybí</span></li>
-          <li><a href="https://www.instagram.com/ivf_by_gabi/" target="_blank" rel="noopener noreferrer">Instagram @ivf_by_gabi</a></li>
+          <li>Obchodní podmínky <span class="doplnit">DOPLNIT</span></li>
+          <li>Zásady ochrany osobních údajů <span class="doplnit">DOPLNIT</span></li>
+          <li><a href="#co-nedela">Zdravotní upozornění</a></li>
         </ul>
       </div>
     </div>
 
-    <p class="pravni">
-      BlooMia nenahrazuje péči vašeho lékaře ani pokyny vaší kliniky. Neslouží ke
-      stanovení diagnózy ani k rozhodování o léčbě. Při akutních potížích volejte svou
-      kliniku nebo lékařskou pohotovost.<br>
-      Linka první psychické pomoci: <strong>116 123</strong>, zdarma a nepřetržitě.
-    </p>
+    <div class="pravni">
+      <p>
+        BlooMia je vzdělávací a organizační nástroj. <strong>Není zdravotnický
+        prostředek</strong> a neslouží k diagnostice, prevenci ani léčbě.
+        Nenahrazuje péči vaší kliniky. Pro rozhodování o léčbě platí vždycky to,
+        co říká váš lékař.
+      </p>
+      <p>
+        Když je vám těžko a potřebujete mluvit hned, linka důvěry
+        <strong>116 123</strong> je zdarma, nonstop a anonymně.
+      </p>
+      <p>Obsah a design BlooMia. Všechna práva vyhrazena.</p>
+    </div>
   </div>
 </footer>
 
 <script>
-// Lišta sjede dolů, teprve když hero odjede z obrazovky. Sleduje se
-// samotný hero, ne pevný počet pixelů: na telefonu a na monitoru je
-// vysoký úplně jinak.
+// Horní lišta se ukazuje, teprve když hero odjede z obrazovky. Dvě loga
+// nad sebou vypadají jako chyba sazby, ale tlačítko má být po ruce
+// od chvíle, kdy ho žena přestane vidět v hero.
 (function () {
-  var lista = document.getElementById('lista')
   var hero = document.querySelector('.hero')
-  if (!lista || !hero) return
-
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(
-      function (zaznamy) {
-        lista.classList.toggle('vidi', !zaznamy[0].isIntersecting)
-      },
-      { rootMargin: '-70px 0px 0px 0px' },
-    ).observe(hero)
-    return
-  }
-  // Starší prohlížeč dostane hrubší, ale funkční variantu.
-  var posun = function () { lista.classList.toggle('vidi', window.scrollY > 400) }
-  posun()
-  window.addEventListener('scroll', posun, { passive: true })
+  var lista = document.getElementById('lista')
+  if (!hero || !lista || !('IntersectionObserver' in window)) return
+  new IntersectionObserver(function (z) {
+    lista.classList.toggle('vidi', !z[0].isIntersecting)
+  }, { rootMargin: '-72px 0px 0px 0px' }).observe(hero)
 })()
 </script>
+</html>
