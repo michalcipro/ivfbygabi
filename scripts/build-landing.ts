@@ -77,6 +77,91 @@ function main() {
   console.log(`  písmo:  ${kb(Buffer.byteLength(fonts))}`)
   console.log(`  snímky: ${obrazku}${vcelku ? ' (vložené do stránky)' : ' souborů vedle'}`)
   console.log(`  ikony:  ${ikon}`)
+
+  dokumenty(fonts)
+}
+
+/** Údaje z hlavičky dokumentu. */
+interface DokMeta {
+  nadpis: string
+  podnadpis: string
+  popis: string
+  adresa: string
+}
+
+/**
+ * Právní dokumenty.
+ *
+ * Každý soubor v `landing/dokumenty/` nese v komentáři nahoře svoje údaje
+ * a pod nimi už jen tělo textu. Obal, písma, lišta i patička jsou společné,
+ * aby podmínky nevypadaly jako jiný web než stránka, ze které se na ně
+ * kliklo.
+ *
+ * Odkazy mezi dokumenty se skládají tady, ne ručně v textu. Dokument, na
+ * kterém uživatelka právě je, se v patičce nezobrazí jako odkaz sám na
+ * sebe, ale jako obyčejný text. Odkaz, který nikam nevede, je horší než
+ * žádný.
+ */
+function dokumenty(fonts: string): void {
+  const sablona = read(join(ROOT, 'landing', 'dokument.src.html'))
+  if (!sablona) throw new Error('landing/dokument.src.html chybí')
+
+  const zdrojDir = join(ROOT, 'landing', 'dokumenty')
+  let jmena: string[]
+  try {
+    jmena = readdirSync(zdrojDir).filter((n) => n.endsWith('.html')).sort()
+  } catch {
+    console.log('  dokumenty: složka landing/dokumenty chybí, přeskočeno')
+    return
+  }
+
+  const nactene = jmena.map((name) => {
+    const cely = readFileSync(join(zdrojDir, name), 'utf8')
+    const hlavicka = cely.match(/<!--\s*meta\s*([\s\S]*?)-->/)
+    if (!hlavicka) throw new Error(`${name}: chybí hlavička <!-- meta -->`)
+    const meta = Object.fromEntries(
+      hlavicka[1]
+        .split('\n')
+        .map((r) => r.trim())
+        .filter(Boolean)
+        .map((r) => {
+          const i = r.indexOf(':')
+          return [r.slice(0, i).trim(), r.slice(i + 1).trim()]
+        }),
+    ) as unknown as DokMeta
+    for (const klic of ['nadpis', 'podnadpis', 'popis', 'adresa'] as const) {
+      if (!meta[klic]) throw new Error(`${name}: v hlavičce chybí ${klic}`)
+    }
+    return { meta, telo: cely.slice(hlavicka[0].length + hlavicka.index!).trim() }
+  })
+
+  const odkaz = (cil: DokMeta, tady: boolean): string =>
+    tady
+      ? `<span class="tady">${cil.nadpis} (jste tady)</span>`
+      : `<a href="/${cil.adresa}">${cil.nadpis}</a>`
+
+  const podleAdresy = (a: string) => nactene.find((d) => d.meta.adresa === a)?.meta
+
+  const vop = podleAdresy('obchodni-podminky')
+  const gdpr = podleAdresy('ochrana-osobnich-udaju')
+  const zdravi = podleAdresy('zdravotni-upozorneni')
+
+  for (const { meta, telo } of nactene) {
+    const html = sablona
+      .replace('/*__FONTS__*/', () => fonts)
+      .split('__NADPIS__').join(meta.nadpis)
+      .split('__PODNADPIS__').join(meta.podnadpis)
+      .split('__POPIS__').join(meta.popis)
+      .split('__ADRESA__').join(meta.adresa)
+      .replace('__ODKAZ_VOP__', () => (vop ? odkaz(vop, vop === meta) : ''))
+      .replace('__ODKAZ_GDPR__', () => (gdpr ? odkaz(gdpr, gdpr === meta) : ''))
+      .replace('__ODKAZ_ZDRAVI__', () => (zdravi ? odkaz(zdravi, zdravi === meta) : ''))
+      .replace('__OBSAH__', () => telo)
+
+    const cesta = join(OUT, `${meta.adresa}.html`)
+    writeFileSync(cesta, html, 'utf8')
+    console.log(`  dokument: ${meta.adresa}.html (${Math.round(Buffer.byteLength(html) / 1024)} kB)`)
+  }
 }
 
 main()

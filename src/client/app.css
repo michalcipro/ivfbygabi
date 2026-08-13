@@ -86,10 +86,13 @@
   --s3: #be8800;
   --s4: #006c35;
 
-  /* Lora nese emoci a příběh, DM Sans přehlednost a informaci.
+  /* Fraunces nese emoci a příběh, DM Sans přehlednost a informaci.
      Bodoni zůstal jen na značku: didone je krásný ve velkém nadpisu, ale
-     v sedmnácti pixelech na telefonu z něj zbude šeď. */
-  --display: 'Lora', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+     v sedmnácti pixelech na telefonu z něj zbude šeď.
+
+     Fraunces je zapečený na optické velikosti pro nadpisy a na měkčí
+     zakončení tahů, podrobnosti jsou ve `scripts/fonts.css`. */
+  --display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
   --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   --brand: 'BlooMia Mark', 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
 

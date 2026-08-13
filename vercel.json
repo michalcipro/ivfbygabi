@@ -15,6 +15,33 @@
       ]
     },
     {
+      "source": "/zdravotni-upozorneni",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/ochrana-osobnich-udaju",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/obchodni-podminky",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/app",
       "headers": [
         {
@@ -50,5 +77,6 @@
         }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true
 }

@@ -20,8 +20,14 @@ const ACCESS_KEY = ''
 
 const ENDPOINT = 'https://api.web3forms.com/submit'
 
-/** Kam zpětná vazba chodí. */
-export const KOMU = 'gabrielazbihlej@gmail.com'
+/**
+ * Kam zpětná vazba chodí.
+ *
+ * Musí to být tatáž adresa, jakou uvádí prodejní stránka a zásady ochrany
+ * osobních údajů. Kdyby se rozešly, dokument by tvrdil něco jiného, než
+ * co se doopravdy děje se zprávou.
+ */
+export const KOMU = 'terapie@priznejsi.cz'
 
 export type SendResult = 'odeslano' | 'posta' | 'chyba'
 

@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>BlooMia: tvoje IVF cesta, jeden den po druhém</title>
+<title>BlooMia: vaše IVF cesta, jeden den po druhém</title>
 <meta name="description" content="Průvodce pro ženy na IVF. Od prvního vyšetření přes stimulaci, odběr, embrya a transfer až po hCG, včetně dnů, kdy to nevyjde. Bez registrace, bez reklam, data zůstávají ve vašem zařízení.">
 <link rel="canonical" href="https://mybloomia.com/">
 
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:site_name" content="BlooMia">
 <meta property="og:url" content="https://mybloomia.com/">
-<meta property="og:title" content="BlooMia: tvoje IVF cesta, jeden den po druhém">
+<meta property="og:title" content="BlooMia: vaše IVF cesta, jeden den po druhém">
 <meta property="og:description" content="Od prvního vyšetření přes stimulaci, odběr, embrya a transfer až po hCG. Včetně dnů, kdy to nevyjde.">
 <meta property="og:image" content="https://mybloomia.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -64,12 +64,12 @@
   --link: #a35364;
   --night: #2b2333;
 
-  /* Nadpisy sází Lora, ne Bodoni Moda.
+  /* Nadpisy sází Fraunces, ne Bodoni Moda.
 
      Bodoni má tenké dříky a na telefonu se v odstavcových velikostech
      rozpadá, což byla konkrétní stížnost při zkoušení aplikace. Zůstává
      proto tam, kde je velký a kde nese značku: ve slově BlooMia. */
-  --display: 'Lora', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
   --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   --brand: 'BlooMia Mark', 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
 
@@ -264,13 +264,42 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
 .hero-pod { margin-top: 1.2rem; max-width: 27rem; }
 .hero-obraz { display: grid; place-items: center; padding-bottom: clamp(2.5rem, 6vw, 4rem); }
 
-.logo-blok { display: grid; justify-items: start; gap: 0.7rem; margin-bottom: 1.8rem; max-width: 100%; }
-.logo-radka { max-width: 100%; display: flex; align-items: center; gap: 0.6rem; }
-.logo-blok .bmname { font-size: clamp(2.1rem, 7vw, 2.9rem); }
 .claim {
   font-size: 0.75rem; font-weight: 500; letter-spacing: 0.26em;
   text-transform: uppercase; color: var(--bloo); margin: 0;
 }
+
+/* ------------------------------------------------------------------- logo */
+
+/* Značka v kruhu: akvarelová skvrna, nad ní tři tečky a srdce, pod nimi
+   jméno. Kreslí se, ne načítá: rastr by na sítnicovém displeji rozmazal
+   vlásnice Bodoni a v tmavém režimu by kolem sebe měl bílý čtverec.
+
+   Rozměry uvnitř jsou v `cqw`, tedy v procentech šířky kruhu. Logo se pak
+   zvětšuje celé najednou a nikdy se nerozjede: stačí změnit šířku obalu. */
+.logo-kruh {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(15rem, 52vw);
+  aspect-ratio: 1;
+  container-type: inline-size;
+  /* Malý zápor srovnává jméno v kruhu s levým okrajem textu pod ním.
+     Víc než odsazení stránky (1,25rem) ne: kruh by se uřízl o okraj
+     obrazovky a akvarel by vypadal jako chyba tisku. */
+  margin: 0 0 1.4rem -1.1rem;
+}
+.logo-kruh .vodovka { position: absolute; inset: 0; width: 100%; height: 100%; }
+.logo-kruh .obsah {
+  position: relative;
+  display: grid; justify-items: center; gap: 4cqw;
+  transform: translateY(-2cqw);
+}
+.logo-kruh .znak { height: 30cqw; width: auto; display: block; }
+/* Dvojí zápis: první je záchrana pro prohlížeč bez dotazů na kontejner,
+   druhý platí všude jinde. */
+.logo-kruh .bmname { font-size: 2.2rem; font-size: 15.5cqw; }
+@media (min-width: 56rem) { .logo-kruh { width: 17rem; margin-left: -1.25rem; } }
 
 /* --------------------------------------------------------------- telefon */
 
@@ -674,20 +703,51 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="logo-blok">
-          <div class="logo-radka">
-            <svg class="znak" width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
-              <circle cx="24" cy="9.6" r="1.6" fill="#d98998" fill-opacity=".4"/>
-              <circle cx="24" cy="15.2" r="2.05" fill="#d98998" fill-opacity=".68"/>
-              <circle cx="24" cy="21.2" r="2.5" fill="#d98998"/>
-              <path d="M24 40.4C20.6 37.6 14.4 33.4 14.4 29.1c0-2.7 2.1-4.7 4.7-4.7 1.9 0 3.8 1.1 4.9 2.8 1.1-1.7 3-2.8 4.9-2.8 2.6 0 4.7 2 4.7 4.7 0 4.3-6.2 8.5-9.6 11.3Z" fill="#c97887"/>
+        <div class="logo-kruh">
+          <svg class="vodovka" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+            <defs>
+              <radialGradient id="w1" cx="38%" cy="30%" r="78%">
+                <stop offset="0%" stop-color="#fdf6f5"/>
+                <stop offset="52%" stop-color="#f7e3e4"/>
+                <stop offset="100%" stop-color="#f0d3d5"/>
+              </radialGradient>
+              <radialGradient id="w2" cx="76%" cy="72%" r="46%">
+                <stop offset="0%" stop-color="#eccdd0" stop-opacity=".85"/>
+                <stop offset="100%" stop-color="#eccdd0" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="w3" cx="18%" cy="66%" r="42%">
+                <stop offset="0%" stop-color="#f2d8d6" stop-opacity=".9"/>
+                <stop offset="100%" stop-color="#f2d8d6" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="rozpiti" x="-12%" y="-12%" width="124%" height="124%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.014 0.019" numOctaves="4" seed="7" result="sum"/>
+                <feDisplacementMap in="SourceGraphic" in2="sum" scale="26" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+              <filter id="zrno" x="0%" y="0%" width="100%" height="100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/>
+                <feColorMatrix values="0 0 0 0 0.83 0 0 0 0 0.72 0 0 0 0 0.73 0 0 0 .09 0"/>
+              </filter>
+              <clipPath id="kruh"><circle cx="200" cy="200" r="191"/></clipPath>
+            </defs>
+            <g filter="url(#rozpiti)">
+              <circle cx="200" cy="200" r="191" fill="url(#w1)"/>
+              <circle cx="200" cy="200" r="191" fill="url(#w2)"/>
+              <circle cx="200" cy="200" r="191" fill="url(#w3)"/>
+            </g>
+            <g clip-path="url(#kruh)"><rect width="400" height="400" filter="url(#zrno)"/></g>
+          </svg>
+          <div class="obsah">
+            <svg class="znak" viewBox="0 0 46 104" aria-hidden="true" focusable="false">
+              <circle cx="23" cy="7" r="4.4" fill="#d79aa6"/>
+              <circle cx="23" cy="23.5" r="4.8" fill="#b3748f"/>
+              <circle cx="23" cy="40.5" r="5.4" fill="#c2506b"/>
+              <path d="M23 102C8.6 90.2 0 81.2 0 71.4 0 62.9 6.3 56 14.1 56c4 0 7.4 2 8.9 5.1C24.5 58 27.9 56 31.9 56 39.7 56 46 62.9 46 71.4 46 81.2 37.4 90.2 23 102Z" fill="#c94f6b"/>
             </svg>
             <span class="bmname"><span class="bloo">Bloo</span><span class="mia">Mia</span></span>
           </div>
-          <p class="claim">Tvoje IVF cesta</p>
         </div>
 
-        <h1>Tvoje IVF cesta. Jeden den po druhém.</h1>
+        <h1>Vaše IVF cesta. Jeden den po druhém.</h1>
         <p class="lede">
           Od prvního vyšetření přes stimulaci, odběr, embrya a transfer až po hCG,
           včetně dnů, kdy to nevyjde.
@@ -1293,9 +1353,9 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
       </p>
 
       <p class="stav-platby">
-        <strong>Platba zatím neběží.</strong> Aplikace je teď otevřená celá
-        a nic se v ní neplatí. Až se předplatné spustí, dozvíte se to
-        předem a rozhodnete se sama.
+        <strong>Platba zatím není aktivní.</strong> BlooMia je nyní dostupná
+        bez omezení. O spuštění placené verze se dozvíte dříve, než bude
+        cokoliv účtováno.
       </p>
     </div>
   </div>
@@ -1377,7 +1437,8 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
       <summary>Kolik stojí?</summary>
       <div class="odpoved">
         199 Kč měsíčně za celou aplikaci, včetně obsahu pro neúspěch
-        a ztrátu. Platba zatím neběží a aplikace je otevřená celá.
+        a ztrátu. Podrobnosti jsou v <a href="/obchodni-podminky">obchodních
+        podmínkách</a>.
       </div>
     </details>
   </div>
@@ -1390,7 +1451,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
       Nemusíte vědět, kam vaše IVF cesta povede. Stačí vědět, kde jste dnes.
     </blockquote>
     <p><a class="btn btn-primary btn-lg" href="/app/">Otevřít BlooMii</a></p>
-    <p class="claim">Tvoje IVF cesta. Jeden den po druhém.</p>
+    <p class="claim">Vaše IVF cesta. Jeden den po druhém.</p>
   </div>
 </section>
 
@@ -1408,19 +1469,16 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
           <li>Ing. Gabriela Černá</li>
           <li>IČO: <span class="doplnit">DOPLNIT</span></li>
           <li>Sídlo: <span class="doplnit">DOPLNIT</span></li>
-          <li>E-mail: <span class="doplnit">DOPLNIT</span></li>
+          <li>E-mail: <a href="mailto:terapie@priznejsi.cz">terapie@priznejsi.cz</a></li>
           <li><a href="https://www.instagram.com/ivf_by_gabi/" target="_blank" rel="noopener noreferrer">Instagram @ivf_by_gabi</a></li>
         </ul>
       </div>
       <div>
         <h3>Dokumenty</h3>
-        <!-- Dokumenty zatím nejsou. Odkaz na `#` by skočil na začátek
-             stránky a vypadal by jako rozbitý web, tak tu zatím nejsou
-             odkazy, ale poznámky. -->
         <ul>
-          <li>Obchodní podmínky <span class="doplnit">DOPLNIT</span></li>
-          <li>Zásady ochrany osobních údajů <span class="doplnit">DOPLNIT</span></li>
-          <li><a href="#co-nedela">Zdravotní upozornění</a></li>
+          <li><a href="/obchodni-podminky">Obchodní podmínky</a></li>
+          <li><a href="/ochrana-osobnich-udaju">Zásady ochrany osobních údajů</a></li>
+          <li><a href="/zdravotni-upozorneni">Zdravotní upozornění</a></li>
         </ul>
       </div>
     </div>
