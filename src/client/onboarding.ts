@@ -4,7 +4,7 @@ import { addDays, formatCzechDate, today as realToday } from '../lib/domain/date
 import { guideFor } from './../lib/domain/guides'
 import { DIAGNOSES, DIAGNOSIS_GROUPS, modifiersFromDiagnoses } from '../lib/domain/diagnoses'
 import { esc, heroStyle } from './ui'
-import { bloomiaName, bloomMark } from './viz'
+import { logoKruh } from './viz'
 import { patch, S, newProfile, viewDate, type Draft } from './store'
 
 /**
@@ -483,9 +483,9 @@ function foot(primary: string, secondary = ''): string {
 function stepWelcome(): string {
   return `${progress(0)}
   <div class="ob-body">
-    <div class="grain ob-hero" style="${heroStyle('dusk')};border-radius:var(--r-2xl);padding:clamp(1.75rem,5vw,2.5rem)">
-      <span class="ob-brand">${bloomMark(34, true)}${bloomiaName()}</span>
-      <h1 class="display" style="margin-top:1.1rem;position:relative;z-index:1">Vaše cesta. Vaše tempo. Vaše IVF.</h1>
+    ${logoKruh('12rem')}
+    <div class="grain ob-hero" style="${heroStyle('dusk')};border-radius:var(--r-2xl);padding:clamp(1.75rem,5vw,2.5rem);margin-top:1.4rem">
+      <h1 class="display" style="position:relative;z-index:1">Vaše cesta. Vaše tempo. Vaše IVF.</h1>
     </div>
     <p class="lede">Ne obecné rady o neplodnosti. Obsah pro <strong>šestý den po transferu</strong>, pro <strong>devátý den stimulace</strong>, pro <strong>den, kdy nezbylo žádné embryo</strong>.</p>
     <div class="stack" style="gap:1rem;margin-top:2rem">

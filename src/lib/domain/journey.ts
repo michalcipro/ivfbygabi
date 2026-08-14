@@ -157,6 +157,18 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
   kotva('transferOn', (dpt) => {
     if (dpt === 0) return 'transfer'
     if (dpt > 0 && dpt <= 14) return 'two_week_wait'
+    /*
+     * Za čtrnáctým dnem se dřív přecházelo rovnou na „čekání na další
+     * pokus“. To ale znamenalo, že aplikace patnáctý den sama prohlásila
+     * transfer za neúspěšný, i když si žena výsledek jen ještě nezapsala,
+     * nebo ho zatím neznala. Obsah se jí pak přepnul na texty o návratu
+     * do léčby po ztrátě. To se stát nesmí.
+     *
+     * Dokud je výsledek otevřený, zůstává čekání. Teprve když je zápis
+     * měsíc a půl starý a pořád v něm nic není, je to opuštěný záznam
+     * a fáze se posune dál.
+     */
+    if (dpt > 14 && dpt <= 45 && profile.transferResultPending) return 'two_week_wait'
     if (dpt > 14 && dpt <= 60) return 'waiting_next_attempt'
     if (dpt < 0 && dpt >= -7) return 'embryo_culture'
     return null

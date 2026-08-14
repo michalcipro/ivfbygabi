@@ -102,5 +102,11 @@ export function effectiveProfile(
     // cyklus, není ve fázi ztráty. Je ve stimulaci.
     iuiOn: zProfilu(profile.iuiOn),
     lossOn: zProfilu(profile.lossOn),
+    // Transfer proběhl, ale výsledek v aplikaci není. Fáze se pak nesmí
+    // sama překlopit do „čekání na další pokus“: to by znamenalo, že za
+    // ženu rozhodl kalendář.
+    transferResultPending: Boolean(
+      t && t.date && t.date <= today && !t.cancelled && t.outcome === 'ceka',
+    ),
   }
 }

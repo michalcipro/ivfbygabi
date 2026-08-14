@@ -77,6 +77,12 @@
   --accent: var(--mia);
   --accent-deep: var(--mia-deep);
 
+  /* Akvarelová skvrna pod logem. Ve dne pudrová, v noci hluboká švestka:
+     růžová skvrna na tmavém pozadí by svítila jako lampa. */
+  --vodovka-1: #fdf6f5;
+  --vodovka-2: #f7e3e4;
+  --vodovka-3: #eccdd0;
+
   /* Datová paleta. Odstíny pro graf, hlubší než ozdobné, protože bledá
      linka v grafu se nedá přečíst. Prošly všemi pěti kontrolami
      validátoru v obou režimech včetně simulace protanopie a deuteranopie.
@@ -122,6 +128,9 @@
    rozsvítit, jinak zmizí, a švestka zesvětlit, jinak splyne s pozadím. */
 @media (prefers-color-scheme: dark) {
   :root {
+  --vodovka-1: #443a52;
+  --vodovka-2: #372f43;
+  --vodovka-3: #2b2436;
     --accent: var(--mia);
     --accent-deep: var(--mia-deep);
     --bloo: #a99bbd;
@@ -163,6 +172,9 @@
 }
 
 :root[data-theme='dark'] {
+  --vodovka-1: #443a52;
+  --vodovka-2: #372f43;
+  --vodovka-3: #2b2436;
     --accent: var(--mia);
     --accent-deep: var(--mia-deep);
   --bloo: #a99bbd;
@@ -203,6 +215,9 @@
 }
 
 :root[data-theme='light'] {
+  --vodovka-1: #fdf6f5;
+  --vodovka-2: #f7e3e4;
+  --vodovka-3: #eccdd0;
     --accent: var(--mia);
     --accent-deep: var(--mia-deep);
   --bloo: #625673;
@@ -257,7 +272,7 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.015em;
   margin: 0;
   text-wrap: balance;
@@ -277,7 +292,7 @@ button { font: inherit; color: inherit; }
 
 /* --- opakující se prvky -------------------------------------------------- */
 
-.display { font-family: var(--display); font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; }
+.display { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; }
 .eyebrow { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-faint); }
 .soft { color: var(--fg-soft); }
 .faint { color: var(--fg-faint); }
@@ -1282,7 +1297,7 @@ textarea.field { resize: vertical; line-height: 1.6; }
   line-height: 1.45; margin-top: .15rem;
 }
 .actioncard .go, .hubrow .go { flex: none; color: var(--fg-faint); font-size: 1.15rem; }
-.hubrow b { font-family: var(--display); font-size: 1.2rem; font-weight: 400; }
+.hubrow b { font-family: var(--display); font-size: 1.2rem; font-weight: 600; }
 
 /* --- pás dnů ------------------------------------------------------------- */
 .daystrip {
@@ -2060,7 +2075,22 @@ h1, h2, h3, h4, .display { hyphens: none; }
   letter-spacing: .3em; text-transform: uppercase; color: var(--bloo);
 }
 .bmlogo.mono .bmrule i { background: currentColor; opacity: .35; }
-.bmlogo.mono .bmclaim { color: inherit; }
+
+/* Logo v kruhu. Rozměry uvnitř jsou v procentech šířky obalu, takže se
+   celé zvětšuje najednou: stačí změnit šířku a nic se nerozjede. */
+.bmkruh {
+  position: relative; display: grid; place-items: center;
+  aspect-ratio: 1; container-type: inline-size;
+  max-width: 100%; margin-inline: auto;
+}
+.bmvodovka { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bmkruh-obsah { position: relative; width: 100%; display: grid; place-items: center; }
+.bmkruh .bmlogo { gap: 3cqw; transform: translateY(-1cqw); }
+.bmkruh .bmark { width: 38cqw; height: 38cqw; }
+/* Dvojí zápis: první je záchrana pro prohlížeč bez dotazů na kontejner. */
+.bmkruh .bmname { font-size: 2rem; font-size: 15.5cqw; }
+.bmkruh .bmrule { max-width: 62cqw; gap: 2.5cqw; }
+.bmkruh .bmrule svg { width: 7cqw; height: 7cqw; }
 
 /* Rovnice jména. Bloom a Mia se před očima spojí do značky, takže se
    předěl barev drží i tady: jinak by věta tvrdila něco, co obrázek
@@ -2082,29 +2112,35 @@ h1, h2, h3, h4, .display { hyphens: none; }
 /* ==========================================================================
    Čitelnost nadpisů na telefonu
 
-   Bodoni Moda má extrémní rozdíl mezi tenkým a tlustým tahem. Ve velkém
-   nadpisu je to celý půvab písma, v sedmnácti pixelech na telefonu ale
-   vlásnice prostě zmizí a z nadpisu zůstane šeď.
+   Patkové písmo má tenčí vodorovné tahy než svislé. Ve velkém nadpisu je
+   to celý půvab, v sedmnácti pixelech na telefonu ale tenký tah zmizí
+   a z nadpisu zůstane šeď.
 
-   Váha se proto řídí velikostí: čím menší text, tím silnější řez. Velký
-   uvítací nadpis zůstává lehký, protože tam je co číst i z vlásnic.
+   Váha se proto řídí velikostí: čím menší text, tím silnější řez. A od
+   výměny písma za Fraunces se přitvrdilo o stupeň všude, protože stížnost
+   na špatnou čitelnost nadpisů na telefonu byla konkrétní a opakovaná.
    ========================================================================== */
 
-/* Malé nadpisy: názvy karet, dlaždic a sekcí. Těch je v aplikaci nejvíc. */
+/* Malé nadpisy: názvy karet, dlaždic a sekcí. Těch je v aplikaci nejvíc.
+   Sedmnáct pixelů na telefonu je hranice, kde se čte tvar písmene, ne jeho
+   krása. Tady se přitvrzuje nejvíc. */
 h3.display, h4.display, p.display, span.display, .tile h4, .ccard h3, .avatar {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Střední: nadpisy sekcí a citáty. */
 h2.display, blockquote, .prose h2, .prose blockquote p, .quote p {
-  font-weight: 500;
+  font-weight: 600;
 }
 
-/* Velký uvítací nadpis zůstává lehký. */
-h1.display { font-weight: 400; }
+/* Velký uvítací nadpis. Dřív byl lehký, protože Bodoni ve velkém unesl
+   vlásnice. Fraunces je jiné písmo a hlavní nadpis má být to první, co je
+   na telefonu čitelné, ne to nejjemnější. */
+h1.display { font-weight: 600; }
 
-/* Čísla v patkovém řezu nesou váhu sama velikostí, tam se nepřitvrzuje. */
-.bignum, .stage, .d { font-weight: 400; }
+/* Čísla v patkovém řezu nesou váhu sama velikostí, ale ne když jsou
+   v kartě vedle tučného popisku. */
+.bignum, .stage, .d { font-weight: 500; }
 
 /* ==========================================================================
    Stránka se nesmí posouvat do stran

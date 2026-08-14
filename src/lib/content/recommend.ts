@@ -154,46 +154,71 @@ export function recommend(
   return scored.slice(0, limit).map((s) => s.item)
 }
 
-/** Vybere denní kartu. Nejpřesnější shoda na den vyhrává. */
+/**
+ * Vybere denní kartu. Nejpřesnější shoda na den vyhrává.
+ *
+ * ------------------------------------------------------ PROČ DVA PRŮCHODY ---
+ * Původně se hledalo jen jednou a karty s dnem nebo rozsahem mimo dnešek
+ * se zahodily. Ve fázích, kde je karet málo nebo kde jejich rozsah někde
+ * skončí, tím obrazovka Dnes přišla o celou sekci Dnešní téma. Změřeno:
+ * po čtrnáctém dni čekání na hCG byla tři dny po sobě prázdná.
+ *
+ * Prázdné místo je horší než méně přesná karta. Druhý průchod proto pustí
+ * i karty téže fáze, kterým nesedí den, a mezi nimi se střídá podle data.
+ * Přesná trefa na den má pořád o sto bodů navrch, takže se pořadí tam, kde
+ * obsah je, nezměnilo.
+ */
 export function pickDailyCard(
   cards: readonly DailyCard[],
   state: JourneyState,
 ): DailyCard | null {
   const mods = new Set<ModifierId>(state.modifiers)
-  const candidates: Array<{ card: DailyCard; score: number }> = []
 
-  for (const card of cards) {
-    if (card.excludeModifiers?.some((m) => mods.has(m))) continue
-    if (card.phases.length > 0 && !card.phases.includes(state.phase.id)) continue
+  const hledej = (hlidatDen: boolean): Array<{ card: DailyCard; score: number }> => {
+    const candidates: Array<{ card: DailyCard; score: number }> = []
+    for (const card of cards) {
+      if (card.excludeModifiers?.some((m) => mods.has(m))) continue
+      if (card.phases.length > 0 && !card.phases.includes(state.phase.id)) continue
 
-    let score = card.phases.includes(state.phase.id) ? 10 : 1
+      let score = card.phases.includes(state.phase.id) ? 10 : 1
 
-    if (card.day !== undefined) {
-      if (card.day !== state.dayInPhase) continue
-      score += 100 // přesná trefa na den je nejcennější
-    } else if (card.dayRange) {
-      const [lo, hi] = card.dayRange
-      if (state.dayInPhase < lo || state.dayInPhase > hi) continue
-      // Užší rozsah = konkrétnější = lepší
-      score += 40 - Math.min(35, hi - lo)
+      if (card.day !== undefined) {
+        if (card.day !== state.dayInPhase) {
+          if (hlidatDen) continue
+        } else {
+          score += 100 // přesná trefa na den je nejcennější
+        }
+      } else if (card.dayRange) {
+        const [lo, hi] = card.dayRange
+        if (state.dayInPhase < lo || state.dayInPhase > hi) {
+          if (hlidatDen) continue
+        } else {
+          // Užší rozsah = konkrétnější = lepší
+          score += 40 - Math.min(35, hi - lo)
+        }
+      }
+
+      if (card.modifiers && card.modifiers.length > 0) {
+        const hits = card.modifiers.filter((m) => mods.has(m)).length
+        if (hits === 0) continue
+        score += hits * 25 // karta šitá na míru její situaci
+      }
+
+      candidates.push({ card, score })
     }
-
-    if (card.modifiers && card.modifiers.length > 0) {
-      const hits = card.modifiers.filter((m) => mods.has(m)).length
-      if (hits === 0) continue
-      score += hits * 25 // karta šitá na míru její situaci
-    }
-
-    candidates.push({ card, score })
+    return candidates
   }
 
+  const candidates = hledej(true).length ? hledej(true) : hledej(false)
   if (candidates.length === 0) return null
   candidates.sort((a, b) => b.score - a.score)
 
-  // Mezi stejně dobrými kartami vybereme deterministicky podle dne.
+  // Mezi stejně dobrými kartami vybereme deterministicky podle dne. Do
+  // klíče jde i den ve fázi, jinak by se ve druhém průchodu držela jedna
+  // karta celý den i celý týden a Dnešek by zas vypadal pořád stejně.
   const best = candidates[0].score
   const top = candidates.filter((c) => c.score === best)
-  const idx = seedFrom(state.today, state.phase.id) % top.length
+  const idx = seedFrom(state.today, `${state.phase.id}:${state.dayInPhase}`) % top.length
   return top[idx].card
 }
 

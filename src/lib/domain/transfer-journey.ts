@@ -184,9 +184,73 @@ Samotné embryo je pořád mikroskopické. Všechno, co teď probíhá, je stavb
 
 Na ultrazvuku ještě není co vidět. První ultrazvuk po pozitivním hCG proto přichází až za několik týdnů.`,
   },
+  15: {
+    title: 'Placentární oběh se rozbíhá',
+    body: `V trofoblastu se otevírají první dutinky, do kterých se dostává mateřská krev. Je to začátek výměny mezi vámi a embryem, zatím velmi hrubý.
+
+Právě tenhle krok bývá důvod, proč hCG od téhle doby často stoupá rychleji.
+
+Pro vás se navenek nemění nic. Rozdíl je měřitelný jedině v krvi.`,
+  },
+  16: {
+    title: 'Embryo mění tvar, ne velikost',
+    body: `Uvnitř zárodečného terčíku se buňky uspořádávají do vrstev, ze kterých později vznikne nervová soustava, srdce nebo trávicí trubice.
+
+Je to práce na plánu, ne na objemu. Embryo je pořád menší než tečka za touhle větou.
+
+Nic z toho nejde ovlivnit tím, co uděláte nebo neuděláte. Probíhá to samo.`,
+  },
+  17: {
+    title: 'hCG se obvykle zdvojnásobuje',
+    body: `V tomhle období bývá zvykem sledovat, jestli hodnota hCG za dva až tři dny přibližně zdvojnásobí. Vývoj se od téhle chvíle posuzuje spíš podle křivky než podle jednoho čísla.
+
+Zdvojení je orientační pravidlo, ne zákon. Jsou těhotenství, která rostou pomaleji a přesto pokračují, i taková, která rostou pěkně a nepokračují.
+
+Co vaše čísla znamenají, řekne jedině vaše klinika.`,
+  },
+  18: {
+    title: 'Vzniká žloutkový váček',
+    body: `Uvnitř plodového vejce se tvoří žloutkový váček. Je to první struktura, kterou půjde na ultrazvuku poznat, a dočasně vyživuje embryo, než převezme práci placenta.
+
+Vidět je ale zatím pořád nebude. Na to je celý útvar příliš malý.
+
+Tělo mezitím udržuje žluté tělísko v provozu, aby progesteron neklesl.`,
+  },
+  19: {
+    title: 'Základ srdce se zakládá',
+    body: `Ze střední zárodečné vrstvy se začíná formovat srdeční trubice. Tluče až o něco později, teď se teprve staví.
+
+Zní to jako velký milník. Ve skutečnosti jde o strukturu velkou zlomek milimetru.
+
+Znovu platí, že se to nedá nijak podpořit ani urychlit. Vaše práce je brát podporu podle rozpisu.`,
+  },
+  20: {
+    title: 'Plodové vejce roste',
+    body: `Plodové vejce se zvětšuje natolik, že se u části těhotenství začíná dát zachytit na vaginálním ultrazvuku. Bývá to zhruba mezi pátým a šestým týdnem těhotenství.
+
+Termín ultrazvuku určuje klinika podle vašich hodnot, ne podle kalendáře z internetu. Dřívější vyšetření často jen přidá nejistotu.
+
+Do té doby se nedá dělat nic než čekat, což je ta nejtěžší část.`,
+  },
+  21: {
+    title: 'Čeká se na první ultrazvuk',
+    body: `Od téhle chvíle se o vývoji rozhoduje na ultrazvuku, ne v laboratoři. Opakované odběry hCG už mívají menší výpovědní hodnotu než obraz.
+
+Mezi posledním odběrem a prvním ultrazvukem bývá několik dní až týdnů. Je to další čekání a je v pořádku, že je těžké.
+
+Kdy přesně přijít, řekne vaše klinika.`,
+  },
+  22: {
+    title: 'Vývoj pokračuje mimo dosah čísel',
+    body: `Embryo se dál vyvíjí a zakládají se orgánové systémy. Ani jedno se nedá ověřit jinak než vyšetřením u lékaře.
+
+Tělo o tom nedává spolehlivé znamení. Ani dobré, ani špatné, a to platí v obou směrech.
+
+Další krok patří vaší klinice.`,
+  },
 }
 
-/** Za čtrnáctým dnem se obsah přestává větvit. Děj je dál stejný. */
+/** Za dvaadvacátým dnem už o vývoji rozhoduje ultrazvuk, ne kalendář. */
 const EMBRYO_DAL: DaySection = {
   title: 'Vývoj pokračuje mimo dosah testů',
   body: `Pokud těhotenství pokračuje, embryo se dál zanořuje a hCG dál stoupá. Nic z toho se ale nedá zachytit jinak než odběrem a později ultrazvukem.
@@ -302,6 +366,70 @@ Zavolat na kliniku a zeptat se je vždycky správný krok.`,
 Jeden odběr často nestačí. Kliniky běžně opakují odběr za dva až tři dny a sledují, jak se hodnota vyvíjí.
 
 Výklad patří vašemu lékaři. Tabulky z internetu nejsou vaše tabulka.`,
+  },
+  13: {
+    title: 'Den, na který se čekalo',
+    body: `Kolem tohohle dne bývá naplánovaný odběr hCG. Přesný termín určuje klinika podle dne embrya a typu transferu, takže se může lišit o den nebo dva.
+
+Ať už výsledek přijde dnes nebo za pár dní, tahle část končí. To je jediná jistota, kterou tenhle den nabízí.
+
+Podporu berte dál přesně podle rozpisu, dokud vám lékař neřekne jinak. Ani při krvácení ji nevysazujte sama.`,
+  },
+  14: {
+    title: 'Když výsledek ještě nemáte',
+    body: `Laboratoře posílají výsledky v různých časech a některé kliniky volají až odpoledne. Zpoždění o půl dne nic neznamená.
+
+Pokud jste odběr ještě neabsolvovala, ozvěte se klinice a domluvte si ho. Domácí test tenhle krok nenahradí.
+
+Dnešek nemusíte zvládnout. Stačí ho přečkat.`,
+  },
+  15: {
+    title: 'Kontrolní odběr',
+    body: `Jeden výsledek většinou nestačí. Kliniky běžně opakují odběr za dva až tři dny a sledují, jak se hodnota vyvíjí v čase.
+
+Druhé číslo řekne víc než první. Právě proto se první výsledek nedá číst jako konečný verdikt v žádném směru.
+
+Mezi odběry se nedá udělat nic, co by číslo ovlivnilo.`,
+  },
+  16: {
+    title: 'Hormonální podpora pokračuje',
+    body: `Progesteron a další podpora se po pozitivním výsledku obvykle nevysazují. V hormonálně řízeném cyklu tělo progesteron samo netvoří a vysazení by mohlo být problém.
+
+O délce podpory rozhoduje vaše klinika. Bývá to týdny, ne dny.
+
+Pokud si nejste jistá, co a jak dlouho brát, zavolejte. Je to běžný dotaz.`,
+  },
+  17: {
+    title: 'Špinění a křeče v tomhle období',
+    body: `Lehké špinění a tahavé bolesti se v prvních týdnech objevují často a samy o sobě nic neznamenají. Souvisejí s hormonální podporou i se změnami v děloze.
+
+Silné krvácení, prudká nebo jednostranná bolest, mdloby nebo horečka jsou jiná situace. Tam se nečeká do rána.
+
+Když si nejste jistá, zavolejte na kliniku. Od toho tam jsou.`,
+  },
+  18: {
+    title: 'Než přijde ultrazvuk',
+    body: `Další informaci přinese až ultrazvuk. Do té doby se stav nemění tím, jak často o něm přemýšlíte.
+
+Bývá to období, kdy úzkost roste, protože ubyla čísla a nepřibyl obraz. Je to normální a nic to nevypovídá o výsledku.
+
+Když čekání nezvládáte, mluvte o tom s někým. Není to slabost.`,
+  },
+  19: {
+    title: 'Co si připravit na ultrazvuk',
+    body: `Poznamenejte si data odběrů a jejich hodnoty, datum transferu, den embrya a jméno podpory, kterou berete. Aplikace to má uložené, stačí přehled otevřít.
+
+Vezměte s sebou i otázky. Na vyšetření se na ně zapomíná spolehlivě.
+
+Můžete si vzít doprovod. Většina klinik to umožní, i když se to nikde nepíše.`,
+  },
+  20: {
+    title: 'Konec dvoutýdenního čekání',
+    body: `Tahle část cesty už není o dnech po transferu. Další kroky určuje výsledek a vaše klinika, ne kalendář.
+
+Pokud je výsledek negativní nebo se něco změnilo, zaznamenejte to v aplikaci. Obsah se pak přizpůsobí tomu, kde jste doopravdy.
+
+Ať už jdete kamkoliv, tohle období jste zvládla.`,
   },
 }
 

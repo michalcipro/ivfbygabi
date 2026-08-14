@@ -1,5 +1,5 @@
 import { esc, note } from './ui'
-import { logoFull } from './viz'
+import { logoKruh } from './viz'
 
 /**
  * Kdo stojí za BlooMií.
@@ -23,7 +23,7 @@ const ICO = ''
 export function screenOBlooMii(): string {
   return [
     `<header class="head rise" style="text-align:center">
-      ${logoFull(52)}
+      ${logoKruh('14rem')}
       <p class="eyebrow" style="margin-top:2rem">Kdo stojí za BlooMií</p>
       <h1 class="display">Ing. Gabriela Černá</h1>
       <p class="lede">BlooMia nevznikla jako další aplikace. Vznikla z vlastní zkušenosti.</p>

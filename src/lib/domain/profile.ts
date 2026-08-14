@@ -151,6 +151,14 @@ export interface Profile {
   transferOn: IsoDate | null
   betaTestOn: IsoDate | null
   lossOn: IsoDate | null
+  /**
+   * Proběhl transfer, u kterého uživatelka ještě nezapsala výsledek?
+   *
+   * Odvozuje se z běžícího cyklu, neukládá se. Slouží k jedinému účelu:
+   * aby aplikace po čtrnáctém dni sama nerozhodla, že to nevyšlo. Dokud
+   * si žena výsledek nezapíše, nikdo jiný ho neví.
+   */
+  transferResultPending?: boolean
   lastPeriodOn: IsoDate | null
 
   // --- Čísla cesty -------------------------------------------------------
@@ -189,6 +197,7 @@ export function emptyProfile(userId: string, id: string, now: string): Profile {
     transferOn: null,
     betaTestOn: null,
     lossOn: null,
+    transferResultPending: false,
     lastPeriodOn: null,
     amh: null,
     ivfCycles: 0,

@@ -619,7 +619,14 @@ export function toggleRow(key: string, title: string, body: string, on: boolean)
  * nebo později rozešly a značka by přestala být jedna.
  */
 const SRDCE =
-  'M24 40.4C20.6 37.6 14.4 33.4 14.4 29.1c0-2.7 2.1-4.7 4.7-4.7 1.9 0 3.8 1.1 4.9 2.8 1.1-1.7 3-2.8 4.9-2.8 2.6 0 4.7 2 4.7 4.7 0 4.3-6.2 8.5-9.6 11.3Z'
+  'M23 46C8.6 34.2 0 25.2 0 15.4 0 6.9 6.3 0 14.1 0c4 0 7.4 2 8.9 5.1C24.5 2 27.9 0 31.9 0 39.7 0 46 6.9 46 15.4 46 25.2 37.4 34.2 23 46Z'
+
+/**
+ * Srdce se kreslí ve vlastní soustavě 46 × 46 a do znaku se usazuje
+ * transformací. Jinak by se při každé změně velikosti muselo přepočítávat
+ * dvacet čísel v cestě a tvar by se pokaždé o kousek rozešel.
+ */
+const SRDCE_USAZENE = 'translate(14 22) scale(0.435)'
 
 /**
  * Znak BlooMia: tři tečky a pod nimi srdce.
@@ -635,25 +642,30 @@ const SRDCE =
  * a všude, kde růžová se švestkou nemají co dělat.
  */
 export function bloomMark(size = 28, animate = false, mono = false): string {
-  const tecka = mono ? 'currentColor' : 'var(--heart)'
-  const srdce = mono ? 'currentColor' : 'var(--mia)'
+  const srdce = mono ? 'currentColor' : '#c94f6b'
   // Tři tečky nad sebou, každá o kousek větší. Průhlednost klesá odshora,
   // takže nejmenší je nejtišší.
+  // Tři tečky nad sebou, každá o kousek větší. Barva jde od pudrové přes
+  // švestkovou zpět k růžové, přesně jako v logu. Průhlednost by tenhle
+  // přechod nedokázala: prostřední tečka je v předloze tmavší, ne slabší.
   const tecky = [
-    { cy: 9.6, r: 1.6, op: 0.4 },
-    { cy: 15.2, r: 2.05, op: 0.68 },
-    { cy: 21.2, r: 2.5, op: 1 },
+    { cy: 6.2, r: 1.7, barva: mono ? 'currentColor' : '#d79aa6' },
+    { cy: 11.9, r: 1.95, barva: mono ? 'currentColor' : '#b3748f' },
+    { cy: 17.7, r: 2.2, barva: mono ? 'currentColor' : '#c2506b' },
   ]
-  return `<svg class="bmark${animate ? ' bmark-anim' : ''}" width="${size}" height="${size}"
+  // Nula znamená, že velikost řídí CSS obalu. Atribut se pak nepíše vůbec,
+  // jinak by přebil poměrové rozměry loga v kruhu.
+  const rozmer = size > 0 ? `width="${size}" height="${size}"` : ''
+  return `<svg class="bmark${animate ? ' bmark-anim' : ''}" ${rozmer}
      viewBox="0 0 48 48" aria-hidden="true" focusable="false">
     ${tecky
       .map(
         (t, i) =>
-          `<circle cx="24" cy="${t.cy}" r="${t.r}" fill="${tecka}" fill-opacity="${t.op}"
+          `<circle cx="24" cy="${t.cy}" r="${t.r}" fill="${t.barva}"
              ${animate ? `style="animation:bmdot 1.4s var(--calm) ${i * 180}ms infinite"` : ''}/>`,
       )
       .join('')}
-    <path d="${SRDCE}" fill="${srdce}"
+    <path d="${SRDCE}" fill="${srdce}" transform="${SRDCE_USAZENE}"
           ${animate ? 'style="animation:bmheart 1.4s var(--calm) 540ms infinite"' : ''}/>
   </svg>`
 }
@@ -678,24 +690,77 @@ export function wordmark(size = 26): string {
 }
 
 /**
- * Celé logo i s claimem.
+ * Celé logo.
  *
- * Znak, jméno, jemné srdce mezi dvěma linkami a pod tím „TVOJE IVF CESTA“.
- * Používá se tam, kde má značka prostor: uvítání, o BlooMii, hlavička PDF.
- * Do rozhraní mezi obsah nepatří, tam stačí `wordmark()`.
+ * Znak, jméno a pod ním jemné srdce mezi dvěma linkami. Používá se tam, kde
+ * má značka prostor: uvítání, o BlooMii, hlavička PDF. Do rozhraní mezi
+ * obsah nepatří, tam stačí `wordmark()`.
+ *
+ * Claim pod logem není. Logo je jenom BlooMia. „Vaše IVF cesta“ je věta
+ * pro nadpis stránky, ne součást značky, a v logu by se opotřebovala.
  */
 export function logoFull(size = 44, mono = false): string {
+  // Nula znamená, že velikost řídí obal (logo v kruhu). Atribut se pak
+  // nepíše vůbec, jinak by přebil poměrové rozměry z CSS.
   return `<div class="bmlogo${mono ? ' mono' : ''}">
     ${bloomMark(size, false, mono)}
     ${bloomiaName()}
     <div class="bmrule" aria-hidden="true">
       <i></i>
-      <svg width="18" height="18" viewBox="0 0 48 48" fill="none"
-           stroke="${mono ? 'currentColor' : 'var(--heart)'}" stroke-width="3">
+      <svg width="18" height="18" viewBox="0 0 46 46" fill="none"
+           stroke="${mono ? 'currentColor' : 'var(--heart)'}" stroke-width="4">
         <path d="${SRDCE}"/>
       </svg>
       <i></i>
     </div>
-    <p class="bmclaim">Tvoje IVF cesta</p>
   </div>`
 }
+
+/**
+ * Logo v akvarelovém kruhu.
+ *
+ * Hlavní podoba značky: pudrová skvrna, na ní znak, jméno a linka se
+ * srdcem. Kreslí se, ne načítá, protože rastr by na sítnicovém displeji
+ * rozmazal vlásnice a v tmavém režimu by kolem sebe měl bílý čtverec.
+ *
+ * Skvrna bere barvy z motivu, takže v noci ztmavne s celou aplikací
+ * a nesvítí ze stránky jako lampa.
+ *
+ * Rozměry uvnitř jsou v procentech šířky kruhu (`cqw`), takže se logo
+ * zvětšuje celé najednou a nikdy se nerozjede.
+ */
+export function logoKruh(sirka = '13rem', mono = false): string {
+  return `<div class="bmkruh${mono ? ' mono' : ''}" style="width:${sirka}">
+    ${mono ? '' : VODOVKA}
+    <div class="bmkruh-obsah">${logoFull(0, mono)}</div>
+  </div>`
+}
+
+/**
+ * Akvarelová skvrna pod logem.
+ *
+ * Nepravidelný okraj dělá `feDisplacementMap` nad šumem, jemné zrno druhý
+ * šum přes celý kruh. Kdyby to byl obrázek, vážil by desítky kilobajtů
+ * a nešel by obarvit podle motivu.
+ */
+const VODOVKA = `<svg class="bmvodovka" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="bmw1" cx="38%" cy="30%" r="78%">
+      <stop offset="0%" stop-color="var(--vodovka-1)"/>
+      <stop offset="52%" stop-color="var(--vodovka-2)"/>
+      <stop offset="100%" stop-color="var(--vodovka-3)"/>
+    </radialGradient>
+    <radialGradient id="bmw2" cx="76%" cy="72%" r="46%">
+      <stop offset="0%" stop-color="var(--vodovka-3)" stop-opacity=".8"/>
+      <stop offset="100%" stop-color="var(--vodovka-3)" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="bmrozpiti" x="-12%" y="-12%" width="124%" height="124%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.014 0.019" numOctaves="4" seed="7" result="sum"/>
+      <feDisplacementMap in="SourceGraphic" in2="sum" scale="26" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <g filter="url(#bmrozpiti)">
+    <circle cx="200" cy="200" r="191" fill="url(#bmw1)"/>
+    <circle cx="200" cy="200" r="191" fill="url(#bmw2)"/>
+  </g>
+</svg>`
