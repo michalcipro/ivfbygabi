@@ -2070,10 +2070,8 @@ h1, h2, h3, h4, .display { hyphens: none; }
   align-items: center; gap: .7rem; width: 100%; max-width: 20rem;
 }
 .bmrule i { display: block; height: 1px; background: var(--soft-rose); }
-.bmclaim {
-  margin: 0; font-family: var(--sans); font-size: .75rem; font-weight: 500;
-  letter-spacing: .3em; text-transform: uppercase; color: var(--bloo);
-}
+/* Claim pod logem tu byl a je pryč. Logo je jenom BlooMia. Kdyby tu
+   třída zůstala, dřív nebo později se do ní něco napíše. */
 .bmlogo.mono .bmrule i { background: currentColor; opacity: .35; }
 
 /* Logo v kruhu. Rozměry uvnitř jsou v procentech šířky obalu, takže se

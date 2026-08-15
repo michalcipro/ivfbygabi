@@ -1,4 +1,12 @@
-import { activeCycle, bloodTests, currentTransfer, type CycleRow } from './cycle'
+import {
+  activeCycle,
+  bloodTests,
+  currentTransfer,
+  defaultCycle,
+  sortedTransfers,
+  type CycleRow,
+  type CycleTransfer,
+} from './cycle'
 import { reachedDay, type Embryo } from './embryo'
 import { today as todayIso } from './dates'
 import type { IsoDate, Profile } from './profile'
@@ -48,7 +56,95 @@ function positiveHcgDate(c: CycleRow, today: IsoDate): IsoDate | null {
     if (d > today) return false
     return b.transferId === t.id || (!b.transferId && t.date !== null && d >= t.date)
   })
-  return mine[0]?.date ?? null
+  if (mine[0]) return mine[0].date
+
+  /*
+   * Výsledek je zapsaný u transferu, ale odběr jako řádek s číslem v cyklu
+   * není. Dřív se v takovém případě nestalo nic a aplikace dál počítala
+   * dny do hCG, přestože si žena zrovna zapsala, že test vyšel pozitivně.
+   *
+   * Zápis výsledku je informace. Datum se bere z toho nejpřesnějšího, co
+   * o něm víme, a nic se nedomýšlí: plánovaný odběr, jinak den transferu.
+   */
+  const planovany = t.hcgPlannedOn
+  if (planovany && planovany <= today) return planovany
+  return t.date && t.date <= today ? t.date : null
+}
+
+/**
+ * Fáze, která plyne ze zapsaného výsledku.
+ *
+ * Tohle je ta hlavní věta celé aplikace: co je zapsané v cyklu, to platí.
+ * Žena, která si zapíše negativní hCG, nemá dál číst „devátý den po
+ * transferu“ a ručně přepínat fázi. Zápis je zdroj pravdy.
+ *
+ * Pozitivní výsledek tu není: ten jde přes `betaTestOn`, aby se od něj
+ * dala počítat cesta k prvnímu ultrazvuku.
+ */
+const FAZE_TRANSFERU: Record<string, string> = {
+  negativni: 'waiting_next_attempt',
+  biochemicke: 'loss_biochemical',
+  mimodelozni: 'loss_ectopic',
+  ztrata: 'loss_miscarriage',
+}
+
+const FAZE_CYKLU: Record<string, string> = {
+  negativni: 'waiting_next_attempt',
+  biochemicke: 'loss_biochemical',
+  mimodelozni: 'loss_ectopic',
+  ztrata: 'loss_miscarriage',
+  // Cyklus bez embrya nesmí spadnout na „snažíme se přirozeně“. Ženě, které
+  // se nevyvinulo žádné embryo, aplikace nemá hlásit první měsíc snažení.
+  bez_embrya: 'waiting_next_attempt',
+  zruseno: 'waiting_next_attempt',
+  zamrazeno: 'waiting_next_attempt',
+}
+
+/** Kdy se výsledek dozvěděla. Nejpřesnější dostupné datum, nic vymyšleného. */
+function kdyVysledek(c: CycleRow, t: CycleTransfer | null, today: IsoDate): IsoDate | null {
+  if (t) {
+    const odbery = bloodTests(c).filter(
+      (b) => (b.transferId === t.id || !b.transferId) && (b.date as IsoDate) <= today,
+    )
+    const posledni = odbery.length ? (odbery[odbery.length - 1].date as IsoDate) : null
+    const datum = posledni ?? (t.hcgPlannedOn && t.hcgPlannedOn <= today ? t.hcgPlannedOn : t.date)
+    return datum && datum <= today ? datum : null
+  }
+  const datum = c.endedOn ?? c.retrievalOn ?? c.startedOn
+  return datum && datum <= today ? datum : null
+}
+
+/**
+ * Výsledek zapsaný v cyklu, přeložený na fázi a datum.
+ *
+ * Bere se poslední transfer, který proběhl. Když žádný transfer není nebo
+ * ještě čeká na výsledek, rozhodne výsledek celého cyklu. Uzavřený cyklus
+ * se tady započítává schválně: je to poslední věc, která se stala.
+ */
+function vysledekZCyklu(
+  cycles: CycleRow[],
+  today: IsoDate,
+): { phase: string; on: IsoDate } | null {
+  const c = defaultCycle(cycles, today)
+  if (!c) return null
+
+  const probehle = sortedTransfers(c).filter(
+    (t) => !t.cancelled && t.date !== null && t.date <= today,
+  )
+  const t = probehle.length ? probehle[probehle.length - 1] : null
+
+  if (t && t.outcome !== 'ceka') {
+    const faze = FAZE_TRANSFERU[t.outcome]
+    const on = kdyVysledek(c, t, today)
+    if (faze && on) return { phase: faze, on }
+    return null
+  }
+
+  // Transfer buď není, nebo pořád čeká. Pak mluví výsledek celého cyklu.
+  if (t) return null
+  const faze = FAZE_CYKLU[c.outcome]
+  const on = kdyVysledek(c, null, today)
+  return faze && on ? { phase: faze, on } : null
 }
 
 /** Do kolikátého dne došlo embryo, které se tímhle transferem přeneslo. */
@@ -72,8 +168,15 @@ export function effectiveProfile(
   today: IsoDate = todayIso(),
   embryos: Embryo[] = [],
 ): Profile {
+  // Výsledek se čte i z uzavřeného cyklu: uzavřením nepřestal platit.
+  const vysledek = vysledekZCyklu(cycles, today)
+
   const c = activeCycle(cycles, today)
-  if (!c) return profile
+  if (!c) {
+    return vysledek
+      ? { ...profile, outcomePhase: vysledek.phase, outcomeOn: vysledek.on }
+      : profile
+  }
 
   const zacatek = c.cd1On ?? c.startedOn
 
@@ -108,5 +211,7 @@ export function effectiveProfile(
     transferResultPending: Boolean(
       t && t.date && t.date <= today && !t.cancelled && t.outcome === 'ceka',
     ),
+    outcomePhase: vysledek?.phase ?? null,
+    outcomeOn: vysledek?.on ?? null,
   }
 }

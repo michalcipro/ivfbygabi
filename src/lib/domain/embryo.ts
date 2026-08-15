@@ -228,10 +228,14 @@ export function embryoSummary(e: Embryo): string {
   const last = lastDay(e)
   return [
     last ? `${last.day}. den` : null,
-    last && last.stage ? STAGE_LABEL[last.stage].toLowerCase() : null,
+    // Neznámou hodnotu nesmí popis shodit. Přijít o kartu cyklu kvůli
+    // jednomu překlepu ve stavu embrya je horší než chybějící slovo.
+    last && last.stage ? (STAGE_LABEL[last.stage] ?? '').toLowerCase() || null : null,
     last?.grade.trim() || null,
-    FATE_LABEL[e.fate].toLowerCase(),
-    e.pgt ? `${PGT_LABEL[e.pgt]}${e.pgtResult ? `: ${PGT_RESULT_LABEL[e.pgtResult].toLowerCase()}` : ''}` : null,
+    (FATE_LABEL[e.fate] ?? FATE_LABEL.jine).toLowerCase(),
+    e.pgt
+      ? `${PGT_LABEL[e.pgt] ?? ''}${e.pgtResult ? `: ${(PGT_RESULT_LABEL[e.pgtResult] ?? '').toLowerCase()}` : ''}`.trim() || null
+      : null,
   ]
     .filter((x): x is string => Boolean(x))
     .join(' · ')

@@ -8,6 +8,7 @@ import type { Letter } from '../lib/shared/records'
 import {
   cycleTitle,
   type CycleKind,
+  type CloseReason,
   type CycleOutcome,
   type FertMethod,
   OUTCOME_LABEL,
@@ -20,6 +21,7 @@ import {
   type TransferOutcome,
   type TransferStage,
 } from '../lib/domain/cycle'
+import { reviewClose } from '../lib/domain/cycle-close'
 
 import { esc, head, note } from './ui'
 import { emptyContact, emptyCoordinator } from '../lib/domain/clinic'
@@ -57,6 +59,7 @@ import {
   addHcgTest,
   addTransfer,
   cycleById,
+  embryosOf,
   deleteCycle,
   deleteDoc,
   deleteEmbryo,
@@ -285,7 +288,7 @@ const TITLES: Record<string, string> = {
   partner: 'Partner mode',
   nastaveni: 'Nastavení',
   zaloha: 'Záloha a obnova',
-  'o-bloomii': 'Kdo stojí za BlooMií',
+  'o-bloomii': 'Kdo stojí za aplikací BlooMia',
   'napiste-mi': 'Napište mi',
   clenstvi: 'Členství',
   proc: 'Proč vidím tohle',
@@ -1051,6 +1054,12 @@ function saveCycleForm(id: string): void {
 
     row.outcome = (val('cyc-outcome') || row.outcome) as CycleOutcome
     row.note = val('cyc-note')
+    // Pole se kreslí jen na kartě uzavření. Jinde v cyklu nejsou, takže by
+    // je prázdné čtení přepsalo. `val` na chybějící prvek vrací prázdno.
+    if (document.getElementById('cyc-closeReason')) {
+      row.closeReason = val('cyc-closeReason') as CloseReason
+      row.closeNote = val('cyc-closeNote')
+    }
   })
 }
 
@@ -1839,6 +1848,21 @@ function action(act: string, argValue: string): void {
       // Uzavření je vždycky ruční a vždycky vědomé. Než se provede,
       // uloží se rozepsaný formulář, ať se nic z něj neztratí.
       saveCycleForm(argValue)
+
+      /*
+       * Cyklus, ve kterém ještě něco zbývá, se nesmí zavřít jedním
+       * klepnutím. Jeden odběr bývá zásoba embryí na několik kryotransferů
+       * a uzavřením se ženě ztratí kontext, ve kterém pokračuje.
+       *
+       * Věta na obrazovce nestačí: čte se až potom, co se stalo. Proto
+       * ještě dotaz, a jenom tehdy, když je co ztratit.
+       */
+      const kontrola = cycleById(argValue)
+      if (kontrola) {
+        const revize = reviewClose(kontrola, embryosOf(argValue), viewDate())
+        if (revize.warning && !confirm(`${revize.warning}\n\nOpravdu chcete cyklus uzavřít?`)) return
+      }
+
       const vysledek = closeCycleNow(argValue)
       toast(
         vysledek
@@ -2873,7 +2897,7 @@ function ukazNovouVerzi(): void {
   const el = document.createElement('div')
   el.className = 'toast newver'
   el.setAttribute('role', 'status')
-  el.innerHTML = `<span>Je tu nová verze BlooMie.</span>
+  el.innerHTML = `<span>Je tu nová verze aplikace BlooMia.</span>
     <button class="nv-ano" data-act="pwa-obnovit">Načíst</button>
     <button class="nv-ne" data-act="pwa-pozdeji">Později</button>`
   document.body.appendChild(el)

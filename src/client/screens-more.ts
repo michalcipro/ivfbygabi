@@ -138,7 +138,7 @@ export function screenProfil(): string {
     ['partner', '♡', 'Pro partnera', 'Co ukázat tomu, kdo je vedle vás'],
     ['komunita', '◍', 'Komunita', 'Ženy ve stejné fázi. Můžete zůstat anonymní'],
     ['clenstvi', '✦', 'Předplatné', 'Jak funguje a jak ho spravovat'],
-    ['o-bloomii', '✿', 'Kdo stojí za BlooMií', 'Proč BlooMia vznikla a co znamená její jméno'],
+    ['o-bloomii', '✿', 'Kdo stojí za aplikací BlooMia', 'Proč BlooMia vznikla a co znamená její jméno'],
     ['napiste-mi', '✉', 'Napište mi', 'Zpětná vazba, nápad, recenze nebo co vám chybí'],
     ['nastaveni', '⚙', 'Nastavení', 'Fáze, situace, vzhled a vaše data'],
     ['vice', '⋯', 'Všechno ostatní', 'Rozcestník na zbytek aplikace'],
@@ -157,6 +157,36 @@ export function screenProfil(): string {
           `<button class="tile" data-go="${r}"><i>${i}</i><span style="min-width:0"><h4 class="display">${esc(t)}</h4><p>${esc(b)}</p></span><span class="go">›</span></button>`,
       )
       .join('')}</div>`,
+
+    // Krátké vysvětlení, co aplikace je a proč má smysl do ní zapisovat.
+    // Patří sem, ne do knihovny: profil otevírá i žena, která si aplikaci
+    // právě stáhla a ještě neví, co od ní čekat.
+    `<section class="surface pad rise">
+      <p class="eyebrow">Více o aplikaci BlooMia</p>
+      <h2 class="display" style="font-size:1.3rem;margin-top:.4rem">Průvodkyně vaší IVF cestou</h2>
+      <div class="prose" style="margin-top:.8rem;font-size:.9375rem">
+        <p>BlooMia je aplikace pro ženy, které procházejí léčbou neplodnosti.
+        Není to obecná databáze článků. Drží pohromadě vaši konkrétní cestu:
+        cykly, odběry, embrya, transfery, léky, výsledky, náklady i to, jak
+        vám u toho je.</p>
+
+        <p>Vznikla z vlastní zkušenosti, ne u počítače. Právě proto počítá
+        i se dny, kdy to nevyjde, a s tím, že cesta nemusí být přímá.</p>
+
+        <p><strong>Proč má smysl zapisovat.</strong> Z toho, co si zapíšete,
+        aplikace pozná, kde právě jste: kolikátý je den po transferu, jak
+        staré embryo se přenášelo, jestli výsledek už znáte. Podle toho
+        vybírá, co vám ukáže dnes. Bez zápisů umí jen obecné rady, a těch
+        je na internetu dost.</p>
+
+        <p>Nic se nikam neodesílá a nemusíte nic vyplňovat najednou.
+        I jedno datum stačí na to, aby se obsah začal přizpůsobovat.</p>
+      </div>
+      <div class="row wrap" style="gap:.6rem;margin-top:1.2rem">
+        <button class="btn btn-sm" data-go="o-bloomii">Kdo stojí za aplikací BlooMia</button>
+        <button class="btn btn-sm" data-go="nuzky">Jak se obsah přizpůsobuje dni</button>
+      </div>
+    </section>`,
 
     note(
       'Všechna vaše data zůstávají ve vašem zařízení. Nic se nikam neodesílá a aplikace je nikomu nesdílí. Sdílet je s lékařem můžete jen vy.',
@@ -914,11 +944,11 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
     `<section class="surface pad">
       <p class="eyebrow">BlooMia</p>
       <p class="soft" style="margin-top:.6rem;font-size:.9375rem;line-height:1.65">
-        BlooMii vytvořila Gabriela, která si sama prošla IVF. Název vznikl spojením
+        Aplikaci BlooMia vytvořila Gabriela, která si sama prošla IVF. Název vznikl spojením
         slov Bloom a Mia.
       </p>
       <div class="row wrap" style="gap:.6rem;margin-top:1.1rem">
-        <button class="btn btn-sm" data-go="o-bloomii">Kdo stojí za BlooMií</button>
+        <button class="btn btn-sm" data-go="o-bloomii">Kdo stojí za aplikací BlooMia</button>
         <button class="btn btn-sm" data-go="napiste-mi">Napište mi</button>
       </div>
     </section>`,

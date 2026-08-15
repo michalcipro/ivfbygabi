@@ -537,6 +537,9 @@ function migrate(d: Save): Save {
     }
   }
 
+  // Důvod uzavření přibyl později. Staré cykly ho nemají a nesmí kvůli
+  // tomu spadnout na `undefined` v poli formuláře.
+  d.cycles = d.cycles.map((c) => ({ ...c, closeReason: c.closeReason ?? '', closeNote: c.closeNote ?? '' }))
   d.cycles = d.cycles.map(migrateCycle)
   d.embryos = (d.embryos ?? []).map((e) => ({ ...emptyEmbryo(e.id, e.cycleId, e.number), ...e }))
   d.exams = d.exams ?? []

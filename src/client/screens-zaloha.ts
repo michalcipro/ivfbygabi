@@ -105,7 +105,7 @@ function naPlochuBlok(lzeInstalovat: boolean): string {
   nikam neztratí, aplikace na ploše je čte ze stejného místa.</p>`
 
   const jinyPostup = lzeInstalovat
-    ? `<p class="soft" style="margin-top:.7rem;line-height:1.7">Váš prohlížeč umí BlooMii
+    ? `<p class="soft" style="margin-top:.7rem;line-height:1.7">Váš prohlížeč umí aplikaci BlooMia
        nainstalovat jako samostatnou aplikaci. Otevře se pak v vlastním okně, funguje
        i bez signálu a data má chráněnější.</p>
        <button class="btn btn-primary" data-act="pwa-install" style="margin-top:1rem">Nainstalovat aplikaci</button>`
@@ -115,7 +115,7 @@ function naPlochuBlok(lzeInstalovat: boolean): string {
 
   return `<section class="surface pad rise">
     <p class="eyebrow">Doporučený krok</p>
-    <h2 class="display" style="font-size:1.35rem;margin-top:.4rem">Přidejte si BlooMii na plochu</h2>
+    <h2 class="display" style="font-size:1.35rem;margin-top:.4rem">Přidejte si aplikaci BlooMia na plochu</h2>
     ${jeApple() ? applePostup : jinyPostup}
   </section>`
 }

@@ -55,7 +55,7 @@ export async function sendFeedback(f: Feedback, today: string): Promise<SendResu
       body: JSON.stringify({
         access_key: ACCESS_KEY,
         subject: subjectFor(f),
-        from_name: f.name.trim() || 'Uživatelka BlooMie',
+        from_name: f.name.trim() || 'Uživatelka aplikace BlooMia',
         message: bodyFor(f, today),
       }),
     })

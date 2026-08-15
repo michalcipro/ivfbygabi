@@ -693,7 +693,7 @@ export function wordmark(size = 26): string {
  * Celé logo.
  *
  * Znak, jméno a pod ním jemné srdce mezi dvěma linkami. Používá se tam, kde
- * má značka prostor: uvítání, o BlooMii, hlavička PDF. Do rozhraní mezi
+ * má značka prostor: uvítání, o aplikaci BlooMia, hlavička PDF. Do rozhraní mezi
  * obsah nepatří, tam stačí `wordmark()`.
  *
  * Claim pod logem není. Logo je jenom BlooMia. „Vaše IVF cesta“ je věta

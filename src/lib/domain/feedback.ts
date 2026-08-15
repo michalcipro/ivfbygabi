@@ -2,7 +2,7 @@
  * Zpětná vazba pro Gabrielu.
  *
  * Čistý modul: skládá zprávu a hlídá, že se neposílá prázdná nebo omylem.
- * Odesílání samotné je v klientovi, protože je to jediné místo v BlooMii,
+ * Odesílání samotné je v klientovi, protože je to jediné místo v aplikaci,
  * kde něco opouští zařízení.
  *
  * ------------------------------------------------------------- SOUKROMÍ ---

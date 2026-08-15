@@ -159,6 +159,16 @@ export interface Profile {
    * si žena výsledek nezapíše, nikdo jiný ho neví.
    */
   transferResultPending?: boolean
+  /**
+   * Fáze, která plyne z výsledku zapsaného v cyklu, a den, kdy se to
+   * uživatelka dozvěděla.
+   *
+   * Odvozuje se z cyklu, neukládá se. Existuje proto, aby zápis výsledku
+   * do karty cyklu přepnul celou aplikaci bez toho, aby uživatelka ještě
+   * ručně přepínala fázi. Zapsaná informace je zdroj pravdy.
+   */
+  outcomePhase?: string | null
+  outcomeOn?: IsoDate | null
   lastPeriodOn: IsoDate | null
 
   // --- Čísla cesty -------------------------------------------------------
@@ -198,6 +208,8 @@ export function emptyProfile(userId: string, id: string, now: string): Profile {
     betaTestOn: null,
     lossOn: null,
     transferResultPending: false,
+    outcomePhase: null,
+    outcomeOn: null,
     lastPeriodOn: null,
     amh: null,
     ivfCycles: 0,

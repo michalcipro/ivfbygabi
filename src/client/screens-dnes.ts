@@ -338,14 +338,27 @@ export function screenDnes(): string {
       }" style="margin-top:1.1rem">${shownCycleId() ? 'Celá karta cyklu' : 'Založit cyklus'}</button>
     </section>`,
 
-    `<section class="surface pad rise">
-      <div class="reading${bal.criticalOpen ? '' : ' cool'}">
-        <p class="eyebrow">${bal.criticalOpen ? 'Dnes hlavně tohle' : 'Dnešek'}</p>
-        <p class="soft" style="margin-top:.4rem;line-height:1.7">
-          <strong style="color:var(--fg);font-weight:500">${esc(bal.headline)}</strong> ${esc(bal.detail)}
-        </p>
-      </div>
-    </section>`,
+    /*
+     * Karta „Dnešek“ tady bývala a je pryč.
+     *
+     * Změřeno čtrnácti dny po sobě: měla čtyři různá znění. Obecná věta,
+     * která se opakuje, nedělá aplikaci osobnější, jenom delší. Zbytek
+     * obrazovky, tedy den po transferu, denní téma a úkoly, mluví
+     * o konkrétním dni a to stačí.
+     *
+     * Zvýrazněné varování se ale ztratit nesmí: když je otevřený něco
+     * naléhavého, řekne se to.
+     */
+    bal.criticalOpen
+      ? `<section class="surface pad rise">
+          <div class="reading">
+            <p class="eyebrow">Dnes hlavně tohle</p>
+            <p class="soft" style="margin-top:.4rem;line-height:1.7">
+              <strong style="color:var(--fg);font-weight:500">${esc(bal.headline)}</strong> ${esc(bal.detail)}
+            </p>
+          </div>
+        </section>`
+      : '',
 
     // Zápis a Léky přestaly být záložkami. Na denní použití k nim musí
     // vést cesta odsud, jinak by se injekce odškrtávaly přes rozcestník.

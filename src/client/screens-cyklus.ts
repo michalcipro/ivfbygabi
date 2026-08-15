@@ -36,6 +36,7 @@ import {
 } from '../lib/domain/cycle'
 import { numbersFor } from '../lib/domain/cycle-stats'
 import { reviewClose } from '../lib/domain/cycle-close'
+import { CLOSE_REASON_LABEL } from '../lib/domain/cycle'
 import { nudges } from '../lib/domain/smart-reminders'
 import { embryoTitle, PGT_LABEL, PGT_RESULT_LABEL } from '../lib/domain/embryo'
 import { embryoList } from './screens-ivf'
@@ -998,6 +999,20 @@ function closeCard(c: CycleRow): string {
           </p>`
         : ''
     }
+
+    <div style="margin-top:1.4rem">
+      ${selectField(
+        'closeReason',
+        'Důvod uzavření',
+        [
+          ['', 'Nevyplněno'],
+          ...(Object.entries(CLOSE_REASON_LABEL) as [string, string][]),
+        ],
+        c.closeReason,
+        'Za rok se z karty musí dát přečíst, jestli se embrya vyčerpala, nebo jestli jste se rozhodla dál nepokračovat. To jsou dvě jiné věci.',
+      )}
+      ${areaField('closeNote', 'Vlastní poznámka', c.closeNote, 'Nepovinné. Cokoliv, co si k tomuhle konci chcete zapamatovat.')}
+    </div>
 
     <div class="row wrap" style="gap:.6rem;margin-top:1.3rem">
       <button class="btn" data-act="acc" data-arg="cyklus-vysledek">Doplnit informace</button>

@@ -141,6 +141,34 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
     if (typeof v === 'string' && v.length > 0) vetve.push({ date: v, order: vetve.length, read })
   }
 
+  /*
+   * Zapsaný výsledek přebíjí počítání dní.
+   *
+   * Přidává se jako první větev: při shodě dat rozhoduje pořadí a vyhrává
+   * ta s nižším číslem, tedy pozdější krok v léčbě. Žena, která si
+   * k devátému dni zapsala negativní hCG, není devátý den po transferu.
+   * Je někde jinde a aplikace to nemá zjišťovat přepínačem fáze.
+   */
+  const pridejVysledek = (): void => {
+    const on = profile.outcomeOn
+    const faze = profile.outcomePhase
+    if (!on || !faze) return
+    vetve.push({
+      date: on,
+      order: vetve.length,
+      read: (since) => {
+        if (since < 0) return null
+        // Ztráta si drží vlastní okno v kotvě `lossOn`, tady stačí, že se
+        // výsledek nedrží donekonečna. Po roce už je to historie.
+        return since <= 365 ? (faze as PhaseId) : null
+      },
+    })
+  }
+
+  // Nejdřív ze všech: při shodě dat vyhrává větev s nižším pořadím a zápis
+  // výsledku je to poslední, co se stalo.
+  pridejVysledek()
+
   kotva('lossOn', (since) => {
     if (since >= 0 && since <= 90) {
       if (profile.declaredPhase && PHASES[profile.declaredPhase].group === 'loss') {

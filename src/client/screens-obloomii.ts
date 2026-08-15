@@ -2,7 +2,7 @@ import { esc, note } from './ui'
 import { logoKruh } from './viz'
 
 /**
- * Kdo stojí za BlooMií.
+ * Kdo stojí za aplikací BlooMia.
  *
  * Osobní část aplikace. Není to „o nás“ z firemního webu; je to text ženy,
  * která si IVF prošla, a proto se tu píše v první osobě a bez marketingu.
@@ -24,7 +24,7 @@ export function screenOBlooMii(): string {
   return [
     `<header class="head rise" style="text-align:center">
       ${logoKruh('14rem')}
-      <p class="eyebrow" style="margin-top:2rem">Kdo stojí za BlooMií</p>
+      <p class="eyebrow" style="margin-top:2rem">Kdo stojí za aplikací BlooMia</p>
       <h1 class="display">Ing. Gabriela Černá</h1>
       <p class="lede">BlooMia nevznikla jako další aplikace. Vznikla z vlastní zkušenosti.</p>
       ${ICO ? `<p class="faint" style="margin-top:.9rem;font-size:.8125rem">IČO ${esc(ICO)}</p>` : ''}
@@ -109,39 +109,40 @@ export function screenOBlooMii(): string {
     `<section class="surface pad rise" style="border-color:var(--blush)">
       <p class="eyebrow" style="color:var(--blush-deep)">Vzkaz od Gabriely</p>
       <div class="prose" style="margin-top:.9rem">
-        <p>Jestli právě procházíš IVF, chci, abys věděla jednu věc:</p>
+        <p>Jestli právě procházíte IVF, chci, abyste věděla jednu věc:</p>
 
         <p class="display" style="font-size:1.35rem;line-height:1.45;margin:1.1rem 0">
-          Nemusíš být pořád silná.
+          Nemusíte být pořád silná.
         </p>
 
-        <p>Nemusíš být pozitivní. Nemusíš se tvářit, že to zvládáš. Nemusíš mít
-        radost z každého kroku. A nemusíš nikomu dokazovat, že jsi v pohodě.</p>
+        <p>Nemusíte být pozitivní. Nemusíte se tvářit, že to zvládáte. Nemusíte
+        mít radost z každého kroku. A nemusíte nikomu dokazovat, že jste
+        v pohodě.</p>
 
-        <p>Můžeš doufat a zároveň se bát. Můžeš mít radost a zároveň závidět
-        někomu, komu se to podařilo dřív. Můžeš být unavená. Můžeš mít den, kdy
-        už nechceš řešit vůbec nic.</p>
+        <p>Můžete doufat a zároveň se bát. Můžete mít radost a zároveň závidět
+        někomu, komu se to podařilo dřív. Můžete být unavená. Můžete mít den,
+        kdy už nechcete řešit vůbec nic.</p>
 
         <p>To všechno se do IVF vejde.</p>
 
-        <p>Přeji si, aby ti BlooMia pomohla mít v tom všem alespoň o trochu
-        větší přehled, klid a pocit, že na své cestě nejsi sama.</p>
+        <p>Přeji si, aby vám aplikace BlooMia pomohla mít v tom všem alespoň
+        o trochu větší přehled, klid a pocit, že na své cestě nejste sama.</p>
 
-        <p>Ať už tvoje cesta povede kamkoliv.</p>
+        <p>Ať už vaše cesta povede kamkoliv.</p>
       </div>
     </section>`,
 
     // ------------------------------------------------------- instagram ---
     `<section class="surface pad rise">
-      <p class="eyebrow">Najdeš mě také na Instagramu</p>
+      <p class="eyebrow">Najdete mě také na Instagramu</p>
       <h2 class="display" style="font-size:1.5rem;margin-top:.4rem">@ivf_by_gabi</h2>
       <p class="soft" style="margin-top:.7rem;line-height:1.7;font-size:.9375rem">
         Na Instagramu sdílím další informace ze světa IVF, zkušenosti, tipy,
         praktické věci, psychiku během léčby a také svůj vlastní příběh.
       </p>
       <p class="soft" style="margin-top:.7rem;line-height:1.7;font-size:.9375rem">
-        Pokud chceš BlooMii doplnit o další obsah, najdeš tam další informace
-        a zkušenosti z IVF cesty.
+        Pokud chcete k aplikaci BlooMia další obsah, najdete tam další
+        informace a zkušenosti z IVF cesty.
       </p>
       <a class="btn btn-primary btn-block" style="margin-top:1.3rem"
          href="https://www.instagram.com/ivf_by_gabi/" target="_blank" rel="noopener noreferrer">

@@ -34,6 +34,31 @@ import { addDays, daysBetween, today as todayIso } from './dates'
  * a v aplikaci má vlastní cestu, kdyby se schovaly pod „negativní“,
  * ženě by aplikace tvrdila, že se nic nestalo.
  */
+/**
+ * Proč se cyklus uzavírá.
+ *
+ * Uzavření je konec kapitoly, ne administrativní úkon. Za rok se z karty
+ * musí dát přečíst, jestli se embrya vyčerpala, nebo jestli se žena
+ * rozhodla dál nepokračovat. To jsou dvě úplně jiné věci.
+ */
+export type CloseReason =
+  | ''
+  | 'vsechna_vyuzita'
+  | 'zadna_embrya'
+  | 'nepokracuji'
+  | 'ukoncuji_lecbu'
+  | 'pokracuji_jinde'
+  | 'jine'
+
+export const CLOSE_REASON_LABEL: Record<Exclude<CloseReason, ''>, string> = {
+  vsechna_vyuzita: 'Všechna embrya byla využita',
+  zadna_embrya: 'Embrya již nejsou k dispozici',
+  nepokracuji: 'Pokračování léčby již neplánuji',
+  ukoncuji_lecbu: 'Léčbu ukončuji',
+  pokracuji_jinde: 'Pokračuji jinde',
+  jine: 'Jiný důvod',
+}
+
 export type CycleOutcome =
   | 'probiha'
   | 'tehotenstvi'
@@ -480,6 +505,10 @@ export interface CycleRow {
   note: string
   /** Fotky k výsledku. Propouštěcí zpráva, závěr, cokoli. */
   resultPhotos: PhotoRef[]
+  /** Proč se cyklus uzavřel. Prázdné, dokud uzavřený není. */
+  closeReason: CloseReason
+  /** Vlastní vysvětlení k důvodu. */
+  closeNote: string
 }
 
 export function emptyCycle(id: string, number: number, startedOn: IsoDate): CycleRow {
@@ -522,6 +551,8 @@ export function emptyCycle(id: string, number: number, startedOn: IsoDate): Cycl
     outcome: 'probiha',
     note: '',
     resultPhotos: [],
+    closeReason: '',
+    closeNote: '',
   }
 }
 
