@@ -2108,6 +2108,30 @@ h1, h2, h3, h4, .display { hyphens: none; }
 }
 
 /* ==========================================================================
+   Zamykací obrazovka
+
+   Kreslí se místo aplikace, ne přes ni. Průhledná vrstva by nechala obsah
+   přečíst i zamčený, což je přesně to, čemu má zámek bránit.
+   ========================================================================== */
+
+.zamek {
+  min-height: 100dvh;
+  display: grid; place-items: center;
+  padding: 2rem 1.25rem;
+  background: var(--page);
+}
+.zamek-blok {
+  width: 100%; max-width: 20rem; text-align: center;
+  display: grid; justify-items: center;
+}
+.zamek-form { width: 100%; margin-top: 1.6rem; text-align: left; }
+.zamek-form .field { text-align: center; letter-spacing: .5em; font-size: 1.25rem; }
+.zamek-chyba {
+  margin: .7rem 0 0; font-size: .875rem; color: var(--accent-deep);
+  text-align: center;
+}
+
+/* ==========================================================================
    Čitelnost nadpisů na telefonu
 
    Patkové písmo má tenčí vodorovné tahy než svislé. Ve velkém nadpisu je

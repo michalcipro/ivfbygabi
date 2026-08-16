@@ -220,7 +220,9 @@ export function allPhotos(): Record<string, string> {
  */
 export async function replacePhotos(next: Record<string, string>): Promise<boolean> {
   cache.clear()
-  for (const [id, dataUri] of Object.entries(next)) cache.set(id, dataUri)
+  for (const [id, dataUri] of Object.entries(next)) {
+    if (jeObrazek(dataUri)) cache.set(id, dataUri)
+  }
 
   if (!db) return false
   return new Promise<boolean>((resolve) => {
@@ -229,7 +231,7 @@ export async function replacePhotos(next: Record<string, string>): Promise<boole
       const store = tx.objectStore(STORE)
       store.clear()
       const dnes = new Date().toISOString().slice(0, 10)
-      for (const [id, dataUri] of Object.entries(next)) {
+      for (const [id, dataUri] of cache) {
         store.put({ id, name: 'fotka.jpg', addedOn: dnes, data: dataUri })
       }
       tx.oncomplete = () => resolve(true)
@@ -238,6 +240,42 @@ export async function replacePhotos(next: Record<string, string>): Promise<boole
     } catch {
       persist = false
       resolve(false)
+    }
+  })
+}
+
+/**
+ * Je to opravdu obrázek?
+ *
+ * Ze zálohy může přijít cokoliv: cizí soubor, poškozený zápis, text. Bez
+ * téhle kontroly se to uloží do databáze a při další záloze vyexportuje
+ * dál. Prohlížeč sice z `<img>` nic cizího nespustí, ale nafouknout
+ * úložiště nebo propašovat text ven se dá.
+ */
+function jeObrazek(v: unknown): v is string {
+  return typeof v === 'string' && /^data:image\/(jpeg|png|webp|gif);base64,[A-Za-z0-9+/=]+$/.test(v)
+}
+
+/**
+ * Smaže všechny fotky, z paměti i z databáze.
+ *
+ * Volá se při „Smazat všechno“. Bez toho zůstávaly fotky v IndexedDB ležet
+ * i po tom, co uživatelka potvrdila dialog slibující, že všechno zmizí.
+ * Tlačítko, které lže o výmazu zdravotních fotografií, je horší než žádné
+ * tlačítko.
+ */
+export async function wipePhotos(): Promise<void> {
+  cache.clear()
+  if (!db) return
+  await new Promise<void>((resolve) => {
+    try {
+      const tx = db!.transaction(STORE, 'readwrite')
+      tx.objectStore(STORE).clear()
+      tx.oncomplete = () => resolve()
+      tx.onerror = () => resolve()
+      tx.onabort = () => resolve()
+    } catch {
+      resolve()
     }
   })
 }

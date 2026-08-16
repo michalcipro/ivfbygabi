@@ -1,15 +1,17 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import {
+  VERZE,
+  ZNACKA,
   backupName,
   backupReminder,
+  lockedBackup,
+  lockedEnvelope,
   makeBackup,
   neniPrazdna,
   problemText,
   readBackup,
   shrnuti,
-  VERZE,
-  ZNACKA,
 } from '../src/lib/domain/backup'
 
 /**
@@ -217,4 +219,29 @@ test('záloha z budoucnosti nedělá záporné dny', () => {
   const r = backupReminder({ ...zaklad, lastBackupOn: '2026-09-01' })
   assert.equal(r.dni, 0)
   assert.equal(r.level, 'zadna')
+})
+
+/*
+ * Zamčená záloha.
+ *
+ * Doména šifru neumí, umí jen poznat, že je soubor zavřený, a vytáhnout
+ * z něj kusy pro klienta. Právě tenhle rozdíl se snadno rozbije, takže ho
+ * hlídá test: zamčený soubor se nesmí tvářit jako cizí.
+ */
+test('zamčená záloha se pozná a rozebere', () => {
+  const zamek = { sul: 'c3VsLXRlc3Q=', iv: 'aXYtdGVzdA==', data: 'ZGF0YS10ZXN0' }
+  const soubor = lockedEnvelope(zamek, '2026-08-16')
+
+  assert.deepEqual(lockedBackup(soubor), zamek)
+
+  const bezna = JSON.stringify(makeBackup({ v: 1 }, {}, '2026-08-16'))
+  assert.equal(lockedBackup(bezna), null)
+
+  assert.equal(lockedBackup('{{{'), null)
+  assert.equal(lockedBackup('{"bloomia":"bloomia-zaloha","sifrovana":true}'), null)
+})
+
+test('zamčená záloha se nedá přečíst bez odemčení', () => {
+  const soubor = lockedEnvelope({ sul: 'a', iv: 'b', data: 'c' }, '2026-08-16')
+  assert.equal(readBackup(soubor).ok, false)
 })

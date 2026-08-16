@@ -399,6 +399,15 @@ export interface Save {
   dayOffset: number
   seenTour: boolean
   /**
+   * Zámek aplikace.
+   *
+   * Kód se neukládá, ukládá se jeho otisk a sůl. Zámek **nešifruje data**:
+   * chrání před tím, kdo vezme odemčený telefon, ne před tím, kdo umí
+   * otevřít vývojářské nástroje. Šifrovat by znamenalo, že zapomenutý kód
+   * je konec deníku, a to je horší riziko než pohled přes rameno.
+   */
+  lock: { on: boolean; sul: string; otisk: string }
+  /**
    * Rozepsaný název léku z číselníku.
    *
    * Výběr ze seznamu překreslí formulář, aby se předvyplnila forma a
@@ -454,6 +463,7 @@ function blank(): Save {
     eventState: {},
     posts: [],
     subscription: { active: false, since: null },
+    lock: { on: false, sul: '', otisk: '' },
     // Lis je papírový směr. Světlý režim je ten hlavní. `auto` znamená
     // „podle zařízení“; kdo si přepne ručně, tomu se volba nepřepisuje.
     theme: 'auto',
@@ -467,12 +477,38 @@ function blank(): Save {
 
 let data: Save = blank()
 
+/**
+ * Propustí jen klíče, které aplikace zná a které mají správný druh hodnoty.
+ *
+ * ------------------------------------------------------------- PROČ TADY ---
+ * Tahle kontrola byla dřív jen u obnovy ze zálohy. Vlastní úložiště se
+ * bralo, jak přišlo, a to je horší riziko: kdyby jediné pole nemělo
+ * očekávaný typ, `migrate()` na něm spadne (třeba `d.meds.map`), výjimku
+ * chytí `catch`, aplikace nastartuje prázdná a první uložení přepíše
+ * skutečný deník prázdnem.
+ *
+ * Aplikace byla přísnější k cizímu souboru než k vlastním datům. Teď je
+ * stejně přísná k obojímu: co nesedí, nahradí se výchozí hodnotou, zbytek
+ * deníku zůstane. Přijít o jednu kolonku je vždycky lepší než o všechno.
+ */
+function projdiTvarem(parsed: Record<string, unknown>): Save {
+  const vychozi = blank() as unknown as Record<string, unknown>
+  const out: Record<string, unknown> = { ...vychozi }
+  for (const klic of Object.keys(vychozi)) {
+    if (!(klic in parsed)) continue
+    if (sedi(vychozi[klic], parsed[klic])) out[klic] = parsed[klic]
+  }
+  return out as unknown as Save
+}
+
 export function load(): Save {
   try {
     const raw = localStorage.getItem(KEY)
     if (raw) {
-      const parsed = JSON.parse(raw) as Save
-      if (parsed && parsed.v === 1) data = migrate({ ...blank(), ...parsed })
+      const parsed = JSON.parse(raw) as unknown
+      if (parsed && typeof parsed === 'object' && (parsed as Save).v === 1) {
+        data = migrate(projdiTvarem(parsed as Record<string, unknown>))
+      }
     }
   } catch {
     // Poškozený nebo nedostupný localStorage nesmí aplikaci shodit.
@@ -547,6 +583,7 @@ function migrate(d: Save): Save {
   d.clinic = { ...emptyClinic(), ...(d.clinic ?? {}) }
   d.story = (d.story ?? []).map((r) => ({ ...r, mood: r.mood ?? null, photos: r.photos ?? [] }))
   d.subscription = d.subscription ?? { active: false, since: null }
+  d.lock = d.lock ?? { on: false, sul: '', otisk: '' }
 
   return d
 }
@@ -742,6 +779,27 @@ export function uid(prefix: string): string {
 export function newProfile(): Profile {
   const now = new Date().toISOString()
   return emptyProfile('local', 'local', now)
+}
+
+/** Je zámek zapnutý? */
+export function lockOn(): boolean {
+  return Boolean(data.lock?.on && data.lock.otisk)
+}
+
+export function lockData(): { sul: string; otisk: string } {
+  return { sul: data.lock?.sul ?? '', otisk: data.lock?.otisk ?? '' }
+}
+
+export function setLock(sul: string, otisk: string): void {
+  patch((d) => {
+    d.lock = { on: true, sul, otisk }
+  })
+}
+
+export function clearLock(): void {
+  patch((d) => {
+    d.lock = { on: false, sul: '', otisk: '' }
+  })
 }
 
 export function isOnboarded(): boolean {

@@ -65,6 +65,19 @@ export interface BackupSummary {
 
 export type BackupProblem = 'nejde-precist' | 'neni-zaloha' | 'novejsi-verze' | 'prazdna'
 
+/**
+ * Zamčená obálka. Uvnitř je zašifrovaný text zálohy.
+ *
+ * Doména šifru neumí a umět nemá: `crypto.subtle` je věc prohlížeče.
+ * Tady se jen pozná, že je soubor zamčený, a vytáhnou se z něj kusy,
+ * které klient potřebuje k odemčení.
+ */
+export interface BackupLocked {
+  sul: string
+  iv: string
+  data: string
+}
+
 export type BackupRead =
   | {
       ok: true
@@ -75,6 +88,31 @@ export type BackupRead =
   | { ok: false; problem: BackupProblem }
 
 /** Věta k problému. Vysvětluje, co se stalo a co s tím, ne kód chyby. */
+/** Je to zamčená záloha? Vrací obsah zámku, jinak `null`. */
+export function lockedBackup(text: string): BackupLocked | null {
+  let raw: unknown
+  try {
+    raw = JSON.parse(text)
+  } catch {
+    return null
+  }
+  if (!jeObjekt(raw) || raw.bloomia !== ZNACKA || raw.sifrovana !== true) return null
+  const z = raw.zamek
+  if (!jeObjekt(z)) return null
+  const { sul, iv, data } = z
+  if (typeof sul !== 'string' || typeof iv !== 'string' || typeof data !== 'string') return null
+  return { sul, iv, data }
+}
+
+/** Obálka zamčené zálohy. Vlastní šifrování dodá klient. */
+export function lockedEnvelope(zamek: BackupLocked, vznikla: string): string {
+  return JSON.stringify(
+    { bloomia: ZNACKA, verze: VERZE, sifrovana: true, vznikla, zamek },
+    null,
+    0,
+  )
+}
+
 export function problemText(p: BackupProblem): string {
   switch (p) {
     case 'nejde-precist':

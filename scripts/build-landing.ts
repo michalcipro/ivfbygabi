@@ -61,7 +61,7 @@ function main() {
   try {
     for (const name of readdirSync(pubDir)) {
       if (statSync(join(pubDir, name)).isDirectory()) continue
-      if (!/^(icon|apple-touch-icon|favicon|og)/.test(name)) continue
+      if (!/^(icon|apple-touch-icon|favicon|og|robots|sitemap)/.test(name)) continue
       copyFileSync(join(pubDir, name), join(OUT, name))
       ikon++
     }

@@ -36,8 +36,17 @@ import {
   pickImages,
   removePhoto,
   replacePhotos,
+  wipePhotos,
 } from './photos'
-import { backupName, backupReminder, makeBackup, readBackup, type BackupRead } from '../lib/domain/backup'
+import {
+  backupName,
+  backupReminder,
+  lockedBackup,
+  lockedEnvelope,
+  makeBackup,
+  readBackup,
+  type BackupRead,
+} from '../lib/domain/backup'
 import { prectiText, ulozZalohu, vyberZalohu } from './backup-file'
 import { naPlose, pozadatOTrvale, stavUloziste } from './storage-health'
 import { emptyZaloha, screenZaloha } from './screens-zaloha'
@@ -144,6 +153,8 @@ import { hydrateCharts, wordmark } from './viz'
 import { quickButton, quickSheet } from './quick-add'
 import { currentReport, openReport } from './report-print'
 import { screenOBlooMii } from './screens-obloomii'
+import { jeZamceno, nastavKod, screenZamek, zapomenutyKod, zkusOdemknout, zrusKod } from './zamek'
+import { kryptoJe, odsifruj, zasifruj } from './krypto'
 import { screenNapisteMi } from './screens-napiste'
 import { emptyFeedback, hasContent, type FeedbackTopic } from '../lib/domain/feedback'
 import { sendFeedback } from './feedback-send'
@@ -677,6 +688,16 @@ function render(): void {
     return
   }
 
+  // Zámek se kreslí místo celé aplikace, ne přes ni. Přes průhlednou
+  // vrstvu by šel obsah přečíst i zamčený.
+  if (jeZamceno()) {
+    app.innerHTML = screenZamek()
+    window.scrollTo(0, 0)
+    const pole = document.getElementById('lock-kod')
+    if (pole instanceof HTMLInputElement) pole.focus()
+    return
+  }
+
   const route = currentRoute()
   const state = journey()
   const p = profile()
@@ -1140,11 +1161,53 @@ function nactiStavUloziste(): void {
  * aplikace by přestala připomínat zálohu, kterou žena ve skutečnosti
  * nemá.
  */
-function ulozitZalohu(): void {
+/**
+ * Uloží zálohu, volitelně zamčenou heslem.
+ *
+ * Soubor obsahuje úplně všechno včetně fotek a končí ve složce Stažené,
+ * kterou telefony běžně synchronizují do cloudu. Heslo je proto nabídnuté,
+ * ne vnucené: kdo ho zadá, chrání soubor, kdo ne, má zálohu tak jako dřív.
+ *
+ * Zapomenuté heslo znamená, že soubor neotevře nikdo. Musí to zaznít
+ * předem, ne až potom.
+ */
+function ulozitZalohu(zamknout = false): void {
   const dnes = realToday()
   // Bez odsazení: soubor s fotkami je i tak velký a na telefonu se to pozná.
-  const text = JSON.stringify(makeBackup(snapshot(), allPhotos(), dnes))
+  const holy = JSON.stringify(makeBackup(snapshot(), allPhotos(), dnes))
 
+  if (zamknout) {
+    if (!kryptoJe()) {
+      view.zaloha.hlaska = 'Tenhle prohlížeč šifrování neumí. Uložte zálohu bez hesla.'
+      renderInPlace()
+      return
+    }
+    const heslo = prompt(
+      'Heslo pro zálohu.\n\nBez něj soubor neotevře nikdo, ani vy. Zapište si ho někam, kde ho najdete.',
+    )
+    if (heslo === null) return
+    if (heslo.length < 6) {
+      view.zaloha.hlaska = 'Heslo musí mít alespoň šest znaků.'
+      renderInPlace()
+      return
+    }
+    const znovu = prompt('Heslo ještě jednou:')
+    if (znovu === null) return
+    if (heslo !== znovu) {
+      view.zaloha.hlaska = 'Hesla se neshodují. Zkuste to prosím znovu.'
+      renderInPlace()
+      return
+    }
+    void zasifruj(holy, heslo).then((zamek) => {
+      dokoncitUlozeni(lockedEnvelope(zamek, dnes), dnes, true)
+    })
+    return
+  }
+
+  dokoncitUlozeni(holy, dnes, false)
+}
+
+function dokoncitUlozeni(text: string, dnes: string, zamcena: boolean): void {
   void ulozZalohu(text, backupName(dnes)).then((v) => {
     if (v === 'zruseno') {
       view.zaloha.hlaska = ''
@@ -1153,10 +1216,13 @@ function ulozitZalohu(): void {
         'Soubor se nepodařilo uložit. Zkuste to prosím znovu, nebo aplikaci otevřete v jiném prohlížeči.'
     } else {
       markBackedUp(dnes)
-      view.zaloha.hlaska =
+      const kde =
         v === 'sdileno'
           ? 'Záloha je hotová. Uložte si ji někam, kde ji najdete i z jiného zařízení.'
           : 'Záloha se stáhla. Najdete ji mezi staženými soubory.'
+      view.zaloha.hlaska = zamcena
+        ? `${kde} Je zamčená heslem, bez něj ji neotevřete ani vy.`
+        : kde
     }
     renderInPlace()
   })
@@ -1167,7 +1233,26 @@ function nacistZalohu(): void {
   void (async () => {
     const soubor = await vyberZalohu()
     if (!soubor) return
-    const text = await prectiText(soubor)
+    let text = await prectiText(soubor)
+
+    /*
+     * Zamčená záloha se pozná dřív, než se ji aplikace pokusí přečíst.
+     * Bez toho by hlásila „tohle není záloha“, což je matoucí: záloha to
+     * je, jen je zavřená.
+     */
+    const zamek = text === null ? null : lockedBackup(text)
+    if (zamek) {
+      const heslo = prompt('Tahle záloha je zamčená heslem.\n\nZadejte heslo:')
+      if (heslo === null) return
+      text = await odsifruj(zamek, heslo)
+      if (text === null) {
+        view.zaloha.navrh = null
+        view.zaloha.hlaska = 'Heslo nesedí, nebo je soubor poškozený. Data se nezměnila.'
+        renderInPlace()
+        return
+      }
+    }
+
     const vysledek: BackupRead =
       text === null ? { ok: false, problem: 'nejde-precist' } : readBackup(text)
     view.zaloha.navrh = vysledek
@@ -1190,7 +1275,14 @@ function potvrditObnovu(): void {
 
   void (async () => {
     replaceAll(n.data)
-    const fotkyOk = kolikFotek === 0 ? true : await replacePhotos(n.photos)
+    /*
+     * Vyčistit se musí vždycky, i když záloha žádné fotky nemá.
+     *
+     * Dřív se při prázdné záloze `replacePhotos` vůbec nezavolala, takže
+     * v zařízení zůstaly snímky z předchozích dat. Na sdíleném tabletu to
+     * znamenalo, že se cizí fotky vyexportovaly do další zálohy.
+     */
+    const fotkyOk = await replacePhotos(n.photos)
 
     view.zaloha.navrh = null
     view.zaloha.hlaska = fotkyOk
@@ -1465,6 +1557,24 @@ function action(act: string, argValue: string): void {
 
   if (!isOnboarded()) {
     if (onboardingAction(act, argValue)) render()
+    return
+  }
+
+  /*
+   * Zamčená aplikace přijímá jen dvě akce: zadání kódu a přiznání, že ho
+   * uživatelka nezná. Kdyby sem propadlo cokoliv dalšího, dal by se zámek
+   * obejít klepnutím na prvek, který zůstal v paměti stránky.
+   */
+  if (jeZamceno()) {
+    if (act === 'lock-try') {
+      const pole = document.getElementById('lock-kod')
+      const kod = pole instanceof HTMLInputElement ? pole.value : ''
+      void zkusOdemknout(kod).then(() => render())
+    }
+    if (act === 'lock-forgot' && confirm(zapomenutyKod())) {
+      zrusKod()
+      render()
+    }
     return
   }
 
@@ -2580,9 +2690,46 @@ function action(act: string, argValue: string): void {
         d.weights = {}
       })
       break
+    // --- zámek ------------------------------------------------------------
+    case 'lock-on':
+    case 'lock-change': {
+      const kod = prompt(
+        act === 'lock-change'
+          ? 'Nový kód (čtyři až osm číslic):'
+          : 'Zvolte kód (čtyři až osm číslic). Aplikace se na něj bude ptát po každém otevření:',
+      )
+      if (kod === null) return
+      const znovu = prompt('Zadejte kód ještě jednou:')
+      if (znovu === null) return
+      if (kod !== znovu) {
+        toast('Kódy se neshodují. Zkuste to prosím znovu.')
+        return
+      }
+      void nastavKod(kod).then((chyba) => {
+        toast(chyba ?? 'Zámek je zapnutý. Aplikace se na kód zeptá po každém otevření.')
+        render()
+      })
+      return
+    }
+    case 'lock-off':
+      if (!confirm('Opravdu vypnout zámek? Aplikace se pak už na kód ptát nebude.')) return
+      zrusKod()
+      toast('Zámek vypnutý.')
+      break
+
     case 'wipe':
-      if (!confirm('Opravdu smazat všechno? Profil, deník, hodnoty i dopisy zmizí a začnete znovu.')) return
+      if (
+        !confirm(
+          'Opravdu smazat všechno? Profil, deník, hodnoty, dopisy i nahrané fotky zmizí a začnete znovu.',
+        )
+      ) {
+        return
+      }
       reset()
+      // Fotky leží v IndexedDB, ne v localStorage, takže je `reset()` sám
+      // nesmaže. Bez tohohle řádku zůstávaly v zařízení i po tom, co
+      // uživatelka potvrdila výmaz.
+      void wipePhotos().then(() => render())
       location.hash = '#/dnes'
       applyTheme()
       break
@@ -2641,7 +2788,10 @@ function action(act: string, argValue: string): void {
     // Fotky žijí mimo `S.d`, v IndexedDB. Do zálohy i z ní se přenášejí
     // zvlášť. Bez nich by soubor tvrdil, že je kompletní, a nebyl by.
     case 'zaloha-ulozit':
-      ulozitZalohu()
+      ulozitZalohu(false)
+      return
+    case 'zaloha-ulozit-heslo':
+      ulozitZalohu(true)
       return
     case 'zaloha-nacist':
       nacistZalohu()
@@ -2778,6 +2928,20 @@ document.addEventListener('click', (ev) => {
   if (target.tagName === 'SELECT' || target.tagName === 'INPUT') return
   ev.preventDefault()
   action(act, target.dataset.arg ?? '')
+})
+
+/*
+ * Formulář s `data-act` reaguje i na Enter.
+ *
+ * Klik na tlačítko projde delegací výš, ale Enter v poli odešle formulář
+ * bez kliknutí a stránka by se znovu načetla. U zamykací obrazovky by to
+ * znamenalo, že kód zadaný z klávesnice nefunguje.
+ */
+document.addEventListener('submit', (ev) => {
+  const form = (ev.target as HTMLElement | null)?.closest<HTMLElement>('form[data-act]')
+  if (!form) return
+  ev.preventDefault()
+  action(form.dataset.act ?? '', form.dataset.arg ?? '')
 })
 
 document.addEventListener('change', (ev) => {

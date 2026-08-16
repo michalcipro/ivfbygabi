@@ -146,7 +146,16 @@ function zalohaBlok(lastBackupOn: IsoDate | null, r: Reminder, hlaska: string): 
     Nikam se neodesílá sám.</p>
     ${kdy}
     ${r.level !== 'zadna' ? note(pripominkaText(r)) : ''}
-    <button class="btn btn-primary" data-act="zaloha-ulozit" style="margin-top:1.1rem">Uložit zálohu</button>
+    <div class="row wrap" style="gap:.6rem;margin-top:1.1rem">
+      <button class="btn btn-primary" data-act="zaloha-ulozit">Uložit zálohu</button>
+      <button class="btn" data-act="zaloha-ulozit-heslo">Uložit a zamknout heslem</button>
+    </div>
+    <p class="faint" style="margin-top:.9rem;font-size:.8125rem;line-height:1.6">
+      Soubor je čitelný text a obsahuje úplně všechno, včetně fotek. Složka
+      Stažené se navíc na telefonu často sama synchronizuje do cloudu. Když
+      zálohu zamknete heslem, neotevře ji nikdo, ani vy: heslo se nikam
+      neukládá a nedá se obnovit.
+    </p>
     ${hlaska ? `<p class="soft" style="margin-top:.9rem;line-height:1.7">${esc(hlaska)}</p>` : ''}
   </section>`
 }

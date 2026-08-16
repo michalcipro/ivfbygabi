@@ -1,0 +1,10 @@
+# BlooMia
+#
+# Prodejní stránka a právní dokumenty se indexovat mají. Samotná aplikace
+# ne: je to nástroj pro přihlášenou uživatelku, ne článek k přečtení,
+# a celý obsah katalogu by se z ní dal sklidit jedním průchodem.
+
+User-agent: *
+Disallow: /app/
+
+Sitemap: https://mybloomia.com/sitemap.xml

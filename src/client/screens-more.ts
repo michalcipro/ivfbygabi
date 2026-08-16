@@ -981,6 +981,34 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
       </p>
     </section>`,
 
+    // Zámek. Nejpravděpodobnější únik u téhle aplikace není útočník, ale
+    // někdo blízký s odemčeným telefonem v ruce.
+    `<section class="surface pad">
+      <p class="eyebrow">Zámek aplikace</p>
+      <p class="soft" style="margin-top:.6rem;font-size:.9375rem;line-height:1.65">
+        ${
+          S.d.lock?.on
+            ? 'Aplikace se po každém otevření zeptá na kód.'
+            : 'Aplikace se neptá na nic. Kdo vezme odemčený telefon, uvidí celý deník.'
+        }
+      </p>
+      ${
+        S.d.lock?.on
+          ? `<div class="row wrap" style="gap:.6rem;margin-top:1.1rem">
+              <button class="btn btn-sm" data-act="lock-change">Změnit kód</button>
+              <button class="btn btn-sm" data-act="lock-off" style="border-color:var(--blush)">Vypnout zámek</button>
+            </div>`
+          : `<div class="row wrap" style="gap:.6rem;margin-top:1.1rem">
+              <button class="btn btn-primary btn-sm" data-act="lock-on">Nastavit kód</button>
+            </div>`
+      }
+      <p class="faint" style="margin-top:.9rem;font-size:.8125rem;line-height:1.6">
+        Kód chrání před pohledem přes rameno, ne před tím, kdo umí otevřít
+        vývojářské nástroje prohlížeče. Data se jím nešifrují, takže
+        zapomenutý kód neznamená ztrátu deníku.
+      </p>
+    </section>`,
+
     `<section class="surface pad">
       <p class="eyebrow">Vaše data</p>
       <p class="soft" style="margin-top:.6rem;font-size:.9375rem;line-height:1.65">Všechno, co jste zapsala (profil, deník, hodnoty, dopisy) je uložené jen v tomhle prohlížeči. Nikam se to neodesílá.</p>
