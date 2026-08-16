@@ -63,11 +63,38 @@ export interface JourneyState {
   journeyDays: number | null
 }
 
-/** Datum kotvy pro danou fázi. */
+/**
+ * Datum, od kterého se ve fázi počítají dny.
+ *
+ * ------------------------------------------------- PROČ TU JE DRUHÁ VĚTEV ---
+ * Sedm fází nemá vlastní kotevní pole v profilu: příprava těla, příprava na
+ * IVF, čekání na další pokus, opakované neúspěchy, genetická vyšetření,
+ * revize dělohy a přemýšlení o dítěti. U nich se dřív vracelo `null`, takže
+ * `dayInPhase` bylo napořád nula.
+ *
+ * Důsledek nebyl kosmetický. Karta s `day: 1` nebo s rozsahem `[8, 20]` se
+ * v takové fázi nemohla trefit nikdy. Změřeno: 27 už napsaných denních
+ * karet se nikdy nezobrazilo, protože jejich fáze den nepočítala. Obsah byl
+ * napsaný, zaplacený časem a ležel v souboru bez šance se ukázat.
+ *
+ * Datum se proto bere z nejlepšího, co o začátku fáze víme:
+ * 1. den, kdy si uživatelka tuhle fázi sama zvolila,
+ * 2. jinak den, kdy zapsala výsledek, ze kterého fáze vyšla,
+ * 3. jinak nic a den zůstane nula jako dřív.
+ *
+ * Nic se nedomýšlí. Když aplikace neví, kdy fáze začala, tváří se tak.
+ */
 function anchorValue(profile: Profile, phase: PhaseDefinition): IsoDate | null {
-  if (!phase.anchor) return null
-  const v = profile[phase.anchor]
-  return typeof v === 'string' && v.length > 0 ? v : null
+  if (phase.anchor) {
+    const v = profile[phase.anchor]
+    return typeof v === 'string' && v.length > 0 ? v : null
+  }
+
+  if (profile.declaredPhase === phase.id && profile.phaseDeclaredOn) {
+    return profile.phaseDeclaredOn
+  }
+  if (profile.outcomeOn) return profile.outcomeOn
+  return null
 }
 
 /**
