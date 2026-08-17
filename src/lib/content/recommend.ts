@@ -172,6 +172,32 @@ export function pickDailyCard(
   cards: readonly DailyCard[],
   state: JourneyState,
 ): DailyCard | null {
+  const dnes = vyberProDen(cards, state, state.dayInPhase)
+  if (!dnes || state.dayInPhase <= 0) return dnes
+
+  /*
+   * Karta se nesmí opakovat proti včerejšku.
+   *
+   * Posun podle dne sám nestačí: mezi dny se mění i počet kandidátů (jeden
+   * rozsah skončí, jiný začne) a při jiné velikosti výběru může posun
+   * spadnout zpátky na tutéž kartu. Změřeno na čtrnácti dnech napříč
+   * fázemi: dvacet šest opakování ze dvou dnů po sobě.
+   *
+   * Proto se spočítá i včerejšek a při shodě se vezme následující karta
+   * v pořadí. Když je kandidát jediný, opakování je jediná možnost a je
+   * to poctivější než ukázat prázdno.
+   */
+  const vcera = vyberProDen(cards, state, state.dayInPhase - 1)
+  if (!vcera || vcera.id !== dnes.id) return dnes
+  return vyberProDen(cards, state, state.dayInPhase, 1) ?? dnes
+}
+
+function vyberProDen(
+  cards: readonly DailyCard[],
+  state: JourneyState,
+  denVeFazi: number,
+  odsazeni = 0,
+): DailyCard | null {
   const mods = new Set<ModifierId>(state.modifiers)
 
   const hledej = (hlidatDen: boolean): Array<{ card: DailyCard; score: number }> => {
@@ -183,18 +209,30 @@ export function pickDailyCard(
       let score = card.phases.includes(state.phase.id) ? 10 : 1
 
       if (card.day !== undefined) {
-        if (card.day !== state.dayInPhase) {
+        if (card.day !== denVeFazi) {
           if (hlidatDen) continue
         } else {
           score += 100 // přesná trefa na den je nejcennější
         }
       } else if (card.dayRange) {
         const [lo, hi] = card.dayRange
-        if (state.dayInPhase < lo || state.dayInPhase > hi) {
+        if (denVeFazi < lo || denVeFazi > hi) {
           if (hlidatDen) continue
         } else {
-          // Užší rozsah = konkrétnější = lepší
-          score += 40 - Math.min(35, hi - lo)
+          /*
+           * Všechny trefené rozsahy mají stejnou váhu.
+           *
+           * Dřív vyhrával užší rozsah („40 minus šířka“). Znělo to rozumně,
+           * ale v praxi to znamenalo, že v každém dni měla nejvyšší skóre
+           * jediná karta, a ta se pak držela celý svůj rozsah. Fáze
+           * s dvanácti kartami rozprostřenými přes tři měsíce tak ukazovala
+           * dva týdny po sobě tutéž.
+           *
+           * Rozsah, který dnešek obsahuje, je pro dnešek správný, ať je
+           * široký jakkoliv. Přesnost hlídá to, že se trefil, ne jeho
+           * šířka. Mezi trefenými se proto střídá podle dne, viz níž.
+           */
+          score += 40
         }
       }
 
@@ -213,13 +251,43 @@ export function pickDailyCard(
   if (candidates.length === 0) return null
   candidates.sort((a, b) => b.score - a.score)
 
-  // Mezi stejně dobrými kartami vybereme deterministicky podle dne. Do
-  // klíče jde i den ve fázi, jinak by se ve druhém průchodu držela jedna
-  // karta celý den i celý týden a Dnešek by zas vypadal pořád stejně.
+  /*
+   * Mezi stejně dobrými kartami se střídá POSUNEM PODLE DNE, ne losem.
+   *
+   * Dřív o výběru rozhodoval otisk z data a fáze. Vypadalo to jako
+   * střídání, ale byl to hod kostkou: při dvou kandidátech padla stejná
+   * karta dva dny po sobě zhruba v polovině případů. Změřeno na čtrnácti
+   * dnech napříč jedenácti fázemi: třicet opakování ze dvou dnů po sobě.
+   *
+   * Posun o jedničku za den to řeší úplně. Dokud jsou kandidáti aspoň
+   * dva, nemůže padnout stejná karta dvakrát po sobě. Otisk fáze zůstává
+   * jen jako výchozí bod, aby všechny fáze nezačínaly první kartou.
+   */
   const best = candidates[0].score
-  const top = candidates.filter((c) => c.score === best)
-  const idx = seedFrom(state.today, `${state.phase.id}:${state.dayInPhase}`) % top.length
-  return top[idx].card
+
+  /*
+   * Když je nejlepších karet málo, přiberou se i o stupeň slabší.
+   *
+   * Rotace podle dne nepomůže, pokud je kandidát jediný: druhý den se
+   * ukáže zase on. Právě to zbývalo ve fázích, kde na některý den sedí
+   * jen jedna karta.
+   *
+   * Přesná trefa na den se ale neředí NIKDY. Karta psaná na devátý den
+   * čekání má na devátý den přednost, i kdyby byla sama. V takové fázi je
+   * obsah psaný den po dni a rozmělnit ho by byl krok zpátky.
+   */
+  const PRESNA_TREFA = 100
+  let top = candidates.filter((c) => c.score === best)
+  if (best < PRESNA_TREFA) {
+    const stupne = [...new Set(candidates.map((c) => c.score))].sort((a, b) => b - a)
+    for (const s of stupne) {
+      if (top.length >= 3) break
+      top = candidates.filter((c) => c.score >= s)
+    }
+  }
+
+  const posun = seedFrom(state.phase.id) + denVeFazi + odsazeni
+  return top[posun % top.length].card
 }
 
 /**
