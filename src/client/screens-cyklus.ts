@@ -246,10 +246,15 @@ function sectionKeys(c: CycleRow): Record<string, string[]> {
     'cyklus-embrya': [],
     'cyklus-metody': ['methodsNote'],
     'cyklus-transfery': trKeys,
-    // Výsledek každého transferu se vyplňuje tady, ne u transferu samotného.
-    // zapisuje se o týdny později a patří k tomu, jak cyklus dopadl.
+    /*
+     * Výsledek transferu patří k transferu.
+     *
+     * Dřív se vyplňoval až v sekci Výsledek, s odůvodněním, že přichází
+     * o týdny později. Jenže právě tenhle zápis přepíná celou aplikaci
+     * a žena ho hledá tam, kde transfer zapsala. V sekci nazvané Výsledek
+     * čeká, jak dopadl celý cyklus, ne jednotlivý přenos.
+     */
     'cyklus-vysledek': [
-      ...c.transfers.map((t) => `tr.${t.id}.outcome`),
       ...hcgKeys,
       'outcome',
       'endedOn',
@@ -565,6 +570,15 @@ function transferBlock(c: CycleRow, t: CycleTransfer, i: number, v: Record<strin
       ${selectField(k('kind'), 'Druh transferu', Object.entries(TRANSFER_KIND_LABEL) as [string, string][], v[k('kind')] ?? 'cerstvy')}
       ${dateField(k('date'), 'Datum transferu', v[k('date')] ?? '')}
     </div>
+    <div style="margin-top:1.1rem">
+      ${selectField(
+        k('outcome'),
+        'Jak transfer dopadl',
+        Object.entries(TRANSFER_OUTCOME_LABEL) as [string, string][],
+        v[k('outcome')] ?? 'ceka',
+        'Jakmile tady výsledek zapíšete, přepne se podle něj celá aplikace. Ručně fázi měnit nemusíte.',
+      )}
+    </div>
     <div class="two" style="margin-top:1.1rem">
       ${numField(k('embryos'), 'Kolik embryí vloženo', v[k('embryos')] ?? '')}
       ${numField(k('embryoDay'), 'Den kultivace embrya', v[k('embryoDay')] ?? '', 'D3 až D6. Podle něj se skládá denní obsah po transferu.')}
@@ -869,27 +883,33 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
               data-arg="${esc(c.id)}" style="margin-top:1.2rem">
         ${transfers.length === 0 ? 'Přidat transfer' : 'Přidat další transfer'}
       </button>
-      ${note('Výsledek každého transferu se zapisuje v sekci Výsledek. Přichází o týdny později.')}`,
+      ${note('Výsledek zapisujte přímo u transferu, kterého se týká. Aplikace se podle něj sama přepne, fázi ručně měnit nemusíte.')}`,
 
     'cyklus-vysledek': `
       ${
         transfers.length
           ? `<p class="label">Jak dopadly jednotlivé transfery</p>
-             ${transfers
-               .map(
-                 (t, i) => `<div style="margin-top:.9rem">
-                   ${selectField(
-                     `tr.${t.id}.outcome`,
-                     join([
-                       transferTitle(c, t, i),
-                       t.embryos !== null ? plural(t.embryos, 'embryo', 'embrya', 'embryí') : '',
-                     ]),
-                     Object.entries(TRANSFER_OUTCOME_LABEL) as [string, string][],
-                     v[`tr.${t.id}.outcome`] ?? 'ceka',
-                   )}
-                 </div>`,
-               )
-               .join('')}`
+             <ul class="linelist" style="margin-top:.7rem">
+               ${transfers
+                 .map(
+                   (t, i) => `<li>
+                     <span style="min-width:0;flex:1">
+                       <b style="display:block;font-weight:600;font-size:.9375rem">${esc(
+                         join([
+                           transferTitle(c, t, i),
+                           t.embryos !== null ? plural(t.embryos, 'embryo', 'embrya', 'embryí') : '',
+                         ]),
+                       )}</b>
+                       <span class="faint" style="display:block;font-size:.8125rem;margin-top:.15rem">${esc(
+                         TRANSFER_OUTCOME_LABEL[t.outcome],
+                       )}</span>
+                     </span>
+                   </li>`,
+                 )
+                 .join('')}
+             </ul>
+             <button type="button" class="btn btn-sm btn-ghost" data-act="acc"
+                     data-arg="cyklus-transfery" style="margin-top:.9rem">Upravit u transferu</button>`
           : ''
       }
 

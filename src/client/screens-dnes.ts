@@ -247,6 +247,42 @@ function overdue(): string {
   </section>`
 }
 
+/**
+ * Výzva zapsat výsledek transferu.
+ *
+ * Aplikace se řídí tím, co je zapsané v cyklu. Dokud tam výsledek není,
+ * počítá dál dny po transferu, i když ho žena dávno zná. Sama to poznat
+ * nemůže, a tak se zeptá.
+ *
+ * Ukazuje se, teprve když má odběr být za sebou: dřív by to byl nátlak
+ * na test, což je poslední věc, kterou tahle aplikace má dělat.
+ */
+function vyzvaKVysledku(ctx: ReturnType<typeof context>): string {
+  const t = ctx.transfer
+  if (!t || t.cancelled || t.outcome !== 'ceka' || !t.date) return ''
+
+  const dpt = ctx.daysPastTransfer
+  const poOdberu = t.hcgPlannedOn ? t.hcgPlannedOn <= viewDate() : dpt !== null && dpt >= 12
+  if (!poOdberu) return ''
+
+  return `<section class="surface pad rise" style="border-color:var(--blush)">
+    <p class="eyebrow">Znáte už výsledek?</p>
+    <p class="soft" style="margin-top:.5rem;line-height:1.7">
+      U tohohle transferu zatím žádný výsledek zapsaný není, takže aplikace
+      dál počítá dny po transferu. Jakmile ho zapíšete, přepne se sama:
+      Dnešek, obsah i vaše cesta. Fázi ručně měnit nemusíte.
+    </p>
+    <button class="btn btn-primary btn-sm" data-go="cyklus/${esc(ctx.cycle?.id ?? '')}" style="margin-top:1.1rem">
+      Zapsat výsledek transferu
+    </button>
+    <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
+      Najdete ho v sekci Transfery, přímo u toho svého. Platí to i pro
+      výsledek, který jste nechtěla: negativní, biochemické i mimoděložní
+      těhotenství mají v aplikaci vlastní obsah.
+    </p>
+  </section>`
+}
+
 export function screenDnes(): string {
   const state = journey()
   // Dnešek se skládá z posledního relevantního stavu: cyklus, transfer,
@@ -313,6 +349,8 @@ export function screenDnes(): string {
     // Po transferu je tohle to první, co má žena vidět. Nejdelší dva týdny
     // léčby, ve kterých se jinak neděje nic, na co by se dalo dívat.
     transferToday(),
+
+    vyzvaKVysledku(ctx),
 
     // Osobní IVF karta. Ženě, která zrovna žádný cyklus neřeší, se nekreslí
     // technika. Karta se ukáže, až má co ukazovat.
