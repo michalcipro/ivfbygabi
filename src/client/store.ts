@@ -16,6 +16,7 @@ import {
   emptyCycle,
   emptyHcgTest,
   emptyTransfer,
+  ZTRATOVE_VYSLEDKY,
   plannedHcg,
   readCycle,
   type CycleOutcome,
@@ -588,13 +589,26 @@ function migrate(d: Save): Save {
   return d
 }
 
-/** Jak dopadl transfer, když se to dá odvodit jen z výsledku celého cyklu. */
-const OUTCOME_TO_TRANSFER: Record<string, TransferOutcome> = {
+/**
+ * Jak dopadl transfer, když se to dá odvodit jen z výsledku celého cyklu.
+ *
+ * Zapsané jako úplný `Record`, ne jako částečná mapa. Když do číselníku
+ * výsledků cyklu přibude položka a sem ne, překlad ji spolkne a zapíše
+ * ženě jinou diagnózu, než jakou má. Úplná mapa to nedovolí přeložit
+ * a překladač na to upozorní dřív, než se to dostane do aplikace.
+ */
+const OUTCOME_TO_TRANSFER: Record<CycleOutcome, TransferOutcome> = {
+  probiha: 'ceka',
   tehotenstvi: 'pozitivni',
   negativni: 'negativni',
+  biochemicke: 'biochemicke',
+  zamlkle: 'zamlkle',
   ztrata: 'ztrata',
+  mimodelozni: 'mimodelozni',
+  // Bez embrya se transfer nekonal. Kdyby se tvářil jako čekající, aplikace
+  // by ženě donekonečna nabízela zapsat výsledek něčeho, co neproběhlo.
+  bez_embrya: 'zruseno',
   zruseno: 'zruseno',
-  probiha: 'ceka',
   zamrazeno: 'ceka',
 }
 
@@ -1186,6 +1200,52 @@ export function updateCycle(id: string, patchFn: (c: CycleRow) => void): void {
 }
 
 /**
+ * Den, kdy se o ztrátě dozvěděla.
+ *
+ * --------------------------------------------------------------- PROČ RAZÍTKO ---
+ * Fáze ztráty počítají den od `lossOn`. Odvození z karty cyklu umí sáhnout
+ * po odběru hCG, a když žádný není, spadne až na datum transferu. Jenže
+ * zamlklé těhotenství se pozná na ultrazvuku o tři týdny později a
+ * mimoděložní taky. Změřeno v aplikaci: žena, která si dnes zapsala zamlklé
+ * těhotenství, dostala rovnou „12. den“ a s ním obsah pro druhý týden po
+ * ztrátě. První dny, které potřebuje nejvíc, jí aplikace přeskočila.
+ *
+ * Kdy se to dozvěděla, se z uložených dat vyčíst nedá. Ví se to jedině ve
+ * chvíli zápisu, proto se to v tu chvíli zapíše. Skutečný odběr hCG je lepší
+ * informace a razítko ho nepřebíjí; plánovaný termín odběru je jen plán a ten
+ * přebít smí.
+ *
+ * Když z cyklu ztráta zase zmizí (žena výsledek opravila), razítko se
+ * uklidí. Jinak by ji staré datum drželo ve fázi ztráty, ze které se
+ * nedostane, protože příčina už v datech není vidět.
+ */
+export function stampLossDate(id: string): void {
+  patch((d) => {
+    if (!d.profile) return
+    const c = d.cycles.find((x) => x.id === id)
+    if (!c) return
+
+    const dnes = viewDate()
+    const zacatek = c.cd1On ?? c.startedOn
+    const ztratove = (o: string): boolean =>
+      (ZTRATOVE_VYSLEDKY as readonly string[]).includes(o)
+    const jeZtrata =
+      c.transfers.some((t) => !t.cancelled && ztratove(t.outcome)) || ztratove(c.outcome)
+
+    if (!jeZtrata) {
+      // Datum patřící tomuhle cyklu se uklidí, starší ztráta zůstává.
+      if (d.profile.lossOn && d.profile.lossOn >= zacatek) d.profile.lossOn = null
+      return
+    }
+
+    // Skutečně naměřené hCG je přesnější než dnešek. Razítko se nepřidává.
+    if (c.hcgTests.some((t) => t.date && t.date <= dnes)) return
+    if (d.profile.lossOn && d.profile.lossOn >= zacatek) return
+    d.profile.lossOn = dnes
+  })
+}
+
+/**
  * Kam patří fotka uvnitř cyklu.
  *
  * Slot je `protokol`, `laborator`, `vysledek`, `transfer:{id}` nebo `hcg:{id}`.
@@ -1430,6 +1490,11 @@ export function currentMedName(date: IsoDate = viewDate()): string {
   return pool[pool.length - 1]?.name.trim() || 'Injekce'
 }
 
+/** Kolik léků má dnes běžet. Stejná podmínka jako u dnešních úkolů. */
+export function runningMedsCount(date: IsoDate = viewDate()): number {
+  return data.meds.filter((m) => medRunsToday(m, date)).length
+}
+
 /**
  * Co změna fáze udělá s daty.
  *
@@ -1506,18 +1571,10 @@ export function applyPhaseChange(
                 .sort((a, b) => (a.date as IsoDate).localeCompare(b.date as IsoDate))
             : []
           const t = cekajici[cekajici.length - 1] ?? null
-          if (t && krok.outcome) {
-            t.outcome =
-              krok.outcome === 'tehotenstvi'
-                ? 'pozitivni'
-                : krok.outcome === 'negativni'
-                  ? 'negativni'
-                  : krok.outcome === 'biochemicke'
-                    ? 'biochemicke'
-                    : krok.outcome === 'mimodelozni'
-                      ? 'mimodelozni'
-                      : 'ztrata'
-          }
+          // Stejný překlad jako u migrace starých cyklů. Dřív tu byl řetěz
+          // podmínek, který cokoli neznámého spolkl a zapsal jako „ztráta“,
+          // takže nová hodnota by tiše skončila jako špatná diagnóza.
+          if (t && krok.outcome) t.outcome = OUTCOME_TO_TRANSFER[krok.outcome]
           break
         }
         case 'close-cycle':

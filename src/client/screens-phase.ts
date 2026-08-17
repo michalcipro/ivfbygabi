@@ -1,6 +1,7 @@
 import { PHASES, PHASE_GROUP_META, type PhaseId } from '../lib/domain/phases'
 import { MODIFIER_LABELS, type ModifierId } from '../lib/domain/profile'
 import { guideFor, type Supplement } from '../lib/domain/guides'
+import { lossPathFor } from '../lib/domain/loss-path'
 import { DIAGNOSIS_INFO } from '../lib/domain/diagnoses'
 import { CATALOG, GLOSSARY } from '../lib/content'
 import type { ContentItem } from '../lib/content/types'
@@ -56,6 +57,46 @@ function contentGroups(phase: PhaseId): { title: string; hint: string; items: Co
 
 function bullets(items: string[], mark = ''): string {
   return `<ul class="bullets">${items.map((i) => `<li>${mark}${esc(i)}</li>`).join('')}</ul>`
+}
+
+/**
+ * Co po ztrátě následuje zdravotně.
+ *
+ * Stojí nahoře v přehledu, nad vším ostatním. Žena, která si právě zapsala
+ * ztrátu, hledá dvě věci: co s ní teď budou dělat a odkdy se smí pokusit
+ * znovu. Než najde odpověď v článku, přečte tři obrazovky, a po
+ * mimoděložním těhotenství je odpověď na druhou otázku tvrdá lhůta, kterou
+ * jí nikdo nesmí schovat pod „obsah fáze“.
+ */
+function lossBlock(phaseId: PhaseId): string {
+  const p = lossPathFor(phaseId)
+  if (!p) return ''
+
+  return `<section class="surface pad rise">
+    ${sectionTitle('Co teď následuje', 'Zdravotní část. Ne útěcha')}
+    <p class="soft" style="margin-top:.2rem;line-height:1.7">${esc(p.co)}</p>
+    <p class="whybox" style="margin-top:.9rem">${esc(p.znamena)}</p>
+
+    <p class="eyebrow" style="margin-top:1.5rem">Jak to obvykle jde dál</p>
+    ${bullets(p.nasleduje)}
+
+    <p class="eyebrow" style="margin-top:1.5rem">Kdy se dá zkusit znovu</p>
+    <p class="soft" style="margin-top:.5rem;line-height:1.7">${esc(p.znovu)}</p>
+
+    <p class="eyebrow" style="margin-top:1.5rem">Volejte na kliniku, když</p>
+    ${bullets(p.volejte)}
+
+    <p class="eyebrow" style="margin-top:1.5rem">Zeptejte se při kontrole</p>
+    ${p.zeptejte
+      .map((q, i) => {
+        const key = `ztrata:${phaseId}:${i}`
+        return `<button class="check" data-act="check" data-arg="${esc(key)}" aria-pressed="${Boolean(S.d.checks[key])}" style="margin-top:.7rem">
+          <span class="box">✓</span>
+          <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(q)}</span>
+        </button>`
+      })
+      .join('')}
+  </section>`
 }
 
 function blocks(list: { title: string; body: string }[]): string {
@@ -140,6 +181,8 @@ function sectionBody(
       const groups = contentGroups(phaseId)
       const total = groups.reduce((a, g) => a + g.items.length, 0)
       return [
+        lossBlock(phaseId),
+
         `<section class="surface pad">
           ${sectionTitle('Co vás čeká')}
           ${bullets(guide.whatAwaits)}

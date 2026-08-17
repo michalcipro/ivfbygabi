@@ -59,13 +59,31 @@ export const CLOSE_REASON_LABEL: Record<Exclude<CloseReason, ''>, string> = {
   jine: 'Jiný důvod',
 }
 
+/**
+ * Jak cyklus dopadl.
+ *
+ * -------------------------------------------------- PROČ JSOU ZTRÁTY ČTYŘI ---
+ * Dřív tu byla jedna položka „ztráta těhotenství“. To je zdravotně nesmysl:
+ * biochemické těhotenství, zamlklé těhotenství, samovolný potrat a
+ * mimoděložní těhotenství jsou čtyři různé diagnózy s různým průběhem,
+ * různou léčbou a různě dlouhou pauzou před dalším pokusem. Po
+ * methotrexátu se nesmí otěhotnět tři měsíce, po biochemickém těhotenství
+ * se dá jít do dalšího transferu hned. Slít je do jedné kolonky znamená,
+ * že aplikace neví, co ženě říct, a začne si vymýšlet.
+ *
+ * Hodnota `ztrata` zůstává a znamená samovolný potrat. Pod tímhle klíčem
+ * ležela dřív a do fáze `loss_miscarriage` (Samovolný potrat) se překládala
+ * i tehdy. Mění se popisek, ne význam, takže starší záznamy nepřestávají
+ * platit a nic se nemigruje.
+ */
 export type CycleOutcome =
   | 'probiha'
   | 'tehotenstvi'
   | 'negativni'
   | 'biochemicke'
-  | 'mimodelozni'
+  | 'zamlkle'
   | 'ztrata'
+  | 'mimodelozni'
   | 'bez_embrya'
   | 'zruseno'
   | 'zamrazeno'
@@ -75,11 +93,32 @@ export const OUTCOME_LABEL: Record<CycleOutcome, string> = {
   tehotenstvi: 'Těhotenství',
   negativni: 'Negativní hCG',
   biochemicke: 'Biochemické těhotenství',
+  zamlkle: 'Zamlklé těhotenství',
+  ztrata: 'Samovolný potrat',
   mimodelozni: 'Mimoděložní těhotenství',
-  ztrata: 'Ztráta těhotenství',
   bez_embrya: 'Nebylo embryo k transferu',
   zruseno: 'Cyklus zrušen',
   zamrazeno: 'Embrya zamražena',
+}
+
+/**
+ * Jak se který výsledek pozná.
+ *
+ * Bez tohohle si žena vybírá podle lékařského pojmu, který od nikoho
+ * neslyšela. „Zamlklé těhotenství“ jí na klinice řekli jednou a v tu chvíli
+ * neposlouchala nic. Popis je proto z toho, co zažila, ne z terminologie.
+ */
+export const OUTCOME_HINT: Record<CycleOutcome, string> = {
+  probiha: 'Cyklus ještě běží.',
+  tehotenstvi: 'hCG bylo pozitivní a těhotenství pokračuje.',
+  negativni: 'hCG nebylo pozitivní. K uhnízdění nedošlo.',
+  biochemicke: 'hCG bylo pozitivní a pak kleslo. Na ultrazvuku nebylo těhotenství nikdy vidět.',
+  zamlkle: 'Na ultrazvuku bylo těhotenství vidět, ale zastavilo se. Krvácení samo nepřišlo.',
+  ztrata: 'Přišlo krvácení s křečemi a těhotenství odešlo.',
+  mimodelozni: 'Těhotenství se uhnízdilo mimo dělohu, nejčastěji ve vejcovodu.',
+  bez_embrya: 'K transferu se nedostalo žádné embryo.',
+  zruseno: 'Cyklus se přerušil dřív, než došlo na transfer.',
+  zamrazeno: 'Embrya jsou zamražená a čekají na kryotransfer.',
 }
 
 /**
@@ -205,24 +244,67 @@ export const TRANSFER_KIND_SHORT: Record<TransferKind, string> = {
   kryo: 'KET',
 }
 
+/**
+ * Jak dopadl jeden transfer.
+ *
+ * Stejné dělení jako u výsledku cyklu a ze stejného důvodu. Tohle je navíc
+ * to jediné pole v celé aplikaci, ze kterého se pozná, **který typ ztráty**
+ * to byl, takže se od něj odvíjí celý obsah, který žena pak dostane.
+ */
 export type TransferOutcome =
   | 'ceka'
   | 'pozitivni'
-  | 'biochemicke'
-  | 'mimodelozni'
   | 'negativni'
+  | 'biochemicke'
+  | 'zamlkle'
   | 'ztrata'
+  | 'mimodelozni'
   | 'zruseno'
 
 export const TRANSFER_OUTCOME_LABEL: Record<TransferOutcome, string> = {
   ceka: 'Čeká na výsledek',
   pozitivni: 'Pozitivní hCG',
-  biochemicke: 'Biochemické těhotenství',
-  mimodelozni: 'Mimoděložní těhotenství',
   negativni: 'Negativní hCG',
-  ztrata: 'Ztráta těhotenství',
+  biochemicke: 'Biochemické těhotenství',
+  zamlkle: 'Zamlklé těhotenství',
+  ztrata: 'Samovolný potrat',
+  mimodelozni: 'Mimoděložní těhotenství',
   zruseno: 'Zrušený transfer',
 }
+
+export const TRANSFER_OUTCOME_HINT: Record<TransferOutcome, string> = {
+  ceka: 'Výsledek zatím neznáte, nebo jste ho ještě nezapsala.',
+  pozitivni: 'hCG bylo pozitivní a těhotenství pokračuje.',
+  negativni: 'hCG nebylo pozitivní. K uhnízdění nedošlo.',
+  biochemicke: 'hCG bylo pozitivní a pak kleslo. Na ultrazvuku nebylo těhotenství nikdy vidět.',
+  zamlkle: 'Na ultrazvuku bylo těhotenství vidět, ale zastavilo se. Krvácení samo nepřišlo.',
+  ztrata: 'Přišlo krvácení s křečemi a těhotenství odešlo.',
+  mimodelozni: 'Těhotenství se uhnízdilo mimo dělohu, nejčastěji ve vejcovodu.',
+  zruseno: 'K transferu nakonec nedošlo.',
+}
+
+/**
+ * Výsledky, u kterých těhotenství prokazatelně nastalo.
+ *
+ * Používá se všude, kde by se jinak počítalo, že se nic nestalo. Uhnízdění
+ * proběhlo a je to pro další léčbu důležitá informace: problém není v tom,
+ * že se embryo neuchytí.
+ */
+export const TEHOTENSKE_VYSLEDKY: readonly TransferOutcome[] = [
+  'pozitivni',
+  'biochemicke',
+  'zamlkle',
+  'ztrata',
+  'mimodelozni',
+]
+
+/** Výsledky, které znamenají ztrátu těhotenství. */
+export const ZTRATOVE_VYSLEDKY: readonly TransferOutcome[] = [
+  'biochemicke',
+  'zamlkle',
+  'ztrata',
+  'mimodelozni',
+]
 
 /** Příprava sliznice před transferem. */
 export type PrepKind = '' | 'prirozeny' | 'modifikovany' | 'substituovany' | 'jiny'

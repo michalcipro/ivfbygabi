@@ -49,6 +49,18 @@ export interface RouteDef {
   mods: ModifierId[]
   /** Situace, která z volby plyne sama. Přidá se bez ptaní. */
   implied?: ModifierId[]
+  /**
+   * Dlaždice, která sama o sobě fázi neurčuje.
+   *
+   * Existuje kvůli ztrátě. „Zažila jsem ztrátu“ vypadá jako jedna odpověď,
+   * ale zdravotně jsou to čtyři různé diagnózy s různým průběhem, různou
+   * léčbou a různě dlouhou pauzou před dalším pokusem. Dřív tahle dlaždice
+   * mlčky nastavila samovolný potrat, takže žena po mimoděložním
+   * těhotenství dostala obsah o tom, kdy odejde tkáň z dělohy. Kliknutí
+   * proto nic nenastaví, jen otevře upřesnění pod sebou.
+   */
+  category?: true
+  children?: string[]
 }
 
 const DG: ModifierId[] = ['pcos', 'endometriosis', 'low_amh', 'male_factor', 'thyroid', 'unexplained']
@@ -316,14 +328,68 @@ export const ROUTES: RouteDef[] = [
     quick: [],
     mods: [...DG, ...TX, 'after_loss', 'repeated_failure'],
   },
+  /*
+   * Ztráta. Jedna dlaždice, pod ní čtyři skutečné diagnózy.
+   *
+   * Pořadí je podle toho, jak brzy v těhotenství ztráta přichází, ne podle
+   * závažnosti. Popisky jsou schválně z toho, co žena zažila, ne z lékařské
+   * terminologie: „zamlklé těhotenství“ jí na klinice řekli jednou a v tu
+   * chvíli neposlouchala nic.
+   */
+  {
+    id: 'loss',
+    primary: true,
+    icon: '🕊️',
+    group: 'result',
+    label: 'Zažila jsem ztrátu',
+    hint: 'Těhotenství skončilo. Potřebuji čas',
+    phase: 'loss_miscarriage',
+    field: null,
+    dateLabel: '',
+    dateHint: '',
+    quick: [],
+    mods: [],
+    category: true,
+    children: ['biochemical', 'missed', 'miscarriage', 'ectopic'],
+  },
   {
     id: 'biochemical',
     primary: false,
     icon: '',
     group: 'result',
-    label: 'Zažila jsem biochemické těhotenství',
-    hint: 'hCG stouplo a pak kleslo',
+    label: 'Biochemické těhotenství',
+    hint: 'hCG stouplo a pak kleslo. Na ultrazvuku nebylo nikdy nic vidět',
     phase: 'loss_biochemical',
+    field: 'lossOn',
+    dateLabel: 'Kdy hCG kleslo?',
+    dateHint: 'Stačí přibližně. Nic se od toho nepočítá dopředu.',
+    quick: [0, -7, -30, -90],
+    mods: [...TX, 'after_loss', 'repeated_failure'],
+    implied: ['after_loss'],
+  },
+  {
+    id: 'missed',
+    primary: false,
+    icon: '',
+    group: 'result',
+    label: 'Zamlklé těhotenství',
+    hint: 'Na ultrazvuku bylo těhotenství vidět, ale zastavilo se. Krvácení samo nepřišlo',
+    phase: 'loss_missed',
+    field: 'lossOn',
+    dateLabel: 'Kdy jste se to dozvěděla?',
+    dateHint: 'Den ultrazvuku, na kterém to zaznělo. Stačí přibližně.',
+    quick: [0, -7, -30, -90],
+    mods: [...TX, 'after_loss', 'repeated_failure'],
+    implied: ['after_loss'],
+  },
+  {
+    id: 'miscarriage',
+    primary: false,
+    icon: '',
+    group: 'result',
+    label: 'Samovolný potrat',
+    hint: 'Přišlo krvácení s křečemi a těhotenství odešlo',
+    phase: 'loss_miscarriage',
     field: 'lossOn',
     dateLabel: 'Kdy se to stalo?',
     dateHint: 'Stačí přibližně. Nic se od toho nepočítá dopředu.',
@@ -336,28 +402,28 @@ export const ROUTES: RouteDef[] = [
     primary: false,
     icon: '',
     group: 'result',
-    label: 'Zažila jsem mimoděložní těhotenství',
-    hint: 'Těhotenství se uhnízdilo mimo dělohu',
+    label: 'Mimoděložní těhotenství',
+    hint: 'Těhotenství se uhnízdilo mimo dělohu, nejčastěji ve vejcovodu',
     phase: 'loss_ectopic',
     field: 'lossOn',
-    dateLabel: 'Kdy se to stalo?',
+    dateLabel: 'Kdy se to zjistilo?',
     dateHint: 'Stačí přibližně.',
     quick: [0, -7, -30, -90],
     mods: [...TX, 'after_loss', 'tubal_factor'],
     implied: ['after_loss'],
   },
   {
-    id: 'loss',
-    primary: true,
-    icon: '🕊️',
+    id: 'revision',
+    primary: false,
+    icon: '',
     group: 'result',
-    label: 'Zažila jsem ztrátu',
-    hint: 'Těhotenství skončilo. Potřebuji čas',
-    phase: 'loss_miscarriage',
-    field: 'lossOn',
-    dateLabel: 'Kdy se to stalo?',
-    dateHint: 'Stačí přibližně. Nic se od toho nepočítá dopředu.',
-    quick: [0, -7, -30, -90],
+    label: 'Čeká mě revize dělohy',
+    hint: 'Nebo ji mám čerstvě za sebou',
+    phase: 'uterine_revision',
+    field: null,
+    dateLabel: '',
+    dateHint: '',
+    quick: [],
     mods: [...TX, 'after_loss', 'repeated_failure'],
     implied: ['after_loss'],
   },
@@ -422,6 +488,23 @@ export function routeById(id: string): RouteDef | undefined {
   return ROUTES.find((r) => r.id === id)
 }
 
+/**
+ * Volba, ze které se dá poskládat profil.
+ *
+ * Kategorie sama o sobě není odpověď. Dokud si žena nevybere jedno ze
+ * čtyř upřesnění ztráty, nemá vybráno nic a nic se nesmí uložit.
+ */
+export function routeHotova(id: string): boolean {
+  const r = routeById(id)
+  return Boolean(r) && !r!.category
+}
+
+/** Trasa, která odpovídá fázi. Kategorie se přeskakují, ty fázi neurčují. */
+export function routeForPhase(phase: PhaseId | null): RouteDef | undefined {
+  if (!phase) return undefined
+  return ROUTES.find((r) => !r.category && r.phase === phase)
+}
+
 export function draft(): Draft {
   if (!S.d.draft) {
     patch((d) => {
@@ -444,7 +527,7 @@ export function draft(): Draft {
 export function profileFromDraft(dr: Draft): Profile {
   const route = routeById(dr.route)
   const p = newProfile()
-  if (!route) return p
+  if (!route || route.category) return p
 
   p.declaredPhase = route.phase
   // Datum volby. Bez něj by odvození z dat nálepku z onboardingu přebilo.
@@ -515,14 +598,50 @@ function stepWelcome(): string {
  * Nikdo se tím nezamyká: fáze jde kdykoli změnit a nic se přitom nesmaže.
  */
 export function phasePicker(vybrano: string, act: string, vsechny: boolean): string {
+  const deti = new Set(ROUTES.flatMap((r) => r.children ?? []))
   const primary = ROUTES.filter((r) => r.primary)
-  const ostatni = ROUTES.filter((r) => !r.primary)
+  const ostatni = ROUTES.filter((r) => !r.primary && !deti.has(r.id))
 
-  const dlazdice = (r: RouteDef) => `<button class="pick" data-act="${esc(act)}" data-arg="${esc(r.id)}"
+  const prosta = (r: RouteDef) => `<button class="pick" data-act="${esc(act)}" data-arg="${esc(r.id)}"
     aria-pressed="${vybrano === r.id}">
     <span class="mark">✓</span>
     <span><b>${r.icon ? `${r.icon} ` : ''}${esc(r.label)}</b><span>${esc(r.hint)}</span></span>
   </button>`
+
+  /*
+   * Kategorie se rozbalí, když je vybraná ona nebo některé její upřesnění.
+   * Žádný nový stav to nepotřebuje a hlavně: než si žena vybere jednu ze
+   * čtyř možností, nemá vybráno nic. Aplikace za ni typ ztráty neuhodne.
+   */
+  const kategorie = (r: RouteDef) => {
+    const potomci = (r.children ?? [])
+      .map((id) => routeById(id))
+      .filter((x): x is RouteDef => Boolean(x))
+    const vybranyPotomek = potomci.find((p) => p.id === vybrano) ?? null
+    const otevreno = vybrano === r.id || vybranyPotomek !== null
+
+    return `<button class="pick" data-act="${esc(act)}" data-arg="${esc(r.id)}"
+        aria-pressed="${otevreno}" aria-expanded="${otevreno}">
+        <span class="mark">${vybranyPotomek ? '✓' : '›'}</span>
+        <span><b>${r.icon ? `${r.icon} ` : ''}${esc(r.label)}</b><span>${esc(
+          vybranyPotomek ? vybranyPotomek.label : r.hint,
+        )}</span></span>
+      </button>
+      ${
+        otevreno
+          ? `<div class="ob-sub">
+              <p class="eyebrow">Co se stalo</p>
+              <p class="faint" style="font-size:.8125rem;margin-top:.35rem;line-height:1.55">
+                Každá z nich má jiný průběh, jinou léčbu i jinak dlouhou pauzu
+                před dalším pokusem. Vyberte to, co odpovídá vaší zprávě.
+              </p>
+              <div class="picker" style="margin-top:.8rem">${potomci.map(prosta).join('')}</div>
+            </div>`
+          : ''
+      }`
+  }
+
+  const dlazdice = (r: RouteDef) => (r.category ? kategorie(r) : prosta(r))
 
   const skupiny = (['before', 'cycle', 'waiting', 'result', 'further'] as const)
     .map((g) => {
@@ -553,7 +672,7 @@ export function phasePicker(vybrano: string, act: string, vsechny: boolean): str
 
 function stepWhere(): string {
   const dr = draft()
-  const picked = routeById(dr.route)
+  const picked = routeHotova(dr.route) ? routeById(dr.route) : null
   const guide = picked ? guideFor(picked.phase) : null
   const preview = guide
     ? `<div class="surface pad rise" style="margin-top:1.75rem">
@@ -574,7 +693,7 @@ function stepWhere(): string {
     ${preview}
   </div>
   ${foot(
-    `<button class="btn btn-primary" data-act="ob-next" ${dr.route ? '' : 'disabled'}>Pokračovat</button>`,
+    `<button class="btn btn-primary" data-act="ob-next" ${routeHotova(dr.route) ? '' : 'disabled'}>Pokračovat</button>`,
     '<button class="btn btn-ghost" data-act="ob-back">Zpět</button>',
   )}`
 }
@@ -749,7 +868,8 @@ function stepWho(): string {
 
 /** Fáze bez kotevního data nemají krok „kdy“. Přeskakuje se v akcích. */
 export function stepHasDate(): boolean {
-  return Boolean(routeById(draft().route)?.field)
+  const r = routeById(draft().route)
+  return Boolean(r && !r.category && r.field)
 }
 
 export function renderOnboarding(): string {

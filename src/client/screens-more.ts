@@ -39,7 +39,7 @@ import {
   type DocKind,
 } from './store'
 import { SEED_POSTS } from './seed'
-import { ROUTES } from './onboarding'
+import { routeForPhase } from './onboarding'
 
 /** Rozcestník a všechny obrazovky, které z něj vedou. */
 
@@ -770,6 +770,30 @@ export function screenPartner(): string {
 
 // -------------------------------------------------------------- nastavení ---
 
+/**
+ * Situace, které aplikace přečetla z karet cyklů.
+ *
+ * Bez tohohle výpisu vypadá nastavení jako lež: žena vidí nezaškrtnuté
+ * „ICSI“, ale obsah dostává jako po ICSI, protože si ho zapsala do cyklu.
+ * Tlačítko z toho schválně není. Odškrtnout to, co je v kartě zapsané, by
+ * znamenalo, že aplikace zapomene na zapsaná data, a ta se opravují tam,
+ * kde vznikla.
+ */
+function zKarty(rucni: ModifierId[], vsechny: ModifierId[]): string {
+  const navic = vsechny.filter((m) => !rucni.includes(m))
+  if (navic.length === 0) return ''
+  return `<div style="margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1.1rem">
+    <p class="label">Z vašich cyklů navíc počítáme s</p>
+    <div class="chips" style="margin-top:.5rem">
+      ${navic.map((m) => `<span class="badge badge-soft">${esc(MODIFIER_LABELS[m])}</span>`).join('')}
+    </div>
+    <p class="faint" style="margin-top:.7rem;font-size:.8125rem;line-height:1.55">
+      Tohle je vyčtené z toho, co máte zapsané v kartách cyklů, a mění se
+      s nimi. Opravit se to dá tam, kde to vzniklo: v Moje cesta.
+    </p>
+  </div>`
+}
+
 export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean }): string {
   // Ruční hodnoty do políček, spočítané do popisků. Kdyby se do inputu
   // dostalo datum z cyklu, uživatelka by ho uložila do profilu a vznikla by
@@ -777,7 +801,7 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
   const p = rawProfile()
   const skutecne = profile()
   const state = journey()
-  const currentRoute = ROUTES.find((r) => r.phase === p.declaredPhase)
+  const currentRoute = routeForPhase(p.declaredPhase)
 
   const modGroups: [string, ModifierId[]][] = [
     ['Diagnózy', ['pcos', 'endometriosis', 'adenomyosis', 'low_amh', 'male_factor', 'tubal_factor', 'thyroid', 'thrombophilia', 'immunology', 'unexplained']],
@@ -905,6 +929,7 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
           </div>`,
         )
         .join('')}
+      ${zKarty(p.modifiers, skutecne.modifiers)}
     </section>`,
 
     `<section class="surface pad">
@@ -916,6 +941,14 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
       <div class="formrow">
         <label class="label" for="set-clinic">Klinika</label>
         <input class="field" id="set-clinic" value="${esc(p.clinicName ?? '')}" placeholder="Nepovinné. Přidá skupinu v komunitě" data-act="set-clinic" autocomplete="off">
+        ${
+          skutecne.clinicName && skutecne.clinicName !== p.clinicName
+            ? `<p class="faint" style="margin-top:.4rem;font-size:.8125rem;line-height:1.5">
+                Z poslední karty cyklu čteme <strong>${esc(skutecne.clinicName)}</strong>. Tohle pole
+                je jen pro případ, že chcete uvádět jinou.
+              </p>`
+            : ''
+        }
       </div>
       <div style="margin-top:1.25rem">
         <button class="switch" data-act="set-anon" aria-pressed="${p.anonymousInCommunity}">

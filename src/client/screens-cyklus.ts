@@ -18,13 +18,16 @@ import {
   METHODS,
   METHOD_GROUPS,
   OUTCOME_LABEL,
+  OUTCOME_HINT,
   nextUp,
   readCycle,
   sortedTransfers,
   PREP_LABEL,
   TRANSFER_KIND_LABEL,
   TRANSFER_OUTCOME_LABEL,
+  TRANSFER_OUTCOME_HINT,
   TRANSFER_STAGE_LABEL,
+  ZTRATOVE_VYSLEDKY,
   stageForDay,
   type CycleRow,
   type CycleStatus,
@@ -315,6 +318,29 @@ function selectField(
     ${hint(help)}</div>`
 }
 
+/**
+ * Vysvětlivky k výsledkům, které se pletou.
+ *
+ * Biochemické, zamlklé, samovolný potrat a mimoděložní těhotenství jsou
+ * čtyři různé diagnózy s různým průběhem i různě dlouhou pauzou před dalším
+ * pokusem. Žena je od sebe nemá jak odlišit podle názvu: slyšela ho jednou
+ * na klinice ve chvíli, kdy nevnímala nic. Popis je proto z toho, co
+ * zažila, ne z terminologie, a stojí přímo pod výběrem, ne v nápovědě.
+ *
+ * Na výběru tady visí celý zbytek aplikace, takže špatná volba není
+ * kosmetická chyba: je to špatný zdravotní obsah na několik týdnů.
+ */
+function vysvetlivky(hints: Record<string, string>, klice: readonly string[], labels: Record<string, string>): string {
+  return `<div class="surface" style="padding:.9rem 1.1rem;margin-top:.7rem;background:var(--card-muted)">
+    <p class="eyebrow">Jak se to pozná</p>
+    <dl class="vysvetlivky">
+      ${klice
+        .map((k) => `<dt>${esc(labels[k])}</dt><dd>${esc(hints[k])}</dd>`)
+        .join('')}
+    </dl>
+  </div>`
+}
+
 function areaField(key: string, text: string, value: string, placeholder = ''): string {
   return `<div>${label(key, text)}
     <textarea class="field" id="cyc-${key}" rows="4" placeholder="${esc(placeholder)}">${esc(value)}</textarea></div>`
@@ -578,6 +604,7 @@ function transferBlock(c: CycleRow, t: CycleTransfer, i: number, v: Record<strin
         v[k('outcome')] ?? 'ceka',
         'Jakmile tady výsledek zapíšete, přepne se podle něj celá aplikace. Ručně fázi měnit nemusíte.',
       )}
+      ${vysvetlivky(TRANSFER_OUTCOME_HINT, ZTRATOVE_VYSLEDKY, TRANSFER_OUTCOME_LABEL)}
     </div>
     <div class="two" style="margin-top:1.1rem">
       ${numField(k('embryos'), 'Kolik embryí vloženo', v[k('embryos')] ?? '')}
@@ -932,6 +959,7 @@ function sectionBodies(c: CycleRow, v: Record<string, string>, openEmbryo?: stri
         ${selectField('outcome', 'Jak cyklus dopadl', Object.entries(OUTCOME_LABEL) as [string, string][], v.outcome, 'Dokud je vybráno „Probíhá“, bere aplikace cyklus jako běžící.')}
         ${dateField('endedOn', 'Datum uzavření', v.endedOn)}
       </div>
+      ${vysvetlivky(OUTCOME_HINT, ['biochemicke', 'zamlkle', 'ztrata', 'mimodelozni'], OUTCOME_LABEL)}
       <div style="margin-top:1.1rem">
         ${areaField('note', 'Poznámka k cyklu', v.note, 'Co si chcete pamatovat do příště. Co fungovalo, co bylo jinak, na co se zeptat.')}
       </div>

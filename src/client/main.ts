@@ -106,6 +106,7 @@ import {
   toggleCycleMethod,
   toggleDiagnosis,
   updateClinic,
+  stampLossDate,
   updateCycle,
   updateEmbryo,
   updateExam,
@@ -122,7 +123,7 @@ import {
   type QuestionStatus,
   type StepKind,
 } from './store'
-import { draft, phasePicker, profileFromDraft, renderOnboarding, ROUTES, routeById, stepHasDate, type RouteDef } from './onboarding'
+import { draft, phasePicker, profileFromDraft, renderOnboarding, routeById, routeForPhase, routeHotova, stepHasDate, type RouteDef } from './onboarding'
 import { screenCesta, screenObjevit, screenProc } from './screens-home'
 import { screenDnes, screenNuzky } from './screens-dnes'
 import { isZapisSection, screenZapis, type ZapisSection } from './screens-zapis'
@@ -407,6 +408,8 @@ const view = {
   docText: '',
   /** Zvolená fáze, která čeká na potvrzení. Dokud je tady, nic se nezměnilo. */
   phasePick: null as string | null,
+  /** Rozbalená kategorie ve výběru fáze. Zatím jen ztráta. */
+  phaseCat: null as string | null,
   /** Kroky změny fáze, které si uživatelka odškrtla. */
   phaseOff: [] as string[],
   /**
@@ -926,7 +929,10 @@ function onboardingAction(act: string, argValue: string): boolean {
     }
     case 'ob-route': {
       patch((d) => {
-        d.draft!.route = argValue
+        // Klepnutí na už otevřenou kategorii ji zase zavře. Bez toho by se
+        // rozbalená ztráta nedala schovat a zabírala by půl obrazovky.
+        const r = routeById(argValue)
+        d.draft!.route = r?.category && d.draft!.route === argValue ? '' : argValue
         d.draft!.mods = []
       })
       return true
@@ -1429,7 +1435,9 @@ function saveEmbryoForm(id: string): void {
 function screenZmenaFaze(): string {
   const p = profile()
   const state = journey()
-  const aktualni = ROUTES.find((r) => r.phase === p.declaredPhase)?.id ?? ''
+  // Kategorie ztráty se sem nesmí dostat: sama žádnou fázi neurčuje, takže
+  // by se v seznamu tvářila jako vybraná místo konkrétní diagnózy pod ní.
+  const aktualni = view.phaseCat ?? routeForPhase(p.declaredPhase)?.id ?? ''
 
   const zvoleno = view.phasePick ? routeById(view.phasePick) : null
   if (zvoleno) return screenZmenaFazePotvrzeni(zvoleno, state.phase.name)
@@ -1652,7 +1660,13 @@ function action(act: string, argValue: string): void {
     case 'acc':
       // Na detailu cyklu je harmonika součástí jednoho formuláře. Než se
       // překreslí, musí se rozepsaná pole uložit.
-      if (base(currentRoute()) === 'cyklus') saveCycleForm(arg(currentRoute()))
+      if (base(currentRoute()) === 'cyklus') {
+        saveCycleForm(arg(currentRoute()))
+        // Výsledek se dá vybrat a pak jen přejít do jiné sekce, bez klepnutí
+        // na Uložit. Zápis se tím uloží, takže se s ním musí uložit i den,
+        // kdy se o něm žena dozvěděla.
+        stampLossDate(arg(currentRoute()))
+      }
       // Totéž u karet embryí. Otevřená karta je rozepsaný formulář.
       if (view.embryo) saveEmbryoForm(view.embryo)
       view.accordion = view.accordion === argValue ? null : argValue
@@ -1958,6 +1972,7 @@ function action(act: string, argValue: string): void {
       // Uzavření je vždycky ruční a vždycky vědomé. Než se provede,
       // uloží se rozepsaný formulář, ať se nic z něj neztratí.
       saveCycleForm(argValue)
+      stampLossDate(argValue)
 
       /*
        * Cyklus, ve kterém ještě něco zbývá, se nesmí zavřít jedním
@@ -1993,6 +2008,9 @@ function action(act: string, argValue: string): void {
     case 'cycle-save': {
       if (!cycleById(argValue)) return
       saveCycleForm(argValue)
+      // Kdy se o ztrátě dozvěděla, se ví jenom teď. Z uložených dat už to
+      // pak nikdo nevyčte a fáze ztráty by počítala dny od transferu.
+      stampLossDate(argValue)
       toast('Cyklus uložen.')
       break
     }
@@ -2142,6 +2160,13 @@ function action(act: string, argValue: string): void {
     case 'faze-zmena': {
       const r = routeById(argValue)
       if (!r) return
+      // Kategorie nic nemění, jen rozbalí upřesnění pod sebou. Typ ztráty
+      // za ženu nikdo neuhodne a potvrzovat by se tu nemělo co.
+      if (r.category) {
+        view.phaseCat = view.phaseCat === r.id ? null : r.id
+        break
+      }
+      view.phaseCat = null
       // Nemění se ještě nic. Nejdřív se spočítá, co by změna udělala s daty,
       // a uživatelka to uvidí. Bez toho by aplikace dál plánovala injekce
       // z cyklu, který podle ní skončil.

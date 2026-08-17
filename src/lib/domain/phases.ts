@@ -266,8 +266,16 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     anchor: 'betaTestOn',
     dayLabel: (d) => `${d}. den od pozitivního testu`,
     typicalDays: G(21),
-    // Koncová fáze aplikace. Odsud se pokračuje u gynekologa, ne tady.
-    next: [],
+    /*
+     * Koncová fáze aplikace, pokud těhotenství pokračuje. Odsud se jde
+     * k vlastnímu gynekologovi, ne dál sem.
+     *
+     * Ztráty tu ale stát musí. Většina ztrát po IVF přichází právě odsud,
+     * z týdnů mezi pozitivním hCG a prvním ultrazvukem, a když z téhle
+     * fáze nevede žádná další, aplikace ženě po pozitivním testu nenabídne
+     * jedinou cestu, kterou ve skutečnosti může jít.
+     */
+    next: ['loss_biochemical', 'loss_missed', 'loss_miscarriage', 'loss_ectopic'],
     tone: 'joyful',
     selectableAtOnboarding: true,
   },
@@ -307,7 +315,9 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     anchor: 'lossOn',
     dayLabel: (d) => `${d}. den`,
     typicalDays: G(21),
-    next: ['waiting_next_attempt', 'genetic_testing'],
+    // Revize dělohy tu záměrně není. Po biochemickém těhotenství se
+    // nedělá, nemá co revidovat, a nabízet ji by ženu jen vyděsilo.
+    next: ['waiting_next_attempt', 'genetic_testing', 'repeated_failure'],
     tone: 'grieving',
     selectableAtOnboarding: true,
   },
@@ -320,7 +330,9 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     anchor: 'lossOn',
     dayLabel: (d) => `${d}. den`,
     typicalDays: G(60),
-    next: ['waiting_next_attempt'],
+    // Revize dělohy sem nepatří: těhotenství nebylo v děloze. Výkon, který
+    // po mimoděložním následuje, je na vejcovodu, ne v dutině děložní.
+    next: ['waiting_next_attempt', 'genetic_testing'],
     tone: 'grieving',
     selectableAtOnboarding: true,
   },
@@ -334,7 +346,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     anchor: 'lossOn',
     dayLabel: (d) => `${d}. den`,
     typicalDays: G(60),
-    next: ['uterine_revision', 'waiting_next_attempt'],
+    next: ['uterine_revision', 'waiting_next_attempt', 'genetic_testing'],
     tone: 'grieving',
     selectableAtOnboarding: true,
   },
@@ -347,7 +359,7 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     anchor: 'lossOn',
     dayLabel: (d) => `${d}. den`,
     typicalDays: G(60),
-    next: ['uterine_revision', 'waiting_next_attempt'],
+    next: ['uterine_revision', 'waiting_next_attempt', 'genetic_testing'],
     tone: 'grieving',
     selectableAtOnboarding: true,
   },
@@ -361,7 +373,10 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     typicalDays: G(30),
     next: ['waiting_next_attempt', 'genetic_testing'],
     tone: 'practical',
-    selectableAtOnboarding: false,
+    // Byla vypnutá, takže se do ní nedalo dostat, přestože pro ni byl
+    // napsaný celý průvodce. Přitom je to nejčastější zdravotní krok po
+    // zamlklém těhotenství a po neúplném potratu.
+    selectableAtOnboarding: true,
   },
   genetic_testing: {
     id: 'genetic_testing',

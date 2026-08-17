@@ -8,6 +8,7 @@ import {
   KIND_LABEL,
   methodLabel,
   OUTCOME_LABEL,
+  ZTRATOVE_VYSLEDKY,
   type CycleOutcome,
   type CycleRow,
 } from './cycle'
@@ -156,13 +157,19 @@ function hasTransfer(c: CycleRow): boolean {
 /**
  * Skončil cyklus těhotenstvím?
  *
- * Počítá se i výsledek „ztráta“. Těhotenství nastalo, jen neskončilo dobře.
+ * Počítají se i všechny ztráty. Těhotenství nastalo, jen neskončilo dobře.
  * Kdyby se ztráta nepočítala, statistika by tvrdila, že se nic nestalo, a to
  * je vůči uživatelce nepřijatelné. V UI se proto tohle číslo nikdy nesmí
  * popsat jako „úspěch“, jen jako potvrzené těhotenství.
+ *
+ * Biochemické a mimoděložní těhotenství sem patří stejně jako potrat.
+ * Dřív tu byla jen „ztráta“, takže žena po biochemickém těhotenství měla
+ * ve vlastní statistice nulu otěhotnění. Zdravotně je to naopak jedna
+ * z mála dobrých zpráv toho cyklu: embryo se uhnízdilo.
  */
 function isPregnancy(c: CycleRow): boolean {
-  return c.outcome === 'tehotenstvi' || c.outcome === 'ztrata'
+  if (c.outcome === 'tehotenstvi') return true
+  return (ZTRATOVE_VYSLEDKY as readonly string[]).includes(c.outcome)
 }
 
 export function numbersFor(c: CycleRow): CycleNumbers {

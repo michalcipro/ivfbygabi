@@ -87,7 +87,9 @@ export interface JourneyState {
 function anchorValue(profile: Profile, phase: PhaseDefinition): IsoDate | null {
   if (phase.anchor) {
     const v = profile[phase.anchor]
-    return typeof v === 'string' && v.length > 0 ? v : null
+    if (typeof v === 'string' && v.length > 0) return v
+    // Kotva je prázdná, ale fáze tím nepřestala mít začátek. Padá se
+    // o patro níž na to, co o něm víme, místo aby den zůstal na nule.
   }
 
   if (profile.declaredPhase === phase.id && profile.phaseDeclaredOn) {
@@ -96,6 +98,14 @@ function anchorValue(profile: Profile, phase: PhaseDefinition): IsoDate | null {
   if (profile.outcomeOn) return profile.outcomeOn
   return null
 }
+
+/** Fáze, které popisují ztrátu těhotenství. */
+const ZTRATY = new Set<string>([
+  'loss_biochemical',
+  'loss_missed',
+  'loss_miscarriage',
+  'loss_ectopic',
+])
 
 /**
  * Automatická detekce fáze z dat profilu, pokud si uživatelka fázi nezvolila
@@ -198,6 +208,18 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
 
   kotva('lossOn', (since) => {
     if (since >= 0 && since <= 90) {
+      /*
+       * Typ ztráty se nikdy nedomýšlí.
+       *
+       * Biochemické, zamlklé, samovolný potrat a mimoděložní těhotenství
+       * jsou čtyři různé diagnózy. Napsat ženě po mimoděložním těhotenství
+       * texty o tom, kdy odejde tkáň, je hrubá chyba. Pořadí je proto:
+       * co je zapsané v cyklu, pak co si zvolila sama, a teprve když není
+       * ani jedno, obecný potrat.
+       */
+      if (profile.outcomePhase && ZTRATY.has(profile.outcomePhase)) {
+        return profile.outcomePhase as PhaseId
+      }
       if (profile.declaredPhase && PHASES[profile.declaredPhase].group === 'loss') {
         return profile.declaredPhase
       }

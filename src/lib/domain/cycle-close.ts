@@ -222,8 +222,9 @@ export function deriveOutcome(c: CycleRow, embryos: Embryo[]): CycleOutcome | nu
       pozitivni: 'tehotenstvi',
       negativni: 'negativni',
       biochemicke: 'biochemicke',
-      mimodelozni: 'mimodelozni',
+      zamlkle: 'zamlkle',
       ztrata: 'ztrata',
+      mimodelozni: 'mimodelozni',
     }
     const z = mapa[posledni.outcome]
     if (z) return z

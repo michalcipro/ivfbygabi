@@ -879,6 +879,21 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .ob-group { margin-top: 1.75rem; }
 .ob-group > .eyebrow { margin-bottom: 0.6rem; }
 
+/* Vysvětlivky k výsledkům, které se pletou. Pod výběrem, ne v nápovědě. */
+.vysvetlivky { margin-top: 0.6rem; display: grid; gap: 0.5rem; }
+.vysvetlivky dt { font-size: 0.8125rem; font-weight: 500; }
+.vysvetlivky dd {
+  margin: 0.1rem 0 0; font-size: 0.8125rem; line-height: 1.5; color: var(--fg-soft);
+}
+
+/* Upřesnění pod dlaždicí. Odsazení a linka drží najevo, že to patří k ní. */
+.ob-sub {
+  margin: -0.1rem 0 0.35rem 1.1rem;
+  padding: 0.9rem 0 0.2rem 1.1rem;
+  border-left: 1px solid var(--line);
+}
+.ob-sub > .picker { margin-top: 0.8rem; }
+
 /* --- animace ------------------------------------------------------------- */
 
 @keyframes rise { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }

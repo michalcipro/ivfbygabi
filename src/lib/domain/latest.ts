@@ -4,12 +4,13 @@ import {
   currentTransfer,
   defaultCycle,
   sortedTransfers,
+  ZTRATOVE_VYSLEDKY,
   type CycleRow,
   type CycleTransfer,
 } from './cycle'
-import { reachedDay, type Embryo } from './embryo'
+import { isAvailable, reachedDay, type Embryo } from './embryo'
 import { today as todayIso } from './dates'
-import type { IsoDate, Profile } from './profile'
+import type { IsoDate, ModifierId, Profile } from './profile'
 
 /**
  * Nejnovější relevantní data vyhrávají. Vždy.
@@ -84,21 +85,22 @@ function positiveHcgDate(c: CycleRow, today: IsoDate): IsoDate | null {
 const FAZE_TRANSFERU: Record<string, string> = {
   negativni: 'waiting_next_attempt',
   biochemicke: 'loss_biochemical',
-  mimodelozni: 'loss_ectopic',
+  zamlkle: 'loss_missed',
   ztrata: 'loss_miscarriage',
+  mimodelozni: 'loss_ectopic',
 }
 
 const FAZE_CYKLU: Record<string, string> = {
-  negativni: 'waiting_next_attempt',
-  biochemicke: 'loss_biochemical',
-  mimodelozni: 'loss_ectopic',
-  ztrata: 'loss_miscarriage',
+  ...FAZE_TRANSFERU,
   // Cyklus bez embrya nesmí spadnout na „snažíme se přirozeně“. Ženě, které
   // se nevyvinulo žádné embryo, aplikace nemá hlásit první měsíc snažení.
   bez_embrya: 'waiting_next_attempt',
   zruseno: 'waiting_next_attempt',
   zamrazeno: 'waiting_next_attempt',
 }
+
+/** Fáze, ve kterých se počítá den od data ztráty. */
+const FAZE_ZTRATY = new Set(['loss_biochemical', 'loss_missed', 'loss_miscarriage', 'loss_ectopic'])
 
 /** Kdy se výsledek dozvěděla. Nejpřesnější dostupné datum, nic vymyšleného. */
 function kdyVysledek(c: CycleRow, t: CycleTransfer | null, today: IsoDate): IsoDate | null {
@@ -147,6 +149,115 @@ function vysledekZCyklu(
   return faze && on ? { phase: faze, on } : null
 }
 
+/**
+ * Co se dá o ženě přečíst z celé historie cyklů.
+ *
+ * -------------------------------------------------------------- PROČ TO TU JE ---
+ * Karta cyklu byla dlouho slepá ulička. Žena do ní poctivě zapsala, že měla
+ * darovaná vajíčka, ICSI, kryotransfer a třetí neúspěch v řadě, a aplikace
+ * jí dál nabízela obsah, jako by o ní nevěděla nic. Modifikátory se braly
+ * jen z onboardingu, tedy z jediné minuty na začátku, a ta minuta se pak
+ * nikdy neaktualizovala.
+ *
+ * Odsud se proto čtou i **počty a situace**, ne jen data. Zapsaná léčba
+ * je tvrdší informace než zaškrtnutí z prvního dne.
+ *
+ * Nic se nepřepisuje. Ruční volby v nastavení zůstávají a tyhle se k nim
+ * přidávají; odebrat se ženě nemůže nic, co si sama zvolila.
+ */
+
+/** Proběhl transfer do dneška a nebyl zrušený? */
+function probehl(t: CycleTransfer, today: IsoDate): boolean {
+  return !t.cancelled && t.date !== null && t.date <= today
+}
+
+interface Souhrn {
+  /** Cykly, které se opravdu rozjely. Prázdná karta se nepočítá. */
+  cyklu: number
+  transferu: number
+  ztrat: number
+  /** Transfery, po kterých nepřišlo těhotenství žádného druhu. */
+  bezUhnizdeni: number
+  modifikatory: ModifierId[]
+  /** Nejnovější neprázdná klinika z historie. */
+  klinika: string | null
+  /** Nejnovější CD1. Je to poslední menstruace, o které aplikace ví. */
+  cd1: IsoDate | null
+}
+
+const ICSI_METODY = new Set(['icsi', 'imsi', 'picsi'])
+const PGT_METODY = new Set(['pgta', 'pgtm', 'pgtsr'])
+
+function souhrnHistorie(cycles: CycleRow[], today: IsoDate): Souhrn {
+  const mods = new Set<ModifierId>()
+  let cyklu = 0
+  let transferu = 0
+  let ztrat = 0
+  let bezUhnizdeni = 0
+  let klinika: string | null = null
+  let cd1: IsoDate | null = null
+
+  const podleData = [...cycles].sort((a, b) => (a.cd1On ?? a.startedOn).localeCompare(b.cd1On ?? b.startedOn))
+
+  for (const c of podleData) {
+    const zacal = c.startedOn <= today
+    const probehleTransfery = c.transfers.filter((t) => probehl(t, today))
+
+    // Prázdná rozdělaná karta se do počtu cyklů nepočítá. Cyklus začal
+    // tehdy, když se něco stalo: stimulace, odběr, nebo transfer.
+    const rozjety = Boolean(c.stimStartOn ?? c.retrievalOn) || probehleTransfery.length > 0
+    if (zacal && rozjety) cyklu++
+
+    if (zacal && c.clinic.trim()) klinika = c.clinic.trim()
+    const den1 = c.cd1On
+    if (den1 && den1 <= today && (cd1 === null || den1 > cd1)) cd1 = den1
+
+    // --- způsob léčby, tak jak je zapsaný
+    if (c.kind === 'fet') mods.add('frozen_transfer')
+    if (c.kind === 'darovane_embryo') mods.add('donor_embryo')
+    if (c.eggSource === 'darovane') mods.add('donor_egg')
+    if (c.spermSource === 'darovane') mods.add('donor_sperm')
+    if (ICSI_METODY.has(c.fertMethod)) mods.add('icsi')
+    for (const m of c.methods) {
+      if (ICSI_METODY.has(m)) mods.add('icsi')
+      if (PGT_METODY.has(m)) mods.add('pgt')
+      if (m === 'darvajicka') mods.add('donor_egg')
+      if (m === 'darspermie') mods.add('donor_sperm')
+      if (m === 'darembryo') mods.add('donor_embryo')
+    }
+
+    for (const t of probehleTransfery) {
+      transferu++
+      if (t.kind === 'kryo') mods.add('frozen_transfer')
+      if (t.pgt !== '') mods.add('pgt')
+      if ((ZTRATOVE_VYSLEDKY as readonly string[]).includes(t.outcome)) ztrat++
+      // Za neúspěch se počítá jen zapsaný negativní výsledek. Transfer,
+      // který na výsledek teprve čeká, není neúspěch a nesmí se tak počítat.
+      if (t.outcome === 'negativni') bezUhnizdeni++
+    }
+
+    // Cyklus bez jediného transferu nese výsledek sám. Ztráta se pak čte
+    // z něj, jinak by se žena, která ji zapsala jen na úrovni cyklu,
+    // v počtu ztrát neobjevila.
+    if (zacal && probehleTransfery.length === 0) {
+      if ((ZTRATOVE_VYSLEDKY as readonly string[]).includes(c.outcome)) ztrat++
+    }
+  }
+
+  if (ztrat > 0) mods.add('after_loss')
+  /*
+   * Opakovaný neúspěch. Dvě různé věci, obě se tak jmenují.
+   *
+   * Buď se embryo opakovaně neuchytí (tři a víc transferů bez otěhotnění),
+   * nebo se těhotenství opakovaně ztrácí (dvě a víc ztrát). Zdravotně to
+   * vede k jinému vyšetřování, ale pro obsah aplikace je společné to, že
+   * ženě nemá nikdo psát texty pro první pokus.
+   */
+  if (bezUhnizdeni >= 3 || ztrat >= 2) mods.add('repeated_failure')
+
+  return { cyklu, transferu, ztrat, bezUhnizdeni, modifikatory: [...mods], klinika, cd1 }
+}
+
 /** Do kolikátého dne došlo embryo, které se tímhle transferem přeneslo. */
 function embryoDayOf(ids: string[], embryos: Embryo[]): number | null {
   const dny = embryos
@@ -170,12 +281,51 @@ export function effectiveProfile(
 ): Profile {
   // Výsledek se čte i z uzavřeného cyklu: uzavřením nepřestal platit.
   const vysledek = vysledekZCyklu(cycles, today)
+  const souhrn = souhrnHistorie(cycles, today)
+
+  /*
+   * Datum ztráty ze zapsaného výsledku.
+   *
+   * Bez tohohle řádku fáze ztráty sice naskočila, ale `lossOn` zůstalo
+   * prázdné. Všechny čtyři fáze ztráty od něj počítají den, takže den ve
+   * fázi byl napořád nula a **žádná denní karta se nemohla trefit**. Žena,
+   * která zapsala potrat do karty cyklu, dostala fázi bez obsahu.
+   *
+   * Vlastní datum z nastavení vyhrává, když je novější: to zapsala ona
+   * sama a ví o své ztrátě víc než odvození z odběru hCG.
+   */
+  const ztrataZVysledku =
+    vysledek && FAZE_ZTRATY.has(vysledek.phase) ? vysledek.on : null
+
+  /** Z dvou dat to novější. Pravidlo celého tohohle modulu. */
+  const novejsi = (a: IsoDate | null, b: IsoDate | null): IsoDate | null => {
+    if (!a) return b
+    if (!b) return a
+    return a > b ? a : b
+  }
+
+  /** Sjednocení ručních modifikátorů a těch, které plynou ze zapsané léčby. */
+  const modifiers = [...new Set<ModifierId>([...profile.modifiers, ...souhrn.modifikatory])]
+
+  const spolecne = {
+    modifiers,
+    ivfCycles: Math.max(profile.ivfCycles, souhrn.cyklu),
+    transfersDone: Math.max(profile.transfersDone, souhrn.transferu),
+    miscarriages: Math.max(profile.miscarriages, souhrn.ztrat),
+    embryosFrozen: Math.max(profile.embryosFrozen, embryos.filter((e) => isAvailable(e)).length),
+    clinicName: souhrn.klinika ?? profile.clinicName,
+    outcomePhase: vysledek?.phase ?? null,
+    outcomeOn: vysledek?.on ?? null,
+  }
 
   const c = activeCycle(cycles, today)
   if (!c) {
-    return vysledek
-      ? { ...profile, outcomePhase: vysledek.phase, outcomeOn: vysledek.on }
-      : profile
+    return {
+      ...profile,
+      ...spolecne,
+      lastPeriodOn: novejsi(souhrn.cd1, profile.lastPeriodOn),
+      lossOn: novejsi(ztrataZVysledku, profile.lossOn),
+    }
   }
 
   const zacatek = c.cd1On ?? c.startedOn
@@ -184,14 +334,29 @@ export function effectiveProfile(
   const zProfilu = (d: IsoDate | null): IsoDate | null => (d !== null && d >= zacatek ? d : null)
 
   const t = currentTransfer(c, today)
-  const transferOn = t?.date ?? zProfilu(profile.transferOn)
+  /*
+   * Inseminace není transfer.
+   *
+   * V cyklu typu IUI se do řádku „transfer“ zapisuje samotná inseminace,
+   * jiné místo pro ni v kartě není. Kdyby se z ní stalo `transferOn`,
+   * aplikace by ženě po inseminaci hlásila dny po embryotransferu a nabízela
+   * obsah o embryích, která žádná nejsou.
+   */
+  const jeIui = c.kind === 'iui'
+  const transferOn = jeIui ? zProfilu(profile.transferOn) : (t?.date ?? zProfilu(profile.transferOn))
+  const iuiOn = jeIui ? (t?.date ?? zProfilu(profile.iuiOn)) : zProfilu(profile.iuiOn)
+
+  // CD1 běžícího cyklu je poslední menstruace, o které aplikace ví.
+  const cd1 = c.cd1On && c.cd1On <= today ? c.cd1On : null
 
   return {
     ...profile,
+    ...spolecne,
     stimulationStartOn: c.stimStartOn ?? zProfilu(profile.stimulationStartOn),
     retrievalOn: c.retrievalOn ?? zProfilu(profile.retrievalOn),
     transferOn,
     betaTestOn: positiveHcgDate(c, today) ?? zProfilu(profile.betaTestOn),
+    lastPeriodOn: cd1 ?? zProfilu(profile.lastPeriodOn),
     // Den kultivace patří k transferu, ze kterého se počítá, a k embryu,
     // které se jím přeneslo. Po druhém transferu to bývá jiné číslo:
     // v lednu se přenášela pětka, v srpnu šestka. Ruční hodnota se použije,
@@ -200,18 +365,21 @@ export function effectiveProfile(
       t?.date && t.date === transferOn
         ? (t.embryoDay ?? embryoDayOf(t.embryoIds, embryos) ?? profile.embryoDayAtTransfer)
         : profile.embryoDayAtTransfer,
-    // Inseminace ani ztráta nejsou pole cyklu. Starší než běžící cyklus ale
-    // znamená, že se od nich přešlo dál: žena po ztrátě, která začala nový
-    // cyklus, není ve fázi ztráty. Je ve stimulaci.
-    iuiOn: zProfilu(profile.iuiOn),
-    lossOn: zProfilu(profile.lossOn),
+    iuiOn,
+    /*
+     * Ztráta zapsaná v běžícím cyklu platí. Starší ruční datum než začátek
+     * cyklu znamená, že se od něj přešlo dál: žena po ztrátě, která začala
+     * nový cyklus, není ve fázi ztráty. Je ve stimulaci.
+     *
+     * Z toho, co zbyde, vyhrává novější. Odvozené datum je odhad z odběru
+     * hCG, kdežto to v nastavení napsala ona sama a ví o své ztrátě víc.
+     */
+    lossOn: novejsi(ztrataZVysledku, zProfilu(profile.lossOn)),
     // Transfer proběhl, ale výsledek v aplikaci není. Fáze se pak nesmí
     // sama překlopit do „čekání na další pokus“: to by znamenalo, že za
     // ženu rozhodl kalendář.
     transferResultPending: Boolean(
       t && t.date && t.date <= today && !t.cancelled && t.outcome === 'ceka',
     ),
-    outcomePhase: vysledek?.phase ?? null,
-    outcomeOn: vysledek?.on ?? null,
   }
 }

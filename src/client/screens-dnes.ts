@@ -20,6 +20,7 @@ import {
   reminders,
   S,
   saveFailed,
+  runningMedsCount,
   shotsOn,
   viewDate,
 } from './store'
@@ -277,8 +278,41 @@ function vyzvaKVysledku(ctx: ReturnType<typeof context>): string {
     </button>
     <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
       Najdete ho v sekci Transfery, přímo u toho svého. Platí to i pro
-      výsledek, který jste nechtěla: negativní, biochemické i mimoděložní
-      těhotenství mají v aplikaci vlastní obsah.
+      výsledek, který jste nechtěla: negativní hCG, biochemické i zamlklé
+      těhotenství, samovolný potrat i mimoděložní těhotenství mají
+      v aplikaci vlastní obsah. Každý z nich jde dál jinak.
+    </p>
+  </section>`
+}
+
+/**
+ * Po ztrátě dál běží injekce.
+ *
+ * Žena si zapsala do karty cyklu, že to nevyšlo, a aplikace jí dnes ve
+ * 20:00 pořád plánuje progesteron. Je to přesně to, čeho se celý tenhle
+ * kód jinde bojí: tvářit se, že neposlouchá.
+ *
+ * Vysadit léky za ni ale aplikace nesmí. O vysazení rozhoduje klinika a
+ * u některých ztrát se v podpoře ještě chvíli pokračuje. Proto se to jen
+ * nabídne, s odkazem tam, kde se to dá udělat.
+ */
+function lekyPoZtrate(state: ReturnType<typeof journey>, bezici: number): string {
+  if (bezici === 0 || state.phase.group !== 'loss') return ''
+
+  return `<section class="surface pad rise" style="border-color:var(--blush)">
+    <p class="eyebrow">V protokolu vám dál běží léky</p>
+    <p class="soft" style="margin-top:.5rem;line-height:1.7">
+      Podle zápisu v kartě cyklu máte za sebou ztrátu, ale
+      ${bezici === 1 ? 'jeden lék v protokolu má' : `${bezici} léky v protokolu mají`}
+      dál běžet, takže je aplikace bude dál nabízet na dnešek.
+    </p>
+    <button class="btn btn-primary btn-sm" data-go="leky/protokol" style="margin-top:1.1rem">
+      Otevřít protokol
+    </button>
+    <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.55">
+      Nic za vás nevysazujeme. O vysazení podpory rozhoduje vždycky klinika
+      a u některých ztrát se v ní ještě chvíli pokračuje. Zeptejte se jí
+      dřív, než cokoli ukončíte.
     </p>
   </section>`
 }
@@ -351,6 +385,8 @@ export function screenDnes(): string {
     transferToday(),
 
     vyzvaKVysledku(ctx),
+
+    lekyPoZtrate(state, runningMedsCount(date)),
 
     // Osobní IVF karta. Ženě, která zrovna žádný cyklus neřeší, se nekreslí
     // technika. Karta se ukáže, až má co ukazovat.

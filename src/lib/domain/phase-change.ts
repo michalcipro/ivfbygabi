@@ -68,13 +68,25 @@ export interface PlanInput {
   anchors: { transferOn: boolean; retrievalOn: boolean; stimulationStartOn: boolean; betaTestOn: boolean }
 }
 
-/** Fáze, po kterých cyklus skončil. */
+/**
+ * Fáze, po kterých cyklus skončil, a s jakým výsledkem.
+ *
+ * Klíč je id trasy z výběru fáze, hodnota výsledek, který se zapíše do
+ * karty cyklu. Každý typ ztráty má vlastní řádek: kdyby se všechny čtyři
+ * zapsaly jako „ztráta“, karta cyklu by o ženě věděla míň než přepínač
+ * fáze a obojí by si přestalo odpovídat.
+ */
 const KONEC: Partial<Record<string, CycleOutcome>> = {
   between: 'negativni',
   negative: 'negativni',
-  loss: 'ztrata',
   biochemical: 'biochemicke',
+  missed: 'zamlkle',
+  miscarriage: 'ztrata',
   ectopic: 'mimodelozni',
+  // `revision` tu schválně není. Revize dělohy sama o sobě neříká, jak
+  // těhotenství skončilo, a domýšlet si to za ženu by znamenalo zapsat jí
+  // do karty diagnózu, kterou nikdo neurčil. Typ ztráty zapisuje ona
+  // o krok dřív a tenhle krok na něj jen navazuje.
 }
 
 /** Fáze, ve kterých se o cyklu ještě nerozhodlo a léčba běží dál. */
@@ -109,11 +121,15 @@ const MIMO_CYKLUS = new Set([
 const VYSLEDEK_TRANSFERU: Partial<Record<string, CycleOutcome>> = {
   between: 'negativni',
   negative: 'negativni',
-  loss: 'ztrata',
   biochemical: 'biochemicke',
+  missed: 'zamlkle',
+  miscarriage: 'ztrata',
   ectopic: 'mimodelozni',
   beta: 'tehotenstvi',
 }
+
+/** Trasy, které znamenají ztrátu těhotenství. */
+const ZTRATA = new Set(['biochemical', 'missed', 'miscarriage', 'ectopic'])
 
 export function planPhaseChange(input: PlanInput): PhasePlan {
   const { routeId, openCycle, runningMeds, anchors } = input
@@ -189,7 +205,7 @@ export function planPhaseChange(input: PlanInput): PhasePlan {
   }
 
   // --- ztráta
-  if (routeId === 'loss' || routeId === 'biochemical' || routeId === 'ectopic') {
+  if (ZTRATA.has(routeId)) {
     steps.push({
       kind: 'set-loss',
       label: 'Zapsat datum ztráty na dnešek',

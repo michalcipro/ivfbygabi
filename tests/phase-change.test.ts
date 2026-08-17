@@ -59,20 +59,48 @@ test('pozitivní hCG nikdy nenabídne vysazení léků', () => {
 
 test('ztráta si vyžádá datum, uzavření cyklu dostane svůj výsledek', () => {
   const plan = planPhaseChange(
-    vstup({ routeId: 'loss', phase: 'loss_miscarriage', openCycle: bezici }),
+    vstup({ routeId: 'miscarriage', phase: 'loss_miscarriage', openCycle: bezici }),
   )
   assert.deepEqual(kinds(plan.steps), ['close-cycle', 'set-loss'])
   assert.equal(plan.steps[0].outcome, 'ztrata')
 })
 
-test('mimoděložní a biochemické mají vlastní výsledek cyklu', () => {
+test('každý typ ztráty zapíše do cyklu vlastní diagnózu', () => {
   for (const [routeId, outcome] of [
     ['biochemical', 'biochemicke'],
+    ['missed', 'zamlkle'],
+    ['miscarriage', 'ztrata'],
     ['ectopic', 'mimodelozni'],
   ] as const) {
     const plan = planPhaseChange(vstup({ routeId, openCycle: bezici }))
-    assert.equal(plan.steps.find((s) => s.kind === 'close-cycle')?.outcome, outcome)
+    assert.equal(
+      plan.steps.find((s) => s.kind === 'close-cycle')?.outcome,
+      outcome,
+      `${routeId} má uzavřít cyklus jako ${outcome}`,
+    )
+    assert.ok(kinds(plan.steps).includes('set-loss'), `${routeId} si má vyžádat datum ztráty`)
   }
+})
+
+test('všechny čtyři ztráty zapíšou i výsledek čekajícího transferu', () => {
+  const cekajici = { ...bezici, hasTransferWaiting: true }
+  for (const [routeId, outcome] of [
+    ['biochemical', 'biochemicke'],
+    ['missed', 'zamlkle'],
+    ['miscarriage', 'ztrata'],
+    ['ectopic', 'mimodelozni'],
+  ] as const) {
+    const plan = planPhaseChange(vstup({ routeId, openCycle: cekajici }))
+    assert.equal(plan.steps.find((s) => s.kind === 'mark-transfer')?.outcome, outcome)
+  }
+})
+
+test('revize dělohy sama o sobě neuzavírá cyklus žádným výsledkem', () => {
+  // Revize neříká, jak těhotenství skončilo. Domýšlet si to znamená zapsat
+  // ženě do karty diagnózu, kterou nikdo neurčil.
+  const plan = planPhaseChange(vstup({ routeId: 'revision', phase: 'uterine_revision', openCycle: bezici }))
+  assert.ok(!kinds(plan.steps).includes('close-cycle'))
+  assert.ok(!kinds(plan.steps).includes('set-loss'))
 })
 
 test('fáze uprostřed léčby nezavírá cyklus ani nevysazuje léky', () => {
