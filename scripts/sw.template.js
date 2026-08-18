@@ -88,23 +88,51 @@ self.addEventListener('message', (e) => {
   if (e.data && e.data.typ === 'prevzit') self.skipWaiting()
 })
 
-async function zeSiteNeboZDisku(klic, request) {
+/**
+ * Z disku hned, ze sítě na pozadí.
+ *
+ * ----------------------------------------------------- PROČ TA DRUHÁ POLOVINA ---
+ * Dřív tahle funkce skončila u uložené kopie: když něco v cache leželo,
+ * na síť se už nešlo. Aplikace se tím sice otevřela okamžitě i bez signálu,
+ * ale zároveň neexistovala cesta, jak novou verzi dostat dovnitř jinak než
+ * výměnou celého service workeru. A ta se u otevřené záložky odkládá,
+ * dokud ji někdo nezavře. Uživatelka pak měsíc kouká na opravenou chybu,
+ * která u ní opravená není, a nemá jak to poznat.
+ *
+ * Teď se odpověď vezme z disku (start je pořád okamžitý), ale na pozadí
+ * se stáhne čerstvá a uloží se. Při příštím otevření je nová. Je to
+ * pojistka pro případ, že se výměna service workeru z jakéhokoli důvodu
+ * nepovede: aplikace se nemůže zaseknout v čase natrvalo.
+ */
+async function zeSiteNeboZDisku(klic, e) {
   const cache = await caches.open(CACHE)
   const ulozene = await cache.match(klic)
-  if (ulozene) return ulozene
 
-  try {
-    const res = await fetch(request)
-    // Ukládají se jen vlastní soubory a jen povedené odpovědi. Uložená
-    // chyba 500 by aplikaci rozbila natrvalo.
-    if (res && res.ok && res.type === 'basic') await cache.put(klic, res.clone())
-    return res
-  } catch {
-    return new Response('BlooMia je offline a tahle část se ještě nestihla uložit do zařízení.', {
-      status: 503,
-      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  // Čerstvá kopie se stahuje s obejitím HTTP cache, jinak by se do cache
+  // uložilo zase to staré, co v prohlížeči leží.
+  const pozadavek = typeof klic === 'string' ? new Request(klic, { cache: 'reload' }) : klic
+  const zeSite = fetch(pozadavek)
+    .then(async (res) => {
+      // Ukládají se jen vlastní soubory a jen povedené odpovědi. Uložená
+      // chyba 500 by aplikaci rozbila natrvalo.
+      if (res && res.ok && res.type === 'basic') await cache.put(klic, res.clone())
+      return res
     })
+    .catch(() => null)
+
+  if (ulozene) {
+    // Stahování musí doběhnout i po odeslání odpovědi, jinak ho prohlížeč
+    // po uspání service workeru zahodí a k obnově nikdy nedojde.
+    e.waitUntil(zeSite)
+    return ulozene
   }
+
+  const res = await zeSite
+  if (res) return res
+  return new Response('BlooMia je offline a tahle část se ještě nestihla uložit do zařízení.', {
+    status: 503,
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  })
 }
 
 self.addEventListener('fetch', (e) => {
@@ -122,8 +150,8 @@ self.addEventListener('fetch', (e) => {
   // Každé otevření aplikace, ať přijde na jakoukoliv adresu, dostane
   // skořápku. Trasy jsou v adrese za mřížkou, takže na server nechodí.
   if (request.mode === 'navigate') {
-    e.respondWith(zeSiteNeboZDisku(SKORAPKA, request))
+    e.respondWith(zeSiteNeboZDisku(SKORAPKA, e))
     return
   }
-  e.respondWith(zeSiteNeboZDisku(request, request))
+  e.respondWith(zeSiteNeboZDisku(request, e))
 })
