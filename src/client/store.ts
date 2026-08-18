@@ -1229,8 +1229,9 @@ export function stampLossDate(id: string): void {
     const zacatek = c.cd1On ?? c.startedOn
     const ztratove = (o: string): boolean =>
       (ZTRATOVE_VYSLEDKY as readonly string[]).includes(o)
-    const jeZtrata =
-      c.transfers.some((t) => !t.cancelled && ztratove(t.outcome)) || ztratove(c.outcome)
+    // Bez ohledu na datum a na příznak zrušení. Zapsaná diagnóza je
+    // rozhodnutí uživatelky a stejně ji čte i odvození fáze.
+    const jeZtrata = c.transfers.some((t) => ztratove(t.outcome)) || ztratove(c.outcome)
 
     if (!jeZtrata) {
       // Datum patřící tomuhle cyklu se uklidí, starší ztráta zůstává.

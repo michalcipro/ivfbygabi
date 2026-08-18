@@ -236,7 +236,8 @@ export const PHASES: Record<PhaseId, PhaseDefinition> = {
     title: 'Embryotransfer',
     description: 'Den, na který jste čekala. Krátký zákrok s obrovskou váhou.',
     anchor: 'transferOn',
-    dayLabel: (d) => (d === 0 ? 'Den transferu' : `${d}. den po transferu`),
+    dayLabel: (d) =>
+      d === 0 ? 'Den transferu' : d < 0 ? `${-d} dní do transferu` : `${d}. den po transferu`,
     typicalDays: G(1),
     next: ['two_week_wait'],
     tone: 'tender',

@@ -40,6 +40,34 @@ import type { IsoDate, ModifierId, Profile } from './profile'
  */
 
 /**
+ * Poslední transfer, který o něčem rozhodl.
+ *
+ * Jediné místo, kde se rozhoduje, který řádek karty mluví. Používá ho
+ * odvození fáze i datum pozitivního hCG, aby se nemohlo stát, že si dvě
+ * části aplikace vyberou z téže karty jiný transfer.
+ *
+ * Pravidla, v tomhle pořadí:
+ *  1. Poslední proběhlý transfer, který ještě čeká na výsledek, umlčí
+ *     všechno ostatní. Žena po dalším transferu čeká a rozhodnout za ni
+ *     dřív, než výsledek zná, je to nejhorší, co aplikace může udělat.
+ *  2. Jinak poslední proběhlý transfer s rozhodnutým výsledkem.
+ *  3. Jinak jakýkoli rozhodnutý výsledek v kartě. I u řádku, kterému chybí
+ *     datum, u kterého je datum omylem v budoucnu, nebo je označený jako
+ *     zrušený. Zapsaná diagnóza je rozhodnutí uživatelky a aplikace ho
+ *     nemá co přehlížet kvůli chybějící kolonce.
+ */
+function rozhodnutyTransfer(c: CycleRow, today: IsoDate): CycleTransfer | null {
+  const vsechny = sortedTransfers(c)
+  const probehle = vsechny.filter((t) => !t.cancelled && t.date !== null && t.date <= today)
+  const posledni = probehle.length ? probehle[probehle.length - 1] : null
+
+  if (posledni && posledni.outcome === 'ceka') return null
+  if (posledni && posledni.outcome !== 'zruseno') return posledni
+
+  return [...vsechny].reverse().find((t) => t.outcome !== 'ceka' && t.outcome !== 'zruseno') ?? null
+}
+
+/**
  * Odběr hCG, od kterého se počítá fáze po pozitivním výsledku.
  *
  * Váže se na transfer, o který teď jde, takže po druhém transferu se
@@ -49,7 +77,7 @@ import type { IsoDate, ModifierId, Profile } from './profile'
  * téhož těhotenství, ne nová zpráva.
  */
 function positiveHcgDate(c: CycleRow, today: IsoDate): IsoDate | null {
-  const t = currentTransfer(c, today)
+  const t = rozhodnutyTransfer(c, today)
   if (!t || t.outcome !== 'pozitivni') return null
 
   const mine = bloodTests(c).filter((b) => {
@@ -67,9 +95,7 @@ function positiveHcgDate(c: CycleRow, today: IsoDate): IsoDate | null {
    * Zápis výsledku je informace. Datum se bere z toho nejpřesnějšího, co
    * o něm víme, a nic se nedomýšlí: plánovaný odběr, jinak den transferu.
    */
-  const planovany = t.hcgPlannedOn
-  if (planovany && planovany <= today) return planovany
-  return t.date && t.date <= today ? t.date : null
+  return kdyVysledek(c, t, today)
 }
 
 /**
@@ -79,10 +105,13 @@ function positiveHcgDate(c: CycleRow, today: IsoDate): IsoDate | null {
  * Žena, která si zapíše negativní hCG, nemá dál číst „devátý den po
  * transferu“ a ručně přepínat fázi. Zápis je zdroj pravdy.
  *
- * Pozitivní výsledek tu není: ten jde přes `betaTestOn`, aby se od něj
- * dala počítat cesta k prvnímu ultrazvuku.
+ * Pozitivní výsledek tu je taky. Přesný den se pro něj počítá přes
+ * `betaTestOn`, ale ten se plní jen z běžícího cyklu a jen když má transfer
+ * datum. U uzavřeného cyklu nebo u řádku bez data pozitivní výsledek dřív
+ * z aplikace zmizel úplně stejně jako ztráta.
  */
 const FAZE_TRANSFERU: Record<string, string> = {
+  pozitivni: 'beta_positive',
   negativni: 'waiting_next_attempt',
   biochemicke: 'loss_biochemical',
   zamlkle: 'loss_missed',
@@ -92,6 +121,7 @@ const FAZE_TRANSFERU: Record<string, string> = {
 
 const FAZE_CYKLU: Record<string, string> = {
   ...FAZE_TRANSFERU,
+  tehotenstvi: 'beta_positive',
   // Cyklus bez embrya nesmí spadnout na „snažíme se přirozeně“. Ženě, které
   // se nevyvinulo žádné embryo, aplikace nemá hlásit první měsíc snažení.
   bez_embrya: 'waiting_next_attempt',
@@ -102,26 +132,46 @@ const FAZE_CYKLU: Record<string, string> = {
 /** Fáze, ve kterých se počítá den od data ztráty. */
 const FAZE_ZTRATY = new Set(['loss_biochemical', 'loss_missed', 'loss_miscarriage', 'loss_ectopic'])
 
-/** Kdy se výsledek dozvěděla. Nejpřesnější dostupné datum, nic vymyšleného. */
+/**
+ * Kdy se výsledek dozvěděla. Nejpřesnější dostupné datum, nic vymyšleného.
+ *
+ * ------------------------------------------------ PROČ SE TU NIKDY NEVRACÍ NULL ---
+ * Dřív tahle funkce u transferu bez data vrátila `null` a volající z toho
+ * usoudil, že žádný výsledek není. Zapsaná diagnóza tím z aplikace zmizela:
+ * v kartě cyklu stálo „mimoděložní těhotenství“ a nahoře „čekání na hCG,
+ * 12. den po transferu“. Zápis se nesmí ztratit kvůli tomu, že u něj chybí
+ * jedna kolonka.
+ *
+ * Datum se proto hledá od nejpřesnějšího k nejhrubšímu: naměřené hCG,
+ * plánovaný odběr, datum transferu, a nakonec milníky celého cyklu. Že je
+ * to hrubý odhad, nevadí: přesný den, kdy se to žena dozvěděla, si zapisuje
+ * `lossOn` ve chvíli zápisu a ten tenhle odhad přebije.
+ */
 function kdyVysledek(c: CycleRow, t: CycleTransfer | null, today: IsoDate): IsoDate | null {
-  if (t) {
-    const odbery = bloodTests(c).filter(
-      (b) => (b.transferId === t.id || !b.transferId) && (b.date as IsoDate) <= today,
-    )
-    const posledni = odbery.length ? (odbery[odbery.length - 1].date as IsoDate) : null
-    const datum = posledni ?? (t.hcgPlannedOn && t.hcgPlannedOn <= today ? t.hcgPlannedOn : t.date)
-    return datum && datum <= today ? datum : null
-  }
-  const datum = c.endedOn ?? c.retrievalOn ?? c.startedOn
-  return datum && datum <= today ? datum : null
+  const doDneska = (d: IsoDate | null | undefined): IsoDate | null =>
+    d && d <= today ? d : null
+
+  const zCyklu = doDneska(c.endedOn) ?? doDneska(c.retrievalOn) ?? doDneska(c.startedOn)
+  if (!t) return zCyklu
+
+  const odbery = bloodTests(c).filter(
+    (b) => (b.transferId === t.id || !b.transferId) && (b.date as IsoDate) <= today,
+  )
+  const posledni = odbery.length ? (odbery[odbery.length - 1].date as IsoDate) : null
+  return posledni ?? doDneska(t.hcgPlannedOn) ?? doDneska(t.date) ?? zCyklu
 }
 
 /**
  * Výsledek zapsaný v cyklu, přeložený na fázi a datum.
  *
- * Bere se poslední transfer, který proběhl. Když žádný transfer není nebo
- * ještě čeká na výsledek, rozhodne výsledek celého cyklu. Uzavřený cyklus
- * se tady započítává schválně: je to poslední věc, která se stala.
+ * Pořadí je pevné a čte se shora dolů:
+ *  1. poslední proběhlý transfer, který ještě čeká na výsledek. Pak se čeká.
+ *  2. poslední proběhlý transfer s rozhodnutým výsledkem.
+ *  3. jakýkoli rozhodnutý výsledek u transferu, i když mu chybí datum.
+ *  4. výsledek celého cyklu.
+ *
+ * Uzavřený cyklus se tady započítává schválně: je to poslední věc, která
+ * se stala.
  */
 function vysledekZCyklu(
   cycles: CycleRow[],
@@ -130,20 +180,19 @@ function vysledekZCyklu(
   const c = defaultCycle(cycles, today)
   if (!c) return null
 
-  const probehle = sortedTransfers(c).filter(
-    (t) => !t.cancelled && t.date !== null && t.date <= today,
-  )
-  const t = probehle.length ? probehle[probehle.length - 1] : null
-
-  if (t && t.outcome !== 'ceka') {
-    const faze = FAZE_TRANSFERU[t.outcome]
-    const on = kdyVysledek(c, t, today)
-    if (faze && on) return { phase: faze, on }
+  const t = rozhodnutyTransfer(c, today)
+  // Transfer, který ještě čeká na výsledek, umlčí i výsledek celého cyklu.
+  if (t === null && sortedTransfers(c).some((x) => !x.cancelled && x.date && x.date <= today && x.outcome === 'ceka')) {
     return null
   }
 
-  // Transfer buď není, nebo pořád čeká. Pak mluví výsledek celého cyklu.
-  if (t) return null
+  if (t) {
+    const faze = FAZE_TRANSFERU[t.outcome]
+    const on = kdyVysledek(c, t, today)
+    if (faze && on) return { phase: faze, on }
+  }
+
+  // Žádný transfer nerozhodl. Pak mluví výsledek celého cyklu.
   const faze = FAZE_CYKLU[c.outcome]
   const on = kdyVysledek(c, null, today)
   return faze && on ? { phase: faze, on } : null
@@ -230,18 +279,25 @@ function souhrnHistorie(cycles: CycleRow[], today: IsoDate): Souhrn {
       transferu++
       if (t.kind === 'kryo') mods.add('frozen_transfer')
       if (t.pgt !== '') mods.add('pgt')
-      if ((ZTRATOVE_VYSLEDKY as readonly string[]).includes(t.outcome)) ztrat++
       // Za neúspěch se počítá jen zapsaný negativní výsledek. Transfer,
       // který na výsledek teprve čeká, není neúspěch a nesmí se tak počítat.
       if (t.outcome === 'negativni') bezUhnizdeni++
     }
 
-    // Cyklus bez jediného transferu nese výsledek sám. Ztráta se pak čte
-    // z něj, jinak by se žena, která ji zapsala jen na úrovni cyklu,
-    // v počtu ztrát neobjevila.
-    if (zacal && probehleTransfery.length === 0) {
-      if ((ZTRATOVE_VYSLEDKY as readonly string[]).includes(c.outcome)) ztrat++
+    /*
+     * Ztráty se počítají ze zapsané diagnózy, ne z toho, jestli má řádek
+     * vyplněné datum. Žena, která zapsala potrat k transferu bez data, ho
+     * zažila stejně jako ta, která datum doplnila.
+     */
+    let ztratVCyklu = 0
+    for (const t of c.transfers) {
+      if ((ZTRATOVE_VYSLEDKY as readonly string[]).includes(t.outcome)) ztratVCyklu++
     }
+    // Cyklus bez jediné zapsané ztráty u transferu nese výsledek sám.
+    if (ztratVCyklu === 0 && zacal && (ZTRATOVE_VYSLEDKY as readonly string[]).includes(c.outcome)) {
+      ztratVCyklu = 1
+    }
+    ztrat += ztratVCyklu
   }
 
   if (ztrat > 0) mods.add('after_loss')
@@ -304,6 +360,21 @@ export function effectiveProfile(
     return a > b ? a : b
   }
 
+  /*
+   * Výsledek se žena nemohla dozvědět dřív než v den transferu.
+   *
+   * Odvozené datum bývá jen odhad: u transferu bez vyplněného data spadne
+   * až na odběr vajíček, tedy o týdny zpátky. Fáze se pak vybírá podle
+   * pořadí v čase a starší odhad prohraje s datem transferu z profilu.
+   * Změřeno: v kartě stálo „mimoděložní těhotenství“ a nahoře „čekání na
+   * hCG, 12. den po transferu“. Zápis prohrál sám se sebou.
+   */
+  const kdyVysledekNejdriv = (odhad: IsoDate | null, ...transfery: (IsoDate | null)[]): IsoDate | null => {
+    if (!odhad) return null
+    const probehly = transfery.filter((d): d is IsoDate => Boolean(d) && (d as IsoDate) <= today)
+    return probehly.reduce<IsoDate | null>((a, b) => novejsi(a, b), odhad)
+  }
+
   /** Sjednocení ručních modifikátorů a těch, které plynou ze zapsané léčby. */
   const modifiers = [...new Set<ModifierId>([...profile.modifiers, ...souhrn.modifikatory])]
 
@@ -320,11 +391,13 @@ export function effectiveProfile(
 
   const c = activeCycle(cycles, today)
   if (!c) {
+    const outcomeOn = kdyVysledekNejdriv(vysledek?.on ?? null, profile.transferOn)
     return {
       ...profile,
       ...spolecne,
+      outcomeOn,
       lastPeriodOn: novejsi(souhrn.cd1, profile.lastPeriodOn),
-      lossOn: novejsi(ztrataZVysledku, profile.lossOn),
+      lossOn: novejsi(kdyVysledekNejdriv(ztrataZVysledku, profile.transferOn), profile.lossOn),
     }
   }
 
@@ -374,7 +447,11 @@ export function effectiveProfile(
      * Z toho, co zbyde, vyhrává novější. Odvozené datum je odhad z odběru
      * hCG, kdežto to v nastavení napsala ona sama a ví o své ztrátě víc.
      */
-    lossOn: novejsi(ztrataZVysledku, zProfilu(profile.lossOn)),
+    lossOn: novejsi(
+      kdyVysledekNejdriv(ztrataZVysledku, transferOn, profile.transferOn),
+      zProfilu(profile.lossOn),
+    ),
+    outcomeOn: kdyVysledekNejdriv(vysledek?.on ?? null, transferOn, profile.transferOn),
     // Transfer proběhl, ale výsledek v aplikaci není. Fáze se pak nesmí
     // sama překlopit do „čekání na další pokus“: to by znamenalo, že za
     // ženu rozhodl kalendář.

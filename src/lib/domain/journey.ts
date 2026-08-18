@@ -247,15 +247,29 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
      */
     if (dpt > 14 && dpt <= 45 && profile.transferResultPending) return 'two_week_wait'
     if (dpt > 14 && dpt <= 60) return 'waiting_next_attempt'
+    /*
+     * Transfer je teprve před ní.
+     *
+     * Do týdne se embrya ještě kultivují. Dál je to naplánovaný termín,
+     * u kryotransferu klidně za měsíc. Dřív se tenhle případ nechytil
+     * vůbec a odvození spadlo na odběr vajíček, takže žena s transferem
+     * domluveným za tři týdny četla „Mezi pokusy“.
+     */
     if (dpt < 0 && dpt >= -7) return 'embryo_culture'
+    if (dpt < -7 && dpt >= -60) return 'transfer'
     return null
   })
+
+  // Naplánovaný transfer. Co proběhlo, sice rozhoduje dřív než co je
+  // v plánu, ale „mezi pokusy“ se nesmí říct ženě, která má transfer
+  // domluvený na příští týden.
+  const cekaTransfer = Boolean(profile.transferOn && profile.transferOn > today)
 
   kotva('retrievalOn', (dpr) => {
     if (dpr === 0) return 'retrieval'
     if (dpr === 1) return 'fertilization'
     if (dpr > 1 && dpr <= 6) return 'embryo_culture'
-    if (dpr > 6 && dpr <= 45) return 'waiting_next_attempt'
+    if (dpr > 6 && dpr <= 45) return cekaTransfer ? null : 'waiting_next_attempt'
     if (dpr < 0 && dpr >= -14) return 'stimulation'
     return null
   })

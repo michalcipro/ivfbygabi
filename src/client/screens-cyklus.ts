@@ -605,6 +605,17 @@ function transferBlock(c: CycleRow, t: CycleTransfer, i: number, v: Record<strin
         'Jakmile tady výsledek zapíšete, přepne se podle něj celá aplikace. Ručně fázi měnit nemusíte.',
       )}
       ${vysvetlivky(TRANSFER_OUTCOME_HINT, ZTRATOVE_VYSLEDKY, TRANSFER_OUTCOME_LABEL)}
+      ${
+        /*
+         * Výsledek bez data transferu se propíše správně, fáze se přepne
+         * a obsah taky. Chybí ale den, od kterého se počítá, takže se
+         * ztratí přesnost tam, kde na ní záleží. Je to pobídka, ne chyba,
+         * a zápis se kvůli ní nikdy nezahazuje.
+         */
+        t.outcome !== 'ceka' && t.date === null
+          ? `<p class="note" style="margin-top:.7rem">Výsledek je zapsaný a aplikace se podle něj řídí. Doplňte ještě <strong>datum transferu</strong>, ať se dá počítat, kolikátý den to byl.</p>`
+          : ''
+      }
     </div>
     <div class="two" style="margin-top:1.1rem">
       ${numField(k('embryos'), 'Kolik embryí vloženo', v[k('embryos')] ?? '')}
