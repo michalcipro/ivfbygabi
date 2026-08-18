@@ -28,6 +28,11 @@ function read(path: string): string {
 const safeForScript = (js: string) => js.replace(/<\/script/gi, '<\\/script')
 const safeForStyle = (css: string) => css.replace(/<\/style/gi, '<\\/style')
 
+/** Čas sestavení v ISO tvaru, na minuty. Sekundy nikoho nezajímají. */
+function razitko(): string {
+  return `${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC`
+}
+
 async function main() {
   // index.html, aby se dala složka `app/` rovnou hostovat jako statický web.
   const outPath = process.argv[2] ?? join(ROOT, 'app', 'index.html')
@@ -54,6 +59,9 @@ async function main() {
     .replace('/*__FONTS__*/', () => safeForStyle(fonts))
     .replace('/*__CSS__*/', () => safeForStyle(css))
     .replace('/*__APP__*/', () => safeForScript(js))
+    // Razítko sestavení. Musí se doplnit před spočtením otisku, jinak by
+    // otisk neodpovídal souboru, který se opravdu zapisuje.
+    .replace('__SESTAVENO__', razitko())
 
   const outDir = dirname(outPath)
   mkdirSync(outDir, { recursive: true })

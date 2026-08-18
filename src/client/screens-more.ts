@@ -1068,7 +1068,36 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
         i v jiném telefonu. Není to dokument na čtení, na to je přehled výš.
       </p>
     </section>`,
+
+    verzeAplikace(),
   ].join('')
+}
+
+/**
+ * Které sestavení aplikace právě běží.
+ *
+ * ------------------------------------------------------------- PROČ TO TU JE ---
+ * Aplikace se aktualizuje sama, ale poznat, jestli se to už stalo, jinak
+ * nejde. Bez tohohle údaje se u každé nahlášené chyby hádá, na které verzi
+ * ji uživatelka viděla, a hádá se dlouho: opravená chyba vypadá jako
+ * neopravená, dokud se k ní nová verze nedostane.
+ *
+ * Datum sestavení do souboru doplňuje `scripts/build-app.ts`. Když se
+ * hlásí chyba, tohle je první údaj, který je potřeba.
+ */
+function verzeAplikace(): string {
+  const meta = document.querySelector('meta[name="bloomia-sestaveno"]')
+  const kdy = meta?.getAttribute('content') ?? ''
+  const zname = kdy.length > 0 && !kdy.startsWith('__')
+
+  return `<section class="surface pad">
+    <p class="eyebrow">Verze aplikace</p>
+    <p class="soft" style="margin-top:.5rem;font-size:.9375rem;line-height:1.65">
+      ${zname ? `Sestaveno <strong>${esc(kdy)}</strong>.` : 'Údaj o sestavení se nepodařilo přečíst.'}
+      Aktualizuje se sama, když je připojení. Když hlásíte chybu, přiložte
+      tenhle údaj: podle něj se pozná, jestli ji nová verze už neopravila.
+    </p>
+  </section>`
 }
 
 // --------------------------------------------------------------- členství ---
