@@ -107,6 +107,34 @@ const ZTRATY = new Set<string>([
   'loss_ectopic',
 ])
 
+/** Fáze, ve kterých těhotenství teprve visí ve vzduchu nebo běží. */
+const TEHOTENSTVI_VE_HRE = new Set<string>(['two_week_wait', 'beta_positive'])
+
+/**
+ * Odporuje si zvolená fáze se zapsaným výsledkem?
+ *
+ * Seznam je schválně krátký. Aplikace ženě nebere její volbu jen proto, že
+ * ji nečekala: po ztrátě smí sama přejít kamkoli, na revizi dělohy,
+ * na genetiku, na přípravu dalšího cyklu. Blokují se jen dvojice, které
+ * nemůžou platit obě naráz.
+ *
+ * Zapsaná ztráta a „čekám na hCG“ je právě taková dvojice. Přesně tohle
+ * bylo v aplikaci vidět: v kartě mimoděložní těhotenství, nahoře čekání
+ * na hCG. Výsledek je konkrétní diagnóza, nálepka je jen nastavení, takže
+ * ve sporu vyhrává karta.
+ *
+ * Naopak zapsané pozitivní hCG a zvolená ztráta si taky odporují. Tam se
+ * mění výsledek v kartě, ne nálepka; přepínač fáze to sám nabídne.
+ */
+function jeVRozporu(vysledek: string | null | undefined, volba: PhaseId): boolean {
+  if (typeof vysledek !== 'string' || vysledek.length === 0) return false
+  if (vysledek === volba) return false
+  if (ZTRATY.has(vysledek) && TEHOTENSTVI_VE_HRE.has(volba)) return true
+  if (vysledek === 'waiting_next_attempt' && TEHOTENSTVI_VE_HRE.has(volba)) return true
+  if (vysledek === 'beta_positive' && ZTRATY.has(volba)) return true
+  return false
+}
+
 /**
  * Automatická detekce fáze z dat profilu, pokud si uživatelka fázi nezvolila
  * (nebo zvolila fázi, ze které data ukazují, že už postoupila. Např.
@@ -146,7 +174,29 @@ export function inferPhase(profile: Profile, today: IsoDate = todayIso()): Phase
     ].filter((d): d is IsoDate => typeof d === 'string' && d.length > 0)
     const nejnovejsi = kotvy.sort().pop() ?? null
     const nicNovejsiho = nejnovejsi === null || nejnovejsi <= profile.phaseDeclaredOn
-    if (!maVlastniKotvu && nicNovejsiho) return profile.declaredPhase
+
+    /*
+     * Nálepka nesmí přebít zapsanou diagnózu, na kterou nenavazuje.
+     *
+     * ------------------------------------------------------------ PROČ ---
+     * Data se porovnávají po dnech, takže se z nich nedá poznat, co žena
+     * udělala dřív. Odvozené datum výsledku je navíc často jen odhad z data
+     * transferu, kdežto volba fáze nese den, kdy na ni klepla. Nálepka tak
+     * vycházela jako novější, i když ji žena nastavila dávno předtím, než
+     * do karty zapsala, jak to dopadlo.
+     *
+     * Změřeno v aplikaci: v kartě stálo mimoděložní těhotenství a nahoře
+     * svítilo „Čekání na hCG“. Přesně tenhle případ.
+     *
+     * -------------------------------------------------------- PRAVIDLO ---
+     * Zapsaná diagnóza je konkrétnější než nálepka, takže vyhrává. Volba
+     * obstojí jen tehdy, když na výsledek **navazuje**: po ztrátě smí žena
+     * sama přejít na revizi dělohy, genetiku nebo čekání na další pokus,
+     * a to jí aplikace nemá brát. Ale „čekám na hCG“ ani „mám pozitivní
+     * hCG“ po zapsané ztrátě nenásleduje. To je rozpor, ne posun.
+     */
+    const odporujeVysledku = jeVRozporu(profile.outcomePhase, profile.declaredPhase)
+    if (!maVlastniKotvu && nicNovejsiho && !odporujeVysledku) return profile.declaredPhase
   }
 
   /*

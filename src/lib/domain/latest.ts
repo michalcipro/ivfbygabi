@@ -151,7 +151,17 @@ function kdyVysledek(c: CycleRow, t: CycleTransfer | null, today: IsoDate): IsoD
   const doDneska = (d: IsoDate | null | undefined): IsoDate | null =>
     d && d <= today ? d : null
 
-  const zCyklu = doDneska(c.endedOn) ?? doDneska(c.retrievalOn) ?? doDneska(c.startedOn)
+  /*
+   * Poslední záchrana je dnešek, ne začátek cyklu.
+   *
+   * Odběr vajíček ani založení karty nejsou dny, kdy se žena o výsledku
+   * dozvěděla; jsou to začátky. Datovat jimi diagnózu znamená položit ji
+   * o týdny do minulosti, kde ji v odvození fáze přebije úplně všechno
+   * ostatní, a zapsaná ztráta se pak nikde neukáže. Uzavření cyklu datum
+   * nese, začátek ne. Když není ani to, platí dnešek: karta tvrdí tohle
+   * a ptáme se jí teď.
+   */
+  const zCyklu = doDneska(c.endedOn) ?? today
   if (!t) return zCyklu
 
   const odbery = bloodTests(c).filter(
@@ -369,11 +379,31 @@ export function effectiveProfile(
    * Změřeno: v kartě stálo „mimoděložní těhotenství“ a nahoře „čekání na
    * hCG, 12. den po transferu“. Zápis prohrál sám se sebou.
    */
-  const kdyVysledekNejdriv = (odhad: IsoDate | null, ...transfery: (IsoDate | null)[]): IsoDate | null => {
+  const kdyVysledekNejdriv = (odhad: IsoDate | null, ...udalosti: (IsoDate | null)[]): IsoDate | null => {
     if (!odhad) return null
-    const probehly = transfery.filter((d): d is IsoDate => Boolean(d) && (d as IsoDate) <= today)
-    return probehly.reduce<IsoDate | null>((a, b) => novejsi(a, b), odhad)
+    const probehle = udalosti.filter((d): d is IsoDate => Boolean(d) && (d as IsoDate) <= today)
+    return probehle.reduce<IsoDate | null>((a, b) => novejsi(a, b), odhad)
   }
+
+  /*
+   * Události, po kterých výsledek nutně přišel.
+   *
+   * Odvození fáze rozhoduje podle času: vyhrává to, co se stalo naposled.
+   * Kotevní data z profilu (odběr hCG, transfer, punkce) přitom bývají
+   * novější než hrubý odhad data výsledku, takže zapsanou diagnózu přebila.
+   * Změřeno: žena měla v profilu odběr hCG před dvěma dny a v kartě cyklu
+   * zapsané mimoděložní těhotenství. Aplikace jí ukazovala pozitivní hCG.
+   *
+   * Výsledek se nemohla dozvědět dřív, než proběhly kroky, které k němu
+   * vedly. Datum se proto zvedne aspoň na ten poslední z nich.
+   */
+  const predchoziKroky = (p: Profile): (IsoDate | null)[] => [
+    p.transferOn,
+    p.betaTestOn,
+    p.retrievalOn,
+    p.stimulationStartOn,
+    p.iuiOn,
+  ]
 
   /** Sjednocení ručních modifikátorů a těch, které plynou ze zapsané léčby. */
   const modifiers = [...new Set<ModifierId>([...profile.modifiers, ...souhrn.modifikatory])]
@@ -391,13 +421,13 @@ export function effectiveProfile(
 
   const c = activeCycle(cycles, today)
   if (!c) {
-    const outcomeOn = kdyVysledekNejdriv(vysledek?.on ?? null, profile.transferOn)
+    const kroky = predchoziKroky(profile)
     return {
       ...profile,
       ...spolecne,
-      outcomeOn,
+      outcomeOn: kdyVysledekNejdriv(vysledek?.on ?? null, ...kroky),
       lastPeriodOn: novejsi(souhrn.cd1, profile.lastPeriodOn),
-      lossOn: novejsi(kdyVysledekNejdriv(ztrataZVysledku, profile.transferOn), profile.lossOn),
+      lossOn: novejsi(kdyVysledekNejdriv(ztrataZVysledku, ...kroky), profile.lossOn),
     }
   }
 
@@ -419,6 +449,8 @@ export function effectiveProfile(
   const transferOn = jeIui ? zProfilu(profile.transferOn) : (t?.date ?? zProfilu(profile.transferOn))
   const iuiOn = jeIui ? (t?.date ?? zProfilu(profile.iuiOn)) : zProfilu(profile.iuiOn)
 
+  const betaTestOn = positiveHcgDate(c, today) ?? zProfilu(profile.betaTestOn)
+
   // CD1 běžícího cyklu je poslední menstruace, o které aplikace ví.
   const cd1 = c.cd1On && c.cd1On <= today ? c.cd1On : null
 
@@ -428,7 +460,7 @@ export function effectiveProfile(
     stimulationStartOn: c.stimStartOn ?? zProfilu(profile.stimulationStartOn),
     retrievalOn: c.retrievalOn ?? zProfilu(profile.retrievalOn),
     transferOn,
-    betaTestOn: positiveHcgDate(c, today) ?? zProfilu(profile.betaTestOn),
+    betaTestOn,
     lastPeriodOn: cd1 ?? zProfilu(profile.lastPeriodOn),
     // Den kultivace patří k transferu, ze kterého se počítá, a k embryu,
     // které se jím přeneslo. Po druhém transferu to bývá jiné číslo:
@@ -448,10 +480,15 @@ export function effectiveProfile(
      * hCG, kdežto to v nastavení napsala ona sama a ví o své ztrátě víc.
      */
     lossOn: novejsi(
-      kdyVysledekNejdriv(ztrataZVysledku, transferOn, profile.transferOn),
+      kdyVysledekNejdriv(ztrataZVysledku, transferOn, betaTestOn, ...predchoziKroky(profile)),
       zProfilu(profile.lossOn),
     ),
-    outcomeOn: kdyVysledekNejdriv(vysledek?.on ?? null, transferOn, profile.transferOn),
+    outcomeOn: kdyVysledekNejdriv(
+      vysledek?.on ?? null,
+      transferOn,
+      betaTestOn,
+      ...predchoziKroky(profile),
+    ),
     // Transfer proběhl, ale výsledek v aplikaci není. Fáze se pak nesmí
     // sama překlopit do „čekání na další pokus“: to by znamenalo, že za
     // ženu rozhodl kalendář.

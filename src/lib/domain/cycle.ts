@@ -997,8 +997,35 @@ export function estimatedBeta(c: CycleRow, today: IsoDate = todayIso()): IsoDate
  * znamená, že cyklus vznikl později. Bez druhého kritéria by dva cykly
  * zahájené týž den vycházely v náhodném pořadí.
  */
+/**
+ * Poslední den, kdy se v cyklu něco skutečně stalo.
+ *
+ * Ne datum založení karty. Žena si karty zakládá v pořadí, v jakém si na
+ * ně vzpomene: druhý cyklus dopíše zpětně, prvnímu opraví datum, cyklus
+ * z loňska doplní až teď. Podle `startedOn` pak vyjde jako „nejnovější“
+ * karta, ve které se měsíc nic nedělo.
+ *
+ * Změřeno: při dvou otevřených cyklech si aplikace vybrala ten nesprávný
+ * a ztráta zapsaná v tom druhém se nikde neobjevila. Nahoře svítilo
+ * „Čekání na hCG“, přestože v kartě stála diagnóza.
+ */
+export function posledniAktivita(c: CycleRow): IsoDate {
+  const data: (IsoDate | null)[] = [
+    c.startedOn,
+    c.cd1On,
+    c.stimStartOn,
+    c.triggerOn,
+    c.retrievalOn,
+    c.endedOn,
+    ...c.transfers.map((t) => t.date),
+    ...c.hcgTests.map((t) => t.date),
+  ]
+  return data.filter((d): d is IsoDate => Boolean(d)).sort().pop() ?? c.startedOn
+}
+
+/** Nejdřív ten, ve kterém se naposledy něco stalo. Při shodě vyšší číslo. */
 export function byNewest(a: CycleRow, b: CycleRow): number {
-  return b.startedOn.localeCompare(a.startedOn) || b.number - a.number
+  return posledniAktivita(b).localeCompare(posledniAktivita(a)) || b.number - a.number
 }
 
 /** Cyklus, který právě běží. Když jich běží víc, vyhrává nejnovější. */
