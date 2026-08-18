@@ -1440,9 +1440,20 @@ function saveEmbryoForm(id: string): void {
 function screenZmenaFaze(): string {
   const p = profile()
   const state = journey()
-  // Kategorie ztráty se sem nesmí dostat: sama žádnou fázi neurčuje, takže
-  // by se v seznamu tvářila jako vybraná místo konkrétní diagnózy pod ní.
-  const aktualni = view.phaseCat ?? routeForPhase(p.declaredPhase)?.id ?? ''
+  /*
+   * V seznamu svítí fáze, ve které žena **doopravdy je**, ne ta, kterou si
+   * kdysi zvolila ručně.
+   *
+   * Změřeno v aplikaci: v kartě cyklu bylo zapsané mimoděložní těhotenství,
+   * nahoře svítilo „Čekání na hCG“ a v přepínači byla zaškrtnutá „Zažila
+   * jsem ztrátu“. Tři obrazovky, tři různé odpovědi na jednu otázku.
+   * Ruční volba je vstup, ne stav: jakmile ji data přebijí, nesmí se dál
+   * nikde ukazovat jako to, kde žena je.
+   *
+   * Kategorie ztráty se sem nedostane, ta sama fázi neurčuje. Vybere se
+   * konkrétní diagnóza pod ní a kategorie se kolem ní sama rozbalí.
+   */
+  const aktualni = view.phaseCat ?? routeForPhase(state.phase.id)?.id ?? ''
 
   const zvoleno = view.phasePick ? routeById(view.phasePick) : null
   if (zvoleno) return screenZmenaFazePotvrzeni(zvoleno, state.phase.name)

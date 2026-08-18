@@ -91,7 +91,7 @@ function panelFaze(): string {
   const state = journey()
   const guide = guideFor(state.phase.id)
   return `
-    <p class="display" style="font-size:1.35rem">${esc(state.phase.title)}</p>
+    <p class="display" style="font-size:1.35rem">${esc(state.phase.name)}</p>
     <p class="soft" style="margin-top:.5rem;line-height:1.65">${esc(guide?.summary ?? state.phase.description)}</p>
     <p class="soft" style="margin-top:.75rem;font-size:.9375rem">${esc(state.dayLabel)}.</p>
     ${
@@ -263,7 +263,7 @@ export function renderSummary(open: SummaryId | null): string {
     <div class="summary-head">
       <div style="min-width:0">
         <p class="eyebrow">Váš přehled</p>
-        <p class="display" style="font-size:1.15rem;margin-top:.15rem">${esc(state.phase.title)}</p>
+        <p class="display" style="font-size:1.15rem;margin-top:.15rem">${esc(state.phase.name)}</p>
       </div>
       <span class="badge badge-soft">${esc(formatCzechDate(date))}</span>
     </div>

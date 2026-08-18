@@ -744,7 +744,7 @@ export function screenPartner(): string {
       <p class="eyebrow">Co právě prožívá</p>
       <p class="soft" style="margin-top:.75rem;font-size:1.0625rem;line-height:1.7">${esc(advice.whatsHappening)}</p>
       <div class="row wrap" style="gap:.75rem;margin-top:1.25rem">
-        <span class="badge">${esc(state.phase.title)}</span>
+        <span class="badge">${esc(state.phase.name)}</span>
         ${avg !== null ? `<span class="badge">Průměrná nálada za týden: <b class="num" style="margin-left:.25rem">${des(avg)}/5</b></span>` : '<span class="badge">Nálada zatím nezapsaná</span>'}
       </div>
     </section>`,
@@ -801,7 +801,13 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
   const p = rawProfile()
   const skutecne = profile()
   const state = journey()
-  const currentRoute = routeForPhase(p.declaredPhase)
+  /*
+   * Datum se nabízí k té fázi, která aplikaci **opravdu řídí**, ne k té,
+   * kterou si žena kdysi zvolila. Věta v upozornění níž slibuje „když
+   * nesedí, změňte datum níž“, a ten slib platí jedině tehdy, když je pod
+   * ním datum té fáze, podle které se aplikace chová.
+   */
+  const currentRoute = routeForPhase(state.phase.id)
 
   const modGroups: [string, ModifierId[]][] = [
     ['Diagnózy', ['pcos', 'endometriosis', 'adenomyosis', 'low_amh', 'male_factor', 'tubal_factor', 'thyroid', 'thrombophilia', 'immunology', 'unexplained']],
@@ -829,7 +835,7 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
 
     `<section class="surface pad">
       <p class="eyebrow">Kde jste na cestě</p>
-      <p class="soft" style="margin-top:.5rem;font-size:.9375rem">Teď: <strong>${esc(state.phase.title)}</strong> · ${esc(state.dayLabel)}</p>
+      <p class="soft" style="margin-top:.5rem;font-size:.9375rem">Teď: <strong>${esc(state.phase.name)}</strong> · ${esc(state.dayLabel)}</p>
       <div class="formrow" style="margin-top:1.1rem">
         <label class="label" for="set-phase">Fáze</label>
         <select class="field" id="set-phase" data-act="set-phase">

@@ -57,9 +57,16 @@ export type PhaseGroup = (typeof PHASE_GROUPS)[number]
 export interface PhaseDefinition {
   id: PhaseId
   group: PhaseGroup
-  /** Krátký název pro navigaci. */
+  /**
+   * Jméno fáze. Jediné, kterým se v aplikaci říká, kde žena je.
+   *
+   * Používá se úplně všude, kde padne otázka „kde jsem“: v hlavičce, na
+   * Dnes, v nastavení, v přehledu i v přepínači fáze. Dvě jména pro jeden
+   * stav znamenají, že aplikace na jednu otázku odpovídá dvakrát jinak,
+   * a žena to čte jako chybu, i když je to jen nedůslednost.
+   */
   name: string
-  /** Delší, laskavý popis pro průvodce. */
+  /** Delší, laskavý popis pro průvodce. Nikdy ne jako odpověď na „kde jsem“. */
   title: string
   description: string
   /**

@@ -226,7 +226,7 @@ export function screenDnes(): string {
         </div>
       </section>`
     : `<section class="surface pad rise">
-        <h2 class="display" style="font-size:1.5rem">${esc(state.phase.title)}</h2>
+        <h2 class="display" style="font-size:1.5rem">${esc(state.phase.name)}</h2>
         <p class="soft" style="margin-top:.75rem;line-height:1.7">${esc(state.phase.description)}</p>
       </section>`
 
@@ -443,7 +443,7 @@ export function screenCesta(): string {
     ),
     `<div class="surface pad">
       <p class="eyebrow">Právě teď</p>
-      <h2 class="display" style="font-size:1.5rem;margin-top:.5rem">${esc(state.phase.title)}</h2>
+      <h2 class="display" style="font-size:1.5rem;margin-top:.5rem">${esc(state.phase.name)}</h2>
       <p class="soft" style="margin-top:.5rem">${esc(state.dayLabel)}</p>
       <div class="row wrap" style="gap:.5rem;margin-top:1.1rem">
         <button class="btn btn-sm" data-go="faze/${esc(state.phase.id)}">Otevřít mou fázi</button>
@@ -482,7 +482,7 @@ export function screenProc(): string {
     `<div class="surface pad">
       <p class="eyebrow">Co o vás víme</p>
       <dl class="kv" style="margin-top:.9rem">
-        <dt>Fáze</dt><dd>${esc(state.phase.title)}</dd>
+        <dt>Fáze</dt><dd>${esc(state.phase.name)}</dd>
         <dt>Den ve fázi</dt><dd>${esc(state.dayLabel)}</dd>
         <dt>Situace</dt><dd>${p.modifiers.length ? p.modifiers.map((m) => esc(MODIFIER_LABELS[m])).join(', ') : 'žádná'}</dd>
         <dt>Datum</dt><dd>${esc(formatCzechDate(viewDate(), { weekday: true }))}</dd>
