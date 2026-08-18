@@ -241,9 +241,10 @@ s bodem 5.
 
 Tohle je dobrá zpráva a stojí za to ji napsat stejně podrobně jako nálezy.
 
-- **Jen 4 místa zapisují `innerHTML`**: `main.ts:672` (onboarding),
-  `main.ts:686` (skořápka), `main.ts:2876` (proužek nové verze),
-  `viz.ts:441` (bublina u grafu). Všechna skládají text přes `esc()`.
+- **Jen 3 místa zapisují `innerHTML`**: onboarding, skořápka aplikace
+  a bublina u grafu (`viz.ts`). Všechna skládají text přes `esc()`.
+  Čtvrté místo, proužek s nabídkou nové verze, zmizelo: aktualizace se
+  dnes nasazuje sama a žádné tlačítko k ní nepatří.
 - **`esc()`** (`ui.ts:39`) escapuje `& < > " '` a je použitá **1040krát**.
 - **`md()`** (`ui.ts:55`) escapuje **první**, teprve pak přidává značkování.
   I kdyby do něj přišel text od uživatelky, neublíží. (Dnes tam chodí jen

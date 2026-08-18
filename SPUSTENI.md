@@ -34,7 +34,12 @@ Ať je vidět, kde stojíme.
   mobilního zobrazení bez chyby, žádné přetečení stránky do stran ani při
   dvousetprocentním písmu.
 - **Funguje bez sítě.** Po prvním otevření se uloží celá, dá se přidat na
-  plochu, má ikonu i aktualizační proužek.
+  plochu a má ikonu.
+- **Aktualizuje se sama.** Nová verze se nasadí bez ptaní: aplikace se na
+  ni ptá při startu, při návratu do ní, po návratu signálu a jednou za
+  dvacet minut. Před výměnou uloží rozepsané formuláře a po ní vrátí ženu
+  na tutéž stránku i na tutéž pozici. Odloží se jedině tehdy, když má
+  zrovna kurzor v poli, a dokončí se, jakmile z něj odejde.
 - **Obsah**: 404 položek katalogu, 174 denních karet, 162 pojmů, 21 fází.
   Celkem 830 kusů obsahu.
 - **Prodejní stránka** je hotová a nasazená.

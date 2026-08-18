@@ -15,11 +15,11 @@
  * Celá aplikace je jeden soubor `index.html`. Ukládá se natvrdo a při
  * spuštění se čte z disku, ne ze sítě: start je okamžitý a funguje offline.
  *
- * Novou verzi nenačte doprostřed práce. Prohlížeč si sám všimne, že se
- * změnil tenhle soubor (je v něm otisk obsahu aplikace), nachystá novou
- * verzi vedle a stránka o tom dá vědět. Vymění se, až to žena potvrdí, nebo
- * při příštím otevření. Aplikace, která se překlopí uprostřed psaní deníku,
- * je horší než aplikace o den starší.
+ * Novou verzi si prohlížeč všimne sám (v tomhle souboru je otisk obsahu
+ * aplikace), nachystá ji vedle a stránka si ji vezme, jakmile je to
+ * bezpečné. Rozhodování o tom je na stránce, ne tady: ta jediná ví, jestli
+ * zrovna někdo píše do formuláře. Aplikace, která se překlopí uprostřed
+ * psaní deníku, je horší než aplikace o den starší.
  *
  * ------------------------------------------------------------------ POZOR ---
  * `VERZE` musí být při každém sestavení jiná, jinak se nová verze nikdy
@@ -43,8 +43,26 @@ const SOUBORY = [
   './favicon-32.png',
 ]
 
+/**
+ * Instalace nové verze.
+ *
+ * Soubory se stahují s `cache: 'reload'`, tedy s obejitím HTTP cache
+ * prohlížeče. Bez toho si nová verze umí uložit **starý** `index.html`,
+ * který v cache ještě leží, a celá výměna je pak k ničemu: verze je nová,
+ * aplikace stará. Tichá chyba, která se pozná až po nasazení.
+ */
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SOUBORY)))
+  e.waitUntil(
+    (async () => {
+      const c = await caches.open(CACHE)
+      await Promise.all(
+        SOUBORY.map(async (url) => {
+          const res = await fetch(new Request(url, { cache: 'reload' }))
+          if (res && res.ok) await c.put(url, res)
+        }),
+      )
+    })(),
+  )
 })
 
 self.addEventListener('activate', (e) => {
@@ -61,9 +79,10 @@ self.addEventListener('activate', (e) => {
 /**
  * Výměna na povel ze stránky.
  *
- * Bez tohohle by nová verze čekala až do úplného zavření aplikace. Se
- * zprávou se dá nabídnout tlačítko „Načíst novou verzi“ a žena si vybere,
- * kdy se to hodí.
+ * Bez tohohle by nová verze čekala až do chvíle, kdy se zavřou všechny
+ * záložky s aplikací. U aplikace přidané na plochu telefonu to znamená
+ * skoro nikdy: žena ji jen odsune, nezavře, takže by na starém sestavení
+ * zůstala týdny. Stránka si proto řekne sama, jakmile je výměna bezpečná.
  */
 self.addEventListener('message', (e) => {
   if (e.data && e.data.typ === 'prevzit') self.skipWaiting()

@@ -2021,24 +2021,6 @@ h1, h2, h3, h4, .display { hyphens: none; }
 .star:hover { transform: scale(1.08); }
 .star[aria-pressed='true'] { color: var(--taupe); }
 
-/* Nabídka nové verze.
-
-   Vypadá jako hláška, ale nezmizí sama: je v ní jediné tlačítko, kterým
-   se nová verze načte. Kdyby se schovala po třech vteřinách, zůstala by
-   žena na staré verzi až do úplného zavření aplikace. */
-.newver {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-  gap: .5rem .75rem; padding: .65rem .75rem .65rem 1.15rem; border-radius: var(--r-lg);
-}
-.newver > span { flex: 1 1 auto; text-align: left; }
-.newver button {
-  flex: none; font: inherit; font-size: .8125rem; cursor: pointer;
-  border-radius: 999px; padding: .35rem .85rem; min-height: 2rem;
-}
-.newver .nv-ano { background: var(--page); color: var(--fg); border: 0; font-weight: 600; }
-.newver .nv-ne { background: none; color: var(--page); border: 1px solid rgb(255 255 255 / .3); opacity: .85; }
-@media (max-width: 24rem) { .newver > span { flex-basis: 100%; text-align: center; } }
-
 /* --- značka BlooMia ------------------------------------------------------
 
    Bloo je švestkové, Mia pudrově růžová. Rozdělení je celý příběh názvu,

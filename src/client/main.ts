@@ -431,6 +431,11 @@ const view = {
 let stack: string[] = []
 const scrollMemory = new Map<string, number>()
 
+/** Kam se má trasa vrátit při příštím vykreslení. */
+function zapamatujMisto(route: string, y: number): void {
+  scrollMemory.set(route, y)
+}
+
 /**
  * Překreslení, které nesmí hnout stránkou.
  *
@@ -1549,20 +1554,6 @@ function saveClinicForm(): void {
 }
 
 function action(act: string, argValue: string): void {
-  // Nová verze aplikace se přijímá kdykoliv, i uprostřed onboardingu.
-  // S léčbou to nesouvisí a tlačítko, které nic nedělá, je horší než
-  // žádné tlačítko.
-  if (act === 'pwa-obnovit') {
-    prevzitNovouVerzi()
-    return
-  }
-  if (act === 'pwa-pozdeji') {
-    // Nabídka zmizí, ale verze zůstává nachystaná. Naskočí sama při
-    // příštím úplném otevření aplikace.
-    document.querySelector('.newver')?.remove()
-    return
-  }
-
   if (!isOnboarded()) {
     if (onboardingAction(act, argValue)) render()
     return
@@ -3067,51 +3058,131 @@ function nabidnoutInstalaci(): void {
   })()
 }
 
-/** Nachystaná nová verze aplikace. Čeká, až žena řekne, že se to hodí. */
+/** Nachystaná nová verze aplikace. */
 let ceka: ServiceWorker | null = null
 let prebiram = false
 
+/** Klíč, pod kterým přežije místo na stránce vlastní výměnu verze. */
+const KLIC_OBNOVY = 'bloomia:obnova'
+
 /**
- * Nabídka nové verze.
+ * Uloží, co je zrovna rozepsané.
  *
- * Vlastní pruh, ne obyčejná hláška: obyčejná zmizí za tři vteřiny a
- * s ní i jediná cesta, jak novou verzi načíst. Sedí mimo `#app`, takže
- * překreslení obrazovky ji nesmete.
- *
- * Nepřepíná se samo. Aplikace, která se vymění uprostřed psaní deníku,
- * je horší než aplikace o den starší.
+ * Formuláře v aplikaci se ukládají až na tlačítko nebo při odchodu ze
+ * stránky. Kdyby se verze vyměnila bez tohohle kroku, žena by přišla
+ * o rozepsanou kartu cyklu, embrya nebo výdaje, a nedozvěděla by se proč.
+ * Volá se to samé, co se volá při přepnutí sekce, takže tu nevzniká druhá
+ * cesta ukládání, která by se časem rozešla s tou první.
  */
-function ukazNovouVerzi(): void {
-  if (document.querySelector('.newver')) return
-  const el = document.createElement('div')
-  el.className = 'toast newver'
-  el.setAttribute('role', 'status')
-  el.innerHTML = `<span>Je tu nová verze aplikace BlooMia.</span>
-    <button class="nv-ano" data-act="pwa-obnovit">Načíst</button>
-    <button class="nv-ne" data-act="pwa-pozdeji">Později</button>`
-  document.body.appendChild(el)
+function ulozRozepsane(): void {
+  const b = base(currentRoute())
+  if (b === 'cyklus') {
+    saveCycleForm(arg(currentRoute()))
+    stampLossDate(arg(currentRoute()))
+  }
+  if (view.embryo) saveEmbryoForm(view.embryo)
+  if (view.expense) saveExpenseForm(view.expense)
+  if (b === 'klinika') saveClinicForm()
 }
 
+/**
+ * Smí se verze vyměnit právě teď?
+ *
+ * Jediné, co se uložit nedá, je rozepsané slovo v poli, ve kterém má žena
+ * kurzor. Text, který ještě nedopsala, není v datech a výměna by ho vzala
+ * s sebou. Všechno ostatní se o řádek výš uloží, takže se čekat nemusí.
+ */
+function lzeVymenit(): boolean {
+  const a = document.activeElement as HTMLElement | null
+  if (!a) return true
+  if (a.isContentEditable) return false
+  const tag = a.tagName
+  return tag !== 'INPUT' && tag !== 'TEXTAREA' && tag !== 'SELECT'
+}
+
+/**
+ * Převzetí nové verze.
+ *
+ * ------------------------------------------------------------ PROČ SAMO ---
+ * Dřív tu byl pruh s tlačítkem „Načíst“. Vypadá to ohleduplně, ale ve
+ * skutečnosti to znamenalo, že žena běhala na starém sestavení tak dlouho,
+ * dokud si pruhu nevšimla. U aplikace přidané na plochu telefonu se navíc
+ * nikdy nezavřou všechny záložky, takže se stará verze držela i po
+ * „restartu“. Opravená chyba, kterou uživatelka nevidí, není opravená.
+ *
+ * Vyměňuje se proto sama, ale nikdy naslepo: nejdřív se uloží rozepsané
+ * formuláře, zapamatuje se adresa i pozice na stránce, a po načtení se
+ * obojí vrátí. Jediné, co výměnu odloží, je kurzor v poli.
+ */
 function prevzitNovouVerzi(): void {
-  if (!ceka) return
+  if (!ceka || prebiram) return
+  if (!lzeVymenit()) return
+
+  ulozRozepsane()
+  try {
+    sessionStorage.setItem(
+      KLIC_OBNOVY,
+      JSON.stringify({ hash: location.hash, y: window.scrollY }),
+    )
+  } catch {
+    // Bez sessionStorage se jen ztratí pozice na stránce. Výměna platí dál.
+  }
   prebiram = true
-  document.querySelector('.newver')?.remove()
   ceka.postMessage({ typ: 'prevzit' })
+}
+
+/**
+ * Návrat na místo po výměně verze.
+ *
+ * Adresa přežije sama (trasa je za mřížkou), pozice ne. Bez tohohle by
+ * žena po tiché aktualizaci skočila na začátek dlouhého článku a vypadalo
+ * by to jako chyba aplikace.
+ */
+function dokonciObnovu(): void {
+  let ulozene: string | null = null
+  try {
+    ulozene = sessionStorage.getItem(KLIC_OBNOVY)
+    if (ulozene) sessionStorage.removeItem(KLIC_OBNOVY)
+  } catch {
+    return
+  }
+  if (!ulozene) return
+
+  try {
+    const stav = JSON.parse(ulozene) as { hash?: string; y?: number }
+    if (typeof stav.y === 'number' && stav.hash === location.hash) {
+      /*
+       * Pozice se nevrací přímo posunem, ale zápisem do paměti tras.
+       * Fotky se dotahují z IndexedDB až po startu a překreslí obrazovku,
+       * takže přímý posun by se hned přepsal nulou. Takhle ho použije
+       * každé vykreslení, i to pozdější.
+       */
+      zapamatujMisto(currentRoute(), stav.y)
+      window.scrollTo(0, stav.y)
+    }
+  } catch {
+    return
+  }
+  // Krátká věta, ne pruh s tlačítkem. Vysvětlí probliknutí a zmizí sama.
+  toast('Aplikace se aktualizovala na nejnovější verzi.')
 }
 
 /**
  * Registrace service workeru.
  *
- * Bez něj se aplikace v čekárně bez signálu neotevře vůbec. Nová verze se
- * nikdy nepřepne sama uprostřed práce: nachystá se stranou a žena ji
- * přijme klepnutím.
+ * Bez něj se aplikace v čekárně bez signálu neotevře vůbec.
+ *
+ * Na novou verzi se aktivně ptá: při startu, při návratu do aplikace, po
+ * návratu signálu a jednou za dvacet minut. Prohlížeč sám kontroluje jen
+ * občas a u aplikace, která běží na plochu telefonu celé týdny, to může
+ * znamenat, že se oprava nedostane k ženě vůbec.
  */
 function nastavServiceWorker(): void {
   if (!('serviceWorker' in navigator)) return
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') return
 
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    // Přebírá se jen na výslovné přání. Bez téhle pojistky by se stránka
+    // Reload jen po vlastním rozhodnutí. Bez téhle pojistky by se stránka
     // uměla načíst dokola.
     if (!prebiram) return
     prebiram = false
@@ -3122,10 +3193,13 @@ function nastavServiceWorker(): void {
     .register('sw.js', { updateViaCache: 'none' })
     .then((reg) => {
       const nabidni = (sw: ServiceWorker | null): void => {
+        // Při úplně prvním otevření není co vyměňovat: nová verze se právě
+        // instaluje poprvé a stránku nikdo neřídí.
         if (!sw || !navigator.serviceWorker.controller) return
         ceka = sw
-        ukazNovouVerzi()
+        prevzitNovouVerzi()
       }
+
       if (reg.waiting) nabidni(reg.waiting)
       reg.addEventListener('updatefound', () => {
         const novy = reg.installing
@@ -3133,6 +3207,33 @@ function nastavServiceWorker(): void {
           if (novy.state === 'installed') nabidni(novy)
         })
       })
+
+      /** Zeptat se serveru, jestli není nová verze. Zbytek udělá prohlížeč. */
+      const zeptejSe = (): void => {
+        void reg.update().catch(() => {
+          // Bez signálu se nic neděje. Zkusí se to zas příště.
+        })
+      }
+
+      // Výměna odložená kvůli kurzoru v poli. Jakmile žena z pole odejde,
+      // dokončí se sama, aniž by o tom musela vědět.
+      document.addEventListener('focusout', () => {
+        window.setTimeout(prevzitNovouVerzi, 0)
+      })
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          // Odsunutá aplikace je nejlepší chvíle: nikdo se nedívá a při
+          // návratu je rovnou nová verze.
+          prevzitNovouVerzi()
+          return
+        }
+        zeptejSe()
+        prevzitNovouVerzi()
+      })
+
+      window.addEventListener('online', zeptejSe)
+      window.setInterval(zeptejSe, 20 * 60 * 1000)
     })
     .catch(() => {
       // Bez service workeru aplikace funguje dál, jen nebude offline.
@@ -3165,3 +3266,4 @@ render()
 void initPhotos().then(render)
 
 nastavServiceWorker()
+dokonciObnovu()

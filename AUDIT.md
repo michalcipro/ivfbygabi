@@ -270,8 +270,8 @@ Ne kvůli tomu, aby se to dalo nazývat aplikací. Kvůli třem konkrétním vě
    jediný síťový požadavek. Chybí jen to, aby se vůbec načetla.
 3. **Opakované načtení.** Dnes 689 kB pokaždé, se service workerem nula.
 
-Práce: manifest, sada ikon, service worker s verzovanou cache, tok aktualizace
-(„je tu nová verze, obnovit") a návod na instalaci. Zhruba den.
+Práce: manifest, sada ikon, service worker s verzovanou cache, tichá
+aktualizace bez ptaní a návod na instalaci. Zhruba den.
 
 Na co si dát pozor: špatně napsaný service worker umí naservírovat starou
 verzi aplikace navždy. Cache se musí verzovat a při každém buildu měnit.
