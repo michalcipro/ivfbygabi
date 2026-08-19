@@ -3179,6 +3179,47 @@ function dokonciObnovu(): void {
 }
 
 /**
+ * Složka, ve které aplikace leží.
+ *
+ * ------------------------------------------------------------- PROČ VŮBEC ---
+ * `sw.js` i `manifest.webmanifest` se v hlavičce uvádějí relativně a jejich
+ * význam závisí na tom, jestli adresa končí lomítkem. Aplikace bydlí v
+ * `/app/`, jenže server ji podle nastavení umí vydat i na `/app` bez
+ * lomítka. Prohlížeč pak `/app` čte jako soubor v kořeni a `sw.js` mu
+ * vyjde na `/sw.js`, kde nic není. Registrace tiše spadne, offline režim
+ * zmizí a nová verze se nemá jak dostat dovnitř. Nic z toho není vidět:
+ * aplikace se otevře a tváří se, že je všechno v pořádku.
+ *
+ * Poslední kousek adresy proto rozhoduje podle tečky. `index.html` je
+ * soubor a zahazuje se, `app` je složka a dostane lomítko.
+ *
+ *   /app/             → /app/
+ *   /app/index.html   → /app/
+ *   /app              → /app/
+ *   /                 → /
+ */
+function zakladniCesta(): string {
+  const cesta = location.pathname
+  if (cesta.endsWith('/')) return cesta
+  const posledni = cesta.slice(cesta.lastIndexOf('/') + 1)
+  return posledni.includes('.') ? cesta.slice(0, cesta.lastIndexOf('/') + 1) : `${cesta}/`
+}
+
+/**
+ * Oprava odkazu na manifest.
+ *
+ * Bez manifestu nejde aplikaci přidat na plochu telefonu, a na iPhonu je
+ * plocha jediná cesta, jak se vyhnout mazání dat po sedmi dnech nečinnosti.
+ * Ztráta deníku kvůli chybějícímu lomítku v adrese je moc velká cena.
+ */
+function opravOdkazNaManifest(zaklad: string): void {
+  const odkaz = document.querySelector<HTMLLinkElement>('link[rel="manifest"]')
+  if (!odkaz) return
+  const spravny = new URL(`${zaklad}manifest.webmanifest`, location.origin).href
+  if (odkaz.href !== spravny) odkaz.href = spravny
+}
+
+/**
  * Registrace service workeru.
  *
  * Bez něj se aplikace v čekárně bez signálu neotevře vůbec.
@@ -3200,8 +3241,11 @@ function nastavServiceWorker(): void {
     location.reload()
   })
 
+  const zaklad = zakladniCesta()
+  opravOdkazNaManifest(zaklad)
+
   void navigator.serviceWorker
-    .register('sw.js', { updateViaCache: 'none' })
+    .register(`${zaklad}sw.js`, { scope: zaklad, updateViaCache: 'none' })
     .then((reg) => {
       const nabidni = (sw: ServiceWorker | null): void => {
         // Při úplně prvním otevření není co vyměňovat: nová verze se právě

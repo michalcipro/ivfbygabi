@@ -79,6 +79,26 @@ function main() {
   console.log(`  ikony:  ${ikon}`)
 
   dokumenty(fonts)
+  obnova(fonts)
+}
+
+/**
+ * Stránka pro obnovu aplikace.
+ *
+ * Bydlí schválně v kořeni, ne v `/app/`. Service worker aplikace má
+ * působnost jen nad svojí složkou, takže na tuhle stránku nedosáhne a vždy
+ * se stáhne ze serveru. To je celý smysl: když se v aplikaci zasekne stará
+ * verze, tohle je jediná cesta, jak zvenčí sáhnout dovnitř a kopii zahodit.
+ * Kdyby stránka ležela vedle aplikace, obsluhovala by ji ta samá zaseknutá
+ * verze a byla by k ničemu.
+ */
+function obnova(fonts: string): void {
+  const sablona = read(join(ROOT, 'landing', 'oprava.src.html'))
+  if (!sablona) throw new Error('landing/oprava.src.html chybí')
+  const html = sablona.replace('/*__FONTS__*/', () => fonts)
+  const cesta = join(OUT, 'oprava.html')
+  writeFileSync(cesta, html, 'utf8')
+  console.log(`  obnova:   oprava.html (${Math.round(Buffer.byteLength(html) / 1024)} kB)`)
 }
 
 /** Údaje z hlavičky dokumentu. */

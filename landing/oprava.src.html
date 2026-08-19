@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="cs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Obnova aplikace · BlooMia</title>
+<meta name="description" content="Stránka, která donutí BlooMii načíst nejnovější verzi. Uložená data zůstávají nedotčená.">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="theme-color" content="#fbf8f7">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<style>
+/*__FONTS__*/
+
+/* ==========================================================================
+   BlooMia, obnova aplikace.
+
+   Tahle stránka schválně nebydlí v `/app/`. Service worker aplikace má
+   působnost jen nad svojí složkou, takže sem nedosáhne a stránka se vždy
+   stáhne ze serveru, i když je v aplikaci zaseknutá stará verze. To je celý
+   smysl: jinak neexistuje cesta, jak zvenčí sáhnout dovnitř.
+
+   Sazba je co nejjednodušší. Sem se člověk dostane ve chvíli, kdy něco
+   nefunguje, a chce vidět, co se děje, ne obdivovat stránku.
+   ========================================================================== */
+
+:root {
+  --ivory: #fbf8f7;
+  --watercolor: #f8edee;
+  --white: #ffffff;
+  --bloo: #625673;
+  --bloo-ink: #3a3245;
+  --mia: #c97887;
+  --soft-rose: #e8b7bc;
+  --line: #ebdfe0;
+  --muted: #6f6579;
+  --link: #a35364;
+  --eyebrow: #a24f5f;
+
+  --display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --brand: 'BlooMia Mark', 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
+
+  --r-md: 14px;
+  --r-lg: 18px;
+  --veil: 0 1px 0 rgb(98 86 115 / 0.04), 0 4px 16px -8px rgb(98 86 115 / 0.14);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--bloo-ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: 100%; max-width: 34rem; margin: 0 auto; padding: 0 1.25rem; }
+
+h1 {
+  font-family: var(--display); font-weight: 500; color: var(--bloo-ink);
+  font-size: clamp(1.6rem, 5.5vw, 2.2rem); line-height: 1.15;
+  letter-spacing: -0.02em; text-wrap: balance; margin: 0;
+}
+p { margin: 0 0 1rem; }
+p:last-child { margin-bottom: 0; }
+strong { font-weight: 600; }
+a { color: var(--link); text-underline-offset: 3px; }
+a:hover { color: var(--bloo); }
+:focus-visible { outline: 3px solid #a24f5f; outline-offset: 3px; border-radius: 4px; }
+
+.bmname {
+  font-family: var(--brand); font-weight: 500; font-size: 1.3rem;
+  letter-spacing: -0.005em; line-height: 1;
+}
+.bmname .bloo { color: var(--bloo); }
+.bmname .mia { color: var(--mia); }
+
+.top { border-bottom: 1px solid var(--line); background: var(--white); }
+.top .wrap { display: flex; align-items: center; padding-top: 0.8rem; padding-bottom: 0.8rem; }
+
+.hlava { padding: clamp(2rem, 7vw, 3.2rem) 0 0; }
+.eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--eyebrow); margin: 0 0 0.8rem;
+}
+.lede { color: var(--muted); margin-top: 1rem; }
+
+/* ------------------------------------------------------------------ kroky */
+
+/* Číslování tady něco znamená: kroky běží po sobě a každý čeká na ten
+   předchozí. Bez čísel by nebylo poznat, kde se to případně zaseklo. */
+.kroky {
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--white); box-shadow: var(--veil);
+  margin: 2rem 0 0; padding: 0.4rem 1.1rem; list-style: none;
+  counter-reset: krok;
+}
+.kroky li {
+  counter-increment: krok;
+  display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: 0.6rem;
+  align-items: start; padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9375rem; line-height: 1.5;
+}
+.kroky li:last-child { border-bottom: 0; }
+.kroky li::before {
+  content: counter(krok) '.';
+  font-family: var(--display); font-weight: 600; color: var(--mia);
+  font-variant-numeric: tabular-nums;
+}
+.kroky .stav { display: block; color: var(--muted); font-size: 0.875rem; }
+.kroky li[data-stav='hotovo']::before { content: '✓'; color: #4a7c59; }
+.kroky li[data-stav='chyba']::before { content: '!'; color: #b4485c; }
+.kroky li[data-stav='ceka'] { opacity: 0.55; }
+
+.razitko {
+  margin: 1.4rem 0 0; padding: 1rem 1.1rem;
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  background: var(--watercolor);
+  font-size: 0.9375rem; line-height: 1.55;
+}
+.razitko dt {
+  font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.2rem;
+}
+.razitko dd { margin: 0 0 0.8rem; font-variant-numeric: tabular-nums; }
+.razitko dd:last-child { margin-bottom: 0; }
+
+.hotovo {
+  margin: 1.6rem 0 0; padding: 1.1rem;
+  border: 1px solid var(--soft-rose); border-radius: var(--r-md);
+  background: var(--white);
+}
+
+.cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%; margin-top: 1.6rem;
+  border: 0; border-radius: 99px; padding: 0.95rem 1.4rem;
+  background: var(--bloo); color: var(--white);
+  font-family: var(--sans); font-size: 1rem; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+}
+.cta[hidden] { display: none; }
+.cta:hover { background: var(--bloo-ink); }
+
+.klid {
+  margin: 2.2rem 0 clamp(3rem, 8vw, 4.5rem);
+  padding-left: 1.1rem; border-left: 2px solid var(--soft-rose);
+  color: var(--bloo); font-size: 0.9375rem; line-height: 1.65;
+}
+</style>
+
+<header class="top">
+  <div class="wrap"><span class="bmname"><span class="bloo">Bloo</span><span class="mia">Mia</span></span></div>
+</header>
+
+<main class="wrap">
+  <div class="hlava">
+    <p class="eyebrow">Obnova aplikace</p>
+    <h1>Načtu nejnovější verzi</h1>
+    <p class="lede">
+      Když aplikace ukazuje pořád to samé, i když se v ní něco opravilo, drží
+      se uložené kopie z telefonu. Tahle stránka tu kopii zahodí a řekne
+      aplikaci, ať si stáhne čerstvou.
+    </p>
+  </div>
+
+  <ol class="kroky" id="kroky">
+    <li data-stav="ceka">Zjistit, jakou verzi má server<span class="stav" id="s1">čeká</span></li>
+    <li data-stav="ceka">Odpojit starou obsluhu aplikace<span class="stav" id="s2">čeká</span></li>
+    <li data-stav="ceka">Vymazat uloženou kopii<span class="stav" id="s3">čeká</span></li>
+  </ol>
+
+  <dl class="razitko" id="razitko" hidden>
+    <dt>Sestavení na serveru</dt>
+    <dd id="server">zjišťuji</dd>
+  </dl>
+
+  <div class="hotovo" id="hotovo" hidden>
+    <p><strong>Hotovo.</strong> Aplikace se teď načte od začátku a bude v nejnovější verzi.</p>
+    <p style="margin-bottom:0">
+      Datum sestavení si po otevření můžete zkontrolovat v <strong>Nastavení</strong>
+      úplně dole. Musí sedět s číslem nahoře.
+    </p>
+  </div>
+
+  <a class="cta" id="zpet" href="/app/" hidden>Otevřít BlooMii</a>
+
+  <p class="klid">
+    Vaše data zůstávají, kde byla. Deník, cykly, fotky ani nastavení se
+    nemažou, tahle stránka se jich vůbec nedotýká. Maže se jen dočasná kopie
+    programu, kterou si telefon odložil stranou, aby aplikace nastartovala i
+    bez signálu. Stáhne se znovu sama.
+  </p>
+</main>
+
+<script>
+/*
+ * Obnova běží sama, hned po otevření. Kdo se sem dostal, má problém a nemá
+ * náladu na další tlačítko. Kroky jsou vidět, aby bylo poznat, kde se to
+ * případně zastavilo.
+ *
+ * Pořadí není libovolné. Nejdřív se přečte verze ze serveru: dělá se to
+ * s obejitím cache prohlížeče, takže se tím rovnou obnoví i uložená
+ * odpověď. Až potom se odpojí service worker a smažou se jeho kopie. Kdyby
+ * se mazalo dřív, zůstala by chvíle, kdy aplikace nemá ani starou verzi,
+ * ani novou.
+ */
+(function () {
+  var kroky = document.getElementById('kroky').children
+
+  function stav(i, jak, text) {
+    kroky[i].dataset.stav = jak
+    document.getElementById('s' + (i + 1)).textContent = text
+  }
+
+  function ukaz(id) {
+    document.getElementById(id).hidden = false
+  }
+
+  async function verzeZeServeru() {
+    stav(0, 'bezi', 'stahuji')
+    try {
+      var res = await fetch('/app/index.html', { cache: 'reload' })
+      if (!res.ok) throw new Error(String(res.status))
+      var html = await res.text()
+      var m = html.match(/name="bloomia-sestaveno"\s+content="([^"]*)"/)
+      document.getElementById('server').textContent = m ? m[1] : 'neuvedeno'
+      ukaz('razitko')
+      stav(0, 'hotovo', 'staženo ze serveru')
+    } catch (e) {
+      document.getElementById('server').textContent = 'nepodařilo se zjistit'
+      ukaz('razitko')
+      stav(0, 'chyba', 'server neodpověděl, zkuste to za chvíli znovu')
+    }
+  }
+
+  async function odpojObsluhu() {
+    stav(1, 'bezi', 'odpojuji')
+    if (!('serviceWorker' in navigator)) {
+      stav(1, 'hotovo', 'tenhle prohlížeč ji nepoužívá')
+      return
+    }
+    try {
+      var vsechny = await navigator.serviceWorker.getRegistrations()
+      for (var i = 0; i < vsechny.length; i++) await vsechny[i].unregister()
+      stav(1, 'hotovo', vsechny.length === 0 ? 'nebylo co odpojit' : 'odpojeno: ' + vsechny.length)
+    } catch (e) {
+      stav(1, 'chyba', 'nepovedlo se')
+    }
+  }
+
+  async function smazKopii() {
+    stav(2, 'bezi', 'mažu')
+    if (!('caches' in window)) {
+      stav(2, 'hotovo', 'nebylo co mazat')
+      return
+    }
+    try {
+      var jmena = await caches.keys()
+      var nase = jmena.filter(function (j) { return j.indexOf('bloomia-') === 0 })
+      for (var i = 0; i < nase.length; i++) await caches.delete(nase[i])
+      stav(2, 'hotovo', nase.length === 0 ? 'nebylo co mazat' : 'smazáno: ' + nase.length)
+    } catch (e) {
+      stav(2, 'chyba', 'nepovedlo se')
+    }
+  }
+
+  ;(async function () {
+    await verzeZeServeru()
+    await odpojObsluhu()
+    await smazKopii()
+    ukaz('hotovo')
+    ukaz('zpet')
+  })()
+})()
+</script>
+</html>

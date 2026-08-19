@@ -1097,6 +1097,10 @@ function verzeAplikace(): string {
       Aktualizuje se sama, když je připojení. Když hlásíte chybu, přiložte
       tenhle údaj: podle něj se pozná, jestli ji nová verze už neopravila.
     </p>
+    <p class="soft" style="margin-top:.75rem;font-size:.9375rem;line-height:1.65">
+      Zůstává tu pořád stejné datum, i když se něco opravilo?
+      <a href="/oprava">Načíst nejnovější verzi</a>. Vaše data zůstanou.
+    </p>
   </section>`
 }
 
