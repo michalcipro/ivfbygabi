@@ -73,3 +73,33 @@ test('stránka pro obnovu leží mimo složku aplikace a nesahá na data', () =>
   const build = cti('scripts/build-landing.ts')
   assert.match(build, /oprava\.html/, 'stránka se musí sestavovat do kořene webu, ne do /app/')
 })
+
+/**
+ * Ruční aktualizace nesmí mít okamžik, kdy žena nemá žádnou verzi.
+ *
+ * První podoba tlačítka nejdřív smazala uloženou kopii a teprve pak šla na
+ * síť. Mezi tím je mezera, ve které stačí, aby vypadl signál, a v čekárně
+ * zůstane prázdná obrazovka. Čerstvá aplikace se proto musí nejdřív
+ * stáhnout a teprve pak přepsat tu uloženou.
+ */
+test('tlačítko aktualizace nejdřív stáhne, teprve pak přepisuje', () => {
+  const kod = cti('src/client/main.ts')
+  const zacatek = kod.indexOf('async function zaktualizujAplikaci')
+  assert.ok(zacatek > 0, 'funkce zaktualizujAplikaci v main.ts chybí')
+  const telo = kod.slice(zacatek, kod.indexOf('\n}', zacatek))
+
+  const stazeni = telo.indexOf('await fetch(')
+  const zapis = telo.indexOf('prepisUlozenouKopii')
+  assert.ok(stazeni > 0 && zapis > 0, 'chybí stažení nebo zápis kopie')
+  assert.ok(stazeni < zapis, 'uložená kopie se přepisuje dřív, než je čerstvá verze v ruce')
+  assert.ok(
+    !telo.includes('zahodUlozenouKopii'),
+    'ruční aktualizace nesmí mazat uloženou kopii. Přepis je bezpečný, mazání ne.',
+  )
+})
+
+/** Bez tlačítka v nastavení není aktualizaci jak vynutit z telefonu. */
+test('nastavení nabízí tlačítko na aktualizaci', () => {
+  const kod = cti('src/client/screens-more.ts')
+  assert.match(kod, /data-act="aktualizovat"/, 'v nastavení chybí tlačítko Zaktualizovat aplikaci')
+})

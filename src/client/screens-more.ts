@@ -7,7 +7,7 @@ import { adviceFor } from '../lib/domain/partner'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import { guidanceFor } from '../lib/health/lab-guidance'
 import { EVENT_KINDS, LETTER_TARGETS } from '../lib/shared/records'
-import { CATALOG, CONTENT_STATS, PRODUCTS } from '../lib/content'
+import { CATALOG, CONTENT_STATS } from '../lib/content'
 import {
   cycleTitle,
   OUTCOME_LABEL,
@@ -93,7 +93,6 @@ export function screenVice(): string {
     ['dokumenty', '▤', 'Dokumenty', 'Vložte text lékařské zprávy a vytáhneme z něj hodnoty.'],
     ['komunita', '◍', 'Komunita', 'Ženy ve stejné fázi. Můžete zůstat anonymní.'],
     ['pribeh', '❦', 'Můj příběh', 'Časová osa a dopisy. Jednou z toho může být kniha.'],
-    ['obchod', '◇', 'Doporučené', 'Produkty a služby řazené podle toho, kde jste. Bez placených pozic.'],
     ['partner', '♡', 'Partner mode', 'Co ukázat tomu, kdo je vedle vás. Deník zůstává soukromý.'],
     ['clenstvi', '✦', 'Členství', 'Jak by platforma fungovala jako předplatné.'],
     ['nastaveni', '⚙', 'Nastavení', 'Fáze, situace, vzhled a vaše data.'],
@@ -678,57 +677,6 @@ export function screenPribeh(): string {
   ].join('')
 }
 
-// -------------------------------------------------------------- doporučené ---
-
-export function screenObchod(): string {
-  const state = journey()
-  const mods = new Set(profile().modifiers)
-
-  const scored = PRODUCTS.map((p) => {
-    if (p.excludeModifiers?.some((m) => mods.has(m))) return { p, score: -1 }
-    let score = 0
-    if (p.phases.includes(state.phase.id)) score += 10
-    else if (p.phases.some((ph) => PHASES[ph].group === state.group)) score += 5
-    if (p.modifiers?.some((m) => mods.has(m))) score += 4
-    if (p.phases.length === 0) score += 1
-    return { p, score }
-  })
-    .filter((x) => x.score >= 0)
-    .sort((a, b) => b.score - a.score)
-
-  const relevant = scored.filter((x) => x.score >= 5)
-  const rest = scored.filter((x) => x.score < 5)
-
-  const card = (p: (typeof PRODUCTS)[number]) => `<div class="prodcard">
-    <div class="hero grain" style="${heroStyle(p.hero)}"></div>
-    <div class="body">
-      <div class="row" style="justify-content:space-between;gap:.5rem">
-        <span class="badge">${p.kind === 'service' ? 'Služba' : 'Produkt'}</span>
-        <span class="faint num" style="font-size:.75rem">★ ${p.rating.toFixed(1)} · ${p.reviews}</span>
-      </div>
-      <h4 class="display" style="font-size:1.125rem">${esc(p.name)}</h4>
-      <p class="whybox">${esc(p.whyNow)}</p>
-      <p class="faint num" style="margin-top:auto;font-size:.8125rem">${p.priceFrom ? `od ${p.priceFrom} Kč` : 'individuálně'} · ${esc(p.vendor)}</p>
-    </div>
-  </div>`
-
-  return [
-    head('Bez placených pozic', 'Doporučené', 'Řazeno podle toho, kde jste na cestě. U každé položky je napsané, proč se hodí právě teď.'),
-
-    relevant.length
-      ? `<section>${sectionTitle('Hodí se vám teď', `Pro fázi: ${PHASES[state.phase.id].name}`)}
-          <div class="grid-cards">${relevant.map((x) => card(x.p)).join('')}</div></section>`
-      : '',
-
-    rest.length
-      ? `<section>${sectionTitle('Ostatní', 'Mimo vaši fázi')}
-          <div class="grid-cards">${rest.slice(0, 12).map((x) => card(x.p)).join('')}</div></section>`
-      : '',
-
-    note('Pořadí určuje jenom relevance k vaší fázi. Nikdo si tu nekupuje lepší místo.'),
-  ].join('')
-}
-
 // ------------------------------------------------------------- partner mode ---
 
 export function screenPartner(): string {
@@ -794,7 +742,10 @@ function zKarty(rucni: ModifierId[], vsechny: ModifierId[]): string {
   </div>`
 }
 
-export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean }): string {
+export function screenNastaveni(
+  reportOpts: { finance: boolean; journal: boolean },
+  aktualizace: { bezi: boolean; hlaska: string } = { bezi: false, hlaska: '' },
+): string {
   // Ruční hodnoty do políček, spočítané do popisků. Kdyby se do inputu
   // dostalo datum z cyklu, uživatelka by ho uložila do profilu a vznikla by
   // druhá kopie téhož údaje.
@@ -1069,7 +1020,7 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
       </p>
     </section>`,
 
-    verzeAplikace(),
+    verzeAplikace(aktualizace),
   ].join('')
 }
 
@@ -1085,23 +1036,36 @@ export function screenNastaveni(reportOpts: { finance: boolean; journal: boolean
  * Datum sestavení do souboru doplňuje `scripts/build-app.ts`. Když se
  * hlásí chyba, tohle je první údaj, který je potřeba.
  */
-function verzeAplikace(): string {
-  const meta = document.querySelector('meta[name="bloomia-sestaveno"]')
-  const kdy = meta?.getAttribute('content') ?? ''
-  const zname = kdy.length > 0 && !kdy.startsWith('__')
+function verzeAplikace(aktualizace: { bezi: boolean; hlaska: string }): string {
+  const kdy = sestaveni()
 
   return `<section class="surface pad">
     <p class="eyebrow">Verze aplikace</p>
     <p class="soft" style="margin-top:.5rem;font-size:.9375rem;line-height:1.65">
-      ${zname ? `Sestaveno <strong>${esc(kdy)}</strong>.` : 'Údaj o sestavení se nepodařilo přečíst.'}
+      ${kdy ? `Sestaveno <strong>${esc(kdy)}</strong>.` : 'Údaj o sestavení se nepodařilo přečíst.'}
       Aktualizuje se sama, když je připojení. Když hlásíte chybu, přiložte
       tenhle údaj: podle něj se pozná, jestli ji nová verze už neopravila.
     </p>
-    <p class="soft" style="margin-top:.75rem;font-size:.9375rem;line-height:1.65">
-      Zůstává tu pořád stejné datum, i když se něco opravilo?
-      <a href="/oprava">Načíst nejnovější verzi</a>. Vaše data zůstanou.
+    <button class="btn btn-primary" data-act="aktualizovat" style="margin-top:1.1rem"${
+      aktualizace.bezi ? ' disabled' : ''
+    }>${aktualizace.bezi ? 'Aktualizuji…' : 'Zaktualizovat aplikaci'}</button>
+    ${
+      aktualizace.hlaska
+        ? `<p class="soft" style="margin-top:.8rem;font-size:.9375rem;line-height:1.6">${esc(aktualizace.hlaska)}</p>`
+        : ''
+    }
+    <p class="faint" style="margin-top:.8rem;font-size:.8125rem;line-height:1.6">
+      Stáhne aplikaci znovu ze serveru. Trvá to pár vteřin a je při tom
+      potřeba připojení. <strong>Vaše data zůstanou</strong>: deník, cykly,
+      embrya, fotky ani nastavení se nemažou.
     </p>
   </section>`
+}
+
+/** Datum a čas sestavení z hlavičky souboru. Doplňuje `scripts/build-app.ts`. */
+function sestaveni(): string {
+  const kdy = document.querySelector('meta[name="bloomia-sestaveno"]')?.getAttribute('content') ?? ''
+  return kdy.length > 0 && !kdy.startsWith('__') ? kdy : ''
 }
 
 // --------------------------------------------------------------- členství ---
@@ -1153,8 +1117,8 @@ export function screenClenstvi(): string {
         Předplatné znamená, že se vyplatí psát to, co se vás právě týká. A nic víc.
       </p>
       <p class="soft" style="margin-top:.9rem;line-height:1.7;font-size:.9375rem">
-        Nikdo si tu nekupuje lepší pozici a data se neprodávají. Z toho plyne i to,
-        jak vypadá marketplace: řadí se podle vaší fáze, ne podle provize.
+        Nikdo si tu nekupuje pozici a data se neprodávají. V aplikaci není reklama
+        ani provize, takže nemá důvod vás někam tlačit.
       </p>
     </section>`,
 

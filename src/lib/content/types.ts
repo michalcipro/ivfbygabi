@@ -177,25 +177,6 @@ export interface GlossaryTerm {
   topics: TopicId[]
 }
 
-/** Produkt v marketplace. */
-export interface Product {
-  id: string
-  name: string
-  category: string
-  /** Proč právě teď. Tohle je celý smysl našeho marketplace. */
-  whyNow: string
-  /** Orientační cena v Kč. `null` nebo `0` = hrazeno / individuální. */
-  priceFrom: number | null
-  phases: PhaseId[]
-  modifiers?: ModifierId[]
-  excludeModifiers?: ModifierId[]
-  /** Zúžení relevance na část těhotenství nebo věku dítěte. */
-  rating: number
-  reviews: number
-  vendor: string
-  kind: 'product' | 'service'
-  hero: HeroToken
-}
 
 /** Laboratorní parametr. Pro rozpoznávání zpráv a health dashboard. */
 export interface LabParameter {
@@ -220,5 +201,4 @@ export type ContentPack = {
   dailyCards?: DailyCard[]
   encouragements?: Encouragement[]
   glossary?: GlossaryTerm[]
-  products?: Product[]
 }

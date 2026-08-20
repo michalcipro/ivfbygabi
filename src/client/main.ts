@@ -189,7 +189,6 @@ import {
   screenKalendar,
   screenKomunita,
   screenNastaveni,
-  screenObchod,
   screenPartner,
   screenPribeh,
   screenSkupina,
@@ -243,7 +242,6 @@ const SECONDARY = [
   { id: 'dokumenty', label: 'Dokumenty', icon: '▤' },
   { id: 'komunita', label: 'Komunita', icon: '◍' },
   { id: 'pribeh', label: 'Můj příběh', icon: '❦' },
-  { id: 'obchod', label: 'Doporučené', icon: '◇' },
   { id: 'partner', label: 'Partner', icon: '♡' },
 ]
 
@@ -296,7 +294,6 @@ const TITLES: Record<string, string> = {
   komunita: 'Komunita',
   skupina: 'Skupina',
   pribeh: 'Můj příběh',
-  obchod: 'Doporučené',
   partner: 'Partner mode',
   nastaveni: 'Nastavení',
   zaloha: 'Záloha a obnova',
@@ -345,7 +342,6 @@ const PARENT: Record<string, string> = {
   komunita: 'pruvodce',
   skupina: 'komunita',
   pribeh: 'pruvodce',
-  obchod: 'pruvodce',
   partner: 'pruvodce',
   nastaveni: 'pruvodce',
   zaloha: 'nastaveni',
@@ -426,6 +422,8 @@ const view = {
   feedbackStav: '',
   /** Stav obrazovky Záloha a obnova. Přežije překreslení, ne zavření okna. */
   zaloha: emptyZaloha(),
+  /** Stav tlačítka „Zaktualizovat aplikaci“ v nastavení. */
+  aktualizace: { bezi: false, hlaska: '' },
 }
 
 let stack: string[] = []
@@ -632,12 +630,10 @@ function screenFor(route: string): string {
       return screenSkupina(a)
     case 'pribeh':
       return screenPribeh()
-    case 'obchod':
-      return screenObchod()
     case 'partner':
       return screenPartner()
     case 'nastaveni':
-      return screenNastaveni(view.report)
+      return screenNastaveni(view.report, view.aktualizace)
     case 'zaloha':
       // Stav úložiště se ptá prohlížeče asynchronně. Načte se při prvním
       // vykreslení a obrazovka se pak překreslí sama.
@@ -2835,6 +2831,9 @@ function action(act: string, argValue: string): void {
     case 'pwa-install':
       nabidnoutInstalaci()
       return
+    case 'aktualizovat':
+      void zaktualizujAplikaci()
+      return
     default:
       return
   }
@@ -3160,7 +3159,7 @@ function dokonciObnovu(): void {
   if (!ulozene) return
 
   try {
-    const stav = JSON.parse(ulozene) as { hash?: string; y?: number }
+    const stav = JSON.parse(ulozene) as { hash?: string; y?: number; sestaveno?: string }
     if (typeof stav.y === 'number' && stav.hash === location.hash) {
       /*
        * Pozice se nevrací přímo posunem, ale zápisem do paměti tras.
@@ -3171,11 +3170,144 @@ function dokonciObnovu(): void {
       zapamatujMisto(currentRoute(), stav.y)
       window.scrollTo(0, stav.y)
     }
+    /*
+     * Po ručně vyžádané aktualizaci se hlásí, co se opravdu stalo.
+     * „Aktualizováno“ tam, kde se nic nezměnilo, je drobná lež, po které
+     * příště nikdo tlačítku neuvěří. Když se sestavení liší, je nové;
+     * když ne, byla aplikace nejnovější už předtím a je to taky odpověď.
+     */
+    if (typeof stav.sestaveno === 'string') {
+      const ted = sestaveniAplikace()
+      toast(
+        stav.sestaveno === ted
+          ? `Aplikace je v nejnovější verzi. Sestaveno ${ted}.`
+          : `Hotovo, nová verze je načtená. Sestaveno ${ted}.`,
+      )
+      return
+    }
   } catch {
     return
   }
   // Krátká věta, ne pruh s tlačítkem. Vysvětlí probliknutí a zmizí sama.
   toast('Aplikace se aktualizovala na nejnovější verzi.')
+}
+
+/** Datum a čas sestavení, které právě běží. Doplňuje `scripts/build-app.ts`. */
+function sestaveniAplikace(): string {
+  const kdy = document.querySelector('meta[name="bloomia-sestaveno"]')?.getAttribute('content') ?? ''
+  return kdy.startsWith('__') ? '' : kdy
+}
+
+/**
+ * Ruční aktualizace na povel z nastavení.
+ *
+ * ------------------------------------------------------------- PROČ TO TU JE ---
+ * Aplikace se aktualizuje sama, jenže na telefonu se to nedá ověřit ani
+ * vynutit. Prohlížeč vymění obsluhu aplikace teprve tehdy, když se zavřou
+ * všechny záložky s ní, a na iPhonu se aplikace odsune, ne zavře. Žena tak
+ * může celé týdny koukat na opravenou chybu, která u ní opravená není,
+ * a nemá jak s tím pohnout. Tohle tlačítko jí to vrací do rukou.
+ *
+ * ------------------------------------------------------------- JAK TO DĚLÁ ---
+ * Neptá se prohlížeče, jestli nemá novou verzi. Ptaní je přesně to, co
+ * u ní zjevně nefunguje. Stáhne si aplikaci ze serveru sama a napíše ji
+ * přes uloženou kopii, ze které se aplikace spouští.
+ *
+ * Nic se nemaže a obsluha se neodpojuje. První verze tohohle tlačítka to
+ * dělala a byla nebezpečná: mezi smazáním a načtením je okamžik, kdy žena
+ * nemá ani starou verzi, ani novou. Kdyby v něm vypadl signál, zůstane jí
+ * v čekárně prázdná obrazovka. Přepsat se dá až to, co se před chvílí
+ * povedlo stáhnout, takže tenhle okamžik vůbec nevznikne.
+ */
+async function zaktualizujAplikaci(): Promise<void> {
+  if (view.aktualizace.bezi) return
+  view.aktualizace.bezi = true
+  view.aktualizace.hlaska = ''
+  renderInPlace()
+
+  const konec = (text: string): void => {
+    view.aktualizace.bezi = false
+    view.aktualizace.hlaska = text
+    renderInPlace()
+  }
+
+  const zaklad = zakladniCesta()
+  const adresa = `${zaklad}index.html`
+
+  let cerstve: string
+  try {
+    /*
+     * Číslo v adrese je tu schválně. Bez něj by dotaz obsloužila obsluha
+     * aplikace ze svého disku a poslala by zpátky přesně to staré, kvůli
+     * čemu se tlačítko mačká. S ním adresu v uložené kopii nenajde a musí
+     * na síť.
+     */
+    const res = await fetch(`${adresa}?cerstvost=${Date.now()}`, { cache: 'no-store' })
+    if (!res.ok) throw new Error(String(res.status))
+    cerstve = await res.text()
+  } catch {
+    konec('Server se neozval. Zkuste to, až budete na síti: bez připojení se nová verze nemá odkud vzít.')
+    return
+  }
+
+  const naServeru = cerstve.match(/name="bloomia-sestaveno"\s+content="([^"]*)"/)?.[1] ?? ''
+  const tady = sestaveniAplikace()
+  if (naServeru.length > 0 && naServeru === tady) {
+    konec(`Máte nejnovější verzi. Sestaveno ${tady}.`)
+    return
+  }
+
+  // Rozepsané formuláře se ukládají stejnou cestou jako při přepnutí sekce,
+  // aby tu nevznikla druhá cesta ukládání, která by se časem rozešla.
+  ulozRozepsane()
+  try {
+    sessionStorage.setItem(
+      KLIC_OBNOVY,
+      JSON.stringify({ hash: location.hash, y: window.scrollY, sestaveno: tady }),
+    )
+  } catch {
+    // Bez sessionStorage se ztratí jen pozice na stránce a hláška po startu.
+  }
+
+  await prepisUlozenouKopii(adresa, cerstve)
+  location.reload()
+}
+
+/**
+ * Napíše čerstvou aplikaci přes uloženou kopii.
+ *
+ * Obsluha aplikace čte při startu právě tuhle kopii, takže po načtení
+ * stránky naběhne nová verze. Ke svým datům se tím nikdo nepřibližuje:
+ * deník, cykly a fotky leží úplně jinde a tahle funkce o nich neví.
+ */
+async function prepisUlozenouKopii(adresa: string, html: string): Promise<void> {
+  if (!('caches' in window)) return
+  try {
+    for (const jmeno of await caches.keys()) {
+      if (!jmeno.startsWith('bloomia-')) continue
+      const cache = await caches.open(jmeno)
+      await cache.put(adresa, new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8' } }))
+    }
+  } catch {
+    /*
+     * Když se zapsat nedá, třeba kvůli plnému úložišti, zbývá kopii
+     * zahodit. Je to horší cesta, ale bezpečná: server odpověděl před
+     * pár vteřinami, takže se aplikace načte ze sítě.
+     */
+    await zahodUlozenouKopii()
+  }
+}
+
+/** Zahodí uloženou kopii aplikace. Dat ženy se to netýká, ta leží jinde. */
+async function zahodUlozenouKopii(): Promise<void> {
+  if (!('caches' in window)) return
+  try {
+    for (const jmeno of await caches.keys()) {
+      if (jmeno.startsWith('bloomia-')) await caches.delete(jmeno)
+    }
+  } catch {
+    // Když mazání nevyjde, aplikace se pořád může načíst ze sítě.
+  }
 }
 
 /**

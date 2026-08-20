@@ -5,7 +5,6 @@ import type {
   DailyCard,
   Encouragement,
   GlossaryTerm,
-  Product,
 } from './types'
 
 import { pack as planning } from './packs/planning'
@@ -15,7 +14,6 @@ import { pack as ivfCycle } from './packs/ivf-cycle'
 import { pack as transferWait } from './packs/transfer-wait'
 import { pack as iui } from './packs/iui'
 import { pack as glossaryJourney } from './packs/glossary-journey'
-import { pack as marketplace } from './packs/marketplace'
 import { pack as cardsCycle } from './packs/cards-cycle'
 import { pack as cardsGaps } from './packs/cards-gaps'
 import { pack as encouragements } from './packs/encouragements'
@@ -54,7 +52,6 @@ const PACKS: ContentPack[] = [
   transferWait,
   iui,
   glossaryJourney,
-  marketplace,
   cardsCycle,
   cardsGaps,
   encouragements,
@@ -110,7 +107,6 @@ export const GLOSSARY: GlossaryTerm[] = (() => {
   return out.sort((a, b) => a.term.localeCompare(b.term, 'cs'))
 })()
 
-export const PRODUCTS: Product[] = dedupe(PACKS.flatMap((p) => p.products ?? []))
 
 const BY_ID = new Map(CATALOG.map((c) => [c.id, c]))
 
@@ -187,5 +183,4 @@ export const CONTENT_STATS = {
   stories: CATALOG.filter((c) => c.kind === 'story').length,
   dailyCards: DAILY_CARDS.length,
   glossary: GLOSSARY.length,
-  products: PRODUCTS.length,
 }

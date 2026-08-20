@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { CATALOG, DAILY_CARDS, GLOSSARY, PRODUCTS } from '../src/lib/content'
+import { CATALOG, DAILY_CARDS, GLOSSARY } from '../src/lib/content'
 import { pickDailyCard } from '../src/lib/content/recommend'
 import { resolveJourney } from '../src/lib/domain/journey'
 import { emptyProfile, type Profile } from '../src/lib/domain/profile'
@@ -166,13 +166,6 @@ test('obsah neobsahuje toxickou pozitivitu', () => {
   }
   for (const item of CATALOG) check(item.id, `${item.title} ${item.excerpt} ${item.body}`)
   for (const card of DAILY_CARDS) check(card.id, `${card.headline} ${card.body}`)
-})
-
-test('produkty v marketplace vysvětlují, proč právě teď', () => {
-  for (const p of PRODUCTS) {
-    assert.ok(p.whyNow.length > 40, `${p.id}: chybí vysvětlení whyNow`)
-    assert.ok(p.phases.length > 0, `${p.id}: produkt bez fáze se nikdy nezobrazí`)
-  }
 })
 
 test('slovník pojmů má krátké i dlouhé vysvětlení', () => {

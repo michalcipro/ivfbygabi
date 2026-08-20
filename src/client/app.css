@@ -820,9 +820,6 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .post { border: 1px solid var(--line); background: var(--card); border-radius: var(--r-lg); padding: 1.25rem 1.4rem; }
 .reply { border-left: 2px solid var(--line); padding-left: 1rem; margin-top: 0.9rem; }
 
-.prodcard { border: 1px solid var(--line); background: var(--card); border-radius: var(--r-lg); overflow: hidden; display: flex; flex-direction: column; }
-.prodcard .hero { height: 6rem; }
-.prodcard .body { padding: 1rem 1.15rem 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
 .whybox { border-radius: var(--r-sm); background: var(--card-muted); padding: 0.65rem 0.85rem; font-size: 0.8125rem; line-height: 1.5; color: var(--fg-soft); }
 
 .kv { display: grid; grid-template-columns: auto 1fr; gap: 0.45rem 1.15rem; font-size: 0.875rem; }
@@ -1987,7 +1984,7 @@ h1, h2, h3, h4, .display { hyphens: none; }
   position: absolute; top: 0.9rem; left: 0.9rem;
   color: rgb(43 37 33 / 0.42);
 }
-.ccard .hero, .featurecard .hero, .prodcard .hero { position: relative; }
+.ccard .hero, .featurecard .hero { position: relative; }
 .featurecard .motif { top: 1.5rem; left: 1.5rem; color: rgb(43 37 33 / 0.36); }
 
 /* Na tmavém motivu jsou plochy karet tmavší, takže tmavá kresba zmizí. */

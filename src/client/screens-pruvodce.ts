@@ -43,7 +43,6 @@ const METHODS_ROWS: Row[] = [
 const OTHER: Row[] = [
   ['komunita', '◍', 'Komunita', 'Ženy ve stejné fázi. Můžete zůstat anonymní.'],
   ['partner', '♡', 'Pro partnera', 'Co ukázat tomu, kdo je vedle vás. Deník zůstává soukromý.'],
-  ['obchod', '◇', 'Doporučené', 'Produkty a služby podle fáze. Bez placených pozic.'],
 ]
 
 const rows = (list: Row[]) => list.map(([r, i, t, w]) => hubRow(r, i, t, w)).join('')

@@ -65,8 +65,7 @@ test('každý balík se dá načíst a něco obsahuje', async () => {
       (pack.items?.length ?? 0) +
       (pack.dailyCards?.length ?? 0) +
       (pack.glossary?.length ?? 0) +
-      (pack.encouragements?.length ?? 0) +
-      (pack.products?.length ?? 0)
+      (pack.encouragements?.length ?? 0)
     assert.ok(n > 0, `balík ${name} je prázdný`)
   }
 })
@@ -116,7 +115,7 @@ test('druh, úroveň, vizuál a datum mají platné hodnoty', async () => {
 test('id se nikde neopakují. Registr by je tiše zahodil', async () => {
   const PACKS = await packs()
   const dup: string[] = []
-  for (const key of ['items', 'dailyCards', 'encouragements', 'products'] as const) {
+  for (const key of ['items', 'dailyCards', 'encouragements'] as const) {
     const kde = new Map<string, string[]>()
     for (const { name, pack } of PACKS) {
       for (const e of (pack[key] ?? []) as { id: string }[]) {
