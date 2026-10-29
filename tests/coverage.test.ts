@@ -6,7 +6,7 @@ import { resolveJourney } from '../src/lib/domain/journey'
 import { emptyProfile, type Profile } from '../src/lib/domain/profile'
 import { addDays, isValidIsoDate, today } from '../src/lib/domain/dates'
 import { CONTENT_KINDS, HERO_TOKENS } from '../src/lib/content/types'
-import { PHASE_IDS } from '../src/lib/domain/phases'
+import { PHASE_IDS, PHASES } from '../src/lib/domain/phases'
 import { MODIFIER_IDS, TOPIC_IDS } from '../src/lib/domain/profile'
 
 /**
@@ -199,5 +199,54 @@ test('každý balík ve složce packs je zaregistrovaný v index.ts', async () =
     missing,
     [],
     `balíky existují, ale nejsou v registru. Jejich obsah se nikde nezobrazí: ${missing.join(', ')}`,
+  )
+})
+
+/**
+ * Napsaná karta, kterou výběr nikdy nevytáhne.
+ *
+ * ------------------------------------------------------------- PROČ TO TU JE ---
+ * Karta se do fáze dostane jen tehdy, když se trefí do dne. Jenže výběr má
+ * pravidlo, které při malém počtu stejně dobrých kandidátů přibere i slabší
+ * vrstvu, aby se obsah neopakoval. Karta s úzkým rozsahem se tím může
+ * rozmělnit mezi obecné karty a rotace ji pak minout úplně.
+ *
+ * Změřeno u inseminace: tři nově napsané karty se nezobrazily ani jediný
+ * den z jednatřiceti. Byly v souboru, prošly typovou kontrolou i všemi
+ * ostatními testy, a přitom je nikdy nikdo neviděl. Opravilo se to přesným
+ * dnem místo rozsahu, protože přesná trefa se neředí nikdy.
+ *
+ * Karty vázané na modifikátor se sem nepočítají: ty se schválně ukazují jen
+ * ženám v dané situaci a při prázdném profilu se objevit nemají.
+ */
+test('každá denní karta se dá ve své fázi někdy zobrazit', () => {
+  const nedosazitelne: string[] = []
+
+  for (const id of PHASE_IDS) {
+    const phase = PHASES[id]
+    const moje = DAILY_CARDS.filter((c) => c.phases.includes(id) && !c.modifiers?.length)
+    if (moje.length === 0) continue
+
+    const videne = new Set<string>()
+    // Okno pokrývá přípravné dny před kotvou i fáze, které trvají měsíce.
+    for (let day = -20; day <= 120; day++) {
+      const card = pickDailyCard(DAILY_CARDS, {
+        phase,
+        dayInPhase: day,
+        modifiers: [],
+        group: phase.group,
+      } as never)
+      if (card) videne.add(card.id)
+    }
+
+    for (const c of moje) {
+      if (!videne.has(c.id)) nedosazitelne.push(`${id}/${c.id}`)
+    }
+  }
+
+  assert.deepEqual(
+    nedosazitelne,
+    [],
+    `tyhle karty se ve své fázi nezobrazí ani jeden den: ${nedosazitelne.join(', ')}`,
   )
 })
