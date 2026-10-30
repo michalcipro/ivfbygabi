@@ -1096,6 +1096,7 @@ export function screenClenstvi(): string {
           <p class="eyebrow">${aktivni ? 'Aktivní' : 'Neaktivní'}</p>
           <p class="display" style="font-size:2.2rem;margin-top:.35rem">199 Kč</p>
           <p class="faint" style="font-size:.8125rem">za měsíc · kdykoli zrušíte</p>
+          <p class="faint" style="font-size:.8125rem">konečná cena, nejsme plátci DPH</p>
         </div>
         <button class="btn ${aktivni ? 'btn-ghost' : 'btn-primary'}" data-act="sub-toggle">
           ${aktivni ? 'Zrušit předplatné' : 'Aktivovat předplatné'}

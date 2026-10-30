@@ -15,7 +15,6 @@ a obě jsou na vaší straně:
 | Co | Kdo | Bez toho nelze |
 |---|---|---|
 | Doména mybloomia.com, přepis DNS u Webglobe | vy | spustit pod vlastní adresou |
-| Stav plátcovství DPH | vy | zveřejnit cenu |
 | Kontrola právníkem | právník | spustit **placený** provoz |
 | Platební brána a ověřování platby | rozhodnutí | vybírat peníze |
 
@@ -48,6 +47,7 @@ jednu nevyřešenou otázku, viz část E.
 | IČO | 04153235 |
 | Sídlo | Majerského 2047/1, Chodov, 149 00 Praha |
 | Zápis | Městský soud v Praze, oddíl C, vložka 243336 |
+| DPH | neplátce, cena 199 Kč je konečná |
 | Autorka obsahu | Ing. Gabriela Černá |
 
 Obsah píše Gabriela, smlouvu uzavírá firma. V dokumentech i v patičce je to
@@ -117,12 +117,11 @@ prvním ženám.** Jinak bude každá z nich muset stěhovat data ručně.
 
 | Údaj | Kam patří | Proč |
 |---|---|---|
-| **Stav plátcovství DPH** | obchodní podmínky, cena | mění formulaci ceny, bez toho ji nelze zveřejnit |
 | **Datum účinnosti dokumentů** | všechny tři dokumenty | den spuštění |
 | **Fotografie Gabriely** | prodejní stránka | teď tam drží místo značka |
 | **Původní soubor loga** | `public/` | mám rekonstrukci, akvarel je aproximace |
 
-Zástupných textů `DOPLNIT` zbývá **32**: 16 v obchodních podmínkách,
+Zástupných textů `DOPLNIT` zbývá **30**: 15 v obchodních podmínkách,
 14 v zásadách ochrany údajů, 1 ve zdravotním upozornění. Prodejní stránka je
 bez nich úplně. Žádný z nich už není opis z rejstříku, všechny čekají na
 rozhodnutí: platební brána, lhůty, doby uchování, datum účinnosti.

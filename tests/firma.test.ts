@@ -110,3 +110,57 @@ test('patička odlišuje provozovatele od autorky obsahu', () => {
     )
   }
 })
+
+/**
+ * Ženský rod u provozovatele.
+ *
+ * ------------------------------------------------------------- PROČ TO TU JE ---
+ * Dokumenty původně mluvily o poskytovatelce a správkyni, protože službu
+ * měla provozovat fyzická osoba. Provozovatelem je společnost, takže se rod
+ * musel změnit v celém textu. Napoprvé jsem to přehlédl na devíti místech:
+ * náhrada běžela jen na malé písmeno a „Poskytovatelka“ po tečce zůstala.
+ * Kontrolní hledání mělo stejnou vadu, takže chybu nenašlo.
+ *
+ * Pozor na záměnu: „uživatelka“ je ženského rodu správně a zůstává.
+ * Aplikaci používají ženy a mluví se s nimi tak, jak jim patří. Tenhle test
+ * hlídá jen tvary, které označují provozovatele.
+ */
+test('o provozovateli se nikde nemluví v ženském rodě', () => {
+  const tvary = /(poskytovatelk|správkyn|provozovatelk|plátkyn)/i
+  const nalezy: string[] = []
+
+  for (const { jmeno, text } of pravniTexty()) {
+    text.split('\n').forEach((radek, i) => {
+      if (tvary.test(radek)) nalezy.push(`${jmeno}:${i + 1}  ${radek.trim().slice(0, 80)}`)
+    })
+  }
+
+  assert.deepEqual(nalezy, [], `zbyl ženský rod u provozovatele:\n${nalezy.join('\n')}`)
+})
+
+/**
+ * Cena u neplátce DPH.
+ *
+ * Neplátce nesmí uvádět cenu „bez DPH“ ani „včetně DPH“, protože daň
+ * nevyčísluje. Musí být naopak jasné, že je cena konečná. Pokud se stav
+ * plátcovství někdy změní, spadne tenhle test a připomene, že se to musí
+ * přepsat na třech místech, ne na jednom.
+ */
+test('obchodní podmínky říkají, že poskytovatel není plátcem DPH', () => {
+  const vop = readFileSync(path.join(DOKUMENTY, 'obchodni-podminky.html'), 'utf8')
+
+  assert.match(vop, /není plátcem daně z přidané hodnoty/, 'chybí ustanovení o DPH')
+  assert.match(vop, /cena je konečná/i, 'chybí údaj, že je cena konečná')
+  assert.ok(
+    !/(?:včetně|bez) DPH/i.test(vop),
+    'neplátce nesmí uvádět cenu včetně nebo bez DPH, daň nevyčísluje',
+  )
+})
+
+test('cena je označená jako konečná i tam, kde ji zákaznice vidí', () => {
+  const stranka = readFileSync(path.join(process.cwd(), 'landing/index.src.html'), 'utf8')
+  const aplikace = readFileSync(path.join(process.cwd(), 'src/client/screens-more.ts'), 'utf8')
+
+  assert.match(stranka, /Nejsme plátci DPH/i, 'prodejní stránka neuvádí stav plátcovství')
+  assert.match(aplikace, /nejsme plátci DPH/i, 'obrazovka Předplatné neuvádí stav plátcovství')
+})
