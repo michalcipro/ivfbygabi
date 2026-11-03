@@ -46,29 +46,32 @@ mybloomia.com
 6. Vercel teď ukáže červený nebo žlutý pruh **Invalid Configuration**
    a pod ním **tabulku s DNS záznamy**, které máte nastavit.
 
-### Tohle je ten důležitý okamžik
+### Hodnoty, které Vercel vypsal
 
-**Opište si hodnoty z té tabulky.** Vercel je čas od času mění a platí to,
-co ukazuje on, ne to, co je napsané kdekoli jinde, včetně tohoto souboru.
-
-Zapište si je sem, než půjdete dál:
-
-| Typ | Název | Hodnota z Vercelu |
+| Typ | Název | Hodnota |
 |---|---|---|
-| A | @ | ................................ |
-| CNAME | www | ................................ |
-
-**Kontrolní hodnoty.** Vercel dlouhodobě používá tyhle dvě. Pokud vám na
-obrazovce ukazuje totéž, je všechno v pořádku a můžete rovnou kopírovat.
-Pokud ukazuje něco jiného, **platí jeho hodnoty**, ne tyhle:
+| A | `@` | `216.198.79.1` |
+| CNAME | `www` | `fc16b3440beff845.vercel-dns-017.com.` |
 
 ```
-76.76.21.21
+216.198.79.1
 ```
 
 ```
-cname.vercel-dns.com
+fc16b3440beff845.vercel-dns-017.com.
 ```
+
+**Hodnotu pro CNAME zkopírujte tlačítkem vedle ní ve Vercelu, nepřepisujte
+ji ručně.** Je unikátní pro tenhle projekt a je v ní šestnáct znaků, u
+kterých se nula a písmeno O od sebe na obrazovce skoro nepoznají. Jediný
+překlep znamená, že se web nerozjede a hledá se to špatně.
+
+Vercel u obou záznamů píše, že rozšiřuje rozsah IP adres a doporučuje
+hodnoty výš. Starší `76.76.21.21` a `cname.vercel-dns.com` podle něj budou
+fungovat dál, ale nemá smysl nastavovat rovnou to, co je na odpis.
+
+Pokud by Vercel někdy ukazoval něco jiného než tahle tabulka, **platí jeho
+obrazovka**, ne tenhle soubor.
 
 ---
 
@@ -103,7 +106,7 @@ nebo zavináč.
 |---|---|
 | Typ | `A` |
 | Název | `@` (nebo nechte prázdné, podle toho, co formulář chce) |
-| Hodnota | hodnota z Vercelu, obvykle `76.76.21.21` |
+| Hodnota | `216.198.79.1` |
 | TTL | `300` |
 
 **Pokud je záznamů A víc, musí zůstat jen tenhle jediný.** Ostatní smažte.
@@ -117,17 +120,17 @@ Prohlížeč by ho upřednostnil a chodil by na staré místo.
 |---|---|
 | Typ | `CNAME` |
 | Název | `www` |
-| Hodnota | hodnota z Vercelu, obvykle `cname.vercel-dns.com` |
+| Hodnota | `fc16b3440beff845.vercel-dns-017.com.` |
 | TTL | `300` |
 
 Pokud pro `www` existuje záznam **A** nebo **AAAA**, smažte ho. Vedle
 CNAME nesmí stát.
 
-Některé formuláře chtějí na konci hodnoty tečku. Pokud vám Webglobe hodnotu
-nepřijme, zkuste:
+Vercel hodnotu píše s tečkou na konci. Některé formuláře ji chtějí, jiné
+ji nepřijmou. Pokud ji Webglobe odmítne, zkuste ji bez tečky:
 
 ```
-cname.vercel-dns.com.
+fc16b3440beff845.vercel-dns-017.com
 ```
 
 ### 2d. Hvězdička
@@ -184,9 +187,9 @@ Počkejte pět minut a v Terminálu spusťte:
 
 Co má vyjít:
 
-- u **A** jediná adresa, a to ta z Vercelu,
+- u **A** jediná adresa, a to `216.198.79.1`,
 - u **AAAA** nic,
-- u **www** jméno `cname.vercel-dns.com` a pod ním nějaká adresa,
+- u **www** jméno `fc16b3440beff845.vercel-dns-017.com.` a pod ním nějaká adresa,
 - u **MX** a **TXT** přesně to, co bylo v záloze z části 0. Porovnejte to.
 
 Pak se vraťte do Vercelu na **Settings, Domains**. U obou domén se do
