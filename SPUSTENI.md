@@ -57,61 +57,15 @@ takhle rozlišené, protože IČO patří společnosti, ne jí.
 
 ## B. Doména u Webglobe
 
-Doména je vedená u Webglobe, aplikace běží na Vercelu. Je potřeba přesměrovat
-DNS záznamy z Webglobe na Vercel. **Poštovní záznamy se přitom nesmí sáhnout**,
-jinak přestane chodit e-mail.
+Celý postup krok za krokem, včetně hodnot k zkopírování, je v samostatném
+souboru **`DOMENA.md`**. Je psaný tak, aby se dal projít u počítače řádek
+po řádku: záloha současných záznamů jedním příkazem, co opsat z Vercelu,
+co přepsat u Webglobe, čeho se nedotknout kvůli poště, jak to ověřit a jak
+se vrátit zpátky, kdyby se něco pokazilo.
 
-### B1. Nejdřív ve Vercelu
-
-1. Otevřete projekt ve Vercelu, **Settings → Domains**.
-2. Přidejte `mybloomia.com` i `www.mybloomia.com`.
-3. Vercel vypíše **konkrétní hodnoty záznamů**, které má doména mít.
-   Opište si je. Hodnoty se časem mění, proto se řiďte tím, co vypíše on,
-   ne tím, co je napsané kdekoli jinde.
-
-Obvykle to je jeden záznam `A` pro samotnou doménu a jeden `CNAME` pro `www`.
-
-### B2. Pak u Webglobe
-
-1. Přihlaste se do zákaznické administrace Webglobe a otevřete doménu
-   `mybloomia.com`. Hledáte správu **DNS záznamů**.
-2. **Než cokoli změníte, vyfoťte si celý výpis záznamů.** Je to jediná
-   záloha, kterou budete mít, a při chybě se k ní vrátíte za vteřinu.
-3. Snižte **TTL** u záznamů, které budete měnit, na nejnižší možnou hodnotu
-   (obvykle 300 vteřin). Počkejte tak dlouho, jaká byla původní TTL,
-   typicky hodinu. Tím se změna později projeví za minuty místo za den.
-4. Změňte záznam `A` pro samotnou doménu na hodnotu z Vercelu. Pokud je
-   tam záznamů `A` víc, musí zmizet všechny kromě toho nového.
-5. Nastavte `CNAME` pro `www` na hodnotu z Vercelu.
-6. **Nechte beze změny** všechny záznamy `MX`, `TXT` a `SRV`. V `TXT`
-   bývá SPF a DKIM pro e-mail. Smazat je znamená, že vaše pošta začne
-   padat do spamu, a poznáte to až za týden.
-7. Pokud je v záznamech `A` s hvězdičkou (`*`), ten taky přepište, nebo
-   smažte. Jinak budou podadresy ukazovat na staré místo.
-
-### B3. Nakonec
-
-1. Vraťte se do Vercelu. Během pár minut až hodiny se u domény objeví,
-   že je ověřená, a sám vystaví certifikát.
-2. Otevřete `https://mybloomia.com` a `https://www.mybloomia.com`.
-   Obojí má ukázat prodejní stránku.
-3. Projděte odkazy v patičce na všechny tři právní dokumenty.
-4. Otevřete `https://mybloomia.com/app` a zkuste onboarding.
-
-`canonical`, `og:url` i `sitemap.xml` už na mybloomia.com ukazují, takže po
-připojení budou sedět samy a nic se nemusí měnit v kódu.
-
-### B4. Co se snadno přehlédne
-
-**Data se mezi adresami nepřenášejí.** Prohlížeč je drží zvlášť pro každou
-doménu, takže co je zapsané na `ivfbygabi.vercel.app`, se na `mybloomia.com`
-neobjeví. Přenést to jde přes **Nastavení → Záloha**: na staré adrese uložit
-soubor, na nové načíst.
-
-Z toho plyne jediné pravidlo: **doménu připojte dřív, než aplikaci dáte
-prvním ženám.** Jinak bude každá z nich muset stěhovat data ručně.
-
----
+Shrnuto: doména zůstane na nameserverech Webglobe, přepíší se jen záznam
+`A` pro samotnou doménu a `CNAME` pro `www`. Záznamy `MX` a `TXT` se
+nechávají být, jinak přestane chodit pošta.
 
 ## C. Co ještě potřebuji od vás
 
