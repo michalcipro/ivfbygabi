@@ -127,3 +127,63 @@ test('odkazy uvnitř právních dokumentů vedou na existující články', () =
 
   assert.deepEqual(rozbite, [], `odkaz nikam nevede:\n${rozbite.join('\n')}`)
 })
+
+/**
+ * Na veřejném webu nesmí zůstat poznámka pro vývojáře.
+ *
+ * ------------------------------------------------------------- PROČ TO TU JE ---
+ * Zástupný text a vysvětlivky typu „sem patří fotografie“ jsou užitečné,
+ * dokud se staví. Jakmile web běží, čte je zákaznice a znamenají pro ni
+ * jediné: tohle není hotové, tomuhle se nedá věřit. U dokumentu, kterým se
+ * má řídit smluvní vztah, je to horší než překlep.
+ *
+ * Změřeno: na prodejní stránce stálo u jména „Sem patří fotografie. Než
+ * přijde, drží místo znak.“ Byla to věta určená mně, zobrazená návštěvnicím.
+ *
+ * Kontroluje se jen viditelný text. Komentář v HTML je naopak správné místo,
+ * kam si takovou poznámku odložit.
+ */
+test('na veřejných stránkách nezůstal text určený vývojáři', () => {
+  const ZDROJE = [
+    'landing/index.src.html',
+    'landing/dokument.src.html',
+    'landing/oprava.src.html',
+    ...readdirSync(DOKUMENTY).filter((f) => f.endsWith('.html')).map((f) => `landing/dokumenty/${f}`),
+  ]
+
+  const zakazane = [
+    /DOPLNIT/,
+    /OVĚŘIT/,
+    /UPŘESNIT/,
+    /\bTODO\b/i,
+    /sem patří/i,
+    /drží místo/i,
+    /než přijde/i,
+    /lorem ipsum/i,
+    /Varianta [AB]\b/,
+    /návrh dokumentu/i,
+  ]
+
+  const nalezy: string[] = []
+  for (const cesta of ZDROJE) {
+    // Komentáře se zahazují: do nich poznámka patří a návštěvnice je nevidí.
+    const text = readFileSync(path.join(process.cwd(), cesta), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
+    for (const vzor of zakazane) {
+      const m = text.match(vzor)
+      if (m) nalezy.push(`${cesta}: „${m[0]}“`)
+    }
+  }
+
+  assert.deepEqual(nalezy, [], `poznámka pro vývojáře ve viditelném textu:\n${nalezy.join('\n')}`)
+})
+
+/** Datum účinnosti musí být na všech třech dokumentech a musí být stejné. */
+test('všechny dokumenty mají stejné datum účinnosti', () => {
+  const data = new Set<string>()
+  for (const n of readdirSync(DOKUMENTY).filter((f) => f.endsWith('.html'))) {
+    const m = cti(n).match(/<dt>Účinnost od<\/dt><dd>([^<]+)<\/dd>/)
+    assert.ok(m, `${n}: chybí datum účinnosti`)
+    data.add(m![1].trim())
+  }
+  assert.equal(data.size, 1, `dokumenty mají různá data účinnosti: ${[...data].join(' / ')}`)
+})
