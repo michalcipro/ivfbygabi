@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 
 /**
@@ -102,4 +102,48 @@ test('tlačítko aktualizace nejdřív stáhne, teprve pak přepisuje', () => {
 test('nastavení nabízí tlačítko na aktualizaci', () => {
   const kod = cti('src/client/screens-more.ts')
   assert.match(kod, /data-act="aktualizovat"/, 'v nastavení chybí tlačítko Zaktualizovat aplikaci')
+})
+
+/**
+ * Serverové funkce se musí dát načíst, ať je Vercel přeloží jakkoliv.
+ *
+ * ------------------------------------------------------------- PROČ TO TU JE ---
+ * Kořenový `tsconfig.json` je psaný pro prohlížeč: `module: esnext`,
+ * `moduleResolution: bundler`. Podle něj vznikne z funkcí ESM, jenže
+ * Vercel je spouští jako CommonJS. Import bez přípony se pak nenačte.
+ *
+ * Změřeno na nasazeném webu: `FUNCTION_INVOCATION_FAILED` a nic víc.
+ * Z té hlášky se příčina nepozná, protože modul spadne dřív, než se vůbec
+ * dostane ke kódu, který by chybu uměl popsat.
+ *
+ * Přípona `.js` u vlastních importů funguje v obou formátech. TypeScript
+ * si ji přeloží zpátky na `.ts`, takže ve zdrojáku nic nechybí.
+ */
+test('serverové funkce importují s příponou .js', () => {
+  const dir = path.join(process.cwd(), 'api')
+
+  let soubory: string[]
+  try {
+    soubory = readdirSync(dir).filter((f) => f.endsWith('.ts'))
+  } catch {
+    return // Složka api/ zatím není, není co hlídat.
+  }
+
+  const spatne: string[] = []
+  for (const f of soubory) {
+    const kod = readFileSync(path.join(dir, f), 'utf8')
+    // Vlastní moduly poznáme podle tečky na začátku cesty.
+    for (const m of kod.matchAll(/from '(\.[^']*)'/g)) {
+      if (!m[1].endsWith('.js')) spatne.push(`${f}: ${m[1]}`)
+    }
+  }
+
+  assert.deepEqual(spatne, [], `import bez přípony .js se jako CommonJS nenačte:\n${spatne.join('\n')}`)
+})
+
+/** Bez tohohle souboru by Vercel sáhl po kořenovém tsconfigu pro prohlížeč. */
+test('složka api má vlastní nastavení pro CommonJS', () => {
+  const cesta = path.join(process.cwd(), 'api/tsconfig.json')
+  const cfg = JSON.parse(readFileSync(cesta, 'utf8')) as { compilerOptions?: Record<string, unknown> }
+  assert.equal(cfg.compilerOptions?.module, 'commonjs', 'api/tsconfig.json musí vynutit commonjs')
 })

@@ -5,7 +5,7 @@ import {
   stripe,
   type Odpoved,
   type Pozadavek,
-} from './_sdilene'
+} from './_sdilene.js'
 
 /** Adresa webu. Nebere se z požadavku, aby z toho nešlo udělat přesměrování jinam. */
 const ADRESA = (process.env.BLOOMIA_ADRESA ?? 'https://mybloomia.com').replace(/\/+$/, '')

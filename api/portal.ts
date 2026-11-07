@@ -8,7 +8,7 @@ import {
   telo,
   type Odpoved,
   type Pozadavek,
-} from './_sdilene'
+} from './_sdilene.js'
 
 const ADRESA = (process.env.BLOOMIA_ADRESA ?? 'https://mybloomia.com').replace(/\/+$/, '')
 

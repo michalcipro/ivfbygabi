@@ -1,0 +1,22 @@
+{
+  "//": [
+    "Serverové funkce běží u Vercelu jako CommonJS.",
+    "",
+    "Kořenový tsconfig je psaný pro prohlížeč: module esnext, moduleResolution",
+    "bundler. Podle něj by z funkcí vznikl ESM a ten se při spuštění nenačte.",
+    "Změřeno: Cannot find module './_sdilene', a Vercel to hlásí jen jako",
+    "FUNCTION_INVOCATION_FAILED, takže se příčina z chyby nepozná.",
+    "",
+    "Import s příponou .js funguje v obou formátech, tenhle soubor je druhá",
+    "pojistka pro případ, že by Vercel kořenový tsconfig přece jen použil."
+  ],
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2022",
+    "lib": ["es2022", "dom"],
+    "isolatedModules": false
+  },
+  "include": ["./*.ts"]
+}

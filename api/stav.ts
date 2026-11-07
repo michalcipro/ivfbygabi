@@ -9,7 +9,7 @@ import {
   telo,
   type Odpoved,
   type Pozadavek,
-} from './_sdilene'
+} from './_sdilene.js'
 
 /**
  * Běží ještě předplatné?
