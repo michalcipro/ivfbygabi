@@ -32,9 +32,13 @@ export default async function handler(req: Pozadavek, res: Odpoved): Promise<voi
       success_url: `${ADRESA}/api/hotovo?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${ADRESA}/app/#/clenstvi`,
       locale: 'cs',
-      // Doklad ke každé platbě slibují obchodní podmínky, bez e-mailu
-      // by se neměl kam poslat.
-      customer_creation: 'always',
+      /*
+       * Žádné `customer_creation`. U předplatného ho Stripe odmítne
+       * s tím, že se smí jen u jednorázové platby, a celé volání spadne.
+       * Není potřeba: v režimu předplatného zakládá Stripe zákazníka vždy
+       * sám, takže doklad ke každé platbě, který slibují obchodní
+       * podmínky, má kam odejít.
+       */
     })
     res.status(200).json({ url: sezeni.url })
   } catch (e) {
