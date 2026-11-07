@@ -1,6 +1,8 @@
 import { PHASES, isPhaseId } from '../lib/domain/phases'
 import { isModifierId, type ModifierId } from '../lib/domain/profile'
-import { today as realToday } from '../lib/domain/dates'
+import { formatCzechDate, today as realToday } from '../lib/domain/dates'
+import { prectiListek } from '../lib/domain/predplatne'
+import { portalPlateb, zacniPlatbu, zrusPredplatne } from './predplatne'
 import { contentById } from '../lib/content'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import type { Letter } from '../lib/shared/records'
@@ -424,6 +426,8 @@ const view = {
   zaloha: emptyZaloha(),
   /** Stav tlačítka „Zaktualizovat aplikaci“ v nastavení. */
   aktualizace: { bezi: false, hlaska: '' },
+  /** Stav tlačítek na obrazovce Předplatné. */
+  predplatne: { bezi: false, hlaska: '' },
 }
 
 let stack: string[] = []
@@ -649,7 +653,7 @@ function screenFor(route: string): string {
     case 'napiste-mi':
       return screenNapisteMi(view.feedback, view.feedbackStav)
     case 'clenstvi':
-      return screenClenstvi()
+      return screenClenstvi(view.predplatne)
     case 'proc':
       return screenProc()
     default:
@@ -2695,13 +2699,15 @@ function action(act: string, argValue: string): void {
         if (d.profile) d.profile.anonymousInCommunity = !d.profile.anonymousInCommunity
       })
       break
-    case 'sub-toggle':
-      patch((d) => {
-        const on = !d.subscription.active
-        d.subscription = { active: on, since: on ? realToday() : null }
-      })
-      toast(S.d.subscription.active ? 'Předplatné aktivováno.' : 'Předplatné zrušeno. Data vám zůstávají.')
-      break
+    case 'sub-koupit':
+      void predplatneAkce('koupit')
+      return
+    case 'sub-zrusit':
+      void predplatneAkce('zrusit')
+      return
+    case 'sub-karta':
+      void predplatneAkce('karta')
+      return
     case 'theme':
       patch((d) => {
         d.theme = argValue as 'auto' | 'light' | 'dark'
@@ -3190,6 +3196,71 @@ function dokonciObnovu(): void {
   }
   // Krátká věta, ne pruh s tlačítkem. Vysvětlí probliknutí a zmizí sama.
   toast('Aplikace se aktualizovala na nejnovější verzi.')
+}
+
+/**
+ * Tlačítka na obrazovce Předplatné.
+ *
+ * Všechna tři končí u Stripe: koupit otevře jeho platební stránku, karta
+ * jeho zákaznický portál, zrušit zruší předplatné ke konci zaplaceného
+ * období. Údaje o kartě se v aplikaci neobjeví nikdy.
+ *
+ * Zrušení se ptá na potvrzení, protože je to jediné z těch tří, co se
+ * nedá vzít zpátky jedním ťuknutím.
+ */
+async function predplatneAkce(co: 'koupit' | 'zrusit' | 'karta'): Promise<void> {
+  if (view.predplatne.bezi) return
+
+  const klic = S.d.subscription?.klic ?? ''
+  if (co !== 'koupit' && !klic) {
+    view.predplatne.hlaska = 'K tomuhle je potřeba běžící předplatné.'
+    renderInPlace()
+    return
+  }
+
+  if (co === 'zrusit') {
+    const l = prectiListek(S.d.subscription?.listek?.text ?? '')
+    const doKdy = l ? ` Přístup vám zůstane do ${formatCzechDate(l.platiDo)}.` : ''
+    if (!confirm(`Opravdu zrušit předplatné?${doKdy} Vaše záznamy zůstávají ve vašem zařízení.`)) return
+  }
+
+  view.predplatne.bezi = true
+  view.predplatne.hlaska = ''
+  renderInPlace()
+
+  const r =
+    co === 'koupit' ? await zacniPlatbu() : co === 'zrusit' ? await zrusPredplatne(klic) : await portalPlateb(klic)
+
+  view.predplatne.bezi = false
+
+  if (!r.ok) {
+    view.predplatne.hlaska = r.zprava
+    renderInPlace()
+    return
+  }
+
+  // Platba i portál běží na stránkách Stripe. Rozepsané formuláře se
+  // proto uloží stejnou cestou jako při přepnutí sekce.
+  if (r.url) {
+    ulozRozepsane()
+    location.href = r.url
+    return
+  }
+
+  if (r.klic !== undefined || r.listek !== undefined) {
+    patch((d) => {
+      if (r.klic !== undefined) d.subscription.klic = r.klic
+      if (r.listek !== undefined) {
+        d.subscription.listek = {
+          text: r.listek,
+          obsah: prectiListek(r.listek),
+          overenoKdy: realToday(),
+        }
+      }
+    })
+  }
+  view.predplatne.hlaska = co === 'zrusit' ? 'Předplatné je zrušené. Přístup vám zůstává do konce zaplaceného období.' : ''
+  renderInPlace()
 }
 
 /** Datum a čas sestavení, které právě běží. Doplňuje `scripts/build-app.ts`. */

@@ -1,6 +1,7 @@
 import { MODIFIER_LABELS, MODIFIER_IDS, type ModifierId } from '../lib/domain/profile'
 import { PHASES, PHASE_IDS, PHASE_GROUP_META } from '../lib/domain/phases'
-import { addDays, formatCzechDate, czDays } from '../lib/domain/dates'
+import { addDays, formatCzechDate, czDays, today as realToday } from '../lib/domain/dates'
+import { popisPredplatneho, prectiListek } from '../lib/domain/predplatne'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { groupSpecsFor, communityName, suggestedGroup, GROUP_NEVYSLO } from '../lib/domain/community-match'
 import { adviceFor } from '../lib/domain/partner'
@@ -36,8 +37,7 @@ import {
   saveFailed,
   viewDate,
   type CalItem,
-  type DocKind,
-} from './store'
+  type DocKind,} from './store'
 import { SEED_POSTS } from './seed'
 import { routeForPhase } from './onboarding'
 
@@ -1070,9 +1070,13 @@ function sestaveni(): string {
 
 // --------------------------------------------------------------- členství ---
 
-export function screenClenstvi(): string {
-  const aktivni = S.d.subscription?.active ?? false
-  const od = S.d.subscription?.since ?? null
+export function screenClenstvi(
+  stav: { bezi: boolean; hlaska: string } = { bezi: false, hlaska: '' },
+): string {
+  const dnes = realToday()
+  const l = prectiListek(S.d.subscription?.listek?.text ?? '')
+  const p = popisPredplatneho(l, dnes)
+  const cena = l?.cena ?? 199
 
   const zahrnuto = [
     'Celý odborný obsah. Články, checklisty, slovník, „Co když…“',
@@ -1083,31 +1087,58 @@ export function screenClenstvi(): string {
     'Podpora ve všech výsledcích, nejen v tom, který skončí pozitivně',
   ]
 
+  const tlacitko = (akce: string, popis: string, hlavni: boolean) =>
+    `<button class="btn ${hlavni ? 'btn-primary' : ''}" data-act="${akce}"${
+      stav.bezi ? ' disabled' : ''
+    }>${stav.bezi ? 'Moment…' : popis}</button>`
+
+  const tlacitka = [
+    p.nabidniKoupit ? tlacitko('sub-koupit', 'Aktivovat předplatné', true) : '',
+    p.nabidniZrusit ? tlacitko('sub-zrusit', 'Zrušit předplatné', false) : '',
+    p.nabidniKartu ? tlacitko('sub-karta', 'Platební údaje', false) : '',
+  ]
+    .filter(Boolean)
+    .join('')
+
   return [
     head(
       'Předplatné',
-      '199 Kč měsíčně',
+      `${cena} Kč měsíčně`,
       'Jedna cena za celou aplikaci. Neprodáváme jednotlivé články a neplatíte za „šťastný konec“. Obsah pro negativní hCG, zrušený transfer nebo ztrátu je v ceně stejně jako ten ostatní.',
     ),
 
+    /*
+     * Stav, datum a částka hned nahoře.
+     *
+     * Upozornění před obnovením se e-mailem neposílá, takže tahle obrazovka
+     * je jediné místo, kde se žena dozví, kdy a kolik se jí strhne. Proto
+     * to není schované pod seznamem výhod, ale je to první věc na stránce.
+     */
     `<section class="surface pad rise">
-      <div class="row wrap" style="justify-content:space-between;gap:1rem;align-items:baseline">
-        <div>
-          <p class="eyebrow">${aktivni ? 'Aktivní' : 'Neaktivní'}</p>
-          <p class="display" style="font-size:2.2rem;margin-top:.35rem">199 Kč</p>
-          <p class="faint" style="font-size:.8125rem">za měsíc · kdykoli zrušíte</p>
-          <p class="faint" style="font-size:.8125rem">konečná cena, nejsem plátkyně DPH</p>
-        </div>
-        <button class="btn ${aktivni ? 'btn-ghost' : 'btn-primary'}" data-act="sub-toggle">
-          ${aktivni ? 'Zrušit předplatné' : 'Aktivovat předplatné'}
-        </button>
-      </div>
+      <p class="eyebrow">${esc(p.stitek)}</p>
+      <p class="display" style="font-size:2.2rem;margin-top:.35rem">${cena} Kč</p>
+      <p class="faint" style="font-size:.8125rem">za měsíc · konečná cena, nejsem plátkyně DPH</p>
+
+      <p class="soft" style="margin-top:1rem;line-height:1.7">${esc(p.veta)}</p>
+      ${p.detail ? `<p class="soft" style="margin-top:.5rem;font-size:.9375rem;line-height:1.65">${esc(p.detail)}</p>` : ''}
+
+      ${tlacitka ? `<div class="row wrap" style="gap:.6rem;margin-top:1.3rem">${tlacitka}</div>` : ''}
       ${
-        aktivni && od
-          ? `<p class="faint" style="margin-top:1rem;font-size:.8125rem">Aktivní od ${esc(formatCzechDate(od))}. Po zrušení vám data zůstanou. Jsou ve vašem zařízení.</p>`
+        stav.hlaska
+          ? `<p class="soft" style="margin-top:.9rem;font-size:.9375rem;line-height:1.6">${esc(stav.hlaska)}</p>`
           : ''
       }
-      <ul class="bullets" style="margin-top:1.3rem">${zahrnuto.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
+
+      <p class="faint" style="margin-top:1rem;font-size:.8125rem;line-height:1.6">
+        Zrušit předplatné jde kdykoliv, jedním tlačítkem a bez udání důvodu.
+        Zaplacené období doběhne do konce. <strong>Vaše záznamy zůstávají
+        ve vašem zařízení vždycky</strong>, i po skončení.
+      </p>
+    </section>`,
+
+    `<section class="surface pad rise">
+      <p class="eyebrow">Co je v ceně</p>
+      <ul class="bullets" style="margin-top:.8rem">${zahrnuto.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
     </section>`,
 
     `<section class="surface pad rise">
@@ -1124,7 +1155,7 @@ export function screenClenstvi(): string {
     </section>`,
 
     note(
-      'V téhle verzi je aplikace otevřená a tlačítko jen přepíná stav. Žádná platba neprobíhá a nikam se neposílají žádné údaje.',
+      'Placené předplatné zatím není v provozu. Aplikace je dostupná bez omezení a bez platby a nic se vám neúčtuje. Až se platby spustí, dozvíte se to předem.',
     ),
   ].join('')
 }

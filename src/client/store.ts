@@ -28,6 +28,7 @@ import {
   type TransferOutcome,
 } from '../lib/domain/cycle'
 import { emptyEmbryo, isAvailable, sortEmbryos, type Embryo } from '../lib/domain/embryo'
+import { prazdnyListek, type UlozenyListek } from '../lib/domain/predplatne'
 import {
   byCategory,
   byCycle,
@@ -389,11 +390,21 @@ export interface Save {
   eventState: Record<string, { done: boolean; note: string }>
   posts: PostRow[]
   /**
-   * Předplatné. V téhle verzi je to jen stav. Žádná platba neprobíhá.
-   * Aplikace zůstává celá otevřená, i když je neaktivní: zamykat obsah
-   * ženě uprostřed léčby by bylo horší než nevydělat.
+   * Předplatné.
+   *
+   * `klic` je dlouhodobý a je v něm jen číslo předplatného ve Stripe, nic
+   * osobního. `listek` je krátkodobý, podepsaný, a nese datum platnosti,
+   * datum obnovení, cenu a stav. Podrobně v `lib/domain/predplatne.ts`.
+   *
+   * `active` a `since` zůstávají z dřívější podoby, aby starší záloha šla
+   * načíst beze ztráty. Rozhoduje ale lístek, ne ony.
    */
-  subscription: { active: boolean; since: IsoDate | null }
+  subscription: {
+    active: boolean
+    since: IsoDate | null
+    klic: string
+    listek: UlozenyListek
+  }
   /** Výchozí je tmavý. Prstenec a grafy na něm svítí. Přepínatelné v nastavení. */
   theme: 'auto' | 'light' | 'dark'
   /** 0 = dnešek. Nenulové jen když si uživatelka vědomě přepne na jiný den. */
@@ -463,7 +474,7 @@ function blank(): Save {
     exercises: [],
     eventState: {},
     posts: [],
-    subscription: { active: false, since: null },
+    subscription: { active: false, since: null, klic: '', listek: prazdnyListek() },
     lock: { on: false, sul: '', otisk: '' },
     // Lis je papírový směr. Světlý režim je ten hlavní. `auto` znamená
     // „podle zařízení“; kdo si přepne ručně, tomu se volba nepřepisuje.
@@ -583,7 +594,15 @@ function migrate(d: Save): Save {
   d.support = (d.support ?? []).map((e) => ({ ...emptySupport(e.id), ...e }))
   d.clinic = { ...emptyClinic(), ...(d.clinic ?? {}) }
   d.story = (d.story ?? []).map((r) => ({ ...r, mood: r.mood ?? null, photos: r.photos ?? [] }))
-  d.subscription = d.subscription ?? { active: false, since: null }
+  // Starší záloha nese jen `active` a `since`. Doplní se zbytek, nic se
+  // nezahazuje: kdo si zálohu udělal před platbami, nesmí o nic přijít.
+  const stare = (d.subscription ?? {}) as Partial<Save['subscription']>
+  d.subscription = {
+    active: stare.active ?? false,
+    since: stare.since ?? null,
+    klic: stare.klic ?? '',
+    listek: { ...prazdnyListek(), ...(stare.listek ?? {}) },
+  }
   d.lock = d.lock ?? { on: false, sul: '', otisk: '' }
 
   return d
