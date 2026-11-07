@@ -187,3 +187,32 @@ test('všechny dokumenty mají stejné datum účinnosti', () => {
   }
   assert.equal(data.size, 1, `dokumenty mají různá data účinnosti: ${[...data].join(' / ')}`)
 })
+
+/**
+ * Automatické obnovování a co k němu musí být napsané.
+ *
+ * ------------------------------------------------------------- PROČ TO TU JE ---
+ * Opakovaná platba je to, na co si spotřebitelské právo i dozor svítí
+ * nejvíc, protože peníze odcházejí bez dalšího úkonu zákaznice. Samotná
+ * věta „obnovuje se automaticky“ nestačí. Musí k ní patřit upozornění
+ * předem, možnost zrušit kdykoliv a zadarmo, pravidlo pro změnu ceny
+ * a to, co se stane, když platba neprojde.
+ *
+ * Ukončit závazek musí jít přinejmenším tak snadno jako ho sjednat. Proto
+ * je tlačítko v aplikaci, ne jen e-mailová adresa někde v textu.
+ */
+test('podmínky popisují automatické obnovování úplně', () => {
+  const s = cti(VOP)
+
+  assert.match(s, /automaticky obnovuje/, 'chybí údaj o automatickém obnovování')
+  assert.ok(
+    !/automaticky neobnovuje/.test(s),
+    'zbyla věta o tom, že se předplatné neobnovuje, což si odporuje',
+  )
+  assert.match(s, /sedm dní předem/, 'chybí upozornění před obnovením')
+  assert.match(s, /kdykoliv zrušit, bez udání důvodu a bez/, 'chybí právo kdykoliv zrušit zdarma')
+  assert.match(s, /Zrušit předplatné<\/strong> přímo v aplikaci/, 'chybí tlačítko pro zrušení v aplikaci')
+  assert.match(s, /tak snadné\s*\n?\s*jako ho sjednat/, 'chybí pravidlo o snadnosti ukončení')
+  assert.match(s, /30 dní<\/strong>\s*\n?\s*před dnem obnovení/, 'chybí lhůta pro oznámení změny ceny')
+  assert.match(s, /platba neprojde/, 'chybí, co se stane při neúspěšné platbě')
+})
