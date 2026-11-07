@@ -33,6 +33,13 @@ export default async function handler(req: Pozadavek, res: Odpoved): Promise<voi
       cancel_url: `${ADRESA}/app/#/clenstvi`,
       locale: 'cs',
       /*
+       * Pole na slevový kód. Bez něj se nedá nikomu dát přístup zdarma:
+       * aplikace nemá účty ani databázi, takže jediný způsob, jak někoho
+       * pustit dovnitř bez placení, je kupón ve Stripe. Gabi je první
+       * takový případ.
+       */
+      allow_promotion_codes: true,
+      /*
        * Žádné `customer_creation`. U předplatného ho Stripe odmítne
        * s tím, že se smí jen u jednorázové platby, a celé volání spadne.
        * Není potřeba: v režimu předplatného zakládá Stripe zákazníka vždy

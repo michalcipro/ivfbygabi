@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 
 /**
@@ -146,4 +146,14 @@ test('složka api má vlastní nastavení pro CommonJS', () => {
   const cesta = path.join(process.cwd(), 'api/tsconfig.json')
   const cfg = JSON.parse(readFileSync(cesta, 'utf8')) as { compilerOptions?: Record<string, unknown> }
   assert.equal(cfg.compilerOptions?.module, 'commonjs', 'api/tsconfig.json musí vynutit commonjs')
+})
+
+test('platba nabízí pole na slevový kód', () => {
+  // Aplikace nemá účty ani databázi, takže kupón ve Stripe je jediný
+  // způsob, jak někoho pustit dovnitř bez placení. Bez tohohle pole se
+  // kupón nedá uplatnit a nikdo nedostane přístup zdarma.
+  const cesta = path.join(process.cwd(), 'api/checkout.ts')
+  if (!existsSync(cesta)) return
+  const zdroj = readFileSync(cesta, 'utf8')
+  assert.match(zdroj, /allow_promotion_codes:\s*true/)
 })
