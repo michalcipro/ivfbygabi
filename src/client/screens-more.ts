@@ -22,6 +22,7 @@ import { odkazNaZalohu } from './screens-zaloha'
 import { photoStrip } from './photo-ui'
 import { medDoses, medForm } from './screens-leky'
 import { des, contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
+import { JAZYK, JAZYKY, NAZVY_JAZYKU, adresaJazyka, prelozit } from '../lib/i18n'
 import {
   allEvents,
   cycles,
@@ -769,6 +770,31 @@ export function screenNastaveni(
 
   return [
     head('Vaše nastavení', 'Nastavení', 'Všechno se dá kdykoliv změnit. Obsah se hned přepočítá.'),
+
+    /*
+     * Jazyk.
+     *
+     * Není to přepínač v aplikaci, je to odkaz na jinou adresu: každý
+     * jazyk je vlastní sestavení, protože obsah tvoří skoro celý balík.
+     * Záznamy se tím nerozdělí, `localStorage` patří k doméně, ne ke
+     * složce, takže se po přepnutí najde všechno tam, kde bylo.
+     */
+    `<section class="surface pad">
+      <p class="eyebrow">${esc(prelozit('Jazyk'))}</p>
+      <p class="soft" style="margin-top:.5rem;line-height:1.65;font-size:.9375rem">${esc(
+        prelozit('Vaše záznamy zůstanou, kde jsou. Přepnutím se mění jazyk, ne data.'),
+      )}</p>
+      <div class="row wrap" style="gap:.5rem;margin-top:1.1rem">
+        ${JAZYKY.map((j) =>
+          j === JAZYK
+            ? `<button class="btn btn-sm" disabled aria-current="true">${esc(NAZVY_JAZYKU[j])}</button>`
+            : `<a class="btn btn-ghost btn-sm" href="${esc(adresaJazyka(j, location.pathname))}">${esc(NAZVY_JAZYKU[j])}</a>`,
+        ).join('')}
+      </div>
+      <p class="faint" style="margin-top:.9rem;font-size:.8125rem;line-height:1.55">${esc(
+        prelozit('Obsah se překládá postupně. Co ještě přeložené není, zůstává česky.'),
+      )}</p>
+    </section>`,
 
     `<section class="surface pad">
       <p class="eyebrow">Připomínky</p>

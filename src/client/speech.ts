@@ -1,3 +1,8 @@
+import { JAZYK, type Jazyk } from '../lib/i18n'
+
+/** Kód hlasu, když prohlížeč žádný v daném jazyce nenabídne. */
+const VYCHOZI_HLAS: Record<Jazyk, string> = { cs: 'cs-CZ', en: 'en-GB', de: 'de-DE' }
+
 /**
  * Přehrávání meditací hlasem.
  *
@@ -53,7 +58,7 @@ export function speechAvailable(): boolean {
 export function czechVoice(): SpeechSynthesisVoice | null {
   if (!speechAvailable()) return null
   const voices = window.speechSynthesis.getVoices()
-  return voices.find((v) => v.lang.toLowerCase().startsWith('cs')) ?? null
+  return voices.find((v) => v.lang.toLowerCase().startsWith(JAZYK)) ?? null
 }
 
 /**
@@ -138,7 +143,7 @@ function speakFrom(index: number): void {
   const u = new SpeechSynthesisUtterance(chunk.text)
   const voice = czechVoice()
   if (voice) u.voice = voice
-  u.lang = voice?.lang ?? 'cs-CZ'
+  u.lang = voice?.lang ?? VYCHOZI_HLAS[JAZYK]
   // Pomaleji a níž než výchozí nastavení. Meditace čtená rychlostí zpráv
   // by byla k ničemu.
   u.rate = 0.82

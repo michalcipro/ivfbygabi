@@ -3,6 +3,7 @@ import { isModifierId, type ModifierId } from '../lib/domain/profile'
 import { formatCzechDate, today as realToday } from '../lib/domain/dates'
 import { prectiListek } from '../lib/domain/predplatne'
 import { zavreno } from '../lib/domain/pristup'
+import { JAZYK, adresaJazyka, prelozit } from '../lib/i18n'
 import { PLATBY_ZAPNUTE, obnovStav, overListek, portalPlateb, zacniPlatbu, zrusPredplatne } from './predplatne'
 import { screenZed } from './screens-zed'
 import { ozivPohyb } from './pohyb'
@@ -669,7 +670,7 @@ function screenFor(route: string): string {
 
 function navButton(n: { id: string; label: string; icon: string }, current: string): string {
   return `<button class="navlink" data-go="${n.id}" ${base(current) === n.id ? 'aria-current="page"' : ''}>
-    <i>${n.icon}</i>${esc(n.label)}
+    <i>${n.icon}</i>${esc(prelozit(n.label))}
   </button>`
 }
 
@@ -687,8 +688,8 @@ function backbar(route: string): string {
   const previous = base(stack.length > 1 ? stack[stack.length - 2] : (foreignPhase ? 'cesta' : (PARENT[b] ?? 'dnes')))
   const label = BACK_TITLES[previous] ?? TITLES[previous] ?? 'Dnes'
   return `<div class="backbar no-print">
-    <button data-act="back">‹ Zpět na ${esc(label)}</button>
-    <span class="where">${esc(TITLES[b] ?? '')}</span>
+    <button data-act="back">‹ ${esc(prelozit('Zpět na'))} ${esc(prelozit(label))}</button>
+    <span class="where">${esc(prelozit(TITLES[b] ?? ''))}</span>
     ${CTENI.includes(b) ? '<i class="postup"></i>' : ''}
   </div>`
 }
@@ -736,9 +737,9 @@ function render(): void {
       <div class="brand">${wordmark(24)}<span class="brand-phase">${esc(state.phase.name)}</span></div>
       <nav class="stack" style="gap:.1rem">
         ${TABS.filter((t) => t.id !== 'vice').map((t) => navButton(t, route)).join('')}
-        <p class="eyebrow" style="margin:1.35rem 0 .4rem;padding:0 .75rem">Vaše cesta</p>
+        <p class="eyebrow" style="margin:1.35rem 0 .4rem;padding:0 .75rem">${esc(prelozit('Vaše cesta'))}</p>
         ${SECONDARY.map((t) => navButton(t, route)).join('')}
-        <p class="eyebrow" style="margin:1.35rem 0 .4rem;padding:0 .75rem">Ostatní</p>
+        <p class="eyebrow" style="margin:1.35rem 0 .4rem;padding:0 .75rem">${esc(prelozit('Ostatní'))}</p>
         ${TERTIARY.map((t) => navButton(t, route)).join('')}
       </nav>
       <div class="sidefoot">
@@ -767,7 +768,7 @@ function render(): void {
   <nav class="tabbar no-print">
     ${TABS.map(
       (t) =>
-        `<button data-go="${t.id}" ${base(route) === t.id ? 'aria-current="page"' : ''}><i>${t.icon}</i><span>${esc(t.label)}</span></button>`,
+        `<button data-go="${t.id}" ${base(route) === t.id ? 'aria-current="page"' : ''}><i>${t.icon}</i><span>${esc(prelozit(t.label))}</span></button>`,
     ).join('')}
   </nav>`
 
@@ -3611,11 +3612,11 @@ applyTheme()
 void prevezmiZAdresy()
 void overPredplatne()
 
-// Bez jazyka prohlížeč neumí česky dělit slova. „Kryoembryotransfer“ se
-// pak v úzkém sloupci na telefonu zlomí kdekoliv a bez spojovníku.
-// Šablona `<html>` neobsahuje, prvek si vyrábí prohlížeč sám, takže se
-// jazyk nastavuje odsud.
-document.documentElement.lang = 'cs'
+// Bez jazyka prohlížeč neumí dělit slova. „Kryoembryotransfer“ se pak
+// v úzkém sloupci na telefonu zlomí kdekoliv a bez spojovníku.
+// Šablona jazyk nese, tohle je pojistka pro případ, že by se prvek
+// `<html>` vyráběl až v prohlížeči.
+if (!document.documentElement.lang) document.documentElement.lang = JAZYK
 
 // Seznam hlasů se v některých prohlížečích plní až po startu. Až doteče,
 // přepíše se upozornění „hlasy se ještě načítají“.

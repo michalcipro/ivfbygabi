@@ -33,6 +33,22 @@ function razitko(): string {
   return `${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC`
 }
 
+/**
+ * Jazyky aplikace.
+ *
+ * Balík se skládá jednou a zapíše se třikrát. Mezi jazyky se liší jediný
+ * token, takže překládat esbuildem třikrát totéž by byl jen ztracený čas.
+ *
+ * Každý jazyk má vlastní složku, vlastní service worker a vlastní otisk.
+ * Záznamy se tím nerozdělí: `localStorage` patří k doméně, ne ke složce,
+ * takže přepnutí jazyka je obyčejný odkaz a data zůstanou, kde byla.
+ */
+const JAZYKY = [
+  { kod: 'cs', slozka: '' },
+  { kod: 'en', slozka: 'en' },
+  { kod: 'de', slozka: 'de' },
+]
+
 async function main() {
   // index.html, aby se dala složka `app/` rovnou hostovat jako statický web.
   const outPath = process.argv[2] ?? join(ROOT, 'app', 'index.html')
@@ -64,7 +80,7 @@ async function main() {
   const fonts = read(join(ROOT, 'scripts', 'fonts.css'))
   const template = read(join(ROOT, 'scripts', 'app.template.html'))
 
-  const html = template
+  const spolecne = template
     .replace('/*__FONTS__*/', () => safeForStyle(fonts))
     .replace('/*__CSS__*/', () => safeForStyle(css))
     .replace('/*__APP__*/', () => safeForScript(js))
@@ -72,41 +88,47 @@ async function main() {
     // otisk neodpovídal souboru, který se opravdu zapisuje.
     .replace('__SESTAVENO__', razitko())
 
-  const outDir = dirname(outPath)
-  mkdirSync(outDir, { recursive: true })
-  writeFileSync(outPath, html, 'utf8')
-
-  // Manifest a ikony leží vedle aplikace, ne uvnitř ní: prohlížeč si je
-  // musí umět stáhnout samostatně, aby šla přidat na plochu.
+  const korenDir = dirname(outPath)
+  const swTemplate = read(join(ROOT, 'scripts', 'sw.template.js'))
   const pubDir = join(ROOT, 'public')
-  let zkopirovano = 0
-  try {
-    for (const name of readdirSync(pubDir)) {
-      if (statSync(join(pubDir, name)).isDirectory()) continue
-      copyFileSync(join(pubDir, name), join(outDir, name))
-      zkopirovano++
+  const kb = (n: number) => `${Math.round(n / 1024)} kB`
+  let html = spolecne
+
+  for (const jazyk of JAZYKY) {
+    const outDir = jazyk.slozka ? join(korenDir, jazyk.slozka) : korenDir
+    const cesta = join(outDir, 'index.html')
+    const verze = spolecne.split('__JAZYK__').join(jazyk.kod)
+    if (jazyk.slozka === '') html = verze
+    mkdirSync(outDir, { recursive: true })
+    writeFileSync(cesta, verze, 'utf8')
+
+    // Manifest a ikony leží vedle aplikace v každém jazyce zvlášť:
+    // service worker má působnost jen nad svojí složkou.
+    let kopii = 0
+    try {
+      for (const name of readdirSync(pubDir)) {
+        if (statSync(join(pubDir, name)).isDirectory()) continue
+        copyFileSync(join(pubDir, name), join(outDir, name))
+        kopii++
+      }
+    } catch {
+      // Bez `public/` se aplikace pořád otevře, jen nepůjde přidat na plochu.
     }
-  } catch {
-    // Bez `public/` se aplikace pořád otevře, jen nepůjde přidat na plochu.
+
+    const otiskJazyka = createHash('sha256').update(verze).digest('hex').slice(0, 16)
+    if (swTemplate) {
+      writeFileSync(join(outDir, 'sw.js'), swTemplate.replace('__VERZE__', otiskJazyka), 'utf8')
+    }
+    console.log(
+      `  jazyk ${jazyk.kod}: ${jazyk.slozka ? jazyk.slozka + '/' : ''}index.html` +
+        ` (${kb(Buffer.byteLength(verze))}, ${kopii} souborů vedle, otisk ${otiskJazyka})`,
+    )
   }
 
-  /**
-   * Otisk hotové aplikace.
-   *
-   * Service worker se musí při každé změně aplikace lišit, jinak prohlížeč
-   * novou verzi nikdy nenabídne a uživatelky by zůstaly na té staré napořád.
-   * Otisk obsahu to zaručí bez ručního číslování verzí.
-   */
-  const otisk = createHash('sha256').update(html).digest('hex').slice(0, 16)
-  const swTemplate = read(join(ROOT, 'scripts', 'sw.template.js'))
-  if (swTemplate) writeFileSync(join(outDir, 'sw.js'), swTemplate.replace('__VERZE__', otisk), 'utf8')
-
-  const kb = (n: number) => `${Math.round(n / 1024)} kB`
   console.log(`Aplikace zapsána: ${outPath} (${kb(statSync(outPath).size)})`)
   console.log(`  kód:    ${kb(Buffer.byteLength(js))} (jádro, doporučování a celá knihovna obsahu)`)
   console.log(`  styl:   ${kb(Buffer.byteLength(css))}`)
   console.log(`  písmo:  ${kb(Buffer.byteLength(fonts))}`)
-  console.log(`  vedle:  ${zkopirovano} souborů z public/, sw.js s otiskem ${otisk}`)
   console.log(`  klíč:   ${verejnyKlic ? 'veřejný klíč zapečen' : 'bez klíče, předplatné se bude tvářit jako nespuštěné'}`)
 }
 
