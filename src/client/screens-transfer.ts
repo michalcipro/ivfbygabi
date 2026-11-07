@@ -38,7 +38,7 @@ import { accordion, actionCard, sectionHead, segmented, statTrio } from './viz'
  * ---------------------------------------------------------------- AKCE ------
  * `tr-den`      arg = číslo dne         . Otevřít konkrétní den z osy
  * `tr-setup`    bez argumentu           . Doplnit údaje o transferu
- * `sym-log`     arg = id příznaku       . Zaškrtnout příznak (sdílené se Zápisem)
+ * `symptom`     arg = id příznaku       . Zaškrtnout příznak (sdílené se Zápisem)
  * `mood`        arg = 1 až 5            . Nálada (sdílené s Deníkem)
  * `cyc-hcg-add` arg = „cyklus|druh“     . Přidat test
  */
@@ -188,7 +188,7 @@ function trackerPriznaky(): string {
     <div class="chips" style="margin-top:.9rem">
       ${RYCHLE_PRIZNAKY.map(
         (id) =>
-          `<button data-act="sym-log" data-arg="${esc(id)}" aria-pressed="${dnes.has(id)}">${esc(symLabel(id))}</button>`,
+          `<button data-act="symptom" data-arg="${esc(id)}" aria-pressed="${dnes.has(id)}">${esc(symLabel(id))}</button>`,
       ).join('')}
     </div>
     <button class="btn btn-sm btn-ghost" data-go="zapis/telo" style="margin-top:1.1rem">Celý seznam příznaků</button>

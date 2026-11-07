@@ -339,7 +339,7 @@ function sectionZapisy(): string {
                 return `<div class="surface" style="padding:1.1rem 1.3rem">
                   <div class="row wrap" style="justify-content:space-between;gap:.5rem;align-items:baseline">
                     <p class="faint" style="font-size:.75rem">${esc(formatCzechDate(d.date))} · ${esc(ex?.title ?? d.exercise)}</p>
-                    <button class="btn btn-ghost btn-sm" data-act="ex-del" data-arg="${esc(d.id)}">Smazat</button>
+                    <button class="btn btn-ghost btn-sm" data-act="exercise-del" data-arg="${esc(d.id)}">Smazat</button>
                   </div>
                   <p style="margin-top:.4rem;font-size:.9375rem;line-height:1.65;white-space:pre-wrap">${esc(d.fields.filter(Boolean).join('\n'))}</p>
                   ${ex ? `<button class="btn btn-ghost btn-sm" data-go="cviceni/${esc(ex.id)}" style="margin-top:.6rem">Vyplnit znovu</button>` : ''}

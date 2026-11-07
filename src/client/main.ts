@@ -1851,7 +1851,7 @@ function action(act: string, argValue: string): void {
       if (!confirm('Smazat zápis z tohohle dne? Vrátit to nejde.')) return
       removeJournal(argValue)
       break
-    case 'ex-del':
+    case 'exercise-del':
       if (!confirm('Smazat tenhle záznam cvičení? Vrátit to nejde.')) return
       removeExercise(argValue)
       break
@@ -2291,7 +2291,9 @@ function action(act: string, argValue: string): void {
     }
     case 'ex-del': {
       const row = S.d.exams.find((x) => x.id === argValue)
-      if (row) for (const p of row.photos) removePhoto(p.id)
+      if (!row) return
+      if (!confirm('Opravdu smazat tenhle záznam vyšetření i s fotkami? Vrátit to nejde.')) return
+      for (const p of row.photos) removePhoto(p.id)
       deleteExam(argValue)
       break
     }
@@ -2434,97 +2436,6 @@ function action(act: string, argValue: string): void {
     case 'hz-focus':
       focusField(`hz-${argValue || 'bbt'}-val`)
       return
-    case 'us-add': {
-      // Velikosti přijdou tak, jak je lékař nadiktoval: „18, 16, 14“.
-      const sizes = (id: string): number[] =>
-        val(id)
-          .split(/[^0-9.,]+/)
-          .map((x) => Number(x.replace(',', '.')))
-          .filter((n) => Number.isFinite(n) && n > 0)
-      const left = sizes('us-left')
-      const right = sizes('us-right')
-      const endometrium = numOrNull('us-endo')
-      const usNote = val('us-note')
-      if (!left.length && !right.length && endometrium === null && !usNote) {
-        toast('Prázdný ultrazvuk se neukládá. Zapište folikuly, sliznici nebo poznámku.')
-        return
-      }
-      patch((d) => {
-        d.ultrasounds.push({
-          id: uid('uz'),
-          date: val('us-date') || viewDate(),
-          cycleId: activeCycleId(),
-          left,
-          right,
-          endometrium,
-          note: usNote,
-          attachments: [],
-          photos: [],
-        })
-      })
-      toast('Ultrazvuk uložen.')
-      break
-    }
-    case 'us-del':
-      patch((d) => {
-        d.ultrasounds = d.ultrasounds.filter((u) => u.id !== argValue)
-      })
-      break
-
-    // --- zdraví -----------------------------------------------------------
-    case 'lab-add': {
-      const key = val('lab-key')
-      const value = Number(val('lab-value').replace(',', '.'))
-      if (!key || !Number.isFinite(value)) return
-      patch((d) => {
-        d.labs.push({
-          id: uid('lb'),
-          paramKey: key,
-          value,
-          unit: LAB_BY_KEY[key]?.unit ?? '',
-          onDate: val('lab-date') || viewDate(),
-        })
-      })
-      break
-    }
-    case 'lab-del':
-      patch((d) => {
-        d.labs = d.labs.filter((l) => l.id !== argValue)
-      })
-      break
-
-    // --- dokumenty --------------------------------------------------------
-    case 'doc-photo': {
-      // Zpráva vznikne až s fotkou. Kdyby se založila dopředu, zrušený
-      // výběr souboru by po sobě nechal prázdný záznam v seznamu.
-      void (async () => {
-        const files = await pickImages()
-        if (files.length === 0) return
-        const refs = await addPhotos(files, realToday())
-        if (refs.length === 0) {
-          toast('Fotku se nepodařilo přečíst. Zkuste ji uložit jako JPEG.')
-          return
-        }
-        const id = addDoc(
-          val('doc-title') || 'Vyfocený dokument',
-          (val('doc-kind') || 'zprava') as DocKind,
-          dateOrNull('doc-date') ?? undefined,
-          val('doc-note'),
-        )
-        withPhotos(`doc:${id}`, (list) => list.push(...refs))
-        toast('Dokument uložen.')
-        renderInPlace()
-      })()
-      return
-    }
-    case 'doc-del': {
-      const doc = S.d.docs.find((x) => x.id === argValue)
-      if (!doc) return
-      if (!confirm('Opravdu smazat tuhle zprávu i s fotkami? Hodnoty ve Zdraví zůstanou.')) return
-      for (const p of doc.photos) removePhoto(p.id)
-      deleteDoc(argValue)
-      break
-    }
     case 'us-add': {
       // Velikosti přijdou tak, jak je lékař nadiktoval: „18, 16, 14“.
       const sizes = (id: string): number[] =>

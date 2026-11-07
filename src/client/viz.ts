@@ -675,14 +675,6 @@ export function accordion(id: string, name: string, hint: string, open: boolean,
   </div>`
 }
 
-/** Přepínač zapnuto/vypnuto v nastavení. */
-export function toggleRow(key: string, title: string, body: string, on: boolean): string {
-  return `<button class="togglerow" data-act="pref" data-arg="${esc(key)}" aria-pressed="${on}">
-    <span class="txt"><b>${esc(title)}</b><span>${esc(body)}</span></span>
-    <span class="knob"></span>
-  </button>`
-}
-
 // ------------------------------------------------------------------ značka ---
 
 /**
