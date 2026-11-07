@@ -18,14 +18,14 @@ import { logoKruh } from './viz'
  */
 
 /** Živnostenské údaje. Doplní se, až je Gabi dodá; do té doby se nekreslí. */
-const ICO = ''
+const ICO = '21134154'
 
 export function screenOBlooMii(): string {
   return [
     `<header class="head rise" style="text-align:center">
       ${logoKruh('14rem')}
       <p class="eyebrow" style="margin-top:2rem">Kdo stojí za aplikací BlooMia</p>
-      <h1 class="display">Ing. Gabriela Černá</h1>
+      <h1 class="display">Gabriela Cipro</h1>
       <p class="lede">BlooMia nevznikla jako další aplikace. Vznikla z vlastní zkušenosti.</p>
       ${ICO ? `<p class="faint" style="margin-top:.9rem;font-size:.8125rem">IČO ${esc(ICO)}</p>` : ''}
     </header>`,

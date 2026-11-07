@@ -69,9 +69,9 @@ v podmínkách.
 
 Samotné založení nestačí. V Dashboardu je potřeba mít hotové:
 
-- údaje o společnosti: **Open tennis group s.r.o., IČO 04153235**,
-  sídlo Majerského 2047/1, Chodov, 149 00 Praha,
-- ověření totožnosti jednatele,
+- údaje podnikatelky: **Gabriela Cipro, IČO 21134154**,
+  sídlo V Jezerech 311, Braškov 273 51,
+- ověření totožnosti,
 - **bankovní účet v CZK**, kam budou chodit výplaty,
 - nastavení měny na **CZK**.
 

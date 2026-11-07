@@ -43,15 +43,14 @@ jednu nevyřešenou otázku, viz část E.
 
 | | |
 |---|---|
-| Firma | Open tennis group s.r.o. |
-| IČO | 04153235 |
-| Sídlo | Majerského 2047/1, Chodov, 149 00 Praha |
-| Zápis | Městský soud v Praze, oddíl C, vložka 243336 |
-| DPH | neplátce, cena 199 Kč je konečná |
-| Autorka obsahu | Ing. Gabriela Černá |
+| Provozovatelka | Gabriela Cipro |
+| IČO | 21134154 |
+| Sídlo | V Jezerech 311, Braškov 273 51 |
+| Zápis | živnostenský rejstřík |
+| DPH | neplátkyně, cena 199 Kč je konečná |
 
-Obsah píše Gabriela, smlouvu uzavírá firma. V dokumentech i v patičce je to
-takhle rozlišené, protože IČO patří společnosti, ne jí.
+Obsah píše Gabriela a smlouvu uzavírá taky ona, jako podnikající fyzická
+osoba. Dokumenty proto mluví v ženském rodě: poskytovatelka a správkyně.
 
 ---
 

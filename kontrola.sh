@@ -75,7 +75,7 @@ nema "sitemap nenabízí aplikaci" "$MAP" "/app"
 echo
 echo "=== identifikace provozovatele ==="
 VOP=$(curl -s --max-time 20 "https://$D/obchodni-podminky")
-ma "IČO v obchodních podmínkách" "$VOP" "04153235"
+ma "IČO v obchodních podmínkách" "$VOP" "21134154"
 nema "žádný nevyplněný údaj" "$VOP" "DOPLNIT"
 
 echo

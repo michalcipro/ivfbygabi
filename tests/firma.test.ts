@@ -17,10 +17,9 @@ import path from 'node:path'
  * žádné: vypadají hotově a přitom neidentifikují nikoho.
  */
 
-const ICO = '04153235'
-const FIRMA = 'Open tennis group s.r.o.'
-const SIDLO = 'Majerského 2047/1, Chodov, 149 00 Praha'
-const SPISOVA_ZNACKA = 'oddíl C, vložka 243336'
+const ICO = '21134154'
+const FIRMA = 'Gabriela Cipro'
+const SIDLO = 'V Jezerech 311, Braškov 273 51'
 
 const DOKUMENTY = path.join(process.cwd(), 'landing/dokumenty')
 
@@ -58,16 +57,20 @@ test('každý právní dokument říká, kdo službu provozuje', () => {
 })
 
 /**
- * Obchodní podmínky musí nést spisovou značku.
+ * Podnikající fyzická osoba se zapisuje do živnostenského rejstříku.
  *
- * Bez ní se společnost s ručením omezeným neidentifikuje úplně a podle
- * zákona o obchodních korporacích ji podnikatel na svých dokumentech uvádět
- * má. U zásad ochrany údajů ji GDPR nevyžaduje, tam stačí název, IČO a sídlo.
+ * Podle § 435 občanského zákoníku musí podnikatel na svých dokumentech
+ * uvést údaj o zápisu. U společnosti to byla spisová značka a rejstříkový
+ * soud, u živnostnice je to živnostenský rejstřík. Zmínka o obchodním
+ * rejstříku by tu teď byla nepravdivá.
  */
-test('obchodní podmínky uvádějí zápis v obchodním rejstříku', () => {
+test('obchodní podmínky uvádějí zápis v živnostenském rejstříku', () => {
   const vop = readFileSync(path.join(DOKUMENTY, 'obchodni-podminky.html'), 'utf8')
-  assert.match(vop, /Městským soudem v Praze/, 'chybí rejstříkový soud')
-  assert.ok(vop.includes(SPISOVA_ZNACKA), `chybí spisová značka ${SPISOVA_ZNACKA}`)
+  assert.match(vop, /živnostensk\S*\s+rejstřík/, 'chybí údaj o zápisu')
+  assert.ok(
+    !/obchodním rejstříku|Městským soudem/.test(vop),
+    'fyzická osoba se do obchodního rejstříku nezapisuje',
+  )
 })
 
 /**
@@ -93,49 +96,54 @@ test('v identifikačním bloku nezůstal zástupný text', () => {
 })
 
 /**
- * Autorka obsahu není totéž co provozovatel.
+ * V patičce stojí provozovatelka i její IČO.
  *
- * Obsah píše Gabriela, smlouvu uzavírá firma. Kdyby se její jméno ocitlo
- * vedle cizího IČO, byl by to nepravdivý údaj. V patičce proto stojí obojí,
- * každé ve své roli.
+ * Dřív tu byl samostatný řádek s autorkou obsahu, protože službu
+ * provozovala společnost a obsah psal někdo jiný. Teď je to tatáž osoba,
+ * takže by ten řádek jen opakoval jméno o dva řádky výš.
  */
-test('patička odlišuje provozovatele od autorky obsahu', () => {
+test('patička uvádí provozovatelku', () => {
   for (const n of ['landing/index.src.html', 'landing/dokument.src.html']) {
     const text = readFileSync(path.join(process.cwd(), n), 'utf8')
-    assert.match(text, /<h3>Provozovatel<\/h3>/, `${n}: patička neuvádí provozovatele`)
-    assert.match(text, /Autorka obsahu: Ing\. Gabriela Černá/, `${n}: chybí autorka obsahu`)
-    assert.ok(
-      !/Ing\. Gabriela Černá<\/li>\s*\n\s*<li>IČO/.test(text),
-      `${n}: IČO je uvedené u jména fyzické osoby, ne u firmy`,
-    )
+    assert.match(text, /<h3>Provozovatelka<\/h3>/, `${n}: patička neuvádí provozovatelku`)
+    assert.ok(text.includes(FIRMA), `${n}: chybí jméno provozovatelky`)
+    assert.ok(text.includes(ICO), `${n}: chybí IČO`)
+    assert.ok(!/Autorka obsahu/.test(text), `${n}: zbytečný řádek s autorkou obsahu`)
   }
 })
 
 /**
- * Ženský rod u provozovatele.
+ * Mužský rod u provozovatelky.
  *
  * ------------------------------------------------------------- PROČ TO TU JE ---
- * Dokumenty původně mluvily o poskytovatelce a správkyni, protože službu
- * měla provozovat fyzická osoba. Provozovatelem je společnost, takže se rod
- * musel změnit v celém textu. Napoprvé jsem to přehlédl na devíti místech:
- * náhrada běžela jen na malé písmeno a „Poskytovatelka“ po tečce zůstala.
- * Kontrolní hledání mělo stejnou vadu, takže chybu nenašlo.
+ * Službu provozovala nejdřív fyzická osoba, pak společnost, a teď zase
+ * fyzická osoba. Rod se tím v celém textu překlopil dvakrát a pokaždé
+ * něco zbylo: poprvé devět tvarů, které náhrada minula, protože běžela jen
+ * na malé písmeno. Ručně se to uhlídat nedá.
  *
- * Pozor na záměnu: „uživatelka“ je ženského rodu správně a zůstává.
- * Aplikaci používají ženy a mluví se s nimi tak, jak jim patří. Tenhle test
- * hlídá jen tvary, které označují provozovatele.
+ * Nesmí to ale křičet na hosting a platební služby. Ty poskytují firmy
+ * a mužský rod u nich je správně, proto se slovo posuzuje i s tím, co po
+ * něm následuje. „Uživatelka“ se sem taky nepočítá, ta je ženského rodu
+ * správně: aplikaci používají ženy a mluví se s nimi tak, jak jim patří.
  */
-test('o provozovateli se nikde nemluví v ženském rodě', () => {
-  const tvary = /(poskytovatelk|správkyn|provozovatelk|plátkyn)/i
-  const nalezy: string[] = []
+test('o provozovatelce se nikde nemluví v mužském rodě', () => {
+  // Hosting, platby a připojení zajišťují firmy, tam mužský rod zůstává.
+  const cizi = /(hostingu|plateb|platebních|připojení|mimo Evropský|tímto)/
+  const nase = /\b(poskytovatel|poskytovatele|poskytovateli|poskytovatelem|správce|správci|správcem|provozovatel|provozovatele|plátce|plátcem)\b/i
 
+  const nalezy: string[] = []
   for (const { jmeno, text } of pravniTexty()) {
     text.split('\n').forEach((radek, i) => {
-      if (tvary.test(radek)) nalezy.push(`${jmeno}:${i + 1}  ${radek.trim().slice(0, 80)}`)
+      const m = radek.match(nase)
+      if (!m) return
+      // Kus věty za nalezeným slovem rozhodne, o koho jde.
+      const za = radek.slice(radek.indexOf(m[0]) + m[0].length, radek.indexOf(m[0]) + m[0].length + 30)
+      if (cizi.test(za) || cizi.test(radek.slice(Math.max(0, radek.indexOf(m[0]) - 12), radek.indexOf(m[0])))) return
+      nalezy.push(`${jmeno}:${i + 1}  ${radek.trim().slice(0, 80)}`)
     })
   }
 
-  assert.deepEqual(nalezy, [], `zbyl ženský rod u provozovatele:\n${nalezy.join('\n')}`)
+  assert.deepEqual(nalezy, [], `zbyl mužský rod u provozovatelky:\n${nalezy.join('\n')}`)
 })
 
 /**
@@ -146,10 +154,10 @@ test('o provozovateli se nikde nemluví v ženském rodě', () => {
  * plátcovství někdy změní, spadne tenhle test a připomene, že se to musí
  * přepsat na třech místech, ne na jednom.
  */
-test('obchodní podmínky říkají, že poskytovatel není plátcem DPH', () => {
+test('obchodní podmínky říkají, že poskytovatelka není plátkyní DPH', () => {
   const vop = readFileSync(path.join(DOKUMENTY, 'obchodni-podminky.html'), 'utf8')
 
-  assert.match(vop, /není plátcem daně z přidané hodnoty/, 'chybí ustanovení o DPH')
+  assert.match(vop, /není plátkyní daně z přidané hodnoty/, 'chybí ustanovení o DPH')
   assert.match(vop, /cena je konečná/i, 'chybí údaj, že je cena konečná')
   assert.ok(
     !/(?:včetně|bez) DPH/i.test(vop),
@@ -161,6 +169,6 @@ test('cena je označená jako konečná i tam, kde ji zákaznice vidí', () => {
   const stranka = readFileSync(path.join(process.cwd(), 'landing/index.src.html'), 'utf8')
   const aplikace = readFileSync(path.join(process.cwd(), 'src/client/screens-more.ts'), 'utf8')
 
-  assert.match(stranka, /Nejsme plátci DPH/i, 'prodejní stránka neuvádí stav plátcovství')
-  assert.match(aplikace, /nejsme plátci DPH/i, 'obrazovka Předplatné neuvádí stav plátcovství')
+  assert.match(stranka, /Nejsem plátkyně DPH/i, 'prodejní stránka neuvádí stav plátcovství')
+  assert.match(aplikace, /nejsem plátkyně DPH/i, 'obrazovka Předplatné neuvádí stav plátcovství')
 })
