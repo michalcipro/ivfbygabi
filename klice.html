@@ -2,7 +2,7 @@
 <html lang="cs">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Klíče pro BlooMia</title>
+<title>Nastavení pro BlooMia</title>
 <style>
   :root {
     --ivory: #fbf8f7; --white: #fff; --bloo: #625673; --ink: #3a3245;
@@ -14,79 +14,136 @@
     font: 16px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     padding: 2rem 1.25rem 4rem;
   }
-  main { max-width: 42rem; margin: 0 auto; }
+  main { max-width: 44rem; margin: 0 auto; }
   h1 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 .5rem; }
-  .lede { color: var(--muted); margin: 0 0 1.8rem; }
+  .lede { color: var(--muted); margin: 0 0 2rem; }
+
+  .krok { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 1.3rem 1.4rem; margin-bottom: 1.2rem; }
+  .krok h2 { font-size: 1.0625rem; margin: 0 0 .3rem; }
+  .krok h2 span { color: var(--mia); font-variant-numeric: tabular-nums; }
+  .krok p { color: var(--muted); font-size: .9375rem; margin: 0 0 1rem; }
+
+  input, textarea {
+    font: inherit; width: 100%; border: 1px solid var(--line); border-radius: 10px;
+    padding: .75rem .9rem; background: var(--ivory); color: var(--ink);
+  }
+  input { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .875rem; }
+  textarea {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8125rem;
+    line-height: 1.7; min-height: 13rem; resize: vertical; white-space: pre; overflow-wrap: normal; overflow-x: auto;
+  }
+  input:focus, textarea:focus { outline: 2px solid var(--mia); outline-offset: 1px; }
+
   button {
     font: inherit; border: 0; border-radius: 99px; padding: .85rem 1.5rem;
-    background: var(--bloo); color: #fff; cursor: pointer; font-weight: 600;
+    background: var(--bloo); color: #fff; cursor: pointer; font-weight: 600; margin-top: 1rem;
   }
   button:hover { background: var(--ink); }
-  .kopie { background: var(--white); color: var(--bloo); border: 1px solid var(--line); padding: .5rem 1rem; font-size: .875rem; }
-  .pole { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 1.1rem 1.2rem; margin-top: 1.4rem; }
-  .pole h2 { font-size: .8125rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 .2rem; }
-  .pole .co { font-size: .875rem; color: var(--muted); margin: 0 0 .8rem; }
-  code {
-    display: block; word-break: break-all; background: var(--ivory);
-    border: 1px solid var(--line); border-radius: 10px; padding: .8rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8125rem;
-    margin-bottom: .8rem; min-height: 3.4rem;
-  }
-  .tajne { border-left: 3px solid var(--mia); }
-  .pozn { color: var(--muted); font-size: .875rem; margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 1.2rem; }
+  button:disabled { background: #c9c3cf; cursor: default; }
+
+  .chyba { color: #b4485c; font-size: .875rem; margin-top: .6rem; }
+  .pozn { color: var(--muted); font-size: .875rem; margin-top: 1rem; }
+  .pozn strong { color: var(--ink); }
+  ol.navod { margin: .4rem 0 0; padding-left: 1.3rem; color: var(--muted); font-size: .9375rem; }
+  ol.navod li { margin-bottom: .4rem; }
   [hidden] { display: none; }
 </style>
 
 <main>
-  <h1>Klíče pro BlooMia</h1>
+  <h1>Nastavení pro BlooMia</h1>
   <p class="lede">
-    Jedno kliknutí vyrobí dvojici klíčů. Vznikne přímo tady v prohlížeči
-    a nikam se neodesílá.
+    Vyrobí se tu dva klíče a složí se z nich celý blok pro Vercel.
+    Všechno vzniká ve vašem prohlížeči a nikam se to neodesílá.
   </p>
 
-  <button id="udelej">Vygenerovat klíče</button>
+  <div class="krok">
+    <h2><span>1.</span> Vložte klíč ze Stripe</h2>
+    <p>Ten, co začíná <code>sk_test_</code>. Najdete ho ve Stripe v sandboxu, API keys.</p>
+    <input id="sk" placeholder="sk_test_..." autocomplete="off" spellcheck="false">
+    <p class="chyba" id="chyba" hidden></p>
+    <button id="udelej">Složit nastavení</button>
+  </div>
 
-  <div id="vysledek" hidden>
-    <div class="pole tajne">
-      <h2>BLOOMIA_PODPIS_KLIC</h2>
-      <p class="co">Tajný. Patří jen do Vercelu a nikam jinam.</p>
-      <code id="soukromy"></code>
-      <button class="kopie" data-cil="soukromy">Zkopírovat</button>
-    </div>
+  <div class="krok" id="vysledek" hidden>
+    <h2><span>2.</span> Zkopírujte tohle celé</h2>
+    <p>Všech pět řádků najednou. Nic se v nich neupravuje.</p>
+    <textarea id="blok" readonly spellcheck="false"></textarea>
+    <button id="kopirovat">Zkopírovat všech pět řádků</button>
 
-    <div class="pole">
-      <h2>BLOOMIA_VEREJNY_KLIC</h2>
-      <p class="co">Není tajný. Ověřuje se jím podpis.</p>
-      <code id="verejny"></code>
-      <button class="kopie" data-cil="verejny">Zkopírovat</button>
-    </div>
+    <p class="pozn" style="margin-top:1.4rem"><strong>Kam to vložit:</strong></p>
+    <ol class="navod">
+      <li>Ve Vercelu otevřete projekt, nahoře <strong>Settings</strong>.</li>
+      <li>Vlevo <strong>Environment Variables</strong>.</li>
+      <li>Klikněte do prvního pole <strong>Key</strong> a vložte to celé.
+        Vercel pozná, že je toho víc, a rozdělí si to sám do pěti řádků.</li>
+      <li>Zaškrtněte <strong>Production</strong> i <strong>Preview</strong>.</li>
+      <li><strong>Save</strong>.</li>
+      <li>Nahoře <strong>Deployments</strong>, u nejvyššího řádku tři tečky, <strong>Redeploy</strong>.</li>
+    </ol>
 
     <p class="pozn">
-      Až obě hodnoty vložíte do Vercelu, tuhle stránku zavřete. Klíče se
-      nikam neukládají, takže zavřením zmizí. Kdybyste je potřeboval znovu,
-      vygenerujte nové a nastavte ve Vercelu obě.
+      Kdyby Vercel vkládání po řádcích nepobral, hledejte v té samé sekci
+      volbu <strong>Import .env</strong> a vložte to tam.
+    </p>
+
+    <p class="pozn">
+      Až to bude ve Vercelu, zavřete tuhle stránku. Klíče se nikam
+      neukládají, takže zavřením zmizí. Kdybyste je potřeboval znovu,
+      vygenerujte si nové a nastavte ve Vercelu obě hodnoty.
     </p>
   </div>
 </main>
 
 <script>
-  const b64 = (o) => btoa(JSON.stringify(o))
+  const PRICE = 'price_1UZ8Qv2ZPSdSDt9xCkJs63Vx'
+  const ADRESA = 'https://mybloomia.com'
+
+  const sk = document.getElementById('sk')
+  const chyba = document.getElementById('chyba')
+  const blok = document.getElementById('blok')
+
+  function rekni(text) {
+    chyba.textContent = text
+    chyba.hidden = !text
+  }
 
   document.getElementById('udelej').addEventListener('click', async () => {
+    const klic = sk.value.trim()
+
+    if (!klic) return rekni('Vložte prosím klíč ze Stripe.')
+    if (klic.startsWith('sk_live_') || klic.startsWith('rk_live_')) {
+      return rekni('Tohle je ostrý klíč. Zatím potřebujeme testovací, ten začíná sk_test_.')
+    }
+    if (!klic.startsWith('sk_test_') && !klic.startsWith('sk_sandbox_')) {
+      return rekni('Klíč má začínat sk_test_ nebo sk_sandbox_. Zkontrolujte, jestli jste ho zkopíroval celý.')
+    }
+    rekni('')
+
     const par = await crypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify'])
-    document.getElementById('soukromy').textContent = b64(await crypto.subtle.exportKey('jwk', par.privateKey))
-    document.getElementById('verejny').textContent = b64(await crypto.subtle.exportKey('jwk', par.publicKey))
+    const b64 = async (k) => btoa(JSON.stringify(await crypto.subtle.exportKey('jwk', k)))
+
+    blok.value = [
+      'STRIPE_SECRET_KEY=' + klic,
+      'STRIPE_PRICE_ID=' + PRICE,
+      'BLOOMIA_ADRESA=' + ADRESA,
+      'BLOOMIA_PODPIS_KLIC=' + (await b64(par.privateKey)),
+      'BLOOMIA_VEREJNY_KLIC=' + (await b64(par.publicKey)),
+    ].join('\n')
+
     document.getElementById('vysledek').hidden = false
-    document.getElementById('udelej').textContent = 'Vygenerovat znovu'
+    document.getElementById('udelej').textContent = 'Složit znovu'
   })
 
-  document.addEventListener('click', async (e) => {
-    const t = e.target.closest('.kopie')
-    if (!t) return
-    await navigator.clipboard.writeText(document.getElementById(t.dataset.cil).textContent)
-    const puvodni = t.textContent
-    t.textContent = 'Zkopírováno'
-    setTimeout(() => (t.textContent = puvodni), 1500)
+  document.getElementById('kopirovat').addEventListener('click', async (e) => {
+    try {
+      await navigator.clipboard.writeText(blok.value)
+    } catch {
+      // Starší prohlížeč schránku nepustí. Označí se aspoň text, ať jde
+      // zkopírovat ručně.
+      blok.select()
+    }
+    e.target.textContent = 'Zkopírováno'
+    setTimeout(() => (e.target.textContent = 'Zkopírovat všech pět řádků'), 1600)
   })
 </script>
 </html>
