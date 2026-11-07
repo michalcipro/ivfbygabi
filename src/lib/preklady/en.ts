@@ -376,4 +376,308 @@ export const EN: Record<string, string> = {
     'Entries in a row. The goal is a week. Not for the sake of collecting, but because a trend only shows up over a week.',
   'Něco, co dnes prožíváte, si za rok nevybavíte. Můžete si to uložit do kroniky. Tam se z toho jednou dá udělat kniha.':
     'Something you are living through today you will not recall in a year. You can save it to the chronicle. One day it can become a book.',
+
+  // --- Moje cesta, fáze a Celá cesta -----------------------------------------
+  'Přehled': 'Overview',
+  'Historie': 'History',
+  'Časová osa': 'Timeline',
+  'Statistiky': 'Statistics',
+  'Po transferu': 'After the transfer',
+  'Moje IVF cesta': 'My IVF journey',
+  'Zatím bez cyklu': 'No cycle yet',
+  'Moje IVF finance': 'My IVF costs',
+  'Nebo rovnou léky': 'Or go straight to medication',
+  'Nejdřív jen termíny': 'Just the appointments for now',
+  'Zatím tu není žádný cyklus': 'There is no cycle yet',
+  'Ultrazvuky, laboratoř, měření.': 'Ultrasounds, lab results, measurements.',
+  'Papíry z kliniky na jednom místě.': 'Paperwork from the clinic in one place.',
+  'Kde jste dnes a co vás čeká nejdřív.': 'Where you are today and what comes next.',
+  'Hodnoty a čísla z cyklů vedle sebe v čase.':
+    'Values and numbers from your cycles side by side over time.',
+  'Protokol od kliniky a denní odškrtávání dávek':
+    "The clinic's protocol and ticking off doses day by day",
+  'Celá cesta v přehledu. Co bylo v kterém cyklu.':
+    'The whole journey at a glance. What happened in which cycle.',
+  'Kolik cesta stála, co je zaplacené a co zbývá.':
+    'What the journey has cost, what is paid and what is left.',
+  'Všechny transfery napříč cykly, od nejnovějšího.':
+    'Every transfer across all cycles, newest first.',
+  'Termíny, kontroly a odběry. Část se doplní sama.':
+    'Appointments, check-ups and tests. Some fill themselves in.',
+  'Kontroly a odběry si můžete zapisovat i bez cyklu':
+    'You can record check-ups and tests even without a cycle',
+  'Den po dni od transferu k odběru hCG. Co se může dít.':
+    'Day by day from the transfer to the hCG test. What may happen.',
+  'Karta pro každé embryo. Vývoj po dnech, genetika, osud.':
+    'A card for every embryo. Development day by day, genetics, outcome.',
+  'Chronologie celé cesty. Jednou z toho může být kronika.':
+    'A chronology of the whole journey. One day it could be a chronicle.',
+  'Cyklus je zdravotní karta jednoho pokusu: klinika, protokol, milníky, čísla z laboratoře i výsledek. Až ho založíte, bude se na téhle obrazovce skládat všechno ostatní kolem něj.':
+    'A cycle is the medical record of one attempt: the clinic, the protocol, the milestones, the lab numbers and the outcome. Once you start one, everything else on this screen is built around it.',
+  'Zatím tu není žádný cyklus. Až ho založíte, uvidíte tady celou jeho cestu na jednom místě. Stimulaci, odběr, embrya i každý transfer.':
+    'There is no cycle yet. Once you start one, you will see its whole course here in one place. Stimulation, retrieval, embryos and every transfer.',
+  'Obsah': 'Content',
+  'Doplňky': 'Supplements',
+  'K lékaři': 'For the doctor',
+  'Slovníček': 'Glossary',
+  'Co sledovat': 'What to track',
+  'Vaše situace': 'Your situation',
+  'Zadat hodnoty': 'Enter values',
+  'Zapsat do deníku': 'Write in the diary',
+  'Na co se připravit': 'What to prepare for',
+  'Doplnit v nastavení': 'Fill in under Settings',
+  'Zobrazit obsah fáze': 'Show the content for this stage',
+  'Z toho se skládají vaše grafy': 'This is what your charts are built from',
+  'Estradiol, pokud vám ho měří.': 'Estradiol, if your clinic measures it.',
+  'Věci, které se dají udělat dopředu': 'Things you can do in advance',
+  'Obvod břicha, když máte riziko OHSS.': 'Your waist measurement, if you are at risk of OHSS.',
+  'Volnější kalhoty. Břicho se zvětší a je citlivé.':
+    'Looser trousers. Your abdomen will grow and be tender.',
+  'Ranní termíny na kontroly. Domluvte si to v práci dopředu.':
+    'Morning slots for check-ups. Arrange it at work in advance.',
+  'Vědět, že poslední dny bývají fyzicky nejtěžší z celého cyklu.':
+    'Knowing that the last few days tend to be the physically hardest of the whole cycle.',
+  'Ultrazvukové kontroly zhruba každé dva až tři dny, často brzy ráno.':
+    'Ultrasound check-ups roughly every two or three days, often early in the morning.',
+  'Chladicí polštářek a dezinfekci k injekcím, ať to máte na jednom místě.':
+    'A cool pack and disinfectant next to your injections, so it is all in one place.',
+  'Počet a velikost folikulů z každé kontroly. Z toho vznikne křivka růstu.':
+    'The number and size of follicles from every check-up. That becomes your growth curve.',
+  'Nafouklé břicho, citlivá prsa, únava a výkyvy nálad. Ke konci stimulace nejvíc.':
+    'A bloated abdomen, tender breasts, fatigue and mood swings. Most of all towards the end of stimulation.',
+  'Denní injekce, obvykle večer ve stejnou dobu. Většina žen si je píchá sama do bříška.':
+    'Daily injections, usually in the evening at the same time. Most women give them to themselves in the abdomen.',
+  'Trigger v přesně určený čas. Obvykle 34–36 hodin před odběrem. Tady se nesmí splést hodina.':
+    'The trigger at an exact time. Usually 34 to 36 hours before the retrieval. This is one hour you must not get wrong.',
+  'Nálada a bolest. Uvidíte, jak stimulace probíhala, až se na to budete chtít podívat zpětně.':
+    'Mood and pain. You will be able to see how the stimulation went when you want to look back on it.',
+  'Dávky se v průběhu mění podle toho, jak folikuly rostou. Změna dávky není chyba, je to řízení.':
+    'Doses change along the way depending on how the follicles grow. A change of dose is not a mistake, it is steering.',
+  'Zatím nemáte vybranou žádnou diagnózu ani situaci. Když ji doplníte, obsah se podle ní přizpůsobí.':
+    'You have not selected a diagnosis or a situation yet. Once you add one, the content will follow it.',
+  'Léčba · jste tady': 'Treatment · you are here',
+  'Pro tuhle fázi máme # materiálů.': 'We have # pieces of content for this stage.',
+  'Léčba': 'Treatment',
+  'Embrya': 'Embryos',
+  'Čekání': 'Waiting',
+  'Ztráty': 'Losses',
+  'Oplození': 'Fertilisation',
+  'Právě teď': 'Right now',
+  'Plánování': 'Planning',
+  'Jste tady': 'You are here',
+  'Diagnostika': 'Diagnosis',
+  'Nejtěžší dny': 'The hardest days',
+  'Když to bolí': 'When it hurts',
+  'Příprava těla': 'Preparing your body',
+  'Čekání na hCG': 'Waiting for the hCG test',
+  'Pozitivní hCG': 'A positive hCG',
+  'Revize dělohy': 'Uterine revision (D&C)',
+  'Než začne cesta': 'Before the journey starts',
+  'Příprava na IVF': 'Preparing for IVF',
+  'Otevřít mou fázi': 'Open my stage',
+  'Změnit, kde jsem': 'Change where I am',
+  'Hledáme odpovědi': 'Looking for answers',
+  'Inseminace (IUI)': 'Insemination (IUI)',
+  'Samovolný potrat': 'Miscarriage',
+  'Přemýšlíme o dítěti': 'Thinking about a baby',
+  'Genetická vyšetření': 'Genetic testing',
+  'Opakované neúspěchy': 'Repeated failures',
+  'Zamlklé těhotenství': 'Missed miscarriage',
+  'Snažíme se přirozeně': 'Trying naturally',
+  'IUI, IVF a vše kolem': 'IUI, IVF and everything around them',
+  'Čekání na další pokus': 'Waiting for the next attempt',
+  'Biochemické těhotenství': 'Biochemical pregnancy',
+  'Mimoděložní těhotenství': 'Ectopic pregnancy',
+  'Celá cesta, ne jeden cyklus': 'The whole journey, not one cycle',
+  'Den, na který jste čekala. Krátký zákrok s obrovskou váhou.':
+    'The day you have been waiting for. A short procedure that carries enormous weight.',
+  'Zákrok, příprava, rekonvalescence a kdy se smí zkoušet znovu.':
+    'The procedure, the preparation, the recovery and when you may try again.',
+  'Šetrnější krok před IVF. Co obnáší, jak se připravit a co čekat.':
+    'A gentler step before IVF. What it involves, how to prepare and what to expect.',
+  'Den odběru a dny těsně po něm. Co dělat, co je normální a kdy volat.':
+    'The day of the retrieval and the days just after. What to do, what is normal and when to call.',
+  'Co se děje s tělem, co s duší a jak dlouho trvá, než se dá pokračovat.':
+    'What happens to your body, what happens to your mind and how long it takes before you can go on.',
+  'Karyotyp, trombofilie, PGT, imunologie. Co se testuje a co z toho plyne.':
+    'Karyotype, thrombophilia, PGT, immunology. What is tested and what follows from it.',
+  'Zdravotně náročná a emočně krutá situace. Provedeme vás léčbou i zotavením.':
+    'Medically demanding and emotionally cruel. We will take you through the treatment and the recovery.',
+  'Pauza, kterou jste si nevybrala. Je to čas na regeneraci, otázky pro lékaře a na sebe.':
+    'A pause you did not choose. It is time for recovery, for questions for your doctor and for yourself.',
+  'Vaše vajíčka se právě setkala se spermiemi. Zítra přijde první telefonát z embryologie.':
+    'Your eggs have just met the sperm. Tomorrow brings the first call from the embryology lab.',
+  'Ticho na ultrazvuku, které se nedá popsat. Co následuje zdravotně a co pomáhá psychicky.':
+    'A silence at the ultrasound that cannot be described. What follows medically and what helps emotionally.',
+  'Tři měsíce před početím se tvoří vajíčko, které možná bude to vaše. Co děláte teď, má smysl.':
+    'The egg that may become yours is forming three months before conception. What you do now matters.',
+  'Dvě čárky nebo číslo, na které jste čekala. A hned s ním nová vlna otázek a opatrné radosti.':
+    'Two lines or the number you were waiting for. And with it a new wave of questions and careful joy.',
+  'Než začne stimulace. Papíry, vyšetření, léky, otázky na kliniku a hlavně. Nastavení očekávání.':
+    'Before stimulation begins. Paperwork, tests, medication, questions for the clinic and above all. Setting expectations.',
+  'Nejtišší a nejtěžší dny cyklu. Vysvětlíme, co znamenají čísla a písmena ve zprávě z laboratoře.':
+    'The quietest and hardest days of the cycle. We will explain what the numbers and letters in the lab report mean.',
+  'Sledování cyklu, plodné dny, naděje každý měsíc. Provedeme vás tím, aby ze snažení nebyla dřina.':
+    'Tracking your cycle, fertile days, hope every month. We will take you through it so that trying does not become a grind.',
+  'Když se to nedaří opakovaně. Jaká vyšetření mají smysl, co se dá změnit a jak to psychicky ustát.':
+    'When it keeps not working. Which tests make sense, what can be changed and how to bear it.',
+  'Nejdelších deset dní vašeho života. Každý den vám řekneme, co se právě děje a co je normální cítit.':
+    'The longest ten days of your life. Every day we will tell you what is happening and what is normal to feel.',
+  'Injekce, ultrazvuky, folikuly, hormony. Nejintenzivnější týden a půl celého cyklu. Den po dni s vámi.':
+    'Injections, ultrasounds, follicles, hormones. The most intense week and a half of the whole cycle. Day by day with you.',
+  'Těhotenství, které skončilo dřív, než ho někdo stihl vidět. Byla jste těhotná. Ta ztráta je skutečná.':
+    'A pregnancy that ended before anyone could see it. You were pregnant. That loss is real.',
+  'Vyšetření, zkratky, čekání na výsledky. Vysvětlíme každé z nich lidsky. Abyste věděla, co se děje a proč.':
+    'Tests, abbreviations, waiting for results. We will explain each of them in plain words. So you know what is happening and why.',
+  'Období, kdy se rozhodnutí teprve rodí. Není co dohánět. Je čas se ptát, zjišťovat a připravovat se v klidu.':
+    'The time when the decision is still taking shape. There is nothing to catch up on. It is time to ask, to find out and to prepare calmly.',
+  '# fází od prvního rozhodnutí po batolecí období. Vaše aktuální fáze je zvýrazněná. A když se posunete, stačí ji přepnout.':
+    '# stages from the first decision to the toddler years. Your current stage is highlighted. And when you move on, you just switch it.',
+
+  // --- Moje diagnóza a Moje vyšetření ----------------------------------------
+  'Věk': 'Age',
+  'PCOS': 'PCOS',
+  'Nízké AMH': 'Low AMH',
+  'Adenomyóza': 'Adenomyosis',
+  'Jiný důvod': 'Another reason',
+  'Trombofilie': 'Thrombophilia',
+  'Endometrióza': 'Endometriosis',
+  'Hydrosalpinx': 'Hydrosalpinx',
+  'Další důvody': 'Other reasons',
+  'Bez partnera': 'Without a partner',
+  'Mužský faktor': 'Male factor',
+  'Proč jdu na IVF': 'Why I am going for IVF',
+  'Poruchy ovulace': 'Ovulation disorders',
+  'Myomy nebo polypy': 'Fibroids or polyps',
+  'Opakované potraty': 'Recurrent miscarriage',
+  'Onkologická léčba': 'Cancer treatment',
+  'Děloha a vejcovody': 'Uterus and fallopian tubes',
+  'Genetická indikace': 'Genetic indication',
+  'Kombinovaný faktor': 'Combined factor',
+  'Imunologický nález': 'Immunological finding',
+  'Stejnopohlavní pár': 'Same-sex couple',
+  'Ovulace a vaječníky': 'Ovulation and ovaries',
+  'Nepravidelný cyklus': 'Irregular cycle',
+  'Poškozené vejcovody': 'Damaged fallopian tubes',
+  'Nízký počet spermií': 'Low sperm count',
+  'Zachování plodnosti': 'Fertility preservation',
+  'Odstraněné vejcovody': 'Fallopian tubes removed',
+  'Porucha štítné žlázy': 'Thyroid disorder',
+  'Neprůchodné vejcovody': 'Blocked fallopian tubes',
+  'Inzulinová rezistence': 'Insulin resistance',
+  'Snížená kvalita spermií': 'Reduced sperm quality',
+  'Nevysvětlená neplodnost': 'Unexplained infertility',
+  'Spermie ve vzorku nejsou': 'No sperm in the sample',
+  'Genetická zátěž v rodině': 'A genetic condition in the family',
+  'Zvýšená srážlivost krve.': 'Increased blood clotting.',
+  'Snížená ovariální rezerva': 'Reduced ovarian reserve',
+  'Anatomická odchylka dělohy': 'An anatomical variation of the uterus',
+  'Snížená pohyblivost spermií': 'Reduced sperm motility',
+  'Genetika a opakované ztráty': 'Genetics and recurrent loss',
+  'Vejcovod naplněný tekutinou.': 'A fallopian tube filled with fluid.',
+  'Dvě a víc ztrát těhotenství.': 'Two or more pregnancy losses.',
+  'Opakovaně neúspěšné transfery': 'Repeatedly unsuccessful transfers',
+  'Často jde ruku v ruce s PCOS.': 'It often goes hand in hand with PCOS.',
+  'Cesta s darovanými spermiemi.': 'A path with donor sperm.',
+  'Syndrom polycystických ovarií.': 'Polycystic ovary syndrome.',
+  'Předčasná ovariální insuficience': 'Premature ovarian insufficiency',
+  'Spermie se pohybují méně nebo jinak.': 'The sperm move less or differently.',
+  'Nezhoubné útvary v děloze nebo na ní.': 'Benign growths in or on the uterus.',
+  'Sliznice prorůstá do svaloviny dělohy.': 'The lining grows into the muscle of the uterus.',
+  'Tkáň podobná sliznici roste mimo dělohu.': 'Tissue like the lining grows outside the uterus.',
+  'Zamražení vajíček nebo embryí do budoucna.': 'Freezing eggs or embryos for the future.',
+  'Transfery, po kterých nepřišlo těhotenství.': 'Transfers that were not followed by a pregnancy.',
+  'Plodnost se zajišťuje před zahájením léčby.': 'Fertility is secured before treatment starts.',
+  'Přepážka, dvojrohá děloha, srůsty a podobně.':
+    'A septum, a bicornuate uterus, adhesions and the like.',
+  'Po operaci. Cesta k otěhotnění vede přes IVF.':
+    'After surgery. The route to pregnancy goes through IVF.',
+  'Odchylky v morfologii nebo ve fragmentaci DNA.':
+    'Variations in morphology or in DNA fragmentation.',
+  'Vejcovody neumožňují setkání vajíčka a spermie.':
+    'The tubes do not let the egg and the sperm meet.',
+  'Souhrnný název pro odchylky ve vzorku partnera.':
+    "An umbrella term for variations in your partner's sample.",
+  'Koncentrace ve vzorku je nižší, než se očekává.':
+    'The concentration in the sample is lower than expected.',
+  'Dědičné onemocnění v rodině jednoho z partnerů.':
+    "An inherited condition in one partner's family.",
+  'Sám o sobě není nemoc. Mění ale, kolik je času.':
+    'It is not an illness in itself. But it changes how much time there is.',
+  'Vaječníky přestaly pracovat dřív, než je obvyklé.':
+    'The ovaries stopped working earlier than usual.',
+  'Po zánětu, operaci nebo mimoděložním těhotenství.':
+    'After an infection, surgery or an ectopic pregnancy.',
+  'Řeší se odběrem přímo z varlete nebo dárcovstvím.':
+    'It is addressed by retrieval directly from the testicle or by donation.',
+  'Nález, kvůli kterému se zvažuje testování embryí.':
+    'A finding that makes embryo testing worth considering.',
+  'Ovulace nenastává pravidelně nebo nenastává vůbec.':
+    'Ovulation does not happen regularly, or does not happen at all.',
+  'Ve vaječnících je méně vajíček, než odpovídá věku.':
+    'There are fewer eggs in the ovaries than would match your age.',
+  'Délka cyklu se výrazně mění nebo se nedá předvídat.':
+    'The length of the cycle changes a lot or cannot be predicted.',
+  'Vyšetření nenašla příčinu. Je to diagnóza, ne chyba.':
+    'The tests found no cause. It is a diagnosis, not a failing.',
+  'Hodnota, která orientačně popisuje ovariální rezervu.':
+    'A value that gives a rough picture of your ovarian reserve.',
+  'Ovlivňuje cyklus i těhotenství, obvykle se dá upravit.':
+    'It affects the cycle and pregnancy, and can usually be adjusted.',
+  'Co se do seznamu nevešlo. Dopište si ho vlastními slovy.':
+    'Whatever did not fit the list. Add it in your own words.',
+  'Oblast, kde je řada postupů diskutovaná a důkazy omezené.':
+    'An area where many approaches are debated and the evidence is limited.',
+  'Sešlo se víc důvodů naráz. V IVF spíš pravidlo než výjimka.':
+    'Several reasons came together. In IVF that is the rule rather than the exception.',
+  'Označte důvody, které se vás týkají. Může jich být víc. Kombinovaný faktor je v IVF spíš pravidlo než výjimka.':
+    'Mark the reasons that apply to you. There may be several. A combined factor is the rule rather than the exception in IVF.',
+  'Diagnóza je informace, ne rozsudek. Aplikace z ní **neodvozuje léčbu ani prognózu**: o obojím rozhoduje váš lékař podle celého vašeho obrazu.':
+    'A diagnosis is information, not a verdict. The app **does not derive treatment or prognosis** from it: your doctor decides both, from your whole picture.',
+  'Zatím nemáte označené nic. Nevadí, ne každá žena zná svoji diagnózu hned a „nevysvětlená neplodnost“ je taky diagnóza.':
+    'You have not marked anything yet. That is fine. Not every woman knows her diagnosis straight away, and „unexplained infertility“ is a diagnosis too.',
+  'LH': 'LH',
+  'AMH': 'AMH',
+  'FSH': 'FSH',
+  'TSH': 'TSH',
+  'Žena': 'Woman',
+  'Název': 'Name',
+  'Přidat': 'Add',
+  'Vyšetření': 'Tests',
+  'Prolaktin': 'Prolactin',
+  'Progesteron': 'Progesterone',
+  'Hysteroskopie': 'Hysteroscopy',
+  'Estradiol (E2)': 'Estradiol (E2)',
+  'co v seznamu není': 'something not on the list',
+  'Ultrazvuk a děloha': 'Ultrasound and uterus',
+  'Genetické vyšetření': 'Genetic testing',
+  'Funkce štítné žlázy.': 'Thyroid function.',
+  'Ultrazvuk malé pánve': 'Pelvic ultrasound',
+  'Onkologická cytologie': 'Cervical screening (cytology)',
+  'Další odborná vyšetření': 'Further specialist tests',
+  'Přidat vlastní vyšetření': 'Add your own test',
+  'Hormon druhé poloviny cyklu.': 'The hormone of the second half of the cycle.',
+  'Sérologie (infekční markery)': 'Serology (infection markers)',
+  'Prohlídka vaječníků a dělohy.': 'A look at the ovaries and the uterus.',
+  'AFC. Počet antrálních folikulů': 'AFC. The antral follicle count',
+  'Prohlídka dutiny děložní kamerou.': 'A camera look inside the uterine cavity.',
+  'Karyotyp nebo vyšetření nosičství.': 'Karyotype or carrier testing.',
+  'Standardní gynekologické vyšetření.': 'A standard gynaecological examination.',
+  'Hormon spojený se spuštěním ovulace.': 'The hormone that triggers ovulation.',
+  'Průchodnost vejcovodů (HSG / HyFoSy)': 'Tubal patency (HSG / HyFoSy)',
+  'Orientačně popisuje ovariální rezervu.': 'It gives a rough picture of your ovarian reserve.',
+  'Hormon, který pobízí folikuly k růstu.': 'The hormone that pushes the follicles to grow.',
+  'Zvýšená hodnota může ovlivnit ovulaci.': 'A raised value can affect ovulation.',
+  'Ověří, jestli jsou vejcovody průchodné.': 'It checks whether the tubes are open.',
+  'Počítá se na ultrazvuku na začátku cyklu.':
+    'It is counted on ultrasound at the start of the cycle.',
+  'Před zahájením léčby ji vyžadují kliniky.': 'Clinics require it before treatment starts.',
+  'Hlavní ženský hormon, sleduje se i během stimulace.':
+    'The main female hormone, also followed during stimulation.',
+  'Žádné z těchhle vyšetření nemusí podstoupit každá žena.':
+    'Not every woman has to undergo any of these tests.',
+  'Co je ve vašem případě potřeba, určuje lékař. Aplikace výsledky nevykládá. Jsou to vaše poznámky, ne diagnóza.':
+    'What is needed in your case is decided by your doctor. The app does not interpret results. These are your notes, not a diagnosis.',
+  'Co může být na cestě relevantní. Není to povinný seznam. Plán skládá lékař podle vaší anamnézy a každé ženě vyjde jinak.':
+    'What may be relevant along the way. This is not a required list. Your doctor puts the plan together from your history, and it comes out differently for every woman.',
 }

@@ -38,18 +38,51 @@ test('slovníky mají stejná hesla', () => {
 })
 
 /**
+ * Zkratka, kterou nemá smysl překládat.
+ *
+ * AMH, FSH, PCOS, OHSS, PGT, ICSI: v laboratorní zprávě i v ordinaci se
+ * píšou stejně česky, anglicky i německy. Vyjmenovávat je po jedné by
+ * znamenalo doplňovat výjimku ke každé nové hodnotě, a seznam výjimek,
+ * který roste s každou dávkou, přestane být kontrolou.
+ */
+function zkratka(s: string): boolean {
+  return /^[A-Z]{2,5}$/.test(s)
+}
+
+/**
  * Slova, která se v cílovém jazyce píšou stejně jako česky.
  *
- * Je jich pár a jsou to výpůjčky. Musí být vyjmenovaná, protože jinak
- * by test neuměl odlišit „stejné schválně“ od „zapomněl jsem přeložit“,
- * a to druhé je ta chyba, kterou má chytat.
+ * Je jich pár a jsou to výpůjčky nebo latina. Musí být vyjmenovaná,
+ * protože jinak by test neuměl odlišit „stejné schválně“ od „zapomněl
+ * jsem přeložit“, a to druhé je ta chyba, kterou má chytat. Zkratky
+ * v seznamu nejsou, ty řeší `zkratka()`.
  */
 const STEJNE: Record<'en' | 'de', string[]> = {
-  // Slova, která jsou v cílovém jazyce doopravdy stejná. Většina jsou
-  // výpůjčky z angličtiny, které čeština i němčina přejaly nezměněné,
-  // a sestra je u nich v ordinaci taky použije.
-  en: ['Partner', 'Partner mode', '# min', 'Tip:', 'Trigger', 'Transfer', 'Checklist', '✓ Checklist'],
-  de: ['Profil', 'Partner', 'Trigger', 'Transfer', 'Energie'],
+  en: [
+    'Partner',
+    'Partner mode',
+    '# min',
+    'Tip:',
+    'Trigger',
+    'Transfer',
+    'Checklist',
+    '✓ Checklist',
+    'Hydrosalpinx',
+    'Estradiol (E2)',
+  ],
+  de: [
+    'Profil',
+    'Partner',
+    'Trigger',
+    'Transfer',
+    'Energie',
+    'Hydrosalpinx',
+    'Estradiol (E2)',
+    // Lékařské názvy, které čeština i němčina přejaly z latiny stejně.
+    'Prolaktin',
+    'Progesteron',
+    'Hysteroskopie',
+  ],
 }
 
 test('žádný překlad nezůstal nepřeložený', () => {
@@ -59,7 +92,7 @@ test('žádný překlad nezůstal nepřeložený', () => {
     const stejne = Object.entries(slovnik)
       .filter(([k, v]) => k === v)
       .map(([k]) => k)
-      .filter((k) => !STEJNE[jm].includes(k))
+      .filter((k) => !STEJNE[jm].includes(k) && !zkratka(k))
     assert.deepEqual(stejne, [], `${jm}: nepřeložená hesla`)
   }
 })
