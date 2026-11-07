@@ -1,6 +1,7 @@
 import { STATE_LABEL, type DayReading } from '../lib/domain/strain'
 import { esc } from './ui'
 import { zNum, type Endurance } from '../lib/domain/endurance'
+import { prelozit } from '../lib/i18n'
 
 /**
  * Datové prvky aplikace.
@@ -106,7 +107,7 @@ export function bloomEndurance(e: Endurance): string {
         fill="${c}" fill-opacity="${s.passed ? 0.55 : 0.08}"
         stroke="${c}" stroke-opacity="${s.passed ? 0.3 : 0.45}"
         transform="rotate(${Math.round(((i * 360) / Math.max(e.steps.length, 1)) * 10) / 10} 109 109)"><title>${esc(
-          `${s.label}${s.passed ? ' (za vámi' : ') před vámi'}`,
+          `${prelozit(s.label)} (${prelozit(s.passed ? 'za vámi' : 'před vámi')})`,
         )}</title></ellipse>`
     })
     .join('')

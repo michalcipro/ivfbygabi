@@ -82,4 +82,176 @@ export const DE: Record<string, string> = {
     'Ihre Einträge bleiben, wo sie sind. Umgestellt wird die Sprache, nicht die Daten.',
   'Obsah se překládá postupně. Co ještě přeložené není, zůstává česky.':
     'Die Inhalte werden nach und nach übersetzt. Was noch nicht übersetzt ist, bleibt auf Tschechisch.',
+  // --- čísla a jednotky ---------------------------------------------------
+  // Mřížka zastupuje číslice. Viz `prelozVetu` v `client/preklad-dom.ts`.
+  '# min': '# Min.',
+  '# z #': '# von #',
+  '# z # hotovo': '# von # erledigt',
+  'mood # z #': 'Stimmung # von #',
+  'hope # z #': 'Hoffnung # von #',
+  'energy # z #': 'Energie # von #',
+  'anxiety # z #': 'Angst # von #',
+  'Nálada # z #': 'Stimmung # von #',
+  '#. den stimulace': '#. Tag der Stimulation',
+  'Dnes je #. den stimulace': 'Heute ist der #. Tag der Stimulation',
+  'Posledních # dní': 'Letzte # Tage',
+  'Posledních # dnů': 'Letzte # Tage',
+
+  // --- Dnes ---------------------------------------------------------------
+  'Dnešek': 'Heute',
+  'Kde jste': 'Wo Sie stehen',
+  'Moje fáze:': 'Meine Phase:',
+  'Změnit →': 'Ändern →',
+  'Dnešní téma': 'Thema des Tages',
+  'Žádá dnešek': 'Der Tag verlangt',
+  'Máte na to': 'Dafür haben Sie',
+  'Den na cestě': 'Tag des Weges',
+  'Před vámi': 'Vor Ihnen',
+  'Celý vývoj': 'Der ganze Verlauf',
+  'Průvodce fází': 'Begleiter durch die Phase',
+  'Rychle přidat': 'Schnell hinzufügen',
+  'Vybráno pro dnešek': 'Für heute ausgewählt',
+  'otevře se obrazovka': 'öffnet eine Seite',
+  'Co dnes na vás není': 'Was heute nicht an Ihnen liegt',
+  'Co se dnes může dít': 'Was heute passieren kann',
+  'Co už jste unesla': 'Was Sie schon getragen haben',
+  'Co ukážou výsledky': 'Was die Ergebnisse zeigen werden',
+  'Zapsat, jak vám dnes je': 'Festhalten, wie es Ihnen heute geht',
+  'Ozvěte se lékaři, pokud:': 'Melden Sie sich bei Ihrer Ärztin oder Ihrem Arzt, wenn:',
+  'Jak se obsah přizpůsobuje dni': 'Wie sich die Inhalte dem Tag anpassen',
+  'Kdy na to tělo bude připravené': 'Wann Ihr Körper dafür bereit ist',
+  'Vývoj náročnosti dne a vaší rezervy':
+    'Wie sich die Anforderungen des Tages und Ihre Reserve bewegen',
+  'Načasování určuje cyklus, ne kalendář.':
+    'Den Zeitpunkt bestimmt der Zyklus, nicht der Kalender.',
+  'Čekání na ně je součást, ne vaše chyba.':
+    'Darauf zu warten gehört dazu, es ist nicht Ihr Fehler.',
+  'Zatím tu není co sčítat. A to je taky výsledek.':
+    'Noch gibt es nichts zusammenzurechnen. Auch das ist ein Ergebnis.',
+  'Až založíte cyklus, plátky se začnou plnit jeho milníky.':
+    'Sobald Sie einen Zyklus anlegen, füllen sich die Segmente mit seinen Meilensteinen.',
+  'Zatím žádná zapsaná. Sepište je doma. V ordinaci je přečtete z telefonu.':
+    'Noch keine notiert. Schreiben Sie sie zu Hause auf. In der Praxis lesen Sie sie vom Handy ab.',
+  'Injekce každý den a kontroly každé dva až tři dny. Tělo pracuje na plné obrátky. A je to znát.':
+    'Jeden Tag Spritzen und alle zwei bis drei Tage Kontrolle. Ihr Körper arbeitet auf Hochtouren. Und das merkt man.',
+  'O těchhle věcech rozhoduje biologie nebo laboratoř, ne vaše snaha. Nedají se odškrtnout a nemají se hlídat.':
+    'Darüber entscheidet die Biologie oder das Labor, nicht Ihre Anstrengung. Das lässt sich nicht abhaken und ist nicht Ihre Aufgabe.',
+  'Tip:': 'Tipp:',
+  'Podle fáze stimulace': 'Nach der Phase der Stimulation',
+
+  // --- milníky na ose -----------------------------------------------------
+  'Stimulace': 'Stimulation',
+  'Trigger': 'Trigger',
+  'Transfer': 'Transfer',
+  'Odběr hCG': 'hCG-Bestimmung',
+  'Odběr vajíček': 'Eizellentnahme',
+  'Začátek stimulace': 'Beginn der Stimulation',
+  'CD1. První den': 'CD1. Erster Tag',
+  'Uzavření cyklu': 'Abschluss des Zyklus',
+  'Založit cyklus': 'Zyklus anlegen',
+  'Před prvním cyklem': 'Vor dem ersten Zyklus',
+
+  // --- Zápis dne ----------------------------------------------------------
+  'Jak mi je': 'Wie es mir geht',
+  'Nálada': 'Stimmung',
+  'Naděje': 'Hoffnung',
+  'Energie': 'Energie',
+  'Úzkost': 'Angst',
+  'Tělo': 'Körper',
+  'Uložit dnešek': 'Heute speichern',
+  'Cokoli dalšího': 'Alles Weitere',
+  'Tři věty stačí.': 'Drei Sätze genügen.',
+  'Otázka na dnešek': 'Eine Frage für heute',
+  'Čtyři osy rezervy': 'Vier Achsen der Reserve',
+  'Co se dnes povedlo': 'Was heute gelungen ist',
+  'Třeba: píchla jsem si sama.': 'Zum Beispiel: Ich habe mir selbst gespritzt.',
+  'Volné místo. Nikdo jiný to neuvidí.': 'Freier Platz. Niemand sonst sieht es.',
+  'Číselníky se ukládají hned, texty tímhle tlačítkem.':
+    'Die Skalen speichern sofort, die Texte mit dieser Schaltfläche.',
+  'Vypsaná myšlenka ztrácí sílu. Dokud je jen v hlavě, zní jako fakt.':
+    'Ein aufgeschriebener Gedanke verliert seine Macht. Solange er nur im Kopf ist, klingt er wie eine Tatsache.',
+  'Z těchhle čtyř se skládá vnitřní prstenec. Ukládá se hned po klepnutí.':
+    'Aus diesen vier besteht der innere Ring. Jede speichert sofort beim Antippen.',
+  'Jaká věta se vám dnes honila hlavou nejčastěji? Napište ji přesně tak, jak zněla.':
+    'Welcher Satz ging Ihnen heute am häufigsten durch den Kopf? Schreiben Sie ihn genau so auf, wie er geklungen hat.',
+  'Hlava si pamatuje hlavně selhání. Tohle je záměrné vyvážení. A v neděli se z toho stane věta týdne.':
+    'Der Kopf behält vor allem das Misslungene. Das hier ist ein bewusstes Gegengewicht. Und am Sonntag wird daraus der Satz der Woche.',
+  // Stupnice. Krátká slova, protože stojí pod sebou v jednom řádku.
+  'nic': 'nichts',
+  'klid': 'ruhig',
+  'plno': 'voll',
+  'dobrá': 'gut',
+  'hodně': 'viel',
+  'nemám': 'keine',
+  'velká': 'groß',
+  'na dně': 'am Ende',
+
+  // --- Zápis: tělo --------------------------------------------------------
+  'Prsa': 'Brust',
+  'Kůže': 'Haut',
+  'Váha': 'Gewicht',
+  'Pánev': 'Becken',
+  'Únava': 'Erschöpfung',
+  'Hlava': 'Kopf',
+  'Bolest': 'Schmerz',
+  'Spánek': 'Schlaf',
+  'Hormony': 'Hormone',
+  'Trávení': 'Verdauung',
+  'Krvácení': 'Blutung',
+  'Nadýmání': 'Blähungen',
+  'Jak se ozývá tělo': 'Was der Körper sagt',
+  'Čekání dělá svoje': 'Das Warten fordert seinen Preis',
+  'Jak moc došly síly': 'Wie weit die Kräfte weg sind',
+  'Břicho, plyny, otoky': 'Bauch, Blähungen, Schwellungen',
+  'Kolik zbývá a na co stačí': 'Wie viel bleibt und wofür es reicht',
+  'Vaječníky, děloha, podbřišek': 'Eierstöcke, Gebärmutter, Unterbauch',
+  'Bolest jinde než v podbřišku': 'Schmerz an anderer Stelle als im Unterbauch',
+  'Progesteron zpomaluje střeva': 'Progesteron verlangsamt den Darm',
+  'Sleduje se rychlost, ne číslo': 'Es zählt die Geschwindigkeit, nicht die Zahl',
+  'Vpichy, čípky, náplasti a sprej': 'Spritzen, Zäpfchen, Pflaster und Spray',
+  'Ozývají se první a drží nejdéle': 'Sie melden sich zuerst und halten am längsten',
+  'Špinění i krvácení. Barva a síla': 'Schmierblutung und Blutung. Farbe und Stärke',
+  'Noc, která rozhoduje o celém dni': 'Die Nacht, die über den ganzen Tag entscheidet',
+  'Hlava a nervy při změnách hladin': 'Kopf und Nerven bei schwankenden Spiegeln',
+  'Vidět je to i na pleti a vlasech': 'Man sieht es auch an Haut und Haaren',
+  'Hormony hýbou náladou, není to slabost':
+    'Hormone bewegen die Stimmung. Das ist keine Schwäche',
+  'Stimulace, blokáda i podpora. Co dělají hladiny':
+    'Stimulation, Blockade und Unterstützung. Was die Spiegel tun',
+  'Aplikace příznaky nehodnotí ani z nich nic neusuzuje. Zapisují se proto, abyste je viděla v čase a měla co ukázat lékaři.':
+    'Die App bewertet Ihre Symptome nicht und zieht keine Schlüsse daraus. Sie halten sie fest, damit Sie sie über die Zeit sehen und Ihrer Ärztin oder Ihrem Arzt etwas zeigen können.',
+  'Rozdělené podle toho, odkud potíž jde. „Bolest v místě vpichu“ a „píchání ve vaječnících“ nejsou totéž. A když se to zapíše zvlášť, dá se s tím pak něco dělat.':
+    'Geordnet danach, woher die Beschwerde kommt. \u201ESchmerz an der Einstichstelle\u201C und \u201EStechen in den Eierstöcken\u201C sind nicht dasselbe. Getrennt festgehalten lässt sich damit auch etwas tun.',
+  // --- věnec na Dnes -----------------------------------------------------
+  // „z #“ pokryje i „ze #“: srovnává to `prelozVetu`.
+  'za vámi': 'hinter Ihnen',
+  'před vámi': 'vor Ihnen',
+  'Za vámi': 'Hinter Ihnen',
+  'z #': 'von #',
+  'Za vámi # milník z #': '# von # Meilensteinen hinter Ihnen',
+  'Za vámi # milníky z #': '# von # Meilensteinen hinter Ihnen',
+  'Za vámi # milníků z #': '# von # Meilensteinen hinter Ihnen',
+  'Za vámi # milník z #, cyklus je z # procent za vámi':
+    '# von # Meilensteinen hinter Ihnen, der Zyklus ist zu # Prozent geschafft',
+  'Za vámi # milníky z #, cyklus je z # procent za vámi':
+    '# von # Meilensteinen hinter Ihnen, der Zyklus ist zu # Prozent geschafft',
+  'Za vámi # milníků z #, cyklus je z # procent za vámi':
+    '# von # Meilensteinen hinter Ihnen, der Zyklus ist zu # Prozent geschafft',
+  // --- odznaky typu obsahu ------------------------------------------------
+  // Ikona a slovo stojí v šabloně vedle sebe, takže je to jeden text.
+  '❧ Článek': '❧ Artikel',
+  '✓ Checklist': '✓ Checkliste',
+  '❦ Příběh': '❦ Geschichte',
+  '◈ Kurz': '◈ Kurs',
+  '? Kvíz': '? Quiz',
+  '❂ Pojem': '❂ Begriff',
+  '◉ Živě': '◉ Live',
+  'Článek': 'Artikel',
+  'Checklist': 'Checkliste',
+  'Příběh': 'Geschichte',
+  'Kurz': 'Kurs',
+  'Kvíz': 'Quiz',
+  'Živě': 'Live',
+  'Otázky na lékaře': 'Fragen an die Ärztin oder den Arzt',
+  'Dnes je na vás · # z #': 'Heute an Ihnen · # von #',
 }

@@ -45,8 +45,11 @@ test('slovníky mají stejná hesla', () => {
  * a to druhé je ta chyba, kterou má chytat.
  */
 const STEJNE: Record<'en' | 'de', string[]> = {
-  en: ['Partner', 'Partner mode'],
-  de: ['Profil', 'Partner'],
+  // Slova, která jsou v cílovém jazyce doopravdy stejná. Většina jsou
+  // výpůjčky z angličtiny, které čeština i němčina přejaly nezměněné,
+  // a sestra je u nich v ordinaci taky použije.
+  en: ['Partner', 'Partner mode', '# min', 'Tip:', 'Trigger', 'Transfer'],
+  de: ['Profil', 'Partner', 'Trigger', 'Transfer', 'Energie'],
 }
 
 test('žádný překlad nezůstal nepřeložený', () => {

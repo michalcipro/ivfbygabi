@@ -7,6 +7,7 @@ import { JAZYK, adresaJazyka, prelozit } from '../lib/i18n'
 import { PLATBY_ZAPNUTE, obnovStav, overListek, portalPlateb, zacniPlatbu, zrusPredplatne } from './predplatne'
 import { screenZed } from './screens-zed'
 import { ozivPohyb } from './pohyb'
+import { prelozDom } from './preklad-dom'
 import { contentById } from '../lib/content'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import type { Letter } from '../lib/shared/records'
@@ -700,6 +701,7 @@ function render(): void {
 
   if (!isOnboarded()) {
     app.innerHTML = renderOnboarding()
+    prelozDom(app)
     window.scrollTo(0, 0)
     return
   }
@@ -708,6 +710,7 @@ function render(): void {
   // vrstvu by šel obsah přečíst i zamčený.
   if (jeZamceno()) {
     app.innerHTML = screenZamek()
+    prelozDom(app)
     window.scrollTo(0, 0)
     const pole = document.getElementById('lock-kod')
     if (pole instanceof HTMLInputElement) pole.focus()
@@ -771,6 +774,10 @@ function render(): void {
         `<button data-go="${t.id}" ${base(route) === t.id ? 'aria-current="page"' : ''}><i>${t.icon}</i><span>${esc(prelozit(t.label))}</span></button>`,
     ).join('')}
   </nav>`
+
+  // Nejdřív jazyk, pak všechno ostatní. Grafy i náběhy tak pracují
+  // s textem, který žena doopravdy uvidí.
+  prelozDom(app)
 
   // Grafy se staví až tady. Hover se nedá pověsit na řetězec.
   hydrateCharts(app)
