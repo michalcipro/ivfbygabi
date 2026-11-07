@@ -49,6 +49,24 @@ function zkratka(s: string): boolean {
   return /^[A-Z]{2,5}$/.test(s)
 }
 
+/** Česká písmena, která jiný jazyk nemá. */
+const CESKA_PISMENA = /[áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]/
+
+/**
+ * Název laboratorní hodnoty s jednotkou.
+ *
+ * Jednotky se nepřekládají schválně. Žena je u české kliniky a srovnává
+ * aplikaci s papírem z laboratoře, kde stojí „IU/l“, ne „IE/l“. Kdyby
+ * aplikace jednotku přeložila, musela by to v hlavě převádět zpátky.
+ *
+ * Pozná se to podle jednotky nebo procenta v názvu a podle toho, že
+ * v klíči není ani jedno české písmeno. Česká věta, u které se zapomnělo
+ * na překlad, tím neprojde.
+ */
+function sJednotkou(s: string): boolean {
+  return /[()%]|\//.test(s) && !CESKA_PISMENA.test(s)
+}
+
 /**
  * Slova, která se v cílovém jazyce píšou stejně jako česky.
  *
@@ -68,7 +86,7 @@ const STEJNE: Record<'en' | 'de', string[]> = {
     'Checklist',
     '✓ Checklist',
     'Hydrosalpinx',
-    'Estradiol (E2)',
+    'Mindfulness',
   ],
   de: [
     'Profil',
@@ -77,7 +95,6 @@ const STEJNE: Record<'en' | 'de', string[]> = {
     'Transfer',
     'Energie',
     'Hydrosalpinx',
-    'Estradiol (E2)',
     // Lékařské názvy, které čeština i němčina přejaly z latiny stejně.
     'Prolaktin',
     'Progesteron',
@@ -92,7 +109,7 @@ test('žádný překlad nezůstal nepřeložený', () => {
     const stejne = Object.entries(slovnik)
       .filter(([k, v]) => k === v)
       .map(([k]) => k)
-      .filter((k) => !STEJNE[jm].includes(k) && !zkratka(k))
+      .filter((k) => !STEJNE[jm].includes(k) && !zkratka(k) && !sJednotkou(k))
     assert.deepEqual(stejne, [], `${jm}: nepřeložená hesla`)
   }
 })
@@ -117,4 +134,35 @@ test('každý jazyk má svoje jméno ve svém jazyce', () => {
 test('v českém sestavení se nepřekládá', () => {
   // Testy běží nad nenahrazeným tokenem, takže jazyk je čeština.
   assert.equal(prelozit('Dnes'), 'Dnes')
+})
+
+test('překlad si nechá zvýraznění i místa pro čísla', () => {
+  /*
+   * Dvě věci se v překladu snadno ztratí a ani jedna není vidět ve
+   * slovníku, jen v hotové obrazovce.
+   *
+   * `**zvýraznění**` se v `note()` mění na `<strong>`. Když v překladu
+   * jedna hvězdička chybí, zbytek odstavce se vysází tučně nebo se
+   * hvězdičky ukážou ženě.
+   *
+   * Mřížka zastupuje číslo. Když se v překladu vynechá, zmizí z věty
+   * číslo („# z # hotovo“ bez mřížky je prostě „done“). Když přebude,
+   * zůstane ve větě mřížka, protože `prelozVetu` doplňuje čísla
+   * v pořadí a na přebytek už žádné nemá.
+   */
+  for (const [jm, slovnik] of [['en', EN], ['de', DE]] as const) {
+    for (const [klic, preklad] of Object.entries(slovnik)) {
+      const kolik = (s: string, co: RegExp) => (s.match(co) ?? []).length
+      assert.equal(
+        kolik(preklad, /\*\*/g),
+        kolik(klic, /\*\*/g),
+        `${jm}: „${klic}“ má jiný počet hvězdiček než překlad`,
+      )
+      assert.equal(
+        kolik(preklad, /#/g),
+        kolik(klic, /#/g),
+        `${jm}: „${klic}“ má jiný počet mřížek než překlad`,
+      )
+    }
+  }
 })

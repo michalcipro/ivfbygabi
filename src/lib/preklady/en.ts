@@ -680,4 +680,115 @@ export const EN: Record<string, string> = {
     'What is needed in your case is decided by your doctor. The app does not interpret results. These are your notes, not a diagnosis.',
   'Co může být na cestě relevantní. Není to povinný seznam. Plán skládá lékař podle vaší anamnézy a každé ženě vyjde jinak.':
     'What may be relevant along the way. This is not a required list. Your doctor puts the plan together from your history, and it comes out differently for every woman.',
+
+  // --- Podpůrná péče, Sledování a Zdraví -------------------------------------
+  'Zapsat': 'Record',
+  'Masáže': 'Massage',
+  'Psychika': 'Mind',
+  'Aplikace': 'The app',
+  'Homeopatie': 'Homeopathy',
+  'Mindfulness': 'Mindfulness',
+  'Akupunktura': 'Acupuncture',
+  'Co mi pomáhá': 'What helps me',
+  'Fyzioterapie': 'Physiotherapy',
+  'Reflexologie': 'Reflexology',
+  'Životní styl': 'Lifestyle',
+  'Psychoterapie': 'Psychotherapy',
+  'Omezené důkazy': 'Limited evidence',
+  'Doplňková péče': 'Complementary care',
+  'Doplňky stravy': 'Food supplements',
+  'Něco vlastního': 'Something of your own',
+  'Dobře podložené': 'Well supported',
+  'Dechová cvičení': 'Breathing exercises',
+  'Mojžíšova metoda': 'The Mojžíšová method',
+  'Podpůrná skupina': 'A support group',
+  'Práce se spánkem': 'Working on your sleep',
+  'Pravidelný pohyb': 'Regular movement',
+  'Cílený odpočinek': 'Deliberate rest',
+  'Moje podpůrná péče': 'My supportive care',
+  'Jóga a jemný pohyb': 'Yoga and gentle movement',
+  'Relaxační techniky': 'Relaxation techniques',
+  'Nutriční poradenství': 'Nutrition counselling',
+  'Psychologická konzultace': 'A psychology consultation',
+  'Tradiční čínská medicína': 'Traditional Chinese medicine',
+  'Fyzioterapie pánevního dna': 'Pelvic floor physiotherapy',
+  'Uvolnění svalového napětí.': 'Releasing muscle tension.',
+  'Nedostatek kvalitních důkazů': 'Not enough good evidence',
+  'Tlaková masáž vybraných zón.': 'Pressure massage of selected zones.',
+  'Spánkový režim a jeho úprava.': 'Your sleep routine and how to adjust it.',
+  'Úprava jídelníčku s odborníkem.': 'Adjusting your diet with a professional.',
+  'Bylinné směsi a další postupy TCM.': 'Herbal mixtures and other TCM approaches.',
+  'Jednorázová nebo krátkodobá podpora.': 'One-off or short-term support.',
+  'Vpichy tenkých jehel do vybraných bodů.': 'Thin needles inserted at selected points.',
+  'Vědomé zpomalení, ne jen „nic nedělat“.': 'Slowing down on purpose, not just „doing nothing“.',
+  'Cvičební sestava pracující s pánví a páteří.':
+    'An exercise sequence that works with the pelvis and the spine.',
+  'Setkávání s ženami, které procházejí tímtéž.':
+    'Meeting women who are going through the same thing.',
+  'Práce s pozorností a s tím, co se honí hlavou.':
+    'Working with attention and with what races through your head.',
+  'Zpomalení dechu jako způsob, jak zklidnit tělo.':
+    'Slowing your breath as a way to calm your body.',
+  'Práce s pohybovým aparátem, bolestí zad a pánve.':
+    'Working with the musculoskeletal system, back and pelvic pain.',
+  'Zaměřená na svaly pánevního dna a jejich funkci.':
+    'Focused on the pelvic floor muscles and how they work.',
+  'Postupné uvolnění, vizualizace, řízená relaxace.':
+    'Progressive release, visualisation, guided relaxation.',
+  'Odborná péče o psychiku v dlouhé a nejisté léčbě.':
+    'Professional care for your mind through long and uncertain treatment.',
+  'Doplňková metoda bez doloženého mechanismu účinku.':
+    'A complementary method with no demonstrated mechanism of action.',
+  'Pohyb a dech v tempu, které se dá udržet i během léčby.':
+    'Movement and breath at a pace you can keep up even during treatment.',
+  'Během stimulace se intenzita upravuje podle pokynů kliniky.':
+    "During stimulation the intensity is adjusted according to the clinic's instructions.",
+  'Nejsou automaticky vhodné pro každou. Proberte je s klinikou.':
+    'They are not automatically right for everyone. Discuss them with your clinic.',
+  'Studie existují, ale jsou malé, rozporuplné nebo nízké kvality.':
+    'Studies exist, but they are small, contradictory or of low quality.',
+  'Přínos pro to, co metoda slibuje, je doložený kvalitními studiemi.':
+    'The benefit for what the method promises is backed by good studies.',
+  'Kvalitní studie chybí. Neznamená to, že metoda nefunguje. Znamená to, že to nevíme.':
+    'Good studies are missing. That does not mean the method does not work. It means we do not know.',
+  'Vyberte si dole, co využíváte. Není to úkol. Je to místo, kde uvidíte, co vám za ty měsíce opravdu pomohlo.':
+    'Choose below what you use. It is not a task. It is a place where you can see what really helped you over those months.',
+  'Aplikace **neslibuje, že cokoli z tohohle zvýší šanci na otěhotnění.** Péče o sebe má smysl sama o sobě. Doplňky stravy nejsou automaticky vhodné pro každou. Proberte je s klinikou, protože mohou zasahovat do léčby.':
+    'The app **does not promise that any of this raises your chance of getting pregnant.** Looking after yourself is worth it in its own right. Food supplements are not automatically right for everyone. Discuss them with your clinic, because they can interfere with treatment.',
+  'Co využíváte mimo kliniku a jak vám to sedí. U každé metody je poctivě uvedená síla důkazů, ne proto, aby vás od něčeho odradila, ale abyste věděla, do čeho jdete.':
+    'What you use outside the clinic and how it suits you. Every method honestly states how strong the evidence is, not to put you off anything, but so you know what you are getting into.',
+  'Týden': 'Week',
+  'Hodnoty': 'Values',
+  'Posledních 7 dní': 'Last 7 days',
+  'Co si aplikace všímá': 'What the app notices',
+  'Žádá dnešek vs. máte na to': 'What today asks vs. what you have for it',
+  '◍ příznaky · ✚ vpichy · ◉ hodnoty': '◍ symptoms · ✚ injections · ◉ values',
+  'Náročnost dne proti vaší rezervě za posledních # dní':
+    'How demanding the day was against your reserve over the last # days',
+  'Stimulace · # zapsaných dní': 'Stimulation · # days recorded',
+  'Modrá čára se objeví, jakmile budete mít zapsané aspoň tři dny. Zatím máte # zapsaných dní.':
+    'The blue line appears once you have at least three days recorded. So far you have # days recorded.',
+  'Až budete mít zapsaných aspoň deset dní, aplikace si začne všímat vzorců, třeba jestli jsou pro vás horší dny zákroků, nebo ty před nimi.':
+    'Once you have at least ten days recorded, the app starts noticing patterns, for example whether the days of procedures are worse for you, or the days before them.',
+  'Parametr': 'Parameter',
+  'např. 1,2': 'e.g. 1.2',
+  'Vaše čísla': 'Your numbers',
+  'Datum odběru': 'Date of the test',
+  'Vložit zprávu': 'Paste a report',
+  'Přidat hodnotu': 'Add a value',
+  'Uložit hodnotu': 'Save the value',
+  'Zatím žádné hodnoty': 'No values yet',
+  'Co má smysl sledovat ve vaší fázi': 'What is worth tracking in your stage',
+  'Přidejte hodnotu a uvidíte nejen graf, ale i to, co ten parametr v těle dělá a co se s ním dá dělat.':
+    'Add a value and you will see not only a chart, but also what that parameter does in your body and what can be done about it.',
+  'Můžete je zadat ručně výše, nebo vložit text lékařské zprávy v Dokumentech. Hodnoty z něj vytáhneme samy.':
+    'You can enter them by hand above, or paste the text of a medical report under Documents. We will pull the values out of it ourselves.',
+  'Odběr hCG (IU/l)': 'hCG test (IU/l)',
+  'Morfologie spermií (%)': 'Sperm morphology (%)',
+  'Pohyblivost spermií (%)': 'Sperm motility (%)',
+  'Koncentrace spermií (mil/ml)': 'Sperm concentration (mil/ml)',
+  'Fragmentace DNA spermií (DFI) (%)': 'Sperm DNA fragmentation (DFI) (%)',
+  'Progesteron (nmol/l)': 'Progesterone (nmol/l)',
+  'Testosteron (nmol/l)': 'Testosterone (nmol/l)',
+  'Prolaktin (mIU/l)': 'Prolactin (mIU/l)',
 }

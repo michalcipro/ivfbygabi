@@ -682,4 +682,114 @@ export const DE: Record<string, string> = {
     'Was in Ihrem Fall nötig ist, entscheidet Ihre Ärztin oder Ihr Arzt. Die App deutet keine Ergebnisse. Das sind Ihre Notizen, keine Diagnose.',
   'Co může být na cestě relevantní. Není to povinný seznam. Plán skládá lékař podle vaší anamnézy a každé ženě vyjde jinak.':
     'Was auf dem Weg relevant sein kann. Das ist keine Pflichtliste. Den Plan stellt Ihre Ärztin oder Ihr Arzt nach Ihrer Vorgeschichte zusammen, und er fällt bei jeder Frau anders aus.',
+
+  // --- Podpůrná péče, Sledování a Zdraví -------------------------------------
+  'Zapsat': 'Festhalten',
+  'Masáže': 'Massage',
+  'Psychika': 'Psyche',
+  'Aplikace': 'Die App',
+  'Homeopatie': 'Homöopathie',
+  'Mindfulness': 'Achtsamkeit',
+  'Akupunktura': 'Akupunktur',
+  'Co mi pomáhá': 'Was mir hilft',
+  'Fyzioterapie': 'Physiotherapie',
+  'Reflexologie': 'Reflexzonenmassage',
+  'Životní styl': 'Lebensstil',
+  'Psychoterapie': 'Psychotherapie',
+  'Omezené důkazy': 'Begrenzte Belege',
+  'Doplňková péče': 'Ergänzende Angebote',
+  'Doplňky stravy': 'Nahrungsergänzung',
+  'Něco vlastního': 'Etwas Eigenes',
+  'Dobře podložené': 'Gut belegt',
+  'Dechová cvičení': 'Atemübungen',
+  'Mojžíšova metoda': 'Die Mojžíšová-Methode',
+  'Podpůrná skupina': 'Selbsthilfegruppe',
+  'Práce se spánkem': 'Arbeit am Schlaf',
+  'Pravidelný pohyb': 'Regelmäßige Bewegung',
+  'Cílený odpočinek': 'Gezielte Erholung',
+  'Moje podpůrná péče': 'Meine unterstützende Pflege',
+  'Jóga a jemný pohyb': 'Yoga und sanfte Bewegung',
+  'Relaxační techniky': 'Entspannungstechniken',
+  'Nutriční poradenství': 'Ernährungsberatung',
+  'Psychologická konzultace': 'Psychologische Beratung',
+  'Tradiční čínská medicína': 'Traditionelle chinesische Medizin',
+  'Fyzioterapie pánevního dna': 'Beckenboden-Physiotherapie',
+  'Uvolnění svalového napětí.': 'Lösen von Muskelspannung.',
+  'Nedostatek kvalitních důkazů': 'Zu wenig belastbare Belege',
+  'Tlaková masáž vybraných zón.': 'Druckmassage bestimmter Zonen.',
+  'Spánkový režim a jeho úprava.': 'Der Schlafrhythmus und seine Anpassung.',
+  'Úprava jídelníčku s odborníkem.': 'Anpassung des Essplans mit einer Fachkraft.',
+  'Bylinné směsi a další postupy TCM.': 'Kräutermischungen und weitere Verfahren der TCM.',
+  'Jednorázová nebo krátkodobá podpora.': 'Einmalige oder kurzfristige Unterstützung.',
+  'Vpichy tenkých jehel do vybraných bodů.': 'Feine Nadeln an ausgewählten Punkten.',
+  'Vědomé zpomalení, ne jen „nic nedělat“.': 'Bewusstes Langsamerwerden, nicht nur „nichts tun“.',
+  'Cvičební sestava pracující s pánví a páteří.':
+    'Eine Übungsfolge, die mit Becken und Wirbelsäule arbeitet.',
+  'Setkávání s ženami, které procházejí tímtéž.': 'Treffen mit Frauen, die dasselbe durchmachen.',
+  'Práce s pozorností a s tím, co se honí hlavou.':
+    'Arbeit mit der Aufmerksamkeit und mit dem, was im Kopf rast.',
+  'Zpomalení dechu jako způsob, jak zklidnit tělo.':
+    'Den Atem verlangsamen, um den Körper zu beruhigen.',
+  'Práce s pohybovým aparátem, bolestí zad a pánve.':
+    'Arbeit am Bewegungsapparat, an Rücken- und Beckenschmerzen.',
+  'Zaměřená na svaly pánevního dna a jejich funkci.':
+    'Konzentriert sich auf die Beckenbodenmuskulatur und ihre Funktion.',
+  'Postupné uvolnění, vizualizace, řízená relaxace.':
+    'Schrittweises Lösen, Visualisierung, geführte Entspannung.',
+  'Odborná péče o psychiku v dlouhé a nejisté léčbě.':
+    'Fachliche Betreuung der Psyche in einer langen und ungewissen Behandlung.',
+  'Doplňková metoda bez doloženého mechanismu účinku.':
+    'Eine ergänzende Methode ohne belegten Wirkmechanismus.',
+  'Pohyb a dech v tempu, které se dá udržet i během léčby.':
+    'Bewegung und Atem in einem Tempo, das auch während der Behandlung machbar ist.',
+  'Během stimulace se intenzita upravuje podle pokynů kliniky.':
+    'Während der Stimulation wird die Intensität nach den Anweisungen der Klinik angepasst.',
+  'Nejsou automaticky vhodné pro každou. Proberte je s klinikou.':
+    'Sie sind nicht automatisch für jede geeignet. Sprechen Sie darüber mit Ihrer Klinik.',
+  'Studie existují, ale jsou malé, rozporuplné nebo nízké kvality.':
+    'Studien gibt es, sie sind aber klein, widersprüchlich oder von geringer Qualität.',
+  'Přínos pro to, co metoda slibuje, je doložený kvalitními studiemi.':
+    'Der Nutzen für das, was die Methode verspricht, ist durch gute Studien belegt.',
+  'Kvalitní studie chybí. Neznamená to, že metoda nefunguje. Znamená to, že to nevíme.':
+    'Es fehlen gute Studien. Das heißt nicht, dass die Methode nicht wirkt. Es heißt, dass wir es nicht wissen.',
+  'Vyberte si dole, co využíváte. Není to úkol. Je to místo, kde uvidíte, co vám za ty měsíce opravdu pomohlo.':
+    'Wählen Sie unten aus, was Sie nutzen. Das ist keine Aufgabe. Es ist ein Ort, an dem Sie sehen, was Ihnen über die Monate wirklich geholfen hat.',
+  'Aplikace **neslibuje, že cokoli z tohohle zvýší šanci na otěhotnění.** Péče o sebe má smysl sama o sobě. Doplňky stravy nejsou automaticky vhodné pro každou. Proberte je s klinikou, protože mohou zasahovat do léčby.':
+    'Die App **verspricht nicht, dass irgendetwas davon die Chance auf eine Schwangerschaft erhöht.** Für sich selbst zu sorgen hat seinen eigenen Wert. Nahrungsergänzung ist nicht automatisch für jede geeignet. Sprechen Sie darüber mit Ihrer Klinik, denn sie kann in die Behandlung eingreifen.',
+  'Co využíváte mimo kliniku a jak vám to sedí. U každé metody je poctivě uvedená síla důkazů, ne proto, aby vás od něčeho odradila, ale abyste věděla, do čeho jdete.':
+    'Was Sie außerhalb der Klinik nutzen und wie es Ihnen passt. Bei jeder Methode steht ehrlich, wie stark die Belege sind, nicht um Sie von etwas abzuhalten, sondern damit Sie wissen, worauf Sie sich einlassen.',
+  'Týden': 'Woche',
+  'Hodnoty': 'Werte',
+  'Posledních 7 dní': 'Letzte 7 Tage',
+  'Co si aplikace všímá': 'Was die App bemerkt',
+  'Žádá dnešek vs. máte na to': 'Was der Tag verlangt und was Sie dafür haben',
+  '◍ příznaky · ✚ vpichy · ◉ hodnoty': '◍ Symptome · ✚ Spritzen · ◉ Werte',
+  'Náročnost dne proti vaší rezervě za posledních # dní':
+    'Die Anforderungen des Tages gegen Ihre Reserve in den letzten # Tagen',
+  'Stimulace · # zapsaných dní': 'Stimulation · # erfasste Tage',
+  'Modrá čára se objeví, jakmile budete mít zapsané aspoň tři dny. Zatím máte # zapsaných dní.':
+    'Die blaue Linie erscheint, sobald Sie mindestens drei Tage erfasst haben. Bisher haben Sie # Tage erfasst.',
+  'Až budete mít zapsaných aspoň deset dní, aplikace si začne všímat vzorců, třeba jestli jsou pro vás horší dny zákroků, nebo ty před nimi.':
+    'Sobald Sie mindestens zehn Tage erfasst haben, beginnt die App Muster zu bemerken, zum Beispiel ob die Tage der Eingriffe für Sie schlimmer sind oder die Tage davor.',
+  'Parametr': 'Parameter',
+  'např. 1,2': 'z. B. 1,2',
+  'Vaše čísla': 'Ihre Zahlen',
+  'Datum odběru': 'Datum der Entnahme',
+  'Vložit zprávu': 'Bericht einfügen',
+  'Přidat hodnotu': 'Wert hinzufügen',
+  'Uložit hodnotu': 'Wert speichern',
+  'Zatím žádné hodnoty': 'Noch keine Werte',
+  'Co má smysl sledovat ve vaší fázi': 'Was sich in Ihrer Phase zu verfolgen lohnt',
+  'Přidejte hodnotu a uvidíte nejen graf, ale i to, co ten parametr v těle dělá a co se s ním dá dělat.':
+    'Fügen Sie einen Wert hinzu, und Sie sehen nicht nur ein Diagramm, sondern auch, was dieser Parameter im Körper tut und was man damit machen kann.',
+  'Můžete je zadat ručně výše, nebo vložit text lékařské zprávy v Dokumentech. Hodnoty z něj vytáhneme samy.':
+    'Sie können sie oben von Hand eintragen oder den Text eines Arztberichts unter Dokumente einfügen. Die Werte holen wir selbst heraus.',
+  'Odběr hCG (IU/l)': 'hCG-Bestimmung (IU/l)',
+  'Morfologie spermií (%)': 'Spermienmorphologie (%)',
+  'Pohyblivost spermií (%)': 'Spermienbeweglichkeit (%)',
+  'Koncentrace spermií (mil/ml)': 'Spermienkonzentration (Mio./ml)',
+  'Fragmentace DNA spermií (DFI) (%)': 'DNA-Fragmentierung der Spermien (DFI) (%)',
+  'Progesteron (nmol/l)': 'Progesteron (nmol/l)',
+  'Testosteron (nmol/l)': 'Testosteron (nmol/l)',
+  'Prolaktin (mIU/l)': 'Prolaktin (mIU/l)',
 }
