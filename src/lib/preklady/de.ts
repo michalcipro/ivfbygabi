@@ -1751,4 +1751,354 @@ export const DE: Record<string, string> = {
     'Die meisten Berichte kommen auf Papier und gehen zu Hause verloren. Fotografieren Sie sie gleich in der Klinik. Dann haben Sie sie im Wartezimmer vor der nächsten Beratung zur Hand.',
   'Aplikace dokumenty **nečte a nevyhodnocuje.** Hodnoty se zapisují ručně ve Zdraví, aby v záznamu nikdy nebylo špatně přečtené číslo. Dokumenty nikam neodcházejí. Sdílet je s lékařem můžete jen vy.':
     'Die App **liest und bewertet Ihre Unterlagen nicht.** Werte werden unter Gesundheit von Hand eingetragen, damit niemals eine falsch gelesene Zahl in den Einträgen landet. Die Unterlagen gehen nirgendwohin. Nur Sie können sie mit Ihrer Ärztin oder Ihrem Arzt teilen.',
+
+  // --- Vítání ----------------------------------------------------------------
+  'Krok # z #': 'Schritt # von #',
+  'Zpět': 'Zurück',
+  'včera': 'gestern',
+  'Začít': 'Loslegen',
+  'Pokračovat': 'Weiter',
+  'Například Tereza': 'Zum Beispiel Tereza',
+  'Vítejte na své IVF cestě': 'Willkommen auf Ihrem IVF-Weg',
+  'Vaše cesta. Vaše tempo. Vaše IVF.': 'Ihr Weg. Ihr Tempo. Ihre IVF.',
+  'Jedním pohledem uvidíte, co po vás dnešek chce a co na to máte.':
+    'Auf einen Blick sehen Sie, was der Tag von Ihnen verlangt und was Sie dafür haben.',
+  'Cykly, embrya, transfery a výsledky. Celá historie na jednom místě.':
+    'Zyklen, Embryonen, Transfers und Ergebnisse. Die ganze Geschichte an einem Ort.',
+  'Fáze, knihovna, pojmy i diagnózy. U všeho stojí, k čemu to je.':
+    'Phasen, Bibliothek, Begriffe und Diagnosen. Bei allem steht, wofür es da ist.',
+  'Nastavení zabere minutu a kdykoliv se dá změnit. Nechceme e-mail ani heslo.':
+    'Die Einrichtung dauert eine Minute und lässt sich jederzeit ändern. Wir wollen weder E-Mail noch Passwort.',
+  'Kde právě jste?': 'Wo stehen Sie gerade?',
+  'Podle toho poskládáme celou aplikaci. Dnešek, obsah, checklisty i kalendář. Až se posunete, změníte to jedním klikem a nic se přitom nesmaže.':
+    'Danach bauen wir die ganze App auf. Heute, die Inhalte, die Checklisten und den Kalender. Wenn Sie weiterkommen, ändern Sie es mit einem Tippen, und nichts wird gelöscht.',
+  'Potřebuji jinou fázi': 'Ich brauche eine andere Phase',
+  'Jemnější dělení': 'Eine feinere Aufteilung',
+  'Když se do žádné dlaždice netrefíte přesně, vyberte si tady.':
+    'Wenn keine der Kacheln genau passt, wählen Sie hier.',
+  '🌱 Snažíme se o miminko': '🌱 Wir versuchen, ein Baby zu bekommen',
+  '🏥 Mám doporučení k IVF': '🏥 Ich habe eine Überweisung zur IVF',
+  '🔎 Řešíme, proč se nedaří': '🔎 Wir klären, warum es nicht klappt',
+  '💉 Připravuji se na IVF': '💉 Ich bereite mich auf die IVF vor',
+  '🌸 Jsem v IVF cyklu': '🌸 Ich bin in einem IVF-Zyklus',
+  '❄️ Mám embrya a čeká mě transfer': '❄️ Ich habe Embryonen und einen Transfer vor mir',
+  '🤍 Jsem po transferu': '🤍 Ich bin nach dem Transfer',
+  '🌱 Mám pozitivní hCG': '🌱 Ich habe einen positiven hCG-Wert',
+  '🕊️ IVF nevyšlo': '🕊️ Die IVF hat nicht geklappt',
+  '🕊️ Zažila jsem ztrátu': '🕊️ Ich habe einen Verlust erlebt',
+  'Teprve o IVF přemýšlím': 'Ich denke erst über eine IVF nach',
+  'Zatím IVF vůbec neřeším': 'Ich beschäftige mich noch gar nicht mit der IVF',
+  'Mám za sebou vyšetření': 'Ich habe die Untersuchungen hinter mir',
+  'Nevím, kde přesně začít': 'Ich weiß nicht, wo genau ich anfangen soll',
+  'Chci vědět, do čeho bych šla': 'Ich will wissen, worauf ich mich einlasse',
+  'Ukažte mi to od začátku, projdu si to sama':
+    'Zeigen Sie es mir von Anfang an, ich gehe es selbst durch',
+  'Lékař mi IVF doporučil, ještě jsme nezačali':
+    'Die Praxis hat die IVF empfohlen, wir haben noch nicht begonnen',
+  'Vyšetření, diagnóza, hledání příčiny': 'Untersuchungen, Diagnose, Ursachensuche',
+  'Máme plán, cyklus ještě nezačal': 'Wir haben einen Plan, der Zyklus hat noch nicht begonnen',
+  'Než cyklus začne': 'Bevor der Zyklus beginnt',
+  'Začínám stimulaci': 'Ich beginne mit der Stimulation',
+  'První injekce jsou přede mnou nebo právě teď':
+    'Die ersten Spritzen stehen bevor oder sind gerade jetzt',
+  'Stimulace, odběr, embrya v laboratoři': 'Stimulation, Entnahme, Embryonen im Labor',
+  'Čeká mě odběr vajíček': 'Die Eizellentnahme steht mir bevor',
+  'Odběr je naplánovaný, doma se počítají dny':
+    'Die Entnahme ist geplant, und zu Hause werden die Tage gezählt',
+  'Trigger je za dveřmi nebo už byl': 'Der Trigger steht vor der Tür oder war schon',
+  'Čekám na oplodnění': 'Ich warte auf die Befruchtung',
+  'Odběr proběhl, zítra volá embryologie':
+    'Die Entnahme ist erfolgt, morgen ruft die Embryologie an',
+  'Čekám na vývoj embryí': 'Ich warte auf die Entwicklung der Embryonen',
+  'Embrya jsou v laboratoři, čeká se na každý den':
+    'Die Embryonen sind im Labor, und jeder Tag wird abgewartet',
+  'Čeká mě další transfer': 'Ein weiterer Transfer steht mir bevor',
+  'Máme zamražená embrya a plánujeme kryotransfer':
+    'Wir haben eingefrorene Embryonen und planen einen Kryotransfer',
+  'Čeká mě kryoembryotransfer': 'Ein Kryoembryotransfer steht mir bevor',
+  'Připravuje se sliznice na rozmražené embryo':
+    'Die Schleimhaut wird für ein aufgetautes Embryo vorbereitet',
+  'Čerstvý embryotransfer nebo kryotransfer': 'Ein Frischtransfer oder ein Kryotransfer',
+  'Čekám na hCG': 'Ich warte auf den hCG-Wert',
+  'Po transferu a čekání na hCG': 'Nach dem Transfer und Warten auf den hCG-Wert',
+  'Čekání na výsledek. Nejtěžší dny z celé léčby':
+    'Warten auf das Ergebnis. Die schwersten Tage der ganzen Behandlung',
+  'Mám negativní hCG': 'Ich habe einen negativen hCG-Wert',
+  'Přišel výsledek a nevyšel': 'Das Ergebnis kam, und es war negativ',
+  'Výsledek a co dál': 'Das Ergebnis und wie es weitergeht',
+  'Potřebuji zpracovat výsledek a případně pokračovat':
+    'Ich muss das Ergebnis verarbeiten und eventuell weitermachen',
+  'Čeká mě další IVF cyklus': 'Ein weiterer IVF-Zyklus steht mir bevor',
+  'Výsledky jsou, řešíme, co dál': 'Die Ergebnisse liegen vor, und wir klären, wie es weitergeht',
+  'První pozitivní odběr.': 'Die erste positive Bestimmung.',
+  'Test vyšel, čekáme na první ultrazvuk':
+    'Der Test war positiv, und wir warten auf den ersten Ultraschall',
+  'Těhotenství skončilo. Potřebuji čas': 'Die Schwangerschaft ist beendet. Ich brauche Zeit',
+  'Zažila jsem ztrátu': 'Ich habe einen Verlust erlebt',
+  'Čeká mě revize dělohy': 'Eine Ausschabung steht mir bevor',
+  'Nebo ji mám čerstvě za sebou': 'Oder ich habe sie gerade hinter mir',
+  'Přišlo krvácení s křečemi a těhotenství odešlo':
+    'Es kam eine Blutung mit Krämpfen, und die Schwangerschaft ging verloren',
+  'Na ultrazvuku bylo těhotenství vidět, ale zastavilo se. Krvácení samo nepřišlo':
+    'Im Ultraschall war die Schwangerschaft zu sehen, aber sie hat aufgehört. Die Blutung kam nicht von selbst',
+  'hCG stouplo a pak kleslo. Na ultrazvuku nebylo nikdy nic vidět':
+    'Der hCG-Wert stieg und fiel dann. Im Ultraschall war nie etwas zu sehen',
+  'Těhotenství se uhnízdilo mimo dělohu, nejčastěji ve vejcovodu':
+    'Die Schwangerschaft hat sich außerhalb der Gebärmutter eingenistet, meist im Eileiter',
+  'Každá z nich má jiný průběh, jinou léčbu i jinak dlouhou pauzu před dalším pokusem. Vyberte to, co odpovídá vaší zprávě.':
+    'Jede von ihnen verläuft anders, wird anders behandelt und hat eine andere Pause bis zum nächsten Versuch. Wählen Sie, was Ihrem Bericht entspricht.',
+  'Odkdy se snažíte?': 'Seit wann versuchen Sie es?',
+  'Kdy je odběr?': 'Wann ist die Entnahme?',
+  'Kdy byl odběr?': 'Wann war die Entnahme?',
+  'Kdy jste začala se stimulací?': 'Wann haben Sie mit der Stimulation begonnen?',
+  'Kdy jste měla odběr hCG?': 'Wann hatten Sie die hCG-Bestimmung?',
+  'Kdy jste se to dozvěděla?': 'Wann haben Sie es erfahren?',
+  'Kdy vyšetřování začalo nebo začne?': 'Wann hat die Abklärung begonnen oder wann beginnt sie?',
+  'Kdy jste s vyšetřením začali?': 'Wann haben Sie mit der Abklärung begonnen?',
+  'Stačí přibližně.': 'Ungefähr genügt.',
+  'Stačí přibližně. Nic se od toho nepočítá dopředu.':
+    'Ungefähr genügt. Es wird nichts daraus vorausberechnet.',
+  'Stačí přibližně. Podle toho poznáme, kdy má smysl mluvit o vyšetření.':
+    'Ungefähr genügt. Daran erkennen wir, wann es sinnvoll ist, über eine Abklärung zu sprechen.',
+  'Přesný termín vám dala klinika.': 'Den genauen Termin hat Ihnen die Klinik genannt.',
+  'Od toho dne se počítá kultivace.': 'Ab diesem Tag wird die Kultivierung gezählt.',
+  'Od toho dne se počítá, kolikátý den se embrya kultivují.':
+    'Ab diesem Tag wird gezählt, der wievielte Kultivierungstag der Embryonen es ist.',
+  'Podle toho víme, kolikátý den po transferu dnes je.':
+    'Daran wissen wir, der wievielte Tag nach dem Transfer heute ist.',
+  'První den injekcí. Podle toho počítáme, kolikátý je dnes den.':
+    'Der erste Tag der Spritzen. Danach zählen wir, der wievielte Tag heute ist.',
+  'Den ultrazvuku, na kterém to zaznělo. Stačí přibližně.':
+    'Der Tag des Ultraschalls, an dem es gesagt wurde. Ungefähr genügt.',
+  'devátý den stimulace': 'neunter Tag der Stimulation',
+  'šestý den po transferu': 'sechster Tag nach dem Transfer',
+  'den, kdy nezbylo žádné embryo': 'der Tag, an dem kein Embryo übrig blieb',
+  'Co pro vás v téhle fázi máme': 'Was wir in dieser Phase für Sie haben',
+  'A dál: články, práce s hlavou, pohyb, doplňky, rady pro partnera, otázky pro lékaře a slovníček pojmů téhle fáze.':
+    'Und weiter: Artikel, Arbeit mit dem Kopf, Bewegung, Ergänzungen, Hinweise für den Partner, Fragen für die Praxis und ein Glossar für diese Phase.',
+  'Co už o své cestě víte?': 'Was wissen Sie schon über Ihren Weg?',
+  'Vyberte, co se vás týká. Může toho být víc. Kombinovaný faktor je v IVF spíš pravidlo než výjimka.':
+    'Wählen Sie, was auf Sie zutrifft. Es können mehrere sein. Ein kombinierter Faktor ist in der IVF eher die Regel als die Ausnahme.',
+  'Nemáme žádnou diagnózu': 'Wir haben keine Diagnose',
+  'Co se vás týká?': 'Was trifft auf Sie zu?',
+  'Vyberte, co platí. Podle toho se mění obsah uvnitř fáze. Po císaři se šestinedělí čte jinak než po přirozeném porodu.':
+    'Wählen Sie, was zutrifft. Danach richten sich die Inhalte innerhalb der Phase. Nach einem Kaiserschnitt liest sich das Wochenbett anders als nach einer vaginalen Geburt.',
+  'Nic z toho není povinné a nikam se to neodesílá. Zůstává to ve vašem prohlížeči.':
+    'Nichts davon ist verpflichtend, und nichts wird irgendwohin gesendet. Es bleibt in Ihrem Browser.',
+  'Podle výběru se vám nabízí obsah, který se vás týká. Léčbu z toho aplikace neodvozuje a kdykoli to změníte v Profilu.':
+    'Nach Ihrer Auswahl werden Ihnen passende Inhalte angeboten. Die App leitet daraus keine Behandlung ab, und Sie können es jederzeit im Profil ändern.',
+  'Ve vaší fázi zatím není co upřesňovat. Můžete pokračovat.':
+    'In Ihrer Phase gibt es noch nichts zu präzisieren. Sie können fortfahren.',
+  'Jak vám máme říkat?': 'Wie sollen wir Sie nennen?',
+  'Jenom kvůli oslovení na domovské stránce. Klidně to nechte prázdné.':
+    'Nur für die Begrüßung auf der Startseite. Sie können es gern leer lassen.',
+  'V komunitě vystupovat anonymně': 'In der Community anonym auftreten',
+  'Ostatní uvidí jen vaši fázi, nikdy jméno ani zdravotní údaje.':
+    'Andere sehen nur Ihre Phase, niemals Ihren Namen oder Gesundheitsdaten.',
+  'Žádná registrace, žádný e-mail. Data zůstávají v tomhle prohlížeči a kdykoliv je smažete v nastavení.':
+    'Keine Anmeldung, keine E-Mail. Ihre Daten bleiben in diesem Browser, und Sie können sie jederzeit in den Einstellungen löschen.',
+  'Otevřít mou aplikaci': 'Meine App öffnen',
+
+  // --- Co vás čeká v jednotlivých fázích -------------------------------------
+  'Období, kdy si ujasňujete, jestli a kdy dítě chcete. Klidně několik měsíců.':
+    'Eine Zeit, in der Sie klären, ob und wann Sie ein Kind wollen. Ruhig mehrere Monate.',
+  'První praktické otázky: peníze, práce, bydlení, vztah.':
+    'Die ersten praktischen Fragen: Geld, Arbeit, Wohnen, Beziehung.',
+  'Zjišťování, jak na tom jste zdravotně. Bez tlaku, jen abyste věděla.':
+    'Herausfinden, wie es um Ihre Gesundheit steht. Ohne Druck, nur damit Sie es wissen.',
+  'Dva až tři měsíce, než se změny životního stylu projeví na kvalitě vajíček a spermií.':
+    'Zwei bis drei Monate, bis sich Änderungen im Lebensstil auf die Qualität von Eizellen und Spermien auswirken.',
+  'Odběry, které si můžete nechat udělat i bez odeslání na kliniku. Štítná žláza, vitamin D, krevní obraz.':
+    'Blutwerte, die Sie auch ohne Überweisung in eine Klinik bestimmen lassen können. Schilddrüse, Vitamin D, Blutbild.',
+  'Zvykání si na pravidelnost: spánek, jídlo, pohyb. Nudné, ale funguje to.':
+    'Sich an Regelmäßigkeit gewöhnen: Schlaf, Essen, Bewegung. Langweilig, aber es wirkt.',
+  'Měsíce, které mají svůj rytmus: naděje kolem ovulace, čekání, menstruace, znovu.':
+    'Monate mit eigenem Rhythmus: Hoffnung um den Eisprung, Warten, Periode, von vorn.',
+  'Postupné zjišťování, kdy přesně ovulujete. U většiny žen to není 14. den.':
+    'Nach und nach herausfinden, wann genau Sie den Eisprung haben. Bei den meisten Frauen ist es nicht der 14. Tag.',
+  'Moment, kdy začnete zvažovat vyšetření. Doporučení: po roce snažení, a po půl roce, pokud je vám nad 35 let nebo máte nepravidelný cyklus.':
+    'Der Moment, in dem Sie über eine Abklärung nachdenken. Die Empfehlung: nach einem Jahr des Versuchens, und nach einem halben Jahr, wenn Sie über 35 sind oder einen unregelmäßigen Zyklus haben.',
+  'Odběry hormonů v konkrétních dnech cyklu. Část se dělá 2.–4. den, část kolem 21. dne.':
+    'Hormonbestimmungen an bestimmten Zyklustagen. Ein Teil am 2. bis 4. Tag, ein Teil um den 21. Tag.',
+  'Ultrazvuk s počítáním antrálních folikulů.': 'Ein Ultraschall mit Zählung der Antralfollikel.',
+  'Vyšetření průchodnosti vejcovodů, HSG nebo HyFoSy. Trvá krátce, bývá nepříjemné, ne dlouho.':
+    'Eine Untersuchung der Eileiterdurchgängigkeit, HSG oder HyFoSy. Sie dauert kurz, ist meist unangenehm, aber nicht lange.',
+  'Spermiogram u partnera, často opakovaný.': 'Ein Spermiogramm beim Partner, oft wiederholt.',
+  'Čekání na výsledky, které je většinou delší než vyšetření samo.':
+    'Das Warten auf die Ergebnisse, das meist länger dauert als die Untersuchungen selbst.',
+  'Sledování růstu folikulů ultrazvukem, někdy s mírnou stimulací tabletami nebo nízkými dávkami injekcí.':
+    'Das Follikelwachstum per Ultraschall verfolgen, manchmal mit milder Stimulation durch Tabletten oder niedrig dosierte Spritzen.',
+  'Trigger. Injekce, která spustí ovulaci v naplánovaný čas.':
+    'Der Trigger. Eine Spritze, die den Eisprung zur geplanten Zeit auslöst.',
+  'Odběr a zpracování spermatu v laboratoři v den výkonu.':
+    'Gewinnung und Aufbereitung des Spermas im Labor am Tag des Eingriffs.',
+  'Samotné zavedení připravených spermií do dělohy tenkým katétrem. Několik minut, bez narkózy.':
+    'Die aufbereiteten Spermien werden mit einem dünnen Katheter in die Gebärmutter eingebracht. Ein paar Minuten, ohne Narkose.',
+  'Dvoutýdenní čekání a test.': 'Zwei Wochen Warten und ein Test.',
+  'Vstupní konzultace, kde se určí protokol podle vašich hodnot.':
+    'Ein Erstgespräch, bei dem das Protokoll nach Ihren Werten festgelegt wird.',
+  'Podpisy informovaných souhlasů. Je toho hodně a stojí za to je číst.':
+    'Das Unterschreiben von Einwilligungserklärungen. Es sind viele, und sie zu lesen lohnt sich.',
+  'Objednání léků a zaškolení, jak si píchat injekce.':
+    'Die Medikamente bestellen und lernen, wie Sie sich die Spritzen setzen.',
+  'Naplánování začátku podle cyklu. Často se čeká na menstruaci.':
+    'Den Beginn nach dem Zyklus planen. Oft wartet man auf die Periode.',
+  'Vyřízení úhrady: v Česku hradí pojišťovna určitý počet cyklů do daného věku, zbytek si platíte.':
+    'Die Kostenfrage klären: In Tschechien übernimmt die Versicherung eine bestimmte Zahl von Zyklen bis zu einem bestimmten Alter, den Rest zahlen Sie selbst.',
+  'Příchod nalačno, obvykle brzy ráno. Nejíst a nepít podle pokynů kliniky.':
+    'Nüchtern erscheinen, meist früh am Morgen. Nichts essen und trinken, nach Anweisung der Klinik.',
+  'Zákrok trvá zhruba 10–20 minut. Probíhá v analgosedaci. Spíte a nic necítíte.':
+    'Der Eingriff dauert etwa 10 bis 20 Minuten unter Sedierung. Sie schlafen und spüren nichts.',
+  'Po probuzení odpočinek na lůžku, kontrola a informace, kolik vajíček se získalo.':
+    'Nach dem Aufwachen Ruhe im Bett, eine Kontrolle und die Information, wie viele Eizellen gewonnen wurden.',
+  'Odpoledne doma. Křeče a špinění jsou běžné.':
+    'Am Nachmittag zu Hause. Krämpfe und Schmierblutungen sind üblich.',
+  'Následující den telefonát z embryologie s informací, kolik vajíček bylo zralých a kolik se oplodnilo.':
+    'Am nächsten Tag ein Anruf aus der Embryologie mit der Information, wie viele Eizellen reif waren und wie viele befruchtet wurden.',
+  'Telefonát z embryologie, obvykle dopoledne.':
+    'Ein Anruf aus der Embryologie, meist am Vormittag.',
+  'Informace, kolik vajíček bylo zralých a u kolika došlo k oplodnění.':
+    'Die Information, wie viele Eizellen reif waren und bei wie vielen die Befruchtung stattfand.',
+  'Vysvětlení, jestli se použilo klasické IVF nebo ICSI.':
+    'Eine Erklärung, ob die klassische IVF oder ICSI verwendet wurde.',
+  'Termín dalšího hlášení. Většinou třetí a pátý den.':
+    'Wann die nächste Rückmeldung kommt. Meist am dritten und fünften Tag.',
+  'Hlášení z embryologie, obvykle třetí a pátý den kultivace.':
+    'Rückmeldungen aus der Embryologie, meist am dritten und fünften Kultivierungstag.',
+  'Popis embryí podle počtu buněk a kvality, u blastocyst podle Gardnerovy klasifikace.':
+    'Eine Beschreibung der Embryonen nach Zellzahl und Qualität, bei Blastozysten nach der Gardner-Klassifikation.',
+  'Rozhodnutí, jestli se transfer udělá pátý den, nebo se embrya zmrazí.':
+    'Die Entscheidung, ob am fünften Tag transferiert wird oder die Embryonen eingefroren werden.',
+  'Postupné ubývání embryí. Do pátého dne se dostane jen část z nich.':
+    'Die Zahl der Embryonen nimmt nach und nach ab. Nur ein Teil erreicht den fünften Tag.',
+  'Příchod obvykle s plným močovým měchýřem, aby byla děloha na ultrazvuku lépe vidět.':
+    'Sie kommen meist mit voller Blase, damit die Gebärmutter im Ultraschall besser zu sehen ist.',
+  'Zavedení embrya tenkým katétrem pod ultrazvukovou kontrolou. Několik minut, bez narkózy.':
+    'Das Embryo wird mit einem dünnen Katheter unter Ultraschallkontrolle eingebracht. Ein paar Minuten, ohne Narkose.',
+  'Krátký odpočinek a odchod domů.': 'Eine kurze Ruhepause und dann nach Hause.',
+  'Pokračování v podpoře luteální fáze. Obvykle progesteron.':
+    'Die Unterstützung der Lutealphase geht weiter. Meist Progesteron.',
+  'Začátek dvoutýdenního čekání.': 'Der Beginn der zweiwöchigen Wartezeit.',
+  'Deset až čtrnáct dní do odběru hCG.': 'Zehn bis vierzehn Tage bis zur hCG-Bestimmung.',
+  'Příznaky, které nic neznamenají: napětí v prsou, křeče, únava, nadýmání. Dělá je progesteron stejně jako těhotenství.':
+    'Symptome, die nichts bedeuten: Spannen in der Brust, Krämpfe, Erschöpfung, Blähungen. Progesteron verursacht sie genauso wie eine Schwangerschaft.',
+  'Implantační špinění u části žen, obvykle 6.–10. den po transferu. Jeho nepřítomnost nic neznamená.':
+    'Einnistungsblutung bei einem Teil der Frauen, meist am 6. bis 10. Tag nach dem Transfer. Ihr Ausbleiben bedeutet nichts.',
+  'Silné nutkání testovat doma dřív, než má smysl.':
+    'Ein starker Drang, zu Hause zu testen, bevor es sinnvoll ist.',
+  'Odběr krve a čekání na číslo, které přijde týž nebo následující den.':
+    'Eine Blutentnahme und das Warten auf eine Zahl, die am selben oder am nächsten Tag kommt.',
+  'Opakovaný odběr hCG za dva až tři dny. Sleduje se zdvojovací čas, ne jedno číslo.':
+    'Eine erneute hCG-Bestimmung in zwei bis drei Tagen. Beobachtet wird die Verdopplungszeit, nicht eine einzelne Zahl.',
+  'První ultrazvuk zhruba v 6.–7. týdnu. Potvrzení, že těhotenství je v děloze a má srdeční akci.':
+    'Der erste Ultraschall etwa in der 6. bis 7. Woche. Die Bestätigung, dass die Schwangerschaft in der Gebärmutter liegt und eine Herzaktion hat.',
+  'Pokračování v podpoře luteální fáze, často až do 10.–12. týdne.':
+    'Die Unterstützung der Lutealphase geht weiter, oft bis zur 10. bis 12. Woche.',
+  'Období, kdy se radost mísí se strachem víc, než jste čekala.':
+    'Eine Zeit, in der sich Freude mehr mit Angst mischt, als Sie erwartet haben.',
+  'Kontrolní konzultace, kde se probere, co v cyklu proběhlo a co změnit.':
+    'Ein Nachgespräch, in dem durchgegangen wird, was im Zyklus passiert ist und was zu ändern ist.',
+  'Návrat menstruace, obvykle do dvou týdnů po vysazení podpory.':
+    'Die Periode kehrt zurück, meist innerhalb von zwei Wochen nach dem Absetzen der Unterstützung.',
+  'Rozhodnutí o dalším postupu: kryoembryotransfer, nová stimulace, doplňující vyšetření.':
+    'Eine Entscheidung über das weitere Vorgehen: Kryotransfer, neue Stimulation, ergänzende Untersuchungen.',
+  'Období, kdy se vrací normální život. A je to divné.':
+    'Eine Zeit, in der das normale Leben zurückkehrt. Und das fühlt sich seltsam an.',
+  'Podrobnější vyšetření, která se po prvním nebo druhém cyklu ještě nedělají.':
+    'Ausführlichere Untersuchungen, die nach dem ersten oder zweiten Zyklus noch nicht gemacht werden.',
+  'Hysteroskopie. Pohled do dutiny děložní na srůsty, polypy nebo přepážku.':
+    'Hysteroskopie. Ein Blick in die Gebärmutterhöhle auf Verwachsungen, Polypen oder ein Septum.',
+  'Imunologické a genetické vyšetření obou partnerů, pokud je indikováno.':
+    'Immunologische und genetische Untersuchung beider Partner, wenn angezeigt.',
+  'Diskuze o PGT-A, o darovaných gametách nebo o změně kliniky.':
+    'Ein Gespräch über PGT-A, Spendergameten oder einen Klinikwechsel.',
+  'Rozhodování, které je čím dál těžší, protože už znáte cenu každé varianty.':
+    'Entscheidungen, die immer schwerer werden, weil Sie inzwischen den Preis jeder Variante kennen.',
+  'Klesající hodnoty hCG při kontrolních odběrech.':
+    'Sinkende hCG-Werte bei den Kontrollbestimmungen.',
+  'Krvácení, které přichází obvykle krátce po tom, často jako silnější menstruace.':
+    'Eine Blutung, die meist kurz danach kommt, oft wie eine stärkere Periode.',
+  'Pokyn k vysazení podpory luteální fáze. Vždycky až od lékaře.':
+    'Die Anweisung, die Unterstützung der Lutealphase abzusetzen. Immer erst von der Ärztin oder dem Arzt.',
+  'Návrat cyklu obvykle do čtyř až šesti týdnů.':
+    'Der Zyklus kehrt meist innerhalb von vier bis sechs Wochen zurück.',
+  'Sledování hodnot hCG a opakované ultrazvuky.':
+    'Verfolgung der hCG-Werte und wiederholte Ultraschalls.',
+  'Léčba metotrexátem, nebo operace. Nejčastěji laparoskopicky. O způsobu rozhoduje stav a nález.':
+    'Behandlung mit Methotrexat oder eine Operation. Meist laparoskopisch. Über den Weg entscheiden Zustand und Befund.',
+  'Po metotrexátu dlouhé sledování hodnot až k nule a doporučená pauza před dalším těhotenstvím.':
+    'Nach Methotrexat eine lange Verfolgung der Werte bis auf null und eine empfohlene Pause vor der nächsten Schwangerschaft.',
+  'Kontrola stavu vejcovodu a informace, co to znamená pro další pokusy.':
+    'Eine Kontrolle des Eileiters und die Information, was das für weitere Versuche bedeutet.',
+  'Potvrzení nálezu druhým ultrazvukem, obvykle s odstupem několika dní.':
+    'Bestätigung des Befunds durch einen zweiten Ultraschall, meist einige Tage später.',
+  'Volba mezi vyčkáváním, medikamentózním ukončením a revizí dutiny děložní.':
+    'Die Wahl zwischen Abwarten, medikamentöser Beendigung und einer Ausschabung.',
+  'Nabídka genetického vyšetření tkáně, pokud to situace umožňuje.':
+    'Das Angebot einer genetischen Untersuchung des Gewebes, wenn es die Situation erlaubt.',
+  'Kontrola za několik týdnů a návrat cyklu obvykle do čtyř až šesti týdnů.':
+    'Eine Kontrolle in einigen Wochen, und der Zyklus kehrt meist innerhalb von vier bis sechs Wochen zurück.',
+  'Krvácení a křeče, které mohou trvat několik dní.':
+    'Blutung und Krämpfe, die mehrere Tage dauern können.',
+  'Kontrola, jestli dutina děložní zůstala prázdná. Někdy stačí sledování, jindy je potřeba revize.':
+    'Eine Kontrolle, ob die Gebärmutterhöhle leer geblieben ist. Manchmal genügt Beobachtung, manchmal ist eine Ausschabung nötig.',
+  'Kontrolní odběry hCG až k nule, pokud to lékař požaduje.':
+    'Kontrollbestimmungen des hCG bis auf null, wenn die Ärztin oder der Arzt es verlangt.',
+  'Návrat menstruace obvykle za čtyři až šest týdnů.':
+    'Die Periode kehrt meist nach vier bis sechs Wochen zurück.',
+  'Příchod nalačno a krátký zákrok v celkové anestezii.':
+    'Nüchtern erscheinen und ein kurzer Eingriff unter Vollnarkose.',
+  'Odchod domů obvykle týž den, někdy po noci na oddělení.':
+    'Meist am selben Tag nach Hause, manchmal nach einer Nacht auf der Station.',
+  'Krvácení několik dní, slabší než při potratu.':
+    'Blutung über einige Tage, schwächer als bei einer Fehlgeburt.',
+  'Kontrola za dva až tři týdny.': 'Eine Kontrolle in zwei bis drei Wochen.',
+  'Odběr krve obou partnerů na karyotyp.': 'Eine Blutentnahme beider Partner für den Karyotyp.',
+  'Konzultace s klinickým genetikem, která bývá delší než běžný termín.':
+    'Ein Gespräch mit einer Humangenetikerin oder einem Humangenetiker, das meist länger dauert als ein normaler Termin.',
+  'Čekání na výsledky. Týdny, ne dny.': 'Warten auf die Ergebnisse. Wochen, nicht Tage.',
+  'Vysvětlení, co nález znamená pro další pokusy a jestli má smysl PGT.':
+    'Eine Erklärung, was der Befund für weitere Versuche bedeutet und ob PGT sinnvoll ist.',
+  'Cyklus ještě nezačal, ale rozhoduje se tu hodně: protokol, klinika, peníze a načasování.':
+    'Der Zyklus hat noch nicht begonnen, aber hier wird viel entschieden: Protokoll, Klinik, Geld und Zeitpunkt.',
+  'Snažíte se přirozeně. Klíčová je znalost vlastního cyklu, ne počet pokusů.':
+    'Sie versuchen es natürlich. Entscheidend ist, den eigenen Zyklus zu kennen, nicht die Zahl der Versuche.',
+  'Dvoutýdenní čekání. Nejtěžší část celé léčby. A jediná, kde není co dělat.':
+    'Die zweiwöchige Wartezeit. Der schwerste Teil der ganzen Behandlung. Und der einzige, in dem es nichts zu tun gibt.',
+  'Test vyšel. Sleduje se, jestli hodnota roste tak, jak má, a čeká se na první ultrazvuk. Pak vás centrum předá gynekologovi.':
+    'Der Test war positiv. Jetzt wird beobachtet, ob der Wert wie erwartet steigt, und der erste Ultraschall abgewartet. Danach übergibt Sie das Zentrum an Ihre Frauenärztin oder Ihren Frauenarzt.',
+
+  // --- souhrny fází ----------------------------------------------------------
+  'Rozhodnutí se teprve rodí. Není co dohánět. Je čas se ptát a zjišťovat.':
+    'Die Entscheidung entsteht erst. Es gibt nichts aufzuholen. Es ist Zeit zu fragen und herauszufinden.',
+  'Připravujete tělo. Většina změn se projeví za dva až tři měsíce. Vajíčko i spermie tak dlouho dozrávají.':
+    'Sie bereiten den Körper vor. Die meisten Änderungen zeigen sich nach zwei bis drei Monaten. So lange reifen Eizelle und Spermien.',
+  'Inseminace. Nejjednodušší asistovaná metoda. Zákrok trvá pár minut a bolí zhruba jako stěr.':
+    'Insemination. Die einfachste assistierte Methode. Der Eingriff dauert ein paar Minuten und tut etwa so weh wie ein Abstrich.',
+  'Hledáte příčinu. Cílem není verdikt, ale plán. A většina nálezů má řešení.':
+    'Sie suchen die Ursache. Das Ziel ist kein Urteil, sondern ein Plan. Und die meisten Befunde haben eine Lösung.',
+  'Den odběru. Krátký zákrok v analgosedaci, po kterém jde většina žen domů do několika hodin.':
+    'Der Tag der Entnahme. Ein kurzer Eingriff unter Sedierung, nach dem die meisten Frauen innerhalb weniger Stunden nach Hause gehen.',
+  'Den po odběru. V laboratoři se rozhoduje, kolik vajíček se oplodnilo. A vy u toho nemůžete nic ovlivnit.':
+    'Der Tag nach der Entnahme. Im Labor entscheidet sich, wie viele Eizellen befruchtet wurden. Und Sie können nichts daran ändern.',
+  'Embrya rostou v laboratoři. Každý den se jejich počet může zmenšit. A je to normální průběh, ne chyba.':
+    'Die Embryonen wachsen im Labor. Ihre Zahl kann jeden Tag kleiner werden. Das ist ein normaler Verlauf, kein Fehler.',
+  'Den transferu. Zákrok trvá pár minut, nebolí a nevyžaduje narkózu. A přesto je to den, na který se čekalo roky.':
+    'Der Tag des Transfers. Der Eingriff dauert ein paar Minuten, tut nicht weh und braucht keine Narkose. Und doch ist es der Tag, auf den jahrelang gewartet wurde.',
+  'Mezidobí. Čas na vyhodnocení, na tělo a na rozhodnutí, jak dál, ne ztracený měsíc.':
+    'Die Zwischenzeit. Zeit zum Auswerten, Zeit für den Körper und für die Entscheidung, wie es weitergeht, kein verlorener Monat.',
+  'Opakované neúspěchy. Tady se mění otázka: už ne „zkusíme to znovu“, ale „co uděláme jinak“.':
+    'Wiederholte Fehlschläge. Hier ändert sich die Frage: nicht mehr „versuchen wir es wieder“, sondern „was machen wir anders“.',
+  'Biochemické těhotenství. Pozitivní test, který nepokračoval. Byla to ztráta, i když ji nikdo neviděl.':
+    'Eine biochemische Schwangerschaft. Ein positiver Test, der nicht weiterging. Es war ein Verlust, auch wenn ihn niemand gesehen hat.',
+  'Mimoděložní těhotenství. Je to akutní zdravotní stav a zároveň ztráta. Obojí najednou.':
+    'Eine Eileiterschwangerschaft. Sie ist ein akuter medizinischer Notfall und zugleich ein Verlust. Beides auf einmal.',
+  'Zamlklé těhotenství. Tělo o ztrátě ještě neví. A to je na tom to nejtěžší.':
+    'Eine verhaltene Fehlgeburt. Der Körper weiß noch nichts von dem Verlust. Und das ist das Schwerste daran.',
+  'Potrat. Nejčastější komplikace raného těhotenství. A jedna z nejosamělejších.':
+    'Fehlgeburt. Die häufigste Komplikation der frühen Schwangerschaft. Und eine der einsamsten.',
+  'Revize dutiny děložní. Krátký zákrok v narkóze, po kterém se většina žen vrací domů týž den.':
+    'Eine Ausschabung. Ein kurzer Eingriff unter Narkose, nach dem die meisten Frauen am selben Tag nach Hause gehen.',
+  'Genetické vyšetření. Hledá se, jestli za opakovanými ztrátami nebo neúspěchy nestojí něco, co se dá zohlednit.':
+    'Genetische Untersuchung. Es wird gesucht, ob hinter wiederholten Verlusten oder Fehlschlägen etwas steht, das sich berücksichtigen lässt.',
 }

@@ -1,11 +1,12 @@
 import type { PhaseId } from '../lib/domain/phases'
 import { MODIFIER_LABELS, type ModifierId, type Profile } from '../lib/domain/profile'
-import { addDays, formatCzechDate, today as realToday } from '../lib/domain/dates'
+import { addDays, formatCzechDate, predDny, today as realToday } from '../lib/domain/dates'
 import { guideFor } from './../lib/domain/guides'
 import { DIAGNOSES, DIAGNOSIS_GROUPS, modifiersFromDiagnoses } from '../lib/domain/diagnoses'
 import { esc, heroStyle } from './ui'
 import { logoKruh } from './viz'
 import { patch, S, newProfile, viewDate, type Draft } from './store'
+import { prelozit } from '../lib/i18n'
 
 /**
  * Onboarding.
@@ -708,12 +709,12 @@ function stepWhen(): string {
       const date = addDays(realToday(), off)
       const label =
         off === 0
-          ? 'dnes'
+          ? prelozit('dnes')
           : off === -1
-            ? 'včera'
+            ? prelozit('včera')
             : off > 0
               ? formatCzechDate(date)
-              : `před ${Math.abs(off)} dny`
+              : predDny(Math.abs(off))
       return `<button data-act="ob-date" data-arg="${date}" aria-pressed="${!dr.skipDate && dr.date === date}">${esc(label)}</button>`
     })
     .join('')

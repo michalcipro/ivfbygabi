@@ -1739,4 +1739,350 @@ export const EN: Record<string, string> = {
     'Most reports come on paper and get lost at home. Photograph them at the clinic straight away. Then you will have them to hand in the waiting room before the next consultation.',
   'Aplikace dokumenty **nečte a nevyhodnocuje.** Hodnoty se zapisují ručně ve Zdraví, aby v záznamu nikdy nebylo špatně přečtené číslo. Dokumenty nikam neodcházejí. Sdílet je s lékařem můžete jen vy.':
     'The app **does not read or assess your documents.** Values are entered by hand under Health, so that a misread number never ends up in your records. The documents go nowhere. Only you can share them with your doctor.',
+
+  // --- Vítání ----------------------------------------------------------------
+  'Krok # z #': 'Step # of #',
+  'Zpět': 'Back',
+  'včera': 'yesterday',
+  'Začít': 'Start',
+  'Pokračovat': 'Continue',
+  'Například Tereza': 'For example Tereza',
+  'Vítejte na své IVF cestě': 'Welcome to your IVF journey',
+  'Vaše cesta. Vaše tempo. Vaše IVF.': 'Your journey. Your pace. Your IVF.',
+  'Jedním pohledem uvidíte, co po vás dnešek chce a co na to máte.':
+    'At a glance you see what today asks of you and what you have for it.',
+  'Cykly, embrya, transfery a výsledky. Celá historie na jednom místě.':
+    'Cycles, embryos, transfers and results. The whole history in one place.',
+  'Fáze, knihovna, pojmy i diagnózy. U všeho stojí, k čemu to je.':
+    'Stages, library, terms and diagnoses. Everything says what it is for.',
+  'Nastavení zabere minutu a kdykoliv se dá změnit. Nechceme e-mail ani heslo.':
+    'Setting it up takes a minute and can be changed at any time. We do not want an email or a password.',
+  'Kde právě jste?': 'Where are you right now?',
+  'Podle toho poskládáme celou aplikaci. Dnešek, obsah, checklisty i kalendář. Až se posunete, změníte to jedním klikem a nic se přitom nesmaže.':
+    'We build the whole app around that. Today, the content, the checklists and the calendar. When you move on, you change it with one tap and nothing is deleted.',
+  'Potřebuji jinou fázi': 'I need a different stage',
+  'Jemnější dělení': 'A finer breakdown',
+  'Když se do žádné dlaždice netrefíte přesně, vyberte si tady.':
+    'If none of the tiles fits exactly, choose here.',
+  '🌱 Snažíme se o miminko': '🌱 We are trying for a baby',
+  '🏥 Mám doporučení k IVF': '🏥 I have a referral for IVF',
+  '🔎 Řešíme, proč se nedaří': '🔎 We are looking into why it is not working',
+  '💉 Připravuji se na IVF': '💉 I am preparing for IVF',
+  '🌸 Jsem v IVF cyklu': '🌸 I am in an IVF cycle',
+  '❄️ Mám embrya a čeká mě transfer': '❄️ I have embryos and a transfer ahead',
+  '🤍 Jsem po transferu': '🤍 I am after a transfer',
+  '🌱 Mám pozitivní hCG': '🌱 I have a positive hCG',
+  '🕊️ IVF nevyšlo': '🕊️ The IVF did not work',
+  '🕊️ Zažila jsem ztrátu': '🕊️ I have had a loss',
+  'Teprve o IVF přemýšlím': 'I am only thinking about IVF',
+  'Zatím IVF vůbec neřeším': 'I am not dealing with IVF at all yet',
+  'Mám za sebou vyšetření': 'I have the tests behind me',
+  'Nevím, kde přesně začít': 'I do not know where exactly to start',
+  'Chci vědět, do čeho bych šla': 'I want to know what I would be getting into',
+  'Ukažte mi to od začátku, projdu si to sama':
+    'Show me from the beginning, I will go through it myself',
+  'Lékař mi IVF doporučil, ještě jsme nezačali':
+    'The doctor recommended IVF, we have not started yet',
+  'Vyšetření, diagnóza, hledání příčiny': 'Tests, a diagnosis, looking for the cause',
+  'Máme plán, cyklus ještě nezačal': 'We have a plan, the cycle has not started yet',
+  'Než cyklus začne': 'Before the cycle starts',
+  'Začínám stimulaci': 'I am starting stimulation',
+  'První injekce jsou přede mnou nebo právě teď':
+    'The first injections are ahead of me or happening right now',
+  'Stimulace, odběr, embrya v laboratoři': 'Stimulation, retrieval, embryos in the lab',
+  'Čeká mě odběr vajíček': 'The egg retrieval is ahead of me',
+  'Odběr je naplánovaný, doma se počítají dny':
+    'The retrieval is scheduled and at home the days are being counted',
+  'Trigger je za dveřmi nebo už byl': 'The trigger is at the door or has already happened',
+  'Čekám na oplodnění': 'I am waiting for fertilisation',
+  'Odběr proběhl, zítra volá embryologie': 'The retrieval is done, embryology calls tomorrow',
+  'Čekám na vývoj embryí': 'I am waiting for the embryos to develop',
+  'Embrya jsou v laboratoři, čeká se na každý den':
+    'The embryos are in the lab and every day is awaited',
+  'Čeká mě další transfer': 'Another transfer is ahead of me',
+  'Máme zamražená embrya a plánujeme kryotransfer':
+    'We have frozen embryos and are planning a frozen transfer',
+  'Čeká mě kryoembryotransfer': 'A frozen embryo transfer is ahead of me',
+  'Připravuje se sliznice na rozmražené embryo': 'The lining is being prepared for a thawed embryo',
+  'Čerstvý embryotransfer nebo kryotransfer': 'A fresh embryo transfer or a frozen one',
+  'Čekám na hCG': 'I am waiting for the hCG',
+  'Po transferu a čekání na hCG': 'After the transfer and waiting for the hCG',
+  'Čekání na výsledek. Nejtěžší dny z celé léčby':
+    'Waiting for the result. The hardest days of the whole treatment',
+  'Mám negativní hCG': 'I have a negative hCG',
+  'Přišel výsledek a nevyšel': 'The result came and it was not good',
+  'Výsledek a co dál': 'The result and what comes next',
+  'Potřebuji zpracovat výsledek a případně pokračovat':
+    'I need to process the result and possibly carry on',
+  'Čeká mě další IVF cyklus': 'Another IVF cycle is ahead of me',
+  'Výsledky jsou, řešíme, co dál': 'The results are in and we are working out what comes next',
+  'První pozitivní odběr.': 'The first positive test.',
+  'Test vyšel, čekáme na první ultrazvuk':
+    'The test was positive and we are waiting for the first ultrasound',
+  'Těhotenství skončilo. Potřebuji čas': 'The pregnancy ended. I need time',
+  'Zažila jsem ztrátu': 'I have had a loss',
+  'Čeká mě revize dělohy': 'A uterine revision is ahead of me',
+  'Nebo ji mám čerstvě za sebou': 'Or I have just had one',
+  'Přišlo krvácení s křečemi a těhotenství odešlo':
+    'Bleeding came with cramps and the pregnancy was lost',
+  'Na ultrazvuku bylo těhotenství vidět, ale zastavilo se. Krvácení samo nepřišlo':
+    'The pregnancy was visible on ultrasound but it stopped. The bleeding did not come on its own',
+  'hCG stouplo a pak kleslo. Na ultrazvuku nebylo nikdy nic vidět':
+    'The hCG rose and then fell. Nothing was ever visible on ultrasound',
+  'Těhotenství se uhnízdilo mimo dělohu, nejčastěji ve vejcovodu':
+    'The pregnancy implanted outside the uterus, most often in a fallopian tube',
+  'Každá z nich má jiný průběh, jinou léčbu i jinak dlouhou pauzu před dalším pokusem. Vyberte to, co odpovídá vaší zprávě.':
+    'Each of them has a different course, a different treatment and a different length of pause before the next attempt. Choose the one that matches your report.',
+  'Odkdy se snažíte?': 'How long have you been trying?',
+  'Kdy je odběr?': 'When is the retrieval?',
+  'Kdy byl odběr?': 'When was the retrieval?',
+  'Kdy jste začala se stimulací?': 'When did you start the stimulation?',
+  'Kdy jste měla odběr hCG?': 'When did you have the hCG test?',
+  'Kdy jste se to dozvěděla?': 'When did you find out?',
+  'Kdy vyšetřování začalo nebo začne?': 'When did the investigation start, or when will it?',
+  'Kdy jste s vyšetřením začali?': 'When did you start the testing?',
+  'Stačí přibližně.': 'Roughly is enough.',
+  'Stačí přibližně. Nic se od toho nepočítá dopředu.':
+    'Roughly is enough. Nothing is calculated forward from it.',
+  'Stačí přibližně. Podle toho poznáme, kdy má smysl mluvit o vyšetření.':
+    'Roughly is enough. It tells us when it makes sense to talk about testing.',
+  'Přesný termín vám dala klinika.': 'Your clinic gave you the exact date.',
+  'Od toho dne se počítá kultivace.': 'The culture is counted from that day.',
+  'Od toho dne se počítá, kolikátý den se embrya kultivují.':
+    'That day is where the count of embryo culture days begins.',
+  'Podle toho víme, kolikátý den po transferu dnes je.':
+    'That tells us which day after the transfer today is.',
+  'První den injekcí. Podle toho počítáme, kolikátý je dnes den.':
+    'The first day of injections. That is how we count which day today is.',
+  'Den ultrazvuku, na kterém to zaznělo. Stačí přibližně.':
+    'The day of the ultrasound where it was said. Roughly is enough.',
+  'devátý den stimulace': 'day nine of stimulation',
+  'šestý den po transferu': 'day six after the transfer',
+  'den, kdy nezbylo žádné embryo': 'the day no embryo was left',
+  'Co pro vás v téhle fázi máme': 'What we have for you in this stage',
+  'A dál: články, práce s hlavou, pohyb, doplňky, rady pro partnera, otázky pro lékaře a slovníček pojmů téhle fáze.':
+    'And more: articles, work with your mind, movement, supplements, tips for your partner, questions for the doctor and a glossary for this stage.',
+  'Co už o své cestě víte?': 'What do you already know about your journey?',
+  'Vyberte, co se vás týká. Může toho být víc. Kombinovaný faktor je v IVF spíš pravidlo než výjimka.':
+    'Choose what applies to you. There may be several. A combined factor is the rule rather than the exception in IVF.',
+  'Nemáme žádnou diagnózu': 'We have no diagnosis',
+  'Co se vás týká?': 'What applies to you?',
+  'Vyberte, co platí. Podle toho se mění obsah uvnitř fáze. Po císaři se šestinedělí čte jinak než po přirozeném porodu.':
+    'Choose what is true. The content inside the stage follows it. After a caesarean the postpartum period reads differently than after a vaginal birth.',
+  'Nic z toho není povinné a nikam se to neodesílá. Zůstává to ve vašem prohlížeči.':
+    'None of this is required and none of it is sent anywhere. It stays in your browser.',
+  'Podle výběru se vám nabízí obsah, který se vás týká. Léčbu z toho aplikace neodvozuje a kdykoli to změníte v Profilu.':
+    'Your selection decides which content is offered to you. The app does not derive any treatment from it, and you can change it at any time under Profile.',
+  'Ve vaší fázi zatím není co upřesňovat. Můžete pokračovat.':
+    'There is nothing to narrow down in your stage yet. You can continue.',
+  'Jak vám máme říkat?': 'What should we call you?',
+  'Jenom kvůli oslovení na domovské stránce. Klidně to nechte prázdné.':
+    'Only for the greeting on the home screen. Feel free to leave it empty.',
+  'V komunitě vystupovat anonymně': 'Appear anonymously in the community',
+  'Ostatní uvidí jen vaši fázi, nikdy jméno ani zdravotní údaje.':
+    'Others see only your stage, never your name or any health data.',
+  'Žádná registrace, žádný e-mail. Data zůstávají v tomhle prohlížeči a kdykoliv je smažete v nastavení.':
+    'No sign-up, no email. Your data stays in this browser and you can delete it at any time under Settings.',
+  'Otevřít mou aplikaci': 'Open my app',
+
+  // --- Co vás čeká v jednotlivých fázích -------------------------------------
+  'Období, kdy si ujasňujete, jestli a kdy dítě chcete. Klidně několik měsíců.':
+    'A time when you work out whether and when you want a child. It can take several months.',
+  'První praktické otázky: peníze, práce, bydlení, vztah.':
+    'The first practical questions: money, work, housing, your relationship.',
+  'Zjišťování, jak na tom jste zdravotně. Bez tlaku, jen abyste věděla.':
+    'Finding out where you stand health-wise. Without pressure, just so you know.',
+  'Dva až tři měsíce, než se změny životního stylu projeví na kvalitě vajíček a spermií.':
+    'Two to three months before lifestyle changes show in the quality of eggs and sperm.',
+  'Odběry, které si můžete nechat udělat i bez odeslání na kliniku. Štítná žláza, vitamin D, krevní obraz.':
+    'Blood tests you can have done without a referral to a clinic. Thyroid, vitamin D, full blood count.',
+  'Zvykání si na pravidelnost: spánek, jídlo, pohyb. Nudné, ale funguje to.':
+    'Getting used to regularity: sleep, food, movement. Dull, but it works.',
+  'Měsíce, které mají svůj rytmus: naděje kolem ovulace, čekání, menstruace, znovu.':
+    'Months with their own rhythm: hope around ovulation, waiting, a period, and again.',
+  'Postupné zjišťování, kdy přesně ovulujete. U většiny žen to není 14. den.':
+    'Gradually working out exactly when you ovulate. For most women it is not day 14.',
+  'Moment, kdy začnete zvažovat vyšetření. Doporučení: po roce snažení, a po půl roce, pokud je vám nad 35 let nebo máte nepravidelný cyklus.':
+    'The moment you start considering testing. The recommendation: after a year of trying, or after six months if you are over 35 or have an irregular cycle.',
+  'Odběry hormonů v konkrétních dnech cyklu. Část se dělá 2.–4. den, část kolem 21. dne.':
+    'Hormone tests on specific days of the cycle. Some on days 2 to 4, some around day 21.',
+  'Ultrazvuk s počítáním antrálních folikulů.': 'An ultrasound with an antral follicle count.',
+  'Vyšetření průchodnosti vejcovodů, HSG nebo HyFoSy. Trvá krátce, bývá nepříjemné, ne dlouho.':
+    'A test of tubal patency, HSG or HyFoSy. It is short, usually uncomfortable, but not for long.',
+  'Spermiogram u partnera, často opakovaný.': 'A semen analysis for your partner, often repeated.',
+  'Čekání na výsledky, které je většinou delší než vyšetření samo.':
+    'Waiting for results, which usually takes longer than the tests themselves.',
+  'Sledování růstu folikulů ultrazvukem, někdy s mírnou stimulací tabletami nebo nízkými dávkami injekcí.':
+    'Following follicle growth by ultrasound, sometimes with mild stimulation using tablets or low-dose injections.',
+  'Trigger. Injekce, která spustí ovulaci v naplánovaný čas.':
+    'The trigger. An injection that sets off ovulation at a planned time.',
+  'Odběr a zpracování spermatu v laboratoři v den výkonu.':
+    'Collection and preparation of the sperm in the lab on the day of the procedure.',
+  'Samotné zavedení připravených spermií do dělohy tenkým katétrem. Několik minut, bez narkózy.':
+    'The prepared sperm is placed into the uterus through a thin catheter. A few minutes, no anaesthetic.',
+  'Dvoutýdenní čekání a test.': 'A two-week wait and a test.',
+  'Vstupní konzultace, kde se určí protokol podle vašich hodnot.':
+    'A first consultation where the protocol is set from your values.',
+  'Podpisy informovaných souhlasů. Je toho hodně a stojí za to je číst.':
+    'Signing informed consent forms. There are a lot of them and they are worth reading.',
+  'Objednání léků a zaškolení, jak si píchat injekce.':
+    'Ordering the medication and being shown how to give yourself the injections.',
+  'Naplánování začátku podle cyklu. Často se čeká na menstruaci.':
+    'Planning the start around your cycle. Often you wait for your period.',
+  'Vyřízení úhrady: v Česku hradí pojišťovna určitý počet cyklů do daného věku, zbytek si platíte.':
+    'Sorting out the funding: in the Czech Republic the insurer covers a set number of cycles up to a given age, the rest you pay for yourself.',
+  'Příchod nalačno, obvykle brzy ráno. Nejíst a nepít podle pokynů kliniky.':
+    'Arriving on an empty stomach, usually early in the morning. No food or drink, as the clinic instructs.',
+  'Zákrok trvá zhruba 10–20 minut. Probíhá v analgosedaci. Spíte a nic necítíte.':
+    'The procedure takes about 10 to 20 minutes under sedation. You sleep and feel nothing.',
+  'Po probuzení odpočinek na lůžku, kontrola a informace, kolik vajíček se získalo.':
+    'After waking, rest in bed, a check and the news of how many eggs were collected.',
+  'Odpoledne doma. Křeče a špinění jsou běžné.':
+    'Home in the afternoon. Cramps and spotting are common.',
+  'Následující den telefonát z embryologie s informací, kolik vajíček bylo zralých a kolik se oplodnilo.':
+    'The next day a call from embryology telling you how many eggs were mature and how many fertilised.',
+  'Telefonát z embryologie, obvykle dopoledne.': 'A call from embryology, usually in the morning.',
+  'Informace, kolik vajíček bylo zralých a u kolika došlo k oplodnění.':
+    'The news of how many eggs were mature and how many fertilised.',
+  'Vysvětlení, jestli se použilo klasické IVF nebo ICSI.':
+    'An explanation of whether conventional IVF or ICSI was used.',
+  'Termín dalšího hlášení. Většinou třetí a pátý den.':
+    'When the next update comes. Usually day three and day five.',
+  'Hlášení z embryologie, obvykle třetí a pátý den kultivace.':
+    'Updates from embryology, usually on day three and day five of culture.',
+  'Popis embryí podle počtu buněk a kvality, u blastocyst podle Gardnerovy klasifikace.':
+    'A description of the embryos by cell number and quality, and for blastocysts by the Gardner grading.',
+  'Rozhodnutí, jestli se transfer udělá pátý den, nebo se embrya zmrazí.':
+    'The decision whether to transfer on day five or to freeze the embryos.',
+  'Postupné ubývání embryí. Do pátého dne se dostane jen část z nich.':
+    'The embryos gradually dwindle. Only some of them reach day five.',
+  'Příchod obvykle s plným močovým měchýřem, aby byla děloha na ultrazvuku lépe vidět.':
+    'You usually arrive with a full bladder so the uterus shows better on ultrasound.',
+  'Zavedení embrya tenkým katétrem pod ultrazvukovou kontrolou. Několik minut, bez narkózy.':
+    'The embryo is placed through a thin catheter under ultrasound guidance. A few minutes, no anaesthetic.',
+  'Krátký odpočinek a odchod domů.': 'A short rest and then home.',
+  'Pokračování v podpoře luteální fáze. Obvykle progesteron.':
+    'Luteal phase support continues. Usually progesterone.',
+  'Začátek dvoutýdenního čekání.': 'The start of the two-week wait.',
+  'Deset až čtrnáct dní do odběru hCG.': 'Ten to fourteen days until the hCG test.',
+  'Příznaky, které nic neznamenají: napětí v prsou, křeče, únava, nadýmání. Dělá je progesteron stejně jako těhotenství.':
+    'Symptoms that mean nothing: tender breasts, cramps, fatigue, bloating. Progesterone causes them just as pregnancy does.',
+  'Implantační špinění u části žen, obvykle 6.–10. den po transferu. Jeho nepřítomnost nic neznamená.':
+    'Implantation spotting in some women, usually days 6 to 10 after the transfer. Its absence means nothing.',
+  'Silné nutkání testovat doma dřív, než má smysl.':
+    'A strong urge to test at home before it makes any sense.',
+  'Odběr krve a čekání na číslo, které přijde týž nebo následující den.':
+    'A blood test and waiting for a number that comes the same day or the next.',
+  'Opakovaný odběr hCG za dva až tři dny. Sleduje se zdvojovací čas, ne jedno číslo.':
+    'A repeat hCG test in two or three days. What is watched is the doubling time, not a single number.',
+  'První ultrazvuk zhruba v 6.–7. týdnu. Potvrzení, že těhotenství je v děloze a má srdeční akci.':
+    'The first ultrasound at around week 6 to 7. Confirmation that the pregnancy is in the uterus and has a heartbeat.',
+  'Pokračování v podpoře luteální fáze, často až do 10.–12. týdne.':
+    'Luteal phase support continues, often until week 10 to 12.',
+  'Období, kdy se radost mísí se strachem víc, než jste čekala.':
+    'A time when joy mixes with fear more than you expected.',
+  'Kontrolní konzultace, kde se probere, co v cyklu proběhlo a co změnit.':
+    'A follow-up consultation that goes through what happened in the cycle and what to change.',
+  'Návrat menstruace, obvykle do dvou týdnů po vysazení podpory.':
+    'Your period returns, usually within two weeks of stopping the support.',
+  'Rozhodnutí o dalším postupu: kryoembryotransfer, nová stimulace, doplňující vyšetření.':
+    'A decision about what comes next: a frozen transfer, a new stimulation, further tests.',
+  'Období, kdy se vrací normální život. A je to divné.':
+    'A time when normal life comes back. And it feels strange.',
+  'Podrobnější vyšetření, která se po prvním nebo druhém cyklu ještě nedělají.':
+    'More detailed tests that are not yet done after a first or second cycle.',
+  'Hysteroskopie. Pohled do dutiny děložní na srůsty, polypy nebo přepážku.':
+    'Hysteroscopy. A look inside the uterine cavity for adhesions, polyps or a septum.',
+  'Imunologické a genetické vyšetření obou partnerů, pokud je indikováno.':
+    'Immunological and genetic testing of both partners, if indicated.',
+  'Diskuze o PGT-A, o darovaných gametách nebo o změně kliniky.':
+    'A discussion about PGT-A, donor gametes or changing clinic.',
+  'Rozhodování, které je čím dál těžší, protože už znáte cenu každé varianty.':
+    'Decisions that get harder, because by now you know the price of every option.',
+  'Klesající hodnoty hCG při kontrolních odběrech.': 'Falling hCG values at the follow-up tests.',
+  'Krvácení, které přichází obvykle krátce po tom, často jako silnější menstruace.':
+    'Bleeding that usually comes soon after, often like a heavier period.',
+  'Pokyn k vysazení podpory luteální fáze. Vždycky až od lékaře.':
+    'Instructions to stop the luteal phase support. Always from your doctor, never before.',
+  'Návrat cyklu obvykle do čtyř až šesti týdnů.':
+    'Your cycle usually returns within four to six weeks.',
+  'Sledování hodnot hCG a opakované ultrazvuky.':
+    'Monitoring of hCG values and repeat ultrasounds.',
+  'Léčba metotrexátem, nebo operace. Nejčastěji laparoskopicky. O způsobu rozhoduje stav a nález.':
+    'Treatment with methotrexate, or surgery. Most often laparoscopic. Your condition and the findings decide which.',
+  'Po metotrexátu dlouhé sledování hodnot až k nule a doporučená pauza před dalším těhotenstvím.':
+    'After methotrexate, a long follow-up of the values down to zero and a recommended pause before the next pregnancy.',
+  'Kontrola stavu vejcovodu a informace, co to znamená pro další pokusy.':
+    'A check on the state of the fallopian tube and what that means for further attempts.',
+  'Potvrzení nálezu druhým ultrazvukem, obvykle s odstupem několika dní.':
+    'Confirmation of the finding by a second ultrasound, usually a few days later.',
+  'Volba mezi vyčkáváním, medikamentózním ukončením a revizí dutiny děložní.':
+    'A choice between waiting, medical management and a uterine revision.',
+  'Nabídka genetického vyšetření tkáně, pokud to situace umožňuje.':
+    'The offer of genetic testing of the tissue, if the situation allows.',
+  'Kontrola za několik týdnů a návrat cyklu obvykle do čtyř až šesti týdnů.':
+    'A check-up in a few weeks, and your cycle usually back within four to six weeks.',
+  'Krvácení a křeče, které mohou trvat několik dní.':
+    'Bleeding and cramps that can last several days.',
+  'Kontrola, jestli dutina děložní zůstala prázdná. Někdy stačí sledování, jindy je potřeba revize.':
+    'A check that the uterine cavity is empty. Sometimes monitoring is enough, sometimes a revision is needed.',
+  'Kontrolní odběry hCG až k nule, pokud to lékař požaduje.':
+    'Follow-up hCG tests down to zero, if your doctor asks for them.',
+  'Návrat menstruace obvykle za čtyři až šest týdnů.':
+    'Your period usually returns in four to six weeks.',
+  'Příchod nalačno a krátký zákrok v celkové anestezii.':
+    'Arriving on an empty stomach and a short procedure under general anaesthetic.',
+  'Odchod domů obvykle týž den, někdy po noci na oddělení.':
+    'Home usually the same day, sometimes after a night on the ward.',
+  'Krvácení několik dní, slabší než při potratu.':
+    'Bleeding for a few days, lighter than with a miscarriage.',
+  'Kontrola za dva až tři týdny.': 'A check-up in two or three weeks.',
+  'Odběr krve obou partnerů na karyotyp.': 'A blood test from both partners for a karyotype.',
+  'Konzultace s klinickým genetikem, která bývá delší než běžný termín.':
+    'A consultation with a clinical geneticist, usually longer than an ordinary appointment.',
+  'Čekání na výsledky. Týdny, ne dny.': 'Waiting for results. Weeks, not days.',
+  'Vysvětlení, co nález znamená pro další pokusy a jestli má smysl PGT.':
+    'An explanation of what the finding means for further attempts and whether PGT makes sense.',
+  'Cyklus ještě nezačal, ale rozhoduje se tu hodně: protokol, klinika, peníze a načasování.':
+    'The cycle has not started yet, but a lot is decided here: the protocol, the clinic, the money and the timing.',
+  'Snažíte se přirozeně. Klíčová je znalost vlastního cyklu, ne počet pokusů.':
+    'You are trying naturally. What matters is knowing your own cycle, not the number of attempts.',
+  'Dvoutýdenní čekání. Nejtěžší část celé léčby. A jediná, kde není co dělat.':
+    'The two-week wait. The hardest part of the whole treatment. And the only one where there is nothing to do.',
+  'Test vyšel. Sleduje se, jestli hodnota roste tak, jak má, a čeká se na první ultrazvuk. Pak vás centrum předá gynekologovi.':
+    'The test was positive. Now it is watched whether the value rises as it should, and the first ultrasound is awaited. Then the centre hands you over to your gynaecologist.',
+
+  // --- souhrny fází ----------------------------------------------------------
+  'Rozhodnutí se teprve rodí. Není co dohánět. Je čas se ptát a zjišťovat.':
+    'The decision is still taking shape. There is nothing to catch up on. It is time to ask and to find out.',
+  'Připravujete tělo. Většina změn se projeví za dva až tři měsíce. Vajíčko i spermie tak dlouho dozrávají.':
+    'You are preparing your body. Most changes show after two or three months. That is how long eggs and sperm take to mature.',
+  'Inseminace. Nejjednodušší asistovaná metoda. Zákrok trvá pár minut a bolí zhruba jako stěr.':
+    'Insemination. The simplest assisted method. The procedure takes a few minutes and hurts about as much as a smear test.',
+  'Hledáte příčinu. Cílem není verdikt, ale plán. A většina nálezů má řešení.':
+    'You are looking for the cause. The goal is not a verdict but a plan. And most findings have a solution.',
+  'Den odběru. Krátký zákrok v analgosedaci, po kterém jde většina žen domů do několika hodin.':
+    'The day of the retrieval. A short procedure under sedation, after which most women go home within a few hours.',
+  'Den po odběru. V laboratoři se rozhoduje, kolik vajíček se oplodnilo. A vy u toho nemůžete nic ovlivnit.':
+    'The day after the retrieval. In the lab it is decided how many eggs fertilised. And there is nothing you can do about it.',
+  'Embrya rostou v laboratoři. Každý den se jejich počet může zmenšit. A je to normální průběh, ne chyba.':
+    'The embryos are growing in the lab. Their number can shrink every day. That is a normal course, not a failure.',
+  'Den transferu. Zákrok trvá pár minut, nebolí a nevyžaduje narkózu. A přesto je to den, na který se čekalo roky.':
+    'The day of the transfer. The procedure takes a few minutes, does not hurt and needs no anaesthetic. And still it is the day that was waited for, for years.',
+  'Mezidobí. Čas na vyhodnocení, na tělo a na rozhodnutí, jak dál, ne ztracený měsíc.':
+    'The time in between. Time to take stock, time for your body and for deciding what comes next, not a lost month.',
+  'Opakované neúspěchy. Tady se mění otázka: už ne „zkusíme to znovu“, ale „co uděláme jinak“.':
+    'Repeated failures. Here the question changes: no longer „shall we try again“ but „what shall we do differently“.',
+  'Biochemické těhotenství. Pozitivní test, který nepokračoval. Byla to ztráta, i když ji nikdo neviděl.':
+    'A biochemical pregnancy. A positive test that did not go on. It was a loss, even though nobody saw it.',
+  'Mimoděložní těhotenství. Je to akutní zdravotní stav a zároveň ztráta. Obojí najednou.':
+    'An ectopic pregnancy. It is an acute medical emergency and a loss at the same time. Both at once.',
+  'Zamlklé těhotenství. Tělo o ztrátě ještě neví. A to je na tom to nejtěžší.':
+    'A missed miscarriage. Your body does not know about the loss yet. And that is the hardest part of it.',
+  'Potrat. Nejčastější komplikace raného těhotenství. A jedna z nejosamělejších.':
+    'Miscarriage. The most common complication of early pregnancy. And one of the loneliest.',
+  'Revize dutiny děložní. Krátký zákrok v narkóze, po kterém se většina žen vrací domů týž den.':
+    'A uterine revision. A short procedure under anaesthetic, after which most women go home the same day.',
+  'Genetické vyšetření. Hledá se, jestli za opakovanými ztrátami nebo neúspěchy nestojí něco, co se dá zohlednit.':
+    'Genetic testing. It looks for whether something behind repeated losses or failures can be taken into account.',
 }
