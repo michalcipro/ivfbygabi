@@ -1461,4 +1461,294 @@ export const DE: Record<string, string> = {
   'kdy volat lékaře': 'wann die Praxis anrufen',
   'Co ukázat tomu, kdo je vedle vás. Deník zůstává soukromý.':
     'Was Sie der Person an Ihrer Seite zeigen. Das Tagebuch bleibt privat.',
+
+  // --- Nastavení a Záloha ----------------------------------------------------
+  'Vy': 'Sie',
+  'Teď:': 'Jetzt:',
+  'Fáze': 'Phase',
+  'Jméno': 'Name',
+  'Tmavý': 'Dunkel',
+  'Vzhled': 'Aussehen',
+  'Světlý': 'Hell',
+  'Hodnot': 'Werte',
+  'Dopisů': 'Briefe',
+  'Situace': 'Situation',
+  'Klinika': 'Klinik',
+  'Vaše data': 'Ihre Daten',
+  'Sestaveno': 'Erstellt',
+  'U transferu': 'Beim Transfer',
+  'Klíčová data': 'Schlüsseldaten',
+  'Nastavit kód': 'Code festlegen',
+  'Podle systému': 'Wie das System',
+  'Vaše nastavení': 'Ihre Einstellungen',
+  'Co se vás týká': 'Was auf Sie zutrifft',
+  'Zámek aplikace': 'App-Sperre',
+  'Smazat všechno': 'Alles löschen',
+  'Verze aplikace': 'App-Version',
+  'Nastavit u léků': 'Bei den Medikamenten festlegen',
+  'Zahrnout finance': 'Kosten einbeziehen',
+  'Vytvořit přehled': 'Übersicht erstellen',
+  'Uloženého obsahu': 'Gespeicherte Inhalte',
+  '– odvodit z dat –': '– aus den Daten ableiten –',
+  'Nebo zadejte ručně': 'Oder von Hand eintragen',
+  'Vaše data zůstanou': 'Ihre Daten bleiben',
+  'V komunitě anonymně': 'In der Community anonym',
+  'Přehled mé IVF cesty': 'Übersicht über meinen IVF-Weg',
+  'Kdy začíná stimulace?': 'Wann beginnt die Stimulation?',
+  'Zahrnout osobní deník': 'Persönliches Tagebuch einbeziehen',
+  'Zaktualizovat aplikaci': 'App aktualisieren',
+  'Zapomenout naučené zájmy': 'Gelernte Interessen vergessen',
+  'Nepovinné. Přidá skupinu v komunitě': 'Optional. Fügt eine Gruppe in der Community hinzu',
+  'Součty za cesty i za jednotlivé cykly': 'Summen für den ganzen Weg und für einzelne Zyklen',
+  'Všechno se dá kdykoliv změnit. Obsah se hned přepočítá.':
+    'Alles lässt sich jederzeit ändern. Die Inhalte werden sofort neu berechnet.',
+  'Výchozí je nezahrnovat. Zápisy z deníku jsou to nejosobnější, co tu je.':
+    'Standardmäßig wird es nicht einbezogen. Tagebucheinträge sind das Persönlichste hier.',
+  'Aplikace se neptá na nic. Kdo vezme odemčený telefon, uvidí celý deník.':
+    'Die App fragt nach nichts. Wer ein entsperrtes Handy in die Hand nimmt, sieht das ganze Tagebuch.',
+  'Fáze se odvozuje i sama z dat, když zadáte datum porodu, aplikace se posune, i kdybyste to tu nechala.':
+    'Die Phase wird auch selbst aus den Daten abgeleitet. Wenn Sie ein Geburtsdatum eintragen, geht die App weiter, auch wenn Sie es hier so lassen.',
+  'Všechno, co jste zapsala (profil, deník, hodnoty, dopisy) je uložené jen v tomhle prohlížeči. Nikam se to neodesílá.':
+    'Alles, was Sie erfasst haben (Profil, Tagebuch, Werte, Briefe), ist nur in diesem Browser gespeichert. Es wird nirgendwohin gesendet.',
+  '· Dnes je #. den stimulace': '· Heute ist der #. Tag der Stimulation',
+  'Teď vystupujete jako {}': 'Sie erscheinen derzeit als {}',
+  ': deník, cykly, embrya, fotky ani nastavení se nemažou.':
+    ': Tagebuch, Zyklen, Embryonen, Fotos und Einstellungen werden nicht gelöscht.',
+  'Stáhne aplikaci znovu ze serveru. Trvá to pár vteřin a je při tom potřeba připojení.':
+    'Lädt die App erneut vom Server. Das dauert ein paar Sekunden und braucht eine Verbindung.',
+  'Skládají se sama z vašich cyklů. Nic tu nevyplňujte podruhé: co je zapsané v cyklu, je zapsané i tady.':
+    'Sie entstehen selbst aus Ihren Zyklen. Füllen Sie hier nichts doppelt aus: Was im Zyklus erfasst ist, ist auch hier erfasst.',
+  'Aplikaci BlooMia vytvořila Gabriela, která si sama prošla IVF. Název vznikl spojením slov Bloom a Mia.':
+    'BlooMia wurde von Gabriela entwickelt, die selbst eine IVF durchgemacht hat. Der Name entstand aus der Verbindung der Wörter Bloom und Mia.',
+  'Zatím tu nic není, protože nemáte zapsaný žádný cyklus. Až si ho založíte, klíčová data se objeví sama.':
+    'Hier ist noch nichts, weil Sie keinen Zyklus erfasst haben. Sobald Sie einen anlegen, erscheinen die Schlüsseldaten von selbst.',
+  'Připomínky léků, injekcí, kontrol a odběrů se ukazují na obrazovce Dnes a v kalendáři. U každého léku se dá zvlášť vypnout v Lécích.':
+    'Erinnerungen für Medikamente, Spritzen, Kontrollen und Entnahmen erscheinen auf der Seite Heute und im Kalender. Jedes Medikament kann unter Medikamente einzeln abgeschaltet werden.',
+  '. Aktualizuje se sama, když je připojení. Když hlásíte chybu, přiložte tenhle údaj: podle něj se pozná, jestli ji nová verze už neopravila.':
+    '. Sie aktualisiert sich selbst, wenn eine Verbindung besteht. Wenn Sie einen Fehler melden, geben Sie diese Angabe mit an: Daran erkennt man, ob eine neuere Version ihn schon behoben hat.',
+  'Otevře se v novém okně a nabídne tisk. V dialogu tisku vyberte Uložit jako PDF. Nikam se nic neodesílá, dokument vzniká přímo ve vašem zařízení.':
+    'Es öffnet sich in einem neuen Fenster und bietet den Druck an. Wählen Sie im Druckdialog Als PDF speichern. Nichts wird irgendwohin gesendet, das Dokument entsteht direkt auf Ihrem Gerät.',
+  'Záloha uloží všechno do jednoho souboru a stejným souborem se to dá načíst zpátky, i v jiném telefonu. Není to dokument na čtení, na to je přehled výš.':
+    'Eine Sicherung speichert alles in einer Datei, und mit derselben Datei lässt sich alles zurückladen, auch auf einem anderen Handy. Es ist kein Dokument zum Lesen, dafür ist die Übersicht oben.',
+  'Kód chrání před pohledem přes rameno, ne před tím, kdo umí otevřít vývojářské nástroje prohlížeče. Data se jím nešifrují, takže zapomenutý kód neznamená ztrátu deníku.':
+    'Der Code schützt vor einem Blick über die Schulter, nicht vor jemandem, der die Entwicklerwerkzeuge des Browsers öffnen kann. Er verschlüsselt Ihre Daten nicht, ein vergessener Code bedeutet also keinen Verlust des Tagebuchs.',
+  'Čitelný dokument, ne technický export. Profil, každý cyklus, embrya, transfery a hCG za sebou tak, jak se to odehrálo. Dá se vytisknout, uložit jako PDF nebo přinést na první konzultaci jinam.':
+    'Ein lesbares Dokument, kein technischer Export. Profil, jeder Zyklus, Embryonen, Transfers und hCG nacheinander, so wie es geschehen ist. Es lässt sich drucken, als PDF speichern oder zu einer Erstberatung woanders mitnehmen.',
+  'Systémová upozornění mimo aplikaci zatím neposíláme. Slibovat, že vás aplikace v půl deváté klepne po rameni, a pak to neudělat, je u léku, který se píchá na minutu přesně, horší než nic neslibovat.':
+    'Systembenachrichtigungen außerhalb der App senden wir noch nicht. Zu versprechen, dass die App Ihnen um halb neun auf die Schulter tippt, und es dann nicht zu tun, ist bei einem Medikament, das auf die Minute gespritzt wird, schlimmer als nichts zu versprechen.',
+  'nebo': 'oder',
+  'Záloha': 'Sicherung',
+  'Obnova': 'Wiederherstellung',
+  'Zabráno': 'Belegt',
+  'Úložiště': 'Speicher',
+  'Z toho fotky': 'Davon Fotos',
+  'Uložit zálohu': 'Sicherung speichern',
+  'Doporučený krok': 'Empfohlener Schritt',
+  'Přidat na plochu': 'Zum Startbildschirm hinzufügen',
+  'Kde vaše data jsou': 'Wo Ihre Daten sind',
+  'Nainstalovat aplikaci': 'App installieren',
+  'Je v ní všechno vaše:': 'Darin ist alles von Ihnen:',
+  'Načtěte data ze zálohy': 'Daten aus einer Sicherung laden',
+  'Co v záloze je a co ne': 'Was in der Sicherung ist und was nicht',
+  'Uložit a zamknout heslem': 'Speichern und mit Passwort sperren',
+  'Vybrat soubor se zálohou': 'Sicherungsdatei auswählen',
+  'Požádat o trvalé uložení': 'Dauerhafte Speicherung anfordern',
+  'Není v ní obsah aplikace.': 'Die Inhalte der App sind nicht enthalten.',
+  'Uložte si všechno do souboru': 'Speichern Sie alles in eine Datei',
+  'Přidejte si aplikaci BlooMia na plochu': 'Fügen Sie BlooMia zum Startbildschirm hinzu',
+  'Prohlížeč data nedrží natrvalo. Při nedostatku místa je může uvolnit.':
+    'Der Browser behält Daten nicht dauerhaft. Bei Platzmangel kann er sie freigeben.',
+  'Všechno, co jste zapsala, je jen ve vašem zařízení. Tady se to dá uložit stranou a zase načíst zpátky.':
+    'Alles, was Sie erfasst haben, ist nur auf Ihrem Gerät. Hier lässt es sich beiseitelegen und wieder zurückladen.',
+  'V nabídce prohlížeče najdete položku': 'Im Menü des Browsers finden Sie den Punkt',
+  'Vyberte soubor, který vám aplikace dřív uložila. Název začíná na':
+    'Wählen Sie die Datei, die die App früher für Sie gespeichert hat. Der Name beginnt mit',
+  '. BlooMia se pak otevírá ve vlastním okně, funguje i bez signálu a data má chráněnější.':
+    '. BlooMia öffnet sich dann in einem eigenen Fenster, funktioniert auch ohne Verbindung und schützt Ihre Daten besser.',
+  '. Načíst jde i záloha ze staršího telefonu nebo z jiného prohlížeče, tak se data přenášejí.':
+    '. Auch eine Sicherung von einem älteren Handy oder aus einem anderen Browser lässt sich laden, so werden Daten übertragen.',
+  'Rozhodnutí je na prohlížeči a některé se neptají, jen se rozhodnou podle toho, jak často aplikaci otvíráte.':
+    'Die Entscheidung liegt beim Browser, und manche fragen nicht, sondern entscheiden danach, wie oft Sie die App öffnen.',
+  'profil, deník, otázky pro lékaře, cykly, embrya, transfery, hodnoty z odběrů, léky, výdaje, dokumenty, dopisy i fotky.':
+    'Profil, Tagebuch, Fragen für die Praxis, Zyklen, Embryonen, Transfers, Blutwerte, Medikamente, Ausgaben, Unterlagen, Briefe und Fotos.',
+  'Články, checklisty a slovník se nezálohují, protože jsou součástí aplikace samotné. Soubor je tak menší a obsahuje jen to, co je skutečně vaše.':
+    'Artikel, Checklisten und das Glossar werden nicht gesichert, weil sie Teil der App selbst sind. So bleibt die Datei kleiner und enthält nur, was wirklich Ihnen gehört.',
+  'Soubor není šifrovaný. Je to obyčejný text, který si můžete otevřít a přečíst. Zacházejte s ním jako se zdravotní dokumentací, protože to je: neposílejte ho nikam, kam byste nedala výsledky z kliniky.':
+    'Die Datei ist nicht verschlüsselt. Es ist einfacher Text, den Sie öffnen und lesen können. Behandeln Sie sie wie medizinische Unterlagen, denn das ist sie: Senden Sie sie nirgendwohin, wohin Sie keine Befunde aus der Klinik senden würden.',
+  'Vznikne jeden soubor se vším: profil, deník, cykly, embrya, transfery, hodnoty, léky, dokumenty i fotky. Na telefonu vám aplikace nabídne, kam ho uložit, třeba do Souborů, na iCloud nebo si ho pošlete mailem. Nikam se neodesílá sám.':
+    'Es entsteht eine Datei mit allem: Profil, Tagebuch, Zyklen, Embryonen, Transfers, Werte, Medikamente, Unterlagen und Fotos. Auf dem Handy bietet die App an, wohin sie gespeichert wird, zum Beispiel in Dateien, in die iCloud, oder Sie schicken sie sich per Mail. Von selbst wird sie nirgendwohin gesendet.',
+  'Soubor je čitelný text a obsahuje úplně všechno, včetně fotek. Složka Stažené se navíc na telefonu často sama synchronizuje do cloudu. Když zálohu zamknete heslem, neotevře ji nikdo, ani vy: heslo se nikam neukládá a nedá se obnovit.':
+    'Die Datei ist lesbarer Text und enthält absolut alles, auch Fotos. Auf dem Handy synchronisiert sich der Ordner Downloads außerdem oft selbst in die Cloud. Wenn Sie die Sicherung mit einem Passwort sperren, kann sie niemand öffnen, auch Sie nicht: Das Passwort wird nirgendwo gespeichert und lässt sich nicht wiederherstellen.',
+  'Jen v tomhle prohlížeči, v tomhle zařízení. Nikam se neodesílají, takže je odsud nikdo jiný nepřečte. Zároveň to znamená, že smazaná historie prohlížeče, přeinstalovaný systém nebo nový telefon je vezmou s sebou. Záloha je jediná cesta, jak je přenést jinam.':
+    'Nur in diesem Browser, auf diesem Gerät. Es wird nirgendwohin gesendet, also kann es von hier niemand sonst lesen. Das heißt aber auch: Ein gelöschter Browserverlauf, ein neu installiertes System oder ein neues Handy nehmen es mit. Eine Sicherung ist der einzige Weg, es woandershin zu bringen.',
+
+  // --- Diagnózy a Průvodce ---------------------------------------------------
+  'Sama': 'Alleinstehend',
+  'Všechny': 'Alle',
+  'Dvojčata': 'Zwillinge',
+  'Imunologie': 'Immunologie',
+  'Štítná žláza': 'Schilddrüse',
+  'Darované embryo': 'Gespendetes Embryo',
+  'Vysvětlené pojmy': 'Erklärte Begriffe',
+  'Darovaná vajíčka': 'Spendereizellen',
+  'Darované spermie': 'Spendersamen',
+  'Diagnózy a situace': 'Diagnosen und Situationen',
+  'Náhradní mateřství': 'Leihmutterschaft',
+  'Sekundární neplodnost': 'Sekundäre Unfruchtbarkeit',
+  'Kryoembryotransfer (KET)': 'Kryoembryotransfer (KET)',
+  'Opakované neúspěchy léčby.': 'Wiederholte Behandlungsfehlschläge.',
+  'Cesta k dítěti bez partnera.': 'Der Weg zum Kind ohne Partner.',
+  'Dvojčata. Dvě miminka najednou.': 'Zwillinge. Zwei Babys auf einmal.',
+  'Těhotenství nebo snažení po ztrátě.': 'Schwangerschaft oder neues Versuchen nach einem Verlust.',
+  'Darované spermie od anonymního dárce.': 'Spendersamen von einem anonymen Spender.',
+  'Stejnopohlavní pár na cestě k dítěti.': 'Ein gleichgeschlechtliches Paar auf dem Weg zum Kind.',
+  'Náhradní mateřství. Těhotenství donosí jiná žena.':
+    'Leihmutterschaft. Eine andere Frau trägt die Schwangerschaft aus.',
+  'Adenomyóza. Sliznice prorůstá do svaloviny děložní stěny.':
+    'Adenomyose. Die Schleimhaut wächst in die Muskulatur der Gebärmutterwand.',
+  'ICSI. Vpravení jedné spermie přímo do vajíčka mikropipetou.':
+    'ICSI. Ein Spermium wird mit einer Mikropipette direkt in die Eizelle gebracht.',
+  'Kryoembryotransfer (KET). Transfer dříve zmraženého embrya.':
+    'Kryoembryotransfer (KET). Transfer eines zuvor eingefrorenen Embryos.',
+  'Nevysvětlená neplodnost. Kompletní vyšetření nenašlo příčinu.':
+    'Unerklärte Unfruchtbarkeit. Eine vollständige Untersuchung fand keine Ursache.',
+  'Trombofilie. Vrozený nebo získaný sklon ke zvýšené srážlivosti krve.':
+    'Thrombophilie. Eine angeborene oder erworbene Neigung zu erhöhter Blutgerinnung.',
+  'Darované embryo. Embryo darované jiným párem po ukončení jejich léčby.':
+    'Gespendetes Embryo. Ein Embryo, das ein anderes Paar nach Abschluss seiner Behandlung gespendet hat.',
+  'Sekundární neplodnost. Nedaří se otěhotnět, přestože už jedno dítě máte.':
+    'Sekundäre Unfruchtbarkeit. Es klappt nicht mit einer Schwangerschaft, obwohl Sie schon ein Kind haben.',
+  'PGT. Genetické vyšetření embrya před transferem. Nejčastěji PGT-A na počet chromozomů.':
+    'PGT. Genetische Untersuchung des Embryos vor dem Transfer. Am häufigsten PGT-A für die Chromosomenzahl.',
+  'Darovaná vajíčka. Vajíčka od anonymní dárkyně, oplodněná spermiemi partnera nebo dárce.':
+    'Spendereizellen. Eizellen einer anonymen Spenderin, befruchtet mit dem Samen des Partners oder eines Spenders.',
+  'Mužský faktor. Odchylka v počtu, pohyblivosti nebo tvaru spermií, případně v jejich DNA.':
+    'Männlicher Faktor. Eine Abweichung in Zahl, Beweglichkeit oder Form der Spermien oder in deren DNA.',
+  'Imunologické vyšetření. Hledá, jestli za opakovanými neúspěchy nestojí imunitní procesy.':
+    'Immunologische Untersuchung. Sie sucht, ob hinter wiederholten Fehlschlägen Immunprozesse stehen.',
+  'Neprůchodné nebo poškozené vejcovody. Vajíčko se nemůže potkat se spermií přirozenou cestou.':
+    'Verschlossene oder geschädigte Eileiter. Die Eizelle kann dem Spermium nicht auf natürlichem Weg begegnen.',
+  'Onemocnění štítné žlázy. Nejčastěji snížená funkce nebo autoimunitní zánět (pozitivní anti-TPO).':
+    'Schilddrüsenerkrankung. Am häufigsten eine Unterfunktion oder eine Autoimmunentzündung (positive Anti-TPO).',
+  'Každá nálepka, kterou v aplikaci uvidíte, má vysvětlení: co to je, co to znamená pro cestu a na co se zeptat.':
+    'Jede Bezeichnung, die Sie in der App sehen, hat eine Erklärung: was sie ist, was sie für den Weg bedeutet und wonach zu fragen ist.',
+  'Endometrióza. Tkáň podobná děložní sliznici roste mimo dělohu. Na vaječnících, pobřišnici nebo jinde v pánvi.':
+    'Endometriose. Gewebe ähnlich der Gebärmutterschleimhaut wächst außerhalb der Gebärmutter. An den Eierstöcken, am Bauchfell oder anderswo im Becken.',
+  'Nízké AMH. Hormon, který orientačně vypovídá o ovariální rezervě. Zhruba o tom, kolik vajíček ve vaječnících zbývá.':
+    'Niedriges AMH. Ein Hormon, das grob über die Eierstockreserve Auskunft gibt. Etwa darüber, wie viele Eizellen in den Eierstöcken verbleiben.',
+  'Syndrom polycystických ovarií. Hormonální porucha, při které se ve vaječnících hromadí nedozrálé folikuly a ovulace bývá nepravidelná nebo chybí.':
+    'Polyzystisches Ovarialsyndrom. Eine hormonelle Störung, bei der sich unreife Follikel in den Eierstöcken ansammeln und die Ovulation meist unregelmäßig ist oder ausbleibt.',
+  '# pojmů': '# Begriffe',
+  'Mojí cestě': 'Meinem Weg',
+  'Pro partnera': 'Für den Partner',
+  'Číst a hledat': 'Lesen und suchen',
+  'Metody a péče': 'Methoden und Betreuung',
+  'Celá IVF cesta': 'Der ganze IVF-Weg',
+  'Diagnózy a stavy': 'Diagnosen und Zustände',
+  'Metody a postupy': 'Methoden und Verfahren',
+  'Kde jste na cestě': 'Wo Sie auf dem Weg stehen',
+  'Co může být relevantní u vás, u partnera i jinde.':
+    'Was bei Ihnen, bei Ihrem Partner und anderswo relevant sein kann.',
+  'Doporučení podle vaší fáze a toho, co vás zajímá.':
+    'Empfehlungen nach Ihrer Phase und nach Ihren Interessen.',
+  'Co dělat, když se něco stane mimo ordinační hodiny.':
+    'Was zu tun ist, wenn außerhalb der Sprechzeiten etwas passiert.',
+  'Co která diagnóza znamená, jak se vyšetřuje a na co se ptát.':
+    'Was jede Diagnose bedeutet, wie sie untersucht wird und wonach zu fragen ist.',
+  'Svoje vlastní data (cykly, embrya, výsledky, deník) najdete v **Mojí cestě**. Tady je jen to, co se dá přečíst.':
+    'Ihre eigenen Daten (Zyklen, Embryonen, Ergebnisse, Tagebuch) finden Sie unter **Mein Weg**. Hier steht nur, was sich lesen lässt.',
+  'IVF, ICSI, PGT, hatching, EmbryoGlue a další. Co je co a co o tom víme.':
+    'IVF, ICSI, PGT, Hatching, EmbryoGlue und mehr. Was was ist und was wir darüber wissen.',
+  'Fyzio, psychoterapie, akupunktura, výživa. U každé je uvedená síla důkazů.':
+    'Physiotherapie, Psychotherapie, Akupunktur, Ernährung. Bei jeder steht, wie stark die Belege sind.',
+  'Napište pojem nebo otázku. Hledá se jen v tom, co je uvnitř. Nic se negeneruje.':
+    'Geben Sie einen Begriff oder eine Frage ein. Gesucht wird nur in dem, was drin ist. Nichts wird generiert.',
+  '# materiálů. Články, checklisty, pojmy i „Co když…“.':
+    '# Materialien. Artikel, Checklisten, Begriffe und „Was, wenn…“.',
+  'Všech # fází od začátku do konce. Podívat se můžete kdykoli, i dopředu.':
+    'Alle # Phasen von Anfang bis Ende. Sie können jederzeit nachsehen, auch vorausschauend.',
+  'Tady se nic nezapisuje. Tady se čte. Co vás čeká, co která metoda znamená a na co se ptát. Nahoře je to, co patří k vaší fázi, ale prohlédnout si můžete celou cestu kdykoli.':
+    'Hier wird nichts erfasst. Hier wird gelesen. Was Sie erwartet, was jede Methode bedeutet und wonach zu fragen ist. Oben steht, was zu Ihrer Phase gehört, aber Sie können jederzeit den ganzen Weg durchsehen.',
+
+  // --- O BlooMii -------------------------------------------------------------
+  'BlooMia nevznikla jako další aplikace. Vznikla z vlastní zkušenosti.':
+    'BlooMia ist nicht als weitere App entstanden. Sie ist aus eigener Erfahrung entstanden.',
+  'Proč BlooMia vznikla': 'Warum BlooMia entstanden ist',
+  'Jsem Gabriela a sama jsem si prošla cestou IVF, která nebyla jednoduchá, rychlá ani přímočará.':
+    'Ich bin Gabriela und habe selbst einen IVF-Weg hinter mir, der nicht einfach, nicht schnell und nicht geradlinig war.',
+  'Vím, jaké je čekat na výsledky. Jaké je žít od kontroly ke kontrole. Jaké je řešit léky, odběry, embrya, transfery, peníze, práci i otázky okolí. A také vím, jaké je prožívat naději i strach zároveň.':
+    'Ich weiß, wie es ist, auf Ergebnisse zu warten. Wie es ist, von Kontrolle zu Kontrolle zu leben. Wie es ist, sich um Medikamente, Blutentnahmen, Embryonen, Transfers, Geld, Arbeit und die Fragen der anderen zu kümmern. Und ich weiß auch, wie es ist, Hoffnung und Angst gleichzeitig zu fühlen.',
+  'BlooMia vznikla proto, že jsem během své vlastní cesty hledala místo, kde by bylo všechno důležité pohromadě. Nejen medicínské informace. Ale také praktická pomoc. Prostor pro vlastní poznámky. Přehled léčby. Finance. Emoce. Podporu. A pocit, že na to člověk nemusí být úplně sám.':
+    'BlooMia gibt es, weil ich auf meinem eigenen Weg einen Ort gesucht habe, an dem alles Wichtige zusammen ist. Nicht nur medizinische Informationen. Auch praktische Hilfe. Platz für eigene Notizen. Einen Überblick über die Behandlung. Kosten. Gefühle. Unterstützung. Und das Gefühl, damit nicht völlig allein zu sein.',
+  'Proč BlooMia?': 'Warum BlooMia?',
+  'Možná vás napadne, proč se aplikace jmenuje právě BlooMia. Ten název má pro mě mnohem větší význam než jen hezké slovo.':
+    'Vielleicht fragen Sie sich, warum die App BlooMia heißt. Der Name bedeutet mir viel mehr als nur ein schönes Wort.',
+  'znamená rozkvétat. A': 'bedeutet aufblühen. Und',
+  'BlooMia tak vznikla spojením dvou slov, která pro mě představují celou jednu cestu. Cestu, na které nebylo všechno jednoduché, přímé ani samozřejmé. Cestu IVF.':
+    'BlooMia entstand aus der Verbindung zweier Wörter, die für mich einen ganzen Weg bedeuten. Einen Weg, auf dem nichts einfach, gerade oder selbstverständlich war. Den IVF-Weg.',
+  'Mia je totiž dítě, které přišlo po mé vlastní IVF cestě. Po cestě, na které byly naděje, čekání, strach, zklamání, další pokusy, transfery i chvíle, kdy člověk vůbec nevěděl, co bude dál.':
+    'Mia ist das Kind, das nach meinem eigenen IVF-Weg kam. Nach einem Weg mit Hoffnung, Warten, Angst, Enttäuschung, weiteren Versuchen, Transfers und Momenten, in denen man überhaupt nicht wusste, was als Nächstes kommt.',
+  'Nakonec se nám podařilo otěhotnět po 9. transferu ve 3. IVF cyklu. A dnes máme naši holčičku Miu.':
+    'Am Ende haben wir es nach dem 9. Transfer im 3. IVF-Zyklus geschafft, schwanger zu werden. Und heute haben wir unser Mädchen Mia.',
+  'Právě proto pro mě BlooMia znamená něco jako:':
+    'Genau deshalb bedeutet BlooMia für mich etwa das:',
+  'z cesty, na které jsme čekali na rozkvět, vznikla Mia.':
+    'Aus einem Weg, auf dem wir auf das Aufblühen gewartet haben, wurde Mia.',
+  'Bloom znamená rozkvést. Protože i cesta, která začíná nejistotou, bolestí, čekáním, zklamáním nebo ztrátou, může jednou rozkvést v něco, o čem jsme dlouho snily.':
+    'Bloom bedeutet aufblühen. Denn auch ein Weg, der mit Ungewissheit, Schmerz, Warten, Enttäuschung oder Verlust beginnt, kann eines Tages zu etwas aufblühen, wovon wir lange geträumt haben.',
+  'BlooMia vznikla pro ženy, které právě svou cestou procházejí. Ať už stojí na jejím začátku, čekají na další krok, prožívají radost, strach, zklamání, nebo začínají znovu.':
+    'BlooMia ist für Frauen entstanden, die gerade auf diesem Weg sind. Ob sie am Anfang stehen, auf den nächsten Schritt warten, Freude, Angst oder Enttäuschung erleben oder neu beginnen.',
+  'Vaše IVF cesta. Krok za krokem.': 'Ihr IVF-Weg. Schritt für Schritt.',
+  'A co BlooMia není': 'Und was BlooMia nicht ist',
+  'BlooMia není příběh o tom, že když něco uděláte správně, určitě se dočkáte stejného výsledku.':
+    'BlooMia ist keine Geschichte darüber, dass Sie, wenn Sie etwas richtig machen, sicher dasselbe Ergebnis bekommen.',
+  'Není to návod na těhotenství. Není to slib. A už vůbec ne medicínská záruka.':
+    'Es ist keine Anleitung zur Schwangerschaft. Es ist kein Versprechen. Und schon gar keine medizinische Garantie.',
+  'Je to místo, které vzniklo z mé zkušenosti s IVF a z přání vytvořit něco, co bych sama během své cesty potřebovala mít.':
+    'Es ist ein Ort, der aus meiner Erfahrung mit der IVF entstanden ist und aus dem Wunsch, etwas zu schaffen, das ich auf meinem eigenen Weg gebraucht hätte.',
+  'Místo, kde si můžete uchovat svůj příběh. Své cykly. Své transfery. Svá embrya. Své termíny. Své léky. Své otázky. Své emoce. Své naděje. I své těžké dny.':
+    'Ein Ort, an dem Sie Ihre Geschichte bewahren können. Ihre Zyklen. Ihre Transfers. Ihre Embryonen. Ihre Termine. Ihre Medikamente. Ihre Fragen. Ihre Gefühle. Ihre Hoffnungen. Und auch Ihre schweren Tage.',
+  'Protože i cesta sama má hodnotu. A každá žena má svůj vlastní příběh.':
+    'Denn auch der Weg selbst hat einen Wert. Und jede Frau hat ihre eigene Geschichte.',
+  'Jestli právě procházíte IVF, chci, abyste věděla jednu věc:':
+    'Wenn Sie gerade eine IVF durchmachen, möchte ich, dass Sie eines wissen:',
+  'Nemusíte být pořád silná.': 'Sie müssen nicht ständig stark sein.',
+  'Nemusíte být pozitivní. Nemusíte se tvářit, že to zvládáte. Nemusíte mít radost z každého kroku. A nemusíte nikomu dokazovat, že jste v pohodě.':
+    'Sie müssen nicht positiv sein. Sie müssen nicht so tun, als würden Sie es schaffen. Sie müssen sich nicht über jeden Schritt freuen. Und Sie müssen niemandem beweisen, dass es Ihnen gut geht.',
+  'Můžete doufat a zároveň se bát. Můžete mít radost a zároveň závidět někomu, komu se to podařilo dřív. Můžete být unavená. Můžete mít den, kdy už nechcete řešit vůbec nic.':
+    'Sie können hoffen und sich gleichzeitig fürchten. Sie können sich freuen und gleichzeitig jemanden beneiden, bei dem es früher geklappt hat. Sie können erschöpft sein. Sie können einen Tag haben, an dem Sie sich um nichts mehr kümmern wollen.',
+  'To všechno se do IVF vejde.': 'All das hat in einer IVF Platz.',
+  'Přeji si, aby vám aplikace BlooMia pomohla mít v tom všem alespoň o trochu větší přehled, klid a pocit, že na své cestě nejste sama.':
+    'Ich wünsche mir, dass BlooMia Ihnen hilft, in all dem etwas mehr Überblick und Ruhe zu haben und das Gefühl, auf Ihrem Weg nicht allein zu sein.',
+  'Ať už vaše cesta povede kamkoliv.': 'Wohin Ihr Weg auch führt.',
+  'Najdete mě také na Instagramu': 'Sie finden mich auch auf Instagram',
+  'Na Instagramu sdílím další informace ze světa IVF, zkušenosti, tipy, praktické věci, psychiku během léčby a také svůj vlastní příběh.':
+    'Auf Instagram teile ich mehr aus der Welt der IVF: Erfahrungen, Tipps, Praktisches, die seelische Seite der Behandlung und meine eigene Geschichte.',
+  'Pokud chcete k aplikaci BlooMia další obsah, najdete tam další informace a zkušenosti z IVF cesty.':
+    'Wenn Sie neben BlooMia mehr möchten, finden Sie dort weitere Informationen und Erfahrungen vom IVF-Weg.',
+  'Navštívit Instagram': 'Instagram besuchen',
+  'Odkaz vede mimo aplikaci, do Instagramu. BlooMia tam neposílá nic o vás ani o vaší léčbě.':
+    'Der Link führt aus der App heraus zu Instagram. BlooMia sendet dorthin nichts über Sie oder Ihre Behandlung.',
+  'Chybí vám v aplikaci BlooMia něco? Něco nefunguje? Nebo vás naopak něco potěšilo? Napište mi to, prosím. BlooMia se z toho staví dál.':
+    'Fehlt Ihnen etwas in BlooMia? Funktioniert etwas nicht? Oder hat Sie im Gegenteil etwas gefreut? Bitte schreiben Sie es mir. BlooMia wird daraus weitergebaut.',
+  'Můj příběh je moje zkušenost, ne lékařský důkaz. Neznamená, že stejný postup povede ke stejnému výsledku.':
+    'Meine Geschichte ist meine Erfahrung, kein medizinischer Beleg. Sie bedeutet nicht, dass derselbe Weg zum selben Ergebnis führt.',
+  'Každá IVF cesta je jiná': 'Jeder IVF-Weg ist anders',
+  'a o té vaší rozhoduje vaše klinika, ne tahle aplikace.':
+    'und über Ihren entscheidet Ihre Klinik, nicht diese App.',
+
+  // --- Dokumenty -------------------------------------------------------------
+  'Přidat dokument': 'Unterlage hinzufügen',
+  'Lékařská zpráva': 'Arztbericht',
+  'Embryologická zpráva': 'Embryologiebericht',
+  'Uložit dokument': 'Unterlage speichern',
+  'Zatím tu žádný dokument není': 'Hier ist noch keine Unterlage',
+  'Papíry z kliniky na jednom místě. Aplikace je neanalyzuje a nevykládá, jenom je uspořádá tak, abyste je našla, když je budete potřebovat.':
+    'Unterlagen aus der Klinik an einem Ort. Die App analysiert und deutet sie nicht, sie ordnet sie nur so, dass Sie sie finden, wenn Sie sie brauchen.',
+  'Fotku můžete přidat i později u každého dokumentu. Všechno zůstává ve vašem zařízení.':
+    'Ein Foto können Sie zu jeder Unterlage auch später hinzufügen. Alles bleibt auf Ihrem Gerät.',
+  'Většina zpráv přijde na papíře a doma se ztratí. Vyfoťte je hned na klinice. V čekárně před další konzultací je budete mít po ruce.':
+    'Die meisten Berichte kommen auf Papier und gehen zu Hause verloren. Fotografieren Sie sie gleich in der Klinik. Dann haben Sie sie im Wartezimmer vor der nächsten Beratung zur Hand.',
+  'Aplikace dokumenty **nečte a nevyhodnocuje.** Hodnoty se zapisují ručně ve Zdraví, aby v záznamu nikdy nebylo špatně přečtené číslo. Dokumenty nikam neodcházejí. Sdílet je s lékařem můžete jen vy.':
+    'Die App **liest und bewertet Ihre Unterlagen nicht.** Werte werden unter Gesundheit von Hand eingetragen, damit niemals eine falsch gelesene Zahl in den Einträgen landet. Die Unterlagen gehen nirgendwohin. Nur Sie können sie mit Ihrer Ärztin oder Ihrem Arzt teilen.',
 }

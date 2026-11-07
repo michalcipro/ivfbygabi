@@ -936,7 +936,7 @@ export function screenNastaveni(
       <div style="margin-top:1.25rem">
         <button class="switch" data-act="set-anon" aria-pressed="${p.anonymousInCommunity}">
           <span><b style="font-weight:500;font-size:.9375rem">V komunitě anonymně</b>
-          <span class="soft" style="display:block;font-size:.8125rem;margin-top:.2rem">Teď vystupujete jako ${esc(communityName(p, state))}</span></span>
+          <span class="soft" style="display:block;font-size:.8125rem;margin-top:.2rem">${esc(vzor('Teď vystupujete jako {}', communityName(p, state)))}</span></span>
           <span class="track"></span>
         </button>
       </div>

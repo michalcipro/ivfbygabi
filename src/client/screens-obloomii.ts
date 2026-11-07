@@ -52,7 +52,7 @@ export function screenOBlooMii(): string {
     `<section class="surface pad rise bloomia-story">
       <p class="eyebrow">Proč BlooMia?</p>
       <div class="prose" style="margin-top:1.2rem">
-        <p>Možná tě napadne, proč se aplikace jmenuje právě BlooMia. Ten název
+        <p>Možná vás napadne, proč se aplikace jmenuje právě BlooMia. Ten název
         má pro mě mnohem větší význam než jen hezké slovo.</p>
 
         <p><strong>Bloom</strong> znamená rozkvétat. A <strong>Mia</strong> je moje dcera.</p>
@@ -81,15 +81,15 @@ export function screenOBlooMii(): string {
       </div>
 
       <p class="bmrovnice">Bloom <i>+</i> Mia <i>=</i> <span class="bloo">Bloo</span><span class="mia">Mia</span></p>
-      <p class="bmrovnice-pod">Tvoje IVF cesta. Krok za krokem.</p>
+      <p class="bmrovnice-pod">Vaše IVF cesta. Krok za krokem.</p>
     </section>`,
 
     // -------------------------------------------------------- co to není ---
     `<section class="surface-muted pad rise">
       <p class="eyebrow">A co BlooMia není</p>
       <div class="prose" style="margin-top:.9rem">
-        <p>BlooMia není příběh o tom, že když něco uděláš správně, určitě se
-        dočkáš stejného výsledku.</p>
+        <p>BlooMia není příběh o tom, že když něco uděláte správně, určitě se
+        dočkáte stejného výsledku.</p>
 
         <p>Není to návod na těhotenství. Není to slib. A už vůbec ne medicínská
         záruka.</p>
@@ -97,7 +97,7 @@ export function screenOBlooMii(): string {
         <p>Je to místo, které vzniklo z mé zkušenosti s IVF a z přání vytvořit
         něco, co bych sama během své cesty potřebovala mít.</p>
 
-        <p>Místo, kde si můžeš uchovat svůj příběh. Své cykly. Své transfery.
+        <p>Místo, kde si můžete uchovat svůj příběh. Své cykly. Své transfery.
         Svá embrya. Své termíny. Své léky. Své otázky. Své emoce. Své naděje.
         I své těžké dny.</p>
 
@@ -157,7 +157,7 @@ export function screenOBlooMii(): string {
     `<section class="surface pad rise">
       <p class="eyebrow">Napište mi</p>
       <p class="soft" style="margin-top:.6rem;line-height:1.7;font-size:.9375rem">
-        Chybí vám v BlooMii něco? Něco nefunguje? Nebo vás naopak něco potěšilo?
+        Chybí vám v aplikaci BlooMia něco? Něco nefunguje? Nebo vás naopak něco potěšilo?
         Napište mi to, prosím. BlooMia se z toho staví dál.
       </p>
       <button class="btn btn-block" data-go="napiste-mi" style="margin-top:1.1rem">Napsat Gabriele</button>
