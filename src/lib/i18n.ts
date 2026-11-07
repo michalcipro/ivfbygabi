@@ -89,6 +89,21 @@ export function prelozit(cesky: string, kde?: string): string {
   return cesky
 }
 
+/**
+ * Přeloží větu, do které se něco doplňuje. Místo pro doplnění je `{}`.
+ *
+ * Je to pro věty, které v sobě mají hodnotu, co se nedá zastoupit
+ * mřížkou za číslo: datum vypsané slovem, název cyklu, jméno. Klíčem je
+ * česká věta s prázdnými místy, ne hotová věta, protože hotová by se ve
+ * slovníku nikdy nenašla dvakrát stejná.
+ *
+ *     vzor('Přehled od {} do {}.', datumOd, datumDo)
+ */
+export function vzor(cesky: string, ...hodnoty: Array<string | number>): string {
+  let i = 0
+  return prelozit(cesky).replace(/\{\}/g, () => String(hodnoty[i++] ?? ''))
+}
+
 /** Kolik vět zatím zůstalo česky. Pro měření postupu, ne pro uživatelku. */
 export function kolikChybi(): { chybi: number; vety: string[] } {
   return { chybi: chybejici.size, vety: [...chybejici].sort() }

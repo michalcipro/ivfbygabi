@@ -1,5 +1,5 @@
 import type { IsoDate } from './profile'
-import { czDays, daysBetween, formatCzechDate, formatCzechDateShort } from './dates'
+import { czDays, daysBetween, formatCzechDate, formatCzechDateShort, zaDnu } from './dates'
 import {
   betaDate,
   cycleTitle,
@@ -10,6 +10,7 @@ import {
   type CycleStatus,
 } from './cycle'
 import { SYMPTOM_BY_ID } from './symptoms'
+import { prelozit, vzor } from '../i18n'
 
 /**
  * Souhrn od poslední návštěvy.
@@ -181,9 +182,9 @@ function day(iso: string): string {
 
 /** „dnes“, „zítra“, „za 4 dny“. Jak se to říká, ne kolikáté je. */
 function inDaysLabel(n: number): string {
-  if (n <= 0) return 'dnes'
-  if (n === 1) return 'zítra'
-  return `za ${czDays(n)}`
+  if (n <= 0) return prelozit('dnes')
+  if (n === 1) return prelozit('zítra')
+  return zaDnu(n)
 }
 
 /** Text v závorce jen tehdy, když v ní něco je. */
@@ -609,7 +610,11 @@ export function buildSummary(input: SummaryInput): VisitSummary {
   const where = input.cycle
     ? `${cycleTitle(input.cycle)}${input.status ? `, ${lowerFirst(input.status.headline.trim())}` : ''}`
     : ''
-  const lede = `Přehled zapsaných údajů od ${formatCzechDate(from)} do ${formatCzechDate(to)}, ${czDays(span)}${where ? `, ${where}` : ''}.`
+  // Věta se skládá z data vypsaného slovem a z názvu cyklu, takže se
+  // nedá přeložit až v DOM: hotová věta se ve slovníku nikdy nenajde.
+  const lede = where
+    ? vzor('Přehled zapsaných údajů od {} do {}, {}, {}.', formatCzechDate(from), formatCzechDate(to), czDays(span), where)
+    : vzor('Přehled zapsaných údajů od {} do {}, {}.', formatCzechDate(from), formatCzechDate(to), czDays(span))
 
   // --- otázky ---
   const flagged = [...new Set(logs.filter((l) => SYMPTOM_BY_ID[l.symptomId]?.warn).map((l) => l.symptomId))]

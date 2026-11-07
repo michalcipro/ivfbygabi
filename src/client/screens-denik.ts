@@ -1,4 +1,4 @@
-import { addDays, czDays, formatCzechDate } from '../lib/domain/dates'
+import { addDays, czDays, formatCzechDate, predDny } from '../lib/domain/dates'
 import { guideFor } from '../lib/domain/guides'
 import { promptFor, PROMPT_KIND_LABELS } from '../lib/domain/journal-prompts'
 import {
@@ -532,7 +532,7 @@ function sectionOhlednuti(): string {
                 (m) => `<li>
                   <span class="dot">${esc(m.icon)}</span>
                   <div>
-                    <p class="faint" style="font-size:.75rem">${esc(formatCzechDate(m.date, { year: true }))} · před ${esc(czDays(-m.inDays))}</p>
+                    <p class="faint" style="font-size:.75rem">${esc(formatCzechDate(m.date, { year: true }))} · ${esc(predDny(-m.inDays))}</p>
                     <p class="display" style="font-size:1.15rem;margin-top:.2rem">${esc(m.label)}</p>
                   </div>
                 </li>`,

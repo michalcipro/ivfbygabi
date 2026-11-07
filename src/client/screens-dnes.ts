@@ -1,4 +1,4 @@
-import { czDays, formatCzechDate, formatCzechDateShort } from '../lib/domain/dates'
+import { formatCzechDate, formatCzechDateShort, zaDnu } from '../lib/domain/dates'
 import type { DayTask, TodayBalance } from '../lib/domain/today-tasks'
 import { guideFor } from '../lib/domain/guides'
 import { CATALOG, DAILY_CARDS, contentById } from '../lib/content'
@@ -30,6 +30,7 @@ import { ivfCard } from './screens-ivf'
 import { transferToday } from './screens-transfer'
 import { contentCard, esc, plural, sectionTitle } from './ui'
 import { bloomEndurance, chart, partsList, scissorRing, seriesKey, trackStrip } from './viz'
+import { vzor } from '../lib/i18n'
 
 /**
  * Dnes.
@@ -599,7 +600,7 @@ export function screenNuzky(): string {
     `<p class="note">Nůžky nejsou zdravotní údaj. Nepředpovídají výsledek léčby, nehodnotí
     hodnoty z odběrů a nikdy neřeknou, že něco je špatně. Popisují náročnost dne
     a to, jak jste ho nesla. Nic víc. ${
-      state.nextMilestone ? `Nejbližší milník: ${esc(state.nextMilestone.label)} za ${esc(czDays(state.nextMilestone.inDays))}.` : ''
+      state.nextMilestone ? vzor('Nejbližší milník: {} {}.', esc(state.nextMilestone.label), esc(zaDnu(state.nextMilestone.inDays))) : ''
     }</p>`,
   ].join('')
 }

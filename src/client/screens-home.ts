@@ -2,7 +2,7 @@ import { PHASES, PHASE_GROUPS, PHASE_GROUP_META, PHASE_IDS, type PhaseId } from 
 import { motifFor } from '../lib/content/motif'
 import { motifSvg } from './motif-svg'
 import { MODIFIER_LABELS, TOPIC_LABELS, type TopicId } from '../lib/domain/profile'
-import { addDays, czDays, formatCzechDate, seedFrom } from '../lib/domain/dates'
+import { addDays, formatCzechDate, predDny, seedFrom, zaDnu } from '../lib/domain/dates'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { allEvents, reminders } from './screens-more'
 import { guideFor } from '../lib/domain/guides'
@@ -10,6 +10,7 @@ import { CATALOG, CONTENT_STATS, DAILY_CARDS, ENCOURAGEMENTS, contentById } from
 import { buildRails, pickDailyCard, recommend } from '../lib/content/recommend'
 import { affinity, eventState, journey, journalFor, moodConcern, profile, S, viewDate } from './store'
 import { contentCard, esc, head, heroStyle, note, plural, ring, sectionTitle } from './ui'
+import { prelozit } from '../lib/i18n'
 
 /** Domovská stránka, Objevit a průvodce cestou. */
 
@@ -126,7 +127,7 @@ function remindersBlock(): string {
         .slice(0, 4)
         .map((e) => {
           const inDays = Math.round((Date.parse(e.onDate) - Date.parse(date)) / 86_400_000)
-          const when = inDays === 0 ? 'dnes' : inDays === 1 ? 'zítra' : `před ${czDays(-inDays)}`
+          const when = inDays === 0 ? prelozit('dnes') : inDays === 1 ? prelozit('zítra') : predDny(-inDays)
           return `<button class="check" data-act="event-done" data-arg="${esc(e.id)}">
             <span class="box">✓</span>
             <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(e.title)}
@@ -268,7 +269,7 @@ export function screenDnes(): string {
   const next = state.nextMilestone
     ? `<div class="banner">
         <span style="color:var(--taupe)">◈</span>
-        <span>Nejbližší milník: <strong>${esc(state.nextMilestone.label)}</strong> za ${esc(czDays(state.nextMilestone.inDays))}</span>
+        <span>${esc(prelozit('Nejbližší milník:'))} <strong>${esc(state.nextMilestone.label)}</strong> ${esc(zaDnu(state.nextMilestone.inDays))}</span>
         <button class="btn btn-sm" data-go="kalendar" style="margin-left:auto">Kalendář</button>
       </div>`
     : ''

@@ -1,6 +1,6 @@
 import { MODIFIER_LABELS, MODIFIER_IDS, type ModifierId } from '../lib/domain/profile'
 import { PHASES, PHASE_IDS, PHASE_GROUP_META } from '../lib/domain/phases'
-import { addDays, formatCzechDate, czDays, today as realToday } from '../lib/domain/dates'
+import { addDays, formatCzechDate, predDny, today as realToday, zaDnu } from '../lib/domain/dates'
 import { popisPredplatneho, prectiListek } from '../lib/domain/predplatne'
 import { autoEventsFor } from '../lib/domain/auto-events'
 import { groupSpecsFor, communityName, suggestedGroup, GROUP_NEVYSLO } from '../lib/domain/community-match'
@@ -213,7 +213,7 @@ function eventRow(e: CalItem, today: string): string {
   const st = eventState(e.id)
   const inDays = Math.round((Date.parse(e.onDate) - Date.parse(today)) / 86_400_000)
   const when =
-    inDays === 0 ? 'dnes' : inDays === 1 ? 'zítra' : inDays > 0 ? `za ${czDays(inDays)}` : `před ${czDays(-inDays)}`
+    inDays === 0 ? prelozit('dnes') : inDays === 1 ? prelozit('zítra') : inDays > 0 ? zaDnu(inDays) : predDny(-inDays)
   const overdue = inDays < 0 && !st.done
 
   return `<div class="surface" style="padding:1.1rem 1.25rem${overdue ? ';border-color:var(--blush)' : ''}">

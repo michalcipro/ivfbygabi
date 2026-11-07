@@ -1,6 +1,7 @@
 import type { IsoDate } from './profile'
 import type { PgtKind, PgtResult } from './embryo'
-import { addDays, daysBetween, today as todayIso } from './dates'
+import { addDays, czDays, daysBetween, today as todayIso, zaDnu } from './dates'
+import { prelozit, vzor } from '../i18n'
 
 /**
  * IVF cyklus jako zdravotní karta.
@@ -807,9 +808,9 @@ function d(from: IsoDate | null, to: IsoDate): number | null {
   return from ? daysBetween(from, to) : null
 }
 
-function czDaysShort(n: number): string {
-  return `${n} ${n === 1 ? 'den' : n < 5 ? 'dny' : 'dní'}`
-}
+// `czDaysShort` tu byl jako vlastní kopie `czDays` ze `dates.ts`
+// a dával stejné výsledky. Dvě kopie téhož pravidla znamenají, že se
+// u cizích jazyků opraví jen jedna, takže zůstala ta ve `dates.ts`.
 
 /**
  * Přečte stav cyklu k zadanému dni.
@@ -854,7 +855,10 @@ export function readCycle(c: CycleRow, today: IsoDate = todayIso()): CycleStatus
         ...base,
         stage: 'cekani',
         headline: head,
-        detail: toBeta === 0 ? 'Odběr hCG dnes.' : `Do odběru hCG zbývá ${czDaysShort(toBeta)}.`,
+        detail:
+          toBeta === 0
+            ? prelozit('Odběr hCG dnes.')
+            : vzor('Do odběru hCG zbývá {}.', czDays(toBeta)),
         progress: 0.8 + Math.min(0.14, dpt * 0.01),
       }
     }
@@ -870,7 +874,7 @@ export function readCycle(c: CycleRow, today: IsoDate = todayIso()): CycleStatus
       stage: 'kultivace',
       headline: `${dpr}. den kultivace`,
       detail: soon?.date
-        ? `Transfer ${czDaysShort(daysBetween(today, soon.date))} od dneška.`
+        ? vzor('Transfer {} od dneška.', czDays(daysBetween(today, soon.date)))
         : 'Embrya se vyvíjejí v laboratoři.',
       progress: 0.7,
     }
@@ -898,7 +902,7 @@ export function readCycle(c: CycleRow, today: IsoDate = todayIso()): CycleStatus
       stage: 'stimulace',
       headline: `${stimDay}. den stimulace`,
       detail: c.retrievalOn
-        ? `Odběr za ${czDaysShort(daysBetween(today, c.retrievalOn))}.`
+        ? vzor('Odběr {}.', zaDnu(daysBetween(today, c.retrievalOn)))
         : 'Injekce každý den, kontroly každé dva až tři dny.',
       progress: 0.15 + Math.min(0.3, stimDay * 0.03),
     }

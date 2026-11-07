@@ -1,9 +1,10 @@
-import { czDays, daysBetween, formatCzechDate } from '../lib/domain/dates'
+import { czDays, daysBetween, formatCzechDate, predDny, zaDnu } from '../lib/domain/dates'
 import { guideFor } from '../lib/domain/guides'
 import { promptFor } from '../lib/domain/journal-prompts'
 import { reminders, allEvents } from './screens-more'
 import { eventState, journalFor, journalList, journey, moodAverage, profile, viewDate } from './store'
 import { des, esc, plural } from './ui'
+import { prelozit } from '../lib/i18n'
 
 /**
  * Souhrn nahoře.
@@ -38,7 +39,7 @@ function shortDayLabel(label: string): string {
 
 /** „Dnes“, „Zítra“, „Za 3 dny“. Popisek nad názvem nejbližší události. */
 function whenLabel(inDays: number): string {
-  return inDays === 0 ? 'Dnes' : inDays === 1 ? 'Zítra' : `Za ${czDays(inDays)}`
+  return inDays === 0 ? prelozit('Dnes') : inDays === 1 ? prelozit('Zítra') : zaDnu(inDays)
 }
 
 /** Kolikátý týden ve fázi. */
@@ -208,7 +209,8 @@ function panelPripominky(): string {
         .slice(0, 5)
         .map((e) => {
           const inDays = daysBetween(date, e.onDate)
-          const when = inDays === 0 ? 'dnes' : inDays === 1 ? 'zítra' : `před ${czDays(-inDays)}`
+          const when =
+            inDays === 0 ? prelozit('dnes') : inDays === 1 ? prelozit('zítra') : predDny(-inDays)
           return `<button class="check" data-act="event-done" data-arg="${esc(e.id)}">
             <span class="box">✓</span>
             <span class="txt" style="font-size:.9375rem;line-height:1.5">${esc(e.title)}

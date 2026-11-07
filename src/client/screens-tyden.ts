@@ -1,4 +1,4 @@
-import { addDays, czDays, daysBetween, formatCzechDate, formatCzechDateShort } from '../lib/domain/dates'
+import { addDays, czDays, daysBetween, formatCzechDate, formatCzechDateShort, zaDnu } from '../lib/domain/dates'
 import { guideFor } from '../lib/domain/guides'
 import {
   allEvents,
@@ -11,6 +11,7 @@ import {
 } from './store'
 import { esc, empty, plural } from './ui'
 import { chart, statTile } from './viz'
+import { prelozit, vzor } from '../lib/i18n'
 
 /**
  * Týden.
@@ -140,7 +141,7 @@ export function screenTyden(embedded = false): string {
       <div class="stats">
         ${statTile('Nejtěžší den', hardest ? hardest.dow : '–', gapNote(hardest?.gap ?? null), 'var(--s1)')}
         ${statTile('Nejlehčí den', easiest ? easiest.dow : '–', gapNote(easiest?.gap ?? null), 'var(--s2)')}
-        ${statTile('Zapsaných dní', `${written}/7`, streak > 1 ? `nepřerušeně ${czDays(streak)}` : undefined)}
+        ${statTile('Zapsaných dní', `${written}/7`, streak > 1 ? vzor('nepřerušeně {}', czDays(streak)) : undefined)}
         ${statTile(
           'Průměrná naděje',
           hope === null ? '–' : String(hope).replace('.', ','),
@@ -168,7 +169,7 @@ export function screenTyden(embedded = false): string {
               .map((e) => {
                 const d = daysBetween(to, e.onDate)
                 return `<li><span>${esc(e.title)}</span><span class="when" style="margin-left:auto">${
-                  d === 1 ? 'zítra' : `za ${esc(czDays(d))}`
+                  d === 1 ? prelozit('zítra') : esc(zaDnu(d))
                 }</span></li>`
               })
               .join('')}

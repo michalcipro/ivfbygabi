@@ -1,4 +1,4 @@
-import { czDays, formatCzechDate, formatCzechDateShort } from '../lib/domain/dates'
+import { czDays, formatCzechDate, formatCzechDateShort, zaDnu } from '../lib/domain/dates'
 import {
   betaDate,
   blastocystsOf,
@@ -129,7 +129,7 @@ function pct(v: number | null): string {
 function inDaysLabel(n: number): string {
   if (n <= 0) return 'dnes'
   if (n === 1) return 'zítra'
-  return `za ${czDays(n)}`
+  return zaDnu(n)
 }
 
 /** Spojí části popisku a zahodí prázdné. */

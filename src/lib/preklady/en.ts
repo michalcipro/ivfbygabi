@@ -791,4 +791,228 @@ export const EN: Record<string, string> = {
   'Progesteron (nmol/l)': 'Progesterone (nmol/l)',
   'Testosteron (nmol/l)': 'Testosterone (nmol/l)',
   'Prolaktin (mIU/l)': 'Prolactin (mIU/l)',
+
+  // --- Otázky pro lékaře -----------------------------------------------------
+  'Čeká': 'Waiting',
+  'čeká': 'waiting',
+  'Jiné': 'Other',
+  'Nízká': 'Low',
+  'Archiv': 'Archive',
+  'archiv': 'archive',
+  'Vysoká': 'High',
+  'Zákrok': 'The procedure',
+  'Peníze': 'Money',
+  'Střední': 'Medium',
+  'Protokol': 'Protocol',
+  'Vyřešeno': 'Answered',
+  'vyřešeno': 'answered',
+  'Výsledky': 'Results',
+  'Na závěr': 'To finish',
+  'Po ztrátě': 'After a loss',
+  'Nová otázka': 'A new question',
+  'Bez termínu': 'No appointment',
+  'Než začneme': 'Before we start',
+  'Pro ordinaci': 'For the appointment',
+  'Čeho se týká': 'What it is about',
+  'Čekání a hCG': 'Waiting and hCG',
+  'Přidat otázku': 'Add a question',
+  'Když to nevyšlo': 'When it did not work',
+  'Vždycky se hodí': 'Always worth asking',
+  'Zatím bez zápisů': 'Nothing recorded yet',
+  'Ke které kontrole': 'For which appointment',
+  'Jak je to důležité': 'How important it is',
+  'Oplodnění a embrya': 'Fertilisation and embryos',
+  'Zkopírovat přehled': 'Copy the summary',
+  'Napsat první otázku': 'Write your first question',
+  'Návrhy z vašich dat': 'Suggestions from your records',
+  'Na co se ženy ptají': 'What women ask about',
+  'Genetické testování': 'Genetic testing',
+  'Protokol a stimulace': 'Protocol and stimulation',
+  'Přehled pro kontrolu': 'A summary for the appointment',
+  'přidejte do kalendáře': 'add it to the calendar',
+  'Co je teď dalším krokem?': 'What is the next step now?',
+  'Co se stalo a víme, proč?': 'What happened, and do we know why?',
+  'Zatím tu žádná otázka není': 'There are no questions here yet',
+  'Co je teď dalším krokem a kdy?': 'What is the next step, and when?',
+  'Podle čeho se bude dávka měnit?': 'What will the dose be changed on?',
+  'Proč se embryo přestalo vyvíjet?': 'Why did the embryo stop developing?',
+  'Kdy přesně mám jít na odběr hCG?': 'When exactly should I go for the hCG test?',
+  'Domácí testy. Mám je vůbec dělat?': 'Home tests. Should I do them at all?',
+  'Kdy se ozvete vy a kdy mám volat já?': 'When will you call me and when should I call you?',
+  'Do kdy mám brát podporu luteální fáze?': 'How long should I take the luteal phase support?',
+  'Kolik embryí biopsii obvykle nepřežije?': 'How many embryos usually do not survive the biopsy?',
+  'Co budeme dělat s mozaikovým výsledkem?': 'What will we do with a mosaic result?',
+  'Můžu dostat kopii zprávy nebo výsledků?': 'Can I have a copy of the report or the results?',
+  'Jak dlouho se budou sledovat hodnoty hCG?': 'How long will the hCG values be followed?',
+  'Kdy bude druhý odběr a co budete sledovat?':
+    'When will the second test be, and what will you be watching?',
+  'Můžete mi doporučit psychologickou podporu?': 'Can you recommend psychological support?',
+  'Proč jste zvolil tenhle stimulační protokol?': 'Why did you choose this stimulation protocol?',
+  'Jaké mám riziko OHSS a podle čeho ho poznám?':
+    'What is my risk of OHSS, and how will I recognise it?',
+  'Na jaké příznaky po odběru si mám dát pozor?':
+    'Which symptoms should I watch for after the retrieval?',
+  'Co všechno hradí pojišťovna a co se doplácí?':
+    'What does the insurer cover and what do I pay for?',
+  'Co konkrétně test ukáže a co naopak neukáže?':
+    'What exactly will the test show, and what will it not show?',
+  'Co byste v dalším cyklu udělal jinak a proč?':
+    'What would you do differently in the next cycle, and why?',
+  'Kolik embryí se vyvíjí a v jakém jsou stadiu?':
+    'How many embryos are developing, and what stage are they at?',
+  'Kolik cyklů má u nás podle vás smysl zvažovat?':
+    'How many cycles do you think are worth considering in our case?',
+  'Co může být důvodem opakovaně negativního hCG?':
+    'What could be behind a repeatedly negative hCG?',
+  'Má smysl další kryotransfer, nebo nový cyklus?':
+    'Does another frozen transfer make sense, or a new cycle?',
+  'Má smysl něco vyšetřit navíc, než půjdeme dál?':
+    'Is it worth testing anything else before we go on?',
+  'Proč jsme zvolili klasické IVF, nebo proč ICSI?':
+    'Why did we choose conventional IVF, or why ICSI?',
+  'Do kterého dne budete embrya kultivovat a proč?':
+    'Which day will you culture the embryos to, and why?',
+  'Jak embrya hodnotíte a co to hodnocení znamená?':
+    'How do you grade the embryos, and what does that grade mean?',
+  'Kolik embryí se dá zamrazit a jak dlouho vydrží?':
+    'How many embryos can be frozen, and how long do they keep?',
+  'Kolik embryí budeme přenášet a proč právě tolik?':
+    'How many embryos will we transfer, and why that number?',
+  'Jakou hodnotu hCG budete považovat za pozitivní?': 'Which hCG value will you treat as positive?',
+  'Jaká je moje sliznice a co to znamená pro termín?':
+    'What is my lining like, and what does that mean for the date?',
+  'Dá se z tohohle transferu něco vyčíst pro příště?':
+    'Is there anything to learn from this transfer for next time?',
+  'Jaké léky budu píchat, v kolik hodin a jak dlouho?':
+    'Which medicines will I be injecting, at what time, and for how long?',
+  'Můžu během stimulace sportovat, pracovat, cestovat?':
+    'Can I exercise, work and travel during stimulation?',
+  'Kdy bude první ultrazvuk a co na něm budete hledat?':
+    'When will the first ultrasound be, and what will you be looking for?',
+  'Proč se transfer zrušil a co to znamená pro embrya?':
+    'Why was the transfer cancelled, and what does that mean for the embryos?',
+  'Jak dlouhá bývá rekonvalescence a kdy můžu do práce?':
+    'How long does recovery usually take, and when can I go back to work?',
+  'Co znamená krvácení v tomhle období a kdy mám volat?':
+    'What does bleeding mean at this point, and when should I call?',
+  'Jak bude probíhat anestezie a co si mám vzít s sebou?':
+    'How will the anaesthetic work, and what should I bring with me?',
+  'Kolik folikulů zatím vidíte a co to znamená pro odběr?':
+    'How many follicles can you see so far, and what does that mean for the retrieval?',
+  'Co mám dělat a co naopak nedělat v týdnu po transferu?':
+    'What should I do, and what should I avoid, in the week after the transfer?',
+  'Co dělat, když se o hodinu opozdím nebo dávku vynechám?':
+    'What do I do if I am an hour late or miss a dose?',
+  'Co ve výsledcích ukazuje na příčinu a co zůstává nejasné?':
+    'What in the results points to a cause, and what stays unclear?',
+  'Kolik vajíček bylo zralých a kolik se normálně oplodnilo?':
+    'How many eggs were mature, and how many fertilised normally?',
+  'Jak dlouhá bude rekonvalescence a na co si mám dát pozor?':
+    'How long will the recovery be, and what should I watch out for?',
+  'Jak často budu chodit na kontroly a co se na nich sleduje?':
+    'How often will I come in for check-ups, and what is checked at them?',
+  'Jak bude probíhat příprava sliznice a jaké léky budu brát?':
+    'How will the lining be prepared, and which medicines will I take?',
+  'Je v našem případě genetické testování embryí opodstatněné?':
+    'Is genetic testing of the embryos justified in our case?',
+  'Proč doporučujete čerstvý transfer, nebo proč kryotransfer?':
+    'Why do you recommend a fresh transfer, or why a frozen one?',
+  'Proč jdeme právě na IVF a jaké jiné možnosti jsme zvažovali?':
+    'Why are we going for IVF specifically, and what other options did we consider?',
+  'Která vyšetření jsou v mém případě potřeba a proč zrovna ta?':
+    'Which tests are needed in my case, and why those?',
+  'Jak dlouho se čeká na výsledek a co se s embryi děje mezitím?':
+    'How long is the wait for the result, and what happens to the embryos meanwhile?',
+  'Doporučujete nějaká další vyšetření? Co konkrétně by změnila?':
+    'Do you recommend any further tests? What exactly would they change?',
+  'Kdy bych mohla znovu, kdybych chtěla. A kdy je to naopak brzo?':
+    'When could I try again if I wanted to. And when would it be too soon?',
+  'Třeba: Proč jsme zvedli dávku a jak dlouho v ní mám pokračovat?':
+    'For example: Why did we raise the dose, and how long should I stay on it?',
+  'Jak se u vás dozvím výsledky. Telefonem, v aplikaci, na kontrole?':
+    'How will I hear the results here. By phone, in an app, at an appointment?',
+  'V kolik přesně mám píchnout trigger a co dělat, kdybych se minula?':
+    'At exactly what time should I inject the trigger, and what do I do if I miss it?',
+  'Kolik to stojí a co se stane, když nezbyde žádné testované embryo?':
+    'What does it cost, and what happens if no tested embryo is left?',
+  'Za tohle období nemáte zapsané nic, z čeho by se dal souhrn složit.':
+    'You have nothing recorded for this period that a summary could be built from.',
+  'Je něco, co byste na mém místě chtěl vědět a na co jsem se nezeptala?':
+    'Is there anything you would want to know in my place that I have not asked?',
+  'Kdy se dozvím, kolik vajíček bylo získáno a kolik z nich bylo zralých?':
+    'When will I find out how many eggs were collected and how many of them were mature?',
+  'Kdo bude náš ošetřující lékař a s kým budu mluvit, když se něco stane?':
+    'Who will be our treating doctor, and who will I speak to if something happens?',
+  'Kdy je podle vás na místě zvážit jiné řešení. Dárcovství, nebo skončit?':
+    'When do you think it is right to consider another route. Donation, or stopping?',
+  'Čas v ordinaci uteče rychle. Co si zapíšete tady, přečtete tam z telefonu.':
+    'Time at the appointment goes fast. What you write down here you can read out from your phone there.',
+  'Napište ji tak, jak byste ji řekla nahlas. V ordinaci se pak jenom přečte.':
+    'Write it the way you would say it out loud. At the appointment you just read it.',
+  'Používáme nějakou doplňkovou metodu, a co konkrétně má v mém případě řešit?':
+    'Are we using any add-on method, and what exactly is it meant to address in my case?',
+  'Na co si mám do příště dávat pozor a kdy je důvod volat mimo ordinační hodiny?':
+    'What should I watch out for before next time, and when is there reason to call outside surgery hours?',
+  'Tohle je přehled toho, co máte zapsané. Není to lékařské hodnocení ani výklad výsledků. Ty patří vašemu lékaři.':
+    'This is a summary of what you have recorded. It is not a medical assessment and not an interpretation of results. Those belong to your doctor.',
+  'Stačí málo: zapsat léky, ultrazvuk nebo pár příznaků. A před další kontrolou už tu bude přehled, se kterým se dá do ordinace jít.':
+    'It takes very little: record your medication, an ultrasound or a few symptoms. And before the next appointment there will be a summary here you can walk in with.',
+  'Otázky ani odpovědi aplikace nijak nevyhodnocuje. Jsou to vaše poznámky. Cokoli zdravotního patří vašemu lékaři a tenhle seznam ho nenahrazuje.':
+    'The app does not evaluate the questions or the answers in any way. They are your notes. Anything medical belongs to your doctor, and this list does not replace them.',
+  'V ordinaci vypadne z hlavy všechno, co jste si chtěla říct. A doma to zase naskočí. Proto se otázky zapisují průběžně: co vás napadne teď, přečtete tam z telefonu.':
+    'At the appointment everything you meant to say falls out of your head. And at home it comes back. That is why questions are written down as they come: whatever occurs to you now you can read out from your phone there.',
+  'Hotové otázky k odkliknutí. Nejsou to rady, co si máte přát. Jsou to věty, které se v ordinaci hodí říct nahlas. Nahoře je to, co patří k vaší fázi.':
+    'Ready-made questions to tap. They are not advice about what you should want. They are sentences worth saying out loud at the appointment. What belongs to your stage is at the top.',
+  'Zatím nemáte v kalendáři žádnou nadcházející kontrolu. Otázka počká bez termínu, nebo si termín':
+    'You have no upcoming appointment in the calendar yet. The question will wait without a date, or you can',
+
+  // --- věty s doplňovaným datem ----------------------------------------------
+  'Přehled zapsaných údajů od {} do {}, {}.': 'A summary of what you recorded from {} to {}, {}.',
+  'Přehled zapsaných údajů od {} do {}, {}, {}.':
+    'A summary of what you recorded from {} to {}, {}, {}.',
+
+  // --- časová spojení --------------------------------------------------------
+  'dnes': 'today',
+  'zítra': 'tomorrow',
+  'Zítra': 'Tomorrow',
+  'Nejbližší milník:': 'Next milestone:',
+  'Nejbližší milník: {} {}.': 'Next milestone: {} {}.',
+  'nepřerušeně {}': '{} in a row',
+  'Odběr hCG dnes': 'hCG test today',
+  'Odběr hCG dnes.': 'hCG test today.',
+  'Odběr hCG {}': 'hCG test {}',
+  'Odběr hCG {} (odhad)': 'hCG test {} (estimate)',
+  'Transfer dnes': 'Transfer today',
+  'Transfer {}': 'Transfer {}',
+  'Odběr dnes': 'Retrieval today',
+  'Odběr {}': 'Retrieval {}',
+  'Odběr {}.': 'Retrieval {}.',
+  'Do odběru hCG zbývá {}.': '{} until the hCG test.',
+  'Transfer {} od dneška.': 'Transfer {} from today.',
+  'Odběr hCG je {}, {}.': 'The hCG test is {}, {}.',
+
+  // --- Historie a prázdný cyklus ---------------------------------------------
+  'Sestavené z toho, co máte zapsané za {}. Nejsou to rady, jen věty, které se hodí říct nahlas.':
+    'Put together from what you have recorded over {}. These are not advice, just sentences worth saying out loud.',
+  'Celá cesta na jednom místě.': 'The whole journey in one place.',
+  'Až založíte první cyklus, objeví se tu shrnutí každého z nich. Od počtu vajíček po výsledek posledního transferu.':
+    'Once you start your first cycle, a summary of each one will appear here. From the number of eggs to the outcome of the last transfer.',
+  'Zatím žádný cyklus': 'No cycle yet',
+  'Až začne stimulace nebo příprava na transfer, založte si cyklus. Budete do něj zapisovat termíny, čísla z laboratoře, embrya i transfery.':
+    'When stimulation or the preparation for a transfer begins, start a cycle. You will record appointments, lab numbers, embryos and transfers in it.',
+
+  // --- Embrya, Transfery a Po transferu --------------------------------------
+  'Karta pro každé embryo. Vývoj po dnech, genetika, kam nakonec šlo.':
+    'A card for every embryo. Development day by day, genetics, where it finally went.',
+  'Zatím tu žádné embryo není': 'There is no embryo here yet',
+  'Embrya se zapisují u konkrétního cyklu. Otevřete kartu cyklu a v sekci Embrya přidejte první.':
+    'Embryos are recorded under a specific cycle. Open the cycle card and add the first one in the Embryos section.',
+  'Všechny transfery na jednom místě, napříč cykly.':
+    'Every transfer in one place, across all cycles.',
+  'Zatím tu žádný transfer není': 'There is no transfer here yet',
+  'Transfery se zapisují u cyklu. V jednom cyklu jich může být víc. Čerstvý a po něm kryotransfery ze stejné zásoby embryí.':
+    'Transfers are recorded under a cycle. One cycle can hold several. A fresh one and then frozen transfers from the same batch of embryos.',
+  'Den po dni od transferu až k odběru hCG.': 'Day by day from the transfer to the hCG test.',
+  'Až budete mít transfer za sebou, zapište si ho do cyklu. Aplikace pak sama spočítá, kolikátý je den, co se v téhle fázi může dít a kolik zbývá do odběru hCG.':
+    'Once a transfer is behind you, record it in the cycle. The app will then work out which day you are on, what may happen at this stage and how long is left until the hCG test.',
 }

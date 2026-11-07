@@ -1,4 +1,5 @@
 import type { IsoDate } from './profile'
+import { JAZYK, type Jazyk } from '../i18n'
 
 /**
  * Práce s daty bez časových pásem. Celá platforma počítá ve dnech
@@ -50,50 +51,156 @@ export function daysUntil(iso: IsoDate, from: IsoDate = today()): number {
   return daysBetween(from, iso)
 }
 
-const MONTHS_CS = [
-  'ledna',
-  'února',
-  'března',
-  'dubna',
-  'května',
-  'června',
-  'července',
-  'srpna',
-  'září',
-  'října',
-  'listopadu',
-  'prosince',
-]
+/*
+ * ---------------------------------------------------------------- DATUM ---
+ * Jména těchhle funkcí říkají „Czech“, protože tu byly dřív než cizí
+ * jazyky. Teď formátují v jazyce sestavení: `formatCzechDate` vrátí
+ * v anglickém sestavení „Saturday 7 November 2026“. Přejmenovat se to
+ * nedá bez rizika, `datum` i `dnu` jsou v kódu obsazené jako proměnné
+ * na dvou stech místech. Jméno je tedy historické, chování je správné.
+ *
+ * Krátký číselný tvar se drží dne na prvním místě, protože žena srovnává
+ * aplikaci s papírem z české kliniky, kde stojí „7. 11. 2026“. Anglicky
+ * se proto píše „7 Nov 2026“ a ne „11/7/2026“: záměna dne a měsíce by
+ * u termínu odběru nebo triggeru byla nebezpečná.
+ */
 
-const WEEKDAYS_CS = ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota']
+const MESICE: Record<Jazyk, string[]> = {
+  // Česky se měsíc v datu píše ve druhém pádě: „7. listopadu“.
+  cs: [
+    'ledna',
+    'února',
+    'března',
+    'dubna',
+    'května',
+    'června',
+    'července',
+    'srpna',
+    'září',
+    'října',
+    'listopadu',
+    'prosince',
+  ],
+  en: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+  de: [
+    'Januar',
+    'Februar',
+    'März',
+    'April',
+    'Mai',
+    'Juni',
+    'Juli',
+    'August',
+    'September',
+    'Oktober',
+    'November',
+    'Dezember',
+  ],
+}
+
+/** Zkratky měsíců pro krátký anglický tvar. */
+const MESICE_KRATKE_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+const DNY: Record<Jazyk, string[]> = {
+  cs: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
+  en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  de: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+}
 
 export function formatCzechDate(iso: IsoDate, opts: { weekday?: boolean; year?: boolean } = {}) {
   const d = parseIsoDate(iso)
   const day = d.getUTCDate()
-  const month = MONTHS_CS[d.getUTCMonth()]
+  const month = MESICE[JAZYK][d.getUTCMonth()]
   const year = d.getUTCFullYear()
+  const den = DNY[JAZYK][d.getUTCDay()]
+  const rok = opts.year !== false ? ` ${year}` : ''
+
+  if (JAZYK === 'en') {
+    // Anglicky je den bez tečky a za dnem týdne se nedělá čárka.
+    return `${opts.weekday ? `${den} ` : ''}${day} ${month}${rok}`
+  }
+  if (JAZYK === 'de') {
+    // Německy se za dnem týdne píše čárka: „Samstag, 7. November 2026“.
+    return `${opts.weekday ? `${den}, ` : ''}${day}. ${month}${rok}`
+  }
   const parts: string[] = []
-  if (opts.weekday) parts.push(WEEKDAYS_CS[d.getUTCDay()])
+  if (opts.weekday) parts.push(den)
   parts.push(`${day}. ${month}`)
   if (opts.year !== false) parts.push(String(year))
-  return parts.join(' ').replace(/ (\d{4})$/, ' $1')
+  return parts.join(' ')
 }
 
 export function formatCzechDateShort(iso: IsoDate): string {
   const d = parseIsoDate(iso)
-  return `${d.getUTCDate()}. ${d.getUTCMonth() + 1}. ${d.getUTCFullYear()}`
+  const den = d.getUTCDate()
+  const mesic = d.getUTCMonth()
+  const rok = d.getUTCFullYear()
+  if (JAZYK === 'en') return `${den} ${MESICE_KRATKE_EN[mesic]} ${rok}`
+  if (JAZYK === 'de') return `${den}.${mesic + 1}.${rok}`
+  return `${den}. ${mesic + 1}. ${rok}`
 }
 
-/** Český tvar „X dní / X den / X dny“. */
+/** Počet dní ve správném tvaru. Česky „1 den / 3 dny / 5 dní“. */
 export function czDays(n: number): string {
   const a = Math.abs(n)
+  if (JAZYK === 'en') return `${n} ${a === 1 ? 'day' : 'days'}`
+  if (JAZYK === 'de') return `${n} ${a === 1 ? 'Tag' : 'Tage'}`
   if (a === 1) return `${n} den`
   if (a >= 2 && a <= 4) return `${n} dny`
   return `${n} dní`
 }
 
+/**
+ * Časová spojení, ve kterých je počet dní.
+ *
+ * Česky se skládají předložkou a počtem („za 3 dny“, „před 5 dny“).
+ * Anglicky stojí slovo na druhé straně („3 days ago“) a německy se mění
+ * pád („vor 3 Tagen“). Kdyby si každá obrazovka lepila předložku sama,
+ * jako to dělala dřív, vzniklo by v cizím sestavení „za 3 days“.
+ */
+
+/** „za 3 dny“ · „in 3 days“ · „in 3 Tagen“ */
+export function zaDnu(n: number): string {
+  if (JAZYK === 'en') return `in ${czDays(n)}`
+  if (JAZYK === 'de') return `in ${n} ${Math.abs(n) === 1 ? 'Tag' : 'Tagen'}`
+  return `za ${czDays(n)}`
+}
+
+/** „před 3 dny“ · „3 days ago“ · „vor 3 Tagen“. `n` je kladné. */
+export function predDny(n: number): string {
+  if (JAZYK === 'en') return `${czDays(n)} ago`
+  if (JAZYK === 'de') return `vor ${n} ${Math.abs(n) === 1 ? 'Tag' : 'Tagen'}`
+  // Česky je po „před“ sedmý pád, ne druhý: před 1 dnem, před 5 dny.
+  // Dřív si každá obrazovka lepila „před“ před `czDays`, takže vznikalo
+  // „před 5 dní“. To je špatně a tady se to rovná.
+  return `před ${n} ${Math.abs(n) === 1 ? 'dnem' : 'dny'}`
+}
+
+/** „posledních 22 dní“ · „the last 22 days“ · „die letzten 22 Tage“ */
+export function poslednichDnu(n: number): string {
+  if (JAZYK === 'en') return `the last ${czDays(n)}`
+  if (JAZYK === 'de') return `die letzten ${czDays(n)}`
+  return `${n >= 1 && n <= 4 ? 'poslední' : 'posledních'} ${czDays(n)}`
+}
+
+/** Počet týdnů ve správném tvaru. */
 export function czWeeks(n: number): string {
   const a = Math.abs(n)
+  if (JAZYK === 'en') return `${n} ${a === 1 ? 'week' : 'weeks'}`
+  if (JAZYK === 'de') return `${n} ${a === 1 ? 'Woche' : 'Wochen'}`
   if (a === 1) return `${n} týden`
   if (a >= 2 && a <= 4) return `${n} týdny`
   return `${n} týdnů`

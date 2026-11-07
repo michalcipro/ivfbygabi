@@ -1,6 +1,7 @@
 import type { IsoDate } from './profile'
-import { addDays, czDays, daysBetween, formatCzechDate } from './dates'
+import { addDays, daysBetween, formatCzechDate, zaDnu } from './dates'
 import { betaDate, estimatedBeta, type CycleRow, type CycleStatus } from './cycle'
+import { vzor } from '../i18n'
 
 /**
  * Chytré připomínky.
@@ -243,7 +244,7 @@ export function nudges(input: NudgeInput): Nudge[] {
           route: 'cyklus',
         })
       } else if (exact && inDays <= 3) {
-        push('beta-blizko', 'info', `Odběr hCG je za ${czDays(inDays)}, ${formatCzechDate(betaOn, { year: false })}.`, {
+        push('beta-blizko', 'info', vzor('Odběr hCG je {}, {}.', zaDnu(inDays), formatCzechDate(betaOn, { year: false })), {
           label: 'Otevřít cyklus',
           route: 'cyklus',
         })

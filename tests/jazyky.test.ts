@@ -87,6 +87,7 @@ const STEJNE: Record<'en' | 'de', string[]> = {
     '✓ Checklist',
     'Hydrosalpinx',
     'Mindfulness',
+    'Transfer {}',
   ],
   de: [
     'Profil',
@@ -99,6 +100,8 @@ const STEJNE: Record<'en' | 'de', string[]> = {
     'Prolaktin',
     'Progesteron',
     'Hysteroskopie',
+    'Archiv',
+    'Transfer {}',
   ],
 }
 
@@ -162,6 +165,14 @@ test('překlad si nechá zvýraznění i místa pro čísla', () => {
         kolik(preklad, /#/g),
         kolik(klic, /#/g),
         `${jm}: „${klic}“ má jiný počet mřížek než překlad`,
+      )
+      // Prázdná místa `{}` doplňuje `vzor()` v pořadí. Když v překladu
+      // jedno chybí, zmizí z věty datum nebo jméno. Když přebude,
+      // zůstane v ní prázdná složená závorka.
+      assert.equal(
+        kolik(preklad, /\{\}/g),
+        kolik(klic, /\{\}/g),
+        `${jm}: „${klic}“ má jiný počet prázdných míst než překlad`,
       )
     }
   }

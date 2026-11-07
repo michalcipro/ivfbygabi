@@ -1,5 +1,5 @@
 import type { IsoDate } from './profile'
-import { daysBetween } from './dates'
+import { daysBetween, zaDnu } from './dates'
 import {
   betaDate,
   nextBloodTest,
@@ -14,6 +14,7 @@ import {
   type CycleRow,
 } from './cycle'
 import { isBlastocyst, reachedDay, type Embryo } from './embryo'
+import { prelozit, vzor } from '../i18n'
 
 /**
  * Osobní IVF karta.
@@ -209,18 +210,27 @@ export function buildCard(c: CycleRow, embryos: Embryo[], today: IsoDate): Journ
   } else if (beta && beta >= today) {
     const za = daysBetween(today, beta)
     const presny = naplanovany !== null || betaDate(c, today) !== null
+    const kdy = za === 1 ? prelozit('zítra') : zaDnu(za)
     dalsi =
       za === 0
-        ? 'Odběr hCG dnes'
-        : `Odběr hCG ${za === 1 ? 'zítra' : `za ${czDays(za)}`}${presny ? '' : ' (odhad)'}`
+        ? prelozit('Odběr hCG dnes')
+        : presny
+          ? vzor('Odběr hCG {}', kdy)
+          : vzor('Odběr hCG {} (odhad)', kdy)
   } else {
     const budouci = transfers.find((t) => t.date && t.date > today && !t.cancelled)
     if (budouci?.date) {
       const za = daysBetween(today, budouci.date)
-      dalsi = za === 0 ? 'Transfer dnes' : `Transfer ${za === 1 ? 'zítra' : `za ${czDays(za)}`}`
+      dalsi =
+        za === 0
+          ? prelozit('Transfer dnes')
+          : vzor('Transfer {}', za === 1 ? prelozit('zítra') : zaDnu(za))
     } else if (c.retrievalOn && c.retrievalOn > today) {
       const za = daysBetween(today, c.retrievalOn)
-      dalsi = za === 0 ? 'Odběr dnes' : `Odběr ${za === 1 ? 'zítra' : `za ${czDays(za)}`}`
+      dalsi =
+        za === 0
+          ? prelozit('Odběr dnes')
+          : vzor('Odběr {}', za === 1 ? prelozit('zítra') : zaDnu(za))
     }
   }
 

@@ -1,10 +1,4 @@
-import {
-  addDays,
-  czDays,
-  daysBetween,
-  formatCzechDate,
-  formatCzechDateShort,
-} from '../lib/domain/dates'
+import { addDays, czDays, daysBetween, formatCzechDate, formatCzechDateShort, predDny, zaDnu } from '../lib/domain/dates'
 import {
   cycleTitle,
   betaDate,
@@ -177,7 +171,7 @@ function whenLabel(inDays: number): string {
   if (inDays === 0) return 'dnes'
   if (inDays === 1) return 'zítra'
   if (inDays === -1) return 'včera'
-  return inDays > 0 ? `za ${czDays(inDays)}` : `před ${czDays(-inDays)}`
+  return inDays > 0 ? zaDnu(inDays) : predDny(-inDays)
 }
 
 /** Nadpis dne na ose. Dnešek a okolí jménem, zbytek datem. */

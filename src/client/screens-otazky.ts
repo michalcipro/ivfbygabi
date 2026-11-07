@@ -1,4 +1,4 @@
-import { addDays, czDays, daysBetween, formatCzechDate, formatCzechDateShort } from '../lib/domain/dates'
+import { addDays, daysBetween, formatCzechDate, formatCzechDateShort, poslednichDnu, predDny, zaDnu } from '../lib/domain/dates'
 import { SYMPTOM_BY_ID } from '../lib/domain/symptoms'
 import { adherence } from '../lib/domain/cycle-stats'
 import { buildSummary, type VisitSummary } from '../lib/domain/visit-summary'
@@ -19,6 +19,7 @@ import {
 } from './store'
 import { empty, esc, note, plural } from './ui'
 import { actionCard, sectionHead, segmented, statTrio } from './viz'
+import { vzor } from '../lib/i18n'
 
 /**
  * Otázky pro lékaře.
@@ -126,7 +127,7 @@ function symptomLabel(id: string): string {
  * `czDays` skloňuje jen podstatné jméno, přívlastek si musí poradit sám.
  */
 function lastDaysPhrase(n: number): string {
-  return `${n >= 1 && n <= 4 ? 'poslední' : 'posledních'} ${czDays(n)}`
+  return poslednichDnu(n)
 }
 
 export const OTAZKY_SECTIONS = [
@@ -245,8 +246,8 @@ function whenLabel(date: string): string {
   const n = daysBetween(viewDate(), date)
   if (n === 0) return 'dnes'
   if (n === 1) return 'zítra'
-  if (n < 0) return `před ${czDays(-n)}`
-  return `za ${czDays(n)}`
+  if (n < 0) return predDny(-n)
+  return zaDnu(n)
 }
 
 // ------------------------------------------------------------ text k tisku ---
@@ -574,8 +575,12 @@ function suggestions(summary: VisitSummary, from: string, to: string): string {
   return `<section class="surface pad rise">
     ${sectionHead('Návrhy z vašich dat')}
     <p class="faint" style="font-size:.8125rem;margin-top:-.3rem;line-height:1.55">
-      Sestavené z toho, co máte zapsané za ${esc(lastDaysPhrase(daysBetween(from, to) + 1))}.
-      Nejsou to rady, jen věty, které se hodí říct nahlas.
+      ${esc(
+        vzor(
+          'Sestavené z toho, co máte zapsané za {}. Nejsou to rady, jen věty, které se hodí říct nahlas.',
+          lastDaysPhrase(daysBetween(from, to) + 1),
+        ),
+      )}
     </p>
     <ul class="linelist" style="margin-top:.9rem">
       ${fresh
