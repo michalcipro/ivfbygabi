@@ -2,7 +2,9 @@ import { PHASES, isPhaseId } from '../lib/domain/phases'
 import { isModifierId, type ModifierId } from '../lib/domain/profile'
 import { formatCzechDate, today as realToday } from '../lib/domain/dates'
 import { prectiListek } from '../lib/domain/predplatne'
-import { obnovStav, overListek, portalPlateb, zacniPlatbu, zrusPredplatne } from './predplatne'
+import { zavreno } from '../lib/domain/pristup'
+import { PLATBY_ZAPNUTE, obnovStav, overListek, portalPlateb, zacniPlatbu, zrusPredplatne } from './predplatne'
+import { screenZed } from './screens-zed'
 import { contentById } from '../lib/content'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import type { Letter } from '../lib/shared/records'
@@ -711,6 +713,15 @@ function render(): void {
   const p = profile()
   const narrow = ['cist', 'proc', 'clenstvi', 'pojem', 'diagnoza'].includes(base(route))
 
+  // Placená zeď. Navigace zůstává, mění se jen obsah stránky: ze zdi musí
+  // jít odejít na předplatné, na zálohu a do nastavení.
+  const zed = zavreno({
+    zedPlati: PLATBY_ZAPNUTE,
+    listek: S.d.subscription?.listek?.obsah ?? null,
+    dnes: realToday(),
+    obrazovka: base(route),
+  })
+
   // Musí se přečíst před přepsáním `innerHTML`. Potom už je pozdě.
   const misto = window.scrollY
   const kurzor = keepPlace ? snapFocus() : null
@@ -737,12 +748,16 @@ function render(): void {
 
     <main class="main">
       ${backbar(route)}
-      <div class="page ${narrow ? 'page-narrow' : ''}">${SUMMARY_HIDDEN.includes(base(route)) ? '' : renderSummary(view.summary)}${screenFor(route)}</div>
+      <div class="page ${narrow || zed ? 'page-narrow' : ''}">${
+        zed
+          ? screenZed(S.d.subscription?.listek?.obsah?.cena ?? 191, view.predplatne.bezi, view.predplatne.hlaska)
+          : `${SUMMARY_HIDDEN.includes(base(route)) ? '' : renderSummary(view.summary)}${screenFor(route)}`
+      }</div>
     </main>
   </div>
 
-  ${QUICK_HIDDEN.includes(base(route)) ? '' : quickButton(view.quick)}
-  ${quickSheet(view.quick)}
+  ${zed || QUICK_HIDDEN.includes(base(route)) ? '' : quickButton(view.quick)}
+  ${zed ? '' : quickSheet(view.quick)}
 
   <nav class="tabbar no-print">
     ${TABS.map(

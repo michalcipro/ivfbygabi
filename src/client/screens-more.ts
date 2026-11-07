@@ -94,7 +94,7 @@ export function screenVice(): string {
     ['komunita', '◍', 'Komunita', 'Ženy ve stejné fázi. Můžete zůstat anonymní.'],
     ['pribeh', '❦', 'Můj příběh', 'Časová osa a dopisy. Jednou z toho může být kniha.'],
     ['partner', '♡', 'Partner mode', 'Co ukázat tomu, kdo je vedle vás. Deník zůstává soukromý.'],
-    ['clenstvi', '✦', 'Členství', 'Jak by platforma fungovala jako předplatné.'],
+    ['clenstvi', '✦', 'Členství', 'Co předplatné zahrnuje a jak ho spravovat.'],
     ['nastaveni', '⚙', 'Nastavení', 'Fáze, situace, vzhled a vaše data.'],
   ]
 
@@ -1154,8 +1154,5 @@ export function screenClenstvi(
       </p>
     </section>`,
 
-    note(
-      'Placené předplatné zatím není v provozu. Aplikace je dostupná bez omezení a bez platby a nic se vám neúčtuje. Až se platby spustí, dozvíte se to předem.',
-    ),
   ].join('')
 }

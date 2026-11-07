@@ -20,6 +20,15 @@ import { prectiListek, type Listek } from '../lib/domain/predplatne'
 /** Veřejný klíč k ověřování lístků. Doplňuje ho `scripts/build-app.ts`. */
 const VEREJNY_KLIC = '__VEREJNY_KLIC__'
 
+/**
+ * Je platební systém v provozu?
+ *
+ * Bez veřejného klíče se nedá ověřit žádný lístek, takže by placená zeď
+ * zamkla úplně všechny, i ty, kdo zaplatili. Proto se zeď řídí tímhle:
+ * co se nedá ověřit, to se nezamyká.
+ */
+export const PLATBY_ZAPNUTE = VEREJNY_KLIC.length > 0 && !VEREJNY_KLIC.startsWith('__')
+
 export type Vysledek =
   | { ok: true; url?: string; klic?: string; listek?: string }
   | { ok: false; duvod: 'nenastaveno' | 'sit' | 'chyba'; zprava: string }
@@ -97,7 +106,7 @@ function zBase64Url(s: string): Uint8Array {
 export async function overListek(text: string): Promise<Listek | null> {
   const obsah = prectiListek(text)
   if (!obsah) return null
-  if (!VEREJNY_KLIC || VEREJNY_KLIC.startsWith('__')) return null
+  if (!PLATBY_ZAPNUTE) return null
   if (typeof crypto === 'undefined' || !crypto.subtle) return null
 
   const [telo, podpis] = text.split('.')
