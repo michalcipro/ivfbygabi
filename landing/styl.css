@@ -205,6 +205,22 @@ a:hover { color: var(--bloo); }
 .paticka .jazyky a:hover { color: #fbf6f8; background: none; }
 .paticka .jazyky a[aria-current] { color: var(--heart); }
 
+/* Přepínač v hero.
+   Lišta nahoře se ukáže teprve po odjetí hero, takže na úvodní obrazovce
+   by jinak přepínač nebyl vůbec. Kdo nečte česky, musí ho vidět dřív,
+   než začne scrollovat, jinak odejde. Proto je tady a proto vypadá jako
+   ovládací prvek, ne jako šedé zkratky. */
+.jazyky-hero { justify-content: flex-end; margin: 0 0 clamp(1rem, 3vw, 1.8rem); }
+.jazyky-hero a {
+  padding: 0.38rem 0.62rem;
+  background: rgb(255 255 255 / 0.55);
+  color: var(--muted);
+}
+.jazyky-hero a:hover { background: #fff; color: var(--bloo-ink); }
+.jazyky-hero a[aria-current] {
+  background: #fff; color: var(--mia); box-shadow: var(--veil);
+}
+
 /* ------------------------------------------------------------------ tlačítka */
 
 .btn {
