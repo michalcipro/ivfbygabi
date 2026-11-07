@@ -233,8 +233,21 @@ export function spatnyPozadavek(res: Odpoved, zprava: string): void {
   res.status(400).json({ duvod: 'chyba', zprava })
 }
 
-/** Chyba se loguje bez podrobností, ať se do záznamů nedostane nic cizího. */
+/**
+ * Chyba ze Stripe.
+ *
+ * ------------------------------------------------------------- PROČ I V ODPOVĚDI ---
+ * Dřív se jen logovala. Jenže Vercel u spadlé funkce vrátí jen obecnou
+ * hlášku a k záznamům se člověk dostane jinou cestou, takže se příčina
+ * hledá naslepo. Změřeno při zapojování Stripe: dvě kola dohadování kvůli
+ * tomu, že chybová věta nebyla vidět.
+ *
+ * Text od Stripe mluví o parametrech volání, ne o uživatelce. Klíče Stripe
+ * ve svých hláškách zkracuje. Aplikace tu větu neukazuje, má vlastní, takže
+ * se to k ženě nedostane a slouží to jen při hledání chyby.
+ */
 export function selhalo(res: Odpoved, e: unknown): void {
-  console.error('stripe:', e instanceof Error ? e.message : 'neznámá chyba')
-  res.status(500).json({ duvod: 'chyba' })
+  const zprava = e instanceof Error ? e.message : 'neznámá chyba'
+  console.error('stripe:', zprava)
+  res.status(500).json({ duvod: 'chyba', zprava })
 }
