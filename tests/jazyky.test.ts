@@ -48,7 +48,7 @@ const STEJNE: Record<'en' | 'de', string[]> = {
   // Slova, která jsou v cílovém jazyce doopravdy stejná. Většina jsou
   // výpůjčky z angličtiny, které čeština i němčina přejaly nezměněné,
   // a sestra je u nich v ordinaci taky použije.
-  en: ['Partner', 'Partner mode', '# min', 'Tip:', 'Trigger', 'Transfer'],
+  en: ['Partner', 'Partner mode', '# min', 'Tip:', 'Trigger', 'Transfer', 'Checklist', '✓ Checklist'],
   de: ['Profil', 'Partner', 'Trigger', 'Transfer', 'Energie'],
 }
 
