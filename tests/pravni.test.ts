@@ -209,7 +209,9 @@ test('podmínky popisují automatické obnovování úplně', () => {
     !/automaticky neobnovuje/.test(s),
     'zbyla věta o tom, že se předplatné neobnovuje, což si odporuje',
   )
-  assert.match(s, /sedm dní předem/, 'chybí upozornění před obnovením')
+  assert.match(s, /Upozornění před obnovením se neposílá/, 'chybí údaj o tom, že se neupozorňuje')
+  assert.match(s, /Datum příštího obnovení a cenu/, 'chybí, kde zákaznice uvidí datum obnovení')
+  assert.match(s, /doklad e-mailem/, 'chybí doklad ke každé platbě')
   assert.match(s, /kdykoliv zrušit, bez udání důvodu a bez/, 'chybí právo kdykoliv zrušit zdarma')
   assert.match(s, /Zrušit předplatné<\/strong> přímo v aplikaci/, 'chybí tlačítko pro zrušení v aplikaci')
   assert.match(s, /tak snadné\s*\n?\s*jako ho sjednat/, 'chybí pravidlo o snadnosti ukončení')

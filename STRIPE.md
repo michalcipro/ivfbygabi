@@ -67,7 +67,6 @@ Obnáší to víc mechaniky než jednorázová platba a všechna je povinná:
 
 | Co | Proč |
 |---|---|
-| upomínka **7 dní před obnovením** | slíbeno v podmínkách, článek 8 |
 | **zrušení kdykoliv a zdarma** | ukončit musí jít tak snadno jako sjednat |
 | oznámení **30 dní před změnou ceny** | jinak se vyšší cena strhnout nesmí |
 | opakované pokusy o platbu | když karta neprojde |
@@ -109,16 +108,17 @@ daň se nepřipočítává. Cena 199 Kč je konečná a tak to stojí v podmínk
 
 V **Settings, Billing** zapněte:
 
-- **upomínku před obnovením předplatného** a nastavte ji na **7 dní**.
-  Tohle je slíbené v obchodních podmínkách, bez toho je dokument nepravdivý,
-- **zasílání dokladů e-mailem** ke každé platbě,
+- **zasílání dokladů e-mailem ke každé platbě**. Tohle je v obchodních
+  podmínkách slíbené a vypnout se nesmí. Je to něco jiného než upomínka
+  před obnovením: ta se podle vašeho rozhodnutí posílat nebude a v
+  podmínkách je to napsané,
 - **opakované pokusy o platbu** (Smart Retries), když karta neprojde,
 - **zákaznický portál** (Customer portal), aby si žena mohla sama vyměnit
   kartu a zrušit předplatné i mimo aplikaci.
 
-Pokud by Stripe upomínku 7 dní předem neuměl nastavit přesně, dejte vědět
-a lhůtu v podmínkách upravím podle toho, co umí. Slibovat něco, co se
-nestane, nebudeme.
+Upomínky před obnovením nechte vypnuté. Datum příštího obnovení a cenu
+uvidí žena v aplikaci a zrušit to jde jedním tlačítkem, takže se nic
+nestrhne poslepu.
 
 ### 3e. Webhook
 
