@@ -58,7 +58,7 @@ self.addEventListener('install', (e) => {
       await Promise.all(
         SOUBORY.map(async (url) => {
           const res = await fetch(new Request(url, { cache: 'reload' }))
-          if (res && res.ok) await c.put(url, res)
+          if (res && res.ok) await c.put(url, bezPresmerovani(res))
         }),
       )
     })(),
@@ -104,6 +104,31 @@ self.addEventListener('message', (e) => {
  * pojistka pro případ, že se výměna service workeru z jakéhokoli důvodu
  * nepovede: aplikace se nemůže zaseknout v čase natrvalo.
  */
+/**
+ * Odpověď bez stopy po přesměrování.
+ *
+ * ------------------------------------------------------------- PROČ TO TU JE ---
+ * Server má zapnuté `cleanUrls`, takže `/app/index.html` přesměrovává na
+ * `/app`. Service worker si přihrádku tahá právě z `index.html`, dostane
+ * tedy odpověď s příznakem „prošla přesměrováním“.
+ *
+ * A takovou odpověď prohlížeč **odmítne použít pro otevření stránky**.
+ * Safari na to řekne „Response served by service worker has redirections“
+ * a aplikace se neotevře vůbec. Horší je, že se taková odpověď uloží do
+ * cache a od té chvíle je rozbité i to, co předtím fungovalo.
+ *
+ * Nová odpověď ze stejného těla a stejných hlaviček ten příznak nemá.
+ * Dělá se to u všeho, ať už přesměrování nastalo, nebo ne: stojí to jeden
+ * obal navíc a chrání to i před tím, kdyby se nastavení serveru změnilo.
+ */
+function bezPresmerovani(res) {
+  return new Response(res.body, {
+    status: res.status,
+    statusText: res.statusText,
+    headers: res.headers,
+  })
+}
+
 async function zeSiteNeboZDisku(klic, e) {
   const cache = await caches.open(CACHE)
   const ulozene = await cache.match(klic)
@@ -115,7 +140,7 @@ async function zeSiteNeboZDisku(klic, e) {
     .then(async (res) => {
       // Ukládají se jen vlastní soubory a jen povedené odpovědi. Uložená
       // chyba 500 by aplikaci rozbila natrvalo.
-      if (res && res.ok && res.type === 'basic') await cache.put(klic, res.clone())
+      if (res && res.ok && res.type === 'basic') await cache.put(klic, bezPresmerovani(res.clone()))
       return res
     })
     .catch(() => null)
@@ -124,11 +149,11 @@ async function zeSiteNeboZDisku(klic, e) {
     // Stahování musí doběhnout i po odeslání odpovědi, jinak ho prohlížeč
     // po uspání service workeru zahodí a k obnově nikdy nedojde.
     e.waitUntil(zeSite)
-    return ulozene
+    return bezPresmerovani(ulozene)
   }
 
   const res = await zeSite
-  if (res) return res
+  if (res) return bezPresmerovani(res)
   return new Response('BlooMia je offline a tahle část se ještě nestihla uložit do zařízení.', {
     status: 503,
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
