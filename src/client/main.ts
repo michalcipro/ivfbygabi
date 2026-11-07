@@ -2,7 +2,7 @@ import { PHASES, isPhaseId } from '../lib/domain/phases'
 import { isModifierId, type ModifierId } from '../lib/domain/profile'
 import { formatCzechDate, today as realToday } from '../lib/domain/dates'
 import { prectiListek } from '../lib/domain/predplatne'
-import { portalPlateb, zacniPlatbu, zrusPredplatne } from './predplatne'
+import { obnovStav, overListek, portalPlateb, zacniPlatbu, zrusPredplatne } from './predplatne'
 import { contentById } from '../lib/content'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import type { Letter } from '../lib/shared/records'
@@ -3488,6 +3488,7 @@ function nastavServiceWorker(): void {
         }
         zeptejSe()
         prevzitNovouVerzi()
+        void overPredplatne()
       })
 
       window.addEventListener('online', zeptejSe)
@@ -3498,10 +3499,94 @@ function nastavServiceWorker(): void {
     })
 }
 
+/**
+ * Převzetí klíče po návratu z platby.
+ *
+ * ------------------------------------------------------------- PROČ V ADRESE ---
+ * Stripe umí po zaplacení poslat ženu na jednu adresu a nic jiného jí
+ * předat nedokáže. Klíč tedy přijde v adrese, ale **před mřížkou**, ne za
+ * ní: za mřížkou má aplikace vlastní trasy a klíč by jí přepsal cestu.
+ *
+ * Lístek se bere jen s platným podpisem. Bez něj je to text, který si do
+ * adresy může napsat kdokoliv.
+ *
+ * Adresa se hned uklidí, aby klíč nezůstal v historii prohlížeče ani
+ * v odkazu, který by žena někomu poslala.
+ */
+async function prevezmiZAdresy(): Promise<void> {
+  const q = new URLSearchParams(location.search)
+  const klic = q.get('k')
+  const listek = q.get('l')
+  const stav = q.get('stav')
+  if (!klic && !listek && !stav) return
+
+  // Úklid adresy jako první. I když cokoliv dalšího selže, klíč už
+  // v historii neleží.
+  try {
+    history.replaceState(null, '', location.pathname + location.hash)
+  } catch {
+    // Starší prohlížeč historii přepsat nedá. Klíč pak v adrese zůstane,
+    // ale funguje všechno ostatní.
+  }
+
+  if (stav === 'nenastaveno') {
+    toast('Placené předplatné zatím není v provozu.')
+    return
+  }
+  if (stav === 'nezaplaceno') {
+    toast('Platba neproběhla. Nic se vám neúčtovalo.')
+    return
+  }
+  if (stav === 'chyba') {
+    toast('Platbu se nepodařilo dokončit. Zkuste to prosím znovu.')
+    return
+  }
+
+  const obsah = listek ? await overListek(listek) : null
+  if (!klic || !obsah) {
+    toast('Předplatné se nepodařilo aktivovat. Napište prosím na terapie@priznejsi.cz.')
+    return
+  }
+
+  patch((d) => {
+    d.subscription.klic = klic
+    d.subscription.listek = { text: listek as string, obsah, overenoKdy: realToday() }
+  })
+  render()
+  toast('Předplatné je aktivní. Děkujeme.')
+}
+
+/**
+ * Ověření stavu předplatného u Stripe.
+ *
+ * Lístek platí pětatřicet dní, takže stačí se ptát jednou za den. Ptá se
+ * při startu a po návratu do aplikace, vždycky jen když je síť a když je
+ * co ověřovat.
+ */
+async function overPredplatne(): Promise<void> {
+  const s = S.d.subscription
+  if (!s?.klic) return
+  if (s.listek.overenoKdy === realToday()) return
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) return
+
+  const r = await obnovStav(s.klic)
+  if (!r.ok || !r.listek) return
+
+  const obsah = await overListek(r.listek)
+  if (!obsah) return
+
+  patch((d) => {
+    d.subscription.listek = { text: r.listek as string, obsah, overenoKdy: realToday() }
+  })
+  renderInPlace()
+}
+
 // ------------------------------------------------------------------ start ---
 
 load()
 applyTheme()
+void prevezmiZAdresy()
+void overPredplatne()
 
 // Bez jazyka prohlížeč neumí česky dělit slova. „Kryoembryotransfer“ se
 // pak v úzkém sloupci na telefonu zlomí kdekoliv a bez spojovníku.

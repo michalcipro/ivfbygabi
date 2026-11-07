@@ -50,7 +50,16 @@ async function main() {
     define: { 'process.env.NODE_ENV': '"production"' },
   })
 
-  const js = bundle.outputFiles[0].text
+  /*
+   * Veřejný klíč k ověřování lístků předplatného.
+   *
+   * Není tajný, ověřovat se jím dá, podepisovat ne. Zapéká se do aplikace
+   * z proměnné prostředí, takže se dá vyměnit bez zásahu do kódu. Když
+   * chybí, aplikace se tváří, že placené předplatné neběží, což je ve
+   * vývoji i před spuštěním plateb správně.
+   */
+  const verejnyKlic = (process.env.BLOOMIA_VEREJNY_KLIC ?? '').trim()
+  const js = bundle.outputFiles[0].text.split('__VEREJNY_KLIC__').join(verejnyKlic)
   const css = read(join(ROOT, 'src', 'client', 'app.css'))
   const fonts = read(join(ROOT, 'scripts', 'fonts.css'))
   const template = read(join(ROOT, 'scripts', 'app.template.html'))
@@ -98,6 +107,7 @@ async function main() {
   console.log(`  styl:   ${kb(Buffer.byteLength(css))}`)
   console.log(`  písmo:  ${kb(Buffer.byteLength(fonts))}`)
   console.log(`  vedle:  ${zkopirovano} souborů z public/, sw.js s otiskem ${otisk}`)
+  console.log(`  klíč:   ${verejnyKlic ? 'veřejný klíč zapečen' : 'bez klíče, předplatné se bude tvářit jako nespuštěné'}`)
 }
 
 main().catch((err) => {

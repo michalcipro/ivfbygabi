@@ -120,26 +120,11 @@ Upomínky před obnovením nechte vypnuté. Datum příštího obnovení a cenu
 uvidí žena v aplikaci a zrušit to jde jedním tlačítkem, takže se nic
 nestrhne poslepu.
 
-### 3e. Webhook
+### 3e. Webhook není potřeba
 
-V **Developers, Webhooks** přidejte cíl:
-
-```
-https://mybloomia.com/api/stripe
-```
-
-Události:
-
-```
-checkout.session.completed
-customer.subscription.updated
-customer.subscription.deleted
-invoice.payment_failed
-```
-
-Po vytvoření si zkopírujte **Signing secret**, začíná `whsec_`.
-
----
+Aplikace se na stav ptá sama, kdykoliv je online. Stripe tedy nemusí nic
+posílat a není co zabezpečovat ani co ladit, když zpráva nedorazí. O jednu
+pohyblivou část míň.
 
 ## 4. Co potřebuji od vás
 
@@ -150,12 +135,24 @@ vložíte vy. Já je nepotřebuji vidět a vidět je nechci.
 
 | Proměnná | Odkud | K čemu |
 |---|---|---|
-| `STRIPE_SECRET_KEY` | Stripe, Developers, API keys | ověření platby serverovou funkcí |
-| `STRIPE_WEBHOOK_SECRET` | ze zřízeného webhooku | ověření, že zpráva je opravdu od Stripe |
-| `LICENCE_KLIC` | vygeneruji a pošlu bezpečnou cestou | podepisování aktivačních kódů |
+| `STRIPE_SECRET_KEY` | Stripe, Developers, API keys | funkce se jím ptá Stripe |
+| `STRIPE_PRICE_ID` | Product catalog, začíná `price_` | která cena se účtuje |
+| `BLOOMIA_PODPIS_KLIC` | `npm run klice` | podepisování lístků, **tajné** |
+| `BLOOMIA_VEREJNY_KLIC` | `npm run klice` | ověřování lístků, zapéká se do aplikace |
+| `BLOOMIA_ADRESA` | `https://mybloomia.com` | kam se žena vrátí po zaplacení |
 
-Veřejný klíč k ověřování podpisu půjde přímo do zdrojového kódu aplikace.
-To je v pořádku, veřejným klíčem se dá jen ověřovat, ne podepisovat.
+Podpisový pár si vygenerujete sám:
+
+```sh
+npm run klice
+```
+
+Skript vypíše obě hodnoty a nikam je neuloží. Soukromý klíč tak neprojde
+chatem ani cizími záznamy. Obě proměnné nastavte pro **Production
+i Preview**, jinak náhled nebude fungovat.
+
+Veřejný klíč není tajný: ověřovat se jím dá, podepisovat ne. Zapéká se do
+aplikace při sestavení, takže se dá vyměnit bez zásahu do kódu.
 
 ### Údaje do dokumentů
 
