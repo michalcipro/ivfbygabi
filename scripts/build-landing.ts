@@ -31,11 +31,16 @@ function read(path: string): string {
 function main() {
   const vcelku = process.argv.includes('--inline')
 
+  const fonts = read(join(ROOT, 'scripts', 'fonts.css'))
+  const styl = read(join(ROOT, 'landing', 'styl.css'))
+  const skript = read(join(ROOT, 'landing', 'skript.js'))
+  if (!styl) throw new Error('landing/styl.css chybí')
+  if (!skript) throw new Error('landing/skript.js chybí')
+
   const sablona = read(join(ROOT, 'landing', 'index.src.html'))
   if (!sablona) throw new Error('landing/index.src.html chybí')
-  const fonts = read(join(ROOT, 'scripts', 'fonts.css'))
 
-  let html = sablona.replace('/*__FONTS__*/', () => fonts)
+  let html = slozStranku(sablona, fonts, styl, skript)
 
   mkdirSync(join(OUT, 'snimky'), { recursive: true })
 
@@ -78,8 +83,37 @@ function main() {
   console.log(`  snímky: ${obrazku}${vcelku ? ' (vložené do stránky)' : ' souborů vedle'}`)
   console.log(`  ikony:  ${ikon}`)
 
+  jazyky(fonts, styl, skript)
   dokumenty(fonts)
   obnova(fonts)
+}
+
+/**
+ * Jedna stránka, tři jazyky.
+ *
+ * Styl i skript jsou společné, takže se vkládají ze dvou souborů vedle.
+ * Jinak by se při každé úpravě vzhledu musely opravit tři kopie a jazyky
+ * by se rozešly dřív, než by si toho kdo všiml.
+ */
+function slozStranku(sablona: string, fonts: string, styl: string, skript: string): string {
+  return sablona
+    // Značku pro písma si nese `styl.css` sám, proto se tu nepřidává.
+    .replace('<!--__STYL__-->', () => `<style>\n${styl}</style>`)
+    .replace('/*__FONTS__*/', () => fonts)
+    .replace('<!--__SKRIPT__-->', () => `<script>\n${skript}</script>`)
+}
+
+/** Cizojazyčné verze. Každá do vlastní složky, ať adresa říká jazyk. */
+function jazyky(fonts: string, styl: string, skript: string): void {
+  for (const kod of ['en', 'de']) {
+    const sablona = read(join(ROOT, 'landing', `index.${kod}.src.html`))
+    if (!sablona) continue
+    const html = slozStranku(sablona, fonts, styl, skript)
+    mkdirSync(join(OUT, kod), { recursive: true })
+    const cesta = join(OUT, kod, 'index.html')
+    writeFileSync(cesta, html, 'utf8')
+    console.log(`  jazyk:    ${kod}/index.html (${Math.round(Buffer.byteLength(html) / 1024)} kB)`)
+  }
 }
 
 /**
