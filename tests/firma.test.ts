@@ -103,13 +103,24 @@ test('v identifikačním bloku nezůstal zástupný text', () => {
  * takže by ten řádek jen opakoval jméno o dva řádky výš.
  */
 test('patička uvádí provozovatelku', () => {
-  for (const n of ['landing/index.src.html', 'landing/dokument.src.html']) {
-    const text = readFileSync(path.join(process.cwd(), n), 'utf8')
-    assert.match(text, /<h3>Provozovatelka<\/h3>/, `${n}: patička neuvádí provozovatelku`)
-    assert.ok(text.includes(FIRMA), `${n}: chybí jméno provozovatelky`)
-    assert.ok(text.includes(ICO), `${n}: chybí IČO`)
-    assert.ok(!/Autorka obsahu/.test(text), `${n}: zbytečný řádek s autorkou obsahu`)
-  }
+  // Prodejní stránka nese patičku přímo, šablona dokumentu ji skládá ze
+  // slovníku v sestavení, protože se liší jazyk od jazyka. Kontroluje se
+  // proto zdroj i ten slovník: v obojím musí jméno a IČO být.
+  const text = readFileSync(path.join(process.cwd(), 'landing/index.src.html'), 'utf8')
+  assert.match(text, /<h3>Provozovatelka<\/h3>/, 'patička neuvádí provozovatelku')
+  assert.ok(text.includes(FIRMA), 'chybí jméno provozovatelky')
+  assert.ok(text.includes(ICO), 'chybí IČO')
+  assert.ok(!/Autorka obsahu/.test(text), 'zbytečný řádek s autorkou obsahu')
+
+  // Jméno drží šablona, IČO a sídlo slovník v sestavení: ty se překládají.
+  const sablona = readFileSync(path.join(process.cwd(), 'landing/dokument.src.html'), 'utf8')
+  assert.ok(sablona.includes(FIRMA), 'šablona dokumentu: chybí jméno provozovatelky')
+  assert.ok(sablona.includes('__UDAJE__'), 'šablona dokumentu nemá kam údaje vložit')
+  assert.ok(!/Autorka obsahu/.test(sablona), 'zbytečný řádek s autorkou obsahu')
+
+  const build = readFileSync(path.join(process.cwd(), 'scripts/build-landing.ts'), 'utf8')
+  const jazyku = build.split(ICO).length - 1
+  assert.ok(jazyku >= 3, `sestavení: IČO chybí v patičce některého jazyka (nalezeno ${jazyku}x)`)
 })
 
 /**

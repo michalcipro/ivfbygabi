@@ -156,43 +156,143 @@ interface DokMeta {
  * sebe, ale jako obyčejný text. Odkaz, který nikam nevede, je horší než
  * žádný.
  */
+/**
+ * Chrome dokumentu v jednotlivých jazycích.
+ *
+ * Obal je jeden pro všechny jazyky. Kopírovat ho třikrát i s jeho CSS by
+ * znamenalo, že se při každé úpravě musí opravit tři soubory.
+ */
+interface Rec {
+  jazyk: string
+  predpona: string
+  slozka: string
+  stitek: string
+  zpet: string
+  dokumenty: string
+  provozovatelka: string
+  udaje: string
+  pravni: string
+}
+
+const RECI: Rec[] = [
+  {
+    jazyk: 'cs', predpona: '', slozka: '',
+    stitek: 'Dokument', zpet: 'Zpět na BlooMia',
+    dokumenty: 'Dokumenty', provozovatelka: 'Provozovatelka',
+    udaje: '          <li>IČO: 21134154</li>\n          <li>Sídlo: V Jezerech 311, Braškov 273 51</li>',
+    pravni: `      <p>
+        BlooMia je vzdělávací a organizační nástroj. <strong>Není zdravotnický
+        prostředek</strong> a neslouží k diagnostice, prevenci ani léčbě.
+        Nenahrazuje péči vaší kliniky.
+      </p>
+      <p>
+        Když je vám těžko a potřebujete mluvit hned, linka důvěry
+        <strong>116 123</strong> je zdarma, nonstop a anonymně.
+      </p>
+      <p><a href="/">Zpět na BlooMia</a></p>`,
+  },
+  {
+    jazyk: 'en', predpona: 'en/', slozka: 'en',
+    stitek: 'Document', zpet: 'Back to BlooMia',
+    dokumenty: 'Documents', provozovatelka: 'Operator',
+    udaje: '          <li>Company ID: 21134154</li>\n          <li>Registered address: V Jezerech 311, Braškov 273 51, Czech Republic</li>',
+    pravni: `      <p>
+        BlooMia is an educational and organisational tool. <strong>It is not a
+        medical device</strong> and is not intended for diagnosis, prevention
+        or treatment. It does not replace the care of your clinic.
+      </p>
+      <p>
+        If things get heavy and you need to talk right now, <strong>116
+        123</strong> is the free, round-the-clock, anonymous emotional support
+        line in the Czech Republic. Outside the Czech Republic, look up your
+        local crisis line.
+      </p>
+      <p><a href="/en/">Back to BlooMia</a></p>`,
+  },
+  {
+    jazyk: 'de', predpona: 'de/', slozka: 'de',
+    stitek: 'Dokument', zpet: 'Zurück zu BlooMia',
+    dokumenty: 'Dokumente', provozovatelka: 'Betreiberin',
+    udaje: '          <li>Firmennummer (IČO): 21134154</li>\n          <li>Sitz: V Jezerech 311, Braškov 273 51, Tschechien</li>',
+    pravni: `      <p>
+        BlooMia ist ein Werkzeug zum Lernen und Ordnen. <strong>Sie ist kein
+        Medizinprodukt</strong> und dient weder der Diagnose noch der
+        Vorbeugung oder Behandlung. Sie ersetzt die Betreuung Ihrer Klinik nicht.
+      </p>
+      <p>
+        Wenn es Ihnen schwer wird und Sie sofort sprechen möchten:
+        <strong>116 123</strong> ist in Tschechien die kostenlose, anonyme
+        Seelsorge rund um die Uhr. Außerhalb Tschechiens suchen Sie bitte
+        Ihre örtliche Krisennummer.
+      </p>
+      <p><a href="/de/">Zurück zu BlooMia</a></p>`,
+  },
+]
+
 function dokumenty(fonts: string): void {
   const sablona = read(join(ROOT, 'landing', 'dokument.src.html'))
   if (!sablona) throw new Error('landing/dokument.src.html chybí')
 
-  const zdrojDir = join(ROOT, 'landing', 'dokumenty')
-  let jmena: string[]
-  try {
-    jmena = readdirSync(zdrojDir).filter((n) => n.endsWith('.html')).sort()
-  } catch {
-    console.log('  dokumenty: složka landing/dokumenty chybí, přeskočeno')
-    return
+  // Adresy se mezi jazyky liší, ale soubor se jmenuje všude stejně.
+  // Podle jména se pak skládá hreflang mezi verzemi.
+  const adresy = new Map<string, Map<string, string>>()
+  for (const r of RECI) {
+    for (const [jm, meta] of nactiSlozku(join(ROOT, 'landing', 'dokumenty', r.slozka))) {
+      if (!adresy.has(jm)) adresy.set(jm, new Map())
+      adresy.get(jm)!.set(r.jazyk, `${r.predpona}${meta.adresa}`)
+    }
   }
 
-  const nactene = jmena.map((name) => {
-    const cely = readFileSync(join(zdrojDir, name), 'utf8')
+  for (const r of RECI) jazykDokumentu(sablona, fonts, r, adresy)
+}
+
+/** Načte dokumenty jedné složky i s jejich hlavičkami. */
+function nactiSlozku(dir: string): [string, DokMeta, string][] {
+  let jmena: string[]
+  try {
+    jmena = readdirSync(dir).filter((n) => n.endsWith('.html')).sort()
+  } catch {
+    return []
+  }
+  return jmena.map((name) => {
+    const cely = readFileSync(join(dir, name), 'utf8')
     const hlavicka = cely.match(/<!--\s*meta\s*([\s\S]*?)-->/)
     if (!hlavicka) throw new Error(`${name}: chybí hlavička <!-- meta -->`)
     const meta = Object.fromEntries(
       hlavicka[1]
         .split('\n')
-        .map((r) => r.trim())
+        .map((radek) => radek.trim())
         .filter(Boolean)
-        .map((r) => {
-          const i = r.indexOf(':')
-          return [r.slice(0, i).trim(), r.slice(i + 1).trim()]
+        .map((radek) => {
+          const i = radek.indexOf(':')
+          return [radek.slice(0, i).trim(), radek.slice(i + 1).trim()]
         }),
     ) as unknown as DokMeta
     for (const klic of ['nadpis', 'podnadpis', 'popis', 'adresa'] as const) {
       if (!meta[klic]) throw new Error(`${name}: v hlavičce chybí ${klic}`)
     }
-    return { meta, telo: cely.slice(hlavicka[0].length + hlavicka.index!).trim() }
+    return [name, meta, cely.slice(hlavicka[0].length + hlavicka.index!).trim()]
   })
+}
 
+function jazykDokumentu(
+  sablona: string,
+  fonts: string,
+  r: Rec,
+  adresy: Map<string, Map<string, string>>,
+): void {
+  const zdrojDir = join(ROOT, 'landing', 'dokumenty', r.slozka)
+  const nactene = nactiSlozku(zdrojDir).map(([jm, meta, telo]) => ({ jm, meta, telo }))
+  if (!nactene.length) {
+    if (r.slozka) console.log(`  dokumenty ${r.jazyk}: složka chybí, přeskočeno`)
+    return
+  }
+
+  const TADY: Record<string, string> = { cs: 'jste tady', en: 'you are here', de: 'Sie sind hier' }
   const odkaz = (cil: DokMeta, tady: boolean): string =>
     tady
-      ? `<span class="tady">${cil.nadpis} (jste tady)</span>`
-      : `<a href="/${cil.adresa}">${cil.nadpis}</a>`
+      ? `<span class="tady">${cil.nadpis} (${TADY[r.jazyk]})</span>`
+      : `<a href="/${r.predpona}${cil.adresa}">${cil.nadpis}</a>`
 
   const podleAdresy = (a: string) => nactene.find((d) => d.meta.adresa === a)?.meta
 
@@ -200,9 +300,25 @@ function dokumenty(fonts: string): void {
   const gdpr = podleAdresy('ochrana-osobnich-udaju')
   const zdravi = podleAdresy('zdravotni-upozorneni')
 
-  for (const { meta, telo } of nactene) {
+  for (const { jm, meta, telo } of nactene) {
+    const sourozenci = adresy.get(jm)
+    const alternaty = sourozenci
+      ? [...sourozenci]
+          .map(([j, a]) => `<link rel="alternate" hreflang="${j}" href="https://mybloomia.com/${a}">`)
+          .join('\n')
+      : ''
+
     const html = sablona
       .replace('/*__FONTS__*/', () => fonts)
+      .split('__JAZYK__').join(r.jazyk)
+      .split('__PREDPONA__').join(r.predpona)
+      .replace('__ALTERNATY__', () => alternaty)
+      .split('__STITEK__').join(r.stitek)
+      .split('__ZPET__').join(r.zpet)
+      .split('__NADPIS_DOKUMENTY__').join(r.dokumenty)
+      .split('__NADPIS_PROVOZOVATELKA__').join(r.provozovatelka)
+      .replace('__UDAJE__', () => r.udaje)
+      .replace('__PRAVNI__', () => r.pravni)
       .split('__NADPIS__').join(meta.nadpis)
       .split('__PODNADPIS__').join(meta.podnadpis)
       .split('__POPIS__').join(meta.popis)
@@ -212,9 +328,11 @@ function dokumenty(fonts: string): void {
       .replace('__ODKAZ_ZDRAVI__', () => (zdravi ? odkaz(zdravi, zdravi === meta) : ''))
       .replace('__OBSAH__', () => telo)
 
-    const cesta = join(OUT, `${meta.adresa}.html`)
+    const slozka = r.slozka ? join(OUT, r.slozka) : OUT
+    mkdirSync(slozka, { recursive: true })
+    const cesta = join(slozka, `${meta.adresa}.html`)
     writeFileSync(cesta, html, 'utf8')
-    console.log(`  dokument: ${meta.adresa}.html (${Math.round(Buffer.byteLength(html) / 1024)} kB)`)
+    console.log(`  dokument: ${r.predpona}${meta.adresa}.html (${Math.round(Buffer.byteLength(html) / 1024)} kB)`)
   }
 }
 
