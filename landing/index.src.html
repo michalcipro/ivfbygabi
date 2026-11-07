@@ -504,15 +504,42 @@ section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
 
 /* ------------------------------------------------------------- pro koho */
 
-.prokoho { display: grid; gap: 0.4rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
-@media (min-width: 40rem) { .prokoho { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem 1.4rem; } }
-@media (min-width: 60rem) { .prokoho { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.prokoho li {
-  display: grid; grid-template-columns: 0.9rem minmax(0, 1fr); gap: 0.55rem;
-  align-items: baseline; font-size: 0.9375rem; color: var(--bloo-ink);
-  padding: 0.3rem 0;
+/* Šestnáct situací, ve kterých tahle aplikace dává smysl.
+   Odrážkový seznam ve třech sloupcích z toho dělal formulář. Štítky
+   se přečtou jedním pohledem a hlavně drží slib, který je jinde na
+   stránce napsaný slovy: žádná z těch situací není horší než ostatní,
+   tak ani jedna nevypadá jinak. Stejná výplň, stejný okraj, stejná
+   barva, od „stimulujete“ po „prožíváte ztrátu“.
+
+   Pořadí je pořadí cesty a zalamování ho neruší: štítky tečou zleva
+   doprava a shora dolů jako text. */
+.prokoho {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  margin: 1.8rem 0 0; padding: 0; list-style: none; max-width: 54rem;
 }
-.prokoho li::before { content: '\2022'; color: var(--heart); font-size: 0.8rem; }
+.prokoho li {
+  padding: 0.55rem 1.15rem;
+  background: var(--white);
+  border: 1px solid var(--rose-veil);
+  border-radius: 999px;
+  box-shadow: var(--veil);
+  font-size: 0.9375rem; line-height: 1.35;
+  color: var(--bloo-ink);
+}
+/* Poslední položka nebyla situace, ale dovětek („nebo jen…“), a jako
+   štítek mezi ostatními nedávala smysl. Stojí teď pod nimi jako věta,
+   která ten výčet uzavře. */
+.prokoho-konec {
+  margin: 1.5rem 0 0; max-width: 32rem;
+  font-size: 1.0625rem; line-height: 1.65; color: var(--muted);
+}
+/* Na úzkém displeji se štítky o kousek stáhnou, ať se jich na řádek
+   vejde víc než jeden. Míň už ne: pod tuhle velikost by se to špatně
+   četlo a to je horší než o dva řádky delší blok. */
+@media (max-width: 30rem) {
+  .prokoho { gap: 0.5rem; }
+  .prokoho li { padding: 0.5rem 0.95rem; font-size: 0.9rem; }
+}
 
 /* --------------------------------------------------------------- galerie */
 
@@ -773,7 +800,10 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 .hero-obraz:hover :is(.displej img, .listovani span),
 .hero-obraz:focus-within :is(.displej img, .listovani span) { animation-play-state: paused; }
 
-.listovani { position: relative; height: 1.4rem; }
+/* `width` tu musí být. Všechny popisky jsou odpozicované, takže uvnitř
+   nezůstane nic, co by obalu dalo šířku, a v mřížce s `place-items:
+   center` se smrskne na nulu. Text se pak láme po jednom písmenu. */
+.listovani { position: relative; height: 1.4rem; width: 100%; }
 .listovani span { position: absolute; left: 0; right: 0; opacity: 0; font-weight: 600; color: var(--muted); }
 .listovani span:first-child { opacity: 1; }
 
@@ -1215,24 +1245,25 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
     </div>
 
     <ul class="prokoho">
-      <li>právě zvažujete IVF</li>
-      <li>čekáte na vyšetření</li>
-      <li>připravujete se na IVF</li>
-      <li>stimulujete</li>
-      <li>jdete na odběr</li>
-      <li>čekáte na embrya</li>
-      <li>čekáte na transfer</li>
-      <li>jste po čerstvém transferu</li>
-      <li>jste po kryotransferu</li>
-      <li>čekáte na hCG</li>
-      <li>transfer nevyšel</li>
-      <li>prožíváte biochemické těhotenství</li>
-      <li>prožíváte mimoděložní těhotenství</li>
-      <li>prožíváte ztrátu</li>
-      <li>máte další cyklus</li>
-      <li>přemýšlíte, jestli pokračovat</li>
-      <li>nebo jen potřebujete mít ve své cestě víc jasno</li>
+      <li class="rv">právě zvažujete IVF</li>
+      <li class="rv">čekáte na vyšetření</li>
+      <li class="rv">připravujete se na IVF</li>
+      <li class="rv">stimulujete</li>
+      <li class="rv">jdete na odběr</li>
+      <li class="rv">čekáte na embrya</li>
+      <li class="rv">čekáte na transfer</li>
+      <li class="rv">jste po čerstvém transferu</li>
+      <li class="rv">jste po kryotransferu</li>
+      <li class="rv">čekáte na hCG</li>
+      <li class="rv">transfer nevyšel</li>
+      <li class="rv">prožíváte biochemické těhotenství</li>
+      <li class="rv">prožíváte mimoděložní těhotenství</li>
+      <li class="rv">prožíváte ztrátu</li>
+      <li class="rv">máte další cyklus</li>
+      <li class="rv">přemýšlíte, jestli pokračovat</li>
     </ul>
+
+    <p class="prokoho-konec rv">Nebo jen potřebujete mít ve své cestě víc jasno.</p>
 
     <p class="citat" style="margin-top:2rem;max-width:30rem">
       Nemusíte vědět, kam vaše cesta povede. Stačí vědět, kde jste dnes.
