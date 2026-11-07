@@ -689,8 +689,8 @@ function backbar(route: string): string {
   const previous = base(stack.length > 1 ? stack[stack.length - 2] : (foreignPhase ? 'cesta' : (PARENT[b] ?? 'dnes')))
   const label = BACK_TITLES[previous] ?? TITLES[previous] ?? 'Dnes'
   return `<div class="backbar no-print">
-    <button data-act="back">‹ ${esc(prelozit('Zpět na'))} ${esc(prelozit(label))}</button>
-    <span class="where">${esc(prelozit(TITLES[b] ?? ''))}</span>
+    <button data-act="back">‹ ${esc(prelozit('Zpět na'))} ${esc(prelozit(label, 'nadpis'))}</button>
+    <span class="where">${esc(prelozit(TITLES[b] ?? '', 'nadpis'))}</span>
     ${CTENI.includes(b) ? '<i class="postup"></i>' : ''}
   </div>`
 }

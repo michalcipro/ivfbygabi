@@ -2,6 +2,7 @@ import type { ContentItem, HeroToken } from '../lib/content/types'
 import { KIND_ICONS, KIND_LABELS } from '../lib/content/types'
 import { motifFor } from '../lib/content/motif'
 import { motifSvg } from './motif-svg'
+import { prelozit } from '../lib/i18n'
 
 /** Stavební prvky. Všechny obrazovky se skládají z těchhle kousků. */
 
@@ -243,8 +244,16 @@ export function empty(title: string, body: string, action = '', mark = '❧'): s
   </div>`
 }
 
+/**
+ * Poznámka pod kartou.
+ *
+ * Překládá se tady, ne až v DOM. `md()` větu rozlomí na víc uzlů, protože
+ * `**zvýrazněné**` se stane `<strong>`, a z jedné věty by tak byly tři
+ * klíče zlámané přesně tam, kde je zvýraznění. Jeden klíč na celou větu
+ * je čitelnější a přežije i přesunutí zvýraznění jinam.
+ */
 export function note(text: string): string {
-  return `<p class="note">${md(text).replace(/^<p>|<\/p>$/g, '')}</p>`
+  return `<p class="note">${md(prelozit(text)).replace(/^<p>|<\/p>$/g, '')}</p>`
 }
 
 export function tile(

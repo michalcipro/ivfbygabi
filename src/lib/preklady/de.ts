@@ -52,7 +52,9 @@ export const DE: Record<string, string> = {
   'Co když…': 'Was, wenn…',
   'Více': 'Mehr',
   'Pojem': 'Begriff',
-  'Cvičení': 'Übung',
+  'Cvičení': 'Übungen',
+  // Nadpis obrazovky s jedním cvičením. Jinde je „Cvičení“ seznam.
+  'nadpis|Cvičení': 'Übung',
   'Hodnota': 'Wert',
   'Diagnóza': 'Diagnose',
   'Čtení': 'Lesen',
@@ -254,4 +256,122 @@ export const DE: Record<string, string> = {
   'Živě': 'Live',
   'Otázky na lékaře': 'Fragen an die Ärztin oder den Arzt',
   'Dnes je na vás · # z #': 'Heute an Ihnen · # von #',
+
+  // --- Deník -----------------------------------------------------------------
+  'Vývoj': 'Verlauf',
+  'chybí': 'fehlt',
+  'Zápisy': 'Einträge',
+  'nezapsáno': 'nicht erfasst',
+  'Ohlédnutí': 'Rückblick',
+  'Připomínky': 'Erinnerungen',
+  'Váš přehled': 'Ihre Übersicht',
+  'Co vás čeká': 'Was ansteht',
+  'Volný zápis': 'Freier Eintrag',
+  'Dnešní zápis': 'Eintrag von heute',
+  'Uložit zápis': 'Eintrag speichern',
+  'Kde dnes jste': 'Wo Sie heute stehen',
+  'nic v kalendáři': 'nichts im Kalender',
+  'Jak na tom jste': 'Wie es Ihnen geht',
+  'Jak vám dnes je': 'Wie es Ihnen heute geht',
+  'Zítra bude jiná': 'Morgen ist eine andere',
+  'Hodilo by se dnes': 'Könnte heute helfen',
+  'nikdy text zápisu': 'niemals den Text eines Eintrags',
+  '1 = žádná, 5 = velká': '1 = keine, 5 = groß',
+  '1 = na dně, 5 = plná': '1 = am Ende, 5 = voll',
+  'Udělala jsem maximum': 'Ich habe alles getan, was ich konnte',
+  '1 = klid, 5 = svírá to': '1 = ruhig, 5 = beklemmend',
+  'Soukromé. Nikdo jiný to nevidí': 'Privat. Niemand sonst sieht es',
+  'Cokoliv, co potřebujete dostat z hlavy.': 'Alles, was Sie aus dem Kopf bekommen müssen.',
+  'Klidně jen tři věty. Nikdo jiný to neuvidí.': 'Drei Sätze reichen. Niemand sonst wird es sehen.',
+  'Například: došla jsem na procházku, i když se mi nechtělo':
+    'Zum Beispiel: Ich bin spazieren gegangen, obwohl ich keine Lust hatte',
+  'I úplně malá věc. Hlava si v zátěži pamatuje hlavně to, co nevyšlo. Tohle je vědomé vyvážení.':
+    'Auch eine ganz kleine Sache. Unter Belastung behält der Kopf vor allem das, was nicht geklappt hat. Das hier ist ein bewusstes Gegengewicht.',
+  'Večer před transferem nebo před odběrem. A pak kdykoli, když se přistihnete, jak hledáte, co jste udělala špatně.':
+    'Am Abend vor einem Transfer oder einer Entnahme. Und immer dann, wenn Sie sich dabei erwischen, nach Ihrem Fehler zu suchen.',
+  'Deník je soukromý. Partner v Partner mode uvidí jen průměrnou náladu za týden, **nikdy text zápisu**.':
+    'Das Tagebuch ist privat. Im Partner mode sieht Ihr Partner nur die durchschnittliche Stimmung der Woche, **niemals den Text eines Eintrags**.',
+  '#. týden fáze': '#. Woche der Phase',
+  'Otázka na dnešek · Práce s hlavou': 'Eine Frage für heute · Arbeit mit dem Kopf',
+  'Okruhy': 'Bereiche',
+  'Dopis sobě': 'Ein Brief an sich selbst',
+  'Sebesoucit': 'Selbstmitgefühl',
+  'Hodí se teď': 'Jetzt passend',
+  'IVF a práce': 'IVF und Arbeit',
+  'Já a partner': 'Mein Partner und ich',
+  'Kolo kontroly': 'Der Kreis der Kontrolle',
+  'Moje myšlenky': 'Meine Gedanken',
+  'Než se zhasne.': 'Bevor das Licht ausgeht.',
+  'Regulace stresu': 'Stress regulieren',
+  'Stres z financí': 'Stress wegen Geld',
+  'Jak se dnes cítím': 'Wie ich mich heute fühle',
+  'Ztráta a zklamání': 'Verlust und Enttäuschung',
+  'Večerní zklidnění': 'Zur Ruhe kommen am Abend',
+  'Čekání a nejistota': 'Warten und Ungewissheit',
+  'Naděje a očekávání': 'Hoffnung und Erwartung',
+  'Můj vztah ke klinice': 'Mein Verhältnis zur Klinik',
+  'Vztah k vlastnímu tělu': 'Das Verhältnis zum eigenen Körper',
+  'Důvěra, otázky, hranice.': 'Vertrauen, Fragen, Grenzen.',
+  'Tělo napřed, hlava potom.': 'Erst der Körper, dann der Kopf.',
+  'Malé věci, které mi pomohly': 'Kleine Dinge, die mir geholfen haben',
+  'Moje čísla nejsou cizí čísla': 'Meine Zahlen sind nicht die Zahlen anderer',
+  'Krátké zastavení nad dneškem.': 'Ein kurzes Innehalten über den Tag.',
+  'Sbírka, která má cenu až po měsíci.': 'Eine Sammlung, die erst nach einem Monat etwas wert ist.',
+  'Peníze v léčbě nejsou vedlejší téma.': 'Geld in der Behandlung ist kein Nebenthema.',
+  'Dva kalendáře, které se nedomlouvají.': 'Zwei Kalender, die sich nicht abstimmen.',
+  'Ne podle vzhledu. Podle toho, co unese.':
+    'Nicht nach dem Aussehen. Nach dem, was er tragen kann.',
+  'Doufat a chránit se přitom není protimluv.':
+    'Hoffen und sich dabei schützen ist kein Widerspruch.',
+  'Nejdelší část léčby a nejmíň se o ní mluví.':
+    'Der längste Teil der Behandlung, über den am wenigsten gesprochen wird.',
+  'Co si neříkáme a co bychom potřebovali slyšet.':
+    'Was wir nicht sagen und was wir hören müssten.',
+  'Když si nadáváte nebo máte pocit, že za to můžete.':
+    'Wenn Sie mit sich schimpfen oder das Gefühl haben, schuld zu sein.',
+  'Když se v hlavě zasekne věta, která zní jako fakt.':
+    'Wenn ein Satz im Kopf hängen bleibt und wie eine Tatsache klingt.',
+  'Mluvit k sobě tak, jak byste mluvila ke kamarádce.':
+    'Mit sich so sprechen, wie Sie mit einer Freundin sprechen würden.',
+  'Pro chvíle, kdy se výsledek nestal tím, v co jste doufala.':
+    'Für die Momente, in denen das Ergebnis nicht das war, was Sie erhofft haben.',
+  'Když se myšlenky točí kolem věcí, se kterými nic nenaděláte.':
+    'Wenn die Gedanken um Dinge kreisen, an denen Sie nichts ändern können.',
+  'Po odběru nebo po telefonátu z embryologie, když srovnáváte svoje počty s cizími.':
+    'Nach einer Entnahme oder einem Anruf aus der Embryologie, wenn Sie Ihre Zahlen mit denen anderer vergleichen.',
+  'Tyhle techniky vycházejí z postupů běžných v kognitivně-behaviorální terapii a všímavosti. **Nejsou léčba a nenahrazují odbornou pomoc**: jsou to nástroje na konkrétní těžkou chvíli.':
+    'Diese Techniken stützen sich auf Vorgehensweisen, die in der kognitiven Verhaltenstherapie und der Achtsamkeit üblich sind. **Sie sind keine Behandlung und ersetzen keine fachliche Hilfe**: Sie sind Werkzeuge für einen bestimmten schweren Moment.',
+  'Práce se sebou. Techniky, které se dají udělat teď hned. Nejsou to články o tom, jak by to šlo. Jsou to kroky, které tu odklikáte.':
+    'Arbeit an sich selbst. Techniken, die Sie jetzt sofort machen können. Das sind keine Artikel darüber, wie es gehen könnte. Das sind Schritte, die Sie hier durchklicken.',
+  '# cvičení celkem': '# Übungen insgesamt',
+  'Zapsat dnešek': 'Heute festhalten',
+  'Zatím tu nic není': 'Noch nichts hier',
+  'Až něco zapíšete nebo vyplníte cvičení, najdete to tady. Můžete se k tomu vracet a kdykoliv to smazat.':
+    'Sobald Sie etwas schreiben oder eine Übung ausfüllen, finden Sie es hier. Sie können jederzeit darauf zurückkommen und es löschen.',
+  'Zatím není co kreslit': 'Noch nichts zu zeichnen',
+  'Až budou zápisy aspoň dva, uvidíte tady, jak se nálada, úzkost a naděje vyvíjejí v čase. Bývá to překvapivé. V hlavě to vypadá jako rovná čára dolů.':
+    'Sobald es mindestens zwei Einträge gibt, sehen Sie hier, wie sich Stimmung, Angst und Hoffnung über die Zeit bewegen. Das überrascht meistens. Im Kopf sieht es wie eine gerade Linie nach unten aus.',
+  'Na cestě': 'Unterwegs',
+  'Zápisů v deníku': 'Tagebucheinträge',
+  'Co máte za sebou': 'Was Sie hinter sich haben',
+  'Uložit ohlédnutí': 'Rückblick speichern',
+  'Týdenní ohlédnutí': 'Wöchentlicher Rückblick',
+  'Přidat do kroniky': 'Zur Chronik hinzufügen',
+  'Vyplněných cvičení': 'Ausgefüllte Übungen',
+  'Odškrtnutých položek': 'Abgehakte Punkte',
+  'Vzpomínka na později': 'Eine Erinnerung für später',
+  'Práce s hlavou ve vaší fázi': 'Arbeit mit dem Kopf in Ihrer Phase',
+  'Co mi pomohlo. A udělám to znovu?': 'Was mir geholfen hat. Und mache ich es wieder?',
+  'Když se jede den po dni, posun není vidět. Tady je.':
+    'Tag für Tag sieht man die Veränderung nicht. Hier ist sie.',
+  'Co bylo tenhle týden nejtěžší a jak jsem to zvládla?':
+    'Was war diese Woche am schwersten und wie habe ich es geschafft?',
+  'Co chci příští týden dělat jinak? Jednu konkrétní věc.':
+    'Was möchte ich nächste Woche anders machen? Eine bestimmte Sache.',
+  'Tři otázky, které se vyplatí projít jednou týdně. Uloží se jako běžný zápis.':
+    'Drei Fragen, die sich einmal pro Woche lohnen. Sie werden als normaler Eintrag gespeichert.',
+  'Zápisy v řadě. Cíl je týden. Ne kvůli sbírání, ale proto, že teprve na týdnu je vidět vývoj.':
+    'Einträge in Folge. Das Ziel ist eine Woche. Nicht zum Sammeln, sondern weil sich eine Entwicklung erst über eine Woche zeigt.',
+  'Něco, co dnes prožíváte, si za rok nevybavíte. Můžete si to uložit do kroniky. Tam se z toho jednou dá udělat kniha.':
+    'Etwas, das Sie heute erleben, werden Sie in einem Jahr nicht mehr abrufen können. Sie können es in der Chronik speichern. Daraus kann eines Tages ein Buch werden.',
 }

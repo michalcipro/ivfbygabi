@@ -58,7 +58,9 @@ export const EN: Record<string, string> = {
   'Co když…': 'What if…',
   'Více': 'More',
   'Pojem': 'Term',
-  'Cvičení': 'Exercise',
+  'Cvičení': 'Exercises',
+  // Nadpis obrazovky s jedním cvičením. Jinde je „Cvičení“ seznam.
+  'nadpis|Cvičení': 'Exercise',
   'Hodnota': 'Value',
   'Diagnóza': 'Diagnosis',
   'Čtení': 'Reading',
@@ -257,4 +259,121 @@ export const EN: Record<string, string> = {
   'Živě': 'Live',
   'Otázky na lékaře': 'Questions for the doctor',
   'Dnes je na vás · # z #': 'On you today · # of #',
+
+  // --- Deník -----------------------------------------------------------------
+  'Vývoj': 'Trend',
+  'chybí': 'missing',
+  'Zápisy': 'Entries',
+  'nezapsáno': 'not recorded',
+  'Ohlédnutí': 'Looking back',
+  'Připomínky': 'Reminders',
+  'Váš přehled': 'Your overview',
+  'Co vás čeká': 'What is coming',
+  'Volný zápis': 'Free writing',
+  'Dnešní zápis': "Today's entry",
+  'Uložit zápis': 'Save entry',
+  'Kde dnes jste': 'Where you are today',
+  'nic v kalendáři': 'nothing in the calendar',
+  'Jak na tom jste': 'How you are doing',
+  'Jak vám dnes je': 'How you feel today',
+  'Zítra bude jiná': 'Tomorrow will be different',
+  'Hodilo by se dnes': 'Might help today',
+  'nikdy text zápisu': 'never the text of an entry',
+  '1 = žádná, 5 = velká': '1 = none, 5 = high',
+  '1 = na dně, 5 = plná': '1 = empty, 5 = full',
+  'Udělala jsem maximum': 'I did everything I could',
+  '1 = klid, 5 = svírá to': '1 = calm, 5 = gripping',
+  'Soukromé. Nikdo jiný to nevidí': 'Private. Nobody else sees it',
+  'Cokoliv, co potřebujete dostat z hlavy.': 'Anything you need to get out of your head.',
+  'Klidně jen tři věty. Nikdo jiný to neuvidí.':
+    'Three sentences are fine. Nobody else will see it.',
+  'Například: došla jsem na procházku, i když se mi nechtělo':
+    'For example: I went for a walk even though I did not feel like it',
+  'I úplně malá věc. Hlava si v zátěži pamatuje hlavně to, co nevyšlo. Tohle je vědomé vyvážení.':
+    'Even a very small thing. Under strain the mind remembers mainly what went wrong. This is a deliberate counterweight.',
+  'Večer před transferem nebo před odběrem. A pak kdykoli, když se přistihnete, jak hledáte, co jste udělala špatně.':
+    'The evening before a transfer or a retrieval. And any time you catch yourself looking for what you did wrong.',
+  'Deník je soukromý. Partner v Partner mode uvidí jen průměrnou náladu za týden, **nikdy text zápisu**.':
+    'The diary is private. In Partner mode your partner sees only the average mood for the week, **never the text of an entry**.',
+  '#. týden fáze': 'Week # of the stage',
+  'Otázka na dnešek · Práce s hlavou': 'A question for today · Working with your mind',
+  'Okruhy': 'Areas',
+  'Dopis sobě': 'A letter to yourself',
+  'Sebesoucit': 'Self-compassion',
+  'Hodí se teď': 'Useful right now',
+  'IVF a práce': 'IVF and work',
+  'Já a partner': 'My partner and me',
+  'Kolo kontroly': 'The circle of control',
+  'Moje myšlenky': 'My thoughts',
+  'Než se zhasne.': 'Before the lights go out.',
+  'Regulace stresu': 'Managing stress',
+  'Stres z financí': 'Money stress',
+  'Jak se dnes cítím': 'How I feel today',
+  'Ztráta a zklamání': 'Loss and disappointment',
+  'Večerní zklidnění': 'Settling down for the evening',
+  'Čekání a nejistota': 'Waiting and uncertainty',
+  'Naděje a očekávání': 'Hope and expectation',
+  'Můj vztah ke klinice': 'My relationship with the clinic',
+  'Vztah k vlastnímu tělu': 'My relationship with my body',
+  'Důvěra, otázky, hranice.': 'Trust, questions, boundaries.',
+  'Tělo napřed, hlava potom.': 'Body first, mind after.',
+  'Malé věci, které mi pomohly': 'Small things that helped me',
+  'Moje čísla nejsou cizí čísla': "My numbers are not somebody else's numbers",
+  'Krátké zastavení nad dneškem.': 'A short pause over today.',
+  'Sbírka, která má cenu až po měsíci.': 'A collection that is only worth something after a month.',
+  'Peníze v léčbě nejsou vedlejší téma.': 'Money in treatment is not a side issue.',
+  'Dva kalendáře, které se nedomlouvají.': 'Two calendars that do not talk to each other.',
+  'Ne podle vzhledu. Podle toho, co unese.': 'Not by how it looks. By what it can carry.',
+  'Doufat a chránit se přitom není protimluv.':
+    'Hoping and protecting yourself at the same time is not a contradiction.',
+  'Nejdelší část léčby a nejmíň se o ní mluví.':
+    'The longest part of treatment and the least talked about.',
+  'Co si neříkáme a co bychom potřebovali slyšet.': 'What we do not say and what we need to hear.',
+  'Když si nadáváte nebo máte pocit, že za to můžete.':
+    'When you are hard on yourself or feel it is your fault.',
+  'Když se v hlavě zasekne věta, která zní jako fakt.':
+    'When a sentence sticks in your head and sounds like a fact.',
+  'Mluvit k sobě tak, jak byste mluvila ke kamarádce.':
+    'Speaking to yourself the way you would speak to a friend.',
+  'Pro chvíle, kdy se výsledek nestal tím, v co jste doufala.':
+    'For the moments when the result was not what you hoped for.',
+  'Když se myšlenky točí kolem věcí, se kterými nic nenaděláte.':
+    'When your thoughts circle things you can do nothing about.',
+  'Po odběru nebo po telefonátu z embryologie, když srovnáváte svoje počty s cizími.':
+    "After a retrieval or a call from the embryology lab, when you compare your numbers with other people's.",
+  'Tyhle techniky vycházejí z postupů běžných v kognitivně-behaviorální terapii a všímavosti. **Nejsou léčba a nenahrazují odbornou pomoc**: jsou to nástroje na konkrétní těžkou chvíli.':
+    'These techniques draw on approaches common in cognitive behavioural therapy and mindfulness. **They are not treatment and do not replace professional help**: they are tools for one specific hard moment.',
+  'Práce se sebou. Techniky, které se dají udělat teď hned. Nejsou to články o tom, jak by to šlo. Jsou to kroky, které tu odklikáte.':
+    'Work on yourself. Techniques you can do right now. These are not articles about how it could be done. They are steps you click through here.',
+  '# cvičení celkem': '# exercises in total',
+  'Zapsat dnešek': 'Record today',
+  'Zatím tu nic není': 'Nothing here yet',
+  'Až něco zapíšete nebo vyplníte cvičení, najdete to tady. Můžete se k tomu vracet a kdykoliv to smazat.':
+    'Once you write something or complete an exercise, you will find it here. You can come back to it and delete it at any time.',
+  'Zatím není co kreslit': 'Nothing to chart yet',
+  'Až budou zápisy aspoň dva, uvidíte tady, jak se nálada, úzkost a naděje vyvíjejí v čase. Bývá to překvapivé. V hlavě to vypadá jako rovná čára dolů.':
+    'Once there are at least two entries, you will see here how mood, anxiety and hope move over time. It tends to be surprising. In your head it looks like a straight line down.',
+  'Na cestě': 'On the journey',
+  'Zápisů v deníku': 'Diary entries',
+  'Co máte za sebou': 'What you have behind you',
+  'Uložit ohlédnutí': 'Save the review',
+  'Týdenní ohlédnutí': 'Weekly review',
+  'Přidat do kroniky': 'Add to the chronicle',
+  'Vyplněných cvičení': 'Exercises completed',
+  'Odškrtnutých položek': 'Items ticked off',
+  'Vzpomínka na později': 'A memory for later',
+  'Práce s hlavou ve vaší fázi': 'Working with your mind in your stage',
+  'Co mi pomohlo. A udělám to znovu?': 'What helped me. And will I do it again?',
+  'Když se jede den po dni, posun není vidět. Tady je.':
+    'Day by day you cannot see the shift. Here it is.',
+  'Co bylo tenhle týden nejtěžší a jak jsem to zvládla?':
+    'What was hardest this week and how did I get through it?',
+  'Co chci příští týden dělat jinak? Jednu konkrétní věc.':
+    'What do I want to do differently next week? One specific thing.',
+  'Tři otázky, které se vyplatí projít jednou týdně. Uloží se jako běžný zápis.':
+    'Three questions worth going through once a week. They save as an ordinary entry.',
+  'Zápisy v řadě. Cíl je týden. Ne kvůli sbírání, ale proto, že teprve na týdnu je vidět vývoj.':
+    'Entries in a row. The goal is a week. Not for the sake of collecting, but because a trend only shows up over a week.',
+  'Něco, co dnes prožíváte, si za rok nevybavíte. Můžete si to uložit do kroniky. Tam se z toho jednou dá udělat kniha.':
+    'Something you are living through today you will not recall in a year. You can save it to the chronicle. One day it can become a book.',
 }
