@@ -5,6 +5,7 @@ import { prectiListek } from '../lib/domain/predplatne'
 import { zavreno } from '../lib/domain/pristup'
 import { PLATBY_ZAPNUTE, obnovStav, overListek, portalPlateb, zacniPlatbu, zrusPredplatne } from './predplatne'
 import { screenZed } from './screens-zed'
+import { ozivPohyb } from './pohyb'
 import { contentById } from '../lib/content'
 import { LAB_BY_KEY } from '../lib/health/lab-params'
 import type { Letter } from '../lib/shared/records'
@@ -748,7 +749,7 @@ function render(): void {
 
     <main class="main">
       ${backbar(route)}
-      <div class="page ${narrow || zed ? 'page-narrow' : ''}">${
+      <div class="page ${narrow || zed ? 'page-narrow' : ''}${keepPlace ? ' bez-vstupu' : ''}">${
         zed
           ? screenZed(S.d.subscription?.listek?.obsah?.cena ?? 191, view.predplatne.bezi, view.predplatne.hlaska)
           : `${SUMMARY_HIDDEN.includes(base(route)) ? '' : renderSummary(view.summary)}${screenFor(route)}`
@@ -768,6 +769,9 @@ function render(): void {
 
   // Grafy se staví až tady. Hover se nedá pověsit na řetězec.
   hydrateCharts(app)
+
+  // Náběh karet pod okrajem počká, až na ně dojde řada.
+  ozivPohyb(app, keepPlace)
 
   if (keepPlace) {
     window.scrollTo(0, misto)

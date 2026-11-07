@@ -21,6 +21,8 @@
 <meta property="og:image" content="https://mybloomia.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
+<script>document.documentElement.className += ' js'</script>
+
 <style>
 /*__FONTS__*/
 
@@ -681,6 +683,73 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
   section { padding: 1.5rem 0; break-inside: avoid; }
   a { color: #3a3245; }
 }
+/* ======================================================== POHYB ===
+ *
+ * Stránka se hýbe, ale tiše. Čte ji žena, která čeká na hCG, často ve
+ * tři ráno. Poskakující obsah je v takové chvíli k vzteku, a tak platí:
+ * krátké dráhy, dlouhé časy, žádné odrazy a nic, co bliká.
+ *
+ * Nic se tu nepřebarvuje ani nepřesouvá natrvalo. Vzhled zůstává přesně
+ * takový, jaký byl; mění se jen cesta, po které se na obrazovku dostane.
+ *
+ * -------------------------------------------------------- PROČ `.js` ---
+ * Schovat obsah v CSS a spolehnout se, že ho skript zase ukáže, je
+ * nejrychlejší cesta k prázdné stránce. Příznak `js` přidá skript
+ * v hlavičce, takže bez JavaScriptu se neschová vůbec nic.
+ */
+
+/* --- odhalení při scrollu --- */
+.js .rv {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s var(--calm), transform 0.9s var(--calm);
+  transition-delay: var(--d, 0s);
+}
+.js .rv.je { opacity: 1; transform: none; }
+
+/* --- vstup po načtení --- */
+.js .pr { opacity: 0; transform: translateY(16px); }
+.js.nacteno .pr {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.9s var(--calm), transform 1s var(--calm);
+  transition-delay: var(--d, 0s);
+}
+
+/* --- parallax telefonu ---
+   Posun je malý schválně. Snímek obrazovky je důkaz, ne atrakce. */
+.js .hero-obraz .telefon { transform: translate3d(0, var(--py, 0px), 0); }
+
+/* --- dech akvarelu ---
+   Skvrna za logem se sotva znatelně nadechuje. Osmnáct vteřin je dost
+   pomalu na to, aby to oko bralo jako živou barvu, ne jako animaci. */
+@keyframes dych {
+  50% { transform: scale(1.035) translate3d(0.8%, -0.6%, 0); }
+}
+.js .logo-kruh .vodovka { animation: dych 18s ease-in-out infinite; }
+
+/* --- stisk ---
+   Tlačítko musí pod prstem povolit, jinak není jisté, že stisk prošel. */
+.btn { transition: background-color 0.3s var(--calm), border-color 0.3s var(--calm),
+                   color 0.3s var(--calm), transform 0.25s var(--calm); }
+.btn:active { transform: scale(0.975); }
+
+/* --- karty ---
+   Nadzvednutí při najetí. Jen tam, kde je skutečný kurzor; na dotyku
+   by to zůstalo viset po kliknutí. */
+@media (hover: hover) and (pointer: fine) {
+  .karta { transition: transform 0.4s var(--calm), box-shadow 0.4s var(--calm); }
+  .karta:hover { transform: translateY(-3px); box-shadow: var(--lift); }
+}
+
+/* --- kdo pohyb nechce, ten ho nedostane --- */
+@media (prefers-reduced-motion: reduce) {
+  .js .rv, .js .pr { opacity: 1; transform: none; transition: none; }
+  .js .logo-kruh .vodovka { animation: none; }
+  .js .hero-obraz .telefon { transform: none; }
+  .btn:active { transform: none; }
+  .karta:hover { transform: none; }
+}
 </style>
 
 <header class="top" id="lista">
@@ -703,7 +772,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="logo-kruh">
+        <div class="logo-kruh pr">
           <svg class="vodovka" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
             <defs>
               <radialGradient id="w1" cx="38%" cy="30%" r="78%">
@@ -747,23 +816,23 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
           </div>
         </div>
 
-        <h1>Vaše IVF cesta. Jeden den po druhém.</h1>
-        <p class="lede">
+        <h1 class="pr">Vaše IVF cesta. Jeden den po druhém.</h1>
+        <p class="lede pr">
           Od prvního vyšetření přes stimulaci, odběr, embrya a transfer až po hCG,
           včetně dnů, kdy to nevyjde.
         </p>
 
-        <div class="hero-akce">
+        <div class="hero-akce pr">
           <a class="btn btn-primary btn-lg" href="/app/">Otevřít BlooMii</a>
           <a class="btn btn-lg" href="#jak-to-funguje">Zjistit, jak BlooMia funguje</a>
         </div>
 
-        <p class="faint hero-pod">
+        <p class="faint hero-pod pr">
           Bez registrace. Bez reklam. Vaše data zůstávají ve vašem zařízení.
         </p>
       </div>
 
-      <div class="hero-obraz">
+      <div class="hero-obraz pr">
         <div class="telefon">
           <img src="snimky/dnes.jpg" width="780" height="1688"
                alt="Obrazovka Dnes v aplikaci BlooMia: čtvrtý den po transferu, druhý cyklus, embryo D6.">
@@ -777,7 +846,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <section class="usp ground-white">
   <div class="wrap">
     <p class="eyebrow">V čem je BlooMia jiná</p>
-    <h2>BlooMia ví, kde na své cestě právě jste.</h2>
+    <h2 class="rv">BlooMia ví, kde na své cestě právě jste.</h2>
     <p class="lede">
       Není to databáze článků o neplodnosti seřazená podle abecedy.
       BlooMia ví, jakou fázi a jaký den jste si v aplikaci zadala,
@@ -804,7 +873,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <section>
   <div class="wrap">
     <p class="eyebrow">Konkrétní příklad</p>
-    <h2>Nejste jen po transferu.</h2>
+    <h2 class="rv">Nejste jen po transferu.</h2>
     <p class="lede" style="margin-top:1rem;max-width:34rem">
       Obecná aplikace ví, že jste po transferu. To je všechno.
       BlooMia počítá i s tím, jak staré embryo se přenášelo.
@@ -842,9 +911,9 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <!-- =================================================== 4. jak to funguje === -->
 <section class="ground-rose" id="jak-to-funguje">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <p class="eyebrow">Čtyři kroky</p>
-      <h2>Jak BlooMia funguje?</h2>
+      <h2 class="rv">Jak BlooMia funguje?</h2>
     </div>
 
     <ol class="postup">
@@ -890,7 +959,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
     <div class="dvojice">
       <div>
         <p class="eyebrow">Čekání na hCG</p>
-        <h2>Dva týdny čekání. Každý den je jiný.</h2>
+        <h2 class="rv">Dva týdny čekání. Každý den je jiný.</h2>
         <p class="lede" style="margin-top:1rem">
           4. den po D3 embryu není totéž jako 4. den po blastocystě.
           BlooMia rozlišuje den po transferu a embryonální stáří.
@@ -941,9 +1010,9 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <!-- ================================================= 8. celá IVF cesta === -->
 <section>
   <div class="wrap wrap-wide">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <p class="eyebrow">Celá cesta, ne jeden cyklus</p>
-      <h2>Od rozhodnutí po výsledek. A dál.</h2>
+      <h2 class="rv">Od rozhodnutí po výsledek. A dál.</h2>
     </div>
 
     <ul class="osa">
@@ -987,7 +1056,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <section class="noc">
   <div class="wrap">
     <p class="eyebrow">Když to nevyjde</p>
-    <h2>I když to nevyjde, BlooMia zůstává s vámi.</h2>
+    <h2 class="rv">I když to nevyjde, BlooMia zůstává s vámi.</h2>
     <p class="lede" style="margin-top:1.2rem">
       Negativní hCG není konec aplikace.<br>
       Zrušený transfer není chyba v systému.<br>
@@ -1021,45 +1090,45 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <!-- ============================================== 10. co BlooMia umí === -->
 <section class="ground-white">
   <div class="wrap wrap-wide">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <p class="eyebrow">Co je uvnitř</p>
-      <h2>Celá IVF cesta na jednom místě.</h2>
+      <h2 class="rv">Celá IVF cesta na jednom místě.</h2>
     </div>
 
     <div class="karty karty-2 karty-3">
-      <div class="karta">
+      <div class="karta rv">
         <h3>Cykly, embrya a transfery</h3>
         <p>Mějte přehled o každém cyklu, embryu, transferu i kryotransferu.</p>
       </div>
-      <div class="karta">
+      <div class="karta rv">
         <h3>Deník</h3>
         <p>Zachyťte, co se děje nejen v léčbě, ale i ve vás.</p>
       </div>
-      <div class="karta">
+      <div class="karta rv">
         <h3>Léky a injekce</h3>
         <p>Zapisujte si léky, dávky a protokol podle pokynů své kliniky.</p>
       </div>
-      <div class="karta">
+      <div class="karta rv">
         <h3>Otázky pro lékaře</h3>
         <p>Přijďte na kontrolu připravená.</p>
       </div>
-      <div class="karta">
+      <div class="karta rv">
         <h3>Zdravotní hodnoty</h3>
         <p>Sledujte své vlastní záznamy v čase, bez verdiktů a bez předpovídání výsledku.</p>
       </div>
-      <div class="karta">
+      <div class="karta rv">
         <h3>Finance</h3>
         <p>Mějte přehled o nákladech, částečných platbách, doplatcích a tom, kdo co hradí.</p>
       </div>
-      <div class="karta">
+      <div class="karta rv">
         <h3>Práce</h3>
         <p>Zapište si termíny, volno, odvoz nebo další praktické věci.</p>
       </div>
-      <div class="karta">
+      <div class="karta rv">
         <h3>Klinika</h3>
         <p>Kontakty, koordinátorka a otázky na jednom místě.</p>
       </div>
-      <div class="karta">
+      <div class="karta rv">
         <h3>Knihovna</h3>
         <p>Články, checklisty, příběhy, kvízy a slovník.</p>
       </div>
@@ -1070,9 +1139,9 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <!-- ================================================== 11. pro koho je === -->
 <section class="ground-rose">
   <div class="wrap wrap-wide">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <p class="eyebrow">Pro koho</p>
-      <h2>BlooMia je pro vás, pokud…</h2>
+      <h2 class="rv">BlooMia je pro vás, pokud…</h2>
     </div>
 
     <ul class="prokoho">
@@ -1104,9 +1173,9 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <!-- ================================================== 12. screenshoty === -->
 <section>
   <div class="wrap wrap-wide">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <p class="eyebrow">Sedm obrazovek</p>
-      <h2>Jak to vypadá uvnitř.</h2>
+      <h2 class="rv">Jak to vypadá uvnitř.</h2>
       <p class="soft" style="margin-top:0.8rem">
         Skutečné obrazovky aplikace s ukázkovými daty. Listuje se do stran.
       </p>
@@ -1174,7 +1243,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <section class="ground-white">
   <div class="wrap">
     <p class="eyebrow">Bezpečnost</p>
-    <h2>Když je důležité nečekat, BlooMia to připomene.</h2>
+    <h2 class="rv">Když je důležité nečekat, BlooMia to připomene.</h2>
     <p class="lede" style="margin-top:1rem;max-width:34rem">
       Některé denní karty obsahují informaci o tom, kdy je vhodné
       kontaktovat kliniku a nečekat do rána.
@@ -1200,7 +1269,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <section class="noc" id="co-nedela">
   <div class="wrap">
     <p class="eyebrow">Aby bylo jasno</p>
-    <h2>BlooMia není lékař. A ani se jím nesnaží být.</h2>
+    <h2 class="rv">BlooMia není lékař. A ani se jím nesnaží být.</h2>
 
     <ul class="vypis" style="margin-top:1.6rem">
       <li><span class="zn" aria-hidden="true">×</span><span class="txt">nestanovuje diagnózu</span></li>
@@ -1237,7 +1306,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
       </div>
       <div>
         <p class="eyebrow">Data a soukromí</p>
-        <h2>Vaše data zůstávají ve vašem zařízení.</h2>
+        <h2 class="rv">Vaše data zůstávají ve vašem zařízení.</h2>
 
         <ul class="vypis" style="margin-top:1.4rem">
           <li><span class="zn" aria-hidden="true">◇</span><span class="txt">aplikace nevyžaduje účet ani heslo</span></li>
@@ -1277,7 +1346,7 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 
       <div>
         <p class="eyebrow">Kdo za tím stojí</p>
-        <h2>BlooMia nevznikla u počítače. Vznikla z vlastní IVF cesty.</h2>
+        <h2 class="rv">BlooMia nevznikla u počítače. Vznikla z vlastní IVF cesty.</h2>
 
         <p class="soft" style="margin-top:1.2rem">
           Jsem Gabriela a sama jsem si prošla cestou IVF, která nebyla
@@ -1315,9 +1384,9 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <!-- ==================================================== 17. cena === -->
 <section class="ground-rose" id="cena">
   <div class="wrap">
-    <div class="sec-head" style="text-align:center">
+    <div class="sec-head rv" style="text-align:center">
       <p class="eyebrow">Cena</p>
-      <h2>Jedna cena za celou BlooMii.</h2>
+      <h2 class="rv">Jedna cena za celou BlooMii.</h2>
     </div>
 
     <div class="cena">
@@ -1368,9 +1437,9 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
 <!-- ==================================================== 18. otázky === -->
 <section>
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <p class="eyebrow">Otázky</p>
-      <h2>Co se ptají nejčastěji.</h2>
+      <h2 class="rv">Co se ptají nejčastěji.</h2>
     </div>
 
     <details>
@@ -1515,6 +1584,116 @@ details .odpoved { padding: 0 0 1rem; color: var(--muted); font-size: 0.9375rem;
   new IntersectionObserver(function (z) {
     lista.classList.toggle('vidi', !z[0].isIntersecting)
   }, { rootMargin: '-72px 0px 0px 0px' }).observe(hero)
+})()
+
+/*
+ * Pohyb.
+ *
+ * Všechno ručně, bez knihovny: stránka se staví do jednoho souboru a
+ * přibalit kvůli pár přechodům padesát kilobajtů GSAP by bylo drahé.
+ *
+ * Jedno pravidlo nad všemi: kdo má v systému zapnuté „omezit pohyb“,
+ * nedostane nic. Ani odhalování, ani parallax, ani počítání čísel.
+ *
+ * Středník na začátku je schválně: nad tímhle blokem končí jiná IIFE bez
+ * středníku a bez něj by se prohlížeč pokusil zavolat její výsledek.
+ */
+;(function () {
+  var tise = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  var korenu = document.documentElement
+
+  // ---------------------------------------------------- vstup po načtení ---
+  // Hero se poskládá shora dolů. Zpoždění je v CSS proměnné, ať se
+  // nemusí pro každý prvek psát vlastní pravidlo.
+  var vstup = document.querySelectorAll('.pr')
+  for (var i = 0; i < vstup.length; i++) {
+    vstup[i].style.setProperty('--d', (i * 0.09).toFixed(2) + 's')
+  }
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { korenu.className += ' nacteno' })
+  })
+
+  if (tise || !('IntersectionObserver' in window)) {
+    // Bez pozorovatele se nesmí nic nechat schované.
+    var vse = document.querySelectorAll('.rv')
+    for (var j = 0; j < vse.length; j++) vse[j].className += ' je'
+    return
+  }
+
+  // ------------------------------------------------- odhalení při scrollu ---
+  // Sourozenci ve stejném rodiči jdou po sobě, ne naráz. Strop je kvůli
+  // dlouhým seznamům: u desátého prvku už by se na zpoždění čekalo.
+  var rv = document.querySelectorAll('.rv')
+  var poradi = new Map()
+  for (var k = 0; k < rv.length; k++) {
+    var rodic = rv[k].parentNode
+    var n = poradi.get(rodic) || 0
+    poradi.set(rodic, n + 1)
+    rv[k].style.setProperty('--d', (Math.min(n, 5) * 0.08).toFixed(2) + 's')
+  }
+
+  var oko = new IntersectionObserver(function (zaznamy) {
+    for (var z = 0; z < zaznamy.length; z++) {
+      if (!zaznamy[z].isIntersecting) continue
+      zaznamy[z].target.className += ' je'
+      oko.unobserve(zaznamy[z].target)
+    }
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 })
+  for (var m = 0; m < rv.length; m++) oko.observe(rv[m])
+
+  // --------------------------------------------------------- počítání čísel ---
+  // Čísla v přehledu dopočítají k výsledku, když na ně dojde řada.
+  // Suffix („+“) zůstává, aby se z „404+“ nestalo „404“.
+  var cisla = document.querySelectorAll('.cisla b')
+  var okoCisel = new IntersectionObserver(function (zaznamy) {
+    for (var z = 0; z < zaznamy.length; z++) {
+      if (!zaznamy[z].isIntersecting) continue
+      napocitej(zaznamy[z].target)
+      okoCisel.unobserve(zaznamy[z].target)
+    }
+  }, { threshold: 0.6 })
+  for (var c = 0; c < cisla.length; c++) {
+    var shoda = /^(\d+)(.*)$/.exec(cisla[c].textContent.trim())
+    if (!shoda) continue
+    cisla[c].setAttribute('data-do', shoda[1])
+    cisla[c].setAttribute('data-za', shoda[2])
+    okoCisel.observe(cisla[c])
+  }
+
+  function napocitej(prvek) {
+    var cil = parseInt(prvek.getAttribute('data-do'), 10)
+    var za = prvek.getAttribute('data-za') || ''
+    var zacatek = 0
+    var doba = 900
+    function krok(cas) {
+      if (!zacatek) zacatek = cas
+      var podil = Math.min((cas - zacatek) / doba, 1)
+      // Zpomaluje ke konci, ať poslední číslice nedoskočí natvrdo.
+      var hodnota = Math.round(cil * (1 - Math.pow(1 - podil, 3)))
+      prvek.textContent = hodnota + za
+      if (podil < 1) requestAnimationFrame(krok)
+    }
+    requestAnimationFrame(krok)
+  }
+
+  // ------------------------------------------------------ parallax telefonu ---
+  // Jeden posluchač, jeden snímek. Čtení rozměrů mimo rAF by při scrollu
+  // nutilo prohlížeč přepočítávat rozložení na každý pixel.
+  var telefon = document.querySelector('.hero-obraz .telefon')
+  if (!telefon) return
+  var ceka = false
+  function snimek() {
+    ceka = false
+    var r = telefon.getBoundingClientRect()
+    var vyska = window.innerHeight || 1
+    if (r.bottom < 0 || r.top > vyska) return
+    var stred = (r.top + r.height / 2 - vyska / 2) / vyska
+    telefon.style.setProperty('--py', (stred * -22).toFixed(1) + 'px')
+  }
+  function pozadej() { if (!ceka) { ceka = true; requestAnimationFrame(snimek) } }
+  window.addEventListener('scroll', pozadej, { passive: true })
+  window.addEventListener('resize', pozadej, { passive: true })
+  snimek()
 })()
 </script>
 </html>

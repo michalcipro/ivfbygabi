@@ -902,8 +902,25 @@ textarea.field { resize: vertical; line-height: 1.6; }
 .stagger > *:nth-child(5) { animation-delay: 0.2s; }
 .stagger > *:nth-child(n + 6) { animation-delay: 0.25s; }
 
+/* Náběh, na který ještě nedošla řada.
+   `both` drží prvek na první klíčové snímku, takže pozastavená animace
+   je přesně to, co má být vidět před odhalením. Žádné druhé pravidlo
+   s opacitou tu proto není potřeba. */
+.ceka { animation-play-state: paused !important; }
+.ceka.je { animation-play-state: running !important; }
+
+/* Překreslení na místě. Odškrtnuté políčko nesmí rozjet náběh celé
+   stránky, jinak obrazovka při každém kliknutí poskočí. */
+.bez-vstupu .rise, .bez-vstupu .stagger > * { animation: none; }
+
+/* Stisk. Prvek musí pod prstem povolit, jinak není jisté, že prošel. */
+.btn, .tabbar button { transition: all 0.3s var(--calm); }
+.btn:active, .tabbar button:active { transform: scale(0.975); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .ceka { animation-play-state: running !important; }
+  .btn:active, .tabbar button:active { transform: none; }
 }
 
 @media print {
