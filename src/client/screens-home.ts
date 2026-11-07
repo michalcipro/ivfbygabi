@@ -421,7 +421,7 @@ export function screenCesta(): string {
           .map((p) => {
             const here = p.id === state.phase.id
             return `<button class="tile" data-go="faze/${esc(p.id)}"${here ? ' style="border-color:var(--taupe);box-shadow:var(--veil)"' : ''}>
-              <i>${here ? '◉' : '○'}</i>
+              <i${here ? ' class="tep"' : ''}>${here ? '◉' : '○'}</i>
               <span style="min-width:0">
                 ${here ? '<p class="eyebrow" style="color:var(--taupe-deep)">Jste tady</p>' : ''}
                 <h4 class="display">${esc(p.name)}</h4>

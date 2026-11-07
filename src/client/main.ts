@@ -375,6 +375,9 @@ const PARENT: Record<string, string> = {
 /** Obrazovky, kde by souhrn rušil. Čtení a soustředěná práce. */
 /** Kde by plovoucí tlačítko překáželo. Při čtení a při vyplňování. */
 const QUICK_HIDDEN = ['cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi', 'cyklus']
+/* Obrazovky s dlouhým textem. Jen na nich má smysl ukazovat, kolik
+   čtení zbývá; u rozcestníku by proužek měřil nesmysl. */
+const CTENI = ['cist', 'pojem', 'diagnoza', 'proc']
 
 const SUMMARY_HIDDEN = [
   'cist', 'pojem', 'diagnoza', 'cviceni', 'clenstvi',
@@ -686,6 +689,7 @@ function backbar(route: string): string {
   return `<div class="backbar no-print">
     <button data-act="back">‹ Zpět na ${esc(label)}</button>
     <span class="where">${esc(TITLES[b] ?? '')}</span>
+    ${CTENI.includes(b) ? '<i class="postup"></i>' : ''}
   </div>`
 }
 

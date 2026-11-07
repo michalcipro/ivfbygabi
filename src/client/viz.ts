@@ -340,14 +340,83 @@ export function hydrateCharts(root: ParentNode): void {
     const tip = box.querySelector<HTMLElement>('.charttip')
     if (!svg || !tip || !spec.series?.length) continue
 
-    const draw = () => drawChart(box, svg, tip, spec)
-    draw()
+    // Graf pod okrajem by se vykreslil, aniž by to kdo viděl, a než se
+    // k němu žena doscrolluje, byl by náběh dávno dojetý. Dole na stránce
+    // se proto nejdřív nakreslí rovnou a animace se pustí, až je vidět.
+    const vidno = box.getBoundingClientRect().top < (window.innerHeight || 0)
+    drawChart(box, svg, tip, spec, vidno)
+
+    if (!vidno && !tiseProsim() && 'IntersectionObserver' in window) {
+      const az = new IntersectionObserver(
+        (zaznamy) => {
+          if (!zaznamy[0]?.isIntersecting) return
+          az.disconnect()
+          drawChart(box, svg, tip, spec, true)
+        },
+        { threshold: 0.2 },
+      )
+      az.observe(box)
+    }
+
     // Šířka se mění s oknem i s otevřením postranního panelu.
-    if ('ResizeObserver' in window) new ResizeObserver(draw).observe(box)
+    if ('ResizeObserver' in window) {
+      let prvniOhlas = true
+      new ResizeObserver(() => {
+        // ResizeObserver se ozve hned při navěšení. To první ohlášení
+        // není změna velikosti a nesmí graf překreslit: smazalo by náběh,
+        // který právě začal.
+        if (prvniOhlas) {
+          prvniOhlas = false
+          return
+        }
+        drawChart(box, svg, tip, spec, false)
+      }).observe(box)
+    }
   }
 }
 
-function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: ChartSpec): void {
+/**
+ * Čára se vykreslí zleva doprava.
+ *
+ * Délku dráhy umí změřit jen prohlížeč, takže se animace skládá tady
+ * a ne v CSS. Klíčové snímky (`kresli`) jsou v `app.css`.
+ *
+ * `backwards` znamená, že se po doběhnutí čára vrátí ke svým běžným
+ * stylům. Nic si po sobě nenechá nastavené.
+ */
+function rozjedCaru(cara: SVGElement, odklad: number): void {
+  if (tiseProsim()) return
+  const draha = (cara as SVGPathElement).getTotalLength?.() ?? 0
+  if (!draha) return
+  cara.setAttribute('stroke-dasharray', String(draha))
+  cara.style.setProperty('--draha', String(draha))
+  // Delší čára se kreslí déle, ale ne donekonečna.
+  const doba = Math.min(1.6, 0.55 + draha / 900)
+  cara.style.animation = `kresli ${doba.toFixed(2)}s var(--calm) ${odklad.toFixed(2)}s backwards`
+}
+
+/** Poslední bod naskočí, až je čára pod ním hotová. */
+function rozjedBod(bod: SVGElement, odklad: number): void {
+  if (tiseProsim()) return
+  bod.style.transformBox = 'fill-box'
+  bod.style.transformOrigin = 'center'
+  bod.style.animation = `bodnaskoc 0.4s var(--calm) ${odklad.toFixed(2)}s backwards`
+}
+
+function tiseProsim(): boolean {
+  return (
+    typeof matchMedia === 'function' &&
+    matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+}
+
+function drawChart(
+  box: HTMLElement,
+  svg: SVGElement,
+  tip: HTMLElement,
+  spec: ChartSpec,
+  nabehni = false,
+): void {
   {
     const W = Math.max(220, Math.round(box.clientWidth))
     // Na širokém displeji by graf o pevné výšce byl tenký proužek. Roste
@@ -391,7 +460,7 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
       svg.appendChild(lab)
     }
 
-    for (const s of spec.series) {
+    spec.series.forEach((s, poradi) => {
       // Mezery v datech čáru přeruší, místo aby ji protáhly přes prázdno.
       let open = false
       let d = ''
@@ -403,14 +472,19 @@ function drawChart(box: HTMLElement, svg: SVGElement, tip: HTMLElement, spec: Ch
         d += `${open ? 'L' : 'M'}${x(i)} ${y(v)} `
         open = true
       })
-      if (d) svg.appendChild(mk('path', { d: d.trim(), fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }))
+      const odklad = poradi * 0.12
+      if (d) {
+        const cara = svg.appendChild(mk('path', { d: d.trim(), fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }))
+        if (nabehni) rozjedCaru(cara, odklad)
+      }
 
       const lastIdx = [...s.data].map((v, i) => (v === null ? -1 : i)).filter((i) => i >= 0).pop()
       if (lastIdx !== undefined) {
         // Prstenec z plochy, aby poslední bod nesplynul s čárou pod ním.
-        svg.appendChild(mk('circle', { cx: x(lastIdx), cy: y(s.data[lastIdx]!), r: 4, fill: s.color, stroke: 'var(--card)', 'stroke-width': 2 }))
+        const bod = svg.appendChild(mk('circle', { cx: x(lastIdx), cy: y(s.data[lastIdx]!), r: 4, fill: s.color, stroke: 'var(--card)', 'stroke-width': 2 }))
+        if (nabehni) rozjedBod(bod, odklad + 0.9)
       }
-    }
+    })
 
     const cross = svg.appendChild(mk('line', { y1: T, y2: B, stroke: 'var(--fg-faint)', 'stroke-width': 1, opacity: 0 }))
     // Body se rodí na počátku plochy, ne na souřadnici 0, jinak vyčnívají

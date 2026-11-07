@@ -906,12 +906,82 @@ textarea.field { resize: vertical; line-height: 1.6; }
    `both` drží prvek na první klíčové snímku, takže pozastavená animace
    je přesně to, co má být vidět před odhalením. Žádné druhé pravidlo
    s opacitou tu proto není potřeba. */
-.ceka { animation-play-state: paused !important; }
-.ceka.je { animation-play-state: running !important; }
+/* I pseudoprvek, jinak by spojnice na ose dorostla dřív, než se objeví
+   bod, ke kterému vede. `animation-play-state` se nedědí. */
+.ceka, .ceka::before { animation-play-state: paused !important; }
+.ceka.je, .ceka.je::before { animation-play-state: running !important; }
+
+/* --- cesta se kreslí ---
+   Osa, dlaždice i lístky přicházejí po sobě, odshora dolů, místo aby
+   naskočily naráz. U osy k tomu ještě doroste spojnice mezi body.
+
+   `backwards` místo `both` je tu schválně. Po doběhnutí se prvek vrátí
+   ke svým běžným stylům, takže lístku zůstane jeho náklon a dlaždici
+   zdvih pod myší. S `both` by ho animace držela na `transform: none`
+   a obojí by zmizelo. */
+@keyframes prichod { from { opacity: 0; transform: translateY(10px); } }
+@keyframes projev { from { opacity: 0; } }
+@keyframes linka { from { transform: scaleY(0); } }
+
+:is(.timeline li, .tiles > *) { animation: prichod 0.5s var(--calm) backwards; }
+/* Lístky na ose jsou nakřivo, a `prichod` by jim ten náklon na dobu
+   animace přepsal. Dostávají proto náběh bez posunu. */
+.tl > * { animation: projev 0.55s var(--calm) backwards; }
+.timeline li::before {
+  transform-origin: top;
+  animation: linka 0.45s var(--calm) backwards;
+  animation-delay: inherit;
+}
+
+:is(.timeline li, .tiles > *, .tl > *):nth-child(2) { animation-delay: 0.06s; }
+:is(.timeline li, .tiles > *, .tl > *):nth-child(3) { animation-delay: 0.12s; }
+:is(.timeline li, .tiles > *, .tl > *):nth-child(4) { animation-delay: 0.18s; }
+:is(.timeline li, .tiles > *, .tl > *):nth-child(5) { animation-delay: 0.24s; }
+:is(.timeline li, .tiles > *, .tl > *):nth-child(6) { animation-delay: 0.3s; }
+/* Dál se zpoždění nesčítá. U desátého prvku by se na náběh čekalo dýl,
+   než samotný náběh trvá. */
+:is(.timeline li, .tiles > *, .tl > *):nth-child(n + 7) { animation-delay: 0.36s; }
+
+/* --- dnešek dýchá ---
+   Kolem bodu, na kterém žena právě je, se jednou za dva a půl vteřiny
+   rozlije kruh. Nebliká a nepulzuje rychle.
+
+   Podmínka: nikdy víc než jedna taková tečka na obrazovce. Dvě už
+   vypadají jako upozornění, že je něco špatně. */
+.tep { position: relative; }
+.tep::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 0.5rem; height: 0.5rem; margin: -0.25rem 0 0 -0.25rem;
+  border-radius: 50%; pointer-events: none;
+  animation: tep 2.6s ease-out infinite;
+}
+@keyframes tep {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--taupe) 45%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 0.85rem color-mix(in oklab, var(--taupe) 0%, transparent); }
+}
+
+/* --- postup čtení ---
+   Leží na spodní hraně zpětné lišty, takže nepřidává žádný další
+   proužek: jen obarvuje čáru, která tam už je. U dlouhého textu o ztrátě
+   je rozdíl, jestli zbývají dva odstavce, nebo deset. */
+.backbar .postup {
+  position: absolute; left: 0; bottom: -1px; height: 2px; width: 0;
+  background: var(--taupe); border-radius: 0 2px 2px 0;
+  transition: width 0.1s linear;
+}
+
+/* --- graf se kreslí ---
+   Čáru kreslí `viz.ts`, protože délka dráhy se dá změřit jen v JavaScriptu.
+   Tady je jen zastavení pro toho, kdo pohyb nechce. */
+@keyframes kresli { from { stroke-dashoffset: var(--draha); } }
+@keyframes bodnaskoc { from { opacity: 0; transform: scale(0.4); } }
 
 /* Překreslení na místě. Odškrtnuté políčko nesmí rozjet náběh celé
    stránky, jinak obrazovka při každém kliknutí poskočí. */
-.bez-vstupu .rise, .bez-vstupu .stagger > * { animation: none; }
+.bez-vstupu .rise,
+.bez-vstupu .stagger > *,
+.bez-vstupu :is(.timeline li, .tiles > *, .tl > *),
+.bez-vstupu .timeline li::before { animation: none; }
 
 /* Stisk. Prvek musí pod prstem povolit, jinak není jisté, že prošel. */
 .btn, .tabbar button { transition: all 0.3s var(--calm); }
@@ -921,6 +991,8 @@ textarea.field { resize: vertical; line-height: 1.6; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .ceka { animation-play-state: running !important; }
   .btn:active, .tabbar button:active { transform: none; }
+  .tep::after { animation: none; }
+  .backbar .postup { transition: none; }
 }
 
 @media print {
