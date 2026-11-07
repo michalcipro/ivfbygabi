@@ -185,7 +185,7 @@ export function popisPredplatneho(l: Listek | null, dnes: IsoDate): PopisPredpla
 
   // Běží. Tohle je ta věta, kvůli které obrazovka existuje.
   const detail = l.obnoviSe
-    ? `Obnoví se ${denText(l.obnoviSe)} a strhne se ${l.cena} Kč. Zrušit to můžete kdykoliv, do té doby i potom.`
+    ? `Obnoví se ${denText(l.obnoviSe)} a strhne se ${l.cena} Kč. Zrušit to můžete kdykoliv do té doby.`
     : 'Zrušit to můžete kdykoliv.'
 
   return {
