@@ -183,3 +183,58 @@ test('cena je označená jako konečná i tam, kde ji zákaznice vidí', () => {
   assert.match(stranka, /Nejsem plátkyně DPH/i, 'prodejní stránka neuvádí stav plátcovství')
   assert.match(aplikace, /nejsem plátkyně DPH/i, 'obrazovka Předplatné neuvádí stav plátcovství')
 })
+
+/**
+ * Kontaktní adresa.
+ *
+ * ------------------------------------------------------------- PROČ TO TU JE ---
+ * Adresa, na kterou chodí zpětná vazba a odstoupení od smlouvy, je na
+ * sedmnácti místech: v aplikaci, v patičce tří jazykových verzí stránky
+ * a v devíti právních dokumentech. Když se jedno z nich opraví a ostatní
+ * ne, obchodní podmínky uvádějí adresu, kterou nikdo nečte, a odstoupení
+ * poslané na ni je právně poslané. Proto se hlídá, že je všude stejná.
+ *
+ * V kódu aplikace smí stát jen jednou, v `KOMU`. Druhá opsaná adresa je
+ * přesně ten případ, kdy se po příští změně rozejdou.
+ */
+test('kontaktní adresa je všude stejná a v kódu jen na jednom místě', () => {
+  const ADRESA = 'hello@mybloomia.com'
+  const KOREN = process.cwd()
+
+  // 1. V kódu aplikace jen jako jediná konstanta.
+  const klient = path.join(KOREN, 'src/client')
+  const opsane: string[] = []
+  for (const jmeno of readdirSync(klient).filter((n) => n.endsWith('.ts'))) {
+    const text = readFileSync(path.join(klient, jmeno), 'utf8')
+    const kolik = (text.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi) ?? []).length
+    if (kolik === 0) continue
+    if (jmeno === 'feedback-send.ts' && kolik === 1) continue
+    opsane.push(`${jmeno} (${kolik}×)`)
+  }
+  assert.deepEqual(
+    opsane,
+    [],
+    `e-mail patří jen do KOMU ve feedback-send.ts, jinde se opsaná adresa rozejde:\n${opsane.join('\n')}`,
+  )
+
+  const zdroj = readFileSync(path.join(klient, 'feedback-send.ts'), 'utf8')
+  assert.match(zdroj, new RegExp(`export const KOMU = '${ADRESA}'`), 'KOMU má jinou adresu')
+
+  // 2. Žádný dokument ani stránka nesmí uvádět jinou.
+  const stranky = readdirSync(path.join(KOREN, 'landing'))
+    .filter((n) => n.endsWith('.html'))
+    .map((n) => ({ jmeno: `landing/${n}`, text: readFileSync(path.join(KOREN, 'landing', n), 'utf8') }))
+  const jine: string[] = []
+  for (const { jmeno, text } of [...stranky, ...pravniTexty()]) {
+    for (const nalez of text.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi) ?? []) {
+      if (nalez.toLowerCase() !== ADRESA) jine.push(`${jmeno}: ${nalez}`)
+    }
+  }
+  assert.deepEqual(jine, [], `cizí kontaktní adresa:\n${jine.join('\n')}`)
+
+  // 3. A musí tam doopravdy být, ne jen chybět.
+  for (const { jmeno, text } of pravniTexty()) {
+    if (jmeno.includes('zdravotni-upozorneni') || jmeno.includes('medical') || jmeno.includes('medizinisch')) continue
+    assert.ok(text.includes(ADRESA), `${jmeno} neuvádí kontaktní adresu`)
+  }
+})

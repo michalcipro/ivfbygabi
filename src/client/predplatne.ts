@@ -1,4 +1,5 @@
 import { prectiListek, type Listek } from '../lib/domain/predplatne'
+import { KOMU } from './feedback-send'
 
 /**
  * Předplatné: rozhovor se Stripe a ověření podpisu.
@@ -37,7 +38,7 @@ const HLASKY: Record<'nenastaveno' | 'sit' | 'chyba', string> = {
   nenastaveno:
     'Placené předplatné zatím není v provozu. Aplikace je dostupná bez omezení a nic se vám neúčtuje.',
   sit: 'Nepodařilo se spojit se serverem. Zkuste to, až budete na síti.',
-  chyba: 'Něco se nepovedlo. Zkuste to prosím znovu, nebo napište na terapie@priznejsi.cz.',
+  chyba: `Něco se nepovedlo. Zkuste to prosím znovu, nebo napište na ${KOMU}.`,
 }
 
 async function volej(cesta: string, telo: Record<string, unknown> = {}): Promise<Vysledek> {

@@ -160,6 +160,9 @@ export const KOMU = 'gabrielazbihlej@gmail.com'
 Je to v sestaveném souboru, tedy veřejné a sklizitelné roboty. Dvě věci
 zvlášť: sběr spamu, a hlavně to, že soukromá Gmail schránka se stává místem,
 kam chodí zdravotní údaje uživatelek. Pro roli správce údajů je to slabé.
+
+**Vyřešeno.** Adresa je `hello@mybloomia.com` na vlastní doméně a v kódu
+stojí jen jednou. Hlídá to test v `tests/firma.test.ts`.
 Patří tam adresa na doméně.
 
 Kontrola proti zadání: žádné **přihlašovací údaje ani API klíče** ve

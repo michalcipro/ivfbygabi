@@ -3,7 +3,7 @@ import { isModifierId, type ModifierId } from '../lib/domain/profile'
 import { formatCzechDate, today as realToday } from '../lib/domain/dates'
 import { prectiListek } from '../lib/domain/predplatne'
 import { zavreno } from '../lib/domain/pristup'
-import { JAZYK, adresaJazyka, prelozit } from '../lib/i18n'
+import { JAZYK, adresaJazyka, prelozit, vzor } from '../lib/i18n'
 import { PLATBY_ZAPNUTE, obnovStav, overListek, portalPlateb, zacniPlatbu, zrusPredplatne } from './predplatne'
 import { screenZed } from './screens-zed'
 import { ozivPohyb } from './pohyb'
@@ -165,7 +165,7 @@ import { jeZamceno, nastavKod, screenZamek, zapomenutyKod, zkusOdemknout, zrusKo
 import { kryptoJe, odsifruj, zasifruj } from './krypto'
 import { screenNapisteMi } from './screens-napiste'
 import { emptyFeedback, hasContent, type FeedbackTopic } from '../lib/domain/feedback'
-import { sendFeedback } from './feedback-send'
+import { KOMU, sendFeedback } from './feedback-send'
 import {
   screenDiagnoza,
   screenDiagnozy,
@@ -3486,7 +3486,7 @@ async function prevezmiZAdresy(): Promise<void> {
 
   const obsah = listek ? await overListek(listek) : null
   if (!klic || !obsah) {
-    toast('Předplatné se nepodařilo aktivovat. Napište prosím na terapie@priznejsi.cz.')
+    toast(vzor('Předplatné se nepodařilo aktivovat. Napište prosím na {}.', KOMU))
     return
   }
 

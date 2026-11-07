@@ -201,8 +201,11 @@ rozsypat každou českou diakritiku.
 ### 8. Osobní e-mail v balíčku
 
 `gabrielazbihlej@gmail.com` je v `app/index.html` v čitelné podobě. Roboti,
-kteří sbírají adresy, ho najdou. Lepší je doménová adresa
-(`ahoj@bloomia.cz`) a přeposílání.
+kteří sbírají adresy, ho najdou. Lepší je doménová adresa a přeposílání.
+
+**Vyřešeno.** Adresa je `hello@mybloomia.com`, v kódu jen jako `KOMU`
+v `src/client/feedback-send.ts`. Že je všude stejná a že se nikde
+neopsala podruhé, hlídá test v `tests/firma.test.ts`.
 
 ### 9. Formulář „Napište mi" zatím neodesílá
 

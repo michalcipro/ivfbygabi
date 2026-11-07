@@ -27,7 +27,7 @@ const ENDPOINT = 'https://api.web3forms.com/submit'
  * osobních údajů. Kdyby se rozešly, dokument by tvrdil něco jiného, než
  * co se doopravdy děje se zprávou.
  */
-export const KOMU = 'terapie@priznejsi.cz'
+export const KOMU = 'hello@mybloomia.com'
 
 export type SendResult = 'odeslano' | 'posta' | 'chyba'
 
