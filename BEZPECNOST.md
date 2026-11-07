@@ -321,7 +321,7 @@ subscription: { active: boolean; since: IsoDate | null }
 Přepínač v nastavení (`main.ts:2543`) jen obrátí hodnotu v localStorage.
 Nic není zamčené, žádná brána, žádná platební služba.
 
-Prodejní stránka přitom uvádí cenu 199 Kč. Než se spustí, je potřeba
+Prodejní stránka přitom uvádí cenu 191 Kč. Než se spustí, je potřeba
 rozhodnout jednu věc: pokud se platit bude, musí platbu odbavit někdo jiný
 (Stripe, GoPay, Comgate) a aplikace bez serveru nemá jak výsledek ověřit.
 Klientská kontrola předplatného je vždycky jen zdvořilá prosba.

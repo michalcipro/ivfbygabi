@@ -61,7 +61,7 @@ beztak ztracená bitva, podrobně v `BEZPECNOST.md`.
 
 Předplatné se podle obchodních podmínek **automaticky obnovuje**, dokud ho
 zákaznice nezruší. Ve Stripe se proto zakládá **opakovaná cena**
-(recurring), 199 Kč měsíčně, a používá se **Stripe Subscriptions**.
+(recurring), 191 Kč měsíčně, a používá se **Stripe Subscriptions**.
 
 Obnáší to víc mechaniky než jednorázová platba a všechna je povinná:
 
@@ -94,7 +94,7 @@ V **Product catalog** vytvořte:
 | Popis | `Přístup k celému obsahu aplikace BlooMia na 30 dní.` |
 | Typ ceny | **opakovaná** (Recurring) |
 | Fakturační období | měsíčně |
-| Cena | `199` |
+| Cena | `191` |
 | Měna | `CZK` |
 
 Pak si zkopírujte **Price ID**, začíná `price_`. Budu ho potřebovat.
@@ -102,7 +102,7 @@ Pak si zkopírujte **Price ID**, začíná `price_`. Budu ho potřebovat.
 ### 3c. Daně ve Stripe vypnout
 
 Jste neplátce DPH, takže **Stripe Tax nezapínejte** a u ceny nechte, že
-daň se nepřipočítává. Cena 199 Kč je konečná a tak to stojí v podmínkách.
+daň se nepřipočítává. Cena 191 Kč je konečná a tak to stojí v podmínkách.
 
 ### 3d. Nastavení fakturace
 
@@ -220,7 +220,7 @@ Co to znamená:
 - za měsíce, kdy plnění přijmete, podávat přiznání.
 
 Co to **neznamená**: nestáváte se plátcem DPH pro vlastní prodej. Cena
-199 Kč zůstává konečná a bez daně, obchodní podmínky se tím nemění.
+191 Kč zůstává konečná a bez daně, obchodní podmínky se tím nemění.
 
 ### 6b. Prodej do zahraničí
 
@@ -234,7 +234,7 @@ stane.
 ## 7. Náklady
 
 Stripe si bere podíl z každé platby. Sazby se mění, ověřte si aktuální
-ceník, ale u evropských karet to u částky 199 Kč bývá jednotky korun plus
+ceník, ale u evropských karet to u částky 191 Kč bývá jednotky korun plus
 malá fixní částka. Počítejte s tím při rozhodování o ceně.
 
 ---

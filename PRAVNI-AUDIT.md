@@ -243,7 +243,7 @@ platformu ODR jsem záměrně nepřidával, protože její provoz byl ukončen;
 
 ### 4.6 Ceny a DPH
 
-Cena 199 Kč měsíčně musí být uvedena jako konečná pro spotřebitele. Podle
+Cena 191 Kč měsíčně musí být uvedena jako konečná pro spotřebitele. Podle
 toho, jestli je provozovatelka plátkyní DPH, se formulace liší. Chybí to
 a je to v dokumentech označené.
 

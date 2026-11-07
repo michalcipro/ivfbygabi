@@ -20,7 +20,7 @@ const DNES = '2026-11-07'
 
 /** Lístek se podepisuje na serveru. Tady stačí jeho obsah. */
 function listek(o: Record<string, unknown> = {}): string {
-  const obsah = { platiDo: '2026-12-07', obnoviSe: '2026-12-05', cena: 199, stav: 'bezi', ...o }
+  const obsah = { platiDo: '2026-12-07', obnoviSe: '2026-12-05', cena: 191, stav: 'bezi', ...o }
   const b64 = Buffer.from(JSON.stringify(obsah), 'utf8')
     .toString('base64')
     .replace(/\+/g, '-')
@@ -34,7 +34,7 @@ test('lístek se přečte i s diakritikou a bez výplně', () => {
   assert.ok(l)
   assert.equal(l!.platiDo, '2026-12-07')
   assert.equal(l!.obnoviSe, '2026-12-05')
-  assert.equal(l!.cena, 199)
+  assert.equal(l!.cena, 191)
   assert.equal(l!.stav, 'bezi')
 })
 
@@ -77,7 +77,7 @@ test('u běžícího předplatného je vidět datum obnovení i částka', () =>
   const p = popisPredplatneho(prectiListek(listek()), DNES)
   assert.equal(p.stitek, 'Aktivní')
   assert.match(p.detail, /5\. prosince/, 'chybí datum obnovení')
-  assert.match(p.detail, /199 Kč/, 'chybí částka')
+  assert.match(p.detail, /191 Kč/, 'chybí částka')
   assert.equal(p.nabidniZrusit, true)
   assert.equal(p.nabidniKoupit, false)
 })

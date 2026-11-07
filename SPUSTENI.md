@@ -47,7 +47,7 @@ jednu nevyřešenou otázku, viz část E.
 | IČO | 21134154 |
 | Sídlo | V Jezerech 311, Braškov 273 51 |
 | Zápis | živnostenský rejstřík |
-| DPH | neplátkyně, cena 199 Kč je konečná |
+| DPH | neplátkyně, cena 191 Kč je konečná |
 
 Obsah píše Gabriela a smlouvu uzavírá taky ona, jako podnikající fyzická
 osoba. Dokumenty proto mluví v ženském rodě: poskytovatelka a správkyně.

@@ -37,7 +37,7 @@ Tři překážky. Každá z nich sama o sobě stačí, aby projekt neměl tržby
 const aktivni = S.d.subscription?.active ?? false
 ```
 
-Klepnutím na „Aktivovat předplatné" se do localStorage zapíše `true`. Nic se neplatí, nic se neověřuje a **nic se neodemyká**, protože free a premium verze jsou identické. Cena 199 Kč je dnes text na obrazovce.
+Klepnutím na „Aktivovat předplatné" se do localStorage zapíše `true`. Nic se neplatí, nic se neověřuje a **nic se neodemyká**, protože free a premium verze jsou identické. Cena 191 Kč je dnes text na obrazovce.
 
 ### 2.2 Data žijí v jedné záložce prohlížeče
 
@@ -66,12 +66,12 @@ IVF je **prchavý trh**. Každá zákaznice odejde: buď otěhotní, nebo léčb
 |---|---|---|
 | Ženy v aktivní léčbě v ČR ročně | 8 000 až 10 000 | ČR má jednu z nejvyšších měr IVF v Evropě, ověřit v ÚZIS |
 | Průměrná délka předplatného | 4 až 8 měsíců | délka léčebného okna |
-| LTV při 199 Kč | **800 až 1 600 Kč** | |
+| LTV při 191 Kč | **760 až 1 530 Kč** | |
 | Únosné CAC | **do 400 Kč** | při LTV/CAC ≥ 3 |
 
 ### Co z toho plyne
 
-**1 000 platících současně = 199 000 Kč měsíčně.** Při 8 000 ženách v léčbě ročně a půlročním předplatném to znamená získat zhruba **každou třetí až čtvrtou ženu, která v ČR začne IVF.** To je extrémně vysoká penetrace.
+**1 000 platících současně = 191 000 Kč měsíčně.** Při 8 000 ženách v léčbě ročně a půlročním předplatném to znamená získat zhruba **každou třetí až čtvrtou ženu, která v ČR začne IVF.** To je extrémně vysoká penetrace.
 
 Placená akvizice na to nestačí. Při CAC pod 400 Kč a úzkém publiku Meta ani Google nedají objem. **Jediné funkční kanály jsou:**
 
@@ -155,7 +155,7 @@ Slovenština (téměř zdarma, podobný jazyk a systém péče), potom polština
 | **Kliniky nebudou chtít partnera** | Vysoká | Ověřit rozhovory dřív, než se postaví backend. |
 | **Trh je příliš malý** | Střední | Spočítat s reálnými čísly ÚZIS. Připravit slovenštinu jako plán B. |
 | **Regulace zdravotnických prostředků** | Nízká až střední | Aplikace záměrně nediagnostikuje a nedoporučuje léčbu. Držet se toho. Jakákoli funkce „co znamená moje hCG" by to změnila. |
-| **Ochota platit v citlivé situaci** | Střední | Cena 199 Kč je proti nákladům na cyklus zanedbatelná. Problém není cena, ale důvěra. |
+| **Ochota platit v citlivé situaci** | Střední | Cena 191 Kč je proti nákladům na cyklus zanedbatelná. Problém není cena, ale důvěra. |
 
 ---
 

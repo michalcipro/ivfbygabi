@@ -1076,7 +1076,7 @@ export function screenClenstvi(
   const dnes = realToday()
   const l = prectiListek(S.d.subscription?.listek?.text ?? '')
   const p = popisPredplatneho(l, dnes)
-  const cena = l?.cena ?? 199
+  const cena = l?.cena ?? 191
 
   const zahrnuto = [
     'Celý odborný obsah. Články, checklisty, slovník, „Co když…“',

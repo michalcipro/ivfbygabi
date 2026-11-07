@@ -111,7 +111,7 @@ transferu je přesně ta správná obrana. Musí zůstat.
 ### 4. Platba je jenom přepínač
 
 `d.subscription.active` je boolean, který se překlopí tlačítkem. Nic negatuje,
-nic neúčtuje, nic nefakturuje. Za 199 Kč měsíčně se dnes zaplatit nedá.
+nic neúčtuje, nic nefakturuje. Za 191 Kč měsíčně se dnes zaplatit nedá.
 
 ### 5. Data ženy žijí jen v prohlížeči a iOS je maže (vyřešeno)
 
@@ -341,7 +341,7 @@ Tahle fáze je nejpomalejší a nezávisí na kódu. Začít se s ní má první
     DPH u zákaznic z EU. GoPay a Comgate jsou české alternativy s jednodušší
     administrativou.
 17. Napojit `d.subscription` na skutečný stav z brány, ne na přepínač.
-18. Rozhodnout, co je zdarma a co za 199 Kč. Dnes není zamčené nic.
+18. Rozhodnout, co je zdarma a co za 191 Kč. Dnes není zamčené nic.
 19. Faktury a jejich doručení.
 
 ### Fáze 4: landing page a doména
