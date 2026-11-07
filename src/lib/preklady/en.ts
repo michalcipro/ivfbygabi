@@ -1015,4 +1015,438 @@ export const EN: Record<string, string> = {
   'Den po dni od transferu až k odběru hCG.': 'Day by day from the transfer to the hCG test.',
   'Až budete mít transfer za sebou, zapište si ho do cyklu. Aplikace pak sama spočítá, kolikátý je den, co se v téhle fázi může dít a kolik zbývá do odběru hCG.':
     'Once a transfer is behind you, record it in the cycle. The app will then work out which day you are on, what may happen at this stage and how long is left until the hCG test.',
+
+  // --- Kalendář, léky a Zdravotní data ---------------------------------------
+  'Od': 'From',
+  'Do': 'To',
+  'Kdy': 'When',
+  'Typ': 'Type',
+  'Lék': 'Medicine',
+  'Gel': 'Gel',
+  'jiné': 'other',
+  'Odběr': 'Retrieval',
+  'Porod': 'Birth',
+  'Forma': 'Form',
+  'Sprej': 'Spray',
+  'Dávka': 'Dose',
+  'čípek': 'pessary',
+  'dávka': 'dose',
+  'Obden': 'Every other day',
+  'kapsle': 'capsule',
+  'Vlastní': 'Custom',
+  'Injekce': 'Injection',
+  'Náplast': 'Patch',
+  'tableta': 'tablet',
+  'Co to je': 'What it is',
+  'Kontrola': 'Check-up',
+  'Očkování': 'Vaccination',
+  'Letrozol': 'Letrozole',
+  'Klomifen': 'Clomiphene',
+  'Jednotka': 'Unit',
+  'Přípravek': 'Product',
+  'Prednison': 'Prednisone',
+  'Opakování': 'Repeat',
+  'Každý den': 'Every day',
+  'např. 225': 'e.g. 225',
+  'Přidat lék': 'Add a medicine',
+  'Kortikoidy': 'Corticosteroids',
+  'Zatím žádné': 'None yet',
+  'Antibiotika': 'Antibiotics',
+  'Jednorázově': 'Once only',
+  'např. 20:00': 'e.g. 20:00',
+  'Levothyroxin': 'Levothyroxine',
+  'např. Gonal-f': 'e.g. Gonal-f',
+  'Termíny a léky': 'Appointments and medication',
+  'Přidat událost': 'Add an event',
+  'Jiný přípravek': 'Another product',
+  'Kyselina listová': 'Folic acid',
+  'Přidat do kalendáře': 'Add to the calendar',
+  'Vyberte ze seznamu…': 'Choose from the list…',
+  'Tableta nebo kapsle': 'Tablet or capsule',
+  'Přidat do protokolu': 'Add to the protocol',
+  'Zatím nic v kalendáři': 'Nothing in the calendar yet',
+  'Estrofem, po transferu': 'Estrofem, after the transfer',
+  'Hormonální antikoncepce': 'Hormonal contraception',
+  'Progynova, po transferu': 'Progynova, after the transfer',
+  'co k tomu klinika řekla': 'what the clinic said about it',
+  'Decapeptyl, jako trigger': 'Decapeptyl, as the trigger',
+  'Nízkomolekulární heparin': 'Low molecular weight heparin',
+  'Estradiol, jiný přípravek': 'Estradiol, another product',
+  'Ganirelix, jiný přípravek': 'Ganirelix, another product',
+  'Diphereline, jako trigger': 'Diphereline, as the trigger',
+  'Kyselina acetylsalicylová': 'Acetylsalicylic acid',
+  'Progesteron, jiný přípravek': 'Progesterone, another product',
+  'Čípek nebo vaginální tableta': 'Pessary or vaginal tablet',
+  'Například kontrola u lékařky': 'For example a check-up at the doctor',
+  'Podpora po transferu': 'Support after the transfer',
+  'Nepovinné, třeba čas nebo co si vzít': 'Optional, for example the time or what to bring',
+  'Když v seznamu není, napište název rovnou do pole níž.':
+    'If it is not on the list, type the name straight into the field below.',
+  'Přidejte si termín, nebo doplňte data v nastavení. Část událostí pak vznikne sama.':
+    'Add an appointment, or fill in dates under Settings. Some events will then appear on their own.',
+  'Co plyne z vašich dat, doplníme sami. Každou událost si můžete odškrtnout a připsat k ní, co na ní zaznělo.':
+    'Whatever follows from your records we fill in ourselves. You can tick off every event and note what was said at it.',
+  'Tenhle seznam je jen číselník pro zápis, ne doporučení. Co, kolik a kdy budete brát, určuje výhradně vaše klinika. Aplikace nikdy nenavrhne dávku, změnu ani vysazení.':
+    'This list is only a picker for recording, not a recommendation. What you take, how much and when is decided solely by your clinic. The app never suggests a dose, a change or stopping.',
+  'Čas': 'Time',
+  'Datum': 'Date',
+  'Měření': 'Measurements',
+  'Kam dál': 'Where next',
+  'Poznámka': 'Note',
+  'např. 76': 'e.g. 76',
+  'např. 72': 'e.g. 72',
+  'Ultrazvuk': 'Ultrasound',
+  'Laboratoř': 'Lab',
+  'Váha (kg)': 'Weight (kg)',
+  'nepovinné': 'optional',
+  'např. 118': 'e.g. 118',
+  'např. 7,5': 'e.g. 7.5',
+  'např. 64,3': 'e.g. 64.3',
+  'např. 2000': 'e.g. 2000',
+  'Za den (ml)': 'Per day (ml)',
+  'např. 36,55': 'e.g. 36.55',
+  'Teplota (°C)': 'Temperature (°C)',
+  'Hodin spánku': 'Hours of sleep',
+  'Tep za minutu': 'Beats per minute',
+  'Zatím žádné měření': 'No measurements yet',
+  'Horní (systolický)': 'Upper (systolic)',
+  'Dolní (diastolický)': 'Lower (diastolic)',
+  'Zapsat první teplotu': 'Record your first temperature',
+  'Folikuly a sliznice tak, jak vám je řekl lékař':
+    'Follicles and lining exactly as your doctor told you',
+  'Klidový tep, ideálně vsedě a ve stejnou denní dobu.':
+    'Resting pulse, ideally seated and at the same time of day.',
+  'Příznaky s intenzitou. Patří ke stejnému rozhovoru s lékařem':
+    'Symptoms with their intensity. They belong to the same conversation with your doctor',
+  'Zatím žádný zápis. První přidáte ve formuláři nad tímhle řádkem.':
+    'No entries yet. You can add the first one in the form above this line.',
+  'Hormony a odběry s grafem i vysvětlením, co parametr v těle dělá':
+    'Hormones and blood tests with a chart and an explanation of what the parameter does in your body',
+  'Kolik hodin jste opravdu spala. Půlhodiny zapisujte s čárkou, třeba 7,5.':
+    'How many hours you really slept. Write half hours with a decimal point, for example 7.5.',
+  'Zapisuje se horní a dolní hodnota. Měří se vsedě, po pár minutách v klidu.':
+    'Record the upper and the lower value. Measure seated, after a few minutes of rest.',
+  'Kolik jste za den vypila, v mililitrech. Kolik pít vám řekne klinika, hlavně kolem odběru.':
+    'How much you drank over the day, in millilitres. How much to drink is something your clinic will tell you, especially around the retrieval.',
+  'Co si měříte doma. Zůstává to ve vašem zařízení a aplikace to nehodnotí, jen ukazuje vývoj.':
+    'What you measure at home. It stays on your device and the app does not assess it, it only shows the trend.',
+  'Měří se hned po probuzení, ještě před vstáním, každý den přibližně ve stejnou dobu a stejným teploměrem.':
+    'Measure straight after waking, before getting up, at roughly the same time every day and with the same thermometer.',
+  'Ve stimulaci se váha může měnit ze dne na den. Hodnoty se nejlíp porovnávají, když se vážíte ráno a nalačno.':
+    'During stimulation your weight can change from day to day. The values compare best if you weigh yourself in the morning on an empty stomach.',
+  'Křivku vám tu aplikace nevyhodnocuje a nehledá v ní ovulaci. Na to je potřeba znát celý kontext cyklu. Zápisy slouží vám a vašemu lékaři.':
+    'The app does not interpret the curve here and does not look for ovulation in it. That needs the whole context of your cycle. These records are for you and your doctor.',
+  'Nejsledovanější bývá bazální teplota. Formulář na ni najdete hned pod tímhle textem. Hodnoty z odběrů patří do Laboratoře, folikuly do Ultrazvuku.':
+    'The most commonly tracked is basal temperature. You will find its form right below this text. Blood test values belong under Lab, follicles under Ultrasound.',
+  'Aplikace hodnoty nehodnotí. Orientační rozmezí se liší podle laboratoře, dne cyklu, věku i diagnózy. Co konkrétní číslo znamená pro vás, řekne jedině váš lékař.':
+    'The app does not assess values. Reference ranges differ by laboratory, by day of the cycle, by age and by diagnosis. What a particular number means for you can only be said by your doctor.',
+  '◈ Váha': '◈ Weight',
+  '☾ Spánek': '☾ Sleep',
+  '◍ Krevní tlak': '◍ Blood pressure',
+  '◇ Pitný režim': '◇ Fluid intake',
+  '# zapsaných údajů': '# values recorded',
+  '◉ Bazální teplota': '◉ Basal temperature',
+  '♡ Tepová frekvence': '♡ Heart rate',
+
+  // --- Profil, rozcestník, hledání, knihovna, Co když a finance --------------
+  'Dnešní dávky': "Today's doses",
+  'Na dnešek nejsou žádné dávky': 'There are no doses for today',
+  'Až si přidáte léky do protokolu, objeví se tady každý den samy. I s odškrtáváním.':
+    'Once you add medication to the protocol, it will appear here every day on its own. With tick boxes.',
+  'Předplatné': 'Subscription',
+  'Moje dokumenty': 'My documents',
+  'Všechno ostatní': 'Everything else',
+  'Více o aplikaci BlooMia': 'More about BlooMia',
+  'Proč má smysl zapisovat.': 'Why recording things is worth it.',
+  'Průvodkyně vaší IVF cestou': 'Your companion through IVF',
+  'Rozcestník na zbytek aplikace': 'A signpost to the rest of the app',
+  'Jak funguje a jak ho spravovat': 'How it works and how to manage it',
+  'Co si k léčbě beru mimo kliniku': 'What I use alongside treatment outside the clinic',
+  'Papíry z kliniky na jednom místě': 'Paperwork from the clinic in one place',
+  'Co ukázat tomu, kdo je vedle vás': 'What to show the person beside you',
+  'Fáze, situace, vzhled a vaše data': 'Stage, situation, appearance and your data',
+  'Proč jdu na IVF. Může jich být víc': 'Why I am going for IVF. There may be several reasons',
+  'Co se chci zeptat, než na to zapomenu': 'What I want to ask before I forget',
+  'Co může být relevantní a co už mám za sebou':
+    'What may be relevant and what I already have behind me',
+  'Ženy ve stejné fázi. Můžete zůstat anonymní': 'Women at the same stage. You can stay anonymous',
+  'Ženy ve stejné fázi. Můžete zůstat anonymní.':
+    'Women at the same stage. You can stay anonymous.',
+  'Proč BlooMia vznikla a co znamená její jméno': 'Why BlooMia was made and what its name means',
+  'Kolik cesta stála, co je zaplacené a co zbývá':
+    'What the journey has cost, what is paid and what is left',
+  'Zpětná vazba, nápad, recenze nebo co vám chybí':
+    'Feedback, an idea, a review or what you are missing',
+  'Kontakty, telefon i to, kam volat mimo ordinační hodiny':
+    'Contacts, phone numbers and where to call outside surgery hours',
+  'Všechna vaše data zůstávají ve vašem zařízení. Nic se nikam neodesílá a aplikace je nikomu nesdílí. Sdílet je s lékařem můžete jen vy.':
+    'All your data stays on your device. Nothing is sent anywhere and the app shares it with nobody. Only you can share it with your doctor.',
+  'Nic se nikam neodesílá a nemusíte nic vyplňovat najednou. I jedno datum stačí na to, aby se obsah začal přizpůsobovat.':
+    'Nothing is sent anywhere and you do not have to fill everything in at once. Even one date is enough for the content to start adapting.',
+  'Vznikla z vlastní zkušenosti, ne u počítače. Právě proto počítá i se dny, kdy to nevyjde, a s tím, že cesta nemusí být přímá.':
+    'It came out of lived experience, not out of a computer. That is exactly why it also allows for the days when it does not work out, and for the fact that the road need not be straight.',
+  'BlooMia je aplikace pro ženy, které procházejí léčbou neplodnosti. Není to obecná databáze článků. Drží pohromadě vaši konkrétní cestu: cykly, odběry, embrya, transfery, léky, výsledky, náklady i to, jak vám u toho je.':
+    'BlooMia is an app for women going through fertility treatment. It is not a general database of articles. It holds your own particular journey together: cycles, retrievals, embryos, transfers, medication, results, costs and how you feel through it all.',
+  'Z toho, co si zapíšete, aplikace pozná, kde právě jste: kolikátý je den po transferu, jak staré embryo se přenášelo, jestli výsledek už znáte. Podle toho vybírá, co vám ukáže dnes. Bez zápisů umí jen obecné rady, a těch je na internetu dost.':
+    'From what you record, the app can tell where you are: which day after the transfer it is, how old the embryo was, whether you already know the result. It chooses what to show you today from that. Without records it can only give general advice, and there is plenty of that on the internet.',
+  'Kalendář a léky': 'Calendar and medication',
+  'Proč vidím právě tohle': 'Why I am seeing this',
+  'Fáze, situace, vzhled a vaše data.': 'Stage, situation, appearance and your data.',
+  'Chcete vidět, jak se obsah skládá?': 'Want to see how the content is put together?',
+  'Co předplatné zahrnuje a jak ho spravovat.':
+    'What the subscription includes and how to manage it.',
+  'Časová osa a dopisy. Jednou z toho může být kniha.':
+    'A timeline and letters. One day it could be a book.',
+  'Vaše hodnoty v čase. Graf ukazuje vývoj, ne diagnózu.':
+    'Your values over time. The chart shows a trend, not a diagnosis.',
+  'Vložte text lékařské zprávy a vytáhneme z něj hodnoty.':
+    'Paste the text of a medical report and we will pull the values out of it.',
+  'Termíny a léky. Část se doplní automaticky z vaší fáze.':
+    'Appointments and medication. Some of it is filled in automatically from your stage.',
+  'Ať na nic nezapomenete. A odškrtnuté zůstane odškrtnuté.':
+    'So you forget nothing. And what is ticked off stays ticked off.',
+  '# materiálů. Hledejte cokoliv.': '# pieces of content. Search for anything.',
+  'Všech # fází. Kde jste byla, kde jste a co přijde.':
+    'All # stages. Where you have been, where you are and what is coming.',
+  'Zkuste': 'Try',
+  'Folikul': 'Follicle',
+  'cvičení': 'exercises',
+  'doplňky': 'supplements',
+  'partner': 'partner',
+  'Co hledáte?': 'What are you looking for?',
+  'Najít v aplikaci': 'Find in the app',
+  'Nenahrazuje lékaře': 'It does not replace a doctor',
+  'Napište slovo nebo otázku…': 'Type a word or a question…',
+  'Ukazuje jen to, co je v aplikaci.': 'It only shows what is inside the app.',
+  'Stačí jedno slovo („OHSS“, „progesteron“, „hatching“) nebo celá otázka.':
+    'One word is enough („OHSS“, „progesterone“, „hatching“) or a whole question.',
+  'Napište klíčové slovo nebo otázku. Prohledá se všechno, co v aplikaci je. Články, pojmy, rady, diagnózy, doplňky i hodnoty.':
+    'Type a keyword or a question. Everything in the app will be searched. Articles, terms, advice, diagnoses, supplements and values.',
+  'Hledání **nechodí na internet a nic negeneruje.** Ukazuje jen to, co je v aplikaci. **Nenahrazuje lékaře**: o vaší léčbě rozhoduje váš tým na klinice.':
+    'The search **does not go to the internet and generates nothing.** It only shows what is inside the app. **It does not replace a doctor**: your treatment is decided by your team at the clinic.',
+  'Vše': 'All',
+  'Všechno': 'Everything',
+  'Celá knihovna': 'The whole library',
+  'Pro vaši fázi': 'For your stage',
+  'Seřazeno podle pořadí v knihovně': 'Sorted by their order in the library',
+  'Zkuste: hcg, blastocysta, OHSS, endometrium…': 'Try: hcg, blastocyst, OHSS, endometrium…',
+  'Zobrazeno prvních # z #. Zkuste hledání zúžit.':
+    'Showing the first # of #. Try narrowing your search.',
+  '# materiálů a # pojmů. Hledá se v nadpisech i v textu.':
+    '# pieces of content and # terms. Both titles and text are searched.',
+  'Ať na nic nezapomenete': 'So you forget nothing',
+  'Hledáte něco konkrétního?': 'Looking for something specific?',
+  'Obsah poskládaný na dnešek': 'Content put together for today',
+  'Řady se skládají podle toho, kolikátý je den vaší cesty. U každé je napsáno, proč ji vidíte. A zítra budou jiné.':
+    'The rows are put together according to which day of your journey it is. Each one says why you are seeing it. And tomorrow they will be different.',
+  'Protože jste #. den stimulace': 'Because you are on day # of stimulation',
+  'Prohledat celou knihovnu (# materiálů)': 'Search the whole library (# pieces)',
+  'Odškrtnuté položky se pamatují. Řazeno podle toho, co je teď nejblíž.':
+    'Ticked items are remembered. Sorted by what is closest now.',
+  'Texty jsou obecné. O vaší situaci rozhoduje vaše klinika. Aplikace ji nenahrazuje.':
+    'These texts are general. Your situation is decided by your clinic. The app does not replace it.',
+  'Odpovědi na situace, které přijdou mimo ordinační hodiny. U každé je napsané, co bývá běžné, co probrat s klinikou a kdy volat hned.':
+    'Answers for situations that come up outside surgery hours. Each one says what tends to be normal, what to discuss with the clinic and when to call straight away.',
+  'Při silné bolesti břicha, silném krvácení, dušnosti, horečce nebo kolapsu nečtěte. Volejte svou kliniku. Mimo její hodiny záchrannou službu na 155.':
+    'With severe abdominal pain, heavy bleeding, breathlessness, fever or collapse, do not read. Call your clinic. Outside its hours, call the emergency service on 155.',
+  'Cykly': 'Cycles',
+  'Kategorie': 'Category',
+  'Zatím bez záznamu': 'Nothing recorded yet',
+  'Přidat první výdaj': 'Add your first expense',
+  'Zatím tu žádný výdaj není': 'There is no expense here yet',
+  'Kolik vás cesta zatím stála, kolik už je zaplaceno a co ještě čeká.':
+    'What the journey has cost you so far, how much is already paid and what is still to come.',
+  'Ceny se mezi klinikami liší a mění se v čase. Aplikace žádnou cenu nenavrhuje ani neověřuje. Zapisujete to, co jste opravdu zaplatila.':
+    'Prices differ between clinics and change over time. The app neither suggests nor verifies any price. You record what you actually paid.',
+  'Zapisujte si, co za léčbu platíte. Jedna položka je jeden náklad a můžete k ní přidat tolik plateb, kolik jich bylo. Součty si aplikace spočítá sama.':
+    'Record what you pay for treatment. One item is one cost, and you can add as many payments to it as there were. The app works out the totals itself.',
+
+  // --- chyba předplatného ----------------------------------------------------
+  'Předplatné se nepodařilo aktivovat. Napište prosím na {}.':
+    'The subscription could not be activated. Please write to {}.',
+
+  // --- Napište mi, Komunita a Partner ----------------------------------------
+  'Téma': 'Topic',
+  'Nápad': 'An idea',
+  'Zpráva': 'Message',
+  'E-mail': 'Email',
+  'Recenze': 'A review',
+  'Odeslat': 'Send',
+  'Pochvala': 'Praise',
+  'Nepovinné': 'Optional',
+  'Zpětná vazba': 'Feedback',
+  'Co vám chybí': 'What you are missing',
+  'Co se odešle': 'What gets sent',
+  'Nic z deníku.': 'Nothing from the diary.',
+  'Něco nefunguje': 'Something is not working',
+  'Co se vám líbí': 'What you like',
+  'Co se neodešle': 'What does not get sent',
+  'Tenhle formulář': 'This form',
+  'Chci něco změnit': 'I want something changed',
+  'Co byste změnila': 'What you would change',
+  'Nic z vaší léčby.': 'Nothing from your treatment.',
+  'Co mi v aplikaci chybí': 'What I am missing in the app',
+  'Kdybych měla odpovědět': 'If I were to reply',
+  'Jak se vám BlooMia používá': 'How you are finding BlooMia',
+  'Gabriela mi může odpovědět': 'Gabriela may reply to me',
+  'není místo na zdravotní dotazy': 'is not the place for medical questions',
+  'Žádné finance a žádné dokumenty.': 'No costs and no documents.',
+  'Napište cokoliv. Klidně jednu větu.': 'Write anything. One sentence is fine.',
+  'Ani nálada, ani jedno slovo ze zápisů.': 'Not your mood, not one word from your entries.',
+  'Bez zaškrtnutí se váš e-mail neodesílá vůbec.':
+    'If you do not tick this, your email is not sent at all.',
+  'Jen to, co jste napsala do tohohle formuláře.': 'Only what you wrote in this form.',
+  'Žádné cykly, embrya, transfery, hodnoty ani hCG.':
+    'No cycles, embryos, transfers, values or hCG.',
+  'Nepovinné. Když nevyplníte nic, odešle se jen zpráva výš.':
+    'Optional. If you fill in nothing, only the message above is sent.',
+  'Jméno a e-mail, pokud jste je vyplnila a povolila odpověď.':
+    'Your name and email, if you filled them in and allowed a reply.',
+  'Tenhle formulář **není místo na zdravotní dotazy**. S otázkami o léčbě, lécích a výsledcích se obracejte na svou kliniku. Gabriela není lékařka a nemůže je zodpovědět.':
+    'This form **is not the place for medical questions**. For questions about treatment, medication and results, go to your clinic. Gabriela is not a doctor and cannot answer them.',
+  'Chybí vám v aplikaci BlooMia něco? Něco nefunguje? Nebo vás naopak něco potěšilo? Píše to Gabriela, ne robot, a čte to taky ona.':
+    'Is something missing from BlooMia? Is something not working? Or did something please you? Gabriela writes this, not a robot, and she reads it too.',
+  'Zpráva chodí na {}. Když aplikace nemůže odeslat sama, otevře váš poštovní program a zprávu vám předvyplní, ať se neztratí.':
+    'The message goes to {}. If the app cannot send it itself, it opens your mail program and fills the message in for you so it does not get lost.',
+  'Skupiny': 'Groups',
+  'pro vás': 'for you',
+  'Nevyšlo to': 'It did not work out',
+  'Všeobecný chat': 'General chat',
+  'Jsem po transferu': 'I am after a transfer',
+  'Jsem v IVF procesu': 'I am in the IVF process',
+  'Proč jsou jen čtyři': 'Why there are only four',
+  'Skupiny zatím nejsou propojené:': 'The groups are not connected yet:',
+  'Doporučená podle vaší fáze je nahoře': 'The one suggested for your stage is at the top',
+  'Všechno ostatní. Otázky, zkušenosti, tipy a běžný život, který během léčby jde dál.':
+    'Everything else. Questions, experiences, tips and the ordinary life that carries on through treatment.',
+  'Čtyři skupiny podle toho, kde v léčbě jste. Jedna se vám nabídne první, ale do všech smíte kdykoliv.':
+    'Four groups according to where you are in treatment. One is offered to you first, but you may enter any of them at any time.',
+  'Profil může být zcela anonymní. Komunita nikdy nevidí skutečné jméno ani zdravotní údaje. Přepnout to jde v nastavení.':
+    'Your profile can be entirely anonymous. The community never sees your real name or any health data. You can switch it under Settings.',
+  'Dny po ET nebo KET, čekání na hCG, příznaky, nervozita, testování. Nejdelší dva týdny, které se dají strávit ve společnosti.':
+    'The days after an ET or a frozen transfer, waiting for hCG, symptoms, nerves, testing. The longest two weeks, which can be spent in company.',
+  'Stimulace, kontroly, odběr, čekání na embrya, laboratoř, genetika, léky. Pro všechny, kdo jsou v cyklu a transfer je teprve před nimi.':
+    'Stimulation, check-ups, retrieval, waiting for embryos, the lab, genetics, medication. For everyone in a cycle whose transfer is still ahead of them.',
+  'Negativní hCG, neúspěšný nebo zrušený transfer, biochemické těhotenství, ztráta, cyklus bez embrya. Bez rad a bez cizích dobrých zpráv.':
+    "A negative hCG, an unsuccessful or cancelled transfer, a biochemical pregnancy, a loss, a cycle with no embryo. Without advice and without other people's good news.",
+  'co napíšete, zůstane ve vašem zařízení a nikdo jiný to nevidí. Ostatní příspěvky jsou ukázkové.':
+    'whatever you write stays on your device and nobody else sees it. The other posts are examples.',
+  'Skupina po neúspěchu je oddělená schválně. Když se to nepovede, nemáte číst o cizím pozitivním hCG dřív, než si to sama vyberete.':
+    "The group after a failure is kept separate on purpose. When it does not work out, you should not read about somebody else's positive hCG before you choose to.",
+  'Dřív se skupiny dělily podle fáze, měsíce transferu, diagnózy, kliniky i věku. Vycházelo jich přes deset a v každé by byl někdo sám. Čtyři jsou tak akorát.':
+    'The groups used to be split by stage, month of transfer, diagnosis, clinic and age. That came to over ten, and in each one somebody would be on their own. Four is about right.',
+  'Co pomáhá': 'What helps',
+  'Z knihovny': 'From the library',
+  'Čemu se vyhnout': 'What to avoid',
+  'Co právě prožívá': 'What she is going through',
+  ': a nikdy je neuvidí.': ': and will never see them.',
+  'Ke čtení pro partnera': 'Reading for your partner',
+  'Pro toho, kdo je vedle': 'For the person beside you',
+  'Nálada zatím nezapsaná': 'No mood recorded yet',
+  'Nevidí deník, dopisy ani zdravotní hodnoty':
+    'He does not see the diary, the letters or any health values',
+  'Partner vidí fázi, průměrnou náladu a rady.':
+    'Your partner sees the stage, the average mood and the tips.',
+  'Po odběru vajíček převezměte domácnost bez ptaní.':
+    'After the egg retrieval, take over the household without asking.',
+  'Řekněte nahlas, že to zvládá. Ona to o sobě teď neví.':
+    'Say out loud that she is managing. Right now she does not know it about herself.',
+  'Hlídejte čas dávek. Je to konkrétní pomoc, ne kontrola.':
+    'Keep an eye on the timing of doses. That is concrete help, not supervision.',
+  'Naučte se píchat injekce. I když je odmítne, nabídněte to.':
+    'Learn to give the injections. Even if she declines, offer.',
+  'Neptejte se každý den „a co embrya“. Když bude co říct, řekne to.':
+    'Do not ask „so what about the embryos“ every day. When there is something to say, she will say it.',
+  'Nekomentujte nálady jako „to jsou ty hormony“, i když to je pravda.':
+    'Do not comment on her moods with „that is the hormones“, even when it is true.',
+  'Konkrétní rady místo „buď oporou“. Ukažte tuhle obrazovku partnerovi.':
+    'Concrete tips instead of „be supportive“. Show this screen to your partner.',
+  'Hormonální stimulace je fyzicky i psychicky náročná. Nálady kolísají a není to její volba. Břicho může být nafouklé a citlivé, injekce se píchají každý den ve stejný čas.':
+    'Hormonal stimulation is demanding both physically and emotionally. Her moods swing and that is not her choice. Her abdomen may be bloated and tender, and the injections are given every day at the same time.',
+
+  // --- Můj příběh a Členství -------------------------------------------------
+  'Komu': 'To whom',
+  'Sobě': 'To myself',
+  'Text': 'Text',
+  'Těžké': 'Hard',
+  'Dobré': 'Good',
+  'Nadpis': 'Title',
+  'Smíšené': 'Mixed',
+  '# záznam': '# entry',
+  '# záznamy': '# entries',
+  '# záznamů': '# entries',
+  'Partnerovi': 'To my partner',
+  'Co se stalo': 'What happened',
+  'Jak to bylo': 'How it was',
+  'Nezapisovat': 'Do not record',
+  'Mému embryu': 'To my embryo',
+  'Moje kronika': 'My chronicle',
+  'Nejtěžší den': 'The hardest day',
+  'z vašich dat': 'from your records',
+  'Napsat dopis': 'Write a letter',
+  'Mému miminku': 'To my baby',
+  'Uložit dopis': 'Save the letter',
+  'Přidat na osu': 'Add to the timeline',
+  'Nezapomenutelné': 'Unforgettable',
+  'Přidat vzpomínku': 'Add a memory',
+  'Jak mi u toho bylo': 'How I felt about it',
+  'Moje cesta k miminku': 'My journey to a baby',
+  'Tomu, kdo tu nezůstal': 'To the one who did not stay',
+  'Například: Ahoj, ty malá': 'For example: Hello, little one',
+  'Například: první ultrazvuk': 'For example: the first ultrasound',
+  'Pište, jak vám zobák narostl.': 'Write exactly as it comes to you.',
+  'Pár vět. Za rok si je nebudete pamatovat.':
+    'A few sentences. In a year you will not remember them.',
+  'Embryu, miminku, sobě, tomu, kdo tu nezůstal. Dopisy jsou soukromé. Nikdo jiný je nevidí.':
+    'To an embryo, to a baby, to yourself, to the one who did not stay. The letters are private. Nobody else sees them.',
+  'Chronologie celé cesty. Od prvního snažení po dnešek. Milníky léčby se doplňují samy, vzpomínky a fotky přidáváte vy. Jednou z toho může být kniha.':
+    'A chronology of the whole journey. From the first attempt to today. Treatment milestones fill themselves in, memories and photos you add yourself. One day it could be a book.',
+  'Neaktivní': 'Inactive',
+  'Aktivní': 'Active',
+  'Co je v ceně': 'What is included',
+  'Proč jedna cena': 'Why a single price',
+  ', i po skončení.': ', even after it ends.',
+  'Aktivovat předplatné': 'Activate the subscription',
+  'Předplatné zatím nemáte.': 'You do not have a subscription yet.',
+  'Předplatné běží.': 'The subscription is active.',
+  'Zrušit to můžete kdykoliv.': 'You can cancel at any time.',
+  'Obnoví se {} a strhne se {} Kč. Zrušit to můžete kdykoliv do té doby.':
+    'It renews on {} and {} CZK will be charged. You can cancel at any time before then.',
+  '# Kč': '# CZK',
+  '# Kč měsíčně': '# CZK a month',
+  'za měsíc · konečná cena, nejsem plátkyně DPH':
+    'per month · final price, I am not registered for VAT',
+  'Dokumenty a fotky z kliniky ve vašem zařízení':
+    'Documents and photos from the clinic on your device',
+  'Deník, kalendář, připomínky a otázky pro lékaře':
+    'Diary, calendar, reminders and questions for the doctor',
+  'Celý odborný obsah. Články, checklisty, slovník, „Co když…“':
+    'All the specialist content. Articles, checklists, glossary, „What if…“',
+  'Moje IVF cykly: stimulace, odběr, embrya, transfery, výsledky':
+    'My IVF cycles: stimulation, retrieval, embryos, transfers, results',
+  'Karta pro každé embryo a pro každý transfer, bez omezení počtu':
+    'A card for every embryo and every transfer, with no limit on how many',
+  'Podpora ve všech výsledcích, nejen v tom, který skončí pozitivně':
+    'Support for every outcome, not only the one that ends positively',
+  'Vaše záznamy zůstávají ve vašem zařízení vždycky': 'Your records always stay on your device',
+  'Jedna cena za celou aplikaci. Neprodáváme jednotlivé články a neplatíte za „šťastný konec“. Obsah pro negativní hCG, zrušený transfer nebo ztrátu je v ceně stejně jako ten ostatní.':
+    'One price for the whole app. We do not sell individual articles and you do not pay for a „happy ending“. The content for a negative hCG, a cancelled transfer or a loss is included just like everything else.',
+  'Zrušit předplatné jde kdykoliv, jedním tlačítkem a bez udání důvodu. Zaplacené období doběhne do konce.':
+    'You can cancel the subscription at any time, with one button and without giving a reason. The period you have paid for runs to the end.',
+  'Nikdo si tu nekupuje pozici a data se neprodávají. V aplikaci není reklama ani provize, takže nemá důvod vás někam tlačit.':
+    'Nobody buys a placement here and no data is sold. There is no advertising and no commission in the app, so it has no reason to push you anywhere.',
+  'Kdyby se platilo za jednotlivé texty, aplikace by měla důvod psát jich co nejvíc a řadit dopředu ty, které se dobře prodávají. To by v léčbě dopadlo špatně. Předplatné znamená, že se vyplatí psát to, co se vás právě týká. A nic víc.':
+    'If individual texts were paid for, the app would have a reason to write as many as possible and to put the best-selling ones first. In treatment that would end badly. A subscription means it pays to write what actually concerns you. And nothing more.',
+
+  // --- poslední skládané věty ------------------------------------------------
+  '{}. Všechno ostatní, co aplikace umí. A u každé položky je napsané, k čemu je.':
+    '{}. Everything else the app can do. And next to each item it says what it is for.',
+  '{}. Všechno, co je o vás. A co si aplikace pamatuje.':
+    '{}. Everything that is about you. And everything the app remembers.',
+  'Vystupujete jako {}': 'You appear as {}',
+  'Anonymně · {}': 'Anonymous · {}',
+  'Dnes je {}': 'Today is {}',
+  'kdy volat lékaře': 'when to call the doctor',
+  'Co ukázat tomu, kdo je vedle vás. Deník zůstává soukromý.':
+    'What to show the person beside you. The diary stays private.',
 }

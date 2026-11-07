@@ -2,7 +2,7 @@ import { CONTENT_STATS } from '../lib/content'
 import { PHASE_IDS } from '../lib/domain/phases'
 import { guideFor } from '../lib/domain/guides'
 import { journey, profile } from './store'
-import { esc } from './ui'
+import { esc, note } from './ui'
 import { hubRow, sectionHead } from './viz'
 
 /**
@@ -67,6 +67,8 @@ export function screenPruvodce(): string {
     `<div class="rise">${sectionHead('Metody a péče')}${rows(METHODS_ROWS)}</div>`,
     `<div class="rise">${sectionHead('Ostatní')}${rows(OTHER)}</div>`,
 
-    `<p class="note">Svoje vlastní data (cykly, embrya, výsledky, deník) najdete v <strong>Mojí cestě</strong>. Tady je jen to, co se dá přečíst.</p>`,
+    // Přes `note()`, ne ručně: jinak by zvýraznění rozlámalo věty na tři
+    // klíče a každý by se musel překládat zvlášť.
+    note('Svoje vlastní data (cykly, embrya, výsledky, deník) najdete v **Mojí cestě**. Tady je jen to, co se dá přečíst.'),
   ].join('')
 }

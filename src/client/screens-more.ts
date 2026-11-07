@@ -22,7 +22,7 @@ import { odkazNaZalohu } from './screens-zaloha'
 import { photoStrip } from './photo-ui'
 import { medDoses, medForm } from './screens-leky'
 import { des, contentCard, empty, esc, head, heroStyle, lineChart, md, note, plural, sectionTitle } from './ui'
-import { JAZYK, JAZYKY, NAZVY_JAZYKU, adresaJazyka, prelozit } from '../lib/i18n'
+import { JAZYK, JAZYKY, NAZVY_JAZYKU, adresaJazyka, prelozit, vzor } from '../lib/i18n'
 import {
   allEvents,
   cycles,
@@ -103,7 +103,7 @@ export function screenVice(): string {
     `<header class="head rise">
       <p class="eyebrow">${esc(p.displayName ? `${p.displayName} · ` : '')}${esc(PHASE_GROUP_META[state.group].name)}</p>
       <h1 class="display">Více</h1>
-      <p class="lede">${esc(state.dayLabel)}. Všechno ostatní, co aplikace umí. A u každé položky je napsané, k čemu je.</p>
+      <p class="lede">${esc(vzor('{}. Všechno ostatní, co aplikace umí. A u každé položky je napsané, k čemu je.', state.dayLabel))}</p>
     </header>`,
     `<div class="tiles">${items.map(([r, i, t, b]) => `<button class="tile" data-go="${r}"><i>${i}</i><span style="min-width:0"><h4 class="display">${esc(t)}</h4><p>${esc(b)}</p></span><span class="go">›</span></button>`).join('')}</div>`,
     `<section class="center" style="border-top:1px solid var(--line);padding-top:2rem">
@@ -148,7 +148,7 @@ export function screenProfil(): string {
     `<header class="head rise">
       <p class="eyebrow">${esc(p.displayName ? `${p.displayName} · ` : '')}${esc(PHASE_GROUP_META[state.group].name)}</p>
       <h1 class="display">Profil</h1>
-      <p class="lede">${esc(state.dayLabel)}. Všechno, co je o vás. A co si aplikace pamatuje.</p>
+      <p class="lede">${esc(vzor('{}. Všechno, co je o vás. A co si aplikace pamatuje.', state.dayLabel))}</p>
     </header>`,
 
     `<div class="tiles">${items
@@ -439,7 +439,7 @@ export function screenKomunita(): string {
 
   return [
     head(
-      `Vystupujete jako ${me}`,
+      vzor('Vystupujete jako {}', me),
       'Komunita',
       'Čtyři skupiny podle toho, kde v léčbě jste. Jedna se vám nabídne první, ale do všech smíte kdykoliv.',
     ),

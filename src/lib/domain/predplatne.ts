@@ -1,5 +1,6 @@
 import type { IsoDate } from './profile'
-import { daysBetween } from './dates'
+import { daysBetween, formatCzechDate } from './dates'
+import { prelozit, vzor } from '../i18n'
 
 /**
  * Předplatné.
@@ -185,8 +186,12 @@ export function popisPredplatneho(l: Listek | null, dnes: IsoDate): PopisPredpla
 
   // Běží. Tohle je ta věta, kvůli které obrazovka existuje.
   const detail = l.obnoviSe
-    ? `Obnoví se ${denText(l.obnoviSe)} a strhne se ${l.cena} Kč. Zrušit to můžete kdykoliv do té doby.`
-    : 'Zrušit to můžete kdykoliv.'
+    ? vzor(
+        'Obnoví se {} a strhne se {} Kč. Zrušit to můžete kdykoliv do té doby.',
+        denText(l.obnoviSe),
+        l.cena,
+      )
+    : prelozit('Zrušit to můžete kdykoliv.')
 
   return {
     stitek: 'Aktivní',
@@ -207,11 +212,9 @@ export function dnyText(zbyva: number): string {
 }
 
 /** Datum v podobě, jakou čte člověk: „5. prosince“. */
+// Měsíce měl tenhle soubor vlastní, třetí kopii v projektu. Jazyk už umí
+// `formatCzechDate`, a tři kopie téhož seznamu znamenají, že se u cizích
+// jazyků opraví jen některé.
 function denText(iso: IsoDate): string {
-  const MESICE = [
-    'ledna', 'února', 'března', 'dubna', 'května', 'června',
-    'července', 'srpna', 'září', 'října', 'listopadu', 'prosince',
-  ]
-  const [, m, d] = iso.split('-')
-  return `${Number(d)}. ${MESICE[Number(m) - 1]}`
+  return formatCzechDate(iso, { year: false })
 }

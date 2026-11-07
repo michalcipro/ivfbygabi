@@ -1,6 +1,7 @@
 import { FEEDBACK_TOPICS, type Feedback } from '../lib/domain/feedback'
 import { KOMU } from './feedback-send'
 import { esc, note } from './ui'
+import { vzor } from '../lib/i18n'
 
 /**
  * Napište mi.
@@ -133,8 +134,12 @@ export function screenNapisteMi(f: Feedback, stav: string): string {
         <li>Žádné finance a žádné dokumenty.</li>
       </ul>
       <p class="faint" style="margin-top:1rem;font-size:.8125rem;line-height:1.55">
-        Zpráva chodí na ${esc(KOMU)}. Když aplikace nemůže odeslat sama, otevře váš
-        poštovní program a zprávu vám předvyplní, ať se neztratí.
+        ${esc(
+          vzor(
+            'Zpráva chodí na {}. Když aplikace nemůže odeslat sama, otevře váš poštovní program a zprávu vám předvyplní, ať se neztratí.',
+            KOMU,
+          ),
+        )}
       </p>
     </section>`,
 

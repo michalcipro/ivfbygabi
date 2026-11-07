@@ -2,6 +2,7 @@ import type { JourneyState } from './journey'
 import type { Profile } from './profile'
 import { PHASES } from './phases'
 import type { CommunityGroup } from '../shared/records'
+import { prelozit, vzor } from '../i18n'
 
 /**
  * Párování na komunitu. Kdo patří ke komu.
@@ -129,5 +130,5 @@ export function groupSpecsFor(_profile: Profile, state: JourneyState): GroupSpec
 /** Jméno, pod kterým uživatelka vystupuje. Respektuje anonymní režim. */
 export function communityName(profile: Profile, state: JourneyState): string {
   if (!profile.anonymousInCommunity && profile.displayName) return profile.displayName
-  return `Anonymně · ${PHASES[state.phase.id].name}`
+  return vzor('Anonymně · {}', prelozit(PHASES[state.phase.id].name))
 }

@@ -7,6 +7,7 @@ import { CATALOG, GLOSSARY, DAILY_CARDS } from '../content'
 import { LAB_PARAMS } from '../health/lab-params'
 import { LAB_GUIDANCE } from '../health/lab-guidance'
 import { KIND_LABELS } from '../content/types'
+import { prelozit } from '../i18n'
 
 /**
  * Vyhledávání napříč vším, co v aplikaci je.
@@ -306,6 +307,6 @@ export function groupHits(hits: SearchHit[]): { kind: HitKind; items: SearchHit[
 export function searchSuggestions(phase: PhaseId | null): string[] {
   const guide = ALL_GUIDES.find((g) => g.phase === phase)
   const fromGuide = guide ? guide.terms.slice(0, 4) : []
-  const general = ['kdy volat lékaře', 'cvičení', 'doplňky', 'partner']
+  const general = ['kdy volat lékaře', 'cvičení', 'doplňky', 'partner'].map((s) => prelozit(s))
   return [...fromGuide, ...general].slice(0, 8)
 }

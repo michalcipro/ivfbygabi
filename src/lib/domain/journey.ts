@@ -13,6 +13,7 @@ import {
   humanAge,
   today as todayIso,
 } from './dates'
+import { vzor } from '../i18n'
 
 /**
  * Jádro personalizace.
@@ -448,7 +449,7 @@ function buildDayLabel(
   ctx: { hasAnchor: boolean },
 ): string {
   if (!ctx.hasAnchor || !phase.dayLabel) return phase.title
-  return `Dnes je ${phase.dayLabel(day)}`.replace('Dnes je Den', 'Dnes je den')
+  return vzor('Dnes je {}', phase.dayLabel(day)).replace('Dnes je Den', 'Dnes je den')
 }
 
 
